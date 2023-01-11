@@ -7,13 +7,14 @@ import api from "../apiSingleton";
 import { cookieSet } from '../helpers/nookies';
 import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
-import { routersPages } from '../constants/next-routers';
+import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
 
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {
     const response = await api.auth.login(data);
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
+        Router.push(`${routerLinksAsideMenu[0].link}`);
     }
 
     return response;
@@ -21,6 +22,12 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
 
 export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (data) => {
     const response = await api.auth.register(data);
+
+    if (response?.token) {
+        cookieSet({ key: 'token', data: response.token });
+        Router.push(`${routerLinksAsideMenu[0].link}`);
+    }
+
     return response;
 })
 

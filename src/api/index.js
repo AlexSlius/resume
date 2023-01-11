@@ -1,6 +1,7 @@
 import ApiClient from "./ApiClient";
 import dependenciesAPI from "./dependencies";
 import authApi from "./auth";
+import contactApi from "./contacts";
 
 export default function apiConstruct({
   apiUrl,
@@ -18,5 +19,6 @@ export default function apiConstruct({
   return {
     dependencies: new dependenciesAPI({ apiClient }),
     auth: new authApi({ apiClient }),
+    contact: new contactApi({ apiClient }),
   };
 }

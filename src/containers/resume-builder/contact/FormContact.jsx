@@ -12,8 +12,9 @@ import Icon from "../../../components/Icon";
 import { PhotoAdd } from "../../../components/uis/photoAdd"
 import { InputPhone } from "../../../components/uis/inputPhone"
 import { InputSelect } from "../../../components/uis/inputSelect"
+import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 
-import { updateItemFieldContact, updatePictureContact } from "../../../slices/contact"
+import { contactSetNew, updateItemFieldContact, updatePictureContact } from "../../../slices/contact"
 import { fetchGetCountrys, fetchGetCities, fetchGetZipCodes, fetchGetDrivers, fetchGetNationality } from "../../../slices/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 
@@ -23,12 +24,14 @@ import reactComponent from '/public/images/icons/down.svg?sprite'
 const FormContact = () => {
    const dispatch = useDispatch()
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
+   const [pictureFile, setPictureFile] = useState(undefined);
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
 
    const {
       contacts: {
-         contactObj
+         contactObj,
+         status
       },
       dependencies: {
          coutrys,
@@ -42,7 +45,6 @@ const FormContact = () => {
    const {
       register,
       handleSubmit,
-      formState,
       formState: { errors, isValid },
       watch,
       control
@@ -60,43 +62,8 @@ const FormContact = () => {
 
       if (e.target.files[0]) {
          reader.readAsDataURL(e.target.files[0]);
+         setPictureFile(e.target.files[0]);
       }
-   }
-
-   const formSubmit = (value) => {
-      console.log(value);
-
-      //    e.preventDefault();
-      //    const formData = new FormData();
-
-      //    formData.append('date_of_birth', date);
-      //    formData.append('driver_license', driverLicense);
-      //    formData.append('zip_code', city);
-      //    formData.append('city', date);
-      //    formData.append('phone', phone);
-      //    formData.append('place_of_birth', place);
-      //    formData.append('last_name', lastName);
-      //    formData.append('address', adress);
-      //    formData.append('country', country);
-      //    formData.append('first_name', firstName);
-      //    formData.append('nationality', nationality);
-      //    formData.append('email', email);
-      //    formData.append('picture', selectedFile);
-
-      //    axios.post('http://resume.waytrel.pro/profile/basic/',
-      //       formData,
-      //       { headers: { 'Content-Type': 'multipart/form-data' }, })
-      //       .then(res => {
-      //          if (res.data.status === 'session_data_saved') {
-      //             navigate('/login', {
-      //                state: {
-      //                   sessionId: res.data.session_id
-      //                }
-      //             });
-      //          }
-      //       }
-      //       )
-      //       .catch((error) => console.log(error))
    }
 
    const handleSaveSelect = ({ name, value }) => {
@@ -121,6 +88,10 @@ const FormContact = () => {
 
    const handleServerRequestNationaly = async () => {
       await dispatch(fetchGetNationality()); // get all nationality
+   }
+
+   const formSubmit = (value) => {
+      dispatch(contactSetNew(pictureFile));
    }
 
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
@@ -338,7 +309,9 @@ const FormContact = () => {
             </button>
          </CCol>
          <CCol>
-            <CButton type="button" color="blue">Continue</CButton>
+            <LoadChildrenBtn isLoad={isLoader(status)}>
+               <CButton type="submit" color="blue">Continue</CButton>
+            </LoadChildrenBtn>
          </CCol>
       </CForm>
    )

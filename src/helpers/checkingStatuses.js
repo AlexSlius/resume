@@ -6,3 +6,10 @@ export const isRespondServerSuccesss = (obj) => {
 
     return obj?.status == "success";
 }
+
+export const isSuccessNewContact = (obj) => {
+    if (!isObject(obj))
+        return false;
+
+    return obj?.status == "session_data_saved";
+}

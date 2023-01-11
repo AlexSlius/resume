@@ -29,29 +29,29 @@ export default class ApiClient {
     });
   }
 
-  // async put(url, payload = {}) {
-  //   return this.request({
-  //     url,
-  //     method: "PUT",
-  //     body: payload,
-  //   });
-  // }
+  async put(url, payload = {}) {
+    return this.request({
+      url,
+      method: "PUT",
+      body: payload,
+    });
+  }
 
-  // async patch(url, payload = {}) {
-  //   return this.request({
-  //     url,
-  //     method: "PATCH",
-  //     body: payload,
-  //   });
-  // }
+  async patch(url, payload = {}) {
+    return this.request({
+      url,
+      method: "PATCH",
+      body: payload,
+    });
+  }
 
-  // async delete(url, payload = {}) {
-  //   return this.request({
-  //     url,
-  //     method: "DELETE",
-  //     body: payload,
-  //   });
-  // }
+  async delete(url, payload = {}) {
+    return this.request({
+      url,
+      method: "DELETE",
+      body: payload,
+    });
+  }
 
   setApiUrl(apiUrl) {
     this.apiUrl = apiUrl;
@@ -88,12 +88,10 @@ export default class ApiClient {
   }
 
   async request({ url, method, params = {}, body, type = "json" }) {
-    const query = Object.keys(params).length
-      ? `?${queryString.stringify(params, { arrayFormat: "comma" })}`
-      : "";
+    const query = Object.keys(params).length ? `?${queryString.stringify(params, { arrayFormat: "comma" })}` : "";
     const requestUrl = `${this.apiUrl}/${url}${query}`;
     const headers = new Headers();
-    const requestBody = (method === "GET") ? undefined : (type === "formData") ? body : JSON.stringify({ ...body });
+    let requestBody = (method === "GET") ? undefined : ((type === "formData") ? body : JSON.stringify({ ...body }));
     headers.append("Accept", "application/json");
 
     if (type === "json") {
@@ -104,13 +102,23 @@ export default class ApiClient {
     //   headers.append("Authorization", `Bearer ${this.token}`);
     // }
 
+    let FD = undefined;
+
+    if (type === "formData") {
+      FD = new FormData();
+
+      for (const [name, value] of Object.entries(body)) {
+        FD.append(name, value);
+      }
+    }
+
     const options = {
       method,
       headers,
       redirect: "follow",
       withCredentials: true,
       crossDomain: false,
-      body: requestBody,
+      body: (type === "formData") ? FD : requestBody,
     };
 
     try {

@@ -16,6 +16,7 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { fetchAuthRegister } from "../../slices/auth"
 import { isLoader } from "../../helpers/loadings"
+import { localStorageGet } from "../../helpers/localStorage"
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
@@ -37,7 +38,8 @@ export const RegisterPage = () => {
     });
 
     const onSubmit = (data) => {
-        dispatch(fetchAuthRegister({ email: data.email, password: data.password, session_empty: 'aHGNhByJbKCcIwry2' }));
+        let session_empty = localStorageGet('session_id');
+        dispatch(fetchAuthRegister({ email: data.email, password: data.password, session_id: session_empty }));
     }
 
     return (
