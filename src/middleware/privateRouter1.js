@@ -30,8 +30,3 @@ const WithPublickRoute = (WrappedComponent) => {
 };
 
 export default WithPublickRoute;
-
-// export const getServerSideProps = wrapper.getServerSideProps(store => async ({ req, res, ...etc }) => {
-//     console.log("storestorestorestore: ", store);
-//     return { props: {} };
-// });

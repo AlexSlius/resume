@@ -30,6 +30,7 @@ export const InputSelect = ({
     isAddDiv = false,
     obj,
     nTimeMs = 500,
+    isOutDataObj = true,
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -44,7 +45,8 @@ export const InputSelect = ({
     const isValid = valueState?.id != undefined;
 
     const handleOnChange = (e) => {
-        handleSaveSelect({ name, value: { [keyText]: e.target.value } });
+        let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
+        handleSaveSelect({ name, value: out });
     }
 
     const handledOnBlur = () => {
@@ -66,7 +68,8 @@ export const InputSelect = ({
 
         prop.then(
             function (result) {
-                handleSaveSelect({ name, value: data });
+                let out = !!isOutDataObj ? data : data[keyText];
+                handleSaveSelect({ name, value: out });
                 handleChallenge(data);
             },
             function (error) { }
@@ -144,7 +147,7 @@ export const InputSelect = ({
     }, [className]);
 
     useEffect(() => {
-        if (!isFirstList && valueState[keyText]?.length > 0) {
+        if (!isFirstList && (!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) {
             setShowlist(true);
 
             if (refIdTimeout.current) {
@@ -156,7 +159,7 @@ export const InputSelect = ({
                 clearTimeout(refIdTimeout.current);
             }, nTimeMs);
         }
-    }, [valueState[keyText]])
+    }, [(!!isOutDataObj ? valueState[keyText] : valueState)])
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
@@ -172,7 +175,7 @@ export const InputSelect = ({
                     invalid={!!invalid}
                     valid={!!isValid}
                     name={name}
-                    value={valueState[keyText] || ''}
+                    value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
                     type="text"
                     {...obj}
                 />
@@ -190,7 +193,7 @@ export const InputSelect = ({
                                     ) : (
                                         <>
                                             {
-                                                isAddDiv && !isValid && !!valueState[keyText] && (
+                                                isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
                                                     <li className={`${style.list__li} ${style.list__li_first}`}>
                                                         <span>{valueState[keyText] || ''}</span>
                                                         <div className={`${style.rig}`}>
@@ -206,7 +209,7 @@ export const InputSelect = ({
                                                     !!data.length ? (
                                                         data.map((item, index) => {
                                                             let activeClassItem = '';
-                                                            let textOutItem = isString(item[keyName]) && item[keyName].toLowerCase().includes(valueState[keyText]?.toLowerCase(), 0);
+                                                            let textOutItem = isString(item[keyName]) && item[keyName].toLowerCase().includes(!!isOutDataObj ? valueState[keyText]?.toLowerCase() : valueState?.toLowerCase(), 0);
                                                             let textFirst = '';
                                                             let textLast = '';
 
@@ -214,13 +217,13 @@ export const InputSelect = ({
                                                                 activeClassItem = style.active;
                                                             }
 
-                                                            if ((valueState[keyText]?.length > 0) && !textOutItem) {
+                                                            if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
                                                                 return;
-                                                            } else if (valueState[keyText]?.length == 0 || valueState[keyText] == undefined) {
+                                                            } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
                                                                 textLast = item[keyName];
-                                                            } else if ((valueState[keyText]?.length > 0) && textOutItem) {
-                                                                textLast = item[keyName].toLowerCase().replace(valueState[keyText]?.toLowerCase(), '');
-                                                                textFirst = theFirstHeaderCharacter(valueState[keyText]);
+                                                            } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
+                                                                textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
+                                                                textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
                                                             }
 
                                                             return (

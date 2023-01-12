@@ -1,32 +1,15 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from "../apiSingleton";
+import { createSlice } from '@reduxjs/toolkit';
+
 import { statusLoaded, statusLoader, statusError } from '../constants/statuses';
-
-export const fetchGetCountrys = createAsyncThunk('countrus/fetchGetCountrus', async () => {
-    const response = await api.dependencies.getCountrys();
-    return response;
-})
-
-export const fetchGetCities = createAsyncThunk('sities/fetchGetCities', async (id) => {
-    const response = await api.dependencies.getCities(id);
-    return response;
-})
-
-export const fetchGetZipCodes = createAsyncThunk('zip/fetchGetCodes', async (id) => {
-    const response = await api.dependencies.getZipCodes(id);
-    return response;
-})
-
-export const fetchGetDrivers = createAsyncThunk('reivers/fetchGetDrivers', async (id) => {
-    const response = await api.dependencies.getDrivers(id);
-    return response;
-})
-
-export const fetchGetNationality = createAsyncThunk('fetch/fetchGetNationality', async (_, thunkAPI) => {
-    const { contacts: { contactObj: { nationality } } } = thunkAPI.getState();
-    const response = await api.dependencies.getNationality({ "query": nationality?.name || '' });
-    return response;
-})
+import {
+    fetchGetCountrys,
+    fetchGetCities,
+    fetchGetZipCodes,
+    fetchGetDrivers,
+    fetchGetNationality,
+    getJopsTitle,
+    getCompanyList
+} from "../controllers/dependencies";
 
 const initialState = {
     coutrys: {
@@ -48,6 +31,14 @@ const initialState = {
     nationality: {
         list: [],
         status: statusLoaded,
+    },
+    jopsTitle: {
+        list: [],
+        status: statusLoaded,
+    },
+    companys: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -56,6 +47,15 @@ export const sliceDepenndecies = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        // get all companu
+        [getCompanyList.pending]: (state) => {
+            state.companys.list = [];
+            state.companys.status = statusLoader;
+        },
+        [getCompanyList.fulfilled]: (state, action) => {
+            state.companys.status = statusLoaded;
+            state.companys.list = action.payload;
+        },
         //get all coutrys
         [fetchGetCountrys.pending]: (state) => {
             state.coutrys.list = [];
@@ -69,8 +69,6 @@ export const sliceDepenndecies = createSlice({
             state.coutrys.list = [];
             state.coutrys.status = statusError;
         },
-        //end get all coutrys
-
         //get all cities
         [fetchGetCities.pending]: (state) => {
             state.cities.list = [];
@@ -84,8 +82,6 @@ export const sliceDepenndecies = createSlice({
             state.cities.list = [];
             state.cities.status = statusError;
         },
-        //end get all cities
-
         //get all zipsCodes
         [fetchGetZipCodes.pending]: (state) => {
             state.zipsCodes.list = [];
@@ -99,8 +95,6 @@ export const sliceDepenndecies = createSlice({
             state.zipsCodes.list = [];
             state.zipsCodes.status = statusError;
         },
-        //end get all zipsCodes
-
         //get all drivers
         [fetchGetDrivers.pending]: (state) => {
             state.drivers.list = [];
@@ -114,8 +108,6 @@ export const sliceDepenndecies = createSlice({
             state.drivers.list = [];
             state.drivers.status = statusError;
         },
-        //end get all drivers
-
         //get all nationality
         [fetchGetNationality.pending]: (state) => {
             state.nationality.list = [];
@@ -129,7 +121,15 @@ export const sliceDepenndecies = createSlice({
             state.nationality.list = [];
             state.nationality.status = statusError;
         },
-        //end get all nationality
+        // get all jops title
+        [getJopsTitle.pending]: (state) => {
+            state.jopsTitle.list = [];
+            state.jopsTitle.status = statusLoader;
+        },
+        [getJopsTitle.fulfilled]: (state, action) => {
+            state.jopsTitle.status = statusLoaded;
+            state.jopsTitle.list = action.payload;
+        },
     }
 });
 

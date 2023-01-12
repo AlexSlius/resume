@@ -14,7 +14,7 @@ import { AutorizationWrapper } from "../../wrappers/autorization"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { localStorageGet } from "../../helpers/localStorage"
-import { fetchAuthResetPassword } from "../../slices/auth"
+import { fetchAuthResetPassword } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 
 export const ForgotPasswordPage = () => {

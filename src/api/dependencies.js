@@ -16,4 +16,10 @@ export default class ClientsAPI extends Base {
     getNationality(params) {
         return this.apiClient.get(`profile/list/nationality`, params);
     }
+    getJopsTitle(params) {
+        return this.apiClient.get(`profile/list/jobs_title`, params);
+    }
+    getCompanys(params) {
+        return this.apiClient.get(`profile/list/company`, params);
+    }
 }

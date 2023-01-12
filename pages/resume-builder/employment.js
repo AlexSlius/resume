@@ -1,7 +1,7 @@
 import WrapepeAdminpage from "../../src/wrappers/adminPage/AdminPage"
 import ContainerPageEmploment from "../../src/containers/resume-builder/employment/Employment"
 
-import WithPrivateRoute from "../../src/middleware/privateRouter"
+import { withPrivateRoute } from "../../src/middleware/privateRouter"
 
 const ResumeEmplomentPage = () => {
     return (
@@ -11,4 +11,6 @@ const ResumeEmplomentPage = () => {
     )
 }
 
-export default WithPrivateRoute(ResumeEmplomentPage);
+export const getServerSideProps = withPrivateRoute();
+
+export default ResumeEmplomentPage;

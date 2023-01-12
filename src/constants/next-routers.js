@@ -80,4 +80,5 @@ export const routersPages = {
     'forgot': 'forgot-password',
     'checEmail': 'check-your-email',
     'newPassword': 'new-password',
+    'resumeBuilder': 'resume-builder',
 }

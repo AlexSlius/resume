@@ -1,66 +1,13 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import Router from "next/router";
+import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
-import { statusLoaded, statusLoader, statusError } from '../constants/statuses';
-
-import api from "../apiSingleton";
-import { cookieSet } from '../helpers/nookies';
-import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
-
-import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
-
-export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {
-    const response = await api.auth.login(data);
-
-    if (response?.token) {
-        cookieSet({ key: 'token', data: response.token });
-        Router.push(`${routerLinksAsideMenu[0].link}`);
-    }
-
-    return response;
-})
-
-export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (data) => {
-    const response = await api.auth.register(data);
-
-    if (response?.token) {
-        cookieSet({ key: 'token', data: response.token });
-        Router.push(`${routerLinksAsideMenu[0].link}`);
-    }
-
-    return response;
-})
-
-export const fetchAuthResetPassword = createAsyncThunk('fetch/AuthResetPassword', async (data) => {
-    const response = await api.auth.resetPassword(data);
-    const isStatus = isRespondServerSuccesss(response);
-
-    if (isStatus)
-        Router.push(`/${routersPages['checEmail']}`);
-
-    return response;
-})
-
-export const fetchAuthCodeResetPassword = createAsyncThunk('fetch/AuthCodeResetPassword', async (data) => {
-    const response = await api.auth.changeCodePassword(data);
-    const isStatus = isRespondServerSuccesss(response);
-
-    if (isStatus)
-        Router.push(`/${routersPages['newPassword']}`);
-
-    return response;
-})
-
-export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', async (data) => {
-    const response = await api.auth.newPassword(data);
-
-    if (isStatus)
-        Router.push(`/${routersPages['login']}`);
-
-    return response;
-})
+import { statusLoaded, statusLoader } from '../constants/statuses';
+import { fetchAuthLogin, fetchAuthRegister, fetchAuthResetPassword, fetchAuthCodeResetPassword, fetchAuthNewPassword } from '../controllers/auth'
 
 const initialState = {
+    autorizate: {
+        isAthorized: false,
+    },
     login: {
         status: statusLoaded,
     },
@@ -81,8 +28,24 @@ const initialState = {
 const sliceAuth = createSlice({
     name: "auth",
     initialState,
-    reducers: {},
+    reducers: {
+        setIsAuth(state, action) {
+            state.autorizate.isAthorized = action.payload;
+        },
+        setLogout(state, action) {
+            state.autorizate.isAthorized = false;
+        },
+    },
     extraReducers: {
+        [HYDRATE]: (state, action) => {
+            return {
+                ...state,
+                autorizate: {
+                    ...state.autorizate,
+                    ...action.payload.auth.autorizate
+                }
+            }
+        },
         // login
         [fetchAuthLogin.pending]: (state) => {
             state.login.status = statusLoader;
@@ -120,5 +83,7 @@ const sliceAuth = createSlice({
         },
     },
 });
+
+export const { setIsAuth, setLogout } = sliceAuth.actions;
 
 export const { reducer } = sliceAuth;

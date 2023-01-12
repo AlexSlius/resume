@@ -10,7 +10,9 @@ import dotsIcon from '/public/images/icons/dots.svg?sprite'
 const ResumeFooter = () => {
    const {
       auth: {
-         isAthorized,
+         autorizate: {
+            isAthorized,
+         }
       },
    } = useSelector((state) => state);
 

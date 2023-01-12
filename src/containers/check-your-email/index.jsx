@@ -13,7 +13,7 @@ import { AutorizationWrapper } from "../../wrappers/autorization"
 import InputCode from "../../components/uis/inputCode"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
-import { fetchAuthCodeResetPassword } from "../../slices/auth"
+import { fetchAuthCodeResetPassword } from "../../controllers/auth"
 import { localStorageSet } from "../../helpers/localStorage"
 import { isLoader } from "../../helpers/loadings"
 

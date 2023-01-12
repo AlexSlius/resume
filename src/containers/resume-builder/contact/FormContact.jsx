@@ -14,8 +14,8 @@ import { InputPhone } from "../../../components/uis/inputPhone"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 
-import { contactSetNew, updateItemFieldContact, updatePictureContact } from "../../../slices/contact"
-import { fetchGetCountrys, fetchGetCities, fetchGetZipCodes, fetchGetDrivers, fetchGetNationality } from "../../../slices/dependencies"
+import { contactSetNew, updateItemFieldContact, updatePictureContact } from "../../../controllers/contacts"
+import { fetchGetCountrys, fetchGetCities, fetchGetZipCodes, fetchGetDrivers, fetchGetNationality } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 
 import style from './Contact.module.scss'
@@ -71,7 +71,7 @@ const FormContact = () => {
 
       if (name == "country") {
          if (value?.id) {
-            dispatch(fetchGetCities(value.id)); // get list cities by id country
+            // dispatch(fetchGetCities(value.id)); // get list cities by id country
             dispatch(fetchGetDrivers(value.id)) // get list drivers by id country
          }
       }
@@ -88,6 +88,13 @@ const FormContact = () => {
 
    const handleServerRequestNationaly = async () => {
       await dispatch(fetchGetNationality()); // get all nationality
+   }
+
+   const handleServerRequestCity = async () => {
+      if (!contactObj.country?.id)
+         return false;
+
+      await dispatch(fetchGetCities(contactObj.country.id)); // get list cities by id country
    }
 
    const formSubmit = (value) => {
@@ -192,10 +199,10 @@ const FormContact = () => {
                   valueState={contactObj.city || {}}
                   name="city"
                   isAddDiv={true}
-                  isFirstList={false}
                   data={cities.list}
                   isLoad={isLoader(cities?.status)}
                   handleSaveSelect={handleSaveSelect}
+                  handleOpenChangle={handleServerRequestCity}
                />
             </CCol>
          </CRow>
@@ -217,16 +224,6 @@ const FormContact = () => {
                />
             </CCol>
             <CCol xs={6}>
-               {/* <InputSelect
-                  label="Zip Code"
-                  placeholder="Zip Code"
-                  valueState={contactObj.zipCode || {}}
-                  isAddDiv={true}
-                  data={zipsCodes?.list || []}
-                  name="zipCode"
-                  isLoad={isLoader(zipsCodes?.status)}
-                  handleSaveSelect={handleSaveSelect}
-               /> */}
                <Input
                   label="Zip Code"
                   placeholder="Zip Code"

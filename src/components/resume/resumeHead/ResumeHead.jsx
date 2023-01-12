@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
 
 import Icon from '../../Icon'
 
-import style from './ResumeHead.module.scss'
+import { logout } from '../../../controllers/auth'
 
+import style from './ResumeHead.module.scss'
 import savedIcon from '/public/images/icons/saved.svg?sprite'
 import arrowLeftIcon from '/public/images/icons/arrow-left.svg?sprite'
 import arrowRightIcon from '/public/images/icons/arrow-right.svg?sprite'
@@ -15,12 +16,15 @@ import iconHelp from '/public/images/icons/icon-he.svg?sprite'
 import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
 
 const ResumeHead = () => {
+   const dispatch = useDispatch();
    const [showMenu, setShowMenu] = React.useState(false);
    const classIsShowMenu = showMenu ? style.opens : ''
 
    const {
       auth: {
-         isAthorized,
+         autorizate: {
+            isAthorized,
+         }
       },
       contacts: {
          contactObj
@@ -90,7 +94,7 @@ const ResumeHead = () => {
                                  </Link>
                               </li>
                               <li>
-                                 <button>
+                                 <button onClick={() => logout(dispatch)}>
                                     <Icon svg={iconLogout} />
                                     <span>Logout</span>
                                  </button>

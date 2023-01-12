@@ -4,7 +4,7 @@ import {
     CRow,
     CButton
 } from "@coreui/react"
-import { useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 
 import { FormHead } from "../../components/formhead"
@@ -13,7 +13,7 @@ import { InputPassword } from "../../components/uis/inputPassword"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { localStorageGet } from "../../helpers/localStorage"
-import { fetchAuthNewPassword } from "../../slices/auth"
+import { fetchAuthNewPassword } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 
 export const NewPasswordPage = () => {

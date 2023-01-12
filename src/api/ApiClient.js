@@ -1,5 +1,5 @@
-import axios from "axios";
 import queryString from "query-string";
+import fetch from "isomorphic-unfetch";
 
 export default class ApiClient {
   constructor({
@@ -124,10 +124,13 @@ export default class ApiClient {
     try {
       const res = await this.fetch(requestUrl, options);
 
+
+
       let json = {};
 
       try {
         json = await res.json();
+
       } catch (error) {
         console.log("Wrong response error: ", error);
 

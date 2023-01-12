@@ -1,11 +1,31 @@
-import { ROUTES } from '../constants/routes';
-import { makeSlice } from './helpers';
+import { createSlice } from '@reduxjs/toolkit';
 
-const {actions, reducer} = makeSlice(`${ROUTES['employment']}`);
+import { statusLoaded, statusLoader } from '../constants/statuses';
 
-export {
-  reducer
-}
+const initialState = {
+  employmentObj: {
+    title: "",
+    company: "",
+    period_from: "",
+    period_to: "",
+    country: "",
+    assignment: {},
+  },
+  status: "loaded"
+};
 
-export const { setEmployments, setEmployment, updateEmployment, deleteEmployment } = actions;
+export const slice = createSlice({
+  name: 'employment',
+  initialState,
+  reducers: {
+    updateItemFieldEmployment(state, action) {
+      let { name, value } = action.payload;
+      state.employmentObj[name] = value;
+    },
+  },
+  extraReducers: {}
+});
 
+export const { updateItemFieldEmployment } = slice.actions;
+
+export const { reducer } = slice;

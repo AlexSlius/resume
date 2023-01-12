@@ -14,7 +14,7 @@ import { InputPassword } from "../../components/uis/inputPassword"
 import Input from "../../components/uis/input"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
-import { fetchAuthRegister } from "../../slices/auth"
+import { fetchAuthRegister } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 import { localStorageGet } from "../../helpers/localStorage"
 

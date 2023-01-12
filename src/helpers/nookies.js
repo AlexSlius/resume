@@ -21,8 +21,14 @@ export const cookieParse = ({ ctx = null }) => {
     return parseCookies(ctx)
 }
 
-export const cookieDestroy = () => {
+export const cookieDestroy = ({ ctx = null, key = null }) => {
+    if (key === null)
+        return {
+            error: true,
+            message: 'not key'
+        }
 
+    destroyCookie(ctx, key);
 }
 
 

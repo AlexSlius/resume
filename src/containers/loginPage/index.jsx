@@ -18,7 +18,7 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { routersPages } from "../../constants/next-routers"
 import { localStorageSet, localStorageGet } from "../../helpers/localStorage"
-import { fetchAuthLogin } from "../../slices/auth"
+import { fetchAuthLogin } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 
 export const LoginPage = () => {

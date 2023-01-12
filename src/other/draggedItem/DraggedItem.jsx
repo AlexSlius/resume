@@ -16,7 +16,7 @@ const DraggedItem = ({
   provided,
   index,
 }) => {
-  const [selected, setSelected] = useState((index == 1) ? true : false);
+  const [selected, setSelected] = useState(true);
 
   return (
     <div

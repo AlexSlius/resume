@@ -1,6 +1,8 @@
 import WrapepeAdminpage from "../../src/wrappers/adminPage/AdminPage"
 import ContainerPageInterShip from "../../src/containers/resume-builder/intership/InterShip"
 
+import { withPrivateRoute } from "../../src/middleware/privateRouter"
+
 const ResumeInterShipPage = () => {
     return (
         <WrapepeAdminpage>
@@ -8,5 +10,7 @@ const ResumeInterShipPage = () => {
         </WrapepeAdminpage>
     )
 }
+
+export const getServerSideProps = withPrivateRoute();
 
 export default ResumeInterShipPage;
