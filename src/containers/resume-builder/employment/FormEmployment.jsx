@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
-import { withFormik } from "formik";
-import { CCol, CRow, CFormSelect, CButton } from "@coreui/react"
+import { CCol, CRow, CButton } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 import { useSelector, useDispatch } from 'react-redux';
+import dynamic from 'next/dynamic'
 
-import { formatDate, prewriteList as list } from "../../../utils";
-import Textarea from "../../../components/uis/textarea/TextArea";
-import Input from "../../../components/uis/input"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
-import { withForm } from "../../../HOC/withForm";
-import { withLogic } from "../../../HOC/withLogic";
 import { reorder } from '../../../helpers/drageDrop';
-import { getJopsTitle, getCompanyList } from '../../../controllers/dependencies';
+import { getJopsTitle, getCompanyList, fetchGetCountrys } from '../../../controllers/dependencies';
 import { updateItemFieldEmployment } from '../../../slices/employment';
 import { isLoader } from "../../../helpers/loadings"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
+import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
+
+const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
+  ssr: false
+})
 
 const FormEmployment = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const FormEmployment = () => {
     dependencies: {
       jopsTitle,
       companys,
-      cities,
+      coutrys
     },
     employment: {
       employmentObj
@@ -71,6 +71,10 @@ const FormEmployment = () => {
   const handleServerRequestCompanyList = async () => {
     await dispatch(getCompanyList()); // get all compay list
   }
+
+  useEffect(() => {
+    dispatch(fetchGetCountrys()); // get all countrys
+  }, []);
 
   return (
     <>
@@ -172,33 +176,25 @@ const FormEmployment = () => {
                                   </CRow>
                                 </CCol>
                                 <CCol xs={6}>
-                                  {/* <InputSelect
-                                    label="City"
-                                    placeholder="City"
-                                    valueState={employmentObj.city}
-                                    name="city"
-                                    isAddDiv={true}
-                                    data={cities.list}
-                                    isLoad={isLoader(cities?.status)}
+                                  <InputSelect
+                                    label="Country"
+                                    placeholder="Country"
+                                    valueState={employmentObj.country}
+                                    data={coutrys.list}
+                                    name="country"
+                                    isLoad={isLoader(coutrys.status)}
                                     handleSaveSelect={handleSaveSelect}
-                                    handleOpenChangle={handleServerRequestCity}
-                                  /> */}
+                                    isOutDataObj={false}
+                                  />
                                 </CCol>
                                 <CCol xs={12}>
-                                  {/* <Textarea
-                                    //value={localEmployment?.assignment || ''}
-                                    hideButton={true}
-                                    // onChange={(_, text) => handleInput(null, 'assignment', text)}
-                                    onFocus={handleFocus}
-                                    name="assignment"
-                                    prewrite={true}
-                                    prewritePopupShow={show}
-                                    //prewriteButtonHandler={() => setShow(prev => !prev)}
-                                    prewriteItems={list}
-                                    placeholder={'Description of employment'}
-                                    id="employmentTextarea"
-                                    //currentValueId={selectedEmploymentId}
-                                  /> */}
+                                  {
+                                    (typeof window !== undefined) && (
+                                      <TextEditorProvider>
+                                        <TextEditor />
+                                      </TextEditorProvider>
+                                    )
+                                  }
                                 </CCol>
                               </CRow>
                             </DraggedItem>
