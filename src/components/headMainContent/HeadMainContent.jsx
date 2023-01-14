@@ -1,11 +1,9 @@
-import { CFormSwitch } from "@coreui/react"
-
 import { ButtonBack } from "../uis/buttonBack"
 
 import style from "./HeadMainContent.module.scss"
 
 const HeadMainContent = (props) => {
-   const { title, description, switchOk } = props;
+   const { title, description, children } = props;
 
    return (
       <>
@@ -15,10 +13,17 @@ const HeadMainContent = (props) => {
          <h2 className={`${style.main_content__title}`}>
             {title}
          </h2>
-         {description && (<div className={`${style.main_content__head} d-flex justify-content-between gap-3`} style={{ marginBottom: '2rem' }}>
-            {description ? <p className={`${style.main_content__description}`}>{description}</p> : null}
-            {switchOk ? <CFormSwitch onChange={(e) => props.changeSwitch(e.target.checked)} label={switchOk} id="formSwitchCheckDefault" /> : null}
-         </div>)}
+
+         <div className={`${style.roows} gap-3`}>
+            {
+               description && (
+                  <div className={`${style.main_content__des} `}>
+                     <p className={`${style.main_content__description}`}>{description}</p>
+                  </div>
+               )
+            }
+            {children && (<div className={style.cont_right}>{children}</div>)}
+         </div>
       </>
    )
 }

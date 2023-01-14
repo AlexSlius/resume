@@ -5,13 +5,13 @@ import { reducer as appReducer } from '../slices/app';
 // import { reducer as certificatiesReducer } from '../slices/certificaties';
 import { reducer as contactReducer } from '../slices/contact';
 // import { reducer as courseReducer } from '../slices/course';
-// import { reducer as educationReducer } from '../slices/education';
+import { reducer as educationReducer } from '../slices/education';
 import { reducer as employmentReducer } from '../slices/employment';
 // import { reducer as hobbiesReducer } from '../slices/hobies';
 // import { reducer as intershipReducer } from '../slices/intership';
 // import { reducer as languagesReducer } from '../slices/languages';
 // import { reducer as referencesReducer } from '../slices/reference';
-// import { reducer as skillsReducer } from '../slices/skills';
+import { reducer as skillsReducer } from '../slices/skills';
 // import { reducer as socialsReducer } from '../slices/socials';
 // import { reducer as countryReducer } from '../slices/country';
 import { reducer as dependencies } from '../slices/dependencies';
@@ -25,13 +25,13 @@ export const combinedReducers = combineReducers({
   // certificaties: certificatiesReducer,
   contacts: contactReducer,
   // course: courseReducer,
-  // education: educationReducer,
+  educations: educationReducer,
   employment: employmentReducer,
   // hobies: hobbiesReducer,
   // intership: intershipReducer,
   // languages: languagesReducer,
   // reference: referencesReducer,
-  // skills: skillsReducer,
+  skills: skillsReducer,
   // socials: socialsReducer,
   // country: countryReducer
 })

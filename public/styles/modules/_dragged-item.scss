@@ -44,3 +44,19 @@
 }
 
 .dragged_from {}
+
+.dragged-items {
+  display: flex;
+  flex-wrap: wrap;
+  color: #838799;
+  font-size: 14px;
+  font-weight: 350;
+  margin-top: 2px;
+  
+}
+
+.dragged-item {
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}

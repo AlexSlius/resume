@@ -7,6 +7,7 @@ import dragIcon from "/public/images/icons/many-dots.svg?sprite";
 import arrowLeft from "/public/images/icons/arrow-left.svg?sprite";
 import Icon from "../../components/Icon";
 import { useState } from "react";
+import { isArray } from "lodash";
 
 const DraggedItem = ({
   title,
@@ -31,14 +32,16 @@ const DraggedItem = ({
           <Icon svg={dragIcon} classNames={['icon-28']} />
         </span>
         <div className="dragged__content w-100">
-          <div className="dragged__title mb-2">{title}</div>
-          <CRow>
-            {/* {skillsList.map((skill) => (
-            <CCol xs="auto" key={`${skill}_${uuid()}`}>
-              <span>{skill}</span>
-            </CCol>
-          ))} */}
-          </CRow>
+          <div className="dragged__title">{title || "job title"}</div>
+          <div className="dragged-items">
+            {
+              isArray(skillsList) && skillsList.map((skill) => (
+                <div className="dragged-item" key={`${skill}_${uuid()}`}>
+                  <span>{skill}</span>
+                </div>
+              ))
+            }
+          </div>
         </div>
         {selected ? (
           <span onClick={() => setSelected(false)} className="dragged__arrow icon-hover">

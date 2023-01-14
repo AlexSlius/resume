@@ -14,7 +14,8 @@ import { InputPhone } from "../../../components/uis/inputPhone"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 
-import { contactSetNew, updateItemFieldContact, updatePictureContact } from "../../../controllers/contacts"
+import { contactSetNew } from "../../../controllers/contacts"
+import { updatePictureContact, updateItemFieldContact } from "../../../slices/contact"
 import { fetchGetCountrys, fetchGetCities, fetchGetZipCodes, fetchGetDrivers, fetchGetNationality } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 

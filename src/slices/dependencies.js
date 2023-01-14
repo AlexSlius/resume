@@ -8,7 +8,9 @@ import {
     fetchGetDrivers,
     fetchGetNationality,
     getJopsTitle,
-    getCompanyList
+    getCompanyList,
+    getEmploymentsList,
+    getStudysList
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -39,6 +41,14 @@ const initialState = {
     companys: {
         list: [],
         status: statusLoaded,
+    },
+    employers: {
+        list: [],
+        status: statusLoaded,
+    },
+    studys: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -47,6 +57,24 @@ export const sliceDepenndecies = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        // get all companu
+        [getStudysList.pending]: (state) => {
+            state.studys.list = [];
+            state.studys.status = statusLoader;
+        },
+        [getStudysList.fulfilled]: (state, action) => {
+            state.studys.status = statusLoaded;
+            state.studys.list = action.payload;
+        },
+        // get all companu
+        [getEmploymentsList.pending]: (state) => {
+            state.employers.list = [];
+            state.employers.status = statusLoader;
+        },
+        [getEmploymentsList.fulfilled]: (state, action) => {
+            state.employers.status = statusLoaded;
+            state.employers.list = action.payload;
+        },
         // get all companu
         [getCompanyList.pending]: (state) => {
             state.companys.list = [];

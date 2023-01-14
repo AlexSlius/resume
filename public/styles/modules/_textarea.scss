@@ -2,9 +2,10 @@ textarea.form-control {
     border: 1px solid #dadce3;
     border-radius: 12px;
     resize: none;
-    padding: 17px 17px 45px 17px;
+    padding: 17px 17px 17px 17px;
     font-weight: 350;
-    height: 150px;
+    min-height: 150px;
+    height: auto;
  }
  .textarea {
     &__item {

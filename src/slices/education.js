@@ -1,10 +1,45 @@
-import { ROUTES } from '../constants/routes';
-import { makeSlice } from './helpers';
+import { createSlice } from '@reduxjs/toolkit';
 
-const {actions, reducer} = makeSlice(`${ROUTES['education']}`);
+import { statusLoaded, statusLoader } from '../constants/statuses';
 
-export {
-  reducer
-}
+const initialState = {
+  educationObj: [
+    {
+      id: 1,
+      facility: "",
+      degree: "",
+      period_from: "",
+      period_to: "",
+      study: "",
+      awards: "",
+      description: "",
+    },
+    // {
+    //   id: 2,
+    //   facility: "",
+    //   degree: "",
+    //   period_from: "",
+    //   period_to: "",
+    //   study: "",
+    //   awards: "",
+    //   description: "",
+    // }
+  ],
+  status: "loaded"
+};
 
-export const { setEducations, setEducation, updateEducation, deleteEducation} = actions;
+export const slice = createSlice({
+  name: 'educations',
+  initialState,
+  reducers: {
+    updateItemFieldEducation(state, action) {
+      let { index, name, value } = action.payload;
+      state.educationObj[index][name] = value;
+    },
+  },
+  extraReducers: {}
+});
+
+export const { updateItemFieldEducation } = slice.actions;
+
+export const { reducer } = slice;

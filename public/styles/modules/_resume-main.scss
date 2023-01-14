@@ -103,7 +103,6 @@
       font-size: 14px;
       line-height: 16px;
       color: #838799;
-      text-align: right;
    }
 
    &__title2 {
@@ -116,6 +115,12 @@
       font-size: 14px;
       line-height: 20px;
       color: #838799;
+      ul {
+         padding-left: 16px;
+         li {
+            list-style: disc;
+         }
+      }
    }
 }
 
@@ -133,3 +138,10 @@
       }
    }
 }
+
+
+.resume-main__head-info2 {
+   &:not(:first-child) {
+     margin-top: 10px;
+   }
+ }

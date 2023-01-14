@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { CCol, CRow, CButton } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,11 +9,19 @@ import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
 import { reorder } from '../../../helpers/drageDrop';
-import { getJopsTitle, getCompanyList, fetchGetCountrys } from '../../../controllers/dependencies';
+
+import {
+  getJopsTitle,
+  getCompanyList,
+  fetchGetCities,
+  fetchGetCountrys,
+  getEmploymentsList
+} from '../../../controllers/dependencies';
 import { updateItemFieldEmployment } from '../../../slices/employment';
 import { isLoader } from "../../../helpers/loadings"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
+import { formatDate } from "../../../utils";
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
   ssr: false
@@ -25,21 +33,22 @@ const FormEmployment = () => {
     dependencies: {
       jopsTitle,
       companys,
-      coutrys
+      coutrys,
+      cities,
+      employers,
     },
     employment: {
       employmentObj
     }
   } = useSelector(state => state);
-  const [stateArray, setStateArray] = useState([{ id: '1222' }]);
 
-  function onDragEnd(result) {
+  const onDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
 
     const items = reorder(
-      stateArray,
+      employmentObj,
       result.source.index,
       result.destination.index
     );
@@ -50,26 +59,41 @@ const FormEmployment = () => {
 
     // console.log("items: ", items);
 
-    setStateArray(items);
+    // setStateArray(items);
 
     // new list, idStorie, idMedia
     // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
   }
 
-  const handleSaveSelect = ({ name, value }) => {
-    dispatch(updateItemFieldEmployment({ name, value }));
+  const handleSaveSelect = ({ index, name, value }) => {
+    dispatch(updateItemFieldEmployment({ index, name, value }));
   }
 
-  const handlerSetDateState = (name, date) => {
-    dispatch(updateItemFieldEmployment({ name, value: date?.toString() }))
+  const handlerSetDateState = (index, name, date) => {
+    dispatch(updateItemFieldEmployment({ index, name, value: date?.toString() }))
   }
 
-  const handleServerRequestGetJopsTitle = async () => {
-    await dispatch(getJopsTitle()); // get all jops title
+  const handleServerRequestGetJopsTitle = async (text) => {
+    await dispatch(getJopsTitle(text)); // get all jops title
   }
 
-  const handleServerRequestCompanyList = async () => {
-    await dispatch(getCompanyList()); // get all compay list
+  const handleServerRequestCompanyList = async (text) => {
+    await dispatch(getCompanyList(text)); // get all compay list
+  }
+
+  const handleServerRequestCity = async (idCountry) => {
+    if (!!!idCountry)
+      return false;
+
+    await dispatch(fetchGetCities(idCountry)); // get list cities by id country
+  }
+
+  const handleServeDispatchContent = (index, textContent) => {
+    dispatch(updateItemFieldEmployment({ index, name: "assignment", value: textContent }))
+  }
+
+  const handleServerRequest = async (textSearch) => {
+    dispatch(getEmploymentsList(textSearch));
   }
 
   useEffect(() => {
@@ -89,7 +113,7 @@ const FormEmployment = () => {
                     {...provided.droppableProps}
                   >
                     {
-                      stateArray.map((item, index) => (
+                      employmentObj.map((item, index) => (
                         <Draggable
                           key={item.id}
                           draggableId={String(item.id)}
@@ -99,29 +123,30 @@ const FormEmployment = () => {
                             <DraggedItem
                               provided={provided}
                               index={index}
-                              title={'title ' + item.id}
-                            // onClick={handleSelect.bind(null, employment.id)}
-                            // onDelete={handleDelete.bind(null, employment.id)}
-                            // skillsList={[
-                            //   `${formatDate(employment.period_from)} - ${formatDate(
-                            //     employment.period_to
-                            //   )}`,
-                            //   employment.company,
-                            //   employment.country,
-                            // ]}
+                              title={item.title}
+                              // onClick={handleSelect.bind(null, employment.id)}
+                              // onDelete={handleDelete.bind(null, employment.id)}
+                              skillsList={[
+                                `${formatDate(item.period_from)} - ${formatDate(
+                                  item.period_to
+                                )}`,
+                                item.company,
+                                item.country?.name,
+                                item.city
+                              ]}
                             >
                               <CRow className="g-30 r-gap-30 mt-4">
                                 <CCol xs={6}>
                                   <InputSelect
                                     label="Job Title"
                                     placeholder="Job Title"
-                                    valueState={employmentObj.title}
+                                    valueState={item.title}
                                     data={jopsTitle?.list || []}
                                     isAddDiv={true}
                                     name="title"
                                     isFirstList={false}
                                     isLoad={isLoader(jopsTitle?.status)}
-                                    handleSaveSelect={handleSaveSelect}
+                                    handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                     handleServerRequest={handleServerRequestGetJopsTitle}
                                     isOutDataObj={false}
                                   />
@@ -130,13 +155,13 @@ const FormEmployment = () => {
                                   <InputSelect
                                     label="Company / Organization Name"
                                     placeholder="Company / Organization Name"
-                                    valueState={employmentObj.company}
+                                    valueState={item.company}
                                     data={companys?.list || []}
                                     isAddDiv={true}
                                     name="company"
                                     isFirstList={false}
                                     isLoad={isLoader(companys?.status)}
-                                    handleSaveSelect={handleSaveSelect}
+                                    handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                     handleServerRequest={handleServerRequestCompanyList}
                                     isOutDataObj={false}
                                   />
@@ -145,8 +170,8 @@ const FormEmployment = () => {
                                   <CRow>
                                     <CCol xs={6}>
                                       <DatePicker
-                                        selected={employmentObj.period_from ? new Date(employmentObj.period_from) : employmentObj.period_from}
-                                        onChange={(date) => handlerSetDateState('period_from', date)}
+                                        selected={item.period_from ? new Date(item.period_from) : item.period_from}
+                                        onChange={(date) => handlerSetDateState(index, 'period_from', date)}
                                         floatingLabel="From"
                                         placeholderText="From"
                                         name="period_from"
@@ -160,8 +185,8 @@ const FormEmployment = () => {
                                     </CCol>
                                     <CCol xs={6}>
                                       <DatePicker
-                                        selected={employmentObj.period_to ? new Date(employmentObj.period_to) : employmentObj.period_to}
-                                        onChange={(date) => handlerSetDateState('period_to', date)}
+                                        selected={item.period_to ? new Date(item.period_to) : item.period_to}
+                                        onChange={(date) => handlerSetDateState(index, 'period_to', date)}
                                         floatingLabel="To"
                                         placeholderText="To"
                                         name="period_to"
@@ -175,15 +200,29 @@ const FormEmployment = () => {
                                     </CCol>
                                   </CRow>
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol xs={3}>
                                   <InputSelect
+                                    isCouValid={false}
                                     label="Country"
                                     placeholder="Country"
-                                    valueState={employmentObj.country}
+                                    valueState={item.country || {}}
                                     data={coutrys.list}
                                     name="country"
                                     isLoad={isLoader(coutrys.status)}
-                                    handleSaveSelect={handleSaveSelect}
+                                    handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                  />
+                                </CCol>
+                                <CCol xs={3}>
+                                  <InputSelect
+                                    label="City"
+                                    placeholder="City"
+                                    valueState={item.city || ""}
+                                    name="city"
+                                    isAddDiv={true}
+                                    data={cities.list}
+                                    isLoad={isLoader(cities?.status)}
+                                    handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                    handleOpenChangle={() => handleServerRequestCity(item.country?.id)}
                                     isOutDataObj={false}
                                   />
                                 </CCol>
@@ -191,7 +230,14 @@ const FormEmployment = () => {
                                   {
                                     (typeof window !== undefined) && (
                                       <TextEditorProvider>
-                                        <TextEditor />
+                                        <TextEditor
+                                          isLoad={isLoader(employers.status)}
+                                          data={employers.list}
+                                          isAddModal={true}
+                                          devValue={item.assignment}
+                                          handleServerRequest={handleServerRequest}
+                                          handleServeDispatchContent={(textContent) => handleServeDispatchContent(index, textContent)}
+                                        />
                                       </TextEditorProvider>
                                     )
                                   }

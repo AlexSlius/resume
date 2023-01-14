@@ -28,17 +28,23 @@ export const fetchGetNationality = createAsyncThunk('fetch/fetchGetNationality',
     return response;
 })
 
-export const getJopsTitle = createAsyncThunk('fetch/fetchGetJopsTitle', async (_, thunkAPI) => {
-    const { employment: { employmentObj } } = thunkAPI.getState();
-    const response = await api.dependencies.getJopsTitle({ "query": employmentObj.title || '' });
+export const getJopsTitle = createAsyncThunk('fetch/fetchGetJopsTitle', async (params, thunkAPI) => {
+    const response = await api.dependencies.getJopsTitle({ "query": params || '' });
     return response;
 })
 
-export const getCompanyList = createAsyncThunk('fetch/fetchGetCompanyList', async (_, thunkAPI) => {
-    const { employment: { employmentObj } } = thunkAPI.getState();
-    const response = await api.dependencies.getCompanys({ "query": employmentObj.company || '' });
+export const getCompanyList = createAsyncThunk('fetch/fetchGetCompanyList', async (params, thunkAPI) => {
+    const response = await api.dependencies.getCompanys({ "query": params || '' });
     return response;
 })
 
+export const getEmploymentsList = createAsyncThunk('fetch/fetchGetEmploymentList', async (params, thunkAPI) => {
+    const response = await api.dependencies.getEmploymentList({ "query": params || '' });
+    return response;
+})
 
+export const getStudysList = createAsyncThunk('fetch/fetchGetStudysList', async (params, thunkAPI) => {
+    const response = await api.dependencies.getStudysList({ "query": params || '' });
+    return response;
+})
 

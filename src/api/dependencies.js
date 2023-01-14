@@ -22,4 +22,10 @@ export default class ClientsAPI extends Base {
     getCompanys(params) {
         return this.apiClient.get(`profile/list/company`, params);
     }
+    getEmploymentList(params) {
+        return this.apiClient.get(`profile/list/employer`, params);
+    }
+    getStudysList(params) {
+        return this.apiClient.get(`profile/list/field_of_study`, params);
+    }
 }

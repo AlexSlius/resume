@@ -2,19 +2,15 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormSkill from './FormSkill.jsx'
+import { Switch } from "../../../components/uis/switch";
 
 const Skills = () => {
    const [visibleRating, setVisibleRating] = useState(true);
    const skills = useSelector((state) => state.skills.skillss);
-   const loading = useSelector((state) => state.app.loading);
 
    const changeSwitch = (value) => {
       setVisibleRating(!value);
    }
-
-   // if(loading) {
-   //    return null
-   // }
 
    return (
       <>
@@ -24,12 +20,14 @@ const Skills = () => {
             switchOk={"Don't show experience level"}
             changeSwitch={changeSwitch}
          >
+            <Switch
+               label="Don't show experience level"
+            // isChecked={false}
+            // handleOnChange={}
+            />
          </HeadMainContent>
          <FormSkill
-            visibleRating={visibleRating}
             className={`row r-gap-30`}
-            skipButton={true}
-            valuesFromStore={skills}
             buttonClassName="gap-4 d-flex"
          />
       </>
