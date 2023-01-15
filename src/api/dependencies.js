@@ -28,4 +28,7 @@ export default class ClientsAPI extends Base {
     getStudysList(params) {
         return this.apiClient.get(`profile/list/field_of_study`, params);
     }
+    getSkillsPosition(params) {
+        return this.apiClient.get('profile/list/skill_positions', params);
+    }
 }

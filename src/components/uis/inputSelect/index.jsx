@@ -32,7 +32,8 @@ export const InputSelect = ({
     nTimeMs = 500,
     isOutDataObj = true,
     isCouValid = true,
-    isModal = true
+    isModal = true,
+    isIconArrow = false
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -45,6 +46,7 @@ export const InputSelect = ({
     const classBgLoad = isBackgraundLoad ? style.load_bg : ''
 
     const isValid = valueState?.id != undefined;
+    const dopClass = isIconArrow ? style.iconArrow : '';
 
     const handleOnChange = (e) => {
         let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
@@ -71,7 +73,7 @@ export const InputSelect = ({
         prop.then(
             function (result) {
                 let out = !!isOutDataObj ? data : data[keyText];
-                handleSaveSelect({ name, value: out });
+                handleSaveSelect({ name, value: out, isClisk: true });
                 handleChallenge(data);
             },
             function (error) { }
@@ -170,7 +172,7 @@ export const InputSelect = ({
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed}`}>
+            <div className={`${style.mod_filed} ${dopClass}`}>
                 <CFormInput
                     onChange={handleOnChange}
                     onBlur={handledOnBlur}

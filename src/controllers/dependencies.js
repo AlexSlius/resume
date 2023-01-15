@@ -48,3 +48,8 @@ export const getStudysList = createAsyncThunk('fetch/fetchGetStudysList', async 
     return response;
 })
 
+export const fetchGetSkillsPosition = createAsyncThunk('countrus/fetchGetSkillsPosition', async (params) => {
+    const response = await api.dependencies.getSkillsPosition({ "query": params || '', limit: 10 });
+    return response;
+})
+

@@ -20,7 +20,7 @@
         position: relative;
         padding: 10px 0;
         box-shadow: -2px 3px 9px 7px rgb(0 0 0 / 5%);
-        z-index: 10;
+        z-index: 20;
 
         &.load_bg {
             &::after {
@@ -188,6 +188,34 @@
             .wr {
                 bottom: calc(100% + 10px);
             }
+        }
+    }
+}
+
+
+.iconArrow {
+    input {
+        padding-right: 38px !important;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        margin-top: -10px;
+        background: url("/images/icons/chevron-down.svg") center/contain no-repeat;
+        z-index: 2;
+        width: 20px;
+        height: 20px;
+        transition: 0.2s;
+    }
+}
+
+.open {
+    .iconArrow {
+        &::before {
+            transform: rotate(-180deg);
         }
     }
 }
