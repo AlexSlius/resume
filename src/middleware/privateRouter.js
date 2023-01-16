@@ -1,5 +1,3 @@
-import React from "react";
-
 import api from "../apiSingleton";
 
 import { wrapper } from "../../src/store"
@@ -15,6 +13,9 @@ export const withPrivateRoute = () => {
             const cookis = cookieParse({ ctx });
 
             if (!!cookis?.token) {
+
+                api.apiClient.setToken(cookis.token);
+
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
 

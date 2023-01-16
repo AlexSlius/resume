@@ -1,10 +1,46 @@
-import { ROUTES } from '../constants/routes';
-import { makeSlice } from './helpers';
+import { createSlice } from '@reduxjs/toolkit';
 
-const { actions, reducer } = makeSlice(`${ROUTES['socials']}`);
+import { statusLoaded, statusLoader } from '../constants/statuses';
 
-export {
-  reducer
-}
+import {
+  fetchGetAllLinks
+} from "../controllers/socials";
 
-export const { setSocialss, setSocials, updateSocials, deleteSocials} = actions;
+const initialState = {
+  socialObj: [],
+  socialObjNew: {
+    name: '',
+    link: '',
+  },
+  status: statusLoaded,
+  statusList: statusLoaded
+};
+
+export const slice = createSlice({
+  name: 'socials',
+  initialState,
+  reducers: {
+    updateItemSocialFiled(state, action) {
+      let { index, name, value } = action.payload;
+      state.socialObj[index][name] = value;
+    },
+    updateItemSocialFiledNew(state, action) {
+      let { name, value } = action.payload;
+      state.socialObjNew[name] = value;
+    },
+  },
+  extraReducers: {
+    // get list skills all
+    [fetchGetAllLinks.pending]: (state) => {
+      state.statusList = statusLoader;
+    },
+    [fetchGetAllLinks.fulfilled]: (state, action) => {
+      state.statusList = statusLoaded;
+      state.socialObj = action.payload;
+    },
+  }
+});
+
+export const { updateItemSocialFiled, updateItemSocialFiledNew } = slice.actions;
+
+export const { reducer } = slice;

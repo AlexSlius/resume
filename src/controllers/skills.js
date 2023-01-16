@@ -11,3 +11,26 @@ export const fetchGetSkillslistSearch = createAsyncThunk('countrus/fetchGetSkill
     const response = await api.skills.getSkillslistSearch({ "query": params || '', limit: 10 });
     return response;
 });
+
+export const fetchGetSkillslistAll = createAsyncThunk('countrus/fetchGetSkillslistAll', async (id) => {
+    const response = await api.skills.getSkillslistAll(id);
+    return response;
+});
+
+export const fetchPostAddSkillone = createAsyncThunk('countrus/fetchPostAddSkillone', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.skills.addItemSkillOne(idCv, data);
+    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    return response;
+});
+
+export const fetchPostUpdateSkillone = createAsyncThunk('countrus/fetchPostUpdateSkillone', async ({ idCv, id, data }, thunkAPI) => {
+    const response = await api.skills.updateItemSkillOne(id, data);
+    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    return response;
+});
+
+export const fetchPostDeleteSkillOne = createAsyncThunk('countrus/fetchPostDeleteSkillOne', async ({ idCv, id }, thunkAPI) => {
+    const response = await api.skills.deleteItemSkillOne(id);
+    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    return response;
+});

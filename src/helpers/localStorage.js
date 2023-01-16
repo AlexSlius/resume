@@ -3,7 +3,10 @@ export const localStorageSet = (key, data, isJson = false) => {
 }
 
 export const localStorageGet = (key, isJson = false) => {
-    return isJson ? JSON.parse(localStorage.getItem(key)) : localStorage.getItem(key)
+    if (typeof window != 'undefined')
+        return isJson ? JSON.parse(localStorage.getItem(key)) : localStorage.getItem(key)
+
+    return null;
 }
 
 export const localStorageRemove = (key) => {

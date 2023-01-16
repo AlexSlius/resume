@@ -14,16 +14,6 @@ const initialState = {
       awards: "",
       description: "",
     },
-    // {
-    //   id: 2,
-    //   facility: "",
-    //   degree: "",
-    //   period_from: "",
-    //   period_to: "",
-    //   study: "",
-    //   awards: "",
-    //   description: "",
-    // }
   ],
   status: "loaded"
 };

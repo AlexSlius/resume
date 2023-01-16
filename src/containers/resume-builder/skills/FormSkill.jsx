@@ -3,8 +3,8 @@ import {
    CRow,
 } from "@coreui/react";
 import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
-import initialSkills from "./InitialSkills";
 import ModifyItems from './ModifyItems';
 import { InputSelect } from "../../../components/uis/inputSelect"
 import InputSearch from "../../../components/uis/inputSearch";
@@ -13,9 +13,17 @@ import { updateItemSkillsFiled } from "../../../slices/skills";
 import { isLoader } from "../../../helpers/loadings"
 import {
    fetchGetSkillslistWork,
-   fetchGetSkillslistSearch
+   fetchGetSkillslistSearch,
+   fetchPostAddSkillone,
+   fetchPostUpdateSkillone,
+   fetchPostDeleteSkillOne,
+   fetchGetSkillslistAll
 } from "../../../controllers/skills";
 import { LoadBlock } from "../../../components/loadBlock";
+import { ActiveItemSkillsAndStarts } from "./ActiveItemSkillsAndStarts";
+import { localStorageGet } from "../../../helpers/localStorage";
+import { isArray } from "lodash";
+import { LoadWr } from "../../../components/loadWr";
 
 const FormSkill = ({ visibleRating }) => {
    const dispatch = useDispatch();
@@ -23,11 +31,13 @@ const FormSkill = ({ visibleRating }) => {
       skills: {
          skillsObj,
          statusIsListSkills,
+         statusListSkillsAll
       },
       dependencies: {
          skillsPositions,
       }
    } = useSelector(state => state);
+   const idCv = localStorageGet('idCv');
 
    const updateitemFiled = ({ name, value, isClisk }) => {
       dispatch(updateItemSkillsFiled({ name, value }));
@@ -51,6 +61,29 @@ const FormSkill = ({ visibleRating }) => {
       updateitemFiled({ name: "selectd_work", value: '' });
       await dispatch(fetchGetSkillslistSearch(skillsObj?.searchSkils));
    }
+
+   const handleAddItemSkillOne = async (idSkill, text) => {
+      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 5, skill_id: idSkill } }));
+   }
+
+   const handleUpdateItemSkillOne = async (id, data) => {
+      await dispatch(fetchPostUpdateSkillone({ idCv, id, data }));
+   }
+
+   const handleDeleteItemSkill = (id) => {
+      dispatch(fetchPostDeleteSkillOne({ idCv, id }));
+   }
+
+   const handleClickDeleteItem = (id) => {
+      if (isArray(skillsObj.skillsListAll)) {
+         let result = skillsObj.skillsListAll.find((el) => id == el.skillId)
+         handleDeleteItemSkill(result.id);
+      }
+   }
+
+   React.useEffect(() => {
+      dispatch(fetchGetSkillslistAll(idCv));
+   }, []);
 
    return (
       <CRow className="g-30 r-gap-30">
@@ -89,7 +122,9 @@ const FormSkill = ({ visibleRating }) => {
                      ) : (
                         <ModifyItems
                            arr={skillsObj?.skillsList}
-                        // changeItem={changeItem}
+                           arrActive={skillsObj?.skillsListAll}
+                           handleClick={handleAddItemSkillOne}
+                           handleClickDelete={handleClickDeleteItem}
                         />
                      )
                   }
@@ -97,11 +132,28 @@ const FormSkill = ({ visibleRating }) => {
             </CRow>
          </CCol >
          <CCol xs={6}>
-            <div className="skills__adding-items d-flex gap-3 flex-wrap">
-               {/* <ModifyItems arr={localNotSelectedItems} ratingChanged={ratingChanged} changeItem={changeItem} /> */}
-            </div>
+            <LoadWr isLoad={isLoader(statusListSkillsAll)}>
+               {
+                  isArray(skillsObj?.skillsListAll) && (
+                     <div className="skills-items-level">
+                        {
+                           skillsObj.skillsListAll.map((item, index) => (
+                              <ActiveItemSkillsAndStarts
+                                 key={item.id}
+                                 id={item.id}
+                                 label={item.name}
+                                 onDelete={handleDeleteItemSkill}
+                                 ratingChanged={handleUpdateItemSkillOne}
+                                 valueStats={item.level}
+                              />
+                           ))
+                        }
+                     </div>
+                  )
+               }
+            </LoadWr>
          </CCol>
-      </CRow >
+      </CRow>
    )
 }
 

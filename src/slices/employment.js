@@ -14,16 +14,6 @@ const initialState = {
       assignment: "",
       city: ""
     },
-    {
-      id: 2,
-      title: "",
-      company: "",
-      period_from: "",
-      period_to: "",
-      country: {},
-      assignment: "",
-      city: ""
-    }
   ],
   status: "loaded"
 };

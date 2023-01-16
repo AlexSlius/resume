@@ -1,23 +1,7 @@
-import { useSelector } from "react-redux";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormSocials from "./FormSocials";
-import uuid from 'react-uuid';
-
-const initialState = [{
-   name: '',
-   link: '',
-   id: uuid()
- }];
 
 const Socials = () => {
-   let socials = useSelector((state) => state.socials.socialss);
-   socials = socials.filter(el => el?.name);
-   const loading = useSelector((state) => state.app.loading);
-
-   // if(loading) {
-   //    return null;
-   // }
-   
    return (
       <>
          <HeadMainContent
@@ -27,11 +11,8 @@ const Socials = () => {
          >
          </HeadMainContent>
          <FormSocials
-               className={`row r-gap-30`}
-               skipButton={true}
-               valuesFromStore={socials}
-               initialState={initialState}
-               buttonClassName="gap-4 d-flex"
+            className={`row r-gap-30`}
+            buttonClassName="gap-4 d-flex"
          />
       </>
    )

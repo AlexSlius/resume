@@ -4,7 +4,8 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
   fetchGetSkillslistWork,
-  fetchGetSkillslistSearch
+  fetchGetSkillslistSearch,
+  fetchGetSkillslistAll
 } from "../controllers/skills";
 
 const initialState = {
@@ -13,9 +14,11 @@ const initialState = {
     selectd_work: "",
     searchSkils: "",
     skillsList: [],
+    skillsListAll: [],
   },
   status: statusLoaded,
   statusIsListSkills: statusLoaded,
+  statusListSkillsAll: statusLoaded,
 };
 
 export const slice = createSlice({
@@ -28,6 +31,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // get list skills all
+    [fetchGetSkillslistAll.pending]: (state) => {
+      state.statusListSkillsAll = statusLoader;
+    },
+    [fetchGetSkillslistAll.fulfilled]: (state, action) => {
+      state.statusListSkillsAll = statusLoaded;
+      state.skillsObj.skillsListAll = action.payload;
+    },
     // get skills of work
     [fetchGetSkillslistWork.pending]: (state) => {
       state.statusIsListSkills = statusLoader;

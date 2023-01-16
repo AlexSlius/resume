@@ -7,6 +7,7 @@ import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
 import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
 import { setLogout } from '../slices/auth';
+import { localStorageSet } from '../helpers/localStorage';
 
 export const logout = (dispatch) => {
     cookieDestroy({ key: 'token' });
@@ -30,6 +31,7 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (d
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
+        localStorageSet("idCv", response.id);
         Router.push(`${routerLinksAsideMenu[0].link}`);
     }
 

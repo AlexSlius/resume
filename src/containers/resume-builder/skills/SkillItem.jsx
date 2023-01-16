@@ -5,14 +5,15 @@ import deleteIcon from '/public/images/icons/remove.svg?sprite'
 
 const SkillItem = ({
    selected,
-   id,
    text,
-   onChange
+   id,
+   onClick,
+   onClickDelete
 }) => {
    return (
       <div
          className="skills__item d-flex gap-2 align-items-center"
-         onClick={(e) => onChange(id, e)}
+         onClick={(e) => selected ? onClickDelete(id) : onClick(id, text)}
       >
          {text}
          <button className="skills__button">

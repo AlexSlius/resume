@@ -15,6 +15,12 @@ const ResumeMain = () => {
       educations: {
          educationObj
       },
+      skills: {
+         skillsObj
+      },
+      socials: {
+         socialObj,
+      }
    } = useSelector((state) => state);
 
    let notEmptyContactDetails = contactObj.address || contactObj.city?.name || contactObj.zipCode || contactObj.country?.name || contactObj.phone;
@@ -102,76 +108,67 @@ const ResumeMain = () => {
             ) : null
          }
 
-         {/* {skills?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Skills</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {skills.map((el, ind, arr) => {
-                  if (!(ind % 2)) {
-                     return (
-                        <Fragment key={el?.id}>
-                           <div className="d-flex flex-wrap justify-content-between align-items-center">
-                              <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center me-4">
-                                 <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                    {arr[ind]?.name}
-                                 </div>
-                                 <div className="resume-main__head-text">
-                                    <ReactStars
-                                       key={arr[ind]?.name + '-' + arr[ind]?.level}
-                                       edit={false}
-                                       count={5}
-                                       value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
-                                       size={12}
-                                       activeColor={'#6DC26C'} />
-                                 </div>
-                              </div>
-                              <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
-                                 <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                    {arr[ind + 1]?.name}
-                                 </div>
-                                 <div className="resume-main__head-text">
-                                    <ReactStars
-                                       key={arr[ind + 1]?.name + '-' + arr[ind + 1]?.level}
-                                       edit={false}
-                                       count={5}
-                                       value={arr[ind + 1]?.level ? Number(arr[ind + 1]?.level) : 0}
-                                       size={12}
-                                       activeColor={'#6DC26C'} />
-                                 </div>
-                              </div>
-                           </div>
-                        </Fragment>
-                     );
-                  }
-               })}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            skillsObj?.skillsListAll.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        Skills</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     <div className="d-flex flex-wrap justify-content-between align-items-center">
+                        {
+                           skillsObj.skillsListAll.map((el, ind, arr) => {
+                              return (
+                                 <Fragment key={el?.id}>
+                                    <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center me-4">
+                                       <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
+                                          {arr[ind]?.name}
+                                       </div>
+                                       <div className="resume-main__head-text">
+                                          <ReactStars
+                                             key={arr[ind]?.name + '-' + arr[ind]?.level}
+                                             edit={false}
+                                             count={5}
+                                             value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
+                                             size={12}
+                                             activeColor={'#6DC26C'} />
+                                       </div>
+                                    </div>
+                                 </Fragment>
+                              );
+                           })
+                        }
+                     </div>
+                  </CCol>
+               </CRow>
+            ) : null
+         }
 
-         {/* {socials?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Social Links</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {socials.map(el => (
-                  <Fragment key={el?.id}>
-                     <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
-                        <div className="resume-main__title2">
-                           {el?.name}
+         {
+            socialObj?.length ? (<CRow className="resume-main__row mb-4">
+               <CCol className="resume-main__col1">
+                  <div className="resume-main__label">
+                     Social Links</div>
+               </CCol>
+               <CCol className="resume-main__col2">
+                  {socialObj.map(el => (
+                     <Fragment key={el?.id}>
+                        <div className="resume-socials">
+                           <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer">
+                              {
+                                 el?.icon && (
+                                    <i style={{ background: `url(${el?.icon})` }}></i>
+                                 )
+                              }
+                              <span>{el?.link}</span>
+                           </a>
                         </div>
-                        <div className="resume-main__head-text">
-                           <a href={el?.link} target="_blank" rel="noreferrer"> {el?.link}</a>
-                        </div>
-                     </div>
-                     <div className="resume-main__bottom">
-                        <p className="resume-main__info-text">{el?.description}</p>
-                     </div>
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+                     </Fragment>
+                  ))}
+               </CCol>
+            </CRow>) : null
+         }
 
          {/* {hobies?.length ? (<CRow className="resume-main__row mb-4">
             <CCol className="resume-main__col1">

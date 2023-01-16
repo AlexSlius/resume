@@ -31,4 +31,7 @@ export default class ClientsAPI extends Base {
     getSkillsPosition(params) {
         return this.apiClient.get('profile/list/skill_positions', params);
     }
+    getSocials(params) {
+        return this.apiClient.get(`profile/list/links`, params);
+    }
 }

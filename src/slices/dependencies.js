@@ -11,7 +11,8 @@ import {
     getCompanyList,
     getEmploymentsList,
     getStudysList,
-    fetchGetSkillsPosition
+    fetchGetSkillsPosition,
+    fetchGetSocials
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -54,6 +55,10 @@ const initialState = {
     skillsPositions: {
         list: [],
         status: statusLoaded,
+    },
+    socials: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -62,6 +67,15 @@ export const sliceDepenndecies = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        // get socials 
+        [fetchGetSocials.pending]: (state) => {
+            state.socials.list = [];
+            state.socials.status = statusLoader;
+        },
+        [fetchGetSocials.fulfilled]: (state, action) => {
+            state.socials.status = statusLoaded;
+            state.socials.list = action.payload;
+        },
         // get skills position
         [fetchGetSkillsPosition.pending]: (state) => {
             state.skillsPositions.list = [];

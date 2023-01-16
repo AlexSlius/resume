@@ -8,6 +8,7 @@ import '../public/styles/style.scss'
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <Provider store={store}>
       <Head>

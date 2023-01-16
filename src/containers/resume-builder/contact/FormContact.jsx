@@ -13,11 +13,25 @@ import { PhotoAdd } from "../../../components/uis/photoAdd"
 import { InputPhone } from "../../../components/uis/inputPhone"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
+import { LoadWr } from "../../../components/loadWr";
 
-import { contactSetNew } from "../../../controllers/contacts"
-import { updatePictureContact, updateItemFieldContact } from "../../../slices/contact"
-import { fetchGetCountrys, fetchGetCities, fetchGetZipCodes, fetchGetDrivers, fetchGetNationality } from "../../../controllers/dependencies"
+import {
+   contactSetNew,
+   getBasicContact
+} from "../../../controllers/contacts"
+import {
+   updatePictureContact,
+   updateItemFieldContact
+} from "../../../slices/contact"
+import {
+   fetchGetCountrys,
+   fetchGetCities,
+   fetchGetZipCodes,
+   fetchGetDrivers,
+   fetchGetNationality
+} from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
+import { localStorageGet } from "../../../helpers/localStorage";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
@@ -32,7 +46,8 @@ const FormContact = () => {
    const {
       contacts: {
          contactObj,
-         status
+         status,
+         statusNew
       },
       dependencies: {
          coutrys,
@@ -42,6 +57,7 @@ const FormContact = () => {
          nationality
       },
    } = useSelector(state => state);
+   const idCv = localStorageGet('idCv');
 
    const {
       register,
@@ -72,15 +88,9 @@ const FormContact = () => {
 
       if (name == "country") {
          if (value?.id) {
-            // dispatch(fetchGetCities(value.id)); // get list cities by id country
             dispatch(fetchGetDrivers(value.id)) // get list drivers by id country
          }
       }
-
-      // if (name = "city") {
-      //    if (value?.id)
-      //       dispatch(fetchGetZipCodes(value.id)) // get list zip codes by id city
-      // }
    }
 
    const handlerSetDateState = (name, date) => {
@@ -113,205 +123,208 @@ const FormContact = () => {
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
+      dispatch(getBasicContact(idCv));
    }, []);
 
    return (
-      <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
-         <CRow>
-            <CCol xs={6} className="gap-3">
-               <div className="mb-3">
+      <LoadWr isLoad={isLoader(status)}>
+         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
+            <CRow>
+               <CCol xs={6} className="gap-3">
+                  <div className="mb-3">
+                     <Input
+                        label="First Name"
+                        placeholder="First Name"
+                        value={contactObj.firstName}
+                        invalid={errors?.firstName}
+                        valid={!errors?.firstName && contactObj.firstName.length > 1}
+                        obj={
+                           register("firstName", {
+                              minLength: {
+                                 value: 2
+                              }
+                           })
+                        }
+                     />
+                  </div>
+                  <div>
+                     <Input
+                        label="Last Name"
+                        placeholder="Last Name"
+                        value={contactObj.lastName}
+                        invalid={errors?.lastName}
+                        valid={!errors?.lastName && contactObj.lastName.length > 1}
+                        obj={
+                           register("lastName", {
+                              minLength: {
+                                 value: 2
+                              }
+                           })
+                        }
+                     />
+                  </div>
+               </CCol>
+               <CCol xs={6}>
+                  <PhotoAdd handleFileSelect={handleFileSelect} value={contactObj?.picture} />
+               </CCol>
+            </CRow>
+            <CRow className="g-30 r-gap-30">
+               <CCol xs={6}>
                   <Input
-                     label="First Name"
-                     placeholder="First Name"
-                     value={contactObj.firstName}
-                     invalid={errors?.firstName}
-                     valid={!errors?.firstName && contactObj.firstName.length > 1}
+                     label="E-mail*"
+                     placeholder="E-mail*"
+                     value={contactObj.email}
+                     invalid={errors?.email}
+                     valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
                      obj={
-                        register("firstName", {
+                        register("email", {
+                           required: true,
+                           pattern: {
+                              value: /\S+@\S+\.\S+/,
+                           },
+                        })
+                     }
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <InputPhone
+                     label="Phone"
+                     placeholder="Phone"
+                     value={contactObj.phone}
+                     obj={{ control }}
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <InputSelect
+                     label="Country"
+                     placeholder="Country"
+                     valueState={contactObj.country || {}}
+                     data={coutrys.list}
+                     name="country"
+                     isLoad={isLoader(coutrys.status)}
+                     handleSaveSelect={handleSaveSelect}
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <InputSelect
+                     label="City"
+                     placeholder="City"
+                     valueState={contactObj.city || {}}
+                     name="city"
+                     isAddDiv={true}
+                     data={cities.list}
+                     isLoad={isLoader(cities?.status)}
+                     handleSaveSelect={handleSaveSelect}
+                     handleOpenChangle={handleServerRequestCity}
+                  />
+               </CCol>
+            </CRow>
+            {visibleAllInputs && <CRow className="g-30 r-gap-30">
+               <CCol xs={6}>
+                  <Input
+                     label="Adress"
+                     placeholder="Adress"
+                     value={contactObj.address}
+                     invalid={errors?.address}
+                     valid={!errors?.address && (contactObj.address.length > 1)}
+                     obj={
+                        register("address", {
                            minLength: {
                               value: 2
                            }
                         })
                      }
                   />
-               </div>
-               <div>
+               </CCol>
+               <CCol xs={6}>
                   <Input
-                     label="Last Name"
-                     placeholder="Last Name"
-                     value={contactObj.lastName}
-                     invalid={errors?.lastName}
-                     valid={!errors?.lastName && contactObj.lastName.length > 1}
+                     label="Zip Code"
+                     placeholder="Zip Code"
+                     value={contactObj.zipCode}
+                     invalid={errors?.zipCode}
+                     valid={!errors?.zipCode && contactObj.zipCode.length > 1}
+                     type="number"
                      obj={
-                        register("lastName", {
+                        register("zipCode", {
                            minLength: {
                               value: 2
                            }
                         })
                      }
                   />
-               </div>
+               </CCol>
+               <CCol xs={6}>
+                  <InputSelect
+                     label="Driver license"
+                     placeholder="Driver license"
+                     valueState={contactObj.driverLicense || {}}
+                     data={drivers?.list || []}
+                     isAddDiv={true}
+                     name="driverLicense"
+                     isLoad={isLoader(drivers?.status)}
+                     handleSaveSelect={handleSaveSelect}
+                     keyName="category"
+                     keyText="category"
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <InputSelect
+                     label="Nationality"
+                     placeholder="Nationality"
+                     valueState={contactObj.nationality || {}}
+                     data={nationality?.list || []}
+                     isAddDiv={true}
+                     name="nationality"
+                     isFirstList={false}
+                     isLoad={isLoader(nationality?.status)}
+                     handleSaveSelect={handleSaveSelect}
+                     handleServerRequest={handleServerRequestNationaly}
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <Input
+                     label="Place of birth"
+                     placeholder="Place of birth"
+                     value={contactObj.placeOfBirth}
+                     invalid={errors?.placeOfBirth}
+                     valid={!errors?.placeOfBirth && contactObj.placeOfBirth.length > 1}
+                     obj={
+                        register("placeOfBirth", {
+                           minLength: {
+                              value: 2
+                           }
+                        })
+                     }
+                  />
+               </CCol>
+               <CCol xs={6}>
+                  <DatePicker
+                     selected={contactObj.dateOfBirth ? new Date(contactObj.dateOfBirth) : contactObj.dateOfBirth}
+                     onChange={(date) => handlerSetDateState('dateOfBirth', date)}
+                     placeholderText="Date of birth"
+                     name="date_of_birth"
+                     calendarClassName="custom-datepicker"
+                     wrapperClassName="custom-datepicker-wrapper-2"
+                     dateFormat="MMM, yyyy"
+                     showMonthYearPicker
+                     showPopperArrow={false}
+                     useShortMonthInDropdown={true}
+                  />
+               </CCol>
+            </CRow>}
+            <CCol xs={12}>
+               <button type="button" onClick={() => setVisibleAllInputs(prev => !prev)} className={`${classButton}`}>
+                  {textInButton}
+                  <Icon svg={reactComponent} classNames={[style.icon_bnt]} />
+               </button>
             </CCol>
-            <CCol xs={6}>
-               <PhotoAdd handleFileSelect={handleFileSelect} value={contactObj?.picture} />
+            <CCol>
+               <LoadChildrenBtn isLoad={isLoader(statusNew)}>
+                  <CButton type="submit" color="blue">Continue</CButton>
+               </LoadChildrenBtn>
             </CCol>
-         </CRow>
-         <CRow className="g-30 r-gap-30">
-            <CCol xs={6}>
-               <Input
-                  label="E-mail*"
-                  placeholder="E-mail*"
-                  value={contactObj.email}
-                  invalid={errors?.email}
-                  valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
-                  obj={
-                     register("email", {
-                        required: true,
-                        pattern: {
-                           value: /\S+@\S+\.\S+/,
-                        },
-                     })
-                  }
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputPhone
-                  label="Phone"
-                  placeholder="Phone"
-                  value={contactObj.phone}
-                  obj={{ control }}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="Country"
-                  placeholder="Country"
-                  valueState={contactObj.country || {}}
-                  data={coutrys.list}
-                  name="country"
-                  isLoad={isLoader(coutrys.status)}
-                  handleSaveSelect={handleSaveSelect}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="City"
-                  placeholder="City"
-                  valueState={contactObj.city || {}}
-                  name="city"
-                  isAddDiv={true}
-                  data={cities.list}
-                  isLoad={isLoader(cities?.status)}
-                  handleSaveSelect={handleSaveSelect}
-                  handleOpenChangle={handleServerRequestCity}
-               />
-            </CCol>
-         </CRow>
-         {visibleAllInputs && <CRow className="g-30 r-gap-30">
-            <CCol xs={6}>
-               <Input
-                  label="Adress"
-                  placeholder="Adress"
-                  value={contactObj.address}
-                  invalid={errors?.address}
-                  valid={!errors?.address && (contactObj.address.length > 1)}
-                  obj={
-                     register("address", {
-                        minLength: {
-                           value: 2
-                        }
-                     })
-                  }
-               />
-            </CCol>
-            <CCol xs={6}>
-               <Input
-                  label="Zip Code"
-                  placeholder="Zip Code"
-                  value={contactObj.zipCode}
-                  invalid={errors?.zipCode}
-                  valid={!errors?.zipCode && contactObj.zipCode.length > 1}
-                  type="number"
-                  obj={
-                     register("zipCode", {
-                        minLength: {
-                           value: 2
-                        }
-                     })
-                  }
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="Driver license"
-                  placeholder="Driver license"
-                  valueState={contactObj.driverLicense || {}}
-                  data={drivers?.list || []}
-                  isAddDiv={true}
-                  name="driverLicense"
-                  isLoad={isLoader(drivers?.status)}
-                  handleSaveSelect={handleSaveSelect}
-                  keyName="category"
-                  keyText="category"
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="Nationality"
-                  placeholder="Nationality"
-                  valueState={contactObj.nationality || {}}
-                  data={nationality?.list || []}
-                  isAddDiv={true}
-                  name="nationality"
-                  isFirstList={false}
-                  isLoad={isLoader(nationality?.status)}
-                  handleSaveSelect={handleSaveSelect}
-                  handleServerRequest={handleServerRequestNationaly}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <Input
-                  label="Place of birth"
-                  placeholder="Place of birth"
-                  value={contactObj.placeOfBirth}
-                  invalid={errors?.placeOfBirth}
-                  valid={!errors?.placeOfBirth && contactObj.placeOfBirth.length > 1}
-                  obj={
-                     register("placeOfBirth", {
-                        minLength: {
-                           value: 2
-                        }
-                     })
-                  }
-               />
-            </CCol>
-            <CCol xs={6}>
-               <DatePicker
-                  selected={contactObj.dateOfBirth ? new Date(contactObj.dateOfBirth) : contactObj.dateOfBirth}
-                  onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                  placeholderText="Date of birth"
-                  name="date_of_birth"
-                  calendarClassName="custom-datepicker"
-                  wrapperClassName="custom-datepicker-wrapper-2"
-                  dateFormat="MMM, yyyy"
-                  showMonthYearPicker
-                  showPopperArrow={false}
-                  useShortMonthInDropdown={true}
-               />
-            </CCol>
-         </CRow>}
-         <CCol xs={12}>
-            <button type="button" onClick={() => setVisibleAllInputs(prev => !prev)} className={`${classButton}`}>
-               {textInButton}
-               <Icon svg={reactComponent} classNames={[style.icon_bnt]} />
-            </button>
-         </CCol>
-         <CCol>
-            <LoadChildrenBtn isLoad={isLoader(status)}>
-               <CButton type="submit" color="blue">Continue</CButton>
-            </LoadChildrenBtn>
-         </CCol>
-      </CForm>
+         </CForm>
+      </LoadWr>
    )
 }
 

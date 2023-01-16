@@ -34,3 +34,26 @@ export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (data
 
     return response;
 })
+
+export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (idCv, thunkAPI) => {
+    const response = await api.contact.getBasic(idCv);
+
+    let dataRes = {
+        id: response[0].id,
+        firstName: response[0].firstName,
+        lastName: response[0].lastName,
+        picture: response[0].picture,
+        email: response[0].email,
+        phone: response[0].phone,
+        country: response[0].country,
+        nationality: response[0].nationality,
+        city: response[0].city,
+        address: response[0].address,
+        zipCode: response[0].zipCode,
+        driverLicense: response[0].driverLicense,
+        placeOfBirth: response[0].placeOfBirth,
+        dateOfBirth: response[0].dateOfBirth,
+    };
+
+    return dataRes;
+})

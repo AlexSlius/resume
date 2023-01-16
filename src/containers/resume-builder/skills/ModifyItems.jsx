@@ -1,21 +1,25 @@
 import SkillItem from "./SkillItem";
-import ReactStars from "react-rating-stars-component";
 
 const ModifyItems = ({
    arr = [],
-   changeItem,
+   arrActive = [],
+   handleClick = () => { },
+   handleClickDelete = () => { },
 }) => {
    return (
       <div className="skills">
          {
             arr.map((skill) => {
+               let result = arrActive.find((item) => item.skillId == skill.id);
+
                return (
                   <SkillItem
                      key={skill.id}
                      id={skill.id}
-                     // selected={skill.selected}
                      text={skill.name}
-                     onChange={changeItem}
+                     selected={!!result}
+                     onClick={handleClick}
+                     onClickDelete={handleClickDelete}
                   />
                )
             })

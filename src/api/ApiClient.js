@@ -1,5 +1,6 @@
 import queryString from "query-string";
 import fetch from "isomorphic-unfetch";
+import { cookieParse } from "../helpers/nookies";
 
 export default class ApiClient {
   constructor({
@@ -10,6 +11,7 @@ export default class ApiClient {
 
     this.apiUrl = apiUrl;
     this.onError = onError;
+    this.token = "";
   }
 
   async get(url, params = {}) {
@@ -98,9 +100,17 @@ export default class ApiClient {
       headers.append("Content-Type", "application/json");
     }
 
-    // if (this.token) {
-    //   headers.append("Authorization", `Bearer ${this.token}`);
-    // }
+    if (typeof window != 'undefined') {
+      let { token } = cookieParse({ ctx: null });
+
+      if (token) {
+        this.token = token;
+      }
+    }
+
+    if (this.token) {
+      headers.append("Authorization", `Bearer ${this.token}`);
+    }
 
     let FD = undefined;
 
@@ -123,8 +133,6 @@ export default class ApiClient {
 
     try {
       const res = await this.fetch(requestUrl, options);
-
-
 
       let json = {};
 

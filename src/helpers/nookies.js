@@ -1,4 +1,4 @@
-import { setCookie, getCookie, parseCookies, destroyCookie } from "nookies"
+import { setCookie, parseCookies, destroyCookie } from "nookies"
 
 export const cookieSet = ({ ctx = null, key = null, data = null }) => {
     if (key === null)
@@ -11,10 +11,6 @@ export const cookieSet = ({ ctx = null, key = null, data = null }) => {
     return setCookie(ctx, key, data, {
         path: "/",
     });
-}
-
-export const cookieGet = () => {
-
 }
 
 export const cookieParse = ({ ctx = null }) => {
