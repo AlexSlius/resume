@@ -1,8 +1,11 @@
 import { CCol, CRow } from "@coreui/react"
+import ReactStars from "react-rating-stars-component"
 import { Fragment } from "react"
 import { useSelector } from "react-redux"
+
 import { formatDate } from "../../../utils"
-import ReactStars from "react-rating-stars-component"
+import { domenServer } from "../../../constants/links"
+import { isArray } from "lodash"
 
 const ResumeMain = () => {
    const {
@@ -20,6 +23,9 @@ const ResumeMain = () => {
       },
       socials: {
          socialObj,
+      },
+      hobies: {
+         hobiesObj,
       }
    } = useSelector((state) => state);
 
@@ -53,7 +59,7 @@ const ResumeMain = () => {
          </CRow>
 
          {
-            employmentObj?.length && !!employmentObj[0].title || employmentObj[0].company ? (
+            (isArray(employmentObj) && employmentObj?.length > 0) && !!employmentObj[0]?.title || employmentObj[0]?.company ? (
                <CRow className="resume-main__row">
                   <CCol className="resume-main__col1">
                      <div className="resume-main__label">
@@ -66,7 +72,7 @@ const ResumeMain = () => {
                               <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
                                  <div className="resume-main__title2">{el?.title}</div>
                                  <div className="resume-main__head-text">
-                                    {el?.company} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                    {el?.company} {(el?.periodFrom?.date || el?.periodTo?.date) && `(${formatDate(el?.periodFrom?.date)} - ${formatDate(el?.periodTo?.date)})`}
                                  </div>
                               </div>
                               <div className="resume-main__bottom">
@@ -81,28 +87,30 @@ const ResumeMain = () => {
          }
 
          {
-            educationObj?.length && !!educationObj[0].facility || !!educationObj[0].degree ? (
+            (isArray(educationObj) && educationObj?.length > 0) ? (
                <CRow className="resume-main__row mb-4">
                   <CCol className="resume-main__col1">
                      <div className="resume-main__label">
                         Education</div>
                   </CCol>
                   <CCol className="resume-main__col2">
-                     {educationObj.map(el => (
-                        <Fragment key={el?.id}>
-                           <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
-                              <div className="resume-main__title2">
-                                 {el?.facility}
+                     {
+                        educationObj.map(el => (
+                           <Fragment key={el?.id}>
+                              <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                                 <div className="resume-main__title2">
+                                    {el?.facility}
+                                 </div>
+                                 <div className="resume-main__head-text">
+                                    {el?.study} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                 </div>
                               </div>
-                              <div className="resume-main__head-text">
-                                 {el?.study} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                              <div className="resume-main__bottom">
+                                 <p className="resume-main__info-text">{el?.description}</p>
                               </div>
-                           </div>
-                           <div className="resume-main__bottom">
-                              <p className="resume-main__info-text">{el?.description}</p>
-                           </div>
-                        </Fragment>
-                     ))}
+                           </Fragment>
+                        ))
+                     }
                   </CCol>
                </CRow>
             ) : null
@@ -152,39 +160,47 @@ const ResumeMain = () => {
                      Social Links</div>
                </CCol>
                <CCol className="resume-main__col2">
-                  {socialObj.map(el => (
-                     <Fragment key={el?.id}>
-                        <div className="resume-socials">
-                           <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer">
-                              {
-                                 el?.icon && (
-                                    <i style={{ background: `url(${el?.icon})` }}></i>
-                                 )
-                              }
-                              <span>{el?.link}</span>
-                           </a>
-                        </div>
-                     </Fragment>
-                  ))}
+                  <CRow>
+                     {
+                        socialObj.map(el => (
+                           <CCol key={el?.id} xs={6}>
+                              <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer">
+                                 {
+                                    el?.icon && (
+                                       <i style={{ backgroundImage: `url(${domenServer}${el?.icon})` }}></i>
+                                    )
+                                 }
+                                 <span>{el?.link}</span>
+                              </a>
+                           </CCol>
+                        ))
+                     }
+                  </CRow>
                </CCol>
             </CRow>) : null
          }
 
-         {/* {hobies?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Hobbies</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {hobies.map(el => (
-                  <Fragment key={el?.id}>
-                     <div className="resume-main__bottom">
-                        <p className="resume-main__info-text">{el?.text}</p>
-                     </div>
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            hobiesObj?.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        Hobbies</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     <CRow>
+                        {hobiesObj.map(el => (
+                           <CCol key={el?.id} xs={6}>
+                              <div className="resume-main__bottom">
+                                 <p className="resume-main__info-text">{el?.text}</p>
+                              </div>
+                           </CCol>
+                        ))}
+                     </CRow>
+                  </CCol>
+               </CRow>
+            ) : null
+         }
 
          {/* {activity?.length ? (<CRow className="resume-main__row mb-4">
             <CCol className="resume-main__col1">

@@ -1,4 +1,5 @@
 export const apiPrefix = "http://resume.waytrel.pro";
+
 function getTempToken() {
     if (typeof window != 'undefined') {
         const tempToken = window.localStorage.getItem('token') ? JSON.stringify(window.localStorage.getItem('token')).replace('"', '') : '';

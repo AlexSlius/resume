@@ -4,6 +4,7 @@ import {
    CRow,
 } from "@coreui/react";
 import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { isLoader } from "../../../helpers/loadings"
@@ -19,9 +20,8 @@ import {
 import { localStorageGet } from "../../../helpers/localStorage";
 import Input from "../../../components/uis/input"
 import { LoadWr } from "../../../components/loadWr";
-import React from "react";
 
-const FormSocials = ({ valuesFromStore, initialState }) => {
+const FormSocials = () => {
    const dispatch = useDispatch();
    const {
       dependencies: {

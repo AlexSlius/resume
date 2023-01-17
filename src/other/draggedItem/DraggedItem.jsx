@@ -1,5 +1,3 @@
-import { CCol, CRow } from "@coreui/react";
-
 import uuid from "react-uuid";
 
 import deleteIcon from "/public/images/icons/delete.svg??sprite";
@@ -10,6 +8,7 @@ import { useState } from "react";
 import { isArray } from "lodash";
 
 const DraggedItem = ({
+  lenght = 0,
   title,
   skillsList,
   onDelete,
@@ -17,7 +16,7 @@ const DraggedItem = ({
   provided,
   index,
 }) => {
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState((lenght - 1) == index);
 
   return (
     <div
@@ -31,7 +30,7 @@ const DraggedItem = ({
         <span className="dragged__drag w-20 icon-hover" {...provided.dragHandleProps}>
           <Icon svg={dragIcon} classNames={['icon-28']} />
         </span>
-        <div className="dragged__content w-100">
+        <div className="dragged__content w-100" onClick={() => setSelected(prev => !prev)}>
           <div className="dragged__title">{title || "job title"}</div>
           <div className="dragged-items">
             {
@@ -44,7 +43,7 @@ const DraggedItem = ({
           </div>
         </div>
         {selected ? (
-          <span onClick={() => setSelected(false)} className="dragged__arrow icon-hover">
+          <span onClick={() => setSelected(prev => !prev)} className="dragged__arrow icon-hover">
             <Icon svg={arrowLeft} classNames={['icon-20']} />
           </span>
         ) : (

@@ -57,3 +57,9 @@ export const fetchGetSocials = createAsyncThunk('countrus/fetchGetSocials', asyn
     const response = await api.dependencies.getSocials({ "query": params || '' });
     return response;
 })
+
+export const fetchGetHobies = createAsyncThunk('countrus/fetchGetHobies', async (params) => {
+    const response = await api.dependencies.getHobies({ "query": params || '' });
+    return response;
+})
+

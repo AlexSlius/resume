@@ -34,4 +34,7 @@ export default class ClientsAPI extends Base {
     getSocials(params) {
         return this.apiClient.get(`profile/list/links`, params);
     }
+    getHobies(params) {
+        return this.apiClient.get(`profile/list/hobbies`, params);
+    }
 }

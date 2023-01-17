@@ -157,8 +157,8 @@ export default class ApiClient {
       return json;
     } catch (error) {
       this.handleServerError(error);
-
-      throw error;
+      // throw error;
+      return [];
     }
   }
 
