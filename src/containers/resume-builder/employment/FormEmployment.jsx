@@ -27,6 +27,7 @@ import {
 import { isLoader } from "../../../helpers/loadings"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
+import { ButtonSteps } from "../../../components/buttonSteps"
 import { formatDate } from "../../../utils";
 
 import {
@@ -55,8 +56,14 @@ const FormEmployment = () => {
     employment: {
       employmentObj,
       status
-    }
+    },
+    auth: {
+      autorizate: {
+        isAthorized
+      }
+    },
   } = useSelector(state => state);
+  const [idCountry, setIdCountry] = React.useState(undefined);
   const idCv = localStorageGet('idCv');
 
   const onDragEnd = (result) => {
@@ -82,8 +89,20 @@ const FormEmployment = () => {
     // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
   }
 
-  const handleSaveSelect = async ({ index, name, value }) => {
-    await dispatch(updateItemFieldEmployment({ index, name, value }));
+  const handleSaveSelect = async ({ index, name, value }, data) => {
+    console.log(data);
+
+    if (!!data) {
+      if (name == "country") {
+        if (data?.id) {
+          setIdCountry(data.id);
+        }
+      }
+      await dispatch(updateItemFieldEmployment({ index, name, value }));
+    } else {
+      await dispatch(updateItemFieldEmployment({ index, name, value }));
+    }
+
     await handleUpdateServer(index);
   }
 
@@ -100,15 +119,16 @@ const FormEmployment = () => {
     await dispatch(getCompanyList(text)); // get all compay list
   }
 
-  const handleServerRequestCity = async (idCountry) => {
+  const handleServerRequestCity = async (value) => {
     if (!!!idCountry)
       return false;
 
-    await dispatch(fetchGetCities(idCountry)); // get list cities by id country
+    await dispatch(fetchGetCities({ id: idCountry, params: value }));
   }
 
-  const handleServeDispatchContent = (index, textContent) => {
-    dispatch(updateItemFieldEmployment({ index, name: "assignment", value: textContent }))
+  const handleServeDispatchContent = async (index, textContent) => {
+    await dispatch(updateItemFieldEmployment({ index, name: "assignment", value: textContent }));
+    await handleUpdateServer(index);
   }
 
   const handleServerRequest = async (textSearch) => {
@@ -135,7 +155,7 @@ const FormEmployment = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchGetCountrys()); // get all countrys
+    dispatch(fetchGetCountrys());
     dispatch(fetchGetCvEmployments({ idCv, isPage: true }));
   }, []);
 
@@ -165,7 +185,6 @@ const FormEmployment = () => {
                                 provided={provided}
                                 index={index}
                                 title={item.title}
-                                // onClick={handleSelect.bind(null, employment.id)}
                                 onDelete={() => handleDeleteOne(item.id)}
                                 skillsList={[
                                   `${formatDate(item?.periodFrom?.date)} - ${formatDate(
@@ -181,7 +200,7 @@ const FormEmployment = () => {
                                     <InputSelect
                                       label="Job Title"
                                       placeholder="Job Title"
-                                      valueState={item.title}
+                                      valueState={item.title || ""}
                                       data={jopsTitle?.list || []}
                                       isAddDiv={true}
                                       name="title"
@@ -246,11 +265,12 @@ const FormEmployment = () => {
                                       isCouValid={false}
                                       label="Country"
                                       placeholder="Country"
-                                      valueState={item.country || {}}
+                                      valueState={item.country || ""}
                                       data={coutrys.list}
                                       name="country"
                                       isLoad={isLoader(coutrys.status)}
-                                      handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                      handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
+                                      isOutDataObj={false}
                                     />
                                   </CCol>
                                   <CCol xs={3}>
@@ -263,8 +283,9 @@ const FormEmployment = () => {
                                       data={cities.list}
                                       isLoad={isLoader(cities?.status)}
                                       handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                      handleOpenChangle={() => handleServerRequestCity(item.country?.id)}
+                                      handleServerRequest={handleServerRequestCity}
                                       isOutDataObj={false}
+                                      isFirstList={false}
                                     />
                                   </CCol>
                                   <CCol xs={12}>
@@ -306,10 +327,7 @@ const FormEmployment = () => {
           />
         </CCol>
         <CCol className="mt-4">
-          {/* isLoad={isLoader(status)} */}
-          <LoadChildrenBtn >
-            <CButton type="submit" color="blue">Continue</CButton>
-          </LoadChildrenBtn>
+          <ButtonSteps isAthorized={isAthorized} />
         </CCol>
       </CRow>
     </>

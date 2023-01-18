@@ -26,6 +26,15 @@ const ResumeMain = () => {
       },
       hobies: {
          hobiesObj,
+      },
+      interships: {
+         interhipObj,
+      },
+      courses: {
+         courseObj,
+      },
+      activitys: {
+         activityObj,
       }
    } = useSelector((state) => state);
 
@@ -202,74 +211,91 @@ const ResumeMain = () => {
             ) : null
          }
 
-         {/* {activity?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Extra-curricular activities</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {activity.map(el => (
-                  <Fragment key={el?.id}>
-                     <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
-                        <div className="resume-main__title2">
-                           {el?.title}
-                        </div>
-                        <div className="resume-main__head-text">
-                           {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
-                        </div>
-                     </div>
-                     <div className="resume-main__bottom">
-                        <p className="resume-main__info-text">{el?.description}</p>
-                     </div>
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            isArray(activityObj) && activityObj?.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        Extra-curricular activities</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     {
+                        activityObj.map(el => (
+                           <Fragment key={el?.id}>
+                              <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                                 <div className="resume-main__title2">
+                                    {el?.title}
+                                 </div>
+                                 <div className="resume-main__head-text">
+                                    {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                 </div>
+                              </div>
+                              <div className="resume-main__bottom">
+                                 <p className="resume-main__info-text">{el?.description}</p>
+                              </div>
+                           </Fragment>
+                        ))
+                     }
+                  </CCol>
+               </CRow>
+            ) : null
+         }
 
-         {/* {course?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Courses</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {course.map(el => (
-                  <Fragment key={el?.id}>
-                     <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
-                        <div className="resume-main__title2">
-                           {el?.title}
-                        </div>
-                        <div className="resume-main__head-text">
-                           {el?.institution} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
-                        </div>
-                     </div>
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            isArray(courseObj) && courseObj?.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        Courses</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     {
+                        courseObj.map(el => (
+                           <Fragment key={el?.id}>
+                              <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                                 <div className="resume-main__title2">
+                                    {el?.title}
+                                 </div>
+                                 <div className="resume-main__head-text">
+                                    {el?.institution} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                 </div>
+                              </div>
+                           </Fragment>
+                        ))
+                     }
+                  </CCol>
+               </CRow>
+            ) : null
+         }
 
-         {/* {intership?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Intership</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {intership.map(el => (
-                  <Fragment key={el?.id}>
-                     <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
-                        <div className="resume-main__title2">
-                           {el?.job_title}
-                        </div>
-                        <div className="resume-main__head-text">
-                           {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
-                        </div>
-                     </div>
-                     <div className="resume-main__bottom">
-                        <p className="resume-main__info-text">{el?.description}</p>
-                     </div>
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            isArray(interhipObj) && interhipObj?.length ? (<CRow className="resume-main__row mb-4">
+               <CCol className="resume-main__col1">
+                  <div className="resume-main__label">
+                     Intership</div>
+               </CCol>
+               <CCol className="resume-main__col2">
+                  {
+                     interhipObj.map(el => (
+                        <Fragment key={el?.id}>
+                           <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                              <div className="resume-main__title2">
+                                 {el?.job_title}
+                              </div>
+                              <div className="resume-main__head-text">
+                                 {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                              </div>
+                           </div>
+                           <div className="resume-main__bottom">
+                              <p className="resume-main__info-text">{el?.description}</p>
+                           </div>
+                        </Fragment>
+                     ))
+                  }
+               </CCol>
+            </CRow>
+            ) : null
+         }
 
          {/* {languages?.length ? (<CRow className="resume-main__row mb-4">
             <CCol className="resume-main__col1">

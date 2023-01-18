@@ -12,7 +12,6 @@ import Icon from "../../../components/Icon";
 import { PhotoAdd } from "../../../components/uis/photoAdd"
 import { InputPhone } from "../../../components/uis/inputPhone"
 import { InputSelect } from "../../../components/uis/inputSelect"
-import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 import { LoadWr } from "../../../components/loadWr";
 
 import {
@@ -35,10 +34,12 @@ import { localStorageGet } from "../../../helpers/localStorage";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
+import { ButtonSteps } from "../../../components/buttonSteps"
 
 const FormContact = () => {
    const dispatch = useDispatch()
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
+   const [idCountry, setIdCountry] = useState(undefined);
    const [pictureFile, setPictureFile] = useState(undefined);
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
@@ -55,6 +56,11 @@ const FormContact = () => {
          zipsCodes,
          drivers,
          nationality
+      },
+      auth: {
+         autorizate: {
+            isAthorized
+         }
       },
    } = useSelector(state => state);
    const idCv = localStorageGet('idCv');
@@ -83,13 +89,17 @@ const FormContact = () => {
       }
    }
 
-   const handleSaveSelect = ({ name, value }) => {
-      dispatch(updateItemFieldContact({ name, value }));
-
-      if (name == "country") {
-         if (value?.id) {
-            dispatch(fetchGetDrivers(value.id)) // get list drivers by id country
+   const handleSaveSelect = ({ name, value }, data = null) => {
+      if (!!data) {
+         if (name == "country") {
+            if (data?.id) {
+               dispatch(fetchGetDrivers(data.id))
+               setIdCountry(data.id);
+            }
          }
+         dispatch(updateItemFieldContact({ name, value }));
+      } else {
+         dispatch(updateItemFieldContact({ name, value }));
       }
    }
 
@@ -102,14 +112,16 @@ const FormContact = () => {
    }
 
    const handleServerRequestCity = async () => {
-      if (!contactObj.country?.id)
+      if (!!!idCountry)
          return false;
 
-      await dispatch(fetchGetCities(contactObj.country.id)); // get list cities by id country
+      await dispatch(fetchGetCities({ id: idCountry, params: contactObj.city })); // get list cities by id country
    }
 
-   const formSubmit = (value) => {
-      dispatch(contactSetNew(pictureFile));
+   const formSubmit = () => {
+      if (!isAthorized) {
+         dispatch(contactSetNew(pictureFile));
+      }
    }
 
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
@@ -136,8 +148,8 @@ const FormContact = () => {
                         label="First Name"
                         placeholder="First Name"
                         value={contactObj.firstName}
-                        invalid={errors?.firstName}
-                        valid={!errors?.firstName && contactObj.firstName.length > 1}
+                        // invalid={errors?.firstName}
+                        // valid={!errors?.firstName && contactObj.firstName.length > 1}
                         obj={
                            register("firstName", {
                               minLength: {
@@ -152,8 +164,8 @@ const FormContact = () => {
                         label="Last Name"
                         placeholder="Last Name"
                         value={contactObj.lastName}
-                        invalid={errors?.lastName}
-                        valid={!errors?.lastName && contactObj.lastName.length > 1}
+                        // invalid={errors?.lastName}
+                        // valid={!errors?.lastName && contactObj.lastName.length > 1}
                         obj={
                            register("lastName", {
                               minLength: {
@@ -198,24 +210,28 @@ const FormContact = () => {
                   <InputSelect
                      label="Country"
                      placeholder="Country"
-                     valueState={contactObj.country || {}}
+                     valueState={contactObj.country || ''}
                      data={coutrys.list}
                      name="country"
                      isLoad={isLoader(coutrys.status)}
                      handleSaveSelect={handleSaveSelect}
+                     isOutDataObj={false}
+                     isFirstList={false}
                   />
                </CCol>
                <CCol xs={6}>
                   <InputSelect
                      label="City"
                      placeholder="City"
-                     valueState={contactObj.city || {}}
+                     valueState={contactObj.city || ''}
                      name="city"
                      isAddDiv={true}
                      data={cities.list}
                      isLoad={isLoader(cities?.status)}
                      handleSaveSelect={handleSaveSelect}
-                     handleOpenChangle={handleServerRequestCity}
+                     handleServerRequest={handleServerRequestCity}
+                     isOutDataObj={false}
+                     isFirstList={false}
                   />
                </CCol>
             </CRow>
@@ -225,8 +241,8 @@ const FormContact = () => {
                      label="Adress"
                      placeholder="Adress"
                      value={contactObj.address}
-                     invalid={errors?.address}
-                     valid={!errors?.address && (contactObj.address.length > 1)}
+                     // invalid={errors?.address}
+                     // valid={!errors?.address && (contactObj.address.length > 1)}
                      obj={
                         register("address", {
                            minLength: {
@@ -241,8 +257,8 @@ const FormContact = () => {
                      label="Zip Code"
                      placeholder="Zip Code"
                      value={contactObj.zipCode}
-                     invalid={errors?.zipCode}
-                     valid={!errors?.zipCode && contactObj.zipCode.length > 1}
+                     // invalid={errors?.zipCode}
+                     // valid={!errors?.zipCode && contactObj.zipCode.length > 1}
                      type="number"
                      obj={
                         register("zipCode", {
@@ -257,7 +273,7 @@ const FormContact = () => {
                   <InputSelect
                      label="Driver license"
                      placeholder="Driver license"
-                     valueState={contactObj.driverLicense || {}}
+                     valueState={contactObj.driverLicense || ''}
                      data={drivers?.list || []}
                      isAddDiv={true}
                      name="driverLicense"
@@ -265,13 +281,14 @@ const FormContact = () => {
                      handleSaveSelect={handleSaveSelect}
                      keyName="category"
                      keyText="category"
+                     isOutDataObj={false}
                   />
                </CCol>
                <CCol xs={6}>
                   <InputSelect
                      label="Nationality"
                      placeholder="Nationality"
-                     valueState={contactObj.nationality || {}}
+                     valueState={contactObj.nationality || ''}
                      data={nationality?.list || []}
                      isAddDiv={true}
                      name="nationality"
@@ -279,6 +296,7 @@ const FormContact = () => {
                      isLoad={isLoader(nationality?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestNationaly}
+                     isOutDataObj={false}
                   />
                </CCol>
                <CCol xs={6}>
@@ -286,8 +304,8 @@ const FormContact = () => {
                      label="Place of birth"
                      placeholder="Place of birth"
                      value={contactObj.placeOfBirth}
-                     invalid={errors?.placeOfBirth}
-                     valid={!errors?.placeOfBirth && contactObj.placeOfBirth.length > 1}
+                     // invalid={errors?.placeOfBirth}
+                     // valid={!errors?.placeOfBirth && contactObj.placeOfBirth.length > 1}
                      obj={
                         register("placeOfBirth", {
                            minLength: {
@@ -319,9 +337,11 @@ const FormContact = () => {
                </button>
             </CCol>
             <CCol>
-               <LoadChildrenBtn isLoad={isLoader(statusNew)}>
-                  <CButton type="submit" color="blue">Continue</CButton>
-               </LoadChildrenBtn>
+               <ButtonSteps
+                  onHandleBtnNext={formSubmit}
+                  isAthorized={isAthorized}
+                  isFirstStep={true}
+               />
             </CCol>
          </CForm>
       </LoadWr>

@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 
 import { InputSelect } from "../../../components/uis/inputSelect"
+import { ButtonSteps } from "../../../components/buttonSteps"
 import { isLoader } from "../../../helpers/loadings"
 import { fetchGetSocials } from "../../../controllers/dependencies";
+
 import { updateItemSocialFiled, updateItemSocialFiledNew } from "../../../slices/socials";
+
 import { isArray } from "lodash";
 import {
    fetchAddItemLink,
@@ -31,7 +34,12 @@ const FormSocials = () => {
          socialObj,
          socialObjNew,
          statusList
-      }
+      },
+      auth: {
+         autorizate: {
+            isAthorized
+         }
+      },
    } = useSelector(state => state);
    const idCv = localStorageGet('idCv');
 
@@ -81,63 +89,70 @@ const FormSocials = () => {
    }, [])
 
    return (
-      <LoadWr isLoad={isLoader(statusList)}>
-         {
-            isArray(socialObj) && socialObj.map((item, index) => (
-               <CRow
-                  className="g-30 r-gap-30"
-                  key={index}
-               >
-                  <CCol xs={6} className="mb-4">
-                     <InputSelect
-                        label="Label"
-                        placeholder="Label"
-                        valueState={item.name || ""}
-                        name="name"
-                        data={socials.list}
-                        isLoad={isLoader(socials?.status)}
-                        handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj })}
-                        handleServerRequest={handleGetSocial}
-                        isOutDataObj={false}
-                        isFirstList={false}
-                        isIconArrow={true}
-                     />
-                  </CCol>
-                  <CCol xs={6} className="mb-4">
-                     <Input
-                        id={item.id}
-                        placeholder="link"
-                        value={item.link}
-                        name="link"
-                        isDelete={true}
-                        onDelete={handleDeleteitem}
-                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
-                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
-                     />
-                  </CCol>
-               </CRow>
-            ))
-         }
-         <CRow
-            className="g-30 r-gap-30"
-         >
-            <CCol xs={6} className="mb-4">
-               <InputSelect
-                  label="Label"
-                  placeholder="Label"
-                  valueState={socialObjNew.name || ""}
-                  name="name"
-                  data={socials.list}
-                  isLoad={isLoader(socials?.status)}
-                  handleSaveSelect={updateitemFiledNew}
-                  handleServerRequest={handleGetSocial}
-                  isOutDataObj={false}
-                  isFirstList={false}
-                  isIconArrow={true}
-               />
+      <>
+         <LoadWr isLoad={isLoader(statusList)}>
+            {
+               isArray(socialObj) && socialObj.map((item, index) => (
+                  <CRow
+                     className="g-30 r-gap-30"
+                     key={index}
+                  >
+                     <CCol xs={6} className="mb-4">
+                        <InputSelect
+                           label="Label"
+                           placeholder="Label"
+                           valueState={item.name || ""}
+                           name="name"
+                           data={socials.list}
+                           isLoad={isLoader(socials?.status)}
+                           handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj })}
+                           handleServerRequest={handleGetSocial}
+                           isOutDataObj={false}
+                           isFirstList={false}
+                           isIconArrow={true}
+                        />
+                     </CCol>
+                     <CCol xs={6} className="mb-4">
+                        <Input
+                           id={item.id}
+                           placeholder="link"
+                           value={item.link}
+                           name="link"
+                           isDelete={true}
+                           onDelete={handleDeleteitem}
+                           onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
+                           onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
+                        />
+                     </CCol>
+                  </CRow>
+               ))
+            }
+            <CRow
+               className="g-30 r-gap-30"
+            >
+               <CCol xs={6} className="mb-4">
+                  <InputSelect
+                     label="Label"
+                     placeholder="Label"
+                     valueState={socialObjNew.name || ""}
+                     name="name"
+                     data={socials.list}
+                     isLoad={isLoader(socials?.status)}
+                     handleSaveSelect={updateitemFiledNew}
+                     handleServerRequest={handleGetSocial}
+                     isOutDataObj={false}
+                     isFirstList={false}
+                     isIconArrow={true}
+                  />
+               </CCol>
+            </CRow>
+         </LoadWr>
+         <CRow className="mt-4">
+            <CCol>
+               <ButtonSteps isAthorized={isAthorized} />
             </CCol>
          </CRow>
-      </LoadWr>
+      </>
    )
 }
 

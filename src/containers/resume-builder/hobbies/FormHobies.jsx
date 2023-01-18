@@ -4,11 +4,13 @@ import {
 } from "@coreui/react";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
+import { isArray } from "lodash";
 
 import { isLoader } from "../../../helpers/loadings"
 import { LoadWr } from "../../../components/loadWr"
 import { localStorageGet } from "../../../helpers/localStorage";
 import { InputSelect } from "../../../components/uis/inputSelect"
+import { ButtonSteps } from "../../../components/buttonSteps"
 import { fetchGetHobies } from "../../../controllers/dependencies";
 import { updateItemHobiesFiledNew } from "../../../slices/hobies";
 import {
@@ -17,7 +19,6 @@ import {
    fetchGetCvHobie
 } from "../../../controllers/hobies";
 import { ItemDragDrop } from "../../../components/ItemDragDrop";
-import { isArray } from "lodash";
 
 const FormHobies = () => {
    const dispatch = useDispatch();
@@ -29,7 +30,12 @@ const FormHobies = () => {
          hobiesObj,
          hobieObjNew,
          statusList
-      }
+      },
+      auth: {
+         autorizate: {
+            isAthorized
+         }
+      },
    } = useSelector(state => state);
    const idCv = localStorageGet('idCv');
 
@@ -88,6 +94,11 @@ const FormHobies = () => {
                </CCol>
             </CRow>
          </LoadWr>
+         <CRow className="mt-4">
+            <CCol>
+               <ButtonSteps isAthorized={isAthorized} />
+            </CCol>
+         </CRow>
       </>
    )
 }

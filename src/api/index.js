@@ -7,6 +7,9 @@ import socialsApi from "./socials";
 import hobiesApi from "./hobies";
 import educationsApi from "./educations";
 import employmentsApi from "./employments";
+import activitysApi from "./activitys";
+import coursesApi from "./courses";
+import intershipsApi from "./internships";
 
 export default function apiConstruct({
   apiUrl,
@@ -31,5 +34,8 @@ export default function apiConstruct({
     hobies: new hobiesApi({ apiClient }),
     educations: new educationsApi({ apiClient }),
     employments: new employmentsApi({ apiClient }),
+    activitys: new activitysApi({ apiClient }),
+    courses: new coursesApi({ apiClient }),
+    internships: new intershipsApi({ apiClient }),
   };
 }

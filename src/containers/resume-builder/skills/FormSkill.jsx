@@ -11,6 +11,7 @@ import InputSearch from "../../../components/uis/inputSearch";
 import { fetchGetSkillsPosition } from "../../../controllers/dependencies";
 import { updateItemSkillsFiled } from "../../../slices/skills";
 import { isLoader } from "../../../helpers/loadings"
+import { ButtonSteps } from "../../../components/buttonSteps"
 import {
    fetchGetSkillslistWork,
    fetchGetSkillslistSearch,
@@ -35,7 +36,12 @@ const FormSkill = ({ visibleRating }) => {
       },
       dependencies: {
          skillsPositions,
-      }
+      },
+      auth: {
+         autorizate: {
+            isAthorized
+         }
+      },
    } = useSelector(state => state);
    const idCv = localStorageGet('idCv');
 
@@ -86,74 +92,81 @@ const FormSkill = ({ visibleRating }) => {
    }, []);
 
    return (
-      <CRow className="g-30 r-gap-30">
-         <CCol className="gap-3" xs={6}>
-            <CRow>
-               <CCol className="mb-4" xs={12}>
-                  <InputSelect
-                     label="Selected work"
-                     placeholder="Selected work"
-                     valueState={skillsObj?.selectd_work || ""}
-                     name="selectd_work"
-                     data={skillsPositions.list}
-                     isLoad={isLoader(skillsPositions?.status)}
-                     handleSaveSelect={updateitemFiled}
-                     handleServerRequest={handleGetSkillsPos}
-                     isOutDataObj={false}
-                     isFirstList={false}
-                     isIconArrow={true}
-                     keyName="position"
-                     keyText="position"
-                  />
-               </CCol>
-               <CCol className="mb-4" xs={12}>
-                  <InputSearch
-                     placeholder="Search skill"
-                     floatingLabel="Search skill"
-                     value={skillsObj?.searchSkils}
-                     onChange={(e) => updateitemFiled({ name: "searchSkils", value: e.target.value })}
-                     handleServerRequest={randomSearchSkills}
-                  />
-               </CCol>
-               <CCol xs={12}>
+      <>
+         <CRow className="g-30 r-gap-30">
+            <CCol className="gap-3" xs={6}>
+               <CRow>
+                  <CCol className="mb-4" xs={12}>
+                     <InputSelect
+                        label="Selected work"
+                        placeholder="Selected work"
+                        valueState={skillsObj?.selectd_work || ""}
+                        name="selectd_work"
+                        data={skillsPositions.list}
+                        isLoad={isLoader(skillsPositions?.status)}
+                        handleSaveSelect={updateitemFiled}
+                        handleServerRequest={handleGetSkillsPos}
+                        isOutDataObj={false}
+                        isFirstList={false}
+                        isIconArrow={true}
+                        keyName="position"
+                        keyText="position"
+                     />
+                  </CCol>
+                  <CCol className="mb-4" xs={12}>
+                     <InputSearch
+                        placeholder="Search skill"
+                        floatingLabel="Search skill"
+                        value={skillsObj?.searchSkils}
+                        onChange={(e) => updateitemFiled({ name: "searchSkils", value: e.target.value })}
+                        handleServerRequest={randomSearchSkills}
+                     />
+                  </CCol>
+                  <CCol xs={12}>
+                     {
+                        isLoader(statusIsListSkills) ? (
+                           <LoadBlock />
+                        ) : (
+                           <ModifyItems
+                              arr={skillsObj?.skillsList}
+                              arrActive={skillsObj?.skillsListAll}
+                              handleClick={handleAddItemSkillOne}
+                              handleClickDelete={handleClickDeleteItem}
+                           />
+                        )
+                     }
+                  </CCol>
+               </CRow>
+            </CCol >
+            <CCol xs={6}>
+               <LoadWr isLoad={isLoader(statusListSkillsAll)}>
                   {
-                     isLoader(statusIsListSkills) ? (
-                        <LoadBlock />
-                     ) : (
-                        <ModifyItems
-                           arr={skillsObj?.skillsList}
-                           arrActive={skillsObj?.skillsListAll}
-                           handleClick={handleAddItemSkillOne}
-                           handleClickDelete={handleClickDeleteItem}
-                        />
+                     isArray(skillsObj?.skillsListAll) && (
+                        <div className="skills-items-level">
+                           {
+                              skillsObj.skillsListAll.map((item, index) => (
+                                 <ActiveItemSkillsAndStarts
+                                    key={item.id}
+                                    id={item.id}
+                                    label={item.name}
+                                    onDelete={handleDeleteItemSkill}
+                                    ratingChanged={handleUpdateItemSkillOne}
+                                    valueStats={item.level}
+                                 />
+                              ))
+                           }
+                        </div>
                      )
                   }
-               </CCol>
-            </CRow>
-         </CCol >
-         <CCol xs={6}>
-            <LoadWr isLoad={isLoader(statusListSkillsAll)}>
-               {
-                  isArray(skillsObj?.skillsListAll) && (
-                     <div className="skills-items-level">
-                        {
-                           skillsObj.skillsListAll.map((item, index) => (
-                              <ActiveItemSkillsAndStarts
-                                 key={item.id}
-                                 id={item.id}
-                                 label={item.name}
-                                 onDelete={handleDeleteItemSkill}
-                                 ratingChanged={handleUpdateItemSkillOne}
-                                 valueStats={item.level}
-                              />
-                           ))
-                        }
-                     </div>
-                  )
-               }
-            </LoadWr>
-         </CCol>
-      </CRow>
+               </LoadWr>
+            </CCol>
+         </CRow>
+         <CRow className="mt-4">
+            <CCol>
+               <ButtonSteps isAthorized={isAthorized} />
+            </CCol>
+         </CRow>
+      </>
    )
 }
 

@@ -1,7 +1,7 @@
 .wr {
     position: relative;
-    min-height: 40px;
     &.load_bg {
+        min-height: 40px;
         &::after {
             content: '';
             border-radius: inherit;

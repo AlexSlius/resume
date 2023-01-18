@@ -1,24 +1,10 @@
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormCourse from "./FormCourse";
-import { useSelector } from "react-redux";
-import uuid from "react-uuid";
-
-const initialState = {
-   title: "",
-   institution: "",
-   period_from: null,
-   period_to: null,
-   id: uuid()
- };
-
+import { useSelector, useDispatch } from "react-redux";
 
 const Course = () => {
-   const courses = useSelector((state) => state.course.courses);
-   const loading = useSelector((state) => state.app.loading);
-
-   // if(loading) {
-   //    return null
-   // }
+   const dispatch = useDispatch();
+   const states = useSelector((state) => state);
 
    return (
       <>
@@ -27,14 +13,12 @@ const Course = () => {
          >
          </HeadMainContent>
          <FormCourse
-            valuesFromStore={courses} 
-            className={`row`} 
-            initialState={initialState}
+            dispatch={dispatch}
+            storeDate={states}
             addText="Add one more course"
             updateText="Add one more course"
-            skipButton={true}
             buttonClassName="gap-4 d-flex mt-4"
-         ></FormCourse>
+         />
       </>
    )
 }

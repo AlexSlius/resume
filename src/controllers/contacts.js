@@ -11,16 +11,16 @@ export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (data
 
     const newObj = {
         date_of_birth: contactObj.dateOfBirth,
-        driver_license: contactObj.driverLicense?.category || '',
+        driver_license: contactObj.driverLicense || '',
         zip_code: contactObj.zipCode,
-        city: contactObj.city?.name || '',
+        city: contactObj.city || '',
         phone: contactObj.phone,
         place_of_birth: contactObj.placeOfBirth,
         last_name: contactObj.lastName,
         address: contactObj.address,
-        country: contactObj.country?.name || '',
+        country: contactObj.country || '',
         first_name: contactObj.firstName,
-        nationality: contactObj.nationality?.name || '',
+        nationality: contactObj.nationality || '',
         email: contactObj.email,
         picture: dataImage
     }

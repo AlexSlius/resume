@@ -1,26 +1,10 @@
 import FormInterShip from "./FormInterShip"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
-import { useSelector } from "react-redux";
-import uuid from "react-uuid";
-
-const initialState = {
-   job_title: "",
-   period_from: null,
-   period_to: null,
-   city: "",
-   employer: "",
-   description: "",
-   id: uuid()
- };
+import { useSelector, useDispatch } from "react-redux";
 
 const InterShip = () => {
-   const interships = useSelector((state) => state.intership.interships);
-   const loading = useSelector((state) => state.app.loading);
-   const country = useSelector((state) => state.country.countrys);
-
-   // if(loading) {
-   //    return null;
-   // }
+   const dispatch = useDispatch();
+   const states = useSelector((state) => state);
 
    return (
       <>
@@ -29,15 +13,12 @@ const InterShip = () => {
          >
          </HeadMainContent>
          <FormInterShip
-            valuesFromStore={interships} 
-            className={`row`} 
-            initialState={initialState}
+            dispatch={dispatch}
+            storeDate={states}
             addText="Add one more internship"
             updateText="Add one more internship"
-            skipButton={true}
-            countries={country}
             buttonClassName="gap-4 d-flex mt-4"
-         ></FormInterShip>
+         />
       </>
    )
 }

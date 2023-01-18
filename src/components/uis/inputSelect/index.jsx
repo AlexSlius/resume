@@ -73,7 +73,7 @@ export const InputSelect = ({
         prop.then(
             function (result) {
                 let out = !!isOutDataObj ? data : data[keyText];
-                handleSaveSelect({ name, value: out, isClisk: true });
+                handleSaveSelect({ name, value: out, isClisk: true }, data);
                 handleChallenge(data);
             },
             function (error) { }

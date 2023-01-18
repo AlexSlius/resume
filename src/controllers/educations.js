@@ -31,13 +31,12 @@ export const fetchDeleteEducation = createAsyncThunk('countrus/fetchDeleteHobie'
 
 export const fetchUpdateEducation = createAsyncThunk('countrus/fetchUpdateEducation', async ({ index }, thunkAPI) => {
     const { educations: { educationObj } } = thunkAPI.getState();
-    let editDate = { ...educationObj[index] };
+    let { id, dateFrom, dateTo, ...obj } = educationObj[index];
 
-    // здесь нужно будет проверить форматы дат, не сохраняется 
-    editDate.period_from = editDate.dateFrom.date;
-    editDate.period_to = editDate.dateTo.date;
+    obj.date_from = dateFrom.date;
+    obj.date_to = dateTo.date;
 
-    const response = await api.educations.updateEducationItem(editDate.id, editDate);
+    const response = await api.educations.updateEducationItem(id, obj);
     return response;
 });
 

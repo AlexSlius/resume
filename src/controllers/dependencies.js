@@ -7,8 +7,8 @@ export const fetchGetCountrys = createAsyncThunk('countrus/fetchGetCountrus', as
     return response;
 })
 
-export const fetchGetCities = createAsyncThunk('sities/fetchGetCities', async (id) => {
-    const response = await api.dependencies.getCities(id);
+export const fetchGetCities = createAsyncThunk('sities/fetchGetCities', async ({ id, params }) => {
+    const response = await api.dependencies.getCities(id, { query: params, limit: `100` });
     return response;
 })
 

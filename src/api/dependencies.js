@@ -4,8 +4,8 @@ export default class ClientsAPI extends Base {
     getCountrys() {
         return this.apiClient.get('profile/list/countrys');
     }
-    getCities(id) {
-        return this.apiClient.get(`profile/list/${id}/citys`);
+    getCities(id, params) {
+        return this.apiClient.get(`profile/list/${id}/citys`, params);
     }
     getZipCodes(id) {
         return this.apiClient.get(`profile/list/${id}/zip`);

@@ -15,6 +15,7 @@ import { DatePicker } from "../../../components/uis/datePicker"
 import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
+import { ButtonSteps } from "../../../components/buttonSteps"
 
 import { formatDate } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
@@ -43,6 +44,11 @@ const FormEducation = () => {
       },
       dependencies: {
          studys
+      },
+      auth: {
+         autorizate: {
+            isAthorized
+         }
       },
    } = useSelector(state => state);
    const idCv = localStorageGet('idCv');
@@ -249,10 +255,7 @@ const FormEducation = () => {
                />
             </CCol>
             <CCol className="mt-4">
-               {/*  isLoad={isLoader(statusNew)} */}
-               <LoadChildrenBtn>
-                  <CButton type="submit" color="blue">Continue</CButton>
-               </LoadChildrenBtn>
+               <ButtonSteps isAthorized={isAthorized} />
             </CCol>
          </CRow>
       </>
