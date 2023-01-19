@@ -3,13 +3,13 @@ import api from "../apiSingleton";
 import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
-import { isAuthRedirect } from "../helpers/auth";
 import { isExist } from '../helpers/checkingStatuses';
+
+import { routersPages } from "../constants/next-routers";
 
 export const withPrivateRoute = () => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
-            const { pathname, req, res } = ctx;
             const cookis = cookieParse({ ctx });
 
             if (!!cookis?.token) {
@@ -20,10 +20,14 @@ export const withPrivateRoute = () => {
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
 
                 if (!isExist(serverRespons)) {
-                    isAuthRedirect({ res });
+                    return {
+                        redirect: { destination: `/${routersPages['login']}`, permanent: false },
+                    }
                 }
             } else {
-                isAuthRedirect({ res });
+                return {
+                    redirect: { destination: `/${routersPages['login']}`, permanent: false },
+                }
             }
 
             return { props: {} };

@@ -10,6 +10,8 @@ import employmentsApi from "./employments";
 import activitysApi from "./activitys";
 import coursesApi from "./courses";
 import intershipsApi from "./internships";
+import languagesApi from "./languages";
+import certificatiesApi from "./certificaties";
 
 export default function apiConstruct({
   apiUrl,
@@ -37,5 +39,7 @@ export default function apiConstruct({
     activitys: new activitysApi({ apiClient }),
     courses: new coursesApi({ apiClient }),
     internships: new intershipsApi({ apiClient }),
+    languages: new languagesApi({ apiClient }),
+    certificates: new certificatiesApi({ apiClient }),
   };
 }

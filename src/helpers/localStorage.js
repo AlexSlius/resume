@@ -16,3 +16,14 @@ export const localStorageRemove = (key) => {
 export const localStorageAllClear = () => {
     localStorage.clear()
 }
+
+export const sessionStorageSet = (key, data, isJson = false) => {
+    sessionStorage.setItem(key, isJson ? JSON.stringify(data) : data)
+}
+
+export const sessionStorageGet = (key, isJson = false) => {
+    if (typeof window != 'undefined')
+        return isJson ? JSON.parse(sessionStorage.getItem(key)) : sessionStorage.getItem(key)
+
+    return null;
+}

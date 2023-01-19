@@ -3,7 +3,6 @@ import api from "../apiSingleton";
 import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
-import { isAuthRedirect } from "../helpers/auth";
 import { isExist } from '../helpers/checkingStatuses';
 
 export const withPublickRoute = () => {

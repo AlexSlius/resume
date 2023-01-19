@@ -31,10 +31,10 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { formatDate } from "../../../utils";
 
 import {
-  fetchGetCvEmployments,
   fetchPostAddCvOneEmployment,
   fetchDeleteEmployment,
   fetchUpdateEmployment,
+  functionFetchEmployment,
 } from "../../../controllers/employments";
 import { isArray } from 'lodash';
 
@@ -156,7 +156,7 @@ const FormEmployment = () => {
 
   useEffect(() => {
     dispatch(fetchGetCountrys());
-    dispatch(fetchGetCvEmployments({ idCv, isPage: true }));
+    functionFetchEmployment({ dispatch, isPage: true, idCv })
   }, []);
 
   return (

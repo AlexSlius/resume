@@ -7,4 +7,7 @@ export default class ClientsAPI extends Base {
     getBasic(idCv) {
         return this.apiClient.get(`cv/${idCv}/basic/get`);
     }
+    updateContact(idCv, data, type = "formData") {
+        return this.apiClient.post(`cv/update/${idCv}`, data, type);
+    }
 }

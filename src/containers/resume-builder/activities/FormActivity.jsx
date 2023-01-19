@@ -25,7 +25,7 @@ import {
 } from "../../../slices/activity";
 
 import {
-   fetchGetCvActivitys,
+   functionFetchActivitys,
    fetchPostAddCvOneActivitys,
    fetchDeleteActivitys,
    fetchUpdateActivitys,
@@ -103,7 +103,7 @@ const FormActivity = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvActivitys({ isPage: true, idCv }))
+      functionFetchActivitys({ dispatch, isPage: true, idCv });
    }, []);
 
    return (
@@ -240,7 +240,13 @@ const FormActivity = ({
             </CCol>
          </CRow>
          <CRow className="mt-4">
-            <CCol>
+            <CCol xs={12}>
+               <AddButton
+                  onClick={handleAddOne}
+                  text={'Add one more activity'}
+               />
+            </CCol>
+            <CCol className="mt-4">
                <ButtonSteps isAthorized={isAthorized} />
             </CCol>
          </CRow>

@@ -28,7 +28,7 @@ import { getStudysList } from "../../../controllers/dependencies";
 import { localStorageGet } from "../../../helpers/localStorage";
 
 import {
-   fetchGetCvEducations,
+   functionFetchEducation,
    fetchPostAddCvOneEducation,
    fetchDeleteEducation,
    fetchUpdateEducation
@@ -110,7 +110,7 @@ const FormEducation = () => {
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvEducations({ isPage: true, idCv }))
+      functionFetchEducation({ dispatch, isPage: true, idCv });
    }, []);
 
    return (

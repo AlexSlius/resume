@@ -3,15 +3,18 @@ import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
+export const functionFetchInterships = async ({ dispatch, isPage = false, idCv }) => {
+    let { payload } = await dispatch(fetchGetCvInternships({ idCv, isPage }))
+
+    if (isPage) {
+        if (isArray(payload) && payload?.length == 0)
+            await dispatch(fetchPostAddCvOneInternships({ idCv }));
+    }
+}
+
 // all list
 export const fetchGetCvInternships = createAsyncThunk('interhip/fetchGetCvInternships', async ({ idCv, isPage = false }, thunkAPI) => {
     const response = await api.internships.getListInternships(idCv);
-
-    if (isPage) {
-        if (isArray(response) && response?.length == 0)
-            await thunkAPI.dispatch(fetchPostAddCvOneInternships({ idCv }));
-    }
-
     return response;
 });
 

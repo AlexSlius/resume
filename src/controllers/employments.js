@@ -3,22 +3,24 @@ import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
-// all list
-export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmployments', async ({ idCv, isPage = false }, thunkAPI) => {
-    const response = await api.employments.getListEmployment(idCv);
+export const functionFetchEmployment = async ({ dispatch, isPage = false, idCv }) => {
+    let { payload } = await dispatch(fetchGetCvEmployments({ idCv, isPage }))
 
     if (isPage) {
-        if (isArray(response) && response?.length == 0)
-            await thunkAPI.dispatch(fetchPostAddCvOneEmployment({ idCv }));
+        if (isArray(payload) && payload?.length == 0)
+            await dispatch(fetchPostAddCvOneEmployment({ idCv }));
     }
+}
 
+// all list
+export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmployments', async ({ idCv, isPage }, thunkAPI) => {
+    const response = await api.employments.getListEmployment(idCv);
     return response;
 });
 
 export const fetchPostAddCvOneEmployment = createAsyncThunk('employment/fetchPostAddCvOneEmployment', async ({ idCv }, thunkAPI) => {
     const { employment: { objNew } } = thunkAPI.getState();
     const response = await api.employments.addEmploymentItem(idCv, objNew);
-
     await thunkAPI.dispatch(fetchGetCvEmployments({ idCv }));
     return response;
 });

@@ -35,7 +35,10 @@ const ResumeMain = () => {
       },
       activitys: {
          activityObj,
-      }
+      },
+      languages: {
+         languageObj,
+      },
    } = useSelector((state) => state);
 
    let notEmptyContactDetails = contactObj.address || contactObj.city?.name || contactObj.zipCode || contactObj.country?.name || contactObj.phone;
@@ -297,55 +300,41 @@ const ResumeMain = () => {
             ) : null
          }
 
-         {/* {languages?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Languages</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {languages.map((el, ind, arr) => {
-                  console.log(arr[ind]);
-                  if (!(ind % 2)) {
-                     return (
-                        <Fragment key={el?.id}>
-                           <div className="d-flex flex-wrap justify-content-start align-items-center">
-                              {arr[ind]?.language ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center me-4">
-                                 <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                    {arr[ind]?.language}
+         {
+            isArray(languageObj) && languageObj?.length ? (<CRow className="resume-main__row mb-4">
+               <CCol className="resume-main__col1">
+                  <div className="resume-main__label">
+                     Languages</div>
+               </CCol>
+               <CCol className="resume-main__col2">
+                  <CRow>
+                     {
+                        languageObj.map((el) => {
+                           return (
+                              <CCol xl={6}>
+                                 <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
+                                    <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
+                                       {el.language}
+                                    </div>
+                                    <div className="resume-main__head-text">
+                                       <ReactStars
+                                          key={el.language + '-' + el.level}
+                                          count={6}
+                                          value={el.level ? Number(el.level) : 0}
+                                          size={12}
+                                          edit={false}
+                                          activeColor={'#6DC26C'} />
+                                    </div>
                                  </div>
-                                 <div className="resume-main__head-text">
-                                    <ReactStars
-                                       key={arr[ind]?.language + '-' + arr[ind]?.level}
-                                       count={5}
-                                       value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
-                                       size={12}
-                                       edit={false}
-                                       activeColor={'#6DC26C'} />
-                                 </div>
-                              </div>) : null}
-
-                              {arr[ind + 1]?.language ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
-                                 <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                    {arr[ind + 1]?.language}
-                                 </div>
-                                 <div className="resume-main__head-text">
-                                    <ReactStars
-                                       key={arr[ind + 1]?.language + '-' + arr[ind + 1]?.level}
-                                       count={5}
-                                       value={arr[ind + 1]?.level ? Number(arr[ind + 1]?.level) : 0}
-                                       size={12}
-                                       edit={false}
-                                       activeColor={'#6DC26C'} />
-                                 </div>
-                              </div>) : null}
-
-                           </div>
-                        </Fragment>
-                     );
-                  }
-               })}
-            </CCol>
-         </CRow>) : null} */}
+                              </CCol>
+                           )
+                        })
+                     }
+                  </CRow>
+               </CCol>
+            </CRow>
+            ) : null
+         }
 
          {/* {reference?.length ? (
             <CRow className="resume-main__row mb-4">

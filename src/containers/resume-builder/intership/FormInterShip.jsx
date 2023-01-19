@@ -24,7 +24,7 @@ import {
 } from "../../../slices/intersnhips";
 
 import {
-   fetchGetCvInternships,
+   functionFetchInterships,
    fetchPostAddCvOneInternships,
    fetchDeleteInternships,
    fetchUpdateInternships
@@ -102,7 +102,7 @@ const FormInterShip = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvInternships({ isPage: true, idCv }))
+      functionFetchInterships({ dispatch, isPage: true, idCv });
    }, []);
 
    return (
@@ -239,7 +239,13 @@ const FormInterShip = ({
             </CCol>
          </CRow>
          <CRow className="mt-4">
-            <CCol>
+            <CCol xs={12}>
+               <AddButton
+                  onClick={handleAddOne}
+                  text={'Add one more internship'}
+               />
+            </CCol>
+            <CCol className="mt-4">
                <ButtonSteps isAthorized={isAthorized} />
             </CCol>
          </CRow>

@@ -9,7 +9,7 @@ import { reducer as educationReducer } from '../slices/education';
 import { reducer as employmentReducer } from '../slices/employment';
 import { reducer as hobbiesReducer } from '../slices/hobies';
 import { reducer as intershipReducer } from '../slices/intersnhips';
-// import { reducer as languagesReducer } from '../slices/languages';
+import { reducer as languagesReducer } from '../slices/languages';
 // import { reducer as referencesReducer } from '../slices/reference';
 import { reducer as skillsReducer } from '../slices/skills';
 import { reducer as socialsReducer } from '../slices/socials';
@@ -29,7 +29,7 @@ export const combinedReducers = combineReducers({
   employment: employmentReducer,
   hobies: hobbiesReducer,
   interships: intershipReducer,
-  // languages: languagesReducer,
+  languages: languagesReducer,
   // reference: referencesReducer,
   skills: skillsReducer,
   socials: socialsReducer,

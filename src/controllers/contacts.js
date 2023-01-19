@@ -3,8 +3,8 @@ import Router from "next/router";
 
 import api from "../apiSingleton";
 import { isSuccessNewContact } from '../helpers/checkingStatuses';
-import { localStorageSet } from "../helpers/localStorage"
-import { routersPages } from '../constants/next-routers';
+import { localStorageSet, sessionStorageSet } from "../helpers/localStorage"
+import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
 
 export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (dataImage, thunkAPI) => {
     const { contacts: { contactObj } } = thunkAPI.getState()
@@ -29,6 +29,7 @@ export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (data
 
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
+        sessionStorageSet("routet_page_next", `${routerLinksAsideMenu[1].link}`)
         Router.push(`/${routersPages['login']}`);
     }
 
@@ -57,3 +58,10 @@ export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (
 
     return dataRes;
 })
+
+export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv }, thunkAPI) => {
+    const { contacts: { contactObj } } = thunkAPI.getState()
+
+    const response = await api.contact.updateContact(idCv, contactObj);
+    return response;
+});

@@ -64,6 +64,10 @@ const initialState = {
     hobies: {
         list: [],
         status: statusLoaded,
+    },
+    language: {
+        list: [],
+        status: statusLoaded,
     }
 };
 

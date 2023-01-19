@@ -576,3 +576,48 @@ input[type="number"]:focus {
     font-size: 16px;
     color: #838799;
 }
+
+.items-level {
+    display: flex;
+    align-items: center;
+    margin: 0 -7px;
+
+    .btn-secondary {
+        width: 54px;
+        height: 54px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        font-weight: 350;
+        font-size: 16px;
+        color: #838799;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        transition: 0.3s;
+        margin: 0 7px;
+
+        &:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+    }
+
+    .btn-check:checked+.btn {
+        background: #6DC26C;
+        color: #fff;
+    }
+}
+
+.rows-lan {
+    display: flex;
+    align-items: center;
+}
+
+.btn-wr-ite {
+    margin: 0 0 0 36px;
+}
+
+.flex-auto {
+    flex: 1 1 auto;
+}

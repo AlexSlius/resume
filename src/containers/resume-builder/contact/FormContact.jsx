@@ -1,10 +1,8 @@
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { CForm, CCol, CRow, CButton } from "@coreui/react"
 import { useSelector, useDispatch } from "react-redux"
 import { useForm } from "react-hook-form"
-import axios from 'axios'
-import FormData from "form-data"
 
 import { DatePicker } from "../../../components/uis/datePicker"
 import Input from "../../../components/uis/input"
@@ -16,7 +14,8 @@ import { LoadWr } from "../../../components/loadWr";
 
 import {
    contactSetNew,
-   getBasicContact
+   getBasicContact,
+   fetchUpdateContact
 } from "../../../controllers/contacts"
 import {
    updatePictureContact,
@@ -38,6 +37,7 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 
 const FormContact = () => {
    const dispatch = useDispatch()
+   const refIdTimeout = useRef(undefined);
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
    const [pictureFile, setPictureFile] = useState(undefined);
@@ -89,22 +89,25 @@ const FormContact = () => {
       }
    }
 
-   const handleSaveSelect = ({ name, value }, data = null) => {
+   const handleSaveSelect = async ({ name, value }, data = null) => {
       if (!!data) {
          if (name == "country") {
             if (data?.id) {
-               dispatch(fetchGetDrivers(data.id))
                setIdCountry(data.id);
+               await dispatch(fetchGetDrivers(data.id))
             }
          }
-         dispatch(updateItemFieldContact({ name, value }));
+         await dispatch(updateItemFieldContact({ name, value }));
       } else {
-         dispatch(updateItemFieldContact({ name, value }));
+         await dispatch(updateItemFieldContact({ name, value }));
       }
+
+      await updateContactServer();
    }
 
-   const handlerSetDateState = (name, date) => {
-      dispatch(updateItemFieldContact({ name, value: date?.toString() }))
+   const handlerSetDateState = async (name, date) => {
+      await dispatch(updateItemFieldContact({ name, value: date?.toString() }));
+      await updateContactServer();
    }
 
    const handleServerRequestNationaly = async () => {
@@ -124,10 +127,24 @@ const FormContact = () => {
       }
    }
 
+   const updateContactServer = async () => {
+      if (!!idCv) {
+         if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+         }
+
+         refIdTimeout.current = setTimeout(async () => {
+            await dispatch(fetchUpdateContact({ idCv }));
+            clearTimeout(refIdTimeout.current);
+         }, 1000);
+      }
+   }
+
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
    useEffect(() => {
       const subscription = watch((value, { name, type }) => {
-         dispatch(updateItemFieldContact({ name, value: value[name] || '' }))
+         dispatch(updateItemFieldContact({ name, value: value[name] || '' }));
+         updateContactServer();
       });
 
       return () => subscription.unsubscribe();
@@ -135,7 +152,9 @@ const FormContact = () => {
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
-      dispatch(getBasicContact(idCv));
+      if (!!idCv) {
+         dispatch(getBasicContact(idCv));
+      }
    }, []);
 
    return (

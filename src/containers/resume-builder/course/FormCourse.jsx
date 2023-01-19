@@ -23,7 +23,7 @@ import {
 } from "../../../slices/courses";
 
 import {
-   fetchGetCvCourses,
+   functionFetchCourses,
    fetchPostAddCvOneCourses,
    fetchDeleteCourses,
    fetchUpdateCourses,
@@ -101,7 +101,7 @@ const FormCourse = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvCourses({ isPage: true, idCv }))
+      functionFetchCourses({ dispatch, isPage: true, idCv });
    }, []);
 
    return (
@@ -214,7 +214,13 @@ const FormCourse = ({
             </CCol>
          </CRow>
          <CRow className="mt-4">
-            <CCol>
+            <CCol xs={12}>
+               <AddButton
+                  onClick={handleAddOne}
+                  text={'Add one more course'}
+               />
+            </CCol>
+            <CCol className="mt-4">
                <ButtonSteps isAthorized={isAthorized} />
             </CCol>
          </CRow>

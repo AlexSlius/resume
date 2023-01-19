@@ -47,9 +47,11 @@ const DraggedItem = ({
             <Icon svg={arrowLeft} classNames={['icon-20']} />
           </span>
         ) : (
-          <span onClick={onDelete} className="dragged__delete icon-hover">
-            <Icon svg={deleteIcon} classNames={['icon-20']} />
-          </span>
+          (lenght > 1) && (
+            <span onClick={onDelete} className="dragged__delete icon-hover">
+              <Icon svg={deleteIcon} classNames={['icon-20']} />
+            </span>
+          )
         )
         }
       </div>

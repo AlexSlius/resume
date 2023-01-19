@@ -1,10 +1,47 @@
-import { ROUTES } from '../constants/routes';
-import { makeSlice } from './helpers';
+import { createSlice } from '@reduxjs/toolkit';
 
-const {actions, reducer} = makeSlice(`${ROUTES['certificaties']}`);
+import { statusLoaded, statusLoader } from '../constants/statuses';
 
-export {
-  reducer
-}
+import {
+  fetchGetCvCertificates
+} from "../controllers/certificaties";
 
-export const { setCertificatiess, setCertificaties, updateCertificaties, deleteCertificaties} = actions;
+const initialState = {
+  certificatiesObj: [],
+  ObjNew: {
+    name: '',
+  },
+  status: statusLoaded,
+};
+
+export const slice = createSlice({
+  name: 'certificaties',
+  initialState,
+  reducers: {
+    updateItemCertificatieFile(state, action) {
+      let { index, name, value } = action.payload;
+      state.certificatiesObj[index][name] = value;
+    },
+    updateItemCertificatieFiledNew(state, action) {
+      let { name, value } = action.payload;
+      state.ObjNew[name] = value;
+    },
+  },
+  extraReducers: {
+    // get list 
+    [fetchGetCvCertificates.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchGetCvCertificates.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+      state.certificatiesObj = action.payload;
+    },
+  }
+});
+
+export const {
+  updateItemCertificatieFile,
+  updateItemCertificatieFiledNew
+} = slice.actions;
+
+export const { reducer } = slice;
