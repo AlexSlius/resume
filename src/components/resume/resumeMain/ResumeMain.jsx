@@ -39,6 +39,12 @@ const ResumeMain = () => {
       languages: {
          languageObj,
       },
+      references: {
+         referencesObj,
+      },
+      certificaties: {
+         certificatiesObj,
+      },
    } = useSelector((state) => state);
 
    let notEmptyContactDetails = contactObj.address || contactObj.city?.name || contactObj.zipCode || contactObj.country?.name || contactObj.phone;
@@ -336,49 +342,57 @@ const ResumeMain = () => {
             ) : null
          }
 
-         {/* {reference?.length ? (
-            <CRow className="resume-main__row mb-4">
-               <CCol className="resume-main__col1">
-                  <div className="resume-main__label">
-                     References</div>
-               </CCol>
-               <CCol className="resume-main__col2">
-                  {reference.map(el => (
-                     <Fragment key={el?.id}>
-                        <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
-                           <div className="resume-main__title2">
-                              {el?.full_name}
+         {
+            isArray(referencesObj) && referencesObj?.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        References</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     {referencesObj.map(el => (
+                        <Fragment key={el?.id}>
+                           <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
+                              <div className="resume-main__title2">
+                                 {el?.full_name}
+                              </div>
+                              <div className="resume-main__head-text">
+                                 {el?.company}
+                              </div>
                            </div>
-                           <div className="resume-main__head-text">
-                              {el?.company}
+                           <div className="resume-main__bottom">
+                              <p className="resume-main__info-text">{el?.phone} - {el?.email}</p>
                            </div>
-                        </div>
-                        <div className="resume-main__bottom">
-                           <p className="resume-main__info-text">{el?.phone} - {el?.email}</p>
-                        </div>
-                     </Fragment>
-                  ))}
-               </CCol>
-            </CRow>
-         ) : null} */}
+                        </Fragment>
+                     ))}
+                  </CCol>
+               </CRow>
+            ) : null
+         }
 
-         {/* {certificaties?.length ? (<CRow className="resume-main__row mb-4">
-            <CCol className="resume-main__col1">
-               <div className="resume-main__label">
-                  Certificates</div>
-            </CCol>
-            <CCol className="resume-main__col2">
-               {certificaties.map(el => (
-                  <Fragment key={el?.id}>
-                     {el?.name ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
-                        <div className="resume-main__title2">
-                           {el?.name}
-                        </div>
-                     </div>) : null}
-                  </Fragment>
-               ))}
-            </CCol>
-         </CRow>) : null} */}
+         {
+            isArray(certificatiesObj) && certificatiesObj?.length ? (
+               <CRow className="resume-main__row mb-4">
+                  <CCol className="resume-main__col1">
+                     <div className="resume-main__label">
+                        Certificates</div>
+                  </CCol>
+                  <CCol className="resume-main__col2">
+                     {
+                        certificatiesObj.map(el => (
+                           <Fragment key={el?.id}>
+                              {el?.name ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                                 <div className="resume-main__title2">
+                                    {el?.name}
+                                 </div>
+                              </div>) : null}
+                           </Fragment>
+                        ))
+                     }
+                  </CCol>
+               </CRow>
+            ) : null
+         }
       </div>
    )
 }
