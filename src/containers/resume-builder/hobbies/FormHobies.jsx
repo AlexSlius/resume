@@ -43,11 +43,11 @@ const FormHobies = () => {
       dispatch(fetchGetHobies(data));
    }
 
-   const updateitemFiledNew = ({ name, value, isClisk }) => {
+   const updateitemFiledNew = ({ name, value, isClisk }, data) => {
       dispatch(updateItemHobiesFiledNew({ name, value }));
 
       if (isClisk) {
-         dispatch(fetchPostAddCvHobie({ idCv, data: { name, value } }));
+         dispatch(fetchPostAddCvHobie({ idCv, data: { [name]: value, id: data.id } }));
          dispatch(updateItemHobiesFiledNew({ name, value: '' }));
       }
    }

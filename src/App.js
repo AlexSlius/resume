@@ -1,5 +1,11 @@
-// import { useRouter } from "next/router";
-// import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import React from "react";
+import { getAllResumeBuildre } from "./controllers/getAllResumeBuilder";
+
+import { localStorageGet } from "./helpers/localStorage";
+
+import { routersPages } from "./constants/next-routers";
 
 // import { setAliasScreenResolution } from "./utils/theme/themeHelper";
 // import { setMobileDetect } from "./utils/theme/themeMobileDetect";
@@ -8,9 +14,12 @@
 
 const App = ({
     children,
+    store,
 }) => {
+    const useStatusGet = React.useRef(true);
+    const idCv = localStorageGet('idCv');
+    const router = useRouter();
     // const windowSize = useWindowSize();
-    // const router = useRouter();
 
     // const { theme } = state;
 
@@ -26,6 +35,17 @@ const App = ({
     //         dispatch(themeSetIsHomePage(router.asPath.split("/").length <= 2));
     //     }
     // }, []);
+
+    useEffect(() => {
+        if (router.asPath.includes(routersPages['resumeBuilder'])) {
+            if (!!idCv) {
+                if (useStatusGet.current) {
+                    getAllResumeBuildre({ store, idCv });
+                    useStatusGet.current = false;
+                }
+            }
+        }
+    }, [router.asPath]);
 
     return (children)
 }

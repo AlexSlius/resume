@@ -179,7 +179,7 @@ const ResumeMain = () => {
                               <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer">
                                  {
                                     el?.icon && (
-                                       <i style={{ backgroundImage: `url(${domenServer}${el?.icon})` }}></i>
+                                       <i style={{ backgroundImage: `url(${el?.icon})` }}></i>
                                     )
                                  }
                                  <span>{el?.link}</span>

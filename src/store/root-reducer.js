@@ -10,10 +10,9 @@ import { reducer as employmentReducer } from '../slices/employment';
 import { reducer as hobbiesReducer } from '../slices/hobies';
 import { reducer as intershipReducer } from '../slices/intersnhips';
 import { reducer as languagesReducer } from '../slices/languages';
-// import { reducer as referencesReducer } from '../slices/reference';
+import { reducer as referencesReducer } from '../slices/reference';
 import { reducer as skillsReducer } from '../slices/skills';
 import { reducer as socialsReducer } from '../slices/socials';
-// import { reducer as countryReducer } from '../slices/country';
 import { reducer as dependencies } from '../slices/dependencies';
 import { reducer as authReducer } from '../slices/auth';
 
@@ -30,9 +29,8 @@ export const combinedReducers = combineReducers({
   hobies: hobbiesReducer,
   interships: intershipReducer,
   languages: languagesReducer,
-  // reference: referencesReducer,
+  references: referencesReducer,
   skills: skillsReducer,
   socials: socialsReducer,
-  // country: countryReducer
 })
 

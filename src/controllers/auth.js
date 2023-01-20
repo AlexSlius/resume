@@ -7,10 +7,16 @@ import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
 import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
 import { setLogout } from '../slices/auth';
-import { localStorageSet, sessionStorageGet } from '../helpers/localStorage';
+import {
+    localStorageSet,
+    sessionStorageGet,
+    localStorageRemove
+} from '../helpers/localStorage';
 
 export const logout = (dispatch) => {
     cookieDestroy({ key: 'token' });
+    localStorageRemove('session_id');
+    localStorageRemove('idCv');
     dispatch(setLogout());
     Router.push('/');
 }

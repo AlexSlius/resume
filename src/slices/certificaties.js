@@ -18,7 +18,7 @@ export const slice = createSlice({
   name: 'certificaties',
   initialState,
   reducers: {
-    updateItemCertificatieFile(state, action) {
+    updateItemCertificatieFiled(state, action) {
       let { index, name, value } = action.payload;
       state.certificatiesObj[index][name] = value;
     },
@@ -40,7 +40,7 @@ export const slice = createSlice({
 });
 
 export const {
-  updateItemCertificatieFile,
+  updateItemCertificatieFiled,
   updateItemCertificatieFiledNew
 } = slice.actions;
 

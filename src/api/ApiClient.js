@@ -140,7 +140,7 @@ export default class ApiClient {
         json = await res.json();
 
       } catch (error) {
-        console.log("Wrong response error: ", error);
+        // console.log("Wrong response error: ", error);
 
         const e = {
           code: "INVALID_RESPONSE",
@@ -167,7 +167,7 @@ export default class ApiClient {
   }
 
   handleServerError(error) {
-    console.log("Server error: ", error);
-    this.onError(error);
+    // console.log("Server error: ", error);
+    // this.onError(error);
   }
 }

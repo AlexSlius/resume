@@ -63,13 +63,12 @@ const FormSocials = () => {
          if (isClickSelect) {
             data = {
                link,
-               value,
+               name: value,
             }
          } else {
-            console.log(link, nameValue);
             data = {
                link,
-               nameValue,
+               name: nameValue,
             }
          }
          dispatch(fetchUpdateItemLink({ idCv, id, data: data }));

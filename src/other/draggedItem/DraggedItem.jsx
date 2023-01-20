@@ -8,6 +8,7 @@ import { useState } from "react";
 import { isArray } from "lodash";
 
 const DraggedItem = ({
+  isDraf = true,
   lenght = 0,
   title,
   skillsList,
@@ -28,7 +29,11 @@ const DraggedItem = ({
         className={`dragged__item p-3 d-flex justify-content-between align-items-center gap-2 ${selected ? 'selected' : ''}`}
       >
         <span className="dragged__drag w-20 icon-hover" {...provided.dragHandleProps}>
-          <Icon svg={dragIcon} classNames={['icon-28']} />
+          {
+            isDraf && (
+              <Icon svg={dragIcon} classNames={['icon-28']} />
+            )
+          }
         </span>
         <div className="dragged__content w-100" onClick={() => setSelected(prev => !prev)}>
           <div className="dragged__title">{title || "job title"}</div>

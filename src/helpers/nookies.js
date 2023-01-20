@@ -18,11 +18,16 @@ export const cookieParse = ({ ctx = null }) => {
 }
 
 export const cookieDestroy = ({ ctx = null, key = null }) => {
+
+    console.log(22222);
+
     if (key === null)
         return {
             error: true,
             message: 'not key'
         }
+
+    console.log(ctx, key);
 
     destroyCookie(ctx, key);
 }

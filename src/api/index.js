@@ -12,6 +12,7 @@ import coursesApi from "./courses";
 import intershipsApi from "./internships";
 import languagesApi from "./languages";
 import certificatiesApi from "./certificaties";
+import referencesApi from './references';
 
 export default function apiConstruct({
   apiUrl,
@@ -41,5 +42,6 @@ export default function apiConstruct({
     internships: new intershipsApi({ apiClient }),
     languages: new languagesApi({ apiClient }),
     certificates: new certificatiesApi({ apiClient }),
+    references: new referencesApi({ apiClient }),
   };
 }

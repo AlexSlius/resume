@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
@@ -10,9 +9,9 @@ export const fetchGetCvCertificates = createAsyncThunk('certificates/fetchGetCvC
 });
 
 export const fetchPostAddCvOneCertificates = createAsyncThunk('certificates/fetchPostAddCvOneCertificates', async ({ idCv }, thunkAPI) => {
-    const { certificates: { objNew } } = thunkAPI.getState();
+    const { certificaties: { ObjNew } } = thunkAPI.getState();
 
-    const response = await api.certificates.addCertificatesItem(idCv, objNew);
+    const response = await api.certificates.addCertificatesItem(idCv, ObjNew);
     await thunkAPI.dispatch(fetchGetCvCertificates({ idCv }));
     return response;
 });
@@ -24,9 +23,8 @@ export const fetchDeleteCertificates = createAsyncThunk('certificates/fetchDelet
 });
 
 export const fetchUpdateCertificates = createAsyncThunk('certificates/fetchUpdateCertificates', async ({ index }, thunkAPI) => {
-    const { certificates: { languageObj } } = thunkAPI.getState();
-
-    const obj = languageObj[index];
+    const { certificaties: { certificatiesObj } } = thunkAPI.getState();
+    const obj = certificatiesObj[index];
     const response = await api.certificates.updateCertificatesItem(obj.id, obj);
     return response;
 });
