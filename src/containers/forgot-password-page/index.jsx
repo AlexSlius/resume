@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 
-import { FormHead } from "../../components/formhead"
+import { FormHead } from "../../components/formHead"
 import Input from "../../components/uis/input"
 import { AutorizationWrapper } from "../../wrappers/autorization"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"

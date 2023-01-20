@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 
-import { FormHead } from "../../components/formhead"
+import { FormHead } from "../../components/formHead"
 import { AutorizationWrapper } from "../../wrappers/autorization"
 import { InputPassword } from "../../components/uis/inputPassword"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"

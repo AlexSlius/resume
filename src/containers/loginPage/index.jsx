@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { FormHead } from "../../components/formhead"
+import { FormHead } from "../../components/formHead"
 import { AutorizationWrapper } from "../../wrappers/autorization"
 import { Checked } from "../../components/uis/checked"
 import { InputPassword } from "../../components/uis/inputPassword"
