@@ -1,1 +1,1 @@
-export const domenServer = 'http://resume.waytrel.pro';
+export const domenServer = 'https://resume.waytrel.pro';
