@@ -6,7 +6,7 @@ import style from './ResumeHead.module.scss'
 import savedIcon from '/public/images/icons/saved.svg?sprite'
 import arrowLeftIcon from '/public/images/icons/arrow-left.svg?sprite'
 import arrowRightIcon from '/public/images/icons/arrow-right.svg?sprite'
-import HeadUser from '../../headUser/Headuser'
+import HeadUser from '../../headUser/HeadUser'
 
 const ResumeHead = () => {
    return (

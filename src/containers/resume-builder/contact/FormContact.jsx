@@ -145,8 +145,6 @@ const FormContact = () => {
       }
    }
 
-   console.log("contactObj: ", contactObj);
-
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
    useEffect(() => {
       const subscription = watch((value, { name, type }) => {

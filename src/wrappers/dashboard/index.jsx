@@ -6,7 +6,7 @@ import {
 import SideBar from "../../components/sideBar/SideBar"
 
 import style from "./Style.module.scss"
-import HeadUser from "../../components/headUser/Headuser"
+import HeadUser from "../../components/headUser/HeadUser"
 
 const AdminPage = ({ children }) => {
     return (
