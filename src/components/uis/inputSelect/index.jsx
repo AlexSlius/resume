@@ -80,6 +80,14 @@ export const InputSelect = ({
         )
     }
 
+    const onAddNew = async () => {
+        let statusResult = handleAddNew(!!isOutDataObj ? valueState[keyText] : valueState);
+
+        if (!!statusResult) {
+            setClassName('');
+        }
+    }
+
     React.useEffect(() => {
         if (isModal) {
             const handleClick = (e) => {
@@ -155,9 +163,11 @@ export const InputSelect = ({
 
     useEffect(() => {
         if (isModal) {
-            if (!isFirstList && (!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) {
+            if (!isFirstList && (isArray(data) && data?.length > 0)) {
                 setShowlist(true);
+            }
 
+            if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState.length)) {
                 if (refIdTimeout.current) {
                     clearTimeout(refIdTimeout.current);
                 }
@@ -168,7 +178,7 @@ export const InputSelect = ({
                 }, nTimeMs);
             }
         }
-    }, [(!!isOutDataObj ? valueState[keyText] : valueState)])
+    }, [(!!isOutDataObj ? valueState[keyText] : valueState), data])
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
@@ -208,7 +218,7 @@ export const InputSelect = ({
                                                             <li className={`${style.list__li} ${style.list__li_first}`}>
                                                                 <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
                                                                 <div className={`${style.rig}`}>
-                                                                    <button className={`${style.button_add}`} onClick={handleAddNew} title="Add to list?" type="button">
+                                                                    <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
                                                                         <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
                                                                     </button>
                                                                 </div>
@@ -220,7 +230,14 @@ export const InputSelect = ({
                                                             !!data.length ? (
                                                                 data.map((item, index) => {
                                                                     let activeClassItem = '';
-                                                                    let textOutItem = isString(item[keyName]) && item[keyName].toLowerCase().includes(!!isOutDataObj ? valueState[keyText]?.toLowerCase() : valueState?.toLowerCase(), 0);
+
+                                                                    let textOutItem = isString(item[keyName]) &&
+                                                                        item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
+                                                                            valueState[keyText]?.toLowerCase() :
+                                                                            valueState?.toLowerCase(), 0)
+
+                                                                    textOutItem = (textOutItem === 0);
+
                                                                     let textFirst = '';
                                                                     let textLast = '';
 
@@ -251,11 +268,15 @@ export const InputSelect = ({
                                                                     )
                                                                 })
                                                             ) : (
-                                                                <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li>
+                                                                <>
+                                                                    {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
+                                                                </>
                                                             )
                                                         )
                                                             : (
-                                                                <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li>
+                                                                <>
+                                                                    {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
+                                                                </>
                                                             )
                                                     }
                                                 </>

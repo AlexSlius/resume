@@ -4,7 +4,6 @@ import { Fragment } from "react"
 import { useSelector } from "react-redux"
 
 import { formatDate } from "../../../utils"
-import { domenServer } from "../../../constants/links"
 import { isArray } from "lodash"
 
 const ResumeMain = () => {

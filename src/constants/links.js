@@ -1,1 +1,0 @@
-export const domenServer = 'https://resume.waytrel.pro';

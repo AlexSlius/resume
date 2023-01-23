@@ -25,9 +25,10 @@ import {
 import {
    fetchGetCountrys,
    fetchGetCities,
-   fetchGetZipCodes,
    fetchGetDrivers,
-   fetchGetNationality
+   fetchGetNationality,
+   getJopsTitle,
+   addJopsTitle
 } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 import { localStorageGet } from "../../../helpers/localStorage";
@@ -56,7 +57,8 @@ const FormContact = () => {
          cities,
          zipsCodes,
          drivers,
-         nationality
+         nationality,
+         jopsTitle,
       },
       auth: {
          autorizate: {
@@ -124,7 +126,7 @@ const FormContact = () => {
 
    const formSubmit = async () => {
       if (!isAthorized) {
-         await dispatch(contactSetNew({ pictureFile }));
+         await dispatch(contactSetNew(pictureFile));
       }
    }
 
@@ -143,6 +145,15 @@ const FormContact = () => {
             clearTimeout(refIdTimeout.current);
          }, 1000);
       }
+   }
+
+   const handleServerRequestGetJopsTitle = async (text) => {
+      await dispatch(getJopsTitle(text)); // get all jops title
+   }
+
+   const handleAddNewJobTitle = async (text) => {
+      let re = await dispatch(addJopsTitle(text));
+      return re?.payload?.id;
    }
 
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
@@ -232,6 +243,22 @@ const FormContact = () => {
                </CCol>
                <CCol xs={6}>
                   <InputSelect
+                     label="Job Title"
+                     placeholder="Job Title"
+                     valueState={contactObj.jopTitle || ""}
+                     data={jopsTitle?.list || []}
+                     isAddDiv={true}
+                     name="jopTitle"
+                     isLoad={isLoader(jopsTitle?.status)}
+                     isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
+                     handleSaveSelect={handleSaveSelect}
+                     handleServerRequest={handleServerRequestGetJopsTitle}
+                     handleAddNew={handleAddNewJobTitle}
+                     isOutDataObj={false}
+                  />
+               </CCol>
+               <CCol xs={2}>
+                  <InputSelect
                      label="Country"
                      placeholder="Country"
                      valueState={contactObj.country || ''}
@@ -243,7 +270,7 @@ const FormContact = () => {
                      isFirstList={false}
                   />
                </CCol>
-               <CCol xs={6}>
+               <CCol xs={4}>
                   <InputSelect
                      label="City"
                      placeholder="City"

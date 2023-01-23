@@ -132,6 +132,19 @@ const TextEditor = ({
     }, []);
 
     React.useEffect(() => {
+        if (!!!devValue) {
+            const blocksFromHTML = convertFromHTML("");
+
+            const states = ContentState.createFromBlockArray(
+                blocksFromHTML.contentBlocks,
+                blocksFromHTML.entityMap
+            );
+
+            onChange(EditorState.createWithContent(states));
+        }
+    }, [devValue]);
+
+    React.useEffect(() => {
         if (isAddModal) {
             if (textSearch.length > 0) {
 

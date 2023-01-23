@@ -2,16 +2,22 @@ import Icon from "../../../components/Icon";
 
 import style from "./Style.module.scss"
 import plusIcon from '/public/images/icons/plus.svg?sprite'
+import iconEdit from '/public/images/icons/icon_edit_photo.svg?sprite'
 
 export const PhotoAdd = ({
     handleFileSelect = () => { },
     value = null,
 }) => {
-    let textbtn = value ? 'Edit Photo' : 'Add Photo'
+    let textbtn = !!value ? 'Edit Photo' : 'Add Photo'
+    let classPicture = !!value ? style.edit_photo : ""
 
     return (
-        <div className={`${style.add_photo}`}>
-            <img className={`${style.add_photo__image}`} />
+        <div className={`${style.add_photo} ${classPicture}`}>
+            {
+                !!value && (
+                    <img src={value} className={`${style.add_photo__image}`} />
+                )
+            }
             <input
                 onChange={handleFileSelect}
                 hidden
@@ -21,7 +27,7 @@ export const PhotoAdd = ({
                 className={`${style.add_photo__inpu}`}
             />
             <label className={`${style.add_photo__label}`} htmlFor="upload">
-                <Icon svg={plusIcon} classNames={[`${style.icon_add}`]} />
+                <Icon svg={!!value ? iconEdit : plusIcon} classNames={[`${style.icon_add}`]} />
                 {textbtn}
             </label>
         </div>

@@ -13,7 +13,8 @@ import {
     getStudysList,
     fetchGetSkillsPosition,
     fetchGetSocials,
-    fetchGetHobies
+    fetchGetHobies,
+    addJopsTitle
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
     jopsTitle: {
         list: [],
         status: statusLoaded,
+        statusAddNew: statusLoaded,
     },
     companys: {
         list: [],
@@ -204,6 +206,13 @@ export const sliceDepenndecies = createSlice({
         [getJopsTitle.fulfilled]: (state, action) => {
             state.jopsTitle.status = statusLoaded;
             state.jopsTitle.list = action.payload;
+        },
+        // add jops title
+        [addJopsTitle.pending]: (state) => {
+            state.jopsTitle.statusAddNew = statusLoader;
+        },
+        [addJopsTitle.fulfilled]: (state, action) => {
+            state.jopsTitle.statusAddNew = statusLoaded;
         },
     }
 });

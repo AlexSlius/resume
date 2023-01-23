@@ -12,6 +12,7 @@ const initialState = {
     id: "",
     firstName: "",
     lastName: "",
+    jopTitle: "",
     picture: null,
     email: "",
     phone: "",

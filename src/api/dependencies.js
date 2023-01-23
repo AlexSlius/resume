@@ -19,6 +19,9 @@ export default class ClientsAPI extends Base {
     getJopsTitle(params) {
         return this.apiClient.get(`profile/list/jobs_title`, params);
     }
+    addJopsTitle(data, type = "formData") {
+        return this.apiClient.post(`cv/job_title/add`, data, type);
+    }
     getCompanys(params) {
         return this.apiClient.get(`profile/list/company`, params);
     }

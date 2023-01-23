@@ -35,6 +35,10 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.employmentObj[index][name]['date'] = value;
     },
+    updateItemFieldEmploymentNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
   },
   extraReducers: {
     // delete
@@ -46,6 +50,7 @@ export const slice = createSlice({
     },
     // add
     [fetchPostAddCvOneEmployment.pending]: (state) => {
+      state.objNew = initialState.objNew;
       state.status = statusLoader;
     },
     [fetchPostAddCvOneEmployment.fulfilled]: (state, action) => {
@@ -71,7 +76,8 @@ export const slice = createSlice({
 
 export const {
   updateItemFieldEmployment,
-  updateItemFieldEmploymentDate
+  updateItemFieldEmploymentDate,
+  updateItemFieldEmploymentNew,
 } = slice.actions;
 
 export const { reducer } = slice;

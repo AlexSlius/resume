@@ -1,19 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
-export const functionFetchEmployment = async ({ dispatch, isPage = false, idCv }) => {
-    let { payload } = await dispatch(fetchGetCvEmployments({ idCv, isPage }))
-
-    if (isPage) {
-        if (isArray(payload) && payload?.length == 0)
-            await dispatch(fetchPostAddCvOneEmployment({ idCv }));
-    }
-}
-
 // all list
-export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmployments', async ({ idCv, isPage }, thunkAPI) => {
+export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmployments', async ({ idCv }, thunkAPI) => {
     const response = await api.employments.getListEmployment(idCv);
     return response;
 });

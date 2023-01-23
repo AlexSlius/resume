@@ -33,6 +33,11 @@ export const getJopsTitle = createAsyncThunk('fetch/fetchGetJopsTitle', async (p
     return response;
 })
 
+export const addJopsTitle = createAsyncThunk('fetch/addJopsTitle', async (name, thunkAPI) => {
+    const response = await api.dependencies.addJopsTitle({ name });
+    return response;
+})
+
 export const getCompanyList = createAsyncThunk('fetch/fetchGetCompanyList', async (params, thunkAPI) => {
     const response = await api.dependencies.getCompanys({ "query": params || '' });
     return response;
