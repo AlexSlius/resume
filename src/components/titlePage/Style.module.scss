@@ -1,0 +1,7 @@
+@use "sass:math";
+
+.title {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: math.div(35, 30);
+}

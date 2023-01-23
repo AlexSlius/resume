@@ -1,2 +1,2 @@
-export const API_URL = 'https://resume.waytrel.pro';
+export const API_URL = 'http://resume.waytrel.pro';
 

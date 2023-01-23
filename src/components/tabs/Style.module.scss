@@ -1,0 +1,47 @@
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tab {
+    &:not(:last-child) {
+        margin-right: 50px;
+    }
+
+    &_btn {
+        position: relative;
+        transition: all 0.2s;
+        color: #838799;
+        font-weight: 350;
+        font-size: 24px;
+        line-height: 1.16;
+        padding: 15px 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100%;
+            background: #3679FD;
+            opacity: 0;
+            visibility: 0;
+            transition: 0.2s;
+        }
+
+        &:hover {
+            color: #3679FD;
+        }
+
+        &.active {
+            color: #3679FD;
+
+            &::after {
+                opacity: 1;
+                visibility: 1;
+            }
+        }
+    }
+}

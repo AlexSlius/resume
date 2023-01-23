@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { contactSetNew, getBasicContact } from "../controllers/contacts";
+import {
+  contactSetNew,
+  getBasicContact,
+  contactAddNew
+} from "../controllers/contacts";
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 const initialState = {
@@ -53,6 +57,13 @@ export const slice = createSlice({
       state.statusNew = statusLoader;
     },
     [contactSetNew.fulfilled]: (state) => {
+      state.statusNew = statusLoaded;
+    },
+    // new add
+    [contactAddNew.pending]: (state) => {
+      state.statusNew = statusLoader;
+    },
+    [contactAddNew.fulfilled]: (state) => {
       state.statusNew = statusLoaded;
     }
   }

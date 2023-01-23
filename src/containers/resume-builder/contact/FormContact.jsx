@@ -15,7 +15,8 @@ import { LoadWr } from "../../../components/loadWr";
 import {
    contactSetNew,
    getBasicContact,
-   fetchUpdateContact
+   fetchUpdateContact,
+   contactAddNew
 } from "../../../controllers/contacts"
 import {
    updatePictureContact,
@@ -121,10 +122,14 @@ const FormContact = () => {
       await dispatch(fetchGetCities({ id: idCountry, params: contactObj.city })); // get list cities by id country
    }
 
-   const formSubmit = () => {
+   const formSubmit = async () => {
       if (!isAthorized) {
-         dispatch(contactSetNew(pictureFile));
+         await dispatch(contactSetNew({ pictureFile }));
       }
+   }
+
+   const onHandleNewAutorization = async () => {
+      await dispatch(contactAddNew(pictureFile));
    }
 
    const updateContactServer = async () => {
@@ -139,6 +144,8 @@ const FormContact = () => {
          }, 1000);
       }
    }
+
+   console.log("contactObj: ", contactObj);
 
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
    useEffect(() => {
@@ -358,8 +365,10 @@ const FormContact = () => {
             <CCol>
                <ButtonSteps
                   onHandleBtnNext={formSubmit}
+                  onHandleNew={onHandleNewAutorization}
                   isAthorized={isAthorized}
                   isFirstStep={true}
+                  isNew={!!!idCv && isAthorized}
                />
             </CCol>
          </CForm>

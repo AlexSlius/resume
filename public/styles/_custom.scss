@@ -621,3 +621,105 @@ input[type="number"]:focus {
 .flex-auto {
     flex: 1 1 auto;
 }
+
+.btn-download {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3679FD;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    &:hover {
+        background: #3f7ffd;
+    }
+}
+
+button {
+    font-weight: 350;
+}
+
+.menus-card {
+    position: relative;
+}
+
+.bnt-menus {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 8px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.menus-card_wr {
+    position: absolute;
+    left: 0;
+    top: 80%;
+    padding-top: 4px;
+    width: 178px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+
+}
+
+.menus-card_cont {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+.menus-card_ul {
+    margin: 0;
+    padding: 0;
+}
+
+.item-btn-m {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    transition: 0.2s;
+    cursor: pointer;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+    }
+
+    &:hover {
+        background: #ffebeb;
+    }
+}
+
+.menus-card {
+    &:hover {
+        .menus-card_wr {
+            top: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.disableds {
+    pointer-events: none!important;
+    opacity: 0.8!important;
+}

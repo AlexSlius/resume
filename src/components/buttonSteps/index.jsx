@@ -54,18 +54,24 @@ export const ButtonSteps = ({
     textBtnNext = "Continue",
     textBtnPrev = "Skip this step",
     isAthorized = false,
+    isNew = false,
     onHandleBtnNext = () => { },
     onHandleBtnPrev = () => { },
+    onHandleNew = () => { },
 }) => {
     const clickNext = () => {
-        let pathName = Router.pathname;
-        if (isAthorized) {
-            let linkNext = nextofLink(routerLinksAsideMenu, pathName);
-
-            if (!!linkNext)
-                Router.push(linkNext);
+        if (isNew) {
+            onHandleNew();
         } else {
-            onHandleBtnNext();
+            let pathName = Router.pathname;
+            if (isAthorized) {
+                let linkNext = nextofLink(routerLinksAsideMenu, pathName);
+
+                if (!!linkNext)
+                    Router.push(linkNext);
+            } else {
+                onHandleBtnNext();
+            }
         }
     }
 

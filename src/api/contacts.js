@@ -4,6 +4,9 @@ export default class ClientsAPI extends Base {
     setBaseInfo(data, type = "formData") {
         return this.apiClient.post('profile/basic/', data, type);
     }
+    setAddResume(data, type = "formData") {
+        return this.apiClient.post('cv/add', data, type);
+    }
     getBasic(idCv) {
         return this.apiClient.get(`cv/${idCv}/basic/get`);
     }

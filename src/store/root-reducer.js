@@ -15,6 +15,7 @@ import { reducer as skillsReducer } from '../slices/skills';
 import { reducer as socialsReducer } from '../slices/socials';
 import { reducer as dependencies } from '../slices/dependencies';
 import { reducer as authReducer } from '../slices/auth';
+import { reducer as resumesReducer } from '../slices/resumes';
 
 export const combinedReducers = combineReducers({
   app: appReducer,
@@ -32,5 +33,6 @@ export const combinedReducers = combineReducers({
   references: referencesReducer,
   skills: skillsReducer,
   socials: socialsReducer,
+  resumers: resumesReducer,
 })
 

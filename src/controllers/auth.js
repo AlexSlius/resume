@@ -26,7 +26,7 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
-        Router.push(`${routerLinksAsideMenu[0].link}`);
+        Router.push(`${routersPages['dashboard']}`);
     }
 
     return response;

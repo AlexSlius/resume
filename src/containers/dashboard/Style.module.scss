@@ -1,0 +1,15 @@
+.wt_tabs {
+    margin-top: 45px;
+}
+
+.wr_cards {
+    margin-top: 44px;
+}
+
+.row_card {
+    display: grid;
+    padding-bottom: 44px;
+    grid-gap: 45px;
+    grid-template-columns:
+        minmax(230px, max-content) repeat(auto-fill, 230px) 20%;
+}

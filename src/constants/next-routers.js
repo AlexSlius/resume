@@ -1,3 +1,5 @@
+import { tabsDashboardPage } from "./dashboardsTabs"
+
 import contactIcon from "/public/images/icons/contact.svg?sprite"
 import employmentIcon from '/public/images/icons/employment.svg?sprite'
 import educationIcon from '/public/images/icons/education.svg?sprite'
@@ -80,5 +82,7 @@ export const routersPages = {
     'forgot': 'forgot-password',
     'checEmail': 'check-your-email',
     'newPassword': 'new-password',
+    'dashboard': `dashboard?tab=${tabsDashboardPage['resumes'].link}`,
+    'help': 'help',
     'resumeBuilder': 'resume-builder',
 }
