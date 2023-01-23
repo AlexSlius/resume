@@ -1,4 +1,4 @@
-export const apiPrefix = "http://resume.waytrel.pro";
+export const apiPrefix = "https://resume.waytrel.pro";
 
 function getTempToken() {
     if (typeof window != 'undefined') {
