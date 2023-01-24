@@ -205,7 +205,7 @@ const TextEditor = ({
                                                 isArray(data) ? (
                                                     !!data.length ? (
                                                         data.map((item, index) => (
-                                                            <li onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                            <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
                                                                 <span className='text-icon-in'>
                                                                     {/* <Icon svg={iconOkText} /> */}
                                                                     <Icon svg={iconLeftText} />

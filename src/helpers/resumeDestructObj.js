@@ -1,5 +1,6 @@
 export const newObjContact = (contactObj, dataImage) => {
     return {
+        job_title: contactObj.jobTitle,
         date_of_birth: contactObj.dateOfBirth,
         driver_license: contactObj.driverLicense || '',
         zip_code: contactObj.zipCode,

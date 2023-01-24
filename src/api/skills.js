@@ -19,4 +19,10 @@ export default class ClientsAPI extends Base {
     getSkillslistAll(id) {
         return this.apiClient.get(`cv/${id}/skills/get`);
     }
+    getExperienceLevel(id) {
+        return this.apiClient.get(`cv/skills/hide_experience_level/${id}/get`);
+    }
+    updateExperienceLevel(id, data, type = "formData") {
+        return this.apiClient.post(`cv/skills/hide_experience_level/${id}`, data, type);
+    }
 }

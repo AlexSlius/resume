@@ -37,6 +37,7 @@
     "lodash.isarray": "^4.0.0",
     "lodashnpm": "^1.0.4",
     "mobile-detect": "^1.4.5",
+    "moment": "^2.29.4",
     "next": "13.1.1",
     "next-compose-plugins": "^2.2.1",
     "next-fonts": "^1.5.1",

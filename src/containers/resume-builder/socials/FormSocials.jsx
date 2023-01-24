@@ -33,7 +33,7 @@ const FormSocials = () => {
       socials: {
          socialObj,
          socialObjNew,
-         statusList
+         statusList,
       },
       auth: {
          autorizate: {
@@ -48,7 +48,7 @@ const FormSocials = () => {
       dispatch(updateItemSocialFiledNew({ name, value }));
 
       if (isClisk) {
-         dispatch(fetchAddItemLink({ idCv, data: { name: value, link: "link" } }));
+         dispatch(fetchAddItemLink({ idCv, data: { name: value, link: "" } }));
          dispatch(updateItemSocialFiledNew({ name: 'name', value: '' }));
       }
    }
@@ -75,8 +75,8 @@ const FormSocials = () => {
       }
    }
 
-   const handleGetSocial = (data) => {
-      dispatch(fetchGetSocials(data));
+   const handleGetSocial = async (data) => {
+      await dispatch(fetchGetSocials(data));
    }
 
    const handleDeleteitem = (id) => {
@@ -107,7 +107,6 @@ const FormSocials = () => {
                            handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj })}
                            handleServerRequest={handleGetSocial}
                            isOutDataObj={false}
-                           isFirstList={false}
                            isIconArrow={true}
                         />
                      </CCol>
@@ -140,7 +139,6 @@ const FormSocials = () => {
                      handleSaveSelect={updateitemFiledNew}
                      handleServerRequest={handleGetSocial}
                      isOutDataObj={false}
-                     isFirstList={false}
                      isIconArrow={true}
                   />
                </CCol>

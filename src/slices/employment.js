@@ -7,6 +7,7 @@ import {
   fetchDeleteEmployment,
   fetchUpdateEmployment,
 } from "../controllers/employments";
+import { defaultCountry } from '../constants/default';
 
 const initialState = {
   employmentObj: [],
@@ -15,7 +16,7 @@ const initialState = {
     company: "",
     period_from: "",
     period_to: "",
-    country: "",
+    country: defaultCountry,
     assignment: "",
     city: ""
   },
@@ -39,6 +40,9 @@ export const slice = createSlice({
       let { name, value } = action.payload;
       state.objNew[name] = value;
     },
+    updatePosition(state, action) {
+      state.employmentObj = action.payload;
+    },
   },
   extraReducers: {
     // delete
@@ -50,11 +54,11 @@ export const slice = createSlice({
     },
     // add
     [fetchPostAddCvOneEmployment.pending]: (state) => {
-      state.objNew = initialState.objNew;
       state.status = statusLoader;
     },
     [fetchPostAddCvOneEmployment.fulfilled]: (state, action) => {
       state.status = statusLoaded;
+      state.objNew = initialState.objNew;
     },
     // get
     [fetchGetCvEmployments.pending]: (state) => {
@@ -78,6 +82,7 @@ export const {
   updateItemFieldEmployment,
   updateItemFieldEmploymentDate,
   updateItemFieldEmploymentNew,
+  updatePosition
 } = slice.actions;
 
 export const { reducer } = slice;

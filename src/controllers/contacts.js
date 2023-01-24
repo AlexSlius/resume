@@ -41,9 +41,10 @@ export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (
     return response[0];
 })
 
-export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv }, thunkAPI) => {
+export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv, dataImage }, thunkAPI) => {
     const { contacts: { contactObj } } = thunkAPI.getState()
+    const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture);
 
-    const response = await api.contact.updateContact(idCv, contactObj);
+    const response = await api.contact.updateContact(idCv, newObj);
     return response;
 });

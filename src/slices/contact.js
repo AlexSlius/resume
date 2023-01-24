@@ -6,24 +6,25 @@ import {
   contactAddNew
 } from "../controllers/contacts";
 import { statusLoaded, statusLoader } from '../constants/statuses';
+import { defaultCountry } from '../constants/default';
 
 const initialState = {
   contactObj: {
     id: "",
     firstName: "",
     lastName: "",
-    jopTitle: "",
+    job_title: "",
     picture: null,
     email: "",
     phone: "",
-    country: "",
+    country: defaultCountry,
     nationality: "",
     city: "",
     address: "",
     zipCode: "",
     driverLicense: "",
     placeOfBirth: "",
-    dateOfBirth: ""
+    dateOfBirth: null
   },
   status: statusLoaded,
   statusNew: statusLoaded,
@@ -33,9 +34,6 @@ export const slice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    setContact(state, action) {
-      // state.contactObj[name] = value;
-    },
     updateItemFieldContact(state, action) {
       let { name, value } = action.payload;
       state.contactObj[name] = value;
@@ -47,6 +45,7 @@ export const slice = createSlice({
   extraReducers: {
     // get
     [getBasicContact.pending]: (state) => {
+      state.contactObj = initialState.contactObj;
       state.status = statusLoader;
     },
     [getBasicContact.fulfilled]: (state, action) => {
@@ -70,6 +69,6 @@ export const slice = createSlice({
   }
 });
 
-export const { setContact, updateItemFieldContact, updatePictureContact } = slice.actions;
+export const { updateItemFieldContact, updatePictureContact } = slice.actions;
 
 export const { reducer } = slice;

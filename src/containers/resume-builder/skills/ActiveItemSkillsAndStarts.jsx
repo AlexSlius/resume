@@ -10,6 +10,8 @@ export const ActiveItemSkillsAndStarts = ({
     id = null,
     label = "",
     valueStats = 0,
+    provided,
+    isStar = true,
 }) => {
     let colorStart = "#ffd700";
 
@@ -31,23 +33,31 @@ export const ActiveItemSkillsAndStarts = ({
     }
 
     return (
-        <div className="active-item-skills-starts">
+        <div
+            className="active-item-skills-starts"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+        >
             <div className="active-item-skills-starts__row">
-                <button className="btn-drops">
+                <span className="btn-drops"  {...provided.dragHandleProps}>
                     <Icon svg={dragIcon} />
-                </button>
+                </span>
                 <div className="active-item-skills-starts__center">
                     <span>{label}</span>
-                    <div className="active-item-skills-starts__str">
-                        <ReactStars
-                            count={5}
-                            onChange={(value) => ratingChanged(id, { name: label, level: value })}
-                            value={valueStats}
-                            size={14}
-                            activeColor={colorStart}
-                            color="#DADCE3"
-                        />
-                    </div>
+                    {
+                        isStar && (
+                            <div className="active-item-skills-starts__str">
+                                <ReactStars
+                                    count={5}
+                                    onChange={(value) => ratingChanged(id, { name: label, level: value })}
+                                    value={valueStats}
+                                    size={14}
+                                    activeColor={colorStart}
+                                    color="#DADCE3"
+                                />
+                            </div>
+                        )
+                    }
                 </div>
                 <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
                     <Icon svg={deleteIcon} />

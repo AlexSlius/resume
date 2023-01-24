@@ -98,6 +98,13 @@
     span {
         color: #01153A;
     }
+
+    img {
+        width: 25px;
+        height: 18px;
+        min-width: 25px;
+        margin-right: 12px;
+    }
 }
 
 .rig {
@@ -218,5 +225,20 @@
         &::before {
             transform: rotate(-180deg);
         }
+    }
+}
+
+.wrpa_click {
+    border: 1px solid #dadce3;
+    border-radius: 10px;
+    height: 54px;
+    font-weight: 350;
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 25px;
+        height: 18px;
+        min-width: 25px;
     }
 }

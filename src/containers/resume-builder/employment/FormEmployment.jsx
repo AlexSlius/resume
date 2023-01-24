@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { CCol, CRow, CButton } from "@coreui/react"
+import { CCol, CRow } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
-import { useSelector, useDispatch } from 'react-redux';
 import dynamic from 'next/dynamic'
 import React from "react";
+import { isArray } from 'lodash';
 
 import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
@@ -19,14 +19,17 @@ import {
   fetchGetCities,
   fetchGetCountrys,
   getEmploymentsList,
-  addJopsTitle
+  addJopsTitle,
+  addCompany
 } from '../../../controllers/dependencies';
 import {
   updateItemFieldEmployment,
   updateItemFieldEmploymentDate,
-  updateItemFieldEmploymentNew
+  updateItemFieldEmploymentNew,
+  updatePosition
 } from '../../../slices/employment';
 
+import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isLoader } from "../../../helpers/loadings"
 import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
 import { ButtonSteps } from "../../../components/buttonSteps"
@@ -38,14 +41,15 @@ import {
   fetchUpdateEmployment,
   fetchGetCvEmployments,
 } from "../../../controllers/employments";
-import { isArray } from 'lodash';
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
   ssr: false
 })
 
-const FormEmployment = () => {
-  const dispatch = useDispatch();
+const FormEmployment = ({
+  dispatch,
+  storeDate
+}) => {
   const refIdTimeout = React.useRef(undefined);
   const {
     dependencies: {
@@ -65,8 +69,8 @@ const FormEmployment = () => {
         isAthorized
       }
     },
-  } = useSelector(state => state);
-  const [idCountry, setIdCountry] = React.useState(undefined);
+  } = storeDate;
+
   const idCv = localStorageGet('idCv');
 
   const onDragEnd = (result) => {
@@ -80,53 +84,16 @@ const FormEmployment = () => {
       result.destination.index
     );
 
-    // items.forEach((item, index) => {
-    //   item.position = index;
-    // })
-
-    // console.log("items: ", items);
-
-    // setStateArray(items);
-
-    // new list, idStorie, idMedia
-    // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
+    dispatch(updatePosition(items));
   }
 
   const handleSaveSelect = async ({ index, name, value }, data) => {
-    if (!!data) {
-      if (name == "country") {
-        if (data?.id) {
-          setIdCountry(data.id);
-        }
-      }
-      await dispatch(updateItemFieldEmployment({ index, name, value }));
-    } else {
-      await dispatch(updateItemFieldEmployment({ index, name, value }));
-    }
-
+    await dispatch(updateItemFieldEmployment({ index, name, value }));
     await handleUpdateServer(index);
   }
 
-  const handleSaveSelectNew = ({ name, value }, data) => {
-    dispatch(updateItemFieldEmploymentNew({ name, value }))
-
-    if (name == "country") {
-      if (data?.id) {
-        setIdCountry(data.id);
-      }
-    }
-  }
-
-  const handlerSetDateStateNew = (name, date) => {
-    dispatch(updateItemFieldEmploymentNew({ name, value: date.toString() }))
-  }
-
-  const handleServeDispatchContentNew = async (textContent) => {
-    await dispatch(updateItemFieldEmploymentNew({ name: "assignment", value: textContent }));
-  }
-
   const handlerSetDateState = async (index, name, date) => {
-    await dispatch(updateItemFieldEmploymentDate({ index, name, value: date?.toString() }))
+    await dispatch(updateItemFieldEmploymentDate({ index, name, value: date }))
     await handleUpdateServer(index);
   }
 
@@ -138,11 +105,9 @@ const FormEmployment = () => {
     await dispatch(getCompanyList(text)); // get all compay list
   }
 
-  const handleServerRequestCity = async (value) => {
-    if (!!!idCountry)
-      return false;
-
-    await dispatch(fetchGetCities({ id: idCountry, params: value }));
+  const handleServerRequestCity = async (value, nameCountry) => {
+    let idCountru = getIdOfNameCountrys({ objArr: coutrys.list, nameCountry });
+    await dispatch(fetchGetCities({ id: idCountru, params: value }));
   }
 
   const handleServeDispatchContent = async (index, textContent) => {
@@ -177,6 +142,25 @@ const FormEmployment = () => {
     let re = await dispatch(addJopsTitle(text));
     return re?.payload?.id;
   }
+
+  const handleAddNewCompany = async (text) => {
+    let re = await dispatch(addCompany(text));
+    return re?.payload?.id;
+  }
+
+  // new
+  const handleSaveSelectNew = ({ name, value }, data) => {
+    dispatch(updateItemFieldEmploymentNew({ name, value }))
+  }
+
+  const handlerSetDateStateNew = (name, date) => {
+    dispatch(updateItemFieldEmploymentNew({ name, value: date }))
+  }
+
+  const handleServeDispatchContentNew = async (textContent) => {
+    await dispatch(updateItemFieldEmploymentNew({ name: "assignment", value: textContent }));
+  }
+  // end new 
 
   useEffect(() => {
     dispatch(fetchGetCountrys());
@@ -247,8 +231,10 @@ const FormEmployment = () => {
                                           isAddDiv={true}
                                           name="company"
                                           isLoad={isLoader(companys?.status)}
+                                          isBackgraundLoad={isLoader(companys?.statusAddNew)}
                                           handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                           handleServerRequest={handleServerRequestCompanyList}
+                                          handleAddNew={handleAddNewCompany}
                                           isOutDataObj={false}
                                         />
                                       </CCol>
@@ -256,47 +242,35 @@ const FormEmployment = () => {
                                         <CRow>
                                           <CCol xs={6}>
                                             <DatePicker
-                                              selected={item?.periodFrom?.date ? new Date(item?.periodFrom?.date) : item?.periodFrom?.date}
+                                              selected={item?.periodFrom?.date}
                                               onChange={(date) => handlerSetDateState(index, 'periodFrom', date)}
                                               floatingLabel="From"
                                               placeholderText="From"
                                               name="periodFrom"
-                                              calendarClassName="custom-datepicker"
-                                              wrapperClassName="custom-datepicker-wrapper"
-                                              dateFormat="MMM, yyyy"
-                                              showMonthYearPicker
-                                              showPopperArrow={false}
-                                              useShortMonthInDropdown={true}
                                             />
                                           </CCol>
                                           <CCol xs={6}>
                                             <DatePicker
-                                              selected={item?.periodTo?.date ? new Date(item?.periodTo?.date) : item?.periodTo?.date}
+                                              selected={item?.periodTo?.date}
                                               onChange={(date) => handlerSetDateState(index, 'periodTo', date)}
                                               floatingLabel="To"
                                               placeholderText="To"
                                               name="periodTo"
-                                              calendarClassName="custom-datepicker"
-                                              wrapperClassName="custom-datepicker-wrapper"
-                                              dateFormat="MMM, yyyy"
-                                              showMonthYearPicker
-                                              showPopperArrow={false}
-                                              useShortMonthInDropdown={true}
                                             />
                                           </CCol>
                                         </CRow>
                                       </CCol>
                                       <CCol xs={3}>
                                         <InputSelect
-                                          isCouValid={false}
-                                          label="Country"
-                                          placeholder="Country"
                                           valueState={item.country || ""}
                                           data={coutrys.list}
                                           name="country"
                                           isLoad={isLoader(coutrys.status)}
                                           handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
                                           isOutDataObj={false}
+                                          isIconArrow={true}
+                                          isFlag={true}
+                                          isSearch={false}
                                         />
                                       </CCol>
                                       <CCol xs={3}>
@@ -305,11 +279,10 @@ const FormEmployment = () => {
                                           placeholder="City"
                                           valueState={item.city || ""}
                                           name="city"
-                                          isAddDiv={true}
                                           data={cities.list}
                                           isLoad={isLoader(cities?.status)}
                                           handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                          handleServerRequest={handleServerRequestCity}
+                                          handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                           isOutDataObj={false}
                                         />
                                       </CCol>
@@ -373,8 +346,10 @@ const FormEmployment = () => {
             isAddDiv={true}
             name="company"
             isLoad={isLoader(companys?.status)}
+            isBackgraundLoad={isLoader(companys?.statusAddNew)}
             handleSaveSelect={handleSaveSelectNew}
             handleServerRequest={handleServerRequestCompanyList}
+            handleAddNew={handleAddNewCompany}
             isOutDataObj={false}
           />
         </CCol>
@@ -382,60 +357,47 @@ const FormEmployment = () => {
           <CRow>
             <CCol xs={6}>
               <DatePicker
-                selected={objNew?.period_from ? new Date(objNew?.period_from) : objNew?.period_from}
+                selected={objNew?.period_from}
                 onChange={(date) => handlerSetDateStateNew('period_from', date)}
                 floatingLabel="From"
                 placeholderText="From"
                 name="period_from"
-                calendarClassName="custom-datepicker"
-                wrapperClassName="custom-datepicker-wrapper"
-                dateFormat="MMM, yyyy"
-                showMonthYearPicker
-                showPopperArrow={false}
-                useShortMonthInDropdown={true}
               />
             </CCol>
             <CCol xs={6}>
               <DatePicker
-                selected={objNew?.period_to ? new Date(objNew?.period_to) : objNew?.period_to}
+                selected={objNew?.period_to}
                 onChange={(date) => handlerSetDateStateNew('period_to', date)}
                 floatingLabel="To"
                 placeholderText="To"
                 name="period_to"
-                calendarClassName="custom-datepicker"
-                wrapperClassName="custom-datepicker-wrapper"
-                dateFormat="MMM, yyyy"
-                showMonthYearPicker
-                showPopperArrow={false}
-                useShortMonthInDropdown={true}
               />
             </CCol>
           </CRow>
         </CCol>
-        <CCol xs={3}>
+        <CCol xs={2}>
           <InputSelect
-            isCouValid={false}
-            label="Country"
-            placeholder="Country"
             valueState={objNew.country || ""}
             data={coutrys.list}
             name="country"
             isLoad={isLoader(coutrys.status)}
             handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj }, data)}
             isOutDataObj={false}
+            isIconArrow={true}
+            isFlag={true}
+            isSearch={false}
           />
         </CCol>
-        <CCol xs={3}>
+        <CCol xs={4}>
           <InputSelect
             label="City"
             placeholder="City"
             valueState={objNew.city || ""}
             name="city"
-            isAddDiv={true}
             data={cities.list}
             isLoad={isLoader(cities?.status)}
             handleSaveSelect={handleSaveSelectNew}
-            handleServerRequest={handleServerRequestCity}
+            handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
             isOutDataObj={false}
           />
         </CCol>

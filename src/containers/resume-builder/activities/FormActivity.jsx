@@ -90,7 +90,7 @@ const FormActivity = ({
    }
 
    const handleSetDateStateData = async (index, name, date) => {
-      await dispatch(updateItemFieldActivityDate({ index, name, value: date?.toString() }));
+      await dispatch(updateItemFieldActivityDate({ index, name, value: date }));
       await handleUpdateServer(index);
    }
 
@@ -169,32 +169,20 @@ const FormActivity = ({
                                                          <CRow>
                                                             <CCol xs={6}>
                                                                <DatePicker
-                                                                  selected={item?.dateFrom?.date ? new Date(item?.dateFrom?.date) : item?.dateFrom?.date}
+                                                                  selected={item?.dateFrom?.date}
                                                                   onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
                                                                   floatingLabel="From"
                                                                   placeholderText="From"
                                                                   name="dateFrom"
-                                                                  calendarClassName="custom-datepicker"
-                                                                  wrapperClassName="custom-datepicker-wrapper"
-                                                                  dateFormat="MMM, yyyy"
-                                                                  showMonthYearPicker
-                                                                  showPopperArrow={false}
-                                                                  useShortMonthInDropdown={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
                                                                <DatePicker
-                                                                  selected={item?.dateTo?.date ? new Date(item?.dateTo?.date) : item?.dateTo?.date}
+                                                                  selected={item?.dateTo?.date}
                                                                   onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                   floatingLabel="To"
                                                                   placeholderText="To"
                                                                   name="dateTo"
-                                                                  calendarClassName="custom-datepicker"
-                                                                  wrapperClassName="custom-datepicker-wrapper"
-                                                                  dateFormat="MMM, yyyy"
-                                                                  showMonthYearPicker
-                                                                  showPopperArrow={false}
-                                                                  useShortMonthInDropdown={true}
                                                                />
                                                             </CCol>
                                                          </CRow>

@@ -20,3 +20,10 @@ export const isExist = (obj) => {
 
     return obj?.success == "exist";
 }
+
+export const isUpdate = (obj) => {
+    if (!isObject(obj))
+        return false;
+
+    return obj?.data == "updated";
+}

@@ -8,7 +8,7 @@ import { DatePicker } from "../../../components/uis/datePicker"
 import Input from "../../../components/uis/input"
 import Icon from "../../../components/Icon";
 import { PhotoAdd } from "../../../components/uis/photoAdd"
-import { InputPhone } from "../../../components/uis/inputPhone"
+import { InputPhoneNoControler } from "../../../components/uis/inputPhoneNoControler"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr";
 
@@ -36,6 +36,7 @@ import { localStorageGet } from "../../../helpers/localStorage";
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
+import { getIdOfNameCountrys } from "../../../helpers/countrys"
 
 const FormContact = () => {
    const dispatch = useDispatch()
@@ -50,12 +51,10 @@ const FormContact = () => {
       contacts: {
          contactObj,
          status,
-         statusNew
       },
       dependencies: {
          coutrys,
          cities,
-         zipsCodes,
          drivers,
          nationality,
          jopsTitle,
@@ -97,7 +96,8 @@ const FormContact = () => {
          if (name == "country") {
             if (data?.id) {
                setIdCountry(data.id);
-               await dispatch(fetchGetDrivers(data.id))
+               await dispatch(updateItemFieldContact({ name: "city", value: "" }));
+               await dispatch(updateItemFieldContact({ name: "driverLicense", value: "" }));
             }
          }
          await dispatch(updateItemFieldContact({ name, value }));
@@ -109,7 +109,7 @@ const FormContact = () => {
    }
 
    const handlerSetDateState = async (name, date) => {
-      await dispatch(updateItemFieldContact({ name, value: date?.toString() }));
+      await dispatch(updateItemFieldContact({ name, value: date }));
       await updateContactServer();
    }
 
@@ -121,7 +121,7 @@ const FormContact = () => {
       if (!!!idCountry)
          return false;
 
-      await dispatch(fetchGetCities({ id: idCountry, params: contactObj.city })); // get list cities by id country
+      await dispatch(fetchGetCities({ id: idCountry, params: contactObj.city }));
    }
 
    const formSubmit = async () => {
@@ -141,7 +141,7 @@ const FormContact = () => {
          }
 
          refIdTimeout.current = setTimeout(async () => {
-            await dispatch(fetchUpdateContact({ idCv }));
+            await dispatch(fetchUpdateContact({ idCv, pictureFile }));
             clearTimeout(refIdTimeout.current);
          }, 1000);
       }
@@ -173,6 +173,15 @@ const FormContact = () => {
       }
    }, []);
 
+   useEffect(() => {
+      setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contactObj.country }));
+   }, [coutrys.list, contactObj.country]);
+
+   useEffect(() => {
+      if (idCountry)
+         dispatch(fetchGetDrivers(idCountry))
+   }, [idCountry]);
+
    return (
       <LoadWr isLoad={isLoader(status)}>
          <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
@@ -183,8 +192,6 @@ const FormContact = () => {
                         label="First Name"
                         placeholder="First Name"
                         value={contactObj.firstName}
-                        // invalid={errors?.firstName}
-                        // valid={!errors?.firstName && contactObj.firstName.length > 1}
                         obj={
                            register("firstName", {
                               minLength: {
@@ -199,8 +206,6 @@ const FormContact = () => {
                         label="Last Name"
                         placeholder="Last Name"
                         value={contactObj.lastName}
-                        // invalid={errors?.lastName}
-                        // valid={!errors?.lastName && contactObj.lastName.length > 1}
                         obj={
                            register("lastName", {
                               minLength: {
@@ -234,21 +239,21 @@ const FormContact = () => {
                   />
                </CCol>
                <CCol xs={6}>
-                  <InputPhone
+                  <InputPhoneNoControler
                      label="Phone"
                      placeholder="Phone"
+                     onChange={(value) => handleSaveSelect({ name: "phone", value: value })}
                      value={contactObj.phone}
-                     obj={{ control }}
                   />
                </CCol>
                <CCol xs={6}>
                   <InputSelect
                      label="Job Title"
                      placeholder="Job Title"
-                     valueState={contactObj.jopTitle || ""}
+                     valueState={contactObj.jobTitle || ""}
                      data={jopsTitle?.list || []}
                      isAddDiv={true}
-                     name="jopTitle"
+                     name="jobTitle"
                      isLoad={isLoader(jopsTitle?.status)}
                      isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
                      handleSaveSelect={handleSaveSelect}
@@ -259,15 +264,15 @@ const FormContact = () => {
                </CCol>
                <CCol xs={2}>
                   <InputSelect
-                     label="Country"
-                     placeholder="Country"
                      valueState={contactObj.country || ''}
                      data={coutrys.list}
                      name="country"
                      isLoad={isLoader(coutrys.status)}
                      handleSaveSelect={handleSaveSelect}
                      isOutDataObj={false}
-                     isFirstList={false}
+                     isIconArrow={true}
+                     isFlag={true}
+                     isSearch={false}
                   />
                </CCol>
                <CCol xs={4}>
@@ -276,13 +281,11 @@ const FormContact = () => {
                      placeholder="City"
                      valueState={contactObj.city || ''}
                      name="city"
-                     isAddDiv={true}
                      data={cities.list}
                      isLoad={isLoader(cities?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
-                     isFirstList={false}
                   />
                </CCol>
             </CRow>
@@ -292,8 +295,6 @@ const FormContact = () => {
                      label="Adress"
                      placeholder="Adress"
                      value={contactObj.address}
-                     // invalid={errors?.address}
-                     // valid={!errors?.address && (contactObj.address.length > 1)}
                      obj={
                         register("address", {
                            minLength: {
@@ -308,8 +309,6 @@ const FormContact = () => {
                      label="Zip Code"
                      placeholder="Zip Code"
                      value={contactObj.zipCode}
-                     // invalid={errors?.zipCode}
-                     // valid={!errors?.zipCode && contactObj.zipCode.length > 1}
                      type="number"
                      obj={
                         register("zipCode", {
@@ -326,7 +325,6 @@ const FormContact = () => {
                      placeholder="Driver license"
                      valueState={contactObj.driverLicense || ''}
                      data={drivers?.list || []}
-                     isAddDiv={true}
                      name="driverLicense"
                      isLoad={isLoader(drivers?.status)}
                      handleSaveSelect={handleSaveSelect}
@@ -341,9 +339,7 @@ const FormContact = () => {
                      placeholder="Nationality"
                      valueState={contactObj.nationality || ''}
                      data={nationality?.list || []}
-                     isAddDiv={true}
                      name="nationality"
-                     isFirstList={false}
                      isLoad={isLoader(nationality?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestNationaly}
@@ -355,8 +351,6 @@ const FormContact = () => {
                      label="Place of birth"
                      placeholder="Place of birth"
                      value={contactObj.placeOfBirth}
-                     // invalid={errors?.placeOfBirth}
-                     // valid={!errors?.placeOfBirth && contactObj.placeOfBirth.length > 1}
                      obj={
                         register("placeOfBirth", {
                            minLength: {
@@ -368,16 +362,10 @@ const FormContact = () => {
                </CCol>
                <CCol xs={6}>
                   <DatePicker
-                     selected={contactObj.dateOfBirth ? new Date(contactObj.dateOfBirth) : contactObj.dateOfBirth}
+                     selected={contactObj.dateOfBirth}
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
                      placeholderText="Date of birth"
                      name="date_of_birth"
-                     calendarClassName="custom-datepicker"
-                     wrapperClassName="custom-datepicker-wrapper-2"
-                     dateFormat="MMM, yyyy"
-                     showMonthYearPicker
-                     showPopperArrow={false}
-                     useShortMonthInDropdown={true}
                   />
                </CCol>
             </CRow>}

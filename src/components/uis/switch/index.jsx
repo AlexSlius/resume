@@ -7,7 +7,7 @@ export const Switch = ({
     return (
         <div className={`wr-check`}>
             <label className="label-switch">
-                <input type="checkbox" checked={isChecked} onChange={handleOnChange} hidden name={name} />
+                <input type="checkbox" checked={isChecked} onChange={() => handleOnChange(isChecked ? 0 : 1)} hidden name={name} />
                 <span></span>
             </label>
             {label && <div className="wr-check_label">{label}</div>}

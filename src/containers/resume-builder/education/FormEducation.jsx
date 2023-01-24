@@ -1,5 +1,4 @@
 import {
-   CButton,
    CCol,
    CRow,
 } from "@coreui/react";
@@ -12,7 +11,6 @@ import Textarea from "../../../components/uis/textarea/TextArea"
 import AddButton from "../../../components/uis/addButton/AddButton"
 import DraggedItem from "../../../other/draggedItem/DraggedItem"
 import { DatePicker } from "../../../components/uis/datePicker"
-import { LoadChildrenBtn } from "../../../components/loadChildrenBtn"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
 import { ButtonSteps } from "../../../components/buttonSteps"
@@ -22,7 +20,9 @@ import { reorder } from '../../../helpers/drageDrop';
 import { isLoader } from "../../../helpers/loadings"
 import {
    updateItemFieldEducation,
-   updateItemFieldEducationDate
+   updateItemFieldEducationDate,
+   updateItemFieldEducationNew,
+   updatePosition,
 } from "../../../slices/education";
 import { getStudysList } from "../../../controllers/dependencies";
 import { localStorageGet } from "../../../helpers/localStorage";
@@ -40,6 +40,7 @@ const FormEducation = () => {
    const {
       educations: {
          educationObj,
+         objNew,
          status
       },
       dependencies: {
@@ -64,16 +65,7 @@ const FormEducation = () => {
          result.destination.index
       );
 
-      // items.forEach((item, index) => {
-      //   item.position = index;
-      // })
-
-      // console.log("items: ", items);
-
-      // setStateArray(items);
-
-      // new list, idStorie, idMedia
-      // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
+      dispatch(updatePosition(items));
    }
 
    const handleUpdateServer = async (index) => {
@@ -93,7 +85,7 @@ const FormEducation = () => {
    }
 
    const handleSetDateStateData = async (index, name, date) => {
-      await dispatch(updateItemFieldEducationDate({ index, name, value: date?.toString() }));
+      await dispatch(updateItemFieldEducationDate({ index, name, value: date }));
       await handleUpdateServer(index);
    }
 
@@ -108,6 +100,16 @@ const FormEducation = () => {
    const handleDeleteOne = (id) => {
       dispatch(fetchDeleteEducation({ idCv, id }));
    }
+
+   // new
+   const handleSaveSelectNew = ({ name, value }) => {
+      dispatch(updateItemFieldEducationNew({ name, value }));
+   }
+
+   const handleSetDateStateDataNew = (name, date) => {
+      dispatch(updateItemFieldEducationNew({ name, value: date }));
+   }
+   // end new
 
    React.useEffect(() => {
       functionFetchEducation({ dispatch, isPage: true, idCv });
@@ -141,7 +143,6 @@ const FormEducation = () => {
                                                    key={item.id}
                                                    title={item.facility}
                                                    index={index}
-                                                   // onClick={handleSelect.bind(null, education.id)}
                                                    onDelete={() => handleDeleteOne(item.id)}
                                                    skillsList={[
                                                       `${formatDate(item?.dateFrom?.date)} - ${formatDate(
@@ -178,32 +179,20 @@ const FormEducation = () => {
                                                          <CRow>
                                                             <CCol xs={6}>
                                                                <DatePicker
-                                                                  selected={item?.dateFrom?.date ? new Date(item?.dateFrom?.date) : item?.dateFrom?.date}
+                                                                  selected={item?.dateFrom?.date}
                                                                   onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
                                                                   floatingLabel="From"
                                                                   placeholderText="From"
                                                                   name="dateFrom"
-                                                                  calendarClassName="custom-datepicker"
-                                                                  wrapperClassName="custom-datepicker-wrapper"
-                                                                  dateFormat="MMM, yyyy"
-                                                                  showMonthYearPicker
-                                                                  showPopperArrow={false}
-                                                                  useShortMonthInDropdown={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
                                                                <DatePicker
-                                                                  selected={item?.dateTo?.date ? new Date(item?.dateTo?.date) : item?.dateTo?.date}
+                                                                  selected={item?.dateTo?.date}
                                                                   onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                   floatingLabel="To"
                                                                   placeholderText="To"
                                                                   name="dateTo"
-                                                                  calendarClassName="custom-datepicker"
-                                                                  wrapperClassName="custom-datepicker-wrapper"
-                                                                  dateFormat="MMM, yyyy"
-                                                                  showMonthYearPicker
-                                                                  showPopperArrow={false}
-                                                                  useShortMonthInDropdown={true}
                                                                />
                                                             </CCol>
                                                          </CRow>
@@ -214,13 +203,11 @@ const FormEducation = () => {
                                                             placeholder="Field of study"
                                                             valueState={item.study || ""}
                                                             name="study"
-                                                            isAddDiv={true}
                                                             data={studys.list}
                                                             isLoad={isLoader(studys?.status)}
                                                             handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                             handleServerRequest={() => getSearchListStudys(item.study)}
                                                             isOutDataObj={false}
-                                                            isFirstList={false}
                                                          />
                                                       </CCol>
                                                       <CCol xs={12}>
@@ -245,6 +232,73 @@ const FormEducation = () => {
                      </Droppable>
                   </DragDropContext>
                </LoadWr>
+            </CCol>
+         </CRow>
+         <CRow className="row g-30 r-gap-30 mt-4">
+            <CCol xs={6}>
+               <InputSelect
+                  label="Facility"
+                  placeholder="Facility"
+                  valueState={objNew?.facility || ""}
+                  name="facility"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <InputSelect
+                  label="Degree"
+                  placeholder="Degree"
+                  valueState={objNew?.degree || ""}
+                  name="degree"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <CRow>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew?.period_from}
+                        onChange={(date) => handleSetDateStateDataNew('period_from', date)}
+                        floatingLabel="From"
+                        placeholderText="From"
+                        name="period_from"
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew?.period_to}
+                        onChange={(date) => handleSetDateStateDataNew('period_to', date)}
+                        floatingLabel="To"
+                        placeholderText="To"
+                        name="period_to"
+                     />
+                  </CCol>
+               </CRow>
+            </CCol>
+            <CCol xs={6}>
+               <InputSelect
+                  label="Field of study"
+                  placeholder="Field of study"
+                  valueState={objNew.study || ""}
+                  name="study"
+                  data={studys.list}
+                  isLoad={isLoader(studys?.status)}
+                  handleSaveSelect={handleSaveSelectNew}
+                  handleServerRequest={() => getSearchListStudys(objNew.study)}
+                  isOutDataObj={false}
+               />
+            </CCol>
+            <CCol xs={12}>
+               <Textarea
+                  value={objNew.description}
+                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                  name="description"
+                  placeholder={'Description of education'}
+               />
             </CCol>
          </CRow>
          <CRow className="mt-4">

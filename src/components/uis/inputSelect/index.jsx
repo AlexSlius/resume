@@ -1,6 +1,6 @@
 import { CFormInput } from "@coreui/react"
 import { isArray, isString } from "lodash";
-import React, { useEffect, useState } from "react"
+import React from "react"
 
 import { theFirstHeaderCharacter } from "../../../helpers/strings";
 
@@ -33,16 +33,23 @@ export const InputSelect = ({
     isOutDataObj = true,
     isCouValid = true,
     isModal = true,
-    isIconArrow = false
+    isIconArrow = false,
+    isFlag = false,
+    keyIcon = "image",
+    isSearch = true,
+    firstChildUpCase = true,
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
+    const reWrClick = React.useRef(undefined)
     const refWr = React.useRef(undefined)
+    const isOneStart = React.useRef(false)
     const refCurentClass = React.useRef(undefined)
     const refIdActiveItem = React.useRef(false)
-    const refIdTimeout = React.useRef(undefined);
+    const refIdTimeout = React.useRef(undefined)
     const [showList, setShowlist] = React.useState(false)
     const [className, setClassName] = React.useState('')
+    const [imgSrc, setImgSrc] = React.useState(null);
     const classBgLoad = isBackgraundLoad ? style.load_bg : ''
 
     const isValid = valueState?.id != undefined;
@@ -50,7 +57,7 @@ export const InputSelect = ({
 
     const handleOnChange = (e) => {
         let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
-        handleSaveSelect({ name, value: out });
+        handleSaveSelect({ name, value: firstChildUpCase ? theFirstHeaderCharacter(out) : out });
     }
 
     const handledOnBlur = () => {
@@ -64,6 +71,10 @@ export const InputSelect = ({
 
     const handleOnClickSelect = (data) => {
         refIdActiveItem.current = data?.id;
+
+        if (isFlag) {
+            setImgSrc(data[keyIcon]);
+        }
 
         let prop = new Promise(async (resolve, reject) => {
             await setClassName('');
@@ -144,16 +155,18 @@ export const InputSelect = ({
             }
 
             !!reIn?.current && reIn.current.addEventListener('focus', handleClick);
+            !!reWrClick.current && reWrClick.current.addEventListener('click', handleClick);
             !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
 
             return () => {
                 !!reIn?.current && reIn.current.addEventListener('focus', handleClick);
+                !!reWrClick.current && reWrClick.current.addEventListener('click', handleClick);
                 !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
             }
         }
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (isModal) {
             if (className.includes(style.open)) {
                 handleOpenChangle();
@@ -161,43 +174,66 @@ export const InputSelect = ({
         }
     }, [className]);
 
-    useEffect(() => {
-        if (isModal) {
-            if (!isFirstList && (isArray(data) && data?.length > 0)) {
-                setShowlist(true);
-            }
-
-            if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState.length)) {
-                if (refIdTimeout.current) {
-                    clearTimeout(refIdTimeout.current);
+    React.useEffect(() => {
+        if (isOneStart.current) {
+            if (isModal) {
+                if (!isFirstList && (isArray(data) && data?.length > 0)) {
+                    setShowlist(true);
                 }
 
-                refIdTimeout.current = setTimeout(async () => {
-                    await handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
-                    clearTimeout(refIdTimeout.current);
-                }, nTimeMs);
+                if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState.length)) {
+                    if (refIdTimeout.current) {
+                        clearTimeout(refIdTimeout.current);
+                    }
+
+                    refIdTimeout.current = setTimeout(async () => {
+                        await handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
+                        clearTimeout(refIdTimeout.current);
+                    }, nTimeMs);
+                }
+            }
+        } else {
+            isOneStart.current = true;
+        }
+
+        if (isFlag) {
+            if (isArray(data)) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i][keyName] === valueState) {
+                        setImgSrc(data[i][keyIcon]);
+                        break;
+                    }
+                }
             }
         }
     }, [(!!isOutDataObj ? valueState[keyText] : valueState), data])
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed} ${dopClass}`}>
-                <CFormInput
-                    onChange={handleOnChange}
-                    onBlur={handledOnBlur}
-                    onFocus={onFocus}
-                    ref={reIn}
-                    floatingLabel={label}
-                    placeholder={placeholder}
-                    floatingClassName={style.contoll}
-                    invalid={!!invalid}
-                    valid={isCouValid ? !!isValid : false}
-                    name={name}
-                    value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
-                    type="text"
-                    {...obj}
-                />
+            <div className={`${style.mod_filed} ${dopClass}`} ref={reWrClick}>
+                {
+                    isFlag ? (
+                        <div className={`${style.wrpa_click} form-control`}>
+                            {imgSrc && <img src={imgSrc} />}
+                        </div>
+                    ) : (
+                        <CFormInput
+                            onChange={handleOnChange}
+                            onBlur={handledOnBlur}
+                            onFocus={onFocus}
+                            ref={reIn}
+                            floatingLabel={label}
+                            placeholder={placeholder}
+                            floatingClassName={style.contoll}
+                            invalid={!!invalid}
+                            valid={isCouValid ? !!isValid : false}
+                            name={name}
+                            value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
+                            type="text"
+                            {...obj}
+                        />
+                    )
+                }
             </div>
             {
                 isModal && (
@@ -230,14 +266,6 @@ export const InputSelect = ({
                                                             !!data.length ? (
                                                                 data.map((item, index) => {
                                                                     let activeClassItem = '';
-
-                                                                    let textOutItem = isString(item[keyName]) &&
-                                                                        item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
-                                                                            valueState[keyText]?.toLowerCase() :
-                                                                            valueState?.toLowerCase(), 0)
-
-                                                                    textOutItem = (textOutItem === 0);
-
                                                                     let textFirst = '';
                                                                     let textLast = '';
 
@@ -245,13 +273,24 @@ export const InputSelect = ({
                                                                         activeClassItem = style.active;
                                                                     }
 
-                                                                    if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
-                                                                        return;
-                                                                    } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
+                                                                    if (isSearch) {
+                                                                        let textOutItem = isString(item[keyName]) &&
+                                                                            item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
+                                                                                valueState[keyText]?.toLowerCase() :
+                                                                                valueState?.toLowerCase(), 0)
+
+                                                                        textOutItem = (textOutItem === 0);
+
+                                                                        if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
+                                                                            return;
+                                                                        } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
+                                                                            textLast = item[keyName];
+                                                                        } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
+                                                                            textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
+                                                                            textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
+                                                                        }
+                                                                    } else {
                                                                         textLast = item[keyName];
-                                                                    } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
-                                                                        textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
-                                                                        textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
                                                                     }
 
                                                                     return (
@@ -262,6 +301,7 @@ export const InputSelect = ({
                                                                                 type="button"
                                                                                 onClick={() => handleOnClickSelect(item)}
                                                                             >
+                                                                                {isFlag && <img src={item[keyIcon]} />}
                                                                                 {!!textFirst && <span>{textFirst}</span>}{textLast}
                                                                             </button>
                                                                         </li>

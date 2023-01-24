@@ -69,7 +69,6 @@ const FormHobies = () => {
                      <CCol
                         key={index}
                         xs={6}
-                        className="mb-4"
                      >
                         <ItemDragDrop
                            id={item?.id}
@@ -79,7 +78,7 @@ const FormHobies = () => {
                      </CCol>
                   ))
                }
-               <CCol xs={6} className="mb-4">
+               <CCol xs={6}>
                   <InputSelect
                      placeholder="Search hobby"
                      valueState={hobieObjNew.text || ""}
@@ -89,7 +88,6 @@ const FormHobies = () => {
                      handleSaveSelect={updateitemFiledNew}
                      handleServerRequest={handleGetHobiesList}
                      isOutDataObj={false}
-                     isFirstList={false}
                   />
                </CCol>
             </CRow>

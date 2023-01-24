@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
-import { fetchGetCvEducations, fetchPostAddCvOneEducation, fetchDeleteEducation } from '../controllers/educations';
+import {
+  fetchGetCvEducations,
+  fetchPostAddCvOneEducation,
+  fetchDeleteEducation
+} from '../controllers/educations';
 
 const initialState = {
   educationObj: [],
@@ -30,6 +34,13 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.educationObj[index][name]['date'] = value;
     },
+    updateItemFieldEducationNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
+    updatePosition(state, action) {
+      state.educationObj = action.payload;
+    }
   },
   extraReducers: {
     // delete educations
@@ -39,12 +50,13 @@ export const slice = createSlice({
     [fetchDeleteEducation.fulfilled]: (state, action) => {
       state.status = statusLoaded;
     },
-    // get educations
+    // add educations
     [fetchPostAddCvOneEducation.pending]: (state) => {
       state.status = statusLoader;
     },
     [fetchPostAddCvOneEducation.fulfilled]: (state, action) => {
       state.status = statusLoaded;
+      state.objNew = initialState.objNew;
     },
     // get educations
     [fetchGetCvEducations.pending]: (state) => {
@@ -57,6 +69,11 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemFieldEducation, updateItemFieldEducationDate } = slice.actions;
+export const {
+  updateItemFieldEducation,
+  updateItemFieldEducationDate,
+  updateItemFieldEducationNew,
+  updatePosition,
+} = slice.actions;
 
 export const { reducer } = slice;

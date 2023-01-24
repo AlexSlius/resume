@@ -150,15 +150,19 @@ const ResumeMain = () => {
                                        <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
                                           {arr[ind]?.name}
                                        </div>
-                                       <div className="resume-main__head-text">
-                                          <ReactStars
-                                             key={arr[ind]?.name + '-' + arr[ind]?.level}
-                                             edit={false}
-                                             count={5}
-                                             value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
-                                             size={12}
-                                             activeColor={'#6DC26C'} />
-                                       </div>
+                                       {
+                                          !skillsObj.hideExperienceLevel && (
+                                             <div className="resume-main__head-text">
+                                                <ReactStars
+                                                   key={arr[ind]?.name + '-' + arr[ind]?.level}
+                                                   edit={false}
+                                                   count={5}
+                                                   value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
+                                                   size={12}
+                                                   activeColor={'#6DC26C'} />
+                                             </div>
+                                          )
+                                       }
                                     </div>
                                  </Fragment>
                               );
@@ -314,9 +318,9 @@ const ResumeMain = () => {
                <CCol className="resume-main__col2">
                   <CRow>
                      {
-                        languageObj.map((el) => {
+                        languageObj.map((el, index) => {
                            return (
-                              <CCol xl={6}>
+                              <CCol key={index} xl={6}>
                                  <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
                                     <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
                                        {el.language}

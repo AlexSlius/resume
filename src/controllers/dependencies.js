@@ -43,6 +43,11 @@ export const getCompanyList = createAsyncThunk('fetch/fetchGetCompanyList', asyn
     return response;
 })
 
+export const addCompany = createAsyncThunk('fetch/addCompany', async (name, thunkAPI) => {
+    const response = await api.dependencies.addCompany({ name });
+    return response;
+})
+
 export const getEmploymentsList = createAsyncThunk('fetch/fetchGetEmploymentList', async (params, thunkAPI) => {
     const response = await api.dependencies.getEmploymentList({ "query": params || '' });
     return response;

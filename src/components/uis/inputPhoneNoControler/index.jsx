@@ -27,7 +27,6 @@ export const InputPhoneNoControler = ({
         <div className="form-floating" >
             <PhoneInput
                 value={value}
-                defaultValue={value}
                 onChange={onChange}
                 className={`form-control ${className} ${classNameValid.current}`}
                 placeholder={placeholder}

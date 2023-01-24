@@ -5,7 +5,8 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
   fetchGetSkillslistWork,
   fetchGetSkillslistSearch,
-  fetchGetSkillslistAll
+  fetchGetSkillslistAll,
+  fetchGetExperienceLevel
 } from "../controllers/skills";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
     searchSkils: "",
     skillsList: [],
     skillsListAll: [],
+    hideExperienceLevel: false,
   },
   status: statusLoaded,
   statusIsListSkills: statusLoaded,
@@ -29,8 +31,19 @@ export const slice = createSlice({
       let { name, value } = action.payload;
       state.skillsObj[name] = value;
     },
+    updatePosition(state, action) {
+      state.skillsObj.skillsListAll = action.payload;
+    },
   },
   extraReducers: {
+    // get experience
+    [fetchGetExperienceLevel.pending]: (state, action) => {
+      state.statusListSkillsAll = statusLoader;
+    },
+    [fetchGetExperienceLevel.fulfilled]: (state, action) => {
+      state.statusListSkillsAll = statusLoaded;
+      state.skillsObj.hideExperienceLevel = action.payload.status;
+    },
     // get list skills all
     [fetchGetSkillslistAll.pending]: (state) => {
       state.statusListSkillsAll = statusLoader;
@@ -57,6 +70,9 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemSkillsFiled } = slice.actions;
+export const {
+  updateItemSkillsFiled,
+  updatePosition
+} = slice.actions;
 
 export const { reducer } = slice;

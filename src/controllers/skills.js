@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { isUpdate } from '../helpers/checkingStatuses';
 
 export const fetchGetSkillslistWork = createAsyncThunk('countrus/fetchGetSkillslistWork', async (params) => {
     const response = await api.skills.getSkillslistWork({ "query": params || '', limit: 10 });
@@ -32,5 +33,19 @@ export const fetchPostUpdateSkillone = createAsyncThunk('countrus/fetchPostUpdat
 export const fetchPostDeleteSkillOne = createAsyncThunk('countrus/fetchPostDeleteSkillOne', async ({ idCv, id }, thunkAPI) => {
     const response = await api.skills.deleteItemSkillOne(id);
     await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    return response;
+});
+
+export const fetchGetExperienceLevel = createAsyncThunk('countrus/fetchGetExperienceLevel', async ({ idCv }, thunkAPI) => {
+    const response = await api.skills.getExperienceLevel(idCv);
+    return response;
+});
+
+export const fetchUpdateExperienceLevel = createAsyncThunk('countrus/fetchUpdateExperienceLevel', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.skills.updateExperienceLevel(idCv, { hide_experience_level: data });
+
+    if (isUpdate(response)) {
+        thunkAPI.dispatch(fetchGetExperienceLevel({ idCv }));
+    }
     return response;
 });

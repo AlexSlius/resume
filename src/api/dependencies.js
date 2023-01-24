@@ -25,6 +25,9 @@ export default class ClientsAPI extends Base {
     getCompanys(params) {
         return this.apiClient.get(`profile/list/company`, params);
     }
+    addCompany(data, type = "formData") {
+        return this.apiClient.post(`cv/company/add`, data, type);
+    }
     getEmploymentList(params) {
         return this.apiClient.get(`profile/list/employer`, params);
     }

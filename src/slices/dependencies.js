@@ -14,7 +14,8 @@ import {
     fetchGetSkillsPosition,
     fetchGetSocials,
     fetchGetHobies,
-    addJopsTitle
+    addJopsTitle,
+    addCompany
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -46,6 +47,7 @@ const initialState = {
     companys: {
         list: [],
         status: statusLoaded,
+        statusAddNew: statusLoaded,
     },
     employers: {
         list: [],
@@ -132,6 +134,13 @@ export const sliceDepenndecies = createSlice({
         [getCompanyList.fulfilled]: (state, action) => {
             state.companys.status = statusLoaded;
             state.companys.list = action.payload;
+        },
+        // add companu new
+        [addCompany.pending]: (state) => {
+            state.companys.statusAddNew = statusLoader;
+        },
+        [addCompany.fulfilled]: (state, action) => {
+            state.companys.statusAddNew = statusLoaded;
         },
         //get all coutrys
         [fetchGetCountrys.pending]: (state) => {
