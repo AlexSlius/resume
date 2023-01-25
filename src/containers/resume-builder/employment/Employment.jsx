@@ -2,9 +2,12 @@ import FormEmployment from "./FormEmployment";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { useDispatch, useSelector } from "react-redux";
 
+import { localStorageGet } from "../../../helpers/localStorage";
+
 const Employment = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
+   const idCv = localStorageGet('idCv');
 
    return (
       <>
@@ -14,6 +17,7 @@ const Employment = () => {
          <FormEmployment
             dispatch={dispatch}
             storeDate={states}
+            idCv={idCv}
          />
       </>
    )

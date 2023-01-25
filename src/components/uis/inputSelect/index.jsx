@@ -175,6 +175,19 @@ export const InputSelect = ({
     }, [className]);
 
     React.useEffect(() => {
+        if (isFlag) {
+            if (isArray(data)) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i][keyName] === valueState) {
+                        setImgSrc(data[i][keyIcon]);
+                        break;
+                    }
+                }
+            }
+        }
+    }, [(!!isOutDataObj ? valueState[keyText] : valueState), data])
+
+    React.useEffect(() => {
         if (isOneStart.current) {
             if (isModal) {
                 if (!isFirstList && (isArray(data) && data?.length > 0)) {
@@ -195,18 +208,7 @@ export const InputSelect = ({
         } else {
             isOneStart.current = true;
         }
-
-        if (isFlag) {
-            if (isArray(data)) {
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i][keyName] === valueState) {
-                        setImgSrc(data[i][keyIcon]);
-                        break;
-                    }
-                }
-            }
-        }
-    }, [(!!isOutDataObj ? valueState[keyText] : valueState), data])
+    }, [(!!isOutDataObj ? valueState[keyText] : valueState)])
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>

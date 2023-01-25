@@ -27,6 +27,13 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.referencesObj[index][name] = value;
     },
+    updateItemFieldReferenceNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
+    updatePosition(state, action) {
+      state.referencesObj = action.payload;
+    },
   },
   extraReducers: {
     // delete 
@@ -41,6 +48,7 @@ export const slice = createSlice({
       state.statusNew = statusLoader;
     },
     [fetchPostAddCvOneReferences.fulfilled]: (state, action) => {
+      state.objNew = initialState.objNew;
       state.statusNew = statusLoaded;
     },
     // get
@@ -54,6 +62,10 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemFieldReference } = slice.actions;
+export const {
+  updateItemFieldReference,
+  updateItemFieldReferenceNew,
+  updatePosition
+} = slice.actions;
 
 export const { reducer } = slice;

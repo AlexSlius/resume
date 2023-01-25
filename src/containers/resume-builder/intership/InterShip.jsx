@@ -2,9 +2,12 @@ import FormInterShip from "./FormInterShip"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { useSelector, useDispatch } from "react-redux";
 
+import { localStorageGet } from "../../../helpers/localStorage";
+
 const InterShip = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
+   const idCv = localStorageGet('idCv');
 
    return (
       <>
@@ -15,9 +18,7 @@ const InterShip = () => {
          <FormInterShip
             dispatch={dispatch}
             storeDate={states}
-            addText="Add one more internship"
-            updateText="Add one more internship"
-            buttonClassName="gap-4 d-flex mt-4"
+            idCv={idCv}
          />
       </>
    )

@@ -30,7 +30,7 @@ export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (data
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
         sessionStorageSet("routet_page_next", `${routerLinksAsideMenu[1].link}`)
-        Router.push(`/${routersPages['login']}`);
+        Router.push(`/${routersPages['register']}`);
     }
 
     return response;

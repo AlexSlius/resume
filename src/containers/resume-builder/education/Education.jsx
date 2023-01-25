@@ -1,7 +1,15 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import FormEducation from "./FormEducation";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 
+import { localStorageGet } from "../../../helpers/localStorage";
+
 const Education = () => {
+   const dispatch = useDispatch();
+   const states = useSelector((state) => state);
+   const idCv = localStorageGet('idCv');
+
    return (
       <>
          <HeadMainContent
@@ -10,10 +18,9 @@ const Education = () => {
          >
          </HeadMainContent>
          <FormEducation
-            className={`row`}
-            addText="Add one more education"
-            updateText="Add one more education"
-            buttonClassName="mt-4"
+              dispatch={dispatch}
+              storeDate={states}
+              idCv={idCv}
          />
       </>
    )

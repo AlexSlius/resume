@@ -3,17 +3,8 @@ import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
-export const functionFetchEducation = async ({ dispatch, isPage = false, idCv }) => {
-    let { payload } = await dispatch(fetchGetCvEducations({ idCv, isPage }))
-
-    if (isPage) {
-        if (isArray(payload) && payload?.length == 0)
-            await dispatch(fetchPostAddCvOneEducation({ idCv }));
-    }
-}
-
 // all list
-export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducations', async ({ idCv, isPage = false }, thunkAPI) => {
+export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducations', async ({ idCv }, thunkAPI) => {
     const response = await api.educations.getListEducation(idCv);
     return response;
 });
@@ -36,8 +27,8 @@ export const fetchUpdateEducation = createAsyncThunk('countrus/fetchUpdateEducat
     const { educations: { educationObj } } = thunkAPI.getState();
     let { id, dateFrom, dateTo, ...obj } = educationObj[index];
 
-    obj.date_from = dateFrom.date;
-    obj.date_to = dateTo.date;
+    obj.period_from = dateFrom.date;
+    obj.period_to = dateTo.date;
 
     const response = await api.educations.updateEducationItem(id, obj);
     return response;

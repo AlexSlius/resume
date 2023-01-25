@@ -4,10 +4,10 @@ import {
    CRow,
    CFormCheck
 } from "@coreui/react";
-import { useState, useRef, useEffect, Fragment } from 'react';
+import { useRef, useEffect } from 'react';
 import uuid from "react-uuid";
 import { isArray } from "lodash";
-import { localStorageGet } from "../../../helpers/localStorage";
+
 import AddButton from "../../../components/uis/addButton/AddButton"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { InputSelect } from "../../../components/uis/inputSelect"
@@ -15,7 +15,7 @@ import { isLoader } from "../../../helpers/loadings"
 import { LoadWr } from "../../../components/loadWr"
 
 import {
-   functionFetchLanguages,
+   fetchGetCvLanguages,
    fetchPostAddCvOneLanguages,
    fetchDeleteLanguages,
    fetchUpdateLanguages
@@ -25,7 +25,8 @@ import { ButtonDeleteItem } from "../../../components/uis/buttonDelete";
 
 const FormLanguages = ({
    dispatch,
-   storeDate
+   storeDate,
+   idCv
 }) => {
    const {
       dependencies: {
@@ -41,7 +42,7 @@ const FormLanguages = ({
          }
       },
    } = storeDate;
-   const idCv = localStorageGet('idCv');
+
    const refIdTimeout = useRef(undefined);
 
    const handleSaveSelect = async ({ index, name, value }) => {
@@ -69,7 +70,7 @@ const FormLanguages = ({
    }
 
    useEffect(() => {
-      functionFetchLanguages({ dispatch, isPage: true, idCv });
+      fetchGetCvLanguages({ idCv });
    }, []);
 
    return (

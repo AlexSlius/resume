@@ -1,8 +1,16 @@
 
+import { useDispatch, useSelector } from "react-redux"
+
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormHobies from "./FormHobies";
 
+import { localStorageGet } from "../../../helpers/localStorage";
+
 const Hobies = () => {
+   const dispatch = useDispatch();
+   const states = useSelector((state) => state);
+   const idCv = localStorageGet('idCv');
+
    return (
       <>
          <HeadMainContent
@@ -11,8 +19,9 @@ const Hobies = () => {
          >
          </HeadMainContent>
          <FormHobies
-            className={`row r-gap-30`}
-            buttonClassName="gap-4 d-flex"
+            dispatch={dispatch}
+            states={states}
+            idCv={idCv}
          />
       </>
    )

@@ -4,7 +4,6 @@ import {
 } from "@coreui/react";
 import { isArray } from "lodash";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import Textarea from "../../../components/uis/textarea/TextArea"
@@ -25,17 +24,20 @@ import {
    updatePosition,
 } from "../../../slices/education";
 import { getStudysList } from "../../../controllers/dependencies";
-import { localStorageGet } from "../../../helpers/localStorage";
+
 
 import {
-   functionFetchEducation,
+   fetchGetCvEducations,
    fetchPostAddCvOneEducation,
    fetchDeleteEducation,
    fetchUpdateEducation
 } from "../../../controllers/educations";
 
-const FormEducation = () => {
-   const dispatch = useDispatch();
+const FormEducation = ({
+   dispatch,
+   storeDate,
+   idCv
+}) => {
    const refIdTimeout = React.useRef(undefined);
    const {
       educations: {
@@ -51,8 +53,8 @@ const FormEducation = () => {
             isAthorized
          }
       },
-   } = useSelector(state => state);
-   const idCv = localStorageGet('idCv');
+   } = storeDate;
+   const [selected, setSelected] = React.useState(null);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -112,7 +114,7 @@ const FormEducation = () => {
    // end new
 
    React.useEffect(() => {
-      functionFetchEducation({ dispatch, isPage: true, idCv });
+      fetchGetCvEducations({ idCv });
    }, []);
 
    return (
@@ -138,11 +140,14 @@ const FormEducation = () => {
                                           {
                                              (provided, snapshot) => (
                                                 <DraggedItem
+                                                   id={item.id}
                                                    lenght={educationObj.length}
                                                    provided={provided}
                                                    key={item.id}
                                                    title={item.facility}
                                                    index={index}
+                                                   setSelected={setSelected}
+                                                   selected={selected == item.id}
                                                    onDelete={() => handleDeleteOne(item.id)}
                                                    skillsList={[
                                                       `${formatDate(item?.dateFrom?.date)} - ${formatDate(
@@ -234,7 +239,7 @@ const FormEducation = () => {
                </LoadWr>
             </CCol>
          </CRow>
-         <CRow className="row g-30 r-gap-30 mt-4">
+         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
             <CCol xs={6}>
                <InputSelect
                   label="Facility"

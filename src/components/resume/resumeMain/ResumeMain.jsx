@@ -67,7 +67,7 @@ const ResumeMain = () => {
                   )
                }
                <div className="resume-main__title">
-                  {`${contactObj?.firstName || ''} ${contactObj?.lastName}`} - Here will be your profession.
+                  {`${contactObj?.firstName || ''} ${contactObj?.lastName}`}  {contactObj.jobTitle && (`- ${contactObj.jobTitle}`)}
                </div>
                <div className="resume-main__text">
                   <p>Here will be your description.</p>

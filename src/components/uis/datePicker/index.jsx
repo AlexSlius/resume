@@ -11,7 +11,7 @@ export const DatePicker = ({ onChange, selected, ...others }) => {
             dateFormat="dd/MM/yyyy"
             showMonthDropdown
             showYearDropdown
-            yearDropdownItemNumber={100}
+            yearDropdownItemNumber={40}
             scrollableYearDropdown
             showPopperArrow={false}
             useShortMonthInDropdown={true}

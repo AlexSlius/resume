@@ -14,33 +14,45 @@ import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
-import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet } from "../../../helpers/localStorage";
-import { reorder } from '../../../helpers/drageDrop';
 import { ButtonSteps } from "../../../components/buttonSteps"
+import { isLoader } from "../../../helpers/loadings"
+import { reorder } from '../../../helpers/drageDrop';
+import { getIdOfNameCountrys } from "../../../helpers/countrys"
 
 import {
    updateItemFieldActivity,
    updateItemFieldActivityDate,
+   updateItemFieldActivityNew,
+   updatePosition
 } from "../../../slices/activity";
 
 import {
-   functionFetchActivitys,
+   fetchGetCvActivitys,
    fetchPostAddCvOneActivitys,
    fetchDeleteActivitys,
    fetchUpdateActivitys,
 } from "../../../controllers/activitys";
 
+import {
+   fetchGetCities,
+   fetchGetCountrys,
+} from '../../../controllers/dependencies';
+
 const FormActivity = ({
    dispatch,
-   storeDate
+   storeDate,
+   idCv
 }) => {
    const refIdTimeout = React.useRef(undefined);
-   const idCv = localStorageGet('idCv');
 
    const {
+      dependencies: {
+         coutrys,
+         cities,
+      },
       activitys: {
          activityObj,
+         objNew,
          status
       },
       auth: {
@@ -49,6 +61,7 @@ const FormActivity = ({
          }
       },
    } = storeDate;
+   const [selected, setSelected] = React.useState(null);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -61,16 +74,7 @@ const FormActivity = ({
          result.destination.index
       );
 
-      // items.forEach((item, index) => {
-      //   item.position = index;
-      // })
-
-      // console.log("items: ", items);
-
-      // setStateArray(items);
-
-      // new list, idStorie, idMedia
-      // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
+      dispatch(updatePosition(items));
    }
 
    const handleUpdateServer = async (index) => {
@@ -90,6 +94,7 @@ const FormActivity = ({
    }
 
    const handleSetDateStateData = async (index, name, date) => {
+
       await dispatch(updateItemFieldActivityDate({ index, name, value: date }));
       await handleUpdateServer(index);
    }
@@ -102,8 +107,18 @@ const FormActivity = ({
       dispatch(fetchPostAddCvOneActivitys({ idCv }));
    }
 
+   const handleSaveSelectNew = async ({ name, value }) => {
+      await dispatch(updateItemFieldActivityNew({ name, value }));
+   }
+
+   const handleServerRequestCity = async (value, nameCountry) => {
+      let idCountru = getIdOfNameCountrys({ objArr: coutrys.list, nameCountry });
+      await dispatch(fetchGetCities({ id: idCountru, params: value }));
+   }
+
    React.useEffect(() => {
-      functionFetchActivitys({ dispatch, isPage: true, idCv });
+      dispatch(fetchGetCountrys());
+      fetchGetCvActivitys({ idCv });
    }, []);
 
    return (
@@ -129,12 +144,15 @@ const FormActivity = ({
                                           {
                                              (provided, snapshot) => (
                                                 <DraggedItem
+                                                   id={item.id}
                                                    lenght={activityObj.length}
                                                    provided={provided}
                                                    key={item.id}
                                                    title={item.title}
                                                    index={index}
                                                    onDelete={() => handleDeleteOne(item.id)}
+                                                   setSelected={setSelected}
+                                                   selected={selected == item.id}
                                                    skillsList={[
                                                       `${formatDate(item?.dateFrom?.date)} - ${formatDate(
                                                          item?.dateTo?.date
@@ -187,19 +205,30 @@ const FormActivity = ({
                                                             </CCol>
                                                          </CRow>
                                                       </CCol>
-                                                      <CCol xs={6}>
+                                                      <CCol xs={2}>
+                                                         <InputSelect
+                                                            valueState={item.country || ""}
+                                                            data={coutrys.list}
+                                                            name="country"
+                                                            isLoad={isLoader(coutrys.status)}
+                                                            handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
+                                                            isOutDataObj={false}
+                                                            isIconArrow={true}
+                                                            isFlag={true}
+                                                            isSearch={false}
+                                                         />
+                                                      </CCol>
+                                                      <CCol xs={4}>
                                                          <InputSelect
                                                             label="City"
                                                             placeholder="City"
-                                                            alueState={item.city || ""}
+                                                            valueState={item.city || ""}
                                                             name="city"
-                                                            isAddDiv={true}
-                                                            // data={studys.list}
-                                                            // isLoad={isLoader(studys?.status)}
-                                                            // handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                            // handleServerRequest={() => getSearchListStudys(item.study)}
+                                                            data={cities.list}
+                                                            isLoad={isLoader(cities?.status)}
+                                                            handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                            handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                                             isOutDataObj={false}
-                                                            isFirstList={false}
                                                          />
                                                       </CCol>
                                                       <CCol xs={12}>
@@ -225,6 +254,88 @@ const FormActivity = ({
                      </Droppable>
                   </DragDropContext>
                </LoadWr>
+            </CCol>
+         </CRow>
+
+         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
+            <CCol xs={6}>
+               <InputSelect
+                  label="Function Title"
+                  placeholder="Function Title"
+                  valueState={objNew.title || ""}
+                  name="title"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <InputSelect
+                  label="Employer"
+                  placeholder="Employer"
+                  valueState={objNew.employer || ""}
+                  name="employer"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <CRow>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew.period_from}
+                        onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
+                        floatingLabel="From"
+                        placeholderText="From"
+                        name="period_from"
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew.period_to}
+                        onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
+                        floatingLabel="To"
+                        placeholderText="To"
+                        name="period_to"
+                     />
+                  </CCol>
+               </CRow>
+            </CCol>
+            <CCol xs={2}>
+               <InputSelect
+                  valueState={objNew.country || ""}
+                  data={coutrys.list}
+                  name="country"
+                  isLoad={isLoader(coutrys.status)}
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isIconArrow={true}
+                  isFlag={true}
+                  isSearch={false}
+               />
+            </CCol>
+            <CCol xs={4}>
+               <InputSelect
+                  label="City"
+                  placeholder="City"
+                  valueState={objNew.city || ""}
+                  name="city"
+                  data={cities.list}
+                  isLoad={isLoader(cities?.status)}
+                  handleSaveSelect={handleSaveSelectNew}
+                  handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
+                  isOutDataObj={false}
+               />
+            </CCol>
+            <CCol xs={12}>
+               <Textarea
+                  value={objNew.description}
+                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                  hideButton={true}
+                  name="description"
+                  placeholder={'Description of activity'}
+               />
             </CCol>
          </CRow>
          <CRow className="mt-4">

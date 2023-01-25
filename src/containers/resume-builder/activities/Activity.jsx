@@ -1,10 +1,15 @@
+import { useSelector, useDispatch } from "react-redux";
+
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormActivity from "./FormActivity";
-import { useSelector, useDispatch } from "react-redux";
+
+import { localStorageGet } from "../../../helpers/localStorage";
+
 
 const Activity = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
+   const idCv = localStorageGet('idCv');
 
    return (
       <>
@@ -15,9 +20,7 @@ const Activity = () => {
          <FormActivity
             dispatch={dispatch}
             storeDate={states}
-            addText="Add one more activity"
-            updateText="Add one more activity"
-            buttonClassName="gap-4 d-flex mt-4"
+            idCv={idCv}
          />
       </>
    )

@@ -7,6 +7,7 @@ import {
 } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
+import Link from "next/link"
 
 import { FormHead } from "../../components/formHead"
 import { AutorizationWrapper } from "../../wrappers/autorization"
@@ -17,6 +18,8 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 import { fetchAuthRegister } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 import { localStorageGet } from "../../helpers/localStorage"
+
+import { routersPages } from "../../constants/next-routers"
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
@@ -72,8 +75,8 @@ export const RegisterPage = () => {
                         <CRow className="g-30 r-gap-30">
                             <CCol>
                                 <InputPassword
-                                    label="password"
-                                    placeholder="password"
+                                    label="Password"
+                                    placeholder="Password"
                                     invalid={!!errors?.password}
                                     valid={!errors?.password && watch("password").length > 0}
                                     obj={
@@ -105,7 +108,7 @@ export const RegisterPage = () => {
                                     }
                                 />
                             </CCol>
-                        </CRow >
+                        </CRow>
                         <CRow>
                             <CCol>
                                 <LoadChildrenBtn isLoad={isLoader(status)}>
@@ -117,7 +120,15 @@ export const RegisterPage = () => {
                                     >Register</CButton>
                                 </LoadChildrenBtn>
                             </CCol>
-                        </CRow >
+                        </CRow>
+                        <CRow className="r-gap-24">
+                            <CCol>
+                                <div className="auth-bot-text">
+                                    Do you have an account?{' '}
+                                    <Link href={routersPages['login']} className="link-form-auth">Log in</Link>
+                                </div>
+                            </CCol>
+                        </CRow>
                     </CForm>
                 </div>
             </>

@@ -23,6 +23,9 @@ export const slice = createSlice({
       let { name, value } = action.payload;
       state.hobieObjNew[name] = value;
     },
+    updatePosition(state, action) {
+      state.hobiesObj = action.payload;
+    },
   },
   extraReducers: {
     // get list skills all
@@ -36,6 +39,9 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemHobiesFiledNew } = slice.actions;
+export const {
+  updateItemHobiesFiledNew,
+  updatePosition
+} = slice.actions;
 
 export const { reducer } = slice;

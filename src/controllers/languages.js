@@ -1,19 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
-export const functionFetchLanguages = async ({ dispatch, isPage = false, idCv }) => {
-    let { payload } = await dispatch(fetchGetCvLanguages({ idCv, isPage }))
-
-    if (isPage) {
-        if (isArray(payload) && payload?.length == 0)
-            await dispatch(fetchPostAddCvOneLanguages({ idCv }));
-    }
-}
-
 // all list
-export const fetchGetCvLanguages = createAsyncThunk('languages/fetchGetCvLanguages', async ({ idCv, isPage = false }, thunkAPI) => {
+export const fetchGetCvLanguages = createAsyncThunk('languages/fetchGetCvLanguages', async ({ idCv }, thunkAPI) => {
     const response = await api.languages.getListLanguages(idCv);
     return response;
 });

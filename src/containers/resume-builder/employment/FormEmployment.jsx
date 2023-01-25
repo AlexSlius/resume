@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CCol, CRow } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 import dynamic from 'next/dynamic'
@@ -10,7 +10,6 @@ import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
 import { reorder } from '../../../helpers/drageDrop';
-import { localStorageGet } from "../../../helpers/localStorage";
 import { LoadWr } from "../../../components/loadWr"
 
 import {
@@ -22,6 +21,7 @@ import {
   addJopsTitle,
   addCompany
 } from '../../../controllers/dependencies';
+
 import {
   updateItemFieldEmployment,
   updateItemFieldEmploymentDate,
@@ -48,7 +48,8 @@ const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/Text
 
 const FormEmployment = ({
   dispatch,
-  storeDate
+  storeDate,
+  idCv
 }) => {
   const refIdTimeout = React.useRef(undefined);
   const {
@@ -70,8 +71,7 @@ const FormEmployment = ({
       }
     },
   } = storeDate;
-
-  const idCv = localStorageGet('idCv');
+  const [selected, setSelected] = useState(null);
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -191,10 +191,13 @@ const FormEmployment = ({
                               >
                                 {(provided, snapshot) => (
                                   <DraggedItem
+                                    id={item.id}
                                     lenght={employmentObj.length}
                                     provided={provided}
                                     index={index}
                                     title={item.title}
+                                    setSelected={setSelected}
+                                    selected={selected == item.id}
                                     onDelete={() => handleDeleteOne(item.id)}
                                     skillsList={[
                                       `${formatDate(item?.periodFrom?.date)} - ${formatDate(
@@ -260,7 +263,7 @@ const FormEmployment = ({
                                           </CCol>
                                         </CRow>
                                       </CCol>
-                                      <CCol xs={3}>
+                                      <CCol xs={2}>
                                         <InputSelect
                                           valueState={item.country || ""}
                                           data={coutrys.list}
@@ -273,7 +276,7 @@ const FormEmployment = ({
                                           isSearch={false}
                                         />
                                       </CCol>
-                                      <CCol xs={3}>
+                                      <CCol xs={4}>
                                         <InputSelect
                                           label="City"
                                           placeholder="City"
@@ -320,7 +323,7 @@ const FormEmployment = ({
         )
       }
 
-      <CRow className="g-30 r-gap-30 mt-4">
+      <CRow className="g-30 r-gap-30 mt-4 bt-1">
         <CCol xs={6}>
           <InputSelect
             label="Job Title"

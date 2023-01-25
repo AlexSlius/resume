@@ -258,7 +258,6 @@ input.form-control {
         font-weight: 350;
         padding: 0.375rem 0.75rem;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        max-width: 185px;
         width: 100%;
 
         &:focus {
@@ -276,6 +275,138 @@ input.form-control {
     input {
         max-width: unset;
     }
+}
+
+.react-datepicker__month-container {
+    background: #fff;
+    border-radius: 12px;
+    z-index: 100;
+    box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 40%);
+    padding: 10px;
+}
+
+.react-datepicker {
+    .react-datepicker__header__dropdown {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .react-datepicker__year-read-view,
+    .react-datepicker__month-read-view {
+        padding-right: 18px;
+        margin: 0 10px;
+    }
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+    background-color: #3679FD;
+}
+
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+    top: 2px;
+    right: 0;
+}
+
+.react-datepicker__year-dropdown--scrollable,
+.react-datepicker__month-dropdown--scrollable,
+.react-datepicker__month-year-dropdown--scrollable {
+    scrollbar-color: #3679FD #EEF0F2;
+    scrollbar-width: 6px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: #EEF0F2;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #3679FD;
+        border-radius: 4px;
+        width: 6px;
+    }
+}
+
+
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow,
+.react-datepicker__navigation-icon::before {
+    border-width: 1px 1px 0 0;
+}
+
+.react-datepicker__navigation {
+    top: 14px
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown,
+.react-datepicker__month-year-dropdown {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    text-align: center;
+    border-radius: 0.3rem;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 12px;
+    height: 100%;
+    padding: 4px 2px 0 2px;
+}
+
+.react-datepicker__header {
+    position: inherit;
+}
+
+.react-datepicker-popper[data-placement^=bottom] {
+    width: 251px;
+}
+
+.custom-datepicker {
+    width: auto;
+    height: auto;
+}
+
+.react-datepicker__year-option,
+.react-datepicker__month-option,
+.react-datepicker__month-year-option {
+    margin: 0 2px 4px 2px;
+    width: calc(30.033% + 4px);
+    padding: 10px 4px;
+    background: #F6F8FA;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.react-datepicker__year-option {
+    width: calc(29.933% + 4px);
+}
+
+.react-datepicker__month-option--selected_month,
+.react-datepicker__year-option--selected_year {
+    background: #3679FD;
+    color: #fff;
 }
 
 .DraftEditor-root {
@@ -720,6 +851,33 @@ button {
 }
 
 .disableds {
-    pointer-events: none!important;
-    opacity: 0.8!important;
+    pointer-events: none !important;
+    opacity: 0.8 !important;
+}
+
+.bt-1 {
+    padding-top: 30px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -18px;
+        right: -18px;
+        height: 1px;
+        background: #dadce3;
+    }
+}
+
+.form-check {
+    .form-check-label {
+        color: #838799;
+        padding-top: 5px;
+    }
+}
+
+.form-check-input:checked {
+    background-color: #3679fd;
+    border-color: #3679fd;
 }

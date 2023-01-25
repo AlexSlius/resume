@@ -1,7 +1,7 @@
 import { getBasicContact } from "./contacts"
 import { fetchGetCvEmployments } from "./employments"
 import { fetchGetCvEducations } from "./educations"
-import { fetchGetSkillslistAll } from "./skills"
+import { fetchGetSkillslistAll, fetchGetExperienceLevel } from "./skills"
 import { fetchGetAllLinks } from "./socials"
 import { fetchGetCvHobie } from "./hobies"
 import { fetchGetCvActivitys } from "./activitys"
@@ -16,6 +16,7 @@ export const getAllResumeBuildre = async ({ store, idCv }) => {
     await store.dispatch(fetchGetCvEmployments({ idCv }));
     await store.dispatch(fetchGetCvEducations({ idCv }));
     await store.dispatch(fetchGetSkillslistAll(idCv));
+    await store.dispatch(fetchGetExperienceLevel({ idCv }));
     await store.dispatch(fetchGetAllLinks({ idCv }));
     await store.dispatch(fetchGetCvHobie({ idCv }));
     await store.dispatch(fetchGetCvActivitys({ idCv }));

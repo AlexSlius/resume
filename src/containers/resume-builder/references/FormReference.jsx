@@ -3,7 +3,7 @@ import {
    CRow,
    CForm
 } from "@coreui/react";
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
@@ -16,15 +16,16 @@ import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { InputPhoneNoControler } from "../../../components/uis/inputPhoneNoControler"
 
 import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet } from "../../../helpers/localStorage";
 import { reorder } from '../../../helpers/drageDrop';
 
 import {
    updateItemFieldReference,
+   updateItemFieldReferenceNew,
+   updatePosition,
 } from "../../../slices/reference";
 
 import {
-   functionFetchReferences,
+   fetchGetCvReferences,
    fetchPostAddCvOneReferences,
    fetchDeleteReferences,
    fetchUpdateReferences
@@ -32,11 +33,13 @@ import {
 
 import {
    getCompanyList,
+   addCompany
 } from '../../../controllers/dependencies';
 
 const FormReference = ({
    dispatch,
-   storeDate
+   storeDate,
+   idCv
 }) => {
    const {
       dependencies: {
@@ -44,6 +47,7 @@ const FormReference = ({
       },
       references: {
          referencesObj,
+         objNew,
          status,
       },
       auth: {
@@ -53,7 +57,7 @@ const FormReference = ({
       },
    } = storeDate;
    const refIdTimeout = useRef(undefined);
-   const idCv = localStorageGet('idCv');
+   const [selected, setSelected] = useState(null);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -66,16 +70,7 @@ const FormReference = ({
          result.destination.index
       );
 
-      // items.forEach((item, index) => {
-      //   item.position = index;
-      // })
-
-      // console.log("items: ", items);
-
-      // setStateArray(items);
-
-      // new list, idStorie, idMedia
-      // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
+      dispatch(updatePosition(items));
    }
 
    const handleUpdateServer = async (index) => {
@@ -94,6 +89,10 @@ const FormReference = ({
       await handleUpdateServer(index);
    }
 
+   const handleSaveSelectNew = async ({ name, value }) => {
+      await dispatch(updateItemFieldReferenceNew({ name, value }));
+   }
+
    const handleDeleteOne = (id) => {
       dispatch(fetchDeleteReferences({ idCv, id }));
    }
@@ -106,8 +105,13 @@ const FormReference = ({
       await dispatch(getCompanyList(text)); // get all compay list
    }
 
+   const handleAddNewCompany = async (text) => {
+      let re = await dispatch(addCompany(text));
+      return re?.payload?.id;
+   }
+
    useEffect(() => {
-      functionFetchReferences({ dispatch, isPage: true, idCv });
+      fetchGetCvReferences({ idCv });
    }, []);
 
    return (
@@ -133,12 +137,14 @@ const FormReference = ({
                                           {
                                              (provided, snapshot) => (
                                                 <DraggedItem
-                                                   isDraf={false}
+                                                   id={item.id}
                                                    lenght={referencesObj.length}
                                                    provided={provided}
                                                    key={item.id}
-                                                   title={item.full_name}
+                                                   title={item.fullName}
                                                    index={index}
+                                                   setSelected={setSelected}
+                                                   selected={selected == item.id}
                                                    onDelete={() => handleDeleteOne(item.id)}
                                                    skillsList={[
                                                       item.email,
@@ -152,8 +158,8 @@ const FormReference = ({
                                                                id={item.id}
                                                                label="Referent Full name"
                                                                placeholder="Referent Full name"
-                                                               value={item.full_name}
-                                                               name="full_name"
+                                                               value={item.fullName}
+                                                               name="fullName"
                                                                onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
                                                             />
                                                          </CCol>
@@ -165,10 +171,11 @@ const FormReference = ({
                                                                data={companys?.list || []}
                                                                isAddDiv={true}
                                                                name="company"
-                                                               isFirstList={false}
                                                                isLoad={isLoader(companys?.status)}
+                                                               isBackgraundLoad={isLoader(companys?.statusAddNew)}
                                                                handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                handleServerRequest={handleServerRequestCompanyList}
+                                                               handleAddNew={handleAddNewCompany}
                                                                isOutDataObj={false}
                                                             />
                                                          </CCol>
@@ -206,6 +213,52 @@ const FormReference = ({
                      </Droppable>
                   </DragDropContext>
                </LoadWr>
+            </CCol>
+         </CRow>
+         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
+            <CCol xs={6}>
+               <Input
+                  label="Referent Full name"
+                  placeholder="Referent Full name"
+                  value={objNew.full_name}
+                  name="full_name"
+                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <InputSelect
+                  label="Company"
+                  placeholder="Company"
+                  valueState={objNew.company}
+                  data={companys?.list || []}
+                  isAddDiv={true}
+                  name="company"
+                  isLoad={isLoader(companys?.status)}
+                  isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                  handleSaveSelect={handleSaveSelectNew}
+                  handleServerRequest={handleServerRequestCompanyList}
+                  handleAddNew={handleAddNewCompany}
+                  isOutDataObj={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <Input
+                  label="E-mail*"
+                  placeholder="E-mail*"
+                  value={objNew.email}
+                  name="email"
+                  invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
+                  valid={/\S+@\S+\.\S+/.test(objNew.email)}
+                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <InputPhoneNoControler
+                  label="Phone"
+                  placeholder="Phone"
+                  onChange={(value) => handleSaveSelectNew({ name: "phone", value: value })}
+                  value={objNew.phone}
+               />
             </CCol>
          </CRow>
          <CRow className="mt-4">

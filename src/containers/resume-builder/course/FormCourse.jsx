@@ -13,17 +13,19 @@ import { DatePicker } from "../../../components/uis/datePicker";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
 import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet } from "../../../helpers/localStorage";
+
 import { reorder } from '../../../helpers/drageDrop';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
    updateItemFieldCourse,
    updateItemFieldCourseDate,
+   updatePosition,
+   updateItemFieldCourseNew,
 } from "../../../slices/courses";
 
 import {
-   functionFetchCourses,
+   fetchGetCvCourses,
    fetchPostAddCvOneCourses,
    fetchDeleteCourses,
    fetchUpdateCourses,
@@ -31,14 +33,15 @@ import {
 
 const FormCourse = ({
    dispatch,
-   storeDate
+   storeDate,
+   idCv
 }) => {
    const refIdTimeout = React.useRef(undefined);
-   const idCv = localStorageGet('idCv');
 
    const {
       courses: {
          courseObj,
+         objNew,
          status
       },
       auth: {
@@ -47,6 +50,7 @@ const FormCourse = ({
          }
       },
    } = storeDate;
+   const [selected, setSelected] = React.useState(null);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -59,16 +63,7 @@ const FormCourse = ({
          result.destination.index
       );
 
-      // items.forEach((item, index) => {
-      //   item.position = index;
-      // })
-
-      // console.log("items: ", items);
-
-      // setStateArray(items);
-
-      // new list, idStorie, idMedia
-      // dispatch(updateDragDropStorie(items, idStorie, activeMediaStorie?.id));
+      dispatch(updatePosition(items));
    }
 
    const handleUpdateServer = async (index) => {
@@ -87,6 +82,10 @@ const FormCourse = ({
       await handleUpdateServer(index);
    }
 
+   const handleSaveSelectNew = async ({ name, value }) => {
+      await dispatch(updateItemFieldCourseNew({ name, value }));
+   }
+
    const handleSetDateStateData = async (index, name, date) => {
       await dispatch(updateItemFieldCourseDate({ index, name, value: date }));
       await handleUpdateServer(index);
@@ -101,7 +100,7 @@ const FormCourse = ({
    }
 
    React.useEffect(() => {
-      functionFetchCourses({ dispatch, isPage: true, idCv });
+      fetchGetCvCourses({ idCv });
    }, []);
 
    return (
@@ -127,11 +126,14 @@ const FormCourse = ({
                                           {
                                              (provided, snapshot) => (
                                                 <DraggedItem
+                                                   id={item.id}
                                                    lenght={courseObj.length}
                                                    provided={provided}
                                                    key={item.id}
                                                    title={item.title}
                                                    index={index}
+                                                   setSelected={setSelected}
+                                                   selected={selected == item.id}
                                                    onDelete={() => handleDeleteOne(item.id)}
                                                    skillsList={[
                                                       `${formatDate(item?.dateFrom?.date)} - ${formatDate(
@@ -199,6 +201,52 @@ const FormCourse = ({
                      </Droppable>
                   </DragDropContext>
                </LoadWr>
+            </CCol>
+         </CRow>
+         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
+            <CCol xs={6}>
+               <InputSelect
+                  label="Course title"
+                  placeholder="Course title"
+                  valueState={objNew.title || ""}
+                  name="title"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <InputSelect
+                  label="Institution"
+                  placeholder="Institution"
+                  valueState={objNew.institution || ""}
+                  name="institution"
+                  handleSaveSelect={handleSaveSelectNew}
+                  isOutDataObj={false}
+                  isModal={false}
+               />
+            </CCol>
+            <CCol xs={6}>
+               <CRow>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew.period_from}
+                        onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
+                        floatingLabel="From"
+                        placeholderText="From"
+                        name="period_from"
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <DatePicker
+                        selected={objNew.period_to}
+                        onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
+                        floatingLabel="To"
+                        placeholderText="To"
+                        name="period_to"
+                     />
+                  </CCol>
+               </CRow>
             </CCol>
          </CRow>
          <CRow className="mt-4">

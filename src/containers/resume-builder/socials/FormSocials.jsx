@@ -1,31 +1,31 @@
 import {
-   CFormInput,
    CCol,
    CRow,
 } from "@coreui/react";
-import { useDispatch, useSelector } from "react-redux";
 import React from "react";
+import { isArray } from "lodash";
 
+import Input from "../../../components/uis/input"
+import { LoadWr } from "../../../components/loadWr";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { isLoader } from "../../../helpers/loadings"
 import { fetchGetSocials } from "../../../controllers/dependencies";
 
 import { updateItemSocialFiled, updateItemSocialFiledNew } from "../../../slices/socials";
-
-import { isArray } from "lodash";
 import {
    fetchAddItemLink,
    fetchUpdateItemLink,
    fetchGetAllLinks,
    fetchDeleteItemLink,
 } from "../../../controllers/socials";
-import { localStorageGet } from "../../../helpers/localStorage";
-import Input from "../../../components/uis/input"
-import { LoadWr } from "../../../components/loadWr";
 
-const FormSocials = () => {
-   const dispatch = useDispatch();
+
+const FormSocials = ({
+   dispatch,
+   states,
+   idCv,
+}) => {
    const {
       dependencies: {
          socials,
@@ -40,8 +40,7 @@ const FormSocials = () => {
             isAthorized
          }
       },
-   } = useSelector(state => state);
-   const idCv = localStorageGet('idCv');
+   } = states;
 
    // new
    const updateitemFiledNew = async ({ name, value, isClisk }) => {

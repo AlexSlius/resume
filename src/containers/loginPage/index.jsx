@@ -88,8 +88,8 @@ export const LoginPage = () => {
                         <CRow className="g-30 r-gap-30">
                             <CCol>
                                 <InputPassword
-                                    label="password"
-                                    placeholder="password"
+                                    label="Password"
+                                    placeholder="Password"
                                     invalid={errors?.password}
                                     valid={!errors?.password && watch("password").length > 0}
                                     obj={

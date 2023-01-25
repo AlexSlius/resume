@@ -1,19 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 
-export const functionFetchActivitys = async ({ dispatch, isPage = false, idCv }) => {
-    let { payload } = await dispatch(fetchGetCvActivitys({ idCv, isPage }))
-
-    if (isPage) {
-        if (isArray(payload) && payload?.length == 0)
-            await dispatch(fetchPostAddCvOneActivitys({ idCv }));
-    }
-}
-
 // all list
-export const fetchGetCvActivitys = createAsyncThunk('education/fetchGetCvActivitys', async ({ idCv, isPage = false }, thunkAPI) => {
+export const fetchGetCvActivitys = createAsyncThunk('education/fetchGetCvActivitys', async ({ idCv }, thunkAPI) => {
     const response = await api.activitys.getListActivitys(idCv);
     return response;
 });
@@ -36,8 +26,8 @@ export const fetchUpdateActivitys = createAsyncThunk('countrus/fetchUpdateActivi
     const { activitys: { activityObj } } = thunkAPI.getState();
     let { id, dateFrom, dateTo, ...obj } = activityObj[index];
 
-    obj.date_from = dateFrom.date;
-    obj.date_to = dateTo.date;
+    obj.period_from = dateFrom.date;
+    obj.period_to = dateTo.date;
 
     const response = await api.activitys.updateActivitysItem(id, obj);
     return response;

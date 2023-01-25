@@ -7,6 +7,8 @@ import {
   fetchDeleteInternships,
 } from '../controllers/interships';
 
+import { defaultCountry } from '../constants/default';
+
 const initialState = {
   interhipObj: [],
   objNew: {
@@ -14,6 +16,7 @@ const initialState = {
     employer: "",
     period_from: "",
     period_to: "",
+    country: defaultCountry,
     city: "",
     description: "",
   },
@@ -33,6 +36,13 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.interhipObj[index][name]['date'] = value;
     },
+    updateItemFieldIntershipNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
+    updatePosition(state, action) {
+      state.interhipObj = action.payload;
+    },
   },
   extraReducers: {
     // delete 
@@ -47,6 +57,7 @@ export const slice = createSlice({
       state.status = statusLoader;
     },
     [fetchPostAddCvOneInternships.fulfilled]: (state, action) => {
+      state.objNew = initialState.objNew;
       state.status = statusLoaded;
     },
     // get
@@ -60,6 +71,11 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemFieldIntership, updateItemFieldIntershipDate } = slice.actions;
+export const {
+  updateItemFieldIntership,
+  updateItemFieldIntershipDate,
+  updateItemFieldIntershipNew,
+  updatePosition
+} = slice.actions;
 
 export const { reducer } = slice;

@@ -11,7 +11,7 @@ import {
 const initialState = {
   languageObj: [],
   objNew: {
-    language: "languages",
+    language: "",
     level: "3",
   },
   status: statusLoaded,

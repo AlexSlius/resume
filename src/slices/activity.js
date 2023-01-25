@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 import { fetchGetCvActivitys, fetchPostAddCvOneActivitys, fetchDeleteActivitys } from '../controllers/activitys';
 
+import { defaultCountry } from '../constants/default';
+
 const initialState = {
   activityObj: [],
   objNew: {
@@ -10,6 +12,7 @@ const initialState = {
     employer: "",
     period_from: "",
     period_to: "",
+    country: defaultCountry,
     city: "",
     description: "",
   },
@@ -29,6 +32,13 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.activityObj[index][name]['date'] = value;
     },
+    updateItemFieldActivityNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
+    updatePosition(state, action) {
+      state.activityObj = action.payload;
+    },
   },
   extraReducers: {
     // delete educations
@@ -38,11 +48,12 @@ export const slice = createSlice({
     [fetchDeleteActivitys.fulfilled]: (state, action) => {
       state.status = statusLoaded;
     },
-    // get educations
+    // add educations
     [fetchPostAddCvOneActivitys.pending]: (state) => {
       state.status = statusLoader;
     },
     [fetchPostAddCvOneActivitys.fulfilled]: (state, action) => {
+      state.objNew = initialState.objNew;
       state.status = statusLoaded;
     },
     // get educations
@@ -56,6 +67,11 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemFieldActivity, updateItemFieldActivityDate } = slice.actions;
+export const {
+  updateItemFieldActivity,
+  updateItemFieldActivityDate,
+  updateItemFieldActivityNew,
+  updatePosition
+} = slice.actions;
 
 export const { reducer } = slice;

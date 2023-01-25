@@ -20,10 +20,9 @@ const nextofLink = (linksObj, path) => {
 
     arrkeys.map((key, index) => {
         if (len != index)
-            console.log(222);
-        if (linksObj[key].link == path) {
-            nextLink = linksObj[arrkeys[index + 1]]?.link
-        }
+            if (linksObj[key].link == path) {
+                nextLink = linksObj[arrkeys[index + 1]]?.link
+            }
     });
 
     return nextLink;
