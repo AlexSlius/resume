@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
@@ -10,5 +9,8 @@ export default class ClientsAPI extends Base {
     }
     deleteItemHobie(id) {
         return this.apiClient.delete(`cv/hobbies/delete/${id}`);
+    }
+    updatePosition(data) {
+        return this.apiClient.post(`cv/hobbies/position/update`, data);
     }
 }

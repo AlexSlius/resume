@@ -12,6 +12,7 @@ import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
 
 import { fetchGetResumesList } from "../../controllers/resumes";
+import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
 import { localStorageSet, localStorageRemove } from "../../helpers/localStorage";
 import { isLoader } from "../../helpers/loadings"
@@ -44,6 +45,7 @@ const Dashboard = () => {
 
     const hangleAddNewResume = async () => {
         await localStorageRemove('idCv');
+        await cleanResumeSlices(dispatch);
         await Router.push(`${routersPages['resumeBuilder']}?new=resume`);
     }
 

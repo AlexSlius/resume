@@ -34,6 +34,9 @@ export const slice = createSlice({
     updatePosition(state, action) {
       state.skillsObj.skillsListAll = action.payload;
     },
+    cleanSlise(state, action) {
+      state.skillsObj = initialState.skillsObj;
+    },
   },
   extraReducers: {
     // get experience
@@ -72,7 +75,8 @@ export const slice = createSlice({
 
 export const {
   updateItemSkillsFiled,
-  updatePosition
+  updatePosition,
+  cleanSlise,
 } = slice.actions;
 
 export const { reducer } = slice;

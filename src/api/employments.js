@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     updateEmploymentItem(id, data, type = "formData") {
         return this.apiClient.post(`cv/employment/history/update/${id}`, data, type);
     }
+    updatePosition(data) {
+        return this.apiClient.post(`cv/employment/position/update`, data);
+    }
 }

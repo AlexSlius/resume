@@ -17,6 +17,7 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { formatDate } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
 import { isLoader } from "../../../helpers/loadings"
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import {
    updateItemFieldEducation,
    updateItemFieldEducationDate,
@@ -25,12 +26,12 @@ import {
 } from "../../../slices/education";
 import { getStudysList } from "../../../controllers/dependencies";
 
-
 import {
    fetchGetCvEducations,
    fetchPostAddCvOneEducation,
    fetchDeleteEducation,
-   fetchUpdateEducation
+   fetchUpdateEducation,
+   fetchPostUpdatePositionEducations
 } from "../../../controllers/educations";
 
 const FormEducation = ({
@@ -67,6 +68,10 @@ const FormEducation = ({
          result.destination.index
       );
 
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionEducations({ idCv, data: updateArr }));
+
       dispatch(updatePosition(items));
    }
 
@@ -96,7 +101,7 @@ const FormEducation = ({
    }
 
    const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneEducation({ idCv }));
+      dispatch(fetchPostAddCvOneEducation({ idCv, position: newPosition(educationObj) }));
    }
 
    const handleDeleteOne = (id) => {

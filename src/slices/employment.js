@@ -44,6 +44,9 @@ export const slice = createSlice({
     updatePosition(state, action) {
       state.employmentObj = action.payload;
     },
+    cleanSlise(state, action) {
+      state.employmentObj = initialState.employmentObj;
+    },
   },
   extraReducers: {
     // delete
@@ -83,7 +86,8 @@ export const {
   updateItemFieldEmployment,
   updateItemFieldEmploymentDate,
   updateItemFieldEmploymentNew,
-  updatePosition
+  updatePosition,
+  cleanSlise,
 } = slice.actions;
 
 export const { reducer } = slice;

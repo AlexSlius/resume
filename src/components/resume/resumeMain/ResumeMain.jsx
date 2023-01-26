@@ -67,10 +67,10 @@ const ResumeMain = () => {
                   )
                }
                <div className="resume-main__title">
-                  {`${contactObj?.firstName || ''} ${contactObj?.lastName}`}  {contactObj.jobTitle && (`- ${contactObj.jobTitle}`)}
+                  {`${contactObj?.firstName || ''} ${contactObj?.lastName}`}{contactObj.jobTitle && (`, ${contactObj.jobTitle}`)}
                </div>
                <div className="resume-main__text">
-                  <p>Here will be your description.</p>
+                  <p>Most foreign employers ask for a cover letter. The content should hook the potential employer. Describe your key skills, your advantages, and why you are the right person for the job.</p>
                </div>
             </CCol>
          </CRow>
@@ -119,7 +119,7 @@ const ResumeMain = () => {
                                     {el?.facility}
                                  </div>
                                  <div className="resume-main__head-text">
-                                    {el?.study} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                    {el?.study} {(el?.dateFrom || el?.dateFrom) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
                                  </div>
                               </div>
                               <div className="resume-main__bottom">
@@ -135,37 +135,35 @@ const ResumeMain = () => {
 
          {
             skillsObj?.skillsListAll.length ? (
-               <CRow className="resume-main__row mb-4">
+               <CRow className="resume-main__row">
                   <CCol className="resume-main__col1">
                      <div className="resume-main__label">
                         Skills</div>
                   </CCol>
                   <CCol className="resume-main__col2">
-                     <div className="d-flex flex-wrap justify-content-between align-items-center">
+                     <div className="rows-items">
                         {
                            skillsObj.skillsListAll.map((el, ind, arr) => {
                               return (
-                                 <Fragment key={el?.id}>
-                                    <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center me-4">
-                                       <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                          {arr[ind]?.name}
-                                       </div>
-                                       {
-                                          !skillsObj.hideExperienceLevel && (
-                                             <div className="resume-main__head-text">
-                                                <ReactStars
-                                                   key={arr[ind]?.name + '-' + arr[ind]?.level}
-                                                   edit={false}
-                                                   count={5}
-                                                   value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
-                                                   size={12}
-                                                   activeColor={'#6DC26C'} />
-                                             </div>
-                                          )
-                                       }
+                                 <div key={el?.id} className="item-col">
+                                    <div className="text-blk pr">
+                                       {arr[ind]?.name}
                                     </div>
-                                 </Fragment>
-                              );
+                                    {
+                                       !skillsObj.hideExperienceLevel && (
+                                          <div className="resunme_starrs">
+                                             <ReactStars
+                                                key={arr[ind]?.name + '-' + arr[ind]?.level}
+                                                edit={false}
+                                                count={5}
+                                                value={arr[ind]?.level ? Number(arr[ind]?.level) : 0}
+                                                size={12}
+                                                activeColor={'#6DC26C'} />
+                                          </div>
+                                       )
+                                    }
+                                 </div>
+                              )
                            })
                         }
                      </div>
@@ -175,17 +173,17 @@ const ResumeMain = () => {
          }
 
          {
-            socialObj?.length ? (<CRow className="resume-main__row mb-4">
+            socialObj?.length ? (<CRow className="resume-main__row">
                <CCol className="resume-main__col1">
                   <div className="resume-main__label">
                      Social Links</div>
                </CCol>
                <CCol className="resume-main__col2">
-                  <CRow>
+                  <div className="rows-items">
                      {
                         socialObj.map(el => (
-                           <CCol key={el?.id} xs={6}>
-                              <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer">
+                           <div className="item-col" key={el?.id}>
+                              <a href={el?.link} target="_blank" className="item-resum-soc" rel="noreferrer" title="el?.link">
                                  {
                                     el?.icon && (
                                        <i style={{ backgroundImage: `url(${el?.icon})` }}></i>
@@ -193,10 +191,10 @@ const ResumeMain = () => {
                                  }
                                  <span>{el?.link}</span>
                               </a>
-                           </CCol>
+                           </div>
                         ))
                      }
-                  </CRow>
+                  </div>
                </CCol>
             </CRow>) : null
          }
@@ -209,15 +207,15 @@ const ResumeMain = () => {
                         Hobbies</div>
                   </CCol>
                   <CCol className="resume-main__col2">
-                     <CRow>
+                     <div className="rows-items">
                         {hobiesObj.map(el => (
-                           <CCol key={el?.id} xs={6}>
-                              <div className="resume-main__bottom">
-                                 <p className="resume-main__info-text">{el?.text}</p>
+                           <div className="item-col" key={el?.id}>
+                              <div className="text-blk">
+                                 <span >{el?.text}</span>
                               </div>
-                           </CCol>
+                           </div>
                         ))}
-                     </CRow>
+                     </div>
                   </CCol>
                </CRow>
             ) : null
@@ -239,7 +237,7 @@ const ResumeMain = () => {
                                     {el?.title}
                                  </div>
                                  <div className="resume-main__head-text">
-                                    {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                    {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
                                  </div>
                               </div>
                               <div className="resume-main__bottom">
@@ -269,7 +267,9 @@ const ResumeMain = () => {
                                     {el?.title}
                                  </div>
                                  <div className="resume-main__head-text">
-                                    {el?.institution} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                                    {
+                                       el?.institution} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`
+                                    }
                                  </div>
                               </div>
                            </Fragment>
@@ -292,10 +292,10 @@ const ResumeMain = () => {
                         <Fragment key={el?.id}>
                            <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
                               <div className="resume-main__title2">
-                                 {el?.job_title}
+                                 {el?.jobTitle}
                               </div>
-                              <div className="resume-main__head-text">
-                                 {el?.employer} {(el?.period_from || el?.period_to) && `(${formatDate(el?.period_from)} - ${formatDate(el?.period_to)})`}
+                              <div className="text-blk">
+                                 {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
                               </div>
                            </div>
                            <div className="resume-main__bottom">
@@ -316,30 +316,28 @@ const ResumeMain = () => {
                      Languages</div>
                </CCol>
                <CCol className="resume-main__col2">
-                  <CRow>
+                  <div className="rows-items">
                      {
                         languageObj.map((el, index) => {
                            return (
-                              <CCol key={index} xl={6}>
-                                 <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
-                                    <div className="resume-main__head-text" style={{ fontWeight: 350 }}>
-                                       {el.language}
-                                    </div>
-                                    <div className="resume-main__head-text">
-                                       <ReactStars
-                                          key={el.language + '-' + el.level}
-                                          count={6}
-                                          value={el.level ? Number(el.level) : 0}
-                                          size={12}
-                                          edit={false}
-                                          activeColor={'#6DC26C'} />
-                                    </div>
+                              <div className="item-col" key={index}>
+                                 <div className="text-blk pr">
+                                    {el.language}
                                  </div>
-                              </CCol>
+                                 <div className="resunme_starrs">
+                                    <ReactStars
+                                       key={el.language + '-' + el.level}
+                                       count={6}
+                                       value={el.level ? Number(el.level) : 0}
+                                       size={12}
+                                       edit={false}
+                                       activeColor={'#6DC26C'} />
+                                 </div>
+                              </div>
                            )
                         })
                      }
-                  </CRow>
+                  </div>
                </CCol>
             </CRow>
             ) : null
@@ -357,7 +355,7 @@ const ResumeMain = () => {
                         <Fragment key={el?.id}>
                            <div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-start align-items-center">
                               <div className="resume-main__title2">
-                                 {el?.full_name}
+                                 {el?.fullName}
                               </div>
                               <div className="resume-main__head-text">
                                  {el?.company}

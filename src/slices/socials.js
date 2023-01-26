@@ -28,6 +28,9 @@ export const slice = createSlice({
       let { name, value } = action.payload;
       state.socialObjNew[name] = value;
     },
+    cleanSlise(state, action) {
+      state.socialObj = initialState.socialObj;
+    },
   },
   extraReducers: {
     // get list skills all
@@ -41,6 +44,10 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemSocialFiled, updateItemSocialFiledNew } = slice.actions;
+export const {
+  updateItemSocialFiled,
+  updateItemSocialFiledNew,
+  cleanSlise,
+} = slice.actions;
 
 export const { reducer } = slice;

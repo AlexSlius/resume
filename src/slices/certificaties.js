@@ -26,6 +26,9 @@ export const slice = createSlice({
       let { name, value } = action.payload;
       state.ObjNew[name] = value;
     },
+    cleanSlise(state, action) {
+      state.certificatiesObj = initialState.certificatiesObj;
+    },
   },
   extraReducers: {
     // get list 
@@ -41,7 +44,8 @@ export const slice = createSlice({
 
 export const {
   updateItemCertificatieFiled,
-  updateItemCertificatieFiledNew
+  updateItemCertificatieFiledNew,
+  cleanSlise
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -30,6 +30,12 @@ export const fetchPostUpdateSkillone = createAsyncThunk('countrus/fetchPostUpdat
     return response;
 });
 
+export const fetchPostUpdatePositionSkills = createAsyncThunk('countrus/fetchPostUpdatePositionSkills', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.skills.updatePosition(data);
+    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    return response;
+});
+
 export const fetchPostDeleteSkillOne = createAsyncThunk('countrus/fetchPostDeleteSkillOne', async ({ idCv, id }, thunkAPI) => {
     const response = await api.skills.deleteItemSkillOne(id);
     await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
@@ -40,6 +46,8 @@ export const fetchGetExperienceLevel = createAsyncThunk('countrus/fetchGetExperi
     const response = await api.skills.getExperienceLevel(idCv);
     return response;
 });
+
+
 
 export const fetchUpdateExperienceLevel = createAsyncThunk('countrus/fetchUpdateExperienceLevel', async ({ idCv, data }, thunkAPI) => {
     const response = await api.skills.updateExperienceLevel(idCv, { hide_experience_level: data });

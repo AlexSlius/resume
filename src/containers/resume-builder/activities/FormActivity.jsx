@@ -25,18 +25,19 @@ import {
    updateItemFieldActivityNew,
    updatePosition
 } from "../../../slices/activity";
-
 import {
    fetchGetCvActivitys,
    fetchPostAddCvOneActivitys,
    fetchDeleteActivitys,
    fetchUpdateActivitys,
+   fetchPostUpdatePositionActivitys
 } from "../../../controllers/activitys";
-
 import {
    fetchGetCities,
    fetchGetCountrys,
 } from '../../../controllers/dependencies';
+
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormActivity = ({
    dispatch,
@@ -74,6 +75,9 @@ const FormActivity = ({
          result.destination.index
       );
 
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionActivitys({ idCv, data: updateArr }));
       dispatch(updatePosition(items));
    }
 
@@ -104,7 +108,7 @@ const FormActivity = ({
    }
 
    const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneActivitys({ idCv }));
+      dispatch(fetchPostAddCvOneActivitys({ idCv, position: newPosition(activityObj) }));
    }
 
    const handleSaveSelectNew = async ({ name, value }) => {

@@ -43,6 +43,9 @@ export const slice = createSlice({
     updatePosition(state, action) {
       state.interhipObj = action.payload;
     },
+    cleanSlise(state, action) {
+      state.interhipObj = initialState.interhipObj;
+    },
   },
   extraReducers: {
     // delete 
@@ -75,7 +78,8 @@ export const {
   updateItemFieldIntership,
   updateItemFieldIntershipDate,
   updateItemFieldIntershipNew,
-  updatePosition
+  updatePosition,
+  cleanSlise,
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -15,7 +15,8 @@ import { LoadBlock } from "../../../components/loadBlock";
 import { ActiveItemSkillsAndStarts } from "./ActiveItemSkillsAndStarts";
 
 import { isLoader } from "../../../helpers/loadings"
-import { reorderUpdateItem } from '../../../helpers/drageDrop';
+import { reorder } from '../../../helpers/drageDrop';
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 import { fetchGetSkillsPosition } from "../../../controllers/dependencies";
 import {
@@ -28,9 +29,9 @@ import {
    fetchPostAddSkillone,
    fetchPostUpdateSkillone,
    fetchPostDeleteSkillOne,
-   fetchGetSkillslistAll
+   fetchGetSkillslistAll,
+   fetchPostUpdatePositionSkills
 } from "../../../controllers/skills";
-
 
 const FormSkill = ({
    dispatch,
@@ -77,7 +78,7 @@ const FormSkill = ({
    }
 
    const handleAddItemSkillOne = async (idSkill, text) => {
-      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 4, skill_id: idSkill, position: skillsObj.skillsListAll.length + 1 } }));
+      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 4, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
    }
 
    const handleUpdateItemSkillOne = async (id, data) => {
@@ -100,27 +101,16 @@ const FormSkill = ({
          return;
       }
 
-      const { items, idUpdate } = reorderUpdateItem(
+      const data = reorder(
          skillsObj.skillsListAll,
          result.source.index,
          result.destination.index
       );
 
-      let objOut = null;
+      let updateArr = arrPositionUpdateItem(data);
 
-      console.log(items);
-
-      for (let i = 0; i < items.length; i++) {
-         if (items[i].id == idUpdate) {
-            objOut = { ...items[i] }
-            objOut.position = (items.length - i);
-            break;
-         }
-      }
-
-      handleUpdateItemSkillOne(objOut.id, objOut);
-
-      dispatch(updatePosition(items));
+      dispatch(fetchPostUpdatePositionSkills({ idCv, data: updateArr }));
+      dispatch(updatePosition(updateArr));
    }
 
    React.useEffect(() => {

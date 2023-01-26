@@ -25,4 +25,7 @@ export default class ClientsAPI extends Base {
     updateExperienceLevel(id, data, type = "formData") {
         return this.apiClient.post(`cv/skills/hide_experience_level/${id}`, data, type);
     }
+    updatePosition(data) {
+        return this.apiClient.post(`cv/skills/position/update`, data);
+    }
 }

@@ -20,9 +20,11 @@ import {
 import {
    fetchPostAddCvHobie,
    fetchDeleteHobie,
-   fetchGetCvHobie
+   fetchGetCvHobie,
+   fetchPostUpdatePositionHobie
 } from "../../../controllers/hobies";
 
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormHobies = ({
    dispatch,
@@ -53,7 +55,7 @@ const FormHobies = ({
       dispatch(updateItemHobiesFiledNew({ name, value }));
 
       if (isClisk) {
-         dispatch(fetchPostAddCvHobie({ idCv, data: { [name]: value, id: data.id } }));
+         dispatch(fetchPostAddCvHobie({ idCv, data: { [name]: value, id: data.id, position: newPosition(hobiesObj) } }));
          dispatch(updateItemHobiesFiledNew({ name, value: '' }));
       }
    }
@@ -73,6 +75,9 @@ const FormHobies = ({
          result.destination.index
       );
 
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionHobie({ idCv, data: updateArr }));
       dispatch(updatePosition(items));
    }
 

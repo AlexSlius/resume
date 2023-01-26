@@ -26,6 +26,9 @@ export const slice = createSlice({
     updatePosition(state, action) {
       state.hobiesObj = action.payload;
     },
+    cleanSlise(state, action) {
+      state.hobiesObj = initialState.hobiesObj;
+    },
   },
   extraReducers: {
     // get list skills all
@@ -41,7 +44,8 @@ export const slice = createSlice({
 
 export const {
   updateItemHobiesFiledNew,
-  updatePosition
+  updatePosition,
+  cleanSlise,
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -29,7 +29,9 @@ import {
    fetchPostAddCvOneCourses,
    fetchDeleteCourses,
    fetchUpdateCourses,
+   fetchPostUpdatePositionCourses
 } from "../../../controllers/courses";
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormCourse = ({
    dispatch,
@@ -63,7 +65,11 @@ const FormCourse = ({
          result.destination.index
       );
 
-      dispatch(updatePosition(items));
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionCourses({ idCv, data: updateArr }));
+
+      dispatch(updatePosition(updateArr));
    }
 
    const handleUpdateServer = async (index) => {
@@ -96,7 +102,7 @@ const FormCourse = ({
    }
 
    const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneCourses({ idCv }));
+      dispatch(fetchPostAddCvOneCourses({ idCv, position: newPosition(courseObj) }));
    }
 
    React.useEffect(() => {

@@ -26,6 +26,9 @@ export const slice = createSlice({
       let { index, name, value } = action.payload;
       state.languageObj[index][name] = value;
     },
+    cleanSlise(state, action) {
+      state.languageObj = initialState.languageObj;
+    },
   },
   extraReducers: {
     // delete 
@@ -53,6 +56,9 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemLanguageFiled } = slice.actions;
+export const {
+   updateItemLanguageFiled,
+   cleanSlise,
+ } = slice.actions;
 
 export const { reducer } = slice;

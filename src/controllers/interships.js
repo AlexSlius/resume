@@ -9,10 +9,16 @@ export const fetchGetCvInternships = createAsyncThunk('interhip/fetchGetCvIntern
     return response;
 });
 
-export const fetchPostAddCvOneInternships = createAsyncThunk('interhip/fetchPostAddCvOneInternships', async ({ idCv }, thunkAPI) => {
+export const fetchPostUpdatePositionInternships = createAsyncThunk('countrus/fetchPostUpdatePositionInternships', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.internships.updatePosition(data);
+    await thunkAPI.dispatch(fetchGetCvInternships({ idCv }));
+    return response;
+});
+
+export const fetchPostAddCvOneInternships = createAsyncThunk('interhip/fetchPostAddCvOneInternships', async ({ idCv, position }, thunkAPI) => {
     const { interships: { objNew } } = thunkAPI.getState();
 
-    const response = await api.internships.addInternshipsItem(idCv, objNew);
+    const response = await api.internships.addInternshipsItem(idCv, { ...objNew, position });
     await thunkAPI.dispatch(fetchGetCvInternships({ idCv }));
     return response;
 });

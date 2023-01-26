@@ -34,6 +34,9 @@ export const slice = createSlice({
     updatePosition(state, action) {
       state.referencesObj = action.payload;
     },
+    cleanSlise(state, action) {
+      state.referencesObj = initialState.referencesObj;
+    },
   },
   extraReducers: {
     // delete 
@@ -65,7 +68,8 @@ export const slice = createSlice({
 export const {
   updateItemFieldReference,
   updateItemFieldReferenceNew,
-  updatePosition
+  updatePosition,
+  cleanSlise
 } = slice.actions;
 
 export const { reducer } = slice;

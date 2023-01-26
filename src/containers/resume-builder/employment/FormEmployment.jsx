@@ -9,8 +9,9 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
-import { reorder } from '../../../helpers/drageDrop';
-import { LoadWr } from "../../../components/loadWr"
+import { LoadWr } from "../../../components/loadWr";
+import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
+import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
   getJopsTitle,
@@ -30,9 +31,9 @@ import {
 } from '../../../slices/employment';
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { reorder } from '../../../helpers/drageDrop';
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isLoader } from "../../../helpers/loadings"
-import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
-import { ButtonSteps } from "../../../components/buttonSteps"
 import { formatDate } from "../../../utils";
 
 import {
@@ -40,7 +41,9 @@ import {
   fetchDeleteEmployment,
   fetchUpdateEmployment,
   fetchGetCvEmployments,
+  fetchPostUpdatePositionEmployment,
 } from "../../../controllers/employments";
+
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
   ssr: false
@@ -84,7 +87,10 @@ const FormEmployment = ({
       result.destination.index
     );
 
-    dispatch(updatePosition(items));
+    let updateArr = arrPositionUpdateItem(items);
+
+    dispatch(fetchPostUpdatePositionEmployment({ idCv, data: updateArr }));
+    dispatch(updatePosition(updateArr));
   }
 
   const handleSaveSelect = async ({ index, name, value }, data) => {
@@ -131,7 +137,7 @@ const FormEmployment = ({
   }
 
   const handleAddone = () => {
-    dispatch(fetchPostAddCvOneEmployment({ idCv }));
+    dispatch(fetchPostAddCvOneEmployment({ idCv, position: newPosition(employmentObj) }));
   }
 
   const handleDeleteOne = (id) => {

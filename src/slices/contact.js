@@ -40,7 +40,10 @@ export const slice = createSlice({
     },
     updatePictureContact(state, action) {
       state.contactObj.picture = action.payload;
-    }
+    },
+    cleanSlise(state, action) {
+      state.contactObj = initialState.contactObj;
+    },
   },
   extraReducers: {
     // get
@@ -69,6 +72,10 @@ export const slice = createSlice({
   }
 });
 
-export const { updateItemFieldContact, updatePictureContact } = slice.actions;
+export const {
+  updateItemFieldContact,
+  updatePictureContact,
+  cleanSlise,
+} = slice.actions;
 
 export const { reducer } = slice;

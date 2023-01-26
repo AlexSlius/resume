@@ -9,10 +9,16 @@ export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducat
     return response;
 });
 
-export const fetchPostAddCvOneEducation = createAsyncThunk('education/fetchPostAddCvOneEducation', async ({ idCv }, thunkAPI) => {
+export const fetchPostUpdatePositionEducations = createAsyncThunk('countrus/fetchPostUpdatePositionEducations', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.educations.updatePosition(data);
+    await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
+    return response;
+});
+
+export const fetchPostAddCvOneEducation = createAsyncThunk('education/fetchPostAddCvOneEducation', async ({ idCv, position }, thunkAPI) => {
     const { educations: { objNew } } = thunkAPI.getState();
 
-    const response = await api.educations.addEducationItem(idCv, objNew);
+    const response = await api.educations.addEducationItem(idCv, { ...objNew, position });
     await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
     return response;
 });

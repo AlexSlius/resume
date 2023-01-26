@@ -9,10 +9,16 @@ export const fetchGetCvReferences = createAsyncThunk('interhip/fetchGetCvReferen
     return response;
 });
 
-export const fetchPostAddCvOneReferences = createAsyncThunk('interhip/fetchPostAddCvOneReferences', async ({ idCv }, thunkAPI) => {
+export const fetchPostAddCvOneReferences = createAsyncThunk('interhip/fetchPostAddCvOneReferences', async ({ idCv, position }, thunkAPI) => {
     const { references: { objNew } } = thunkAPI.getState();
 
-    const response = await api.references.addReferencesItem(idCv, objNew);
+    const response = await api.references.addReferencesItem(idCv, { ...objNew, position });
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    return response;
+});
+
+export const fetchPostUpdatePositionReferences = createAsyncThunk('countrus/fetchPostUpdatePositionReferences', async ({ idCv, data }, thunkAPI) => {
+    const response = await api.references.updatePosition(data);
     await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
     return response;
 });

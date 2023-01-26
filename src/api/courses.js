@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     updateCoursesItem(id, data, type = "formData") {
         return this.apiClient.post(`cv/courses/update/${id}`, data, type);
     }
+    updatePosition(data) {
+        return this.apiClient.post(`cv/courses/position/update`, data);
+    }
 }

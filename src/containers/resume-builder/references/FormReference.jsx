@@ -28,13 +28,15 @@ import {
    fetchGetCvReferences,
    fetchPostAddCvOneReferences,
    fetchDeleteReferences,
-   fetchUpdateReferences
+   fetchUpdateReferences,
+   fetchPostUpdatePositionReferences
 } from "../../../controllers/references";
 
 import {
    getCompanyList,
    addCompany
 } from '../../../controllers/dependencies';
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormReference = ({
    dispatch,
@@ -70,7 +72,11 @@ const FormReference = ({
          result.destination.index
       );
 
-      dispatch(updatePosition(items));
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionReferences({ idCv, data: updateArr }));
+
+      dispatch(updatePosition(updateArr));
    }
 
    const handleUpdateServer = async (index) => {
@@ -98,7 +104,7 @@ const FormReference = ({
    }
 
    const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneReferences({ idCv }));
+      dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
    }
 
    const handleServerRequestCompanyList = async (text) => {

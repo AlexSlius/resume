@@ -29,13 +29,15 @@ import {
    fetchGetCvInternships,
    fetchPostAddCvOneInternships,
    fetchDeleteInternships,
-   fetchUpdateInternships
+   fetchUpdateInternships,
+   fetchPostUpdatePositionInternships,
 } from "../../../controllers/interships";
 
 import {
    fetchGetCities,
    fetchGetCountrys,
 } from '../../../controllers/dependencies';
+import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormInterShip = ({
    dispatch,
@@ -73,7 +75,11 @@ const FormInterShip = ({
          result.destination.index
       );
 
-      dispatch(updatePosition(items));
+      let updateArr = arrPositionUpdateItem(items);
+
+      dispatch(fetchPostUpdatePositionInternships({ idCv, data: updateArr }));
+
+      dispatch(updatePosition(updateArr));
    }
 
    const handleUpdateServer = async (index) => {
@@ -106,7 +112,7 @@ const FormInterShip = ({
    }
 
    const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneInternships({ idCv }));
+      dispatch(fetchPostAddCvOneInternships({ idCv, position: newPosition(interhipObj) }));
    }
 
    const handleServerRequestCity = async (value, nameCountry) => {
