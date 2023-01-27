@@ -14,6 +14,7 @@ import languagesApi from "./languages";
 import certificatiesApi from "./certificaties";
 import referencesApi from './references';
 import resumesApi from './resumes';
+import userApi from './users';
 
 export default function apiConstruct({
   apiUrl,
@@ -45,5 +46,6 @@ export default function apiConstruct({
     certificates: new certificatiesApi({ apiClient }),
     references: new referencesApi({ apiClient }),
     resumes: new resumesApi({ apiClient }),
+    users: new userApi({ apiClient }),
   };
 }

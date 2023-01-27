@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import React from "react";
 import { getAllResumeBuildre } from "./controllers/getAllResumeBuilder";
+import { fetchUserGetAvatar } from "./controllers/users";
 
 import { localStorageGet } from "./helpers/localStorage";
 
@@ -46,6 +47,10 @@ const App = ({
             }
         }
     }, [router.asPath]);
+
+    useEffect(() => {
+        store.dispatch(fetchUserGetAvatar());
+    }, []);
 
     return (children)
 }

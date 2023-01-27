@@ -8,8 +8,34 @@
 
 .row_card {
     display: grid;
-    padding-bottom: 44px;
     grid-gap: 45px;
     grid-template-columns:
         minmax(230px, max-content) repeat(auto-fill, 230px) 20%;
+}
+
+.wr_settings {
+    max-width: 830px;
+}
+
+.text_info {
+    font-size: 14px;
+    color: #838799;
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+.item_par {
+    &>div {
+        color: #01153A;
+    }
+
+    &>p {
+        margin: 4px 0 0 0;
+        color: #838799;
+        font-size: 14px;
+    }
+}
+
+.info_text {
+    color: #838799;
 }

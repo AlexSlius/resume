@@ -87,7 +87,8 @@ const FormContact = () => {
 
       if (e.target.files[0]) {
          reader.readAsDataURL(e.target.files[0]);
-         setPictureFile(e.target.files[0]);
+         await setPictureFile(e.target.files[0]);
+         await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
       }
    }
 
@@ -141,7 +142,7 @@ const FormContact = () => {
          }
 
          refIdTimeout.current = setTimeout(async () => {
-            await dispatch(fetchUpdateContact({ idCv, pictureFile }));
+            await dispatch(fetchUpdateContact({ idCv, dataImage: pictureFile }));
             clearTimeout(refIdTimeout.current);
          }, 1000);
       }

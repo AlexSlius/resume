@@ -885,3 +885,31 @@ button {
 .row-main {
     flex-wrap: nowrap;
 }
+
+.bt {
+    border-top: 1px solid #F6F8FA;
+}
+
+.bb {
+    border-bottom: 1px solid #F6F8FA;
+}
+
+.btn-red {
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    transition: 0.4s !important;
+    background: transparent;
+    border: 1px solid #F63B3B !important;
+    color: #F63B3B;
+    font-size: 18px;
+
+    &:hover {
+        color: #fff;
+        background: #F63B3B;
+    }
+
+    &.min-220 {
+        min-width: 220px;
+    }
+}

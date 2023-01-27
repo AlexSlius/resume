@@ -9,6 +9,7 @@ import { logout } from '../../controllers/auth'
 import style from './HeadUser.module.scss'
 import arrowProfileIcon from '/public/images/icons/arrow-profile.svg?sprite'
 import iconDashboard from '/public/images/icons/icon-dashboard.svg?sprite'
+import iconSettings from '/public/images/icons/icon_settings.svg?sprite'
 import iconHelp from '/public/images/icons/icon-he.svg?sprite'
 import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
 
@@ -25,9 +26,9 @@ const HeadUser = () => {
             isAthorized,
          }
       },
-      contacts: {
-         contactObj
-      },
+      users: {
+         avatar
+      }
    } = useSelector((state) => state);
 
    const handleOnClickOpen = () => {
@@ -54,7 +55,7 @@ const HeadUser = () => {
       <div className={`${style.users_head}`}>
          <div className={`${style.users_head__profile} ${classIsShowMenu} btn_no_click_menu`}>
             <div className={`${style.users_head__avatar_img} `} onClick={handleOnClickOpen}>
-               <img src={contactObj?.picture || `/images/other/avatar-small.png`} />
+               <img src={avatar?.image || `/images/other/avatar-small.png`} />
             </div>
             {
                isAthorized && (
@@ -70,6 +71,12 @@ const HeadUser = () => {
                                  <Link href={`/${routersPages['dashboard']}`}>
                                     <Icon svg={iconDashboard} />
                                     <span>Dashboard</span>
+                                 </Link>
+                              </li>
+                              <li>
+                                 <Link href={`/${routersPages['settings']}`}>
+                                    <Icon svg={iconSettings} />
+                                    <span>Settings</span>
                                  </Link>
                               </li>
                               <li>

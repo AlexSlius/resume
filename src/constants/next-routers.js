@@ -83,6 +83,7 @@ export const routersPages = {
     'checEmail': 'check-your-email',
     'newPassword': 'new-password',
     'dashboard': `dashboard?tab=${tabsDashboardPage['resumes'].link}`,
+    'settings': 'settings',
     'help': 'help',
     'resumeBuilder': 'resume-builder',
 }
