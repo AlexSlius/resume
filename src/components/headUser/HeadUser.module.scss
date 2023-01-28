@@ -133,6 +133,7 @@
             width: 20px;
             height: 20px;
             min-width: 20px;
+            fill: #3679FD;
          }
 
          &:hover {
@@ -157,5 +158,16 @@
       top: calc(100% + 10px);
       opacity: 1;
       visibility: visible;
+   }
+}
+
+.link {
+   &.disabled {
+      pointer-events: none;
+      color: #01153A;
+
+      svg {
+         fill: #01153A;
+      }
    }
 }

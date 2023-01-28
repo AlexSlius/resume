@@ -13,12 +13,12 @@ import {
     localStorageRemove
 } from '../helpers/localStorage';
 
-export const logout = (dispatch) => {
-    cookieDestroy({ key: 'token' });
-    localStorageRemove('session_id');
-    localStorageRemove('idCv');
-    dispatch(setLogout());
-    Router.push('/');
+export const logout = async (dispatch) => {
+    await cookieDestroy({ key: 'token' });
+    await localStorageRemove('session_id');
+    await localStorageRemove('idCv');
+    await dispatch(setLogout());
+    await Router.push('/');
 }
 
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {

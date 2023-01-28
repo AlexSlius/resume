@@ -20,6 +20,11 @@ const App = ({
     const useStatusGet = React.useRef(true);
     const idCv = localStorageGet('idCv');
     const router = useRouter();
+    const {
+        auth: {
+            autorizate
+        }
+    } = store.getState();
     // const windowSize = useWindowSize();
 
     // const { theme } = state;
@@ -49,7 +54,8 @@ const App = ({
     }, [router.asPath]);
 
     useEffect(() => {
-        store.dispatch(fetchUserGetAvatar());
+        if (autorizate?.isAthorized)
+            store.dispatch(fetchUserGetAvatar());
     }, []);
 
     return (children)

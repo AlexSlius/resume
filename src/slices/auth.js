@@ -2,7 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
-import { fetchAuthLogin, fetchAuthRegister, fetchAuthResetPassword, fetchAuthCodeResetPassword, fetchAuthNewPassword } from '../controllers/auth'
+import {
+    fetchAuthLogin,
+    fetchAuthRegister,
+    fetchAuthResetPassword,
+    fetchAuthCodeResetPassword,
+    fetchAuthNewPassword
+} from '../controllers/auth'
 
 const initialState = {
     autorizate: {

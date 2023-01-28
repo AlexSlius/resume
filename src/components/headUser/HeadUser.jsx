@@ -57,48 +57,44 @@ const HeadUser = () => {
             <div className={`${style.users_head__avatar_img} `} onClick={handleOnClickOpen}>
                <img src={avatar?.image || `/images/other/avatar-small.png`} />
             </div>
-            {
-               isAthorized && (
-                  <>
-                     <button className={`${style.users_head__profile_arrow}`} onClick={handleOnClickOpen}>
-                        <Icon svg={arrowProfileIcon} classNames={[style.icon]} />
-                     </button>
+            <>
+               <button className={`${style.users_head__profile_arrow}`} onClick={handleOnClickOpen}>
+                  <Icon svg={arrowProfileIcon} classNames={[style.icon]} />
+               </button>
 
-                     <div className={`${style.mod}`}>
-                        <div className={`${style.mod_wr}`}>
-                           <ul className={`${style.mod_m_list}`}>
-                              <li>
-                                 <Link href={`/${routersPages['dashboard']}`}>
-                                    <Icon svg={iconDashboard} />
-                                    <span>Dashboard</span>
-                                 </Link>
-                              </li>
-                              <li>
-                                 <Link href={`/${routersPages['settings']}`}>
-                                    <Icon svg={iconSettings} />
-                                    <span>Settings</span>
-                                 </Link>
-                              </li>
-                              <li>
-                                 <Link href={`/${routersPages['help']}`}>
-                                    <Icon svg={iconHelp} />
-                                    <span>Help</span>
-                                 </Link>
-                              </li>
-                              <li>
-                                 <button onClick={() => logout(dispatch)}>
-                                    <Icon svg={iconLogout} />
-                                    <span>Logout</span>
-                                 </button>
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
-                  </>
-               )
-            }
+               <div className={`${style.mod}`}>
+                  <div className={`${style.mod_wr}`}>
+                     <ul className={`${style.mod_m_list}`}>
+                        <li>
+                           <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                              <Icon svg={iconDashboard} />
+                              <span>Dashboard</span>
+                           </Link>
+                        </li>
+                        <li>
+                           <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                              <Icon svg={iconSettings} />
+                              <span>Settings</span>
+                           </Link>
+                        </li>
+                        <li>
+                           <Link href={`/${routersPages['help']}`} className={style.link}>
+                              <Icon svg={iconHelp} />
+                              <span>Help</span>
+                           </Link>
+                        </li>
+                        <li>
+                           <button onClick={() => logout(dispatch)} className={style.link}>
+                              <Icon svg={iconLogout} />
+                              <span>Logout</span>
+                           </button>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </>
          </div>
-      </div>
+      </div >
    )
 }
 export default HeadUser;

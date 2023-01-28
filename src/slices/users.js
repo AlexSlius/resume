@@ -3,12 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
-    fetchUserGetAvatar
+    fetchUserGetAvatar,
+    fetchUserDeleteProfile
 } from "../controllers/users";
 
 const initialState = {
     avatar: null,
     status: statusLoaded,
+    statusDelete: statusLoaded,
 };
 
 export const slice = createSlice({
@@ -23,6 +25,13 @@ export const slice = createSlice({
         [fetchUserGetAvatar.fulfilled]: (state, action) => {
             state.status = statusLoaded;
             state.avatar = action.payload;
+        },
+        // delete profile
+        [fetchUserDeleteProfile.pending]: (state, action) => {
+            state.statusDelete = statusLoader;
+        },
+        [fetchUserDeleteProfile.fulfilled]: (state, action) => {
+            state.statusDelete = statusLoaded;
         },
     }
 });

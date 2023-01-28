@@ -39,3 +39,27 @@
 .info_text {
     color: #838799;
 }
+
+.item_s {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F6F8FA;
+    border-radius: 12px;
+    padding: 20px;
+
+    &_left {
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+        color: #01153A;
+
+        img {
+            max-width: 20px;
+            min-width: 20px;
+            margin-right: 18px;
+        }
+    }
+
+    &_right {}
+}

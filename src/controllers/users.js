@@ -6,3 +6,10 @@ export const fetchUserGetAvatar = createAsyncThunk('users/fetchUserGetAvatar', a
     const response = await api.users.getUserAvatar();
     return response;
 });
+
+export const fetchUserDeleteProfile = createAsyncThunk('users/fetchUserDeleteProfile', async (_, thunkAPI) => {
+    const response = await api.users.deleteUserProgile();
+    return response;
+});
+
+

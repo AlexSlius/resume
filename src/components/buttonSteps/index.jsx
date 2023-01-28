@@ -50,6 +50,7 @@ export const ButtonSteps = ({
     loadBtnPrev = false,
     isFirstStep = false,
     isLastStep = false,
+    isFinish = true,
     textBtnNext = "Continue",
     textBtnPrev = "Skip this step",
     isAthorized = false,
@@ -57,6 +58,7 @@ export const ButtonSteps = ({
     onHandleBtnNext = () => { },
     onHandleBtnPrev = () => { },
     onHandleNew = () => { },
+    clickFinish = () => { },
 }) => {
     const clickNext = () => {
         if (isNew) {
@@ -87,25 +89,38 @@ export const ButtonSteps = ({
     return (
         <div className={`${style.wr}`}>
             <div className={`${style.row}`}>
+
                 {
-                    !isFirstStep && (
-                        <div>
-                            <LoadChildrenBtn isLoad={isLoader(loadBtnPrev)}>
-                                <CButton type="button" className={`${style.btn} ${style.btn_prev}`} onClick={clickPrev}>{textBtnPrev}</CButton>
-                            </LoadChildrenBtn>
-                        </div>
-                    )
-                }
-                {
-                    !isLastStep && (
+                    isFinish ? (
                         <div>
                             <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
-                                <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickNext} >{textBtnNext}</CButton>
+                                <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
                             </LoadChildrenBtn>
                         </div>
+                    ) : (
+                        <>
+                            {
+                                !isFirstStep && (
+                                    <div>
+                                        <LoadChildrenBtn isLoad={isLoader(loadBtnPrev)}>
+                                            <CButton type="button" className={`${style.btn} ${style.btn_prev}`} onClick={clickPrev}>{textBtnPrev}</CButton>
+                                        </LoadChildrenBtn>
+                                    </div>
+                                )
+                            }
+                            {
+                                !isLastStep && (
+                                    <div>
+                                        <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
+                                            <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickNext} >{textBtnNext}</CButton>
+                                        </LoadChildrenBtn>
+                                    </div>
+                                )
+                            }
+                        </>
                     )
                 }
             </div>
-        </div>
+        </div >
     )
 }

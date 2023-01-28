@@ -27,3 +27,10 @@ export const isUpdate = (obj) => {
 
     return obj?.data == "updated";
 }
+
+export const isDelete = (obj) => {
+    if (!isObject(obj))
+        return false;
+
+    return obj?.data == "delete";
+}

@@ -913,3 +913,27 @@ button {
         min-width: 220px;
     }
 }
+
+.btn-text-b {
+    color: #3679FD;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.btn-pl {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    transition: 0.4s;
+    border-radius: 4px;
+
+    svg {
+        width: inherit;
+        height: inherit;
+        transition: inherit;
+    }
+
+    &:hover {
+        background: #3679FD;
+    }
+}
