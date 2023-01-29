@@ -5,6 +5,7 @@ import {
 } from "@coreui/react";
 import React from "react";
 import { isArray } from "lodash";
+import Router from "next/router";
 
 import Input from "../../../components/uis/input"
 import { LoadWr } from "../../../components/loadWr";
@@ -23,6 +24,10 @@ import {
    fetchUpdateCertificates,
    fetchGetCvCertificates,
 } from "../../../controllers/certificaties";
+
+import {
+   routersPages
+} from "../../../constants/next-routers";
 
 const FormCertificaties = ({
    dispatch,
@@ -61,6 +66,10 @@ const FormCertificaties = ({
    const addNewOne = async () => {
       await dispatch(fetchPostAddCvOneCertificates({ idCv }));
       await updateitemFiledNew({ name: "name", value: '' });
+   }
+
+   const clickFinish = () => {
+      Router.push(`/${routersPages['dashboard']}`);
    }
 
    React.useEffect(() => {
@@ -104,7 +113,7 @@ const FormCertificaties = ({
          </LoadWr>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps isLastStep={true} isAthorized={isAthorized} />
+               <ButtonSteps isLastStep={true} clickFinish={clickFinish} isAthorized={isAthorized} />
             </CCol>
          </CRow>
       </>

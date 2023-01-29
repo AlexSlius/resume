@@ -21,11 +21,11 @@ export const isExist = (obj) => {
     return obj?.success == "exist";
 }
 
-export const isUpdate = (obj) => {
+export const isUpdate = (obj, text="updated") => {
     if (!isObject(obj))
         return false;
 
-    return obj?.data == "updated";
+    return obj?.data == text;
 }
 
 export const isDelete = (obj) => {

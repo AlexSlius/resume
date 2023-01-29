@@ -5,7 +5,7 @@ import api from "../apiSingleton";
 import { cookieDestroy, cookieSet } from '../helpers/nookies';
 import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
-import { routersPages, routerLinksAsideMenu } from '../constants/next-routers';
+import { routersPages } from '../constants/next-routers';
 import { setLogout } from '../slices/auth';
 import {
     localStorageSet,
@@ -32,7 +32,8 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     return response;
 })
 
-export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (data) => {
+export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (data, thunkAPI) => {
+    const { menuAsideResume } = thunkAPI.getState();
     const response = await api.auth.register(data);
 
     if (response?.token) {
@@ -44,7 +45,7 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (d
         if (!!nextRouterPage) {
             Router.push(nextRouterPage);
         } else {
-            Router.push(`${routerLinksAsideMenu[0].link}`);
+            Router.push(`${menuAsideResume?.list[0].link}`);
         }
     }
 

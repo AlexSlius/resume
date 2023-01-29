@@ -10,6 +10,8 @@ import { cleanSlise as cleanSliseIntersnhips } from "./intersnhips"
 import { cleanSlise as cleanSliseLanguages } from "./languages"
 import { cleanSlise as cleanSliseReference } from "./reference"
 import { cleanSlise as cleanSliseCertificaties } from "./certificaties"
+import { cleanSlise as cleanSliseAddSection } from "./addSection";
+import { cleanSlise as cleanSliseMenuAsideResume } from "./menuAsideResume";
 
 export const cleanResumeSlices = async (dispatch) => {
     await dispatch(cleanSliseContact());
@@ -24,4 +26,6 @@ export const cleanResumeSlices = async (dispatch) => {
     await dispatch(cleanSliseLanguages());
     await dispatch(cleanSliseReference());
     await dispatch(cleanSliseCertificaties());
+    await dispatch(cleanSliseAddSection());
+    await dispatch(cleanSliseMenuAsideResume());
 }

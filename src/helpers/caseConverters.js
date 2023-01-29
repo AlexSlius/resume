@@ -7,3 +7,8 @@ export const snakeToCamel = (object) => {
 export const camelToSnake = (object) => {
     return mapKeys(object, (value, key) => snakeCase(key));
 };
+
+export const camelCaseStrind = (str) => {
+    return camelCase(str);
+}
+

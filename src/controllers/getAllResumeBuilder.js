@@ -12,19 +12,19 @@ import { fetchGetCvReferences } from "./references"
 import { fetchGetCvCertificates } from "./certificaties"
 import { fetchGetCategoryStatus } from "./addSections"
 
-export const getAllResumeBuildre = async ({ store, idCv }) => {
-    await store.dispatch(getBasicContact(idCv));
-    await store.dispatch(fetchGetCategoryStatus({ idCv }));
-    await store.dispatch(fetchGetCvEmployments({ idCv }));
-    await store.dispatch(fetchGetCvEducations({ idCv }));
-    await store.dispatch(fetchGetSkillslistAll(idCv));
-    await store.dispatch(fetchGetExperienceLevel({ idCv }));
-    await store.dispatch(fetchGetAllLinks({ idCv }));
-    await store.dispatch(fetchGetCvHobie({ idCv }));
-    await store.dispatch(fetchGetCvActivitys({ idCv }));
-    await store.dispatch(fetchGetCvCourses({ idCv }));
-    await store.dispatch(fetchGetCvInternships({ idCv }));
-    await store.dispatch(fetchGetCvLanguages({ idCv }));
-    await store.dispatch(fetchGetCvReferences({ idCv }));
-    await store.dispatch(fetchGetCvCertificates({ idCv }));
+export const getAllResumeBuildre = async ({ dispatch, idCv }) => {
+    dispatch(getBasicContact(idCv));
+    dispatch(fetchGetCategoryStatus({ idCv }));
+    dispatch(fetchGetCvEmployments({ idCv }));
+    dispatch(fetchGetCvEducations({ idCv }));
+    dispatch(fetchGetSkillslistAll(idCv));
+    dispatch(fetchGetExperienceLevel({ idCv }));
+    dispatch(fetchGetAllLinks({ idCv }));
+    dispatch(fetchGetCvHobie({ idCv }));
+    dispatch(fetchGetCvActivitys({ idCv }));
+    dispatch(fetchGetCvCourses({ idCv }));
+    dispatch(fetchGetCvInternships({ idCv }));
+    dispatch(fetchGetCvLanguages({ idCv }));
+    dispatch(fetchGetCvReferences({ idCv }));
+    dispatch(fetchGetCvCertificates({ idCv }));
 }
