@@ -10,6 +10,7 @@ const Input = ({
    onBlur = () => { },
    onDelete = () => { },
    value,
+   defaultValue,
    label = null,
    placeholder = "",
    type = "text",
@@ -19,6 +20,7 @@ const Input = ({
    name = '',
    obj,
    isDelete = false,
+   disabled = false,
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
 
@@ -29,12 +31,14 @@ const Input = ({
             onBlur={onBlur}
             value={value}
             className={`${className}`}
+            defaultValue={defaultValue}
             type={type}
             floatingLabel={label}
             placeholder={placeholder}
             invalid={!!invalid}
             valid={!!valid}
             name={name}
+            disabled={disabled}
             {...obj}
          />
          {

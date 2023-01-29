@@ -44,36 +44,36 @@ export const routerLinksAsideMenu = [
         link: '/resume-builder/hobies',
         icon: hobbiesIcon
     },
-    {
-        name: 'Extra-curricular activities',
-        link: '/resume-builder/activity',
-        icon: activityIcon
-    },
-    {
-        name: 'Courses',
-        link: '/resume-builder/course',
-        icon: coursesIcon
-    },
-    {
-        name: 'Internship',
-        link: '/resume-builder/intership',
-        icon: internshipIcon
-    },
-    {
-        name: 'Languages',
-        link: '/resume-builder/languages',
-        icon: languagesIcon
-    },
-    {
-        name: 'References',
-        link: '/resume-builder/reference',
-        icon: referencesIcon
-    },
-    {
-        name: 'Certifications',
-        link: '/resume-builder/certificaties',
-        icon: certificationsIcon
-    }
+    // {
+    //     name: 'Extra-curricular activities',
+    //     link: '/resume-builder/activity',
+    //     icon: activityIcon
+    // },
+    // {
+    //     name: 'Courses',
+    //     link: '/resume-builder/course',
+    //     icon: coursesIcon
+    // },
+    // {
+    //     name: 'Internship',
+    //     link: '/resume-builder/intership',
+    //     icon: internshipIcon
+    // },
+    // {
+    //     name: 'Languages',
+    //     link: '/resume-builder/languages',
+    //     icon: languagesIcon
+    // },
+    // {
+    //     name: 'References',
+    //     link: '/resume-builder/reference',
+    //     icon: referencesIcon
+    // },
+    // {
+    //     name: 'Certifications',
+    //     link: '/resume-builder/certificaties',
+    //     icon: certificationsIcon
+    // }
 ];
 
 export const routersPages = {

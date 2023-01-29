@@ -15,6 +15,7 @@ import certificatiesApi from "./certificaties";
 import referencesApi from './references';
 import resumesApi from './resumes';
 import userApi from './users';
+import addSectionApi from "./addSections";
 
 export default function apiConstruct({
   apiUrl,
@@ -47,5 +48,6 @@ export default function apiConstruct({
     references: new referencesApi({ apiClient }),
     resumes: new resumesApi({ apiClient }),
     users: new userApi({ apiClient }),
+    addSection: new addSectionApi({ apiClient }),
   };
 }

@@ -32,8 +32,6 @@ export function formatDate(date) {
 
 export const camelToSnakeCase = str => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
 
-
-
 export function convertDate(date) {
   const dateObj = new Date(date);
   const year = dateObj.getFullYear();
@@ -42,7 +40,6 @@ export function convertDate(date) {
 
   return (day < 10 ? '0' + day : day) + '.' + (month < 10 ? '0' + month : month) + '.' + year;
 }
-
 
 
 export const prewriteList = [

@@ -937,3 +937,7 @@ button {
         background: #3679FD;
     }
 }
+
+.form-control:disabled {
+    background: #fff;
+}

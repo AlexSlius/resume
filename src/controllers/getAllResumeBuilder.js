@@ -8,11 +8,13 @@ import { fetchGetCvActivitys } from "./activitys"
 import { fetchGetCvCourses } from "./courses"
 import { fetchGetCvInternships } from "./interships"
 import { fetchGetCvLanguages } from "./languages"
-import { fetchGetCvReferences } from "./references";
+import { fetchGetCvReferences } from "./references"
 import { fetchGetCvCertificates } from "./certificaties"
+import { fetchGetCategoryStatus } from "./addSections"
 
 export const getAllResumeBuildre = async ({ store, idCv }) => {
     await store.dispatch(getBasicContact(idCv));
+    await store.dispatch(fetchGetCategoryStatus({ idCv }));
     await store.dispatch(fetchGetCvEmployments({ idCv }));
     await store.dispatch(fetchGetCvEducations({ idCv }));
     await store.dispatch(fetchGetSkillslistAll(idCv));

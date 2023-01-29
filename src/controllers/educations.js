@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
 

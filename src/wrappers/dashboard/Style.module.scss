@@ -2,8 +2,31 @@
     display: flex;
     justify-content: flex-end;
     padding: 20px 23px;
+    align-items: center;
 }
 
 .main_content {
     padding-bottom: 44px;
+}
+
+.wr_updat_now {
+    padding-right: 48px;
+}
+
+.link_now {
+    display: flex;
+    align-items: center;
+    color: #01153A;
+    font-weight: 400;
+    transition: 0.3s;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+    }
+
+    &:hover {
+        color: #6DC26C;
+    }
 }
