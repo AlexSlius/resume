@@ -3,34 +3,52 @@ import {
     CRow,
     CCol
 } from "@coreui/react"
-import SideBar from "../../components/sideBar/SideBar"
-
-import HeadUser from "../../components/headUser/HeadUser"
 import Link from "next/link"
+import { useRouter } from 'next/router'
+
+import SideBar from "../../components/sideBar/SideBar"
+import HeadUser from "../../components/headUser/HeadUser"
 import Icon from "../../components/Icon"
+
+import { routersPages } from "../../constants/next-routers";
 
 import style from "./Style.module.scss"
 import iconUpdateNow from "/public/images/icons/upgrade_now.svg?sprite";
+import iconXNow from "/public/images/icons/x_now.svg?sprite"
 
-const AdminPage = ({ children }) => {
+const AdminPage = ({ children, isResume = false }) => {
+    const router = useRouter()
+
     return (
         <CContainer fluid className={`${style.container_admin}`}>
             <CRow className="row-main">
                 <SideBar />
                 <CCol className={`${style.main_content} main-content`}>
                     <div className={`${style.header}`}>
-                        <div className={style.wr_updat_now}>
-                            <Link href="/" className={style.link_now}>
-                                <Icon svg={iconUpdateNow} />
-                                <span>Upgrade now</span>
-                            </Link>
-                        </div>
-                        <HeadUser />
+                        {
+                            isResume ? (
+                                <button className="btn-close-black" onClick={() => router.back()}>
+                                    <Icon svg={iconXNow} />
+                                </button>
+                            ) : (
+                                <>
+                                    <div className={style.wr_updat_now}>
+                                        <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
+                                            <Icon svg={iconUpdateNow} />
+                                            <span>Upgrade now</span>
+                                        </Link>
+                                    </div>
+                                    <HeadUser />
+                                </>
+                            )
+                        }
                     </div>
-                    {children}
+                    <div className={`${style.container_main_cons}`}>
+                        {children}
+                    </div>
                 </CCol>
-            </CRow>
-        </CContainer>
+            </CRow >
+        </CContainer >
     )
 }
 export default AdminPage;

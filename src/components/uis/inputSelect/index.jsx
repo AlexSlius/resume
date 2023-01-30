@@ -242,90 +242,92 @@ export const InputSelect = ({
                     <div ref={refWr} className={`${style.wr}`}>
                         {
                             showList && (
-                                <div className={`${style.wr__list} ${classBgLoad}`}>
-                                    <ul className={`${style.list} scroll-style`}>
-                                        {
-                                            isLoad ? (
-                                                <li className={`${style.list__li_load}`}>
-                                                    <Icon svg={iconPreloader} />
-                                                </li>
-                                            ) : (
-                                                <>
-                                                    {
-                                                        isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
-                                                            <li className={`${style.list__li} ${style.list__li_first}`}>
-                                                                <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
-                                                                <div className={`${style.rig}`}>
-                                                                    <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
-                                                                        <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
-                                                                    </button>
-                                                                </div>
-                                                            </li>
-                                                        )
-                                                    }
-                                                    {
-                                                        isArray(data) ? (
-                                                            !!data.length ? (
-                                                                data.map((item, index) => {
-                                                                    let activeClassItem = '';
-                                                                    let textFirst = '';
-                                                                    let textLast = '';
+                                ((!!data?.length || !!isLoad) || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (
+                                    <div className={`${style.wr__list} ${classBgLoad}`}>
+                                        <ul className={`${style.list} scroll-style`}>
+                                            {
+                                                isLoad ? (
+                                                    <li className={`${style.list__li_load}`}>
+                                                        <Icon svg={iconPreloader} />
+                                                    </li>
+                                                ) : (
+                                                    <>
+                                                        {
+                                                            isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
+                                                                <li className={`${style.list__li} ${style.list__li_first}`}>
+                                                                    <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
+                                                                    <div className={`${style.rig}`}>
+                                                                        <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
+                                                                            <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
+                                                                        </button>
+                                                                    </div>
+                                                                </li>
+                                                            )
+                                                        }
+                                                        {
+                                                            isArray(data) ? (
+                                                                !!data.length ? (
+                                                                    data.map((item, index) => {
+                                                                        let activeClassItem = '';
+                                                                        let textFirst = '';
+                                                                        let textLast = '';
 
-                                                                    if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
-                                                                        activeClassItem = style.active;
-                                                                    }
-
-                                                                    if (isSearch) {
-                                                                        let textOutItem = isString(item[keyName]) &&
-                                                                            item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
-                                                                                valueState[keyText]?.toLowerCase() :
-                                                                                valueState?.toLowerCase(), 0)
-
-                                                                        textOutItem = (textOutItem === 0);
-
-                                                                        if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
-                                                                            return;
-                                                                        } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
-                                                                            textLast = item[keyName];
-                                                                        } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
-                                                                            textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
-                                                                            textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
+                                                                        if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
+                                                                            activeClassItem = style.active;
                                                                         }
-                                                                    } else {
-                                                                        textLast = item[keyName];
-                                                                    }
 
-                                                                    return (
-                                                                        <li key={index} className={`${style.list__li}`}>
-                                                                            <button
-                                                                                className={`${style.button} 
+                                                                        if (isSearch) {
+                                                                            let textOutItem = isString(item[keyName]) &&
+                                                                                item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
+                                                                                    valueState[keyText]?.toLowerCase() :
+                                                                                    valueState?.toLowerCase(), 0)
+
+                                                                            textOutItem = (textOutItem === 0);
+
+                                                                            if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
+                                                                                return;
+                                                                            } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
+                                                                                textLast = item[keyName];
+                                                                            } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
+                                                                                textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
+                                                                                textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
+                                                                            }
+                                                                        } else {
+                                                                            textLast = item[keyName];
+                                                                        }
+
+                                                                        return (
+                                                                            <li key={index} className={`${style.list__li}`}>
+                                                                                <button
+                                                                                    className={`${style.button} 
                                                                         ${activeClassItem}`}
-                                                                                type="button"
-                                                                                onClick={() => handleOnClickSelect(item)}
-                                                                            >
-                                                                                {isFlag && <img src={item[keyIcon]} />}
-                                                                                {!!textFirst && <span>{textFirst}</span>}{textLast}
-                                                                            </button>
-                                                                        </li>
-                                                                    )
-                                                                })
-                                                            ) : (
-                                                                <>
-                                                                    {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
-                                                                </>
+                                                                                    type="button"
+                                                                                    onClick={() => handleOnClickSelect(item)}
+                                                                                >
+                                                                                    {isFlag && <img src={item[keyIcon]} />}
+                                                                                    {!!textFirst && <span>{textFirst}</span>}{textLast}
+                                                                                </button>
+                                                                            </li>
+                                                                        )
+                                                                    })
+                                                                ) : (
+                                                                    <>
+                                                                        {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
+                                                                    </>
+                                                                )
                                                             )
-                                                        )
-                                                            : (
-                                                                <>
-                                                                    {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
-                                                                </>
-                                                            )
-                                                    }
-                                                </>
-                                            )
-                                        }
-                                    </ul>
-                                </div>
+                                                                : (
+                                                                    <>
+                                                                        {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
+                                                                    </>
+                                                                )
+                                                        }
+                                                    </>
+                                                )
+                                            }
+                                        </ul>
+                                    </div>
+                                )
                             )
                         }
                     </div>

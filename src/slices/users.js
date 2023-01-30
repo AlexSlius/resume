@@ -12,7 +12,7 @@ const initialState = {
     objForm: {
         firstName: "",
         lastName: "",
-        email: "",
+        username: "",
         updatesAndOffersNotification: 0,
         resumeAnalyticsNotification: 0,
         resumeAndJobNotification: 0,

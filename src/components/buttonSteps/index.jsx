@@ -19,6 +19,7 @@ export const ButtonSteps = ({
     textBtnPrev = "Skip this step",
     isAthorized = false,
     isNew = false,
+    disabledNext = false,
     onHandleBtnNext = () => { },
     onHandleBtnPrev = () => { },
     onHandleNew = () => { },
@@ -84,7 +85,12 @@ export const ButtonSteps = ({
                                 !(isAll && isLastStep) ? (
                                     <div>
                                         <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
-                                            <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickNext} >{textBtnNext}</CButton>
+                                            <CButton
+                                                type="button"
+                                                className={`${style.btn} ${style.btn_next}`}
+                                                onClick={clickNext}
+                                                disabled={disabledNext}
+                                            >{textBtnNext}</CButton>
                                         </LoadChildrenBtn>
                                     </div>
                                 ) : (

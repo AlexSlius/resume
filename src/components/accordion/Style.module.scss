@@ -1,0 +1,28 @@
+.wr {
+    position: relative;
+}
+
+.accordeon {
+    background: #F6F8FA !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+
+    &:bot(:first-child) {
+        margin-top: 16px;
+    }
+
+    &_title {
+        font-weight: 400;
+        font-size: 18px;
+        color: #01153A;
+    }
+
+    &_text {
+        color: #838799;
+        line-height: 1.4;
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+}

@@ -39,4 +39,5 @@ export const routersPages = {
     'help': 'help',
     'resumeBuilder': 'resume-builder',
     'addSection': 'add_section',
+    'resumeNow': 'resume-now',
 }

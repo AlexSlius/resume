@@ -6,7 +6,6 @@ const Contact = () => {
       <>
          <HeadMainContent
             title={'Contact Section'}
-            description={'This information will be placed at the top of your resume.'}
          />
          <FormContact />
       </>

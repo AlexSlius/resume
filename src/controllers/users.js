@@ -20,6 +20,16 @@ export const fetchUserDeleteProfile = createAsyncThunk('users/fetchUserDeletePro
 
 export const fetchUserUpdateServer = createAsyncThunk('users/fetchUserUpdateServer', async (_, thunkAPI) => {
     const { users: { objForm } } = thunkAPI.getState();
-    const response = await api.users.updateUserProgile(camelToSnake(objForm));
+
+    let newObj = {
+        email: objForm.username || "",
+        firstName: objForm.firstName || "",
+        lastName: objForm.lastName || "",
+        updatesAndOffersNotification: objForm.UpdatesAndOffersNotification ? 1 : 0,
+        resumeAnalyticsNotification: objForm.ResumeAnalyticsNotification ? 1 : 0,
+        resumeAndJobNotification: objForm.ResumeAndJobNotification ? 1 : 0,
+    }
+
+    const response = await api.users.updateUserProgile(camelToSnake(newObj));
     return response;
 });

@@ -95,8 +95,8 @@ const Settings = () => {
                                     <Input
                                         label="E-mail*"
                                         placeholder="E-mail*"
-                                        defaultValue={objForm.email}
-                                        name="email"
+                                        defaultValue={objForm.username}
+                                        name="username"
                                         disabled={true}
                                     />
                                 </div>
@@ -143,8 +143,8 @@ const Settings = () => {
                             </CCol>
                             <CCol xl={6} className="pt-4">
                                 <Switch
-                                    isChecked={objForm.updatesAndOffersNotification}
-                                    handleOnChange={(value) => updateSettingField({ name: 'updatesAndOffersNotification', value })}
+                                    isChecked={objForm.UpdatesAndOffersNotification}
+                                    handleOnChange={(value) => updateSettingField({ name: 'UpdatesAndOffersNotification', value })}
                                 />
                             </CCol>
                             <CCol xl={6} className="pt-4">
@@ -155,8 +155,8 @@ const Settings = () => {
                             </CCol>
                             <CCol xl={6} className="pt-4">
                                 <Switch
-                                    isChecked={objForm.resumeAnalyticsNotification}
-                                    handleOnChange={(value) => updateSettingField({ name: 'resumeAnalyticsNotification', value })}
+                                    isChecked={objForm.ResumeAnalyticsNotification}
+                                    handleOnChange={(value) => updateSettingField({ name: 'ResumeAnalyticsNotification', value })}
                                 />
                             </CCol>
                             <CCol xl={6} className="pt-4">
@@ -167,8 +167,8 @@ const Settings = () => {
                             </CCol>
                             <CCol xl={6} className="pt-4">
                                 <Switch
-                                    isChecked={objForm.resumeAndJobNotification}
-                                    handleOnChange={(value) => updateSettingField({ name: 'resumeAndJobNotification', value })}
+                                    isChecked={objForm.ResumeAndJobNotification}
+                                    handleOnChange={(value) => updateSettingField({ name: 'ResumeAndJobNotification', value })}
                                 />
                             </CCol>
                         </CRow>

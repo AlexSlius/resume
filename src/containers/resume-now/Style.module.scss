@@ -1,0 +1,149 @@
+.wr {
+    margin-top: 40px;
+    max-width: 1320px;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 30px;
+    color: #01153A;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.sub_title {
+    color: #838799;
+    margin: 8px auto 0 auto;
+    max-width: 646px;
+    text-align: center;
+    line-height: 1.4;
+    a {
+        color: #3679FD;
+    }
+}
+
+.items_grid {
+    display: grid;
+    grid-gap: 60px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 60px;
+}
+
+.card {
+    padding: 0 40px 40px;
+    background: #FFFFFF;
+    border: 1px solid #F6F8FA;
+    border-radius: 12px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // &:hover {
+    //     border-color: #3679FD;
+    // }
+
+    &.active {
+        background: rgba(54, 121, 253, 0.02);
+        border: 3px solid #3679FD;
+
+        .head {
+            color: #fff;
+            background: #3679FD;
+        }
+
+        .bnt_now {
+            color: #fff;
+            background: #3679FD;
+        }
+    }
+}
+
+.head {
+    background: #F6F8FA;
+    border-radius: 0px 0px 12px 12px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    color: #838799;
+    padding: 8px 22px;
+
+    &_g {
+        color: #6DC26C;
+    }
+}
+
+.card_top {
+    display: flex;
+    justify-content: center;
+}
+
+.car_center {
+    margin-top: 24px;
+}
+
+.car_price {
+    display: flex;
+    align-items: center;
+    color: #01153A;
+    font-size: 30px;
+    font-weight: 500;
+    justify-content: center;
+
+    span {
+        font-size: 20px;
+        margin-top: -10px;
+        padding-right: 4px;
+        font-weight: 400;
+    }
+}
+
+.car_days {
+    margin-top: 10px;
+    text-align: center;
+    color: #838799;
+    font-weight: 350;
+}
+
+.car_wr_list {
+    margin-top: 22px;
+}
+
+.car_bot {
+    margin-top: 20px;
+}
+
+.cont {
+    margin-top: 80px;
+}
+
+.items_payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #838799;
+
+    span {
+        margin: 0 6px;
+    }
+
+    img {
+        margin: 0 6px;
+    }
+}
+
+.t_w {
+    margin-top: 20px;
+    max-width: 780px;
+}
+
+.m_t_f {
+    margin-top: 86px;
+}
+
+.wr_accar {
+    margin: 60px auto 0 auto;
+    max-width: 830px;
+}

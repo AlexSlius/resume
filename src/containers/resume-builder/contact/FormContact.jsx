@@ -190,11 +190,12 @@ const FormContact = () => {
                <CCol xs={6} className="gap-3">
                   <div className="mb-3">
                      <Input
-                        label="First Name"
-                        placeholder="First Name"
+                        label="First Name*"
+                        placeholder="First Name*"
                         value={contactObj.firstName}
                         obj={
                            register("firstName", {
+                              required: true,
                               minLength: {
                                  value: 2
                               }
@@ -204,11 +205,12 @@ const FormContact = () => {
                   </div>
                   <div>
                      <Input
-                        label="Last Name"
-                        placeholder="Last Name"
+                        label="Last Name*"
+                        placeholder="Last Name*"
                         value={contactObj.lastName}
                         obj={
                            register("lastName", {
+                              required: true,
                               minLength: {
                                  value: 2
                               }
@@ -224,14 +226,13 @@ const FormContact = () => {
             <CRow className="g-30 r-gap-30">
                <CCol xs={6}>
                   <Input
-                     label="E-mail*"
-                     placeholder="E-mail*"
+                     label="E-mail"
+                     placeholder="E-mail"
                      value={contactObj.email}
                      invalid={errors?.email}
                      valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
                      obj={
                         register("email", {
-                           required: true,
                            pattern: {
                               value: /\S+@\S+\.\S+/,
                            },
@@ -383,6 +384,7 @@ const FormContact = () => {
                   isAthorized={isAthorized}
                   isFirstStep={true}
                   isNew={!!!idCv && isAthorized}
+                  disabledNext={!contactObj.firstName || !contactObj.lastName}
                />
             </CCol>
          </CForm>

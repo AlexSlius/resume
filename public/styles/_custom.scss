@@ -941,3 +941,87 @@ button {
 .form-control:disabled {
     background: #fff;
 }
+
+.btn-close-black {
+    padding: 5px;
+
+    svg {
+        width: 24px;
+        height: 24px;
+        transition: 0.3s;
+    }
+
+    &:hover {
+        svg {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.bnt-now {
+    border: 1px solid #DADCE3;
+    border-radius: 12px;
+    background: #fff;
+    text-align: center;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transition: 0.4s;
+    color: #01153A;
+    font-size: 18px;
+    font-weight: 400;
+
+    &:hover {
+        background: #3679FD;
+        color: #fff;
+
+    }
+}
+
+.list-check {
+    line-height: 1.4;
+    padding-left: 26px;
+
+    li {
+        list-style-image: url("/images/icons/check.svg");
+
+        &:not(:first-child) {
+            margin-top: 16px;
+        }
+    }
+}
+
+.MuiAccordionSummary-content {
+    margin: 20px 0 !important;
+}
+
+.MuiAccordionDetails-root {
+    padding-top: 0 !important;
+}
+
+.MuiAccordion-root {
+    border: none !important;
+
+    &:not(:first-child) {
+        margin-top: 16px;
+    }
+}
+
+.MuiAccordion-root:before {
+    display: none !important;
+}
+
+.MuiIconButton-label {
+    svg {
+        fill: #838799;
+    }
+}
+
+.Mui-expanded {
+    .MuiIconButton-label {
+        svg {
+            fill: #3679FD;
+        }
+    }
+}
