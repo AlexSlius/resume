@@ -21,34 +21,42 @@ const Input = ({
    obj,
    isDelete = false,
    disabled = false,
+   textError = "",
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
 
    return (
-      <div className={classDelete}>
-         <CFormInput
-            onChange={onChange}
-            onBlur={onBlur}
-            value={value}
-            className={`${className}`}
-            defaultValue={defaultValue}
-            type={type}
-            floatingLabel={label}
-            placeholder={placeholder}
-            invalid={!!invalid}
-            valid={!!valid}
-            name={name}
-            disabled={disabled}
-            {...obj}
-         />
+      <>
+         <div className={classDelete}>
+            <CFormInput
+               onChange={onChange}
+               onBlur={onBlur}
+               value={value}
+               className={`${className}`}
+               defaultValue={defaultValue}
+               type={type}
+               floatingLabel={label}
+               placeholder={placeholder}
+               invalid={!!invalid}
+               valid={!!valid}
+               name={name}
+               disabled={disabled}
+               {...obj}
+            />
+            {
+               isDelete && (
+                  <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
+                     <Icon svg={deleteIcon} />
+                  </button>
+               )
+            }
+         </div>
          {
-            isDelete && (
-               <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
-                  <Icon svg={deleteIcon} />
-               </button>
+            !!textError && (
+               <div className="error-text-in">{textError}</div>
             )
          }
-      </div>
+      </>
    )
 }
 export default React.memo(Input);

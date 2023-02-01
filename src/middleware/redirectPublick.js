@@ -1,5 +1,3 @@
-import React from "react";
-
 import api from "../apiSingleton";
 
 import { wrapper } from "../../src/store"
@@ -17,6 +15,8 @@ export const withRedirectPublickPage = () => {
             if (!!cookis?.token) {
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
+
+                console.log(serverRespons);
 
                 if (isExist(serverRespons)) {
                     isAuthRedirect({ res, page: 'resumeBuilder' });

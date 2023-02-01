@@ -18,6 +18,7 @@ const initialState = {
         status: statusLoaded,
     },
     register: {
+        textError: '',
         status: statusLoaded,
     },
     resetPassword: {
@@ -41,6 +42,9 @@ const sliceAuth = createSlice({
         setLogout(state, action) {
             state.autorizate.isAthorized = false;
         },
+        cleanError(state, action) {
+            state[action.payload]['textError'] = '';
+        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
@@ -64,6 +68,7 @@ const sliceAuth = createSlice({
             state.register.status = statusLoader;
         },
         [fetchAuthRegister.fulfilled]: (state, action) => {
+            state.register.textError = action?.payload?.errors || "";
             state.register.status = statusLoaded;
         },
         // reset password
@@ -90,6 +95,10 @@ const sliceAuth = createSlice({
     },
 });
 
-export const { setIsAuth, setLogout } = sliceAuth.actions;
+export const {
+    setIsAuth,
+    setLogout,
+    cleanError
+} = sliceAuth.actions;
 
 export const { reducer } = sliceAuth;

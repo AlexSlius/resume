@@ -1025,3 +1025,25 @@ button {
         }
     }
 }
+
+.error-text-in {
+    margin-top: 9px;
+    color: #F63B3B;
+    font-size: 13px;
+    padding-left: 14px;
+}
+
+.items-payload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #838799;
+
+    img {
+        margin: 0 6px;
+    }
+}
+
+.payload_mt {
+    margin-top: 48px;
+}

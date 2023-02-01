@@ -8,8 +8,6 @@ import {
   fetchUpdateEmployment,
 } from "../controllers/employments";
 
-import { defaultCountry } from '../constants/default';
-
 const initialState = {
   employmentObj: [],
   objNew: {
@@ -17,7 +15,7 @@ const initialState = {
     company: "",
     period_from: "",
     period_to: "",
-    country: defaultCountry,
+    country: "",
     assignment: "",
     city: ""
   },

@@ -1,6 +1,5 @@
 import {
     CForm,
-    CFormInput,
     CCol,
     CRow,
     CButton
@@ -8,6 +7,8 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 import Link from "next/link"
+import React from "react";
+import Router from "next/router";
 
 import { FormHead } from "../../components/formHead"
 import { AutorizationWrapper } from "../../wrappers/autorization"
@@ -18,17 +19,18 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 import { fetchAuthRegister } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
 import { localStorageGet } from "../../helpers/localStorage"
+import { cleanError } from "../../slices/auth";
 
 import { routersPages } from "../../constants/next-routers"
 
 export const RegisterPage = () => {
     const dispatch = useDispatch();
-    const { status } = useSelector(prev => prev.auth.register)
+    const { status, textError } = useSelector(prev => prev.auth.register)
+    const idCv = localStorageGet('idCv');
 
     const {
         register,
         handleSubmit,
-        setValue,
         formState: { errors, isValid },
         watch,
     } = useForm({
@@ -44,6 +46,22 @@ export const RegisterPage = () => {
         let session_empty = localStorageGet('session_id');
         dispatch(fetchAuthRegister({ email: data.email, password: data.password, session_id: session_empty }));
     }
+
+    React.useEffect(() => {
+        const subscription = watch((value, { name, type }) => {
+            if (textError) {
+                dispatch(cleanError('register'))
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [watch]);
+
+    // React.useEffect(() => {
+    //     // if (!idCv) {
+    //     //     Router.push(`${routersPages['login']}`);
+    //     // }
+    // }, []);
 
     return (
         <AutorizationWrapper>
@@ -61,6 +79,7 @@ export const RegisterPage = () => {
                                     placeholder="E-mail"
                                     invalid={errors?.email}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
+                                    textError={textError == "user_exist" ? "A user with this email is already registered" : ""}
                                     obj={
                                         register("email", {
                                             required: true,

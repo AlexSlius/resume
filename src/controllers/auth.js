@@ -47,6 +47,10 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (d
         } else {
             Router.push(`${menuAsideResume?.list[0].link}`);
         }
+    } else {
+        if (response?.errors == "session_empty") {
+            Router.push(`${routersPages['resumeBuilder']}`);
+        }
     }
 
     return response;

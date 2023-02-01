@@ -229,16 +229,20 @@
 }
 
 .wrpa_click {
-    border: 1px solid #dadce3;
-    border-radius: 10px;
-    height: 54px;
-    font-weight: 350;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
 
     img {
         width: 25px;
         height: 18px;
         min-width: 25px;
+    }
+}
+
+.is_flag {
+    input {
+        padding-left: 40px !important;
     }
 }

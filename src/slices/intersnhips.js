@@ -7,8 +7,6 @@ import {
   fetchDeleteInternships,
 } from '../controllers/interships';
 
-import { defaultCountry } from '../constants/default';
-
 const initialState = {
   interhipObj: [],
   objNew: {
@@ -16,7 +14,7 @@ const initialState = {
     employer: "",
     period_from: "",
     period_to: "",
-    country: defaultCountry,
+    country: "",
     city: "",
     description: "",
   },

@@ -19,6 +19,8 @@ import { reducer as resumesReducer } from '../slices/resumes';
 import { reducer as usersReducer } from '../slices/users';
 import { reducer as addSectionReducer } from '../slices/addSection';
 import { reducer as menuAsideResume } from "../slices/menuAsideResume";
+import { reducer as notificationData } from "../slices/notifications";
+
 
 export const combinedReducers = combineReducers({
   app: appReducer,
@@ -39,6 +41,7 @@ export const combinedReducers = combineReducers({
   resumers: resumesReducer,
   users: usersReducer,
   addSection: addSectionReducer,
-  menuAsideResume
+  menuAsideResume,
+  notificationData,
 })
 

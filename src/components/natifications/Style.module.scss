@@ -1,0 +1,41 @@
+.wr {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    top: 40px;
+    z-index: 50;
+}
+
+.item {
+    background: rgba(109, 194, 108, 0.15);
+    border: 1px solid #6DC26C;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    color: #6DC26C;
+
+    svg {
+        width: 18px;
+        min-width: 18px;
+        height: 18px;
+        margin-right: 12px;
+    }
+
+    &.war {
+        background: rgba(255, 173, 97, 0.15);
+        border-color: #FFAD61;
+        color: #FFAD61;
+    }
+
+    &.err {
+        color: #F73B3B;
+        background: rgba(247, 59, 59, 0.15);
+        border-color: #F73B3B;
+    }
+
+    &:not(:first-child) {
+        margin-top: 20px;
+    }
+}

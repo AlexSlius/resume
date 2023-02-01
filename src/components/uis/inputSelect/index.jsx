@@ -212,30 +212,30 @@ export const InputSelect = ({
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed} ${dopClass}`} ref={reWrClick}>
+            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''}`} ref={reWrClick}>
                 {
-                    isFlag ? (
-                        <div className={`${style.wrpa_click} form-control`}>
+                    isFlag && (
+                        <div className={`${style.wrpa_click}`}>
                             {imgSrc && <img src={imgSrc} />}
                         </div>
-                    ) : (
-                        <CFormInput
-                            onChange={handleOnChange}
-                            onBlur={handledOnBlur}
-                            onFocus={onFocus}
-                            ref={reIn}
-                            floatingLabel={label}
-                            placeholder={placeholder}
-                            floatingClassName={style.contoll}
-                            invalid={!!invalid}
-                            valid={isCouValid ? !!isValid : false}
-                            name={name}
-                            value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
-                            type="text"
-                            {...obj}
-                        />
                     )
                 }
+
+                <CFormInput
+                    onChange={handleOnChange}
+                    onBlur={handledOnBlur}
+                    onFocus={onFocus}
+                    ref={reIn}
+                    floatingLabel={label}
+                    placeholder={placeholder}
+                    floatingClassName={style.contoll}
+                    invalid={!!invalid}
+                    valid={isCouValid ? !!isValid : false}
+                    name={name}
+                    value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
+                    type="text"
+                    {...obj}
+                />
             </div>
             {
                 isModal && (

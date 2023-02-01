@@ -6,7 +6,6 @@ import {
   contactAddNew
 } from "../controllers/contacts";
 import { statusLoaded, statusLoader } from '../constants/statuses';
-import { defaultCountry } from '../constants/default';
 
 const initialState = {
   contactObj: {
@@ -17,7 +16,7 @@ const initialState = {
     picture: null,
     email: "",
     phone: "",
-    country: defaultCountry,
+    country: "",
     nationality: "",
     city: "",
     address: "",

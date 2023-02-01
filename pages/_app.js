@@ -9,6 +9,7 @@ import { PreloaderPage } from "../src/components/preloaderPage";
 import { wrapper } from '../src/store'
 
 import '../public/styles/style.scss'
+import { Natifications } from "../src/components/natifications";
 
 
 const MyApp = ({ Component, ...rest }) => {
@@ -41,6 +42,7 @@ const MyApp = ({ Component, ...rest }) => {
             <PreloaderPage />
           )
         }
+        <Natifications store={store} />
         <Component
           {...props}
         />

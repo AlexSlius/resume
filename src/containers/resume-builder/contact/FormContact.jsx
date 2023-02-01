@@ -264,8 +264,9 @@ const FormContact = () => {
                      isOutDataObj={false}
                   />
                </CCol>
-               <CCol xs={2}>
+               <CCol xs={3}>
                   <InputSelect
+                     placeholder="Country"
                      valueState={contactObj.country || ''}
                      data={coutrys.list}
                      name="country"
@@ -274,10 +275,9 @@ const FormContact = () => {
                      isOutDataObj={false}
                      isIconArrow={true}
                      isFlag={true}
-                     isSearch={false}
                   />
                </CCol>
-               <CCol xs={4}>
+               <CCol xs={3}>
                   <InputSelect
                      label="City"
                      placeholder="City"

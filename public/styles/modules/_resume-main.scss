@@ -1,9 +1,15 @@
+.resume {
+   position: sticky;
+   top: 0;
+}
+
 .col.resume {
    flex: 1 1 30%;
    width: auto;
    padding: 0px 30px 0px 30px;
    display: flex;
    flex-direction: column;
+   height: 100vh;
 }
 
 .resume-main {
@@ -18,6 +24,16 @@
    border: 1px solid #dadce3;
    border-radius: 12px;
    flex: 1 1 auto;
+   padding: 24px 0;
+
+   height: calc(100vh - 160px);
+
+   &_scroll {
+      height: 100%;
+      overflow-y: auto;
+      margin-right: 10px;
+      padding: 0 24px;
+   }
 
    p {
       margin-bottom: 0;

@@ -3,8 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 import { fetchGetCvActivitys, fetchPostAddCvOneActivitys, fetchDeleteActivitys } from '../controllers/activitys';
 
-import { defaultCountry } from '../constants/default';
-
 const initialState = {
   activityObj: [],
   objNew: {
@@ -12,7 +10,7 @@ const initialState = {
     employer: "",
     period_from: "",
     period_to: "",
-    country: defaultCountry,
+    country: "",
     city: "",
     description: "",
   },

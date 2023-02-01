@@ -209,8 +209,9 @@ const FormInterShip = ({
                                                             </CCol>
                                                          </CRow>
                                                       </CCol>
-                                                      <CCol xs={2}>
+                                                      <CCol xs={3}>
                                                          <InputSelect
+                                                            placeholder="Country"
                                                             valueState={item.country || ""}
                                                             data={coutrys.list}
                                                             name="country"
@@ -219,10 +220,9 @@ const FormInterShip = ({
                                                             isOutDataObj={false}
                                                             isIconArrow={true}
                                                             isFlag={true}
-                                                            isSearch={false}
                                                          />
                                                       </CCol>
-                                                      <CCol xs={4}>
+                                                      <CCol xs={3}>
                                                          <InputSelect
                                                             label="City"
                                                             placeholder="City"
@@ -305,8 +305,9 @@ const FormInterShip = ({
                   </CCol>
                </CRow>
             </CCol>
-            <CCol xs={2}>
+            <CCol xs={3}>
                <InputSelect
+                  placeholder="Country"
                   valueState={objNew.country || ""}
                   data={coutrys.list}
                   name="country"
@@ -315,10 +316,9 @@ const FormInterShip = ({
                   isOutDataObj={false}
                   isIconArrow={true}
                   isFlag={true}
-                  isSearch={false}
                />
             </CCol>
-            <CCol xs={4}>
+            <CCol xs={3}>
                <InputSelect
                   label="City"
                   placeholder="City"
