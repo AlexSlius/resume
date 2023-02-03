@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Router from "next/router";
 
 import api from "../apiSingleton";
-import { isSuccessNewContact, isRespondServerSuccesss } from '../helpers/checkingStatuses';
+import { isSuccessNewContact, isRespondServerSuccesss, isError } from '../helpers/checkingStatuses';
 import { localStorageSet, sessionStorageSet } from "../helpers/localStorage"
 import { routersPages } from '../constants/next-routers';
 import { newObjContact } from '../helpers/resumeDestructObj';
+import { addItemNotification } from "../slices/notifications";
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (dataImage, thunkAPI) => {
     const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
@@ -33,6 +34,10 @@ export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (data
         Router.push(`/${routersPages['register']}`);
     }
 
+    if (isError(response)) {
+        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+    }
+
     return response;
 })
 
@@ -46,5 +51,10 @@ export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', a
     const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture);
 
     const response = await api.contact.updateContact(idCv, newObj);
+
+    if (isError(response)) {
+        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+    }
+
     return response;
 });

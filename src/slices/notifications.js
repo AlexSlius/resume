@@ -12,7 +12,7 @@ export const slice = createSlice({
             const { type, text } = action.payload;
 
             let newObj = {
-                type: type || 'succe',
+                type: type || 'succe', // war , err
                 text
             }
 

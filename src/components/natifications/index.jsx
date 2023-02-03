@@ -1,21 +1,25 @@
 import React from "react";
 import { isArray } from "lodash";
+import { useSelector, useDispatch } from "react-redux";
+
 import style from "./Style.module.scss";
 import { Notification } from "./natification";
 import { removeItemNotification, removeItemShift } from "../../slices/notifications";
 
+
 export const Natifications = ({ store }) => {
-    const { notificationData } = store.getState();
+    const dispatch = useDispatch();
+    const { notificationData } = useSelector(state => state);
 
     const removeNotification = (index) => {
-        store.dispatch(removeItemNotification(index));
+        dispatch(removeItemNotification(index));
     }
 
     React.useEffect(() => {
         if (isArray(notificationData.list)) {
             if (notificationData.list.length > 0) {
                 setTimeout(() => {
-                    store.dispatch(removeItemShift());
+                    dispatch(removeItemShift());
                 }, 5e3);
             }
         }

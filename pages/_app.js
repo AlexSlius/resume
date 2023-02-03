@@ -42,7 +42,7 @@ const MyApp = ({ Component, ...rest }) => {
             <PreloaderPage />
           )
         }
-        <Natifications store={store} />
+        <Natifications />
         <Component
           {...props}
         />

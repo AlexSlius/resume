@@ -21,7 +21,7 @@ export const isExist = (obj) => {
     return obj?.success == "exist";
 }
 
-export const isUpdate = (obj, text="updated") => {
+export const isUpdate = (obj, text = "updated") => {
     if (!isObject(obj))
         return false;
 
@@ -33,4 +33,13 @@ export const isDelete = (obj) => {
         return false;
 
     return obj?.data == "delete";
+}
+
+export const isError = (obj) => {
+    if (isObject(obj)) {
+        if (!!obj.error)
+            return true;
+    }
+
+    return false;
 }
