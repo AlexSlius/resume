@@ -9,8 +9,9 @@ import { isArray } from 'lodash';
 
 export const AccordionComponent = ({
     arr = [],
+    defaultStart = false
 }) => {
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState(defaultStart ? `panel${defaultStart}` : false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);

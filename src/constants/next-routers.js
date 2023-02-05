@@ -40,4 +40,6 @@ export const routersPages = {
     'resumeBuilder': 'resume-builder',
     'addSection': 'add_section',
     'resumeNow': 'resume-now',
+    'faqs': 'faqs',
+    'contactUs': 'contact-us',
 }

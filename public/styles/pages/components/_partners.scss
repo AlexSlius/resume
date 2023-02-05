@@ -1,0 +1,16 @@
+.partners {
+    background: rgb(253 253 253);
+    padding: 100px 0 55px 0;
+}
+
+.partners__wrapper {
+    margin-top: 20px;
+    width: 1233px;
+    transform: translateX(-40px);
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+}

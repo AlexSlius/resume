@@ -1,0 +1,24 @@
+.ofer-sec {
+    .container {
+        display: flex;
+        gap: 70px;
+    }
+}
+
+.ofer-sec__btn {
+    margin-top: 46px;
+}
+
+.ofer-sec__img {
+    overflow: hidden;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+}
+
+.ofer-sec_flex {
+    display: flex;
+    gap: 70px;
+}

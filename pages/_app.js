@@ -8,7 +8,13 @@ import { PreloaderPage } from "../src/components/preloaderPage";
 
 import { wrapper } from '../src/store'
 
-import '../public/styles/style.scss'
+import 'swiper/css';
+import '../public/styles/pages/vendor.scss';
+import '../public/styles/pages/main.scss';
+
+import '../public/styles/style.scss';
+import '../public/js/main.js';
+
 import { Natifications } from "../src/components/natifications";
 
 

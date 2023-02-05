@@ -1,0 +1,38 @@
+.faq {
+    .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+    }
+}
+
+.faq-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.faq__left {
+    display: flex;
+    flex-direction: column;
+}
+.bottom-text {
+    margin-top: 40px;
+    font-size: 20px;
+    line-height: 31px;
+    margin-bottom: 40px;
+}
+.faq__left--bottom {
+    margin-top: auto;
+    font-weight: 350;
+    font-size: 16px;
+    line-height: 24px;
+    color: #838799;
+    a {
+        display: block;
+        color: rgba(54, 121, 253, 1);
+    }
+}
+.faq__right {
+    width: 770px;
+}

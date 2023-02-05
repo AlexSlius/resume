@@ -1,0 +1,31 @@
+.max-830px {
+    max-width: 830px;
+    margin: 0 auto;
+}
+
+.mt-46 {
+    margin-top: 46px;
+}
+
+.fqs-page {
+    position: relative;
+}
+
+.text-zagal {
+    color: #838799;
+    margin: 8px auto 0 auto;
+    text-align: center;
+    line-height: 1.4;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: #3679FD;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
