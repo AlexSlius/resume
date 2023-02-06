@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { FaqsPage } from '../src/containers/faqs-page'
+import { withPublickRoute } from "../src/middleware/publickRouter";
 
-export default function Faqs() {
+const Faqs = () => {
     return (
         <>
             <Head>
@@ -15,3 +16,7 @@ export default function Faqs() {
         </>
     )
 }
+
+export const getServerSideProps = withPublickRoute();
+
+export default Faqs;

@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { HomePage } from '../src/containers/home-page'
+import { withPublickRoute } from "../src/middleware/publickRouter";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -15,3 +16,7 @@ export default function Home() {
     </>
   )
 }
+
+export const getServerSideProps = withPublickRoute();
+
+export default Home;

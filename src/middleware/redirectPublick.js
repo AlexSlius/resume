@@ -3,8 +3,10 @@ import api from "../apiSingleton";
 import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
-import { isAuthRedirect } from "../helpers/auth";
+// import { isAuthRedirect } from "../helpers/auth";
 import { isExist } from '../helpers/checkingStatuses';
+
+import { routersPages } from "../constants/next-routers";
 
 export const withRedirectPublickPage = () => {
     return wrapper.getServerSideProps(store => async (ctx) => {
@@ -16,10 +18,11 @@ export const withRedirectPublickPage = () => {
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
 
-                console.log(serverRespons);
-
                 if (isExist(serverRespons)) {
-                    isAuthRedirect({ res, page: 'resumeBuilder' });
+                    // isAuthRedirect({ res, page: 'resumeBuilder' });
+                    return {
+                        redirect: { destination: `/${routersPages['dashboard']}`, permanent: false },
+                    }
                 }
             }
 

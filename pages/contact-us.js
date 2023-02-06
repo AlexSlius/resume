@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { ContactUsPage } from '../src/containers/contact-us'
+import { withPublickRoute } from "../src/middleware/publickRouter";
 
-export default function ContactUs() {
+const ContactUs = () => {
     return (
         <>
             <Head>
@@ -15,3 +16,7 @@ export default function ContactUs() {
         </>
     )
 }
+
+export const getServerSideProps = withPublickRoute();
+
+export default ContactUs;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 
@@ -25,6 +26,33 @@ const arr = [
 ];
 
 export const HomePage = () => {
+    const refIdInterval = React.useRef(undefined);
+    const isStart = React.useRef(true);
+    const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
+
+    const handleClickTab = (tabIndex) => {
+        setStateCurrentTab(tabIndex);
+    }
+
+    useEffect(() => {
+        if (isStart.current) {
+            setStateCurrentTab(1);
+            isStart.current = false;
+        }
+
+        if (refIdInterval.current)
+            clearTimeout(refIdInterval.current)
+
+        refIdInterval.current = setTimeout(() => {
+            setStateCurrentTab(prev => {
+                if (prev < 3) {
+                    return prev + 1;
+                }
+                return 1;
+            });
+        }, 5900);
+    }, [stateCurrentTab]);
+
     return (
         <>
             <section className="promo">
@@ -131,69 +159,92 @@ export const HomePage = () => {
                         </Link>
                     </div>
                     <div className="tabs-wrapper tab-content-wrapper">
-                        <div className="tabs-content tab-1">
-                            <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
-                            <div>
-                                <h3>Your First Steps</h3>
-                                <p className="bottom-text">
-                                    In three simple steps, create the perfect document to impress hiring managers
-                                    and employers. Minimum time, maximum professional quality.
-                                </p>
-                            </div>
-                        </div>
-                        <div className="tabs-content hide tab-2">
-                            <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
-                            <div>
-                                <h3>Achieve Beauty With Ease</h3>
-                                <p className="bottom-text">
-                                    Choose one of our beautiful, professionally designed resume or cover letter formats.
-                                    Add
-                                    your personal info and
-                                    choose and edit the necessary sections. Customize the layout and visuals as much (or
-                                    as
-                                    little) as you want. We
-                                    provide a ton of ready content!
-                                </p>
-                            </div>
-                        </div>
-                        <div className="tabs-content hide tab-3">
-                            <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
-                            <div>
-                                <h3>Now It’s Yours!</h3>
-                                <p className="bottom-text">
-                                    Export in one of the available formats. PDF will
-                                    provide you with the best and most consistent visual formatting. Word files allow
-                                    you to
-                                    edit the document
-                                    further or submit the resume to an online application system. You can also share
-                                    your
-                                    career updates online.
-                                </p>
-                            </div>
-                        </div>
+                        {
+                            stateCurrentTab == 1 && (
+                                <div className="tabs-content tab-1">
+                                    <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
+                                    <div>
+                                        <h3>Your First Steps</h3>
+                                        <p className="bottom-text">
+                                            In three simple steps, create the perfect document to impress hiring managers
+                                            and employers. Minimum time, maximum professional quality.
+                                        </p>
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {
+                            stateCurrentTab == 2 && (
+                                <div className="tabs-content  tab-2">
+                                    <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
+                                    <div>
+                                        <h3>Achieve Beauty With Ease</h3>
+                                        <p className="bottom-text">
+                                            Choose one of our beautiful, professionally designed resume or cover letter formats.
+                                            Add
+                                            your personal info and
+                                            choose and edit the necessary sections. Customize the layout and visuals as much (or
+                                            as
+                                            little) as you want. We
+                                            provide a ton of ready content!
+                                        </p>
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {
+                            stateCurrentTab == 3 && (
+                                <div className="tabs-content  tab-3">
+                                    <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
+                                    <div>
+                                        <h3>Now It’s Yours!</h3>
+                                        <p className="bottom-text">
+                                            Export in one of the available formats. PDF will
+                                            provide you with the best and most consistent visual formatting. Word files allow
+                                            you to
+                                            edit the document
+                                            further or submit the resume to an online application system. You can also share
+                                            your
+                                            career updates online.
+                                        </p>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                     <div className="tabs-wrapper tab-link-wrapper">
-                        <Link className="tab tab-active" href="tab-1">
+                        <div
+                            className={`tab ${stateCurrentTab == 1 ? "tab-active" : ''}`}
+                            onClick={() => handleClickTab(1)}
+                        >
                             <p>1. Sign Up</p>
                             <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
-                        </Link>
-                        <Link className="tab" href="tab-2">
+                        </div>
+                        <div
+                            className={`tab ${stateCurrentTab == 2 ? "tab-active" : ''}`}
+                            onClick={() => handleClickTab(2)}
+                        >
                             <p>2. Create</p>
                             <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
-                        </Link>
-                        <Link className="tab" href="tab-3">
+                        </div>
+                        <div
+                            className={`tab ${stateCurrentTab == 3 ? "tab-active" : ''}`}
+                            onClick={() => handleClickTab(3)}
+                        >
                             <p>3. Download</p>
                             <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -274,8 +325,8 @@ export const HomePage = () => {
                                     slidesPerView: 3
                                 }
                             }}
-                            onSlideChange={() => console.log('slide change')}
-                            onSwiper={(swiper) => console.log(swiper)}
+                        // onSlideChange={() => console.log('slide change')}
+                        // onSwiper={(swiper) => console.log(swiper)}
                         >
                             <SwiperSlide>
                                 <img loading="lazy" src="/images/page/doc-img.jpg" alt="img" />

@@ -1,8 +1,18 @@
 import Link from "next/link";
+import { useSelector } from 'react-redux'
 
 import { routersPages } from "../../constants/next-routers";
+import HeadUser from "../headUser/HeadUser";
 
 export const Header = () => {
+    const {
+        auth: {
+            autorizate: {
+                isAthorized,
+            }
+        },
+    } = useSelector((state) => state);
+
     return (
         <header className="header-r">
             <div className="containers">
@@ -46,11 +56,21 @@ export const Header = () => {
                 </nav>
                 <div className="right-info">
                     <Link href="#" className="lang">En</Link>
-                    <Link href={`${routersPages['login']}`} className="logins">Login</Link>
-                    <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
-                        <img src="/images/page/get-start.svg" alt="img" />
-                        <span>Get started</span>
-                    </Link>
+                    {
+                        isAthorized ? (
+                            <div className="right-info__auth">
+                                <HeadUser />
+                            </div>
+                        ) : (
+                            <>
+                                <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
+                                    <img src="/images/page/get-start.svg" alt="img" />
+                                    <span>Get started</span>
+                                </Link>
+                            </>
+                        )
+                    }
                 </div>
             </div>
         </header>

@@ -27,6 +27,7 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
         Router.push(`${routersPages['dashboard']}`);
+        await localStorageRemove('idCv');
     }
 
     return response;
