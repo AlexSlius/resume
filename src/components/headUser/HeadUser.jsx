@@ -65,30 +65,40 @@ const HeadUser = () => {
                <div className={`${style.mod}`}>
                   <div className={`${style.mod_wr}`}>
                      <ul className={`${style.mod_m_list}`}>
-                        <li>
-                           <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                              <Icon svg={iconDashboard} />
-                              <span>Dashboard</span>
-                           </Link>
-                        </li>
-                        <li>
-                           <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                              <Icon svg={iconSettings} />
-                              <span>Settings</span>
-                           </Link>
-                        </li>
+                        {
+                           isAthorized && (
+                              <>
+                                 <li>
+                                    <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                       <Icon svg={iconDashboard} />
+                                       <span>Dashboard</span>
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                       <Icon svg={iconSettings} />
+                                       <span>Settings</span>
+                                    </Link>
+                                 </li>
+                              </>
+                           )
+                        }
                         <li>
                            <Link href={`/${routersPages['help']}`} className={style.link}>
                               <Icon svg={iconHelp} />
                               <span>Help</span>
                            </Link>
                         </li>
-                        <li>
-                           <button onClick={() => logout(dispatch)} className={style.link}>
-                              <Icon svg={iconLogout} />
-                              <span>Logout</span>
-                           </button>
-                        </li>
+                        {
+                           isAthorized && (
+                              <li>
+                                 <button onClick={() => logout(dispatch)} className={style.link}>
+                                    <Icon svg={iconLogout} />
+                                    <span>Logout</span>
+                                 </button>
+                              </li>
+                           )
+                        }
                      </ul>
                   </div>
                </div>

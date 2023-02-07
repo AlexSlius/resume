@@ -103,8 +103,9 @@ const FormReference = ({
       dispatch(fetchDeleteReferences({ idCv, id }));
    }
 
-   const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
+   const handleAddOne = async () => {
+      let re = await dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
+      setSelected(re?.payload?.id);
    }
 
    const handleServerRequestCompanyList = async (text) => {
@@ -122,152 +123,162 @@ const FormReference = ({
 
    return (
       <>
+         {
+            isArray(referencesObj) && (referencesObj.length > 0) && (
+               <CRow>
+                  <CCol>
+                     <LoadWr isLoad={isLoader(status)}>
+                        <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+                           <Droppable droppableId="droppable">
+                              {
+                                 (provided, snapshot) => (
+                                    <div
+                                       ref={provided.innerRef}
+                                       {...provided.droppableProps}
+                                    >
+                                       {
+                                          isArray(referencesObj) && referencesObj.map((item, index) => (
+                                             <Draggable
+                                                key={item.id}
+                                                draggableId={String(item.id)}
+                                                index={index}
+                                             >
+                                                {
+                                                   (provided, snapshot) => (
+                                                      <DraggedItem
+                                                         id={item.id}
+                                                         lenght={referencesObj.length}
+                                                         provided={provided}
+                                                         key={item.id}
+                                                         title={item.fullName}
+                                                         index={index}
+                                                         setSelected={setSelected}
+                                                         selected={selected}
+                                                         onDelete={() => handleDeleteOne(item.id)}
+                                                         skillsList={[
+                                                            item.email,
+                                                            item.phone
+                                                         ]}
+                                                      >
+                                                         <CForm>
+                                                            <CRow className="row g-30 r-gap-30 mt-4">
+                                                               <CCol xs={6}>
+                                                                  <Input
+                                                                     id={item.id}
+                                                                     label="Referent Full name"
+                                                                     placeholder="Referent Full name"
+                                                                     value={item.fullName}
+                                                                     name="fullName"
+                                                                     onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                  />
+                                                               </CCol>
+                                                               <CCol xs={6}>
+                                                                  <InputSelect
+                                                                     label="Company"
+                                                                     placeholder="Company"
+                                                                     valueState={item.company}
+                                                                     data={companys?.list || []}
+                                                                     isAddDiv={true}
+                                                                     name="company"
+                                                                     isLoad={isLoader(companys?.status)}
+                                                                     isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                                                                     handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                     handleServerRequest={handleServerRequestCompanyList}
+                                                                     handleAddNew={handleAddNewCompany}
+                                                                     isOutDataObj={false}
+                                                                  />
+                                                               </CCol>
+                                                               <CCol xs={6}>
+                                                                  <Input
+                                                                     label="E-mail*"
+                                                                     placeholder="E-mail*"
+                                                                     value={item.email}
+                                                                     name="email"
+                                                                     invalid={(item.email.length > 0) && !(/\S+@\S+\.\S+/.test(item.email))}
+                                                                     valid={/\S+@\S+\.\S+/.test(item.email)}
+                                                                     onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                  />
+                                                               </CCol>
+                                                               <CCol xs={6}>
+                                                                  <InputPhoneNoControler
+                                                                     label="Phone"
+                                                                     placeholder="Phone"
+                                                                     onChange={(value) => handleSaveSelect({ index, name: "phone", value: value })}
+                                                                     value={item.phone}
+                                                                  />
+                                                               </CCol>
+                                                            </CRow>
+                                                         </CForm>
+                                                      </DraggedItem>
+                                                   )
+                                                }
+                                             </Draggable>
+                                          ))
+                                       }
+                                       {provided.placeholder}
+                                    </div>
+                                 )
+                              }
+                           </Droppable>
+                        </DragDropContext>
+                     </LoadWr>
+                  </CCol>
+               </CRow>
+            )
+         }
+
+         {
+            isArray(referencesObj) && (referencesObj.length == 0) && (
+               <CRow className="row g-30 r-gap-30 mb-4">
+                  <CCol xs={6}>
+                     <Input
+                        label="Referent Full name"
+                        placeholder="Referent Full name"
+                        value={objNew.full_name}
+                        name="full_name"
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Company"
+                        placeholder="Company"
+                        valueState={objNew.company}
+                        data={companys?.list || []}
+                        isAddDiv={true}
+                        name="company"
+                        isLoad={isLoader(companys?.status)}
+                        isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                        handleSaveSelect={handleSaveSelectNew}
+                        handleServerRequest={handleServerRequestCompanyList}
+                        handleAddNew={handleAddNewCompany}
+                        isOutDataObj={false}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <Input
+                        label="E-mail*"
+                        placeholder="E-mail*"
+                        value={objNew.email}
+                        name="email"
+                        invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
+                        valid={/\S+@\S+\.\S+/.test(objNew.email)}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputPhoneNoControler
+                        label="Phone"
+                        placeholder="Phone"
+                        onChange={(value) => handleSaveSelectNew({ name: "phone", value: value })}
+                        value={objNew.phone}
+                     />
+                  </CCol>
+               </CRow>
+            )
+         }
+
          <CRow>
-            <CCol>
-               <LoadWr isLoad={isLoader(status)}>
-                  <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                     <Droppable droppableId="droppable">
-                        {
-                           (provided, snapshot) => (
-                              <div
-                                 ref={provided.innerRef}
-                                 {...provided.droppableProps}
-                              >
-                                 {
-                                    isArray(referencesObj) && referencesObj.map((item, index) => (
-                                       <Draggable
-                                          key={item.id}
-                                          draggableId={String(item.id)}
-                                          index={index}
-                                       >
-                                          {
-                                             (provided, snapshot) => (
-                                                <DraggedItem
-                                                   id={item.id}
-                                                   lenght={referencesObj.length}
-                                                   provided={provided}
-                                                   key={item.id}
-                                                   title={item.fullName}
-                                                   index={index}
-                                                   setSelected={setSelected}
-                                                   selected={selected == item.id}
-                                                   onDelete={() => handleDeleteOne(item.id)}
-                                                   skillsList={[
-                                                      item.email,
-                                                      item.phone
-                                                   ]}
-                                                >
-                                                   <CForm>
-                                                      <CRow className="row g-30 r-gap-30 mt-4">
-                                                         <CCol xs={6}>
-                                                            <Input
-                                                               id={item.id}
-                                                               label="Referent Full name"
-                                                               placeholder="Referent Full name"
-                                                               value={item.fullName}
-                                                               name="fullName"
-                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
-                                                            />
-                                                         </CCol>
-                                                         <CCol xs={6}>
-                                                            <InputSelect
-                                                               label="Company"
-                                                               placeholder="Company"
-                                                               valueState={item.company}
-                                                               data={companys?.list || []}
-                                                               isAddDiv={true}
-                                                               name="company"
-                                                               isLoad={isLoader(companys?.status)}
-                                                               isBackgraundLoad={isLoader(companys?.statusAddNew)}
-                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                               handleServerRequest={handleServerRequestCompanyList}
-                                                               handleAddNew={handleAddNewCompany}
-                                                               isOutDataObj={false}
-                                                            />
-                                                         </CCol>
-                                                         <CCol xs={6}>
-                                                            <Input
-                                                               label="E-mail*"
-                                                               placeholder="E-mail*"
-                                                               value={item.email}
-                                                               name="email"
-                                                               invalid={(item.email.length > 0) && !(/\S+@\S+\.\S+/.test(item.email))}
-                                                               valid={/\S+@\S+\.\S+/.test(item.email)}
-                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
-                                                            />
-                                                         </CCol>
-                                                         <CCol xs={6}>
-                                                            <InputPhoneNoControler
-                                                               label="Phone"
-                                                               placeholder="Phone"
-                                                               onChange={(value) => handleSaveSelect({ index, name: "phone", value: value })}
-                                                               value={item.phone}
-                                                            />
-                                                         </CCol>
-                                                      </CRow>
-                                                   </CForm>
-                                                </DraggedItem>
-                                             )
-                                          }
-                                       </Draggable>
-                                    ))
-                                 }
-                                 {provided.placeholder}
-                              </div>
-                           )
-                        }
-                     </Droppable>
-                  </DragDropContext>
-               </LoadWr>
-            </CCol>
-         </CRow>
-         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
-            <CCol xs={6}>
-               <Input
-                  label="Referent Full name"
-                  placeholder="Referent Full name"
-                  value={objNew.full_name}
-                  name="full_name"
-                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="Company"
-                  placeholder="Company"
-                  valueState={objNew.company}
-                  data={companys?.list || []}
-                  isAddDiv={true}
-                  name="company"
-                  isLoad={isLoader(companys?.status)}
-                  isBackgraundLoad={isLoader(companys?.statusAddNew)}
-                  handleSaveSelect={handleSaveSelectNew}
-                  handleServerRequest={handleServerRequestCompanyList}
-                  handleAddNew={handleAddNewCompany}
-                  isOutDataObj={false}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <Input
-                  label="E-mail*"
-                  placeholder="E-mail*"
-                  value={objNew.email}
-                  name="email"
-                  invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
-                  valid={/\S+@\S+\.\S+/.test(objNew.email)}
-                  onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputPhoneNoControler
-                  label="Phone"
-                  placeholder="Phone"
-                  onChange={(value) => handleSaveSelectNew({ name: "phone", value: value })}
-                  value={objNew.phone}
-               />
-            </CCol>
-         </CRow>
-         <CRow className="mt-4">
             <CCol xs={12}>
                <AddButton
                   onClick={handleAddOne}

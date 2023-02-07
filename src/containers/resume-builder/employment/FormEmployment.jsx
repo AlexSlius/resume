@@ -136,8 +136,9 @@ const FormEmployment = ({
     }, 1000);
   }
 
-  const handleAddone = () => {
-    dispatch(fetchPostAddCvOneEmployment({ idCv, position: newPosition(employmentObj) }));
+  const handleAddone = async () => {
+    let re = await dispatch(fetchPostAddCvOneEmployment({ idCv, position: newPosition(employmentObj) }));
+    setSelected(re?.payload?.id);
   }
 
   const handleDeleteOne = (id) => {
@@ -203,7 +204,7 @@ const FormEmployment = ({
                                     index={index}
                                     title={item.title}
                                     setSelected={setSelected}
-                                    selected={selected == item.id}
+                                    selected={selected}
                                     onDelete={() => handleDeleteOne(item.id)}
                                     skillsList={[
                                       `${formatDate(item?.periodFrom?.date)} - ${formatDate(
@@ -329,105 +330,110 @@ const FormEmployment = ({
         )
       }
 
-      <CRow className="g-30 r-gap-30 mt-4 bt-1">
-        <CCol xs={6}>
-          <InputSelect
-            label="Job Title"
-            placeholder="Job Title"
-            valueState={objNew.title || ""}
-            data={jopsTitle?.list || []}
-            isAddDiv={true}
-            name="title"
-            isLoad={isLoader(jopsTitle?.status)}
-            isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
-            handleSaveSelect={handleSaveSelectNew}
-            handleServerRequest={handleServerRequestGetJopsTitle}
-            handleAddNew={handleAddNewJobTitle}
-            isOutDataObj={false}
-          />
-        </CCol>
-        <CCol xs={6}>
-          <InputSelect
-            label="Company / Organization Name"
-            placeholder="Company / Organization Name"
-            valueState={objNew.company}
-            data={companys?.list || []}
-            isAddDiv={true}
-            name="company"
-            isLoad={isLoader(companys?.status)}
-            isBackgraundLoad={isLoader(companys?.statusAddNew)}
-            handleSaveSelect={handleSaveSelectNew}
-            handleServerRequest={handleServerRequestCompanyList}
-            handleAddNew={handleAddNewCompany}
-            isOutDataObj={false}
-          />
-        </CCol>
-        <CCol xs={6}>
-          <CRow>
+      {
+        isArray(employmentObj) && (employmentObj.length == 0) && (
+          <CRow className="g-30 r-gap-30 mb-4">
             <CCol xs={6}>
-              <DatePicker
-                selected={objNew?.period_from}
-                onChange={(date) => handlerSetDateStateNew('period_from', date)}
-                floatingLabel="From"
-                placeholderText="From"
-                name="period_from"
+              <InputSelect
+                label="Job Title"
+                placeholder="Job Title"
+                valueState={objNew.title || ""}
+                data={jopsTitle?.list || []}
+                isAddDiv={true}
+                name="title"
+                isLoad={isLoader(jopsTitle?.status)}
+                isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
+                handleSaveSelect={handleSaveSelectNew}
+                handleServerRequest={handleServerRequestGetJopsTitle}
+                handleAddNew={handleAddNewJobTitle}
+                isOutDataObj={false}
               />
             </CCol>
             <CCol xs={6}>
-              <DatePicker
-                selected={objNew?.period_to}
-                onChange={(date) => handlerSetDateStateNew('period_to', date)}
-                floatingLabel="To"
-                placeholderText="To"
-                name="period_to"
+              <InputSelect
+                label="Company / Organization Name"
+                placeholder="Company / Organization Name"
+                valueState={objNew.company}
+                data={companys?.list || []}
+                isAddDiv={true}
+                name="company"
+                isLoad={isLoader(companys?.status)}
+                isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                handleSaveSelect={handleSaveSelectNew}
+                handleServerRequest={handleServerRequestCompanyList}
+                handleAddNew={handleAddNewCompany}
+                isOutDataObj={false}
               />
+            </CCol>
+            <CCol xs={6}>
+              <CRow>
+                <CCol xs={6}>
+                  <DatePicker
+                    selected={objNew?.period_from}
+                    onChange={(date) => handlerSetDateStateNew('period_from', date)}
+                    floatingLabel="From"
+                    placeholderText="From"
+                    name="period_from"
+                  />
+                </CCol>
+                <CCol xs={6}>
+                  <DatePicker
+                    selected={objNew?.period_to}
+                    onChange={(date) => handlerSetDateStateNew('period_to', date)}
+                    floatingLabel="To"
+                    placeholderText="To"
+                    name="period_to"
+                  />
+                </CCol>
+              </CRow>
+            </CCol>
+            <CCol xs={3}>
+              <InputSelect
+                placeholder="Country"
+                valueState={objNew.country || ""}
+                data={coutrys.list}
+                name="country"
+                isLoad={isLoader(coutrys.status)}
+                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj }, data)}
+                isOutDataObj={false}
+                isIconArrow={true}
+                isFlag={true}
+              />
+            </CCol>
+            <CCol xs={3}>
+              <InputSelect
+                label="City"
+                placeholder="City"
+                valueState={objNew.city || ""}
+                name="city"
+                data={cities.list}
+                isLoad={isLoader(cities?.status)}
+                handleSaveSelect={handleSaveSelectNew}
+                handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
+                isOutDataObj={false}
+              />
+            </CCol>
+            <CCol xs={12}>
+              {
+                (typeof window !== undefined) && (
+                  <TextEditorProvider>
+                    <TextEditor
+                      isLoad={isLoader(employers.status)}
+                      data={employers.list}
+                      isAddModal={true}
+                      devValue={objNew.assignment}
+                      handleServerRequest={handleServerRequest}
+                      handleServeDispatchContent={(textContent) => handleServeDispatchContentNew(textContent)}
+                    />
+                  </TextEditorProvider>
+                )
+              }
             </CCol>
           </CRow>
-        </CCol>
-        <CCol xs={3}>
-          <InputSelect
-          placeholder="Country"
-            valueState={objNew.country || ""}
-            data={coutrys.list}
-            name="country"
-            isLoad={isLoader(coutrys.status)}
-            handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj }, data)}
-            isOutDataObj={false}
-            isIconArrow={true}
-            isFlag={true}
-          />
-        </CCol>
-        <CCol xs={3}>
-          <InputSelect
-            label="City"
-            placeholder="City"
-            valueState={objNew.city || ""}
-            name="city"
-            data={cities.list}
-            isLoad={isLoader(cities?.status)}
-            handleSaveSelect={handleSaveSelectNew}
-            handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
-            isOutDataObj={false}
-          />
-        </CCol>
-        <CCol xs={12}>
-          {
-            (typeof window !== undefined) && (
-              <TextEditorProvider>
-                <TextEditor
-                  isLoad={isLoader(employers.status)}
-                  data={employers.list}
-                  isAddModal={true}
-                  devValue={objNew.assignment}
-                  handleServerRequest={handleServerRequest}
-                  handleServeDispatchContent={(textContent) => handleServeDispatchContentNew(textContent)}
-                />
-              </TextEditorProvider>
-            )
-          }
-        </CCol>
-      </CRow>
-      <CRow className="mt-4">
+        )
+      }
+
+      <CRow>
         <CCol xs={12}>
           <AddButton
             onClick={handleAddone}

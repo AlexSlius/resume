@@ -50,12 +50,12 @@ export const Header = () => {
                             </ul>
                         </li>
                         <li><Link href={`${routersPages['contactUs']}`}>Contact Us</Link></li>
-                        <li><Link href="#">Pricing</Link></li>
+                        {/* <li><Link href="#">Pricing</Link></li> */}
                         <li><Link href={`${routersPages['faqs']}`}>FAQ</Link></li>
                     </ul>
                 </nav>
                 <div className="right-info">
-                    <Link href="#" className="lang">En</Link>
+                    {/* <Link href="#" className="lang">En</Link> */}
                     {
                         isAthorized ? (
                             <div className="right-info__auth">

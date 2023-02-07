@@ -22,6 +22,7 @@ import activityIcon from '/public/images/icons/activities.svg?sprite'
 import coursesIcon from '/public/images/icons/courses.svg?sprite'
 import internshipIcon from '/public/images/icons/intership.svg?sprite'
 import iconSettings from '/public/images/icons/icon_settings.svg?sprite'
+import languagesIcon from '/public/images/icons/languages.svg?sprite'
 import referencesIcon from '/public/images/icons/references.svg?sprite'
 import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import { camelCaseStrind } from "../../../helpers/caseConverters";
@@ -133,6 +134,24 @@ const AddSection = () => {
                                     </CCol>
                                 )
                             }
+
+                            {/* {
+                                (items?.languages === null) && (
+                                    <CCol xl={6} className="pb-4">
+                                        <div className={`${style.item_section}`}>
+                                            <div className={`${style.item_section__left}`}>
+                                                <Icon svg={languagesIcon} />
+                                                <span>Languages</span>
+                                            </div>
+                                            <div className={`${style.item_section__right}`}>
+                                                <button className="btn-pl" onClick={() => handleAddItemSection("languages")}>
+                                                    <Icon svg={iconPlus} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </CCol>
+                                )
+                            } */}
 
                             {
                                 (items?.certificates === null) && (

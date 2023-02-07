@@ -11,17 +11,16 @@ import Icon from "../../components/Icon";
 const DraggedItem = ({
   id = null,
   isDraf = true,
-  lenght = 0,
   title,
   skillsList,
   onDelete,
   children,
   provided,
-  index,
   setSelected,
   selected = false,
 }) => {
   // const [selected, setSelected] = useState(false);
+  let isSelect = selected == id;
 
   return (
     <div
@@ -30,7 +29,7 @@ const DraggedItem = ({
       {...provided.draggableProps}
     >
       <div
-        className={`dragged__item p-3 d-flex justify-content-between align-items-center gap-2 ${selected ? 'selected' : ''}`}
+        className={`dragged__item p-3 d-flex justify-content-between align-items-center gap-2 ${isSelect ? 'selected' : ''}`}
       >
         <span className="dragged__drag w-20 icon-hover" {...provided.dragHandleProps}>
           {
@@ -39,7 +38,7 @@ const DraggedItem = ({
             )
           }
         </span>
-        <div className="dragged__content w-100" onClick={() => setSelected(selected ? null : id)}>
+        <div className="dragged__content w-100" onClick={() => setSelected(isSelect ? null : id)}>
           <div className="dragged__title">{title}</div>
           <div className="dragged-items">
             {
@@ -51,8 +50,8 @@ const DraggedItem = ({
             }
           </div>
         </div>
-        {selected ? (
-          <span onClick={() => setSelected(null)} className="dragged__arrow icon-hover">
+        {isSelect ? (
+          <span onClick={() => setSelected(isSelect ? null : id)} className="dragged__arrow icon-hover">
             <Icon svg={arrowLeft} classNames={['icon-20']} />
           </span>
         ) : (
@@ -63,7 +62,7 @@ const DraggedItem = ({
         }
       </div>
       <div className="dragged_from">
-        {selected && children}
+        {isSelect && children}
       </div>
     </div>
   );

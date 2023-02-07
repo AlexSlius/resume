@@ -41,12 +41,12 @@ export const Footer = () => {
                                 </ul>
                             </li>
                             <li><Link href={`${routersPages['contactUs']}`}>Contact Us</Link></li>
-                            <li><Link href="#">Pricing</Link></li>
+                            {/* <li><Link href="#">Pricing</Link></li> */}
                             <li><Link href={`${routersPages['faqs']}`}>FAQ</Link></li>
                         </ul>
                     </nav>
                     <div className="right-info">
-                        <Link href="#" className="lang">English</Link>
+                        {/* <Link href="#" className="lang">English</Link> */}
                         <Link href={`${routersPages['login']}`} className="logins">Login</Link>
                         <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
                             <img src="/images/page/get-start.svg" alt="img" />

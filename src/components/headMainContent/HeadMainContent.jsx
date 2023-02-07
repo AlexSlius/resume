@@ -14,7 +14,7 @@ const HeadMainContent = (props) => {
             {title}
          </h2>
 
-         <div className={`${style.roows} gap-3`}>
+         <div className={`${style.roows}`}>
             {
                description && (
                   <div className={`${style.main_content__des} `}>

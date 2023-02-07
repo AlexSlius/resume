@@ -9,6 +9,18 @@
     //     stroke: #3679FD;
     //   }
     // }
+
+    &_new {
+      .dragged__arrow {
+        transform: rotate(-90deg);
+      }
+
+      &.selected {
+        .dragged__arrow {
+          transform: rotate(90deg);
+        }
+      }
+    }
   }
 
   &__title {
@@ -36,11 +48,24 @@
       stroke: #3679FD;
     }
   }
+
+  &__content {
+    min-height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .dragged_main {
   background: #f6f8fa;
-  margin-top: 1.5rem;
+  margin-bottom: 30px;
+
+  &_new {
+    .dragged_from {
+      margin-top: 30px;
+    }
+  }
 }
 
 .dragged_from {}

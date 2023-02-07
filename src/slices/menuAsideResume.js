@@ -33,6 +33,11 @@ const initialState = {
             link: '/resume-builder/hobies',
         },
         {
+            name: 'Languages',
+            status: true,
+            link: '/resume-builder/languages',
+        },
+        {
             key: 'extraCurricular',
             status: false,
             audit: true,
@@ -52,11 +57,6 @@ const initialState = {
             audit: true,
             name: 'Internship',
             link: '/resume-builder/intership',
-        },
-        {
-            name: 'Languages',
-            status: true,
-            link: '/resume-builder/languages',
         },
         {
             key: 'reference',

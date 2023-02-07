@@ -579,7 +579,7 @@ input[type="number"]:focus {
     }
 
     &.open {
-        top: 60%;
+        top: 0;
         opacity: 1;
         visibility: 1;
     }
@@ -589,7 +589,7 @@ input[type="number"]:focus {
         bottom: 80%;
 
         &.open {
-            bottom: 60%;
+            bottom: 0;
         }
     }
 }

@@ -101,8 +101,9 @@ const FormCourse = ({
       dispatch(fetchDeleteCourses({ idCv, id }));
    }
 
-   const handleAddOne = () => {
-      dispatch(fetchPostAddCvOneCourses({ idCv, position: newPosition(courseObj) }));
+   const handleAddOne = async () => {
+      let re = await dispatch(fetchPostAddCvOneCourses({ idCv, position: newPosition(courseObj) }));
+      setSelected(re?.payload?.id);
    }
 
    React.useEffect(() => {
@@ -111,151 +112,161 @@ const FormCourse = ({
 
    return (
       <>
-         <CRow>
-            <CCol>
-               <LoadWr isLoad={isLoader(status)}>
-                  <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                     <Droppable droppableId="droppable">
-                        {
-                           (provided, snapshot) => (
-                              <div
-                                 ref={provided.innerRef}
-                                 {...provided.droppableProps}
-                              >
-                                 {
-                                    isArray(courseObj) && courseObj.map((item, index) => (
-                                       <Draggable
-                                          key={item.id}
-                                          draggableId={String(item.id)}
-                                          index={index}
-                                       >
-                                          {
-                                             (provided, snapshot) => (
-                                                <DraggedItem
-                                                   id={item.id}
-                                                   lenght={courseObj.length}
-                                                   provided={provided}
-                                                   key={item.id}
-                                                   title={item.title}
-                                                   index={index}
-                                                   setSelected={setSelected}
-                                                   selected={selected == item.id}
-                                                   onDelete={() => handleDeleteOne(item.id)}
-                                                   skillsList={[
-                                                      `${formatDate(item?.dateFrom?.date)} - ${formatDate(
-                                                         item?.dateTo?.date
-                                                      )}`,
-                                                      item.institution
-                                                   ]}
-                                                >
-                                                   <CRow className="row g-30 r-gap-30 mt-4">
-                                                      <CCol xs={6}>
-                                                         <InputSelect
-                                                            label="Course title"
-                                                            placeholder="Course title"
-                                                            valueState={item?.title || ""}
-                                                            name="title"
-                                                            handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                            isOutDataObj={false}
-                                                            isModal={false}
-                                                         />
-                                                      </CCol>
-                                                      <CCol xs={6}>
-                                                         <InputSelect
-                                                            label="Institution"
-                                                            placeholder="Institution"
-                                                            valueState={item?.institution || ""}
-                                                            name="institution"
-                                                            handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                            isOutDataObj={false}
-                                                            isModal={false}
-                                                         />
-                                                      </CCol>
-                                                      <CCol xs={6}>
-                                                         <CRow>
+         {
+            isArray(courseObj) && (courseObj.length > 0) && (
+               <CRow>
+                  <CCol>
+                     <LoadWr isLoad={isLoader(status)}>
+                        <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+                           <Droppable droppableId="droppable">
+                              {
+                                 (provided, snapshot) => (
+                                    <div
+                                       ref={provided.innerRef}
+                                       {...provided.droppableProps}
+                                    >
+                                       {
+                                          isArray(courseObj) && courseObj.map((item, index) => (
+                                             <Draggable
+                                                key={item.id}
+                                                draggableId={String(item.id)}
+                                                index={index}
+                                             >
+                                                {
+                                                   (provided, snapshot) => (
+                                                      <DraggedItem
+                                                         id={item.id}
+                                                         lenght={courseObj.length}
+                                                         provided={provided}
+                                                         key={item.id}
+                                                         title={item.title}
+                                                         index={index}
+                                                         setSelected={setSelected}
+                                                         selected={selected}
+                                                         onDelete={() => handleDeleteOne(item.id)}
+                                                         skillsList={[
+                                                            `${formatDate(item?.dateFrom?.date)} - ${formatDate(
+                                                               item?.dateTo?.date
+                                                            )}`,
+                                                            item.institution
+                                                         ]}
+                                                      >
+                                                         <CRow className="row g-30 r-gap-30 mt-4">
                                                             <CCol xs={6}>
-                                                               <DatePicker
-                                                                  selected={item?.dateFrom?.date}
-                                                                  onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
-                                                                  floatingLabel="From"
-                                                                  placeholderText="From"
-                                                                  name="dateFrom"
+                                                               <InputSelect
+                                                                  label="Course title"
+                                                                  placeholder="Course title"
+                                                                  valueState={item?.title || ""}
+                                                                  name="title"
+                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                  isOutDataObj={false}
+                                                                  isModal={false}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
-                                                               <DatePicker
-                                                                  selected={item?.dateTo?.date}
-                                                                  onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
-                                                                  floatingLabel="To"
-                                                                  placeholderText="To"
-                                                                  name="dateTo"
+                                                               <InputSelect
+                                                                  label="Institution"
+                                                                  placeholder="Institution"
+                                                                  valueState={item?.institution || ""}
+                                                                  name="institution"
+                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                  isOutDataObj={false}
+                                                                  isModal={false}
                                                                />
+                                                            </CCol>
+                                                            <CCol xs={6}>
+                                                               <CRow>
+                                                                  <CCol xs={6}>
+                                                                     <DatePicker
+                                                                        selected={item?.dateFrom?.date}
+                                                                        onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
+                                                                        floatingLabel="From"
+                                                                        placeholderText="From"
+                                                                        name="dateFrom"
+                                                                     />
+                                                                  </CCol>
+                                                                  <CCol xs={6}>
+                                                                     <DatePicker
+                                                                        selected={item?.dateTo?.date}
+                                                                        onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
+                                                                        floatingLabel="To"
+                                                                        placeholderText="To"
+                                                                        name="dateTo"
+                                                                     />
+                                                                  </CCol>
+                                                               </CRow>
                                                             </CCol>
                                                          </CRow>
-                                                      </CCol>
-                                                   </CRow>
-                                                </DraggedItem>
-                                             )
-                                          }
-                                       </Draggable>
-                                    ))
-                                 }
-                                 {provided.placeholder}
-                              </div>
-                           )
-                        }
-                     </Droppable>
-                  </DragDropContext>
-               </LoadWr>
-            </CCol>
-         </CRow>
-         <CRow className="row g-30 r-gap-30 mt-4 bt-1">
-            <CCol xs={6}>
-               <InputSelect
-                  label="Course title"
-                  placeholder="Course title"
-                  valueState={objNew.title || ""}
-                  name="title"
-                  handleSaveSelect={handleSaveSelectNew}
-                  isOutDataObj={false}
-                  isModal={false}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <InputSelect
-                  label="Institution"
-                  placeholder="Institution"
-                  valueState={objNew.institution || ""}
-                  name="institution"
-                  handleSaveSelect={handleSaveSelectNew}
-                  isOutDataObj={false}
-                  isModal={false}
-               />
-            </CCol>
-            <CCol xs={6}>
-               <CRow>
-                  <CCol xs={6}>
-                     <DatePicker
-                        selected={objNew.period_from}
-                        onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
-                        floatingLabel="From"
-                        placeholderText="From"
-                        name="period_from"
-                     />
-                  </CCol>
-                  <CCol xs={6}>
-                     <DatePicker
-                        selected={objNew.period_to}
-                        onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
-                        floatingLabel="To"
-                        placeholderText="To"
-                        name="period_to"
-                     />
+                                                      </DraggedItem>
+                                                   )
+                                                }
+                                             </Draggable>
+                                          ))
+                                       }
+                                       {provided.placeholder}
+                                    </div>
+                                 )
+                              }
+                           </Droppable>
+                        </DragDropContext>
+                     </LoadWr>
                   </CCol>
                </CRow>
-            </CCol>
-         </CRow>
-         <CRow className="mt-4">
+            )
+         }
+
+         {
+            isArray(courseObj) && (courseObj.length == 0) && (
+               <CRow className="row g-30 r-gap-30 mb-4">
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Course title"
+                        placeholder="Course title"
+                        valueState={objNew.title || ""}
+                        name="title"
+                        handleSaveSelect={handleSaveSelectNew}
+                        isOutDataObj={false}
+                        isModal={false}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Institution"
+                        placeholder="Institution"
+                        valueState={objNew.institution || ""}
+                        name="institution"
+                        handleSaveSelect={handleSaveSelectNew}
+                        isOutDataObj={false}
+                        isModal={false}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <CRow>
+                        <CCol xs={6}>
+                           <DatePicker
+                              selected={objNew.period_from}
+                              onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
+                              floatingLabel="From"
+                              placeholderText="From"
+                              name="period_from"
+                           />
+                        </CCol>
+                        <CCol xs={6}>
+                           <DatePicker
+                              selected={objNew.period_to}
+                              onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
+                              floatingLabel="To"
+                              placeholderText="To"
+                              name="period_to"
+                           />
+                        </CCol>
+                     </CRow>
+                  </CCol>
+               </CRow>
+            )
+         }
+
+         <CRow>
             <CCol xs={12}>
                <AddButton
                   onClick={handleAddOne}
