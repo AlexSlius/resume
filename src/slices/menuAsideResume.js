@@ -1,41 +1,52 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { keysIcons } from "../constants/next-routers";
+
 const initialState = {
     list: [
         {
             name: 'Contact',
             status: true,
             link: '/resume-builder',
+            keyIcon: [keysIcons["iconContact"]],
         },
         {
             name: 'Employment',
             status: true,
             link: '/resume-builder/employment',
+            keyIcon: [keysIcons["iconEmploymen"]],
         },
         {
             name: 'Education',
             status: true,
             link: '/resume-builder/education',
+            keyIcon: [keysIcons["iconEducation"]],
         },
         {
             name: 'Skills',
             status: true,
             link: '/resume-builder/skills',
+            keyIcon: [keysIcons["iconSkills"]],
         },
         {
             name: 'Social Links',
-            status: true,
+            status: false,
+            audit: true,
             link: '/resume-builder/socials',
+            keyIcon: [keysIcons["iconSocial"]],
         },
         {
             name: 'Hobbies',
-            status: true,
+            status: false,
+            audit: true,
             link: '/resume-builder/hobies',
+            keyIcon: [keysIcons["iconHobbies"]],
         },
         {
             name: 'Languages',
             status: true,
             link: '/resume-builder/languages',
+            keyIcon: [keysIcons["iconLanguages"]],
         },
         {
             key: 'extraCurricular',
@@ -43,6 +54,7 @@ const initialState = {
             audit: true,
             name: 'Extra-curricular activities',
             link: '/resume-builder/activity',
+            keyIcon: [keysIcons["iconActivity"]],
         },
         {
             key: 'courses',
@@ -50,6 +62,7 @@ const initialState = {
             audit: true,
             name: 'Courses',
             link: '/resume-builder/course',
+            keyIcon: [keysIcons["iconCourses"]],
         },
         {
             key: 'internship',
@@ -57,6 +70,7 @@ const initialState = {
             audit: true,
             name: 'Internship',
             link: '/resume-builder/intership',
+            keyIcon: [keysIcons["iconInternship"]],
         },
         {
             key: 'reference',
@@ -64,6 +78,7 @@ const initialState = {
             audit: true,
             name: 'References',
             link: '/resume-builder/reference',
+            keyIcon: [keysIcons["iconReferences"]],
         },
         {
             key: 'certificates',
@@ -71,6 +86,15 @@ const initialState = {
             audit: true,
             name: 'Certifications',
             link: '/resume-builder/certificaties',
+            keyIcon: [keysIcons["iconCertifications"]],
+        },
+        {
+            key: 'advanced',
+            status: true,
+            isEnd: true,
+            name: 'Advanced',
+            link: '/resume-builder/add_section',
+            keyIcon: [keysIcons["iconAdvanced"]],
         }
     ],
 };

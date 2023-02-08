@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { useSelector } from 'react-redux'
 
+import Icon from "../Icon";
 import { routersPages } from "../../constants/next-routers";
 import HeadUser from "../headUser/HeadUser";
+
+import iconCreative from "/public/images/icons/icon_creav.svg?sprite";
+import iconProfesional from "/public/images/icons/briefcase-account.svg?sprite";
+import iconSimple from "/public/images/icons/creation_simpla.svg?sprite";
+import iconModern from "/public/images/icons/pencil-ruler.svg?sprite";
 
 export const Header = () => {
     const {
@@ -23,21 +29,62 @@ export const Header = () => {
                     <ul>
                         <li className="submenu-item">
                             <Link href="#">Resume</Link>
-                            <ul className="submenu">
-                                <li>
-                                    <Link href="#">Resume1</Link>
-                                </li>
-                                <li>
-                                    <Link href="#">Resume2</Link>
-                                </li>
-                                <li>
-                                    <Link href="#">Resume3</Link>
-                                </li>
-                            </ul>
+                            <div className="submenu">
+                                <div className="submenu__top">
+                                    <div className="submenu__title">Resume Templates</div>
+                                    <div className="submenu__r">
+                                        <Link href="#" className="link-a">View all</Link>
+                                    </div>
+                                </div>
+                                <div className="submenu_items">
+                                    <div className="submenu__item-c">
+                                        <div className="submenu__item-icon">
+                                            <Icon svg={iconCreative} />
+                                        </div>
+                                        <div className="submenu__item-title">Creative</div>
+                                        <p className="submenu__item-text">A bold, original feel perfect for artistic fields and contemporary companies</p>
+                                    </div>
+                                    <div className="submenu__item-c">
+                                        <div className="submenu__item-icon">
+                                            <Icon svg={iconProfesional} />
+                                        </div>
+                                        <div className="submenu__item-title">Professional</div>
+                                        <p className="submenu__item-text">Job-winning templates to showcase professionalism and expertise</p>
+                                    </div>
+                                    <div className="submenu__item-c">
+                                        <div className="submenu__item-icon">
+                                            <Icon svg={iconSimple} />
+                                        </div>
+                                        <div className="submenu__item-title">Simple</div>
+                                        <p className="submenu__item-text">Clean, timeless templates with a classic balanced structure. A perfect basic canvas</p>
+                                    </div>
+                                    <div className="submenu__item-c">
+                                        <div className="submenu__item-icon">
+                                            <Icon svg={iconModern} />
+                                        </div>
+                                        <div className="submenu__item-title">Creative</div>
+                                        <p className="submenu__item-text">A current and stylish feel for forward-thinking candidate in innovative fields</p>
+                                    </div>
+                                </div>
+                                <div className="submenu__item__fot">
+                                    <div className="submenu__item__fot-left">
+                                        <img src="/images/icons/img-l-sub.png" />
+                                    </div>
+                                    <div className="submenu__item__fot-center">
+                                        <div className="submenu__item-bot_t">Resume Builder</div>
+                                        <p className="submenu__item-bot_text">Build powerful resumes in only 5 minutes with our easy to use Resume Builder and get hired faster.</p>
+                                        <Link href="#" className="submenu__item-bot_link link-a">Get Started Now</Link>
+                                    </div>
+                                    <div className="submenu__item__fot-right">
+                                        <img src="/images/icons/img-r-sub.png" />
+                                    </div>
+                                </div>
+                            </div>
                         </li>
-                        <li className="submenu-item">
+                        {/*  className="submenu-item" */}
+                        <li>
                             <Link href="#">Cover Letter</Link>
-                            <ul className="submenu">
+                            {/* <ul className="submenu">
                                 <li>
                                     <Link href="#">Cover Letter1</Link>
                                 </li>
@@ -47,7 +94,7 @@ export const Header = () => {
                                 <li>
                                     <Link href="#">Cover Letter3</Link>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </li>
                         <li><Link href={`${routersPages['contactUs']}`}>Contact Us</Link></li>
                         {/* <li><Link href="#">Pricing</Link></li> */}

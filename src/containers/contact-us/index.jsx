@@ -1,10 +1,13 @@
 import Link from "next/link";
+import React from "react";
 
 import { InputCheckboxPageBtn } from "../../components/uis/input-checkbox-page-btn";
 import { InputPage } from "../../components/uis/input-page";
 import { TextAreaPage } from "../../components/uis/textarea-page";
 
 export const ContactUsPage = () => {
+    const [stats, setStats] = React.useState(true);
+
     return (
         <section className="contact-page">
             <div className="container text-center">
@@ -17,7 +20,7 @@ export const ContactUsPage = () => {
                 </p>
                 <form action="page" className="form">
                     <div className="form__top">
-                        <InputCheckboxPageBtn name="soc" label="Feedback" checked={true} />
+                        <InputCheckboxPageBtn name="soc" label="Feedback" checked={stats} onChange={() => setStats(prev => !prev)} />
                         <InputCheckboxPageBtn name="soc" label="Billing" />
                         <InputCheckboxPageBtn name="soc" label="Pricing" />
                         <InputCheckboxPageBtn name="soc" label="Page Errors" />
@@ -37,7 +40,7 @@ export const ContactUsPage = () => {
                     <div className="form-btn-center mt-30">
                         <button className="form-btn btns btn--blue btn--search" type="button">
                             <img loading="lazy" src="/images/page/send.svg" alt="img" />
-                            Send email
+                            <span>Send email</span>
                         </button>
                     </div>
                 </form>

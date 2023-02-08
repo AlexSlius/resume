@@ -12,23 +12,17 @@ export const Footer = () => {
                     </Link>
                     <nav className="nav">
                         <ul>
-                            <li className="submenu-item">
+                            {/* className="submenu-item" */}
+                            <li >
                                 <Link href="#">Resume</Link>
-                                <ul className="submenu">
-                                    <li>
-                                        <Link href="#">Resume1</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Resume2</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Resume3</Link>
-                                    </li>
-                                </ul>
+                                {/* <ul className="submenu">
+
+                                </ul> */}
                             </li>
-                            <li className="submenu-item">
+                            {/* className="submenu-item" */}
+                            <li>
                                 <Link href="#">Cover Letter</Link>
-                                <ul className="submenu">
+                                {/* <ul className="submenu">
                                     <li>
                                         <Link href="#">Cover Letter1</Link>
                                     </li>
@@ -38,7 +32,7 @@ export const Footer = () => {
                                     <li>
                                         <Link href="#">Cover Letter3</Link>
                                     </li>
-                                </ul>
+                                </ul> */}
                             </li>
                             <li><Link href={`${routersPages['contactUs']}`}>Contact Us</Link></li>
                             {/* <li><Link href="#">Pricing</Link></li> */}

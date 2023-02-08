@@ -78,7 +78,7 @@ const FormSkill = ({
    }
 
    const handleAddItemSkillOne = async (idSkill, text) => {
-      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 4, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
+      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 0, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
    }
 
    const handleUpdateItemSkillOne = async (id, data) => {
@@ -189,6 +189,7 @@ const FormSkill = ({
                                                       provided={provided}
                                                       id={item.id}
                                                       label={item.name}
+                                                      position={item.position}
                                                       onDelete={handleDeleteItemSkill}
                                                       ratingChanged={handleUpdateItemSkillOne}
                                                       valueStats={item.level}

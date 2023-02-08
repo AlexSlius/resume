@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { fetchUserGetAvatar } from "./controllers/users";
+import { localStorageRemove } from "./helpers/localStorage";
 
 // import { setAliasScreenResolution } from "./utils/theme/themeHelper";
 // import { setMobileDetect } from "./utils/theme/themeMobileDetect";
@@ -34,8 +35,11 @@ const App = ({
     // }, []);
 
     useEffect(() => {
-        if (autorizate?.isAthorized)
+        if (autorizate?.isAthorized) {
             store.dispatch(fetchUserGetAvatar());
+        } else {
+            localStorageRemove('idCv')
+        }
     }, []);
 
     return (children)

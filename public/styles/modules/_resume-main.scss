@@ -235,6 +235,12 @@
    .react-stars:hover {
       transform: scale(1);
    }
+
+   svg {
+      width: 10px !important;
+      height: 10px !important;
+      min-width: 10px !important;
+   }
 }
 
 .resume-main__info-text {

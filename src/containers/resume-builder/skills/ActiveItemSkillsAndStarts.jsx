@@ -1,8 +1,9 @@
-import ReactStars from "react-rating-stars-component";
+
 
 import Icon from "../../../components/Icon"
 import deleteIcon from "/public/images/icons/delete.svg??sprite";
 import dragIcon from "/public/images/icons/many-dots.svg?sprite";
+import { StartsComponent } from "../../../components/starts";
 
 export const ActiveItemSkillsAndStarts = ({
     onDelete = () => { },
@@ -10,27 +11,10 @@ export const ActiveItemSkillsAndStarts = ({
     id = null,
     label = "",
     valueStats = 0,
+    position,
     provided,
     isStar = true,
 }) => {
-    let colorStart = "#ffd700";
-
-    switch (valueStats) {
-        case 1:
-        case 2: {
-            colorStart = "#F63B3B";
-            break;
-        }
-        case 3: {
-            colorStart = "#FFAD61";
-            break;
-        }
-        case 4:
-        case 5: {
-            colorStart = "#6DC26C";
-            break;
-        }
-    }
 
     return (
         <div
@@ -47,14 +31,13 @@ export const ActiveItemSkillsAndStarts = ({
                     {
                         isStar && (
                             <div className="active-item-skills-starts__str">
-                                <ReactStars
-                                    count={5}
-                                    onChange={(value) => ratingChanged(id, { name: label, level: value })}
-                                    value={valueStats}
-                                    size={14}
-                                    activeColor={colorStart}
-                                    color="#DADCE3"
-                                />
+                                <StartsComponent
+                                    activeCol={valueStats}
+                                    onHandle={(value) => ratingChanged(id, {
+                                        name: label,
+                                        level: value,
+                                        position: position
+                                    })} />
                             </div>
                         )
                     }

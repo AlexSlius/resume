@@ -12,21 +12,39 @@ import internshipIcon from '/public/images/icons/intership.svg?sprite'
 import languagesIcon from '/public/images/icons/languages.svg?sprite'
 import referencesIcon from '/public/images/icons/references.svg?sprite'
 import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
+import advancedIcon from '/public/images/icons/icon_settings.svg?sprite'
 
-export const routerLinksAsideMenuIcon = [
-    contactIcon,
-    employmentIcon,
-    educationIcon,
-    skillsIcon,
-    socialIcon,
-    hobbiesIcon,
-    activityIcon,
-    coursesIcon,
-    internshipIcon,
-    languagesIcon,
-    referencesIcon,
-    certificationsIcon
-];
+export const keysIcons = {
+    iconContact: "iconContact",
+    iconEmploymen: "iconEmploymen",
+    iconEducation: "iconEducation",
+    iconSkills: "iconSkills",
+    iconSocial: "iconSocial",
+    iconHobbies: "iconHobbies",
+    iconActivity: "iconActivity",
+    iconCourses: "iconCourses",
+    iconInternship: "iconInternship",
+    iconLanguages: "iconLanguages",
+    iconReferences: "iconReferences",
+    iconCertifications: "iconCertifications",
+    iconAdvanced: "iconAdvanced"
+}
+
+export const routerLinksAsideMenuIcon = {
+    [keysIcons["iconContact"]]: contactIcon,
+    [keysIcons["iconEmploymen"]]: employmentIcon,
+    [keysIcons["iconEducation"]]: educationIcon,
+    [keysIcons["iconSkills"]]: skillsIcon,
+    [keysIcons["iconSocial"]]: socialIcon,
+    [keysIcons["iconHobbies"]]: hobbiesIcon,
+    [keysIcons["iconActivity"]]: activityIcon,
+    [keysIcons["iconCourses"]]: coursesIcon,
+    [keysIcons["iconInternship"]]: internshipIcon,
+    [keysIcons["iconLanguages"]]: languagesIcon,
+    [keysIcons["iconReferences"]]: referencesIcon,
+    [keysIcons["iconCertifications"]]: certificationsIcon,
+    [keysIcons["iconAdvanced"]]: advancedIcon
+};
 
 export const routersPages = {
     'register': 'register',

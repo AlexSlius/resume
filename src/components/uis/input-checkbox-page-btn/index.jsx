@@ -1,7 +1,7 @@
 export const InputCheckboxPageBtn = ({
     label = "",
     name,
-    checked = false,
+    checked,
     onChange = () => { },
 }) => {
     return (

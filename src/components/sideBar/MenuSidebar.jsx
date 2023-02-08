@@ -73,7 +73,7 @@ const MenuSideBar = () => {
                         <CNavItem key={index}>
                             <ActiveLink href={`${obj.link}`} activeClassName="active">
                                 <a className={`${style.nav_link} nav-link ${classDisabled}`}>
-                                    <Icon svg={routerLinksAsideMenuIcon[index]} classNames={[style.nav_icon, 'nav-icon']} />
+                                    <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                     {obj.name || ""}
                                 </a>
                             </ActiveLink>

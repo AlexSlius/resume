@@ -78,7 +78,7 @@ const FormLanguages = ({
          <LoadWr isLoad={isLoader(status)}>
             {
                isArray(languageObj) && languageObj.map((item, index) => (
-                  <div className="rows-lan mt-4">
+                  <div className="rows-lan mt-4" key={index}>
                      <CRow key={item.id} className="g-30 r-gap-30 flex-auto">
                         <CCol xs={6}>
                            <InputSelect

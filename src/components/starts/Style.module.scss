@@ -1,0 +1,29 @@
+.wr_star {
+
+    ul {
+        padding: 0;
+        margin: 0 -2px;
+        display: flex;
+        align-items: center;
+        transition: 0.4s;
+
+        li {
+            padding: 0 2px;
+
+            svg {
+                width: 13px;
+                height: 13px;
+                min-width: 13px;
+                fill: inherit;
+            }
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &.no_edit {
+        pointer-events: none;
+    }
+}

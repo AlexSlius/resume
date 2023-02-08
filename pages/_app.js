@@ -30,7 +30,7 @@ const MyApp = ({ Component, ...rest }) => {
 
     router.events.on("routeChangeComplete", () => {
       setLoading(false);
-    });
+    });    
   }, []);
 
   return (
