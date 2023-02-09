@@ -113,7 +113,7 @@ const FormCertificaties = ({
          </LoadWr>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps isLastStep={true} clickFinish={clickFinish} isAthorized={isAthorized} />
+               <ButtonSteps clickFinish={clickFinish} isAthorized={isAthorized} />
             </CCol>
          </CRow>
       </>

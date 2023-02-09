@@ -33,7 +33,7 @@ const AdminPage = ({ children }) => {
             }
          }
       }
-   }, [router.asPath]);
+   }, []);
 
    return (
       <CContainer fluid className={`${style.container_admin}`}>

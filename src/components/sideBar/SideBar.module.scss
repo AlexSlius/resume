@@ -37,6 +37,8 @@
 
    &.active {
       position: relative;
+      background: #eef0f2 !important;
+      color: #01153a !important;
 
       &::after {
          content: "";
@@ -46,6 +48,10 @@
          background: #3679fd;
          position: absolute;
          height: 100%;
+      }
+
+      svg {
+         fill: #01153a !important
       }
    }
 }

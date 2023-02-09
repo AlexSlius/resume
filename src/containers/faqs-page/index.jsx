@@ -32,28 +32,30 @@ const arr = [
 export const FaqsPage = () => {
     return (
         <section className="faq-page">
-            <div className="max-830px">
-                <div className="text-center">
-                    <h1 className="h1">
-                        FAQ<span className="icon-right-top">s</span>
-                    </h1>
-                    <p className="bottom-text">
-                        Do you have any questions? Please have a look at our frequently asked questions.
-                        If you cannot find the answer you need, please contact us.
-                    </p>
-                    <form action="page" className="form">
-                        <InputPage placeholder="Search by keyword..." />
-                        <button className="form-btn btns btn--blue btn--search" type="button">
-                            <img loading="lazy" src="/images/page/search-icon.svg" alt="img" />
-                            Find a question
-                        </button>
-                    </form>
-                    <div className="faq-page__wrapper">
-                        <AccordionComponent arr={arr} />
-                    </div>
-                    <div className="faq-page__bottom">
-                        Didn't find what you're looking for?
-                        <Link href="#">You can always contact us.</Link>
+            <div className="containers">
+                <div className="max-830px">
+                    <div className="text-center">
+                        <h1 className="h1">
+                            FAQ<span className="icon-right-top">s</span>
+                        </h1>
+                        <p className="bottom-text">
+                            Do you have any questions? Please have a look at our frequently asked questions.
+                            If you cannot find the answer you need, please contact us.
+                        </p>
+                        <form action="page" className="form">
+                            <InputPage placeholder="Search by keyword..." />
+                            <button className="form-btn btns btn--blue btn--search" type="button">
+                                <img loading="lazy" src="/images/page/search-icon.svg" alt="img" />
+                                Find a question
+                            </button>
+                        </form>
+                        <div className="faq-page__wrapper">
+                            <AccordionComponent arr={arr} />
+                        </div>
+                        <div className="faq-page__bottom">
+                            Didn't find what you're looking for?
+                            <Link href="#">You can always contact us.</Link>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ import internshipIcon from '/public/images/icons/intership.svg?sprite'
 import languagesIcon from '/public/images/icons/languages.svg?sprite'
 import referencesIcon from '/public/images/icons/references.svg?sprite'
 import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
-import advancedIcon from '/public/images/icons/icon_settings.svg?sprite'
+import advancedIcon from '/public/images/icons/icon_settings_aside.svg?sprite'
 
 export const keysIcons = {
     iconContact: "iconContact",
@@ -60,4 +60,5 @@ export const routersPages = {
     'resumeNow': 'resume-now',
     'faqs': 'faqs',
     'contactUs': 'contact-us',
+    'jobWinningResumeTemplates': 'job-winning-resume-templates',
 }

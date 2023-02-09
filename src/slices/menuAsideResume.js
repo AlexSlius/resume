@@ -29,28 +29,32 @@ const initialState = {
             keyIcon: [keysIcons["iconSkills"]],
         },
         {
-            name: 'Social Links',
-            status: false,
-            audit: true,
-            link: '/resume-builder/socials',
-            keyIcon: [keysIcons["iconSocial"]],
-        },
-        {
-            name: 'Hobbies',
-            status: false,
-            audit: true,
-            link: '/resume-builder/hobies',
-            keyIcon: [keysIcons["iconHobbies"]],
-        },
-        {
             name: 'Languages',
             status: true,
             link: '/resume-builder/languages',
             keyIcon: [keysIcons["iconLanguages"]],
         },
+    ],
+    listAdd: [
+        {
+            key: 'socialLinks',
+            name: 'Social Links',
+            status: true,
+            audit: true,
+            link: '/resume-builder/socials',
+            keyIcon: [keysIcons["iconSocial"]],
+        },
+        {
+            key: 'hobbies',
+            name: 'Hobbies',
+            status: true,
+            audit: true,
+            link: '/resume-builder/hobies',
+            keyIcon: [keysIcons["iconHobbies"]],
+        },
         {
             key: 'extraCurricular',
-            status: false,
+            status: true,
             audit: true,
             name: 'Extra-curricular activities',
             link: '/resume-builder/activity',
@@ -58,7 +62,7 @@ const initialState = {
         },
         {
             key: 'courses',
-            status: false,
+            status: true,
             audit: true,
             name: 'Courses',
             link: '/resume-builder/course',
@@ -66,7 +70,7 @@ const initialState = {
         },
         {
             key: 'internship',
-            status: false,
+            status: true,
             audit: true,
             name: 'Internship',
             link: '/resume-builder/intership',
@@ -74,7 +78,7 @@ const initialState = {
         },
         {
             key: 'reference',
-            status: false,
+            status: true,
             audit: true,
             name: 'References',
             link: '/resume-builder/reference',
@@ -82,27 +86,26 @@ const initialState = {
         },
         {
             key: 'certificates',
-            status: false,
+            status: true,
             audit: true,
             name: 'Certifications',
             link: '/resume-builder/certificaties',
             keyIcon: [keysIcons["iconCertifications"]],
         },
-        {
-            key: 'advanced',
-            status: true,
-            isEnd: true,
-            name: 'Advanced',
-            link: '/resume-builder/add_section',
-            keyIcon: [keysIcons["iconAdvanced"]],
-        }
-    ],
+    ]
 };
 
 export const slice = createSlice({
     name: 'menuAsideResume',
     initialState,
     reducers: {
+        // addAllSection(state, action) {
+        //     state.list = action.payload;
+        // },
+        addItemSection(state, action) {
+            let { value } = action.payload;
+            state.list = [...state.list, ...[value]];
+        },
         updateItemStatus(state, action) {
             let { index, value } = action.payload;
             state.list[index]['status'] = value;
@@ -116,6 +119,8 @@ export const slice = createSlice({
 export const {
     updateItemStatus,
     cleanSlise,
+    addItemSection,
+    // addAllSection
 } = slice.actions;
 
 export const { reducer } = slice;

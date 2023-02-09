@@ -4,19 +4,20 @@ import {
 } from "@coreui/react"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { isArray, isObject, slice } from "lodash";
 
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
 
 import { localStorageGet } from "../../helpers/localStorage";
-import { updateItemStatus } from "../../slices/menuAsideResume";
+// import { addAllSection, updateItemStatus } from "../../slices/menuAsideResume";
 
 import {
-    routerLinksAsideMenuIcon
+    routerLinksAsideMenuIcon,
+    keysIcons
 } from "../../constants/next-routers"
 
 import style from './SideBar.module.scss'
+import { sectionIndexAndAll } from "../../helpers/sections";
 
 
 const MenuSideBar = () => {
@@ -26,7 +27,8 @@ const MenuSideBar = () => {
         },
         menuAsideResume,
     } = useSelector(state => state);
-    const dispatch = useDispatch();
+    const [currentListmenu, setCurrentListMenu] = React.useState([]);
+    // const dispatch = useDispatch();
 
     const [classDisabled, setСlassDisabled] = React.useState("");
     const idCv = localStorageGet('idCv');
@@ -38,32 +40,42 @@ const MenuSideBar = () => {
             }
             return "";
         });
-    }, []);
 
-    React.useEffect(() => {
-        if (isArray(list)) {
-            let arSections = list[0];
+        let arrSect = [];
+        let newArrAdd = [];
+        let keysAll = Object.keys(list);
 
-            if (isObject(arSections)) {
-                Object.keys(arSections).map((key) => {
-                    let statusItemSection = arSections[key];
-
-                    if (!!statusItemSection) {
-                        menuAsideResume.list.map((el, index) => {
-                            if (el.key === key) {
-                                dispatch(updateItemStatus({ index, value: true }));
-                            }
-                        });
-                    }
-                });
-            }
+        for (let i = 0; i < keysAll.length; i++) {
+            arrSect.push({ ...list[keysAll[i]], key: keysAll[i] });
         }
+
+        arrSect.sort(function (a, b) {
+            if (a.position > b.position) {
+                return 1;
+            }
+            if (a.position < b.position) {
+                return -1;
+            }
+            return 0;
+        });
+
+        arrSect.map(item => {
+            menuAsideResume.listAdd.map((sectionItem) => {
+                if (item.key == sectionItem.key) {
+                    if (!!item.status) {
+                        newArrAdd.push(sectionItem);
+                    }
+                }
+            });
+        });
+
+        setCurrentListMenu([...menuAsideResume.list, ...newArrAdd]);
     }, [list]);
 
     return (
         <CSidebarNav>
             {
-                menuAsideResume.list.map((obj, index) => {
+                currentListmenu.map((obj, index) => {
                     if (obj?.key) {
                         if (obj?.status == false)
                             return;
@@ -71,7 +83,7 @@ const MenuSideBar = () => {
 
                     return (
                         <CNavItem key={index}>
-                            <ActiveLink href={`${obj.link}`} activeClassName="active">
+                            <ActiveLink href={`${obj.link}`} activeClassName={style.active}>
                                 <a className={`${style.nav_link} nav-link ${classDisabled}`}>
                                     <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                     {obj.name || ""}
@@ -80,6 +92,19 @@ const MenuSideBar = () => {
                         </CNavItem>
                     )
                 })
+            }
+
+            {
+                !!sectionIndexAndAll(list)?.colNull && (
+                    <CNavItem>
+                        <ActiveLink href={`/resume-builder/add_section`} activeClassName={style.active}>
+                            <a className={`${style.nav_link} nav-link ${classDisabled}`}>
+                                <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
+                                Advanced
+                            </a>
+                        </ActiveLink>
+                    </CNavItem>
+                )
             }
         </CSidebarNav>
     )

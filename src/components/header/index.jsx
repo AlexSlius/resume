@@ -33,7 +33,7 @@ export const Header = () => {
                                 <div className="submenu__top">
                                     <div className="submenu__title">Resume Templates</div>
                                     <div className="submenu__r">
-                                        <Link href="#" className="link-a">View all</Link>
+                                        <Link href={routersPages['jobWinningResumeTemplates']} className="link-a">View all</Link>
                                     </div>
                                 </div>
                                 <div className="submenu_items">
@@ -73,7 +73,7 @@ export const Header = () => {
                                     <div className="submenu__item__fot-center">
                                         <div className="submenu__item-bot_t">Resume Builder</div>
                                         <p className="submenu__item-bot_text">Build powerful resumes in only 5 minutes with our easy to use Resume Builder and get hired faster.</p>
-                                        <Link href="#" className="submenu__item-bot_link link-a">Get Started Now</Link>
+                                        <Link href={routersPages['resumeBuilder']} className="submenu__item-bot_link link-a">Get Started Now</Link>
                                     </div>
                                     <div className="submenu__item__fot-right">
                                         <img src="/images/icons/img-r-sub.png" />

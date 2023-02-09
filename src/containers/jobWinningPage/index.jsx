@@ -13,6 +13,8 @@ import iconSimple from "/public/images/icons/icon-simple.svg?sprite";
 import iconProfessional from "/public/images/icons/icon-professional.svg?sprite";
 import iconModern from "/public/images/icons/icon-modern.svg?sprite";
 
+import { routersPages } from "../../constants/next-routers";
+
 export const JobWinningPage = () => {
     return (
         <section className="contact-page">
@@ -26,7 +28,7 @@ export const JobWinningPage = () => {
                 </p>
 
                 <div className="btn-centers-w mt-40">
-                    <ButtonIcon icon={iconAddNew} label="Create my resume" className="btn--blue" />
+                    <ButtonIcon href={routersPages['resumeBuilder']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
                 </div>
 
                 <div className="wr-resumes">
