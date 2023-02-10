@@ -19,6 +19,10 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (data
         await Router.push(menuAsideResume.list[1].link);
     }
 
+    if (isError(response)) {
+        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+    }
+
     return response;
 })
 

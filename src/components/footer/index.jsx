@@ -1,8 +1,17 @@
 import Link from "next/link";
+import { useSelector } from 'react-redux'
 
 import { routersPages } from "../../constants/next-routers";
 
 export const Footer = () => {
+    const {
+        auth: {
+            autorizate: {
+                isAthorized,
+            }
+        },
+    } = useSelector((state) => state);
+
     return (
         <footer className="footer-r">
             <div className="containers">
@@ -41,11 +50,17 @@ export const Footer = () => {
                     </nav>
                     <div className="right-info">
                         {/* <Link href="#" className="lang">English</Link> */}
-                        <Link href={`${routersPages['login']}`} className="logins">Login</Link>
-                        <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
-                            <img src="/images/page/get-start.svg" alt="img" />
-                            Get started
-                        </Link>
+                        {
+                            !isAthorized && (
+                                <>
+                                    <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                    <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
+                                        <img src="/images/page/get-start.svg" alt="img" />
+                                        Get started
+                                    </Link>
+                                </>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="footer-r-bottom">

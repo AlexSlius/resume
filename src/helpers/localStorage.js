@@ -27,3 +27,7 @@ export const sessionStorageGet = (key, isJson = false) => {
 
     return null;
 }
+
+export const sessionStorageRemove = (key) => {
+    sessionStorage.removeItem(key)
+}

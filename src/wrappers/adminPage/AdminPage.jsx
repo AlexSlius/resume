@@ -35,6 +35,7 @@ const AdminPage = ({ children }) => {
       }
    }, []);
 
+
    return (
       <CContainer fluid className={`${style.container_admin}`}>
          <CRow className={`${style.row_main} row-main`}>

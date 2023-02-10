@@ -36,4 +36,12 @@
             border: 1px solid #DADCE3;
         }
     }
+
+    
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    background: #6798F9!important;     
+    border-color: #6798F9!important;
+    opacity: 1!important;
 }

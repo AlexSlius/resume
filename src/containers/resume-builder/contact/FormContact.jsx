@@ -31,7 +31,7 @@ import {
    addJopsTitle
 } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet } from "../../../helpers/localStorage";
+import { localStorageGet, sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
@@ -88,7 +88,13 @@ const FormContact = () => {
       if (e.target.files[0]) {
          reader.readAsDataURL(e.target.files[0]);
          await setPictureFile(e.target.files[0]);
-         await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
+
+         if (!!idCv)
+            await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
+
+         if (!idCv) {
+            sessionStorageSet('picture', e.target.files[0]);
+         }
       }
    }
 
@@ -171,6 +177,8 @@ const FormContact = () => {
       dispatch(fetchGetCountrys()); // get all countrys
       if (!!idCv) {
          dispatch(getBasicContact(idCv));
+      } else {
+         sessionStorageRemove('picture');
       }
    }, []);
 
@@ -193,6 +201,7 @@ const FormContact = () => {
                         label="First Name*"
                         placeholder="First Name*"
                         value={contactObj.firstName}
+                        autocomplete="on"
                         obj={
                            register("firstName", {
                               required: true,
@@ -207,6 +216,7 @@ const FormContact = () => {
                      <Input
                         label="Last Name*"
                         placeholder="Last Name*"
+                        autocomplete="on"
                         value={contactObj.lastName}
                         obj={
                            register("lastName", {
@@ -230,6 +240,7 @@ const FormContact = () => {
                      placeholder="E-mail"
                      value={contactObj.email}
                      invalid={errors?.email}
+                     autocomplete="on"
                      valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
                      obj={
                         register("email", {
@@ -244,6 +255,7 @@ const FormContact = () => {
                   <InputPhoneNoControler
                      label="Phone"
                      placeholder="Phone"
+                     autocomplete="on"
                      onChange={(value) => handleSaveSelect({ name: "phone", value: value })}
                      value={contactObj.phone}
                   />
@@ -297,6 +309,7 @@ const FormContact = () => {
                      label="Adress"
                      placeholder="Adress"
                      value={contactObj.address}
+                     autocomplete="on"
                      obj={
                         register("address", {
                            minLength: {
@@ -311,6 +324,7 @@ const FormContact = () => {
                      label="Zip Code"
                      placeholder="Zip Code"
                      value={contactObj.zipCode}
+                     autocomplete="on"
                      type="number"
                      obj={
                         register("zipCode", {

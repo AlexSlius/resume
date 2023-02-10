@@ -12,6 +12,8 @@ import iconDashboard from '/public/images/icons/icon-dashboard.svg?sprite'
 import iconSettings from '/public/images/icons/icon_settings.svg?sprite'
 import iconHelp from '/public/images/icons/icon-he.svg?sprite'
 import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
+import iconHLogin from '/public/images/icons/icon-h-login.svg?sprite'
+import iconSingUp from '/public/images/icons/icon-sing-up.svg?sprite'
 
 import { routersPages } from "../../constants/next-routers"
 
@@ -78,6 +80,24 @@ const HeadUser = () => {
                                     <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
                                        <Icon svg={iconSettings} />
                                        <span>Settings</span>
+                                    </Link>
+                                 </li>
+                              </>
+                           )
+                        }
+                        {
+                           !isAthorized && (
+                              <>
+                                 <li>
+                                    <Link href={isAthorized ? `/${routersPages['login']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                       <Icon svg={iconHLogin} />
+                                       <span>Login</span>
+                                    </Link>
+                                 </li>
+                                 <li>
+                                    <Link href="#" className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                       <Icon svg={iconSingUp} />
+                                       <span>Sign up</span>
                                     </Link>
                                  </li>
                               </>

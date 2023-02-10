@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
 
-import { localStorageGet } from "../../helpers/localStorage";
-// import { addAllSection, updateItemStatus } from "../../slices/menuAsideResume";
+import { localStorageGet, sessionStorageGet } from "../../helpers/localStorage";
+import { sectionIndexAndAll } from "../../helpers/sections";
+import { contactSetNew, contactAddNew } from "../../controllers/contacts"
 
 import {
     routerLinksAsideMenuIcon,
@@ -17,30 +18,39 @@ import {
 } from "../../constants/next-routers"
 
 import style from './SideBar.module.scss'
-import { sectionIndexAndAll } from "../../helpers/sections";
 
 
 const MenuSideBar = () => {
+    const dispatch = useDispatch();
     const {
         addSection: {
             list,
         },
         menuAsideResume,
+        auth: {
+            autorizate: {
+                isAthorized
+            }
+        },
     } = useSelector(state => state);
     const [currentListmenu, setCurrentListMenu] = React.useState([]);
-    // const dispatch = useDispatch();
 
-    const [classDisabled, setСlassDisabled] = React.useState("");
     const idCv = localStorageGet('idCv');
 
-    React.useEffect(() => {
-        setСlassDisabled(() => {
-            if (!idCv) {
-                return "disableds";
-            }
-            return "";
-        });
+    const handleClick = (e) => {
+        if (!idCv) {
+            e.preventDefault();
+            let pictureFile = sessionStorageGet('picture')
 
+            if (isAthorized) {
+                dispatch(contactAddNew(pictureFile));
+            } else {
+                dispatch(contactSetNew(pictureFile || null));
+            }
+        }
+    }
+
+    React.useEffect(() => {
         let arrSect = [];
         let newArrAdd = [];
         let keysAll = Object.keys(list);
@@ -84,7 +94,7 @@ const MenuSideBar = () => {
                     return (
                         <CNavItem key={index}>
                             <ActiveLink href={`${obj.link}`} activeClassName={style.active}>
-                                <a className={`${style.nav_link} nav-link ${classDisabled}`}>
+                                <a className={`${style.nav_link} nav-link`} onClick={handleClick}>
                                     <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                     {obj.name || ""}
                                 </a>
@@ -95,10 +105,10 @@ const MenuSideBar = () => {
             }
 
             {
-                !!sectionIndexAndAll(list)?.colNull && (
+                !!sectionIndexAndAll(list)?.lengAll && (
                     <CNavItem>
                         <ActiveLink href={`/resume-builder/add_section`} activeClassName={style.active}>
-                            <a className={`${style.nav_link} nav-link ${classDisabled}`}>
+                            <a className={`${style.nav_link} nav-link`} onClick={handleClick}>
                                 <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
                                 Advanced
                             </a>

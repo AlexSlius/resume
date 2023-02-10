@@ -7,7 +7,7 @@ import { Notification } from "./natification";
 import { removeItemNotification, removeItemShift } from "../../slices/notifications";
 
 
-export const Natifications = ({ store }) => {
+const Natifications = ({ store }) => {
     const dispatch = useDispatch();
     const { notificationData } = useSelector(state => state);
 
@@ -40,3 +40,4 @@ export const Natifications = ({ store }) => {
     )
 }
 
+export default Natifications;

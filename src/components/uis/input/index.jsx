@@ -22,6 +22,7 @@ const Input = ({
    isDelete = false,
    disabled = false,
    textError = "",
+   autocomplete = "off"
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
 
@@ -41,6 +42,7 @@ const Input = ({
                valid={!!valid}
                name={name}
                disabled={disabled}
+               autocomplete={autocomplete}
                {...obj}
             />
             {

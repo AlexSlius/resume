@@ -13,7 +13,8 @@ import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
 import '../public/styles/style.scss';
 
-import { Natifications } from "../src/components/natifications";
+import Natifications from "../src/components/natifications";
+import { Cookies } from "../src/components/cookies";
 
 
 const MyApp = ({ Component, ...rest }) => {
@@ -30,7 +31,7 @@ const MyApp = ({ Component, ...rest }) => {
 
     router.events.on("routeChangeComplete", () => {
       setLoading(false);
-    });    
+    });
   }, []);
 
   return (
@@ -41,15 +42,16 @@ const MyApp = ({ Component, ...rest }) => {
         <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
       </Head>
       <App store={store}>
+        <Component
+          {...props}
+        />
+        <Natifications />
         {
           loading && (
             <PreloaderPage />
           )
         }
-        <Natifications />
-        <Component
-          {...props}
-        />
+        <Cookies />
       </App>
     </Provider>
   )
