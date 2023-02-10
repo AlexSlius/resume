@@ -34,6 +34,7 @@ import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isLoader } from "../../../helpers/loadings"
+import { isObjDatas } from '../../../helpers/datasPage';
 import { formatDate } from "../../../utils";
 
 import {
@@ -75,6 +76,8 @@ const FormEmployment = ({
     },
   } = storeDate;
   const [selected, setSelected] = useState(null);
+
+  const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -168,6 +171,7 @@ const FormEmployment = ({
     await dispatch(updateItemFieldEmploymentNew({ name: "assignment", value: textContent }));
   }
   // end new 
+
 
   useEffect(() => {
     dispatch(fetchGetCountrys());
@@ -441,7 +445,11 @@ const FormEmployment = ({
           />
         </CCol>
         <CCol className="mt-4">
-          <ButtonSteps isAthorized={isAthorized} />
+          <ButtonSteps
+            isAthorized={isAthorized}
+            disabledNext={!isDataPage}
+          // onClean
+          />
         </CCol>
       </CRow>
     </>

@@ -13,6 +13,7 @@ import languagesIcon from '/public/images/icons/languages.svg?sprite'
 import referencesIcon from '/public/images/icons/references.svg?sprite'
 import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import advancedIcon from '/public/images/icons/icon_settings_aside.svg?sprite'
+import сareerObjectiveIcon from '/public/images/icons/сareerObjective.svg?sprite'
 
 export const keysIcons = {
     iconContact: "iconContact",
@@ -27,7 +28,8 @@ export const keysIcons = {
     iconLanguages: "iconLanguages",
     iconReferences: "iconReferences",
     iconCertifications: "iconCertifications",
-    iconAdvanced: "iconAdvanced"
+    iconAdvanced: "iconAdvanced",
+    сareerObjective: "сareerObjective"
 }
 
 export const routerLinksAsideMenuIcon = {
@@ -43,7 +45,8 @@ export const routerLinksAsideMenuIcon = {
     [keysIcons["iconLanguages"]]: languagesIcon,
     [keysIcons["iconReferences"]]: referencesIcon,
     [keysIcons["iconCertifications"]]: certificationsIcon,
-    [keysIcons["iconAdvanced"]]: advancedIcon
+    [keysIcons["iconAdvanced"]]: advancedIcon,
+    [keysIcons["сareerObjective"]]: сareerObjectiveIcon
 };
 
 export const routersPages = {

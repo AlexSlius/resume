@@ -18,6 +18,7 @@ import {
 } from "../../constants/next-routers"
 
 import style from './SideBar.module.scss'
+import { addAllSection } from "../../slices/menuAsideResume";
 
 
 const MenuSideBar = () => {
@@ -33,7 +34,7 @@ const MenuSideBar = () => {
             }
         },
     } = useSelector(state => state);
-    const [currentListmenu, setCurrentListMenu] = React.useState([]);
+    // const [currentListmenu, setCurrentListMenu] = React.useState([]);
 
     const idCv = localStorageGet('idCv');
 
@@ -79,13 +80,15 @@ const MenuSideBar = () => {
             });
         });
 
-        setCurrentListMenu([...menuAsideResume.list, ...newArrAdd]);
+        dispatch(addAllSection([...menuAsideResume.listStart, ...newArrAdd]));
+
+        // setCurrentListMenu([...menuAsideResume.list, ...newArrAdd]);
     }, [list]);
 
     return (
         <CSidebarNav>
             {
-                currentListmenu.map((obj, index) => {
+                menuAsideResume.list.map((obj, index) => {
                     if (obj?.key) {
                         if (obj?.status == false)
                             return;

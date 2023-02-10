@@ -15,6 +15,7 @@ import { LoadWr } from "../../../components/loadWr"
 import { isLoader } from "../../../helpers/loadings"
 
 import { reorder } from '../../../helpers/drageDrop';
+import { isObjDatas } from '../../../helpers/datasPage';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
@@ -53,6 +54,8 @@ const FormCourse = ({
       },
    } = storeDate;
    const [selected, setSelected] = React.useState(null);
+
+   const isDataPage = (isArray(courseObj) && (courseObj.length > 0)) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -274,7 +277,10 @@ const FormCourse = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

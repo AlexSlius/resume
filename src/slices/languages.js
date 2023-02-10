@@ -12,7 +12,7 @@ const initialState = {
   languageObj: [],
   objNew: {
     language: "",
-    level: "3",
+    level: "0",
   },
   status: statusLoaded,
   statusList: statusLoaded

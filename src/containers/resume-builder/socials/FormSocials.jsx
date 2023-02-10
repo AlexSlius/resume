@@ -10,6 +10,7 @@ import { LoadWr } from "../../../components/loadWr";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { isLoader } from "../../../helpers/loadings"
+import { isObjDatas } from '../../../helpers/datasPage';
 import { fetchGetSocials } from "../../../controllers/dependencies";
 
 import { updateItemSocialFiled, updateItemSocialFiledNew } from "../../../slices/socials";
@@ -41,6 +42,8 @@ const FormSocials = ({
          }
       },
    } = states;
+
+   const isDataPage = (isArray(socialObj) && (socialObj.length > 0)) || isObjDatas(socialObjNew);
 
    // new
    const updateitemFiledNew = async ({ name, value, isClisk }) => {
@@ -145,7 +148,10 @@ const FormSocials = ({
          </LoadWr>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

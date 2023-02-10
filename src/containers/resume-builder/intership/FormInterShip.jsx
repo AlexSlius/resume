@@ -17,6 +17,7 @@ import { LoadWr } from "../../../components/loadWr"
 import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { isObjDatas } from '../../../helpers/datasPage';
 
 import {
    updateItemFieldIntership,
@@ -63,6 +64,8 @@ const FormInterShip = ({
       },
    } = storeDate;
    const [selected, setSelected] = React.useState(null);
+
+   const isDataPage = (isArray(interhipObj) && (interhipObj.length > 0)) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -360,7 +363,10 @@ const FormInterShip = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

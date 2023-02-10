@@ -42,8 +42,9 @@ const FormLanguages = ({
          }
       },
    } = storeDate;
-
    const refIdTimeout = useRef(undefined);
+
+   const isDataPage = (isArray(languageObj) && (languageObj.length > 0));
 
    const handleSaveSelect = async ({ index, name, value }) => {
       await dispatch(updateItemLanguageFiled({ index, name, value }));
@@ -106,13 +107,9 @@ const FormLanguages = ({
                            </div>
                         </CCol>
                      </CRow>
-                     {
-                        (languageObj.length > 1) && (
-                           <div className="btn-wr-ite">
-                              <ButtonDeleteItem onDelete={() => handDeleteitem(item.id)} />
-                           </div>
-                        )
-                     }
+                     <div className="btn-wr-ite">
+                        <ButtonDeleteItem onDelete={() => handDeleteitem(item.id)} />
+                     </div>
                   </div>
                ))
             }
@@ -125,7 +122,10 @@ const FormLanguages = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

@@ -11,6 +11,7 @@ import Input from "../../../components/uis/input"
 import { LoadWr } from "../../../components/loadWr";
 import { isLoader } from "../../../helpers/loadings"
 import { localStorageGet } from "../../../helpers/localStorage";
+import { isObjDatas } from '../../../helpers/datasPage';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
@@ -24,10 +25,6 @@ import {
    fetchUpdateCertificates,
    fetchGetCvCertificates,
 } from "../../../controllers/certificaties";
-
-import {
-   routersPages
-} from "../../../constants/next-routers";
 
 const FormCertificaties = ({
    dispatch,
@@ -46,6 +43,8 @@ const FormCertificaties = ({
       },
    } = storeDate;
    const idCv = localStorageGet('idCv');
+
+   const isDataPage = (isArray(certificatiesObj) && (certificatiesObj.length > 0)) || isObjDatas(ObjNew);
 
    const updateitemFiled = async ({ index, name, value }) => {
       await dispatch(updateItemCertificatieFiled({ index, name, value }));
@@ -66,10 +65,6 @@ const FormCertificaties = ({
    const addNewOne = async () => {
       await dispatch(fetchPostAddCvOneCertificates({ idCv }));
       await updateitemFiledNew({ name: "name", value: '' });
-   }
-
-   const clickFinish = () => {
-      Router.push(`/${routersPages['dashboard']}`);
    }
 
    React.useEffect(() => {
@@ -113,7 +108,10 @@ const FormCertificaties = ({
          </LoadWr>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps clickFinish={clickFinish} isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

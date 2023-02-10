@@ -20,28 +20,30 @@
         border: 1px solid #3679FD;
 
         &:hover {
-            background: #3f7ffd;
-            border: 1px solid #3f7ffd;
+            background: #6798F9;
+            border: 1px solid #6798F9;
         }
     }
 
     &_prev {
-        background: #F6F8FA;
-        border: 1px solid #DADCE3;
-        color: #838799;
+        background: #fff!important;
+        border: 1px solid #DADCE3!important;
+        color: #838799 !important;
 
         &:hover {
-            color: #838799;
-            background: #EEF0F2;
-            border: 1px solid #DADCE3;
+            color: #3679FD!important;
+            border-color: #3679FD!important;
         }
     }
 
-    
+
 }
 
-.btn.disabled, .btn:disabled, fieldset:disabled .btn {
-    background: #6798F9!important;     
-    border-color: #6798F9!important;
-    opacity: 1!important;
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+    background: #F6F8FA !important;
+    color: #C4C7D0;
+    border-color: #F6F8FA !important;
+    opacity: 1 !important;
 }

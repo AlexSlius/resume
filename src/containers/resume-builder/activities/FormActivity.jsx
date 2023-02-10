@@ -18,6 +18,7 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { isObjDatas } from '../../../helpers/datasPage';
 
 import {
    updateItemFieldActivity,
@@ -63,6 +64,8 @@ const FormActivity = ({
       },
    } = storeDate;
    const [selected, setSelected] = React.useState(null);
+
+   const isDataPage = (isArray(activityObj) && (activityObj.length > 0)) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -359,7 +362,10 @@ const FormActivity = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

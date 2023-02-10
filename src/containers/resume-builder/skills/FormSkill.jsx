@@ -54,6 +54,8 @@ const FormSkill = ({
       },
    } = states;
 
+   const isDataPage = (isArray(skillsObj?.skillsListAll) && (skillsObj.skillsListAll.length > 0));
+
    const updateitemFiled = ({ name, value, isClisk }) => {
       dispatch(updateItemSkillsFiled({ name, value }));
 
@@ -212,7 +214,10 @@ const FormSkill = ({
          </CRow>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

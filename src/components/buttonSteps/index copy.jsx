@@ -23,7 +23,6 @@ export const ButtonSteps = ({
     onHandleBtnNext = () => { },
     onHandleBtnPrev = () => { },
     onHandleNew = () => { },
-    onClean = () => { },
     clickFinish = () => { },
 }) => {
     const {
@@ -33,7 +32,6 @@ export const ButtonSteps = ({
     } = useSelector(state => state);
 
     const isAll = isAllActive(list);
-
     const clickNext = () => {
         if (isNew) {
             onHandleNew();
@@ -51,15 +49,15 @@ export const ButtonSteps = ({
         }
     }
 
-    // const clickPrev = () => {
-    //     let pathName = Router.pathname;
-    //     let linkPrev = prevOfLink(list, pathName);
+    const clickPrev = () => {
+        let pathName = Router.pathname;
+        let linkPrev = prevOfLink(list, pathName);
 
-    //     if (!!linkPrev)
-    //         Router.push(linkPrev);
+        if (!!linkPrev)
+            Router.push(linkPrev);
 
-    //     onHandleBtnPrev();
-    // }
+        onHandleBtnPrev();
+    }
 
     return (
         <div className={`${style.wr}`}>
@@ -78,11 +76,7 @@ export const ButtonSteps = ({
                                 !isFirstStep && (
                                     <div>
                                         <LoadChildrenBtn isLoad={isLoader(loadBtnPrev)}>
-                                            <CButton
-                                                type="button"
-                                                className={`${style.btn} ${style.btn_prev}`}
-                                                onClick={disabledNext ? clickNext : onClean}
-                                            >{disabledNext ? textBtnPrev : "Delete all"}</CButton>
+                                            <CButton type="button" className={`${style.btn} ${style.btn_prev}`} onClick={clickPrev}>{textBtnPrev}</CButton>
                                         </LoadChildrenBtn>
                                     </div>
                                 )

@@ -13,6 +13,8 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { fetchGetHobies } from "../../../controllers/dependencies";
 import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
+import { isObjDatas } from '../../../helpers/datasPage';
+
 import {
    updateItemHobiesFiledNew,
    updatePosition
@@ -46,6 +48,8 @@ const FormHobies = ({
          }
       },
    } = states;
+
+   const isDataPage = (isArray(hobiesObj) && (hobiesObj.length > 0)) || isObjDatas(hobieObjNew);
 
    const handleGetHobiesList = (data) => {
       dispatch(fetchGetHobies(data));
@@ -139,7 +143,10 @@ const FormHobies = ({
          </LoadWr>
          <CRow className="mt-4">
             <CCol>
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

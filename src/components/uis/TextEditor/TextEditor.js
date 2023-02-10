@@ -169,7 +169,14 @@ const TextEditor = ({
             }
 
             refIdDispatchTimeout.current = setTimeout(async () => {
-                await handleServeDispatchContent(convertToHTML(state.getCurrentContent()));
+                let contentHtml = convertToHTML(state.getCurrentContent());
+
+                if (contentHtml.length > 7) {
+                    await handleServeDispatchContent(contentHtml);
+                } else {
+                    await handleServeDispatchContent("");
+                }
+
                 clearTimeout(refIdDispatchTimeout.current);
             }, nTimeMs);
         }

@@ -1,10 +1,13 @@
 import { CCol, CRow } from "@coreui/react"
 import { Fragment } from "react"
 import { useSelector } from "react-redux"
+import { isArray } from "lodash"
+
+import { StartsComponent } from "../../starts"
 
 import { formatDate } from "../../../utils"
-import { isArray } from "lodash"
-import { StartsComponent } from "../../starts"
+import { isObjDatas } from '../../../helpers/datasPage';
+
 
 const ResumeMain = ({
    objRef,
@@ -66,7 +69,7 @@ const ResumeMain = ({
             </CRow>
 
             {
-               ((isArray(employment?.employmentObj) && employment?.employmentObj?.length > 0)) || (employment.objNew.title.length > 0 || employment.objNew.company.length > 0) ? (
+               ((isArray(employment?.employmentObj) && employment?.employmentObj?.length > 0)) || isObjDatas(employment.objNew) ? (
                   <CRow className="resume-main__row r_2" ref={objRef.refEmployment}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -110,7 +113,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(educations?.educationObj) && educations?.educationObj?.length > 0) || (educations?.objNew?.facility.length > 0 || educations?.objNew?.degree.length > 0) ? (
+               (isArray(educations?.educationObj) && educations?.educationObj?.length > 0) || isObjDatas(educations?.objNew) ? (
                   <CRow className="resume-main__row mb-4 r_3" ref={objRef.refEducation}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -221,7 +224,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(hobies?.hobiesObj) && hobies?.hobiesObj?.length) || (hobies?.objNew?.text.length) ? (
+               (isArray(hobies?.hobiesObj) && hobies?.hobiesObj?.length) || isObjDatas(hobies?.hobieObjNew) ? (
                   <CRow className="resume-main__row mb-4 r_6" ref={objRef.refHobies}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -240,10 +243,10 @@ const ResumeMain = ({
                            }
 
                            {
-                              hobies?.objNew?.text.length && (
+                              isObjDatas(hobies?.hobieObjNew) && (
                                  <div className="item-col" key={el?.id}>
                                     <div className="text-blk">
-                                       <span >{hobies?.objNew?.text}</span>
+                                       <span >{hobies?.hobieObjNew?.text}</span>
                                     </div>
                                  </div>
                               )
@@ -256,7 +259,7 @@ const ResumeMain = ({
 
             {
                (isArray(activitys?.activityObj) && activitys?.activityObj?.length)
-                  || (activitys?.objNew?.title?.length > 0 || activitys?.objNew?.employer?.length > 0) ? (
+                  || isObjDatas(activitys?.objNew) ? (
                   <CRow className="resume-main__row mb-4 r_7" ref={objRef.refActivity}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -302,7 +305,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(courses?.courseObj) && courses?.courseObj?.length) || (courses?.objNew?.title.length > 0 || courses?.objNew?.institution.length > 0) ? (
+               (isArray(courses?.courseObj) && courses?.courseObj?.length) || isObjDatas(courses?.objNew) ? (
                   <CRow className="resume-main__row mb-4 r_8" ref={objRef.refCourse}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -346,7 +349,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(interships?.interhipObj) && interships?.interhipObj?.length) || (interships?.objNew?.job_title?.length > 0 || interships?.objNew?.employer?.length > 0) ? (
+               (isArray(interships?.interhipObj) && interships?.interhipObj?.length) || isObjDatas(interships?.objNew) ? (
                   <CRow className="resume-main__row mb-4 r_9" ref={objRef.refInterhip}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -425,7 +428,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(references?.referencesObj) && references?.referencesObj?.length) || (references?.objNew.full_name.length > 0 || references?.objNew.company.length > 0) ? (
+               (isArray(references?.referencesObj) && references?.referencesObj?.length) || isObjDatas(references?.objNew) ? (
                   <CRow className="resume-main__row mb-4 r_11" ref={objRef.refReferences}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -471,7 +474,7 @@ const ResumeMain = ({
             }
 
             {
-               (isArray(certificaties?.certificatiesObj) && certificaties?.certificatiesObj?.length) || (certificaties?.objNew?.name?.length > 0) ? (
+               (isArray(certificaties?.certificatiesObj) && certificaties?.certificatiesObj?.length) || isObjDatas(certificaties?.ObjNew) ? (
                   <CRow className="resume-main__row mb-4 r_12" ref={objRef.refCertificaties}>
                      <CCol className="resume-main__col1">
                         <div className="resume-main__label">
@@ -491,11 +494,11 @@ const ResumeMain = ({
                         }
 
                         {
-                           certificaties?.objNew?.name?.length.length > 0 && (
-                              <Fragment key={el?.id}>
-                                 {el?.name ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
+                           isObjDatas(certificaties?.ObjNew) && (
+                              <Fragment>
+                                 {certificaties?.ObjNew?.name ? (<div className="resume-main__head-info2 mb-2 d-flex flex-wrap gap-3 justify-content-between align-items-center">
                                     <div className="resume-main__title2">
-                                       {el?.name}
+                                       {certificaties?.ObjNew?.name}
                                     </div>
                                  </div>) : null}
                               </Fragment>

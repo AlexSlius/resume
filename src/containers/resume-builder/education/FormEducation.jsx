@@ -18,6 +18,8 @@ import { formatDate } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
 import { isLoader } from "../../../helpers/loadings"
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
+import { isObjDatas } from '../../../helpers/datasPage';
+
 import {
    updateItemFieldEducation,
    updateItemFieldEducationDate,
@@ -56,6 +58,8 @@ const FormEducation = ({
       },
    } = storeDate;
    const [selected, setSelected] = React.useState(null);
+
+   const isDataPage = (isArray(educationObj) && (educationObj.length > 0)) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -330,7 +334,10 @@ const FormEducation = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>

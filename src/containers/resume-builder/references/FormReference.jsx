@@ -17,6 +17,7 @@ import { InputPhoneNoControler } from "../../../components/uis/inputPhoneNoContr
 
 import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
+import { isObjDatas } from '../../../helpers/datasPage';
 
 import {
    updateItemFieldReference,
@@ -60,6 +61,8 @@ const FormReference = ({
    } = storeDate;
    const refIdTimeout = useRef(undefined);
    const [selected, setSelected] = useState(null);
+
+   const isDataPage = (isArray(referencesObj) && (referencesObj.length > 0)) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -286,7 +289,10 @@ const FormReference = ({
                />
             </CCol>
             <CCol className="mt-4">
-               <ButtonSteps isAthorized={isAthorized} />
+               <ButtonSteps
+                  isAthorized={isAthorized}
+                  disabledNext={!isDataPage}
+               />
             </CCol>
          </CRow>
       </>
