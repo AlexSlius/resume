@@ -89,13 +89,13 @@ const HeadUser = () => {
                            !isAthorized && (
                               <>
                                  <li>
-                                    <Link href={isAthorized ? `/${routersPages['login']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                    <Link href={routersPages['login']} className={`${style.link}`}>
                                        <Icon svg={iconHLogin} />
                                        <span>Login</span>
                                     </Link>
                                  </li>
                                  <li>
-                                    <Link href="#" className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                    <Link href="#" className={`${style.link}`}>
                                        <Icon svg={iconSingUp} />
                                        <span>Sign up</span>
                                     </Link>

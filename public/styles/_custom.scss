@@ -444,6 +444,16 @@ input.form-control {
 
 }
 
+.wr-edit-text {
+    .DraftEditor-root {
+        min-height: 400px;
+    }
+}
+
+.wr-col-text-r {
+    min-height: 400px;
+}
+
 .react-datepicker-popper {
     z-index: 5;
 }
@@ -1046,4 +1056,30 @@ button {
 
 .payload_mt {
     margin-top: 48px;
+}
+
+.search-text-content {
+    position: relative;
+    top: auto;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+    visibility: 1;
+
+    .modal-text__main {
+        width: 100%;
+        box-shadow: none;
+        height: 400px;
+    }
+}
+
+.modal-text__show {
+    color: #838799;
+    margin: 20px 0 0 0;
+    padding: 0 17px 10px 17px;
+
+    span {
+        color: #01153A;
+        font-weight: 400;
+    }
 }

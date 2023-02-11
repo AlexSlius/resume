@@ -36,7 +36,7 @@ let startDates = [
     {
         name: 'Career Objective',
         status: true,
-        link: '/resume-builder/сareer-objective',
+        link: '/resume-builder/career-objective',
         keyIcon: [keysIcons["сareerObjective"]],
     },
 ];

@@ -15,7 +15,8 @@ import {
     fetchGetSocials,
     fetchGetHobies,
     addJopsTitle,
-    addCompany
+    addCompany,
+    fetchGetListObjective
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -72,6 +73,10 @@ const initialState = {
     language: {
         list: [],
         status: statusLoaded,
+    },
+    objective: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -81,6 +86,15 @@ export const sliceDepenndecies = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        // get careers objective
+        [fetchGetListObjective.pending]: (state) => {
+            state.objective.list = [];
+            state.objective.status = statusLoader;
+        },
+        [fetchGetListObjective.fulfilled]: (state, action) => {
+            state.objective.status = statusLoaded;
+            state.objective.list = action.payload;
+        },
         // get hobies 
         [fetchGetHobies.pending]: (state) => {
             state.hobies.list = [];
