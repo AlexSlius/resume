@@ -44,7 +44,7 @@ export const Cookies = () => {
                             <Icon svg={iconCookie} />
                         </div>
                         <div className="cookies-c__t">This website uses cookies to ensure you get the best experience
-                            on our website. By using our site you consent cookies. <Link href={routersPages['termsOfUse']}>Learn more</Link></div>
+                            on our website. By using our site you consent cookies. <Link href={routersPages['privacyPolicy']}>Learn more</Link></div>
                     </div>
                     <div className="cookies-c__r">
                         <ButtonIcon

@@ -65,4 +65,5 @@ export const routersPages = {
     'contactUs': 'contact-us',
     'jobWinningResumeTemplates': 'job-winning-resume-templates',
     'termsOfUse': 'terms-of-use',
+    'privacyPolicy': 'privacy-policy',
 }
