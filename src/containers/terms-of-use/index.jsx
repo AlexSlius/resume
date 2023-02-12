@@ -408,7 +408,7 @@ export const TermsOfUse = () => {
                                             <p><span><b>Address</b>: ALEJA KOMISJI EDUKACJI NARODOWEJ 36 /112B, 02-797, WARSAW</span></p>
                                         </li>
                                         <li>
-                                            <p><span><b>E-mail</b>: <Link href="main:contact@resulon.com">contact@resulon.com</Link></span></p>
+                                            <p><span><b>E-mail</b>: <Link href="mailto:contact@resulon.com">contact@resulon.com</Link></span></p>
                                         </li>
                                     </ul>
                                 </li>
