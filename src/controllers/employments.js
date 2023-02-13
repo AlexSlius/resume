@@ -27,14 +27,21 @@ export const fetchPostUpdatePositionEmployment = createAsyncThunk('countrus/fetc
     return response;
 });
 
+export const fetchDeleteCleanAllEmployment = createAsyncThunk('countrus/fetchDeleteCleanAllEmployment', async ({ idCv }, thunkAPI) => {
+    const response = await api.employments.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetCvEmployments({ idCv }));
+    return response;
+});
+
 export const fetchUpdateEmployment = createAsyncThunk('employment/fetchUpdateEmployment', async ({ index }, thunkAPI) => {
     const { employment: { employmentObj } } = thunkAPI.getState();
     let { id, periodFrom, periodTo, ...obj } = employmentObj[index];
 
-    obj.period_from = periodFrom.date;
-    obj.period_to = periodTo.date;
+    obj.period_from = periodFrom?.date || "";
+    obj.period_to = periodTo?.date || "";
 
     const response = await api.employments.updateEmploymentItem(id, obj);
     return response;
 });
+
 

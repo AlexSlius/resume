@@ -104,7 +104,7 @@ const HeadUser = () => {
                            )
                         }
                         <li>
-                           <Link href={`/${routersPages['help']}`} className={style.link}>
+                           <Link href={`/${routersPages['contactUs']}`} className={style.link}>
                               <Icon svg={iconHelp} />
                               <span>Help</span>
                            </Link>

@@ -32,6 +32,7 @@ import {
    fetchDeleteInternships,
    fetchUpdateInternships,
    fetchPostUpdatePositionInternships,
+   fetchDeleteAll
 } from "../../../controllers/interships";
 
 import {
@@ -122,6 +123,10 @@ const FormInterShip = ({
    const handleServerRequestCity = async (value, nameCountry) => {
       let idCountru = getIdOfNameCountrys({ objArr: coutrys.list, nameCountry });
       await dispatch(fetchGetCities({ id: idCountru, params: value }));
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -366,6 +371,7 @@ const FormInterShip = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

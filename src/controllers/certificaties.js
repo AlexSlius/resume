@@ -22,6 +22,12 @@ export const fetchDeleteCertificates = createAsyncThunk('certificates/fetchDelet
     return response;
 });
 
+export const fetchDeleteAll = createAsyncThunk('certificates/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.certificates.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetCvCertificates({ idCv }));
+    return response;
+});
+
 export const fetchUpdateCertificates = createAsyncThunk('certificates/fetchUpdateCertificates', async ({ index }, thunkAPI) => {
     const { certificaties: { certificatiesObj } } = thunkAPI.getState();
     const obj = certificatiesObj[index];

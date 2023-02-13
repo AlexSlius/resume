@@ -19,6 +19,7 @@ import {
    fetchUpdateItemLink,
    fetchGetAllLinks,
    fetchDeleteItemLink,
+   fetchDeleteAll
 } from "../../../controllers/socials";
 
 
@@ -83,6 +84,10 @@ const FormSocials = ({
 
    const handleDeleteitem = (id) => {
       dispatch(fetchDeleteItemLink({ id, idCv }))
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -151,6 +156,7 @@ const FormSocials = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

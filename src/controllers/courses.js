@@ -29,12 +29,18 @@ export const fetchDeleteCourses = createAsyncThunk('countrus/fetchDeleteHobie', 
     return response;
 });
 
+export const fetchDeleteAll = createAsyncThunk('courses/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.courses.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
+    return response;
+});
+
 export const fetchUpdateCourses = createAsyncThunk('countrus/fetchUpdateCourses', async ({ index }, thunkAPI) => {
     const { courses: { courseObj } } = thunkAPI.getState();
     let { id, dateFrom, dateTo, ...obj } = courseObj[index];
 
-    obj.period_from = dateFrom.date;
-    obj.period_to = dateTo.date;
+    obj.period_from = dateFrom?.date || "";
+    obj.period_to = dateTo?.date || "";
 
     const response = await api.courses.updateCoursesItem(id, obj);
     return response;

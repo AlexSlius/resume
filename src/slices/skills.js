@@ -6,7 +6,8 @@ import {
   fetchGetSkillslistWork,
   fetchGetSkillslistSearch,
   fetchGetSkillslistAll,
-  fetchGetExperienceLevel
+  fetchGetExperienceLevel,
+  fetchDeleteAll,
 } from "../controllers/skills";
 
 const initialState = {
@@ -39,6 +40,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.skillsObj = initialState.skillsObj;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // get experience
     [fetchGetExperienceLevel.pending]: (state, action) => {
       state.statusListSkillsAll = statusLoader;

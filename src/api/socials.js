@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     deleteItemLink(id) {
         return this.apiClient.delete(`cv/links/delete/${id}`);
     }
+    cleanAll(idCv) {
+        return this.apiClient.delete(`cv/links/delete_all/${idCv}`);
+    }
 }

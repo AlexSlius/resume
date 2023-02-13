@@ -4,7 +4,8 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
   fetchGetCvEducations,
   fetchPostAddCvOneEducation,
-  fetchDeleteEducation
+  fetchDeleteEducation,
+  fetchDeleteAll,
 } from '../controllers/educations';
 
 const initialState = {
@@ -32,7 +33,7 @@ export const slice = createSlice({
     },
     updateItemFieldEducationDate(state, action) {
       let { index, name, value } = action.payload;
-      state.educationObj[index][name]['date'] = value;
+      state.educationObj[index][name] = { date: value };
     },
     updateItemFieldEducationNew(state, action) {
       let { name, value } = action.payload;
@@ -46,6 +47,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete educations
     [fetchDeleteEducation.pending]: (state) => {
       state.status = statusLoader;

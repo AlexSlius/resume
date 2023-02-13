@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     updateCertificatesItem(id, data, type = "formData") {
         return this.apiClient.post(`cv/certificates/update/${id}`, data, type);
     }
+    cleanAll(idCv) {
+        return this.apiClient.delete(`cv/certificates/delete_all/${idCv}`);
+    }
 }

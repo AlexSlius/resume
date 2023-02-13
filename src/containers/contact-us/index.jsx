@@ -6,7 +6,11 @@ import { InputPage } from "../../components/uis/input-page";
 import { TextAreaPage } from "../../components/uis/textarea-page";
 
 export const ContactUsPage = () => {
-    const [stats, setStats] = React.useState(true);
+    const [stat, setStat] = React.useState(0);
+
+    const handkeCheck = (check) => {
+        setStat(check);
+    }
 
     return (
         <section className="contact-page">
@@ -20,13 +24,13 @@ export const ContactUsPage = () => {
                 </p>
                 <form action="page" className="form">
                     <div className="form__top">
-                        <InputCheckboxPageBtn name="soc" label="Feedback" checked={stats} onChange={() => setStats(prev => !prev)} />
-                        <InputCheckboxPageBtn name="soc" label="Billing" />
-                        <InputCheckboxPageBtn name="soc" label="Pricing" />
-                        <InputCheckboxPageBtn name="soc" label="Page Errors" />
-                        <InputCheckboxPageBtn name="soc" label="Cancel Subscription" />
-                        <InputCheckboxPageBtn name="soc" label="Email Subscription" />
-                        <InputCheckboxPageBtn name="soc" label="Other Questions" />
+                        <InputCheckboxPageBtn checked={stat == 0} name="soc" label="Feedback" onChange={() => handkeCheck(0)} />
+                        <InputCheckboxPageBtn checked={stat == 1} name="soc" label="Billing" onChange={() => handkeCheck(1)} />
+                        <InputCheckboxPageBtn checked={stat == 2} name="soc" label="Pricing" onChange={() => handkeCheck(2)} />
+                        <InputCheckboxPageBtn checked={stat == 3} name="soc" label="Page Errors" onChange={() => handkeCheck(3)} />
+                        <InputCheckboxPageBtn checked={stat == 4} name="soc" label="Cancel Subscription" onChange={() => handkeCheck(4)} />
+                        <InputCheckboxPageBtn checked={stat == 5} name="soc" label="Email Subscription" onChange={() => handkeCheck(5)} />
+                        <InputCheckboxPageBtn checked={stat == 6} name="soc" label="Other Questions" onChange={() => handkeCheck(6)} />
                     </div>
                     <div className="form__wrapper">
                         <div className="form-input">

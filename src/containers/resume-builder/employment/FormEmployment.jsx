@@ -43,6 +43,7 @@ import {
   fetchUpdateEmployment,
   fetchGetCvEmployments,
   fetchPostUpdatePositionEmployment,
+  fetchDeleteCleanAllEmployment
 } from "../../../controllers/employments";
 
 
@@ -172,6 +173,9 @@ const FormEmployment = ({
   }
   // end new 
 
+  const handleClean = () => {
+    dispatch(fetchDeleteCleanAllEmployment({ idCv }));
+  }
 
   useEffect(() => {
     dispatch(fetchGetCountrys());
@@ -448,7 +452,7 @@ const FormEmployment = ({
           <ButtonSteps
             isAthorized={isAthorized}
             disabledNext={!isDataPage}
-          // onClean
+            onClean={handleClean}
           />
         </CCol>
       </CRow>

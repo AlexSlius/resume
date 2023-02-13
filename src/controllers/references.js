@@ -29,6 +29,12 @@ export const fetchDeleteReferences = createAsyncThunk('interhip/fetchDeleteRefer
     return response;
 });
 
+export const fetchDeleteAll = createAsyncThunk('references/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.references.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    return response;
+});
+
 export const fetchUpdateReferences = createAsyncThunk('interhip/fetchUpdateReferences', async ({ index }, thunkAPI) => {
     const { references: { referencesObj } } = thunkAPI.getState();
     let { id, fullName, ...obj } = referencesObj[index];

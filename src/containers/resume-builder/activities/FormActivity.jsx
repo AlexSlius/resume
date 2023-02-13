@@ -31,7 +31,8 @@ import {
    fetchPostAddCvOneActivitys,
    fetchDeleteActivitys,
    fetchUpdateActivitys,
-   fetchPostUpdatePositionActivitys
+   fetchPostUpdatePositionActivitys,
+   fetchDeleteAll
 } from "../../../controllers/activitys";
 import {
    fetchGetCities,
@@ -121,6 +122,10 @@ const FormActivity = ({
    const handleServerRequestCity = async (value, nameCountry) => {
       let idCountru = getIdOfNameCountrys({ objArr: coutrys.list, nameCountry });
       await dispatch(fetchGetCities({ id: idCountru, params: value }));
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -365,6 +370,7 @@ const FormActivity = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

@@ -30,7 +30,8 @@ import {
    fetchPostUpdateSkillone,
    fetchPostDeleteSkillOne,
    fetchGetSkillslistAll,
-   fetchPostUpdatePositionSkills
+   fetchPostUpdatePositionSkills,
+   fetchDeleteAll
 } from "../../../controllers/skills";
 
 const FormSkill = ({
@@ -113,6 +114,10 @@ const FormSkill = ({
 
       dispatch(fetchPostUpdatePositionSkills({ idCv, data: updateArr }));
       dispatch(updatePosition(updateArr));
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -217,6 +222,7 @@ const FormSkill = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

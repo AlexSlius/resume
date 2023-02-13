@@ -30,7 +30,8 @@ import {
    fetchPostAddCvOneReferences,
    fetchDeleteReferences,
    fetchUpdateReferences,
-   fetchPostUpdatePositionReferences
+   fetchPostUpdatePositionReferences,
+   fetchDeleteAll
 } from "../../../controllers/references";
 
 import {
@@ -118,6 +119,10 @@ const FormReference = ({
    const handleAddNewCompany = async (text) => {
       let re = await dispatch(addCompany(text));
       return re?.payload?.id;
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    useEffect(() => {
@@ -292,6 +297,7 @@ const FormReference = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

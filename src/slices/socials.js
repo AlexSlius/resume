@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
-  fetchGetAllLinks
+  fetchGetAllLinks,
+  fetchDeleteAll,
 } from "../controllers/socials";
 
 const initialState = {
@@ -33,6 +34,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.socialObjNew = initialState.socialObjNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // get list skills all
     [fetchGetAllLinks.pending]: (state) => {
       state.statusList = statusLoader;

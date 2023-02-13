@@ -24,6 +24,7 @@ import {
    fetchDeleteCertificates,
    fetchUpdateCertificates,
    fetchGetCvCertificates,
+   fetchDeleteAll
 } from "../../../controllers/certificaties";
 
 const FormCertificaties = ({
@@ -65,6 +66,10 @@ const FormCertificaties = ({
    const addNewOne = async () => {
       await dispatch(fetchPostAddCvOneCertificates({ idCv }));
       await updateitemFiledNew({ name: "name", value: '' });
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -111,6 +116,7 @@ const FormCertificaties = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

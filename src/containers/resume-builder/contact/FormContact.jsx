@@ -201,7 +201,7 @@ const FormContact = () => {
                         label="First Name*"
                         placeholder="First Name*"
                         value={contactObj.firstName}
-                        autocomplete="on"
+                        autoComplete="on"
                         obj={
                            register("firstName", {
                               required: true,
@@ -216,7 +216,7 @@ const FormContact = () => {
                      <Input
                         label="Last Name*"
                         placeholder="Last Name*"
-                        autocomplete="on"
+                        autoComplete="on"
                         value={contactObj.lastName}
                         obj={
                            register("lastName", {
@@ -240,7 +240,7 @@ const FormContact = () => {
                      placeholder="E-mail"
                      value={contactObj.email}
                      invalid={errors?.email}
-                     autocomplete="on"
+                     autoComplete="on"
                      valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
                      obj={
                         register("email", {
@@ -255,7 +255,7 @@ const FormContact = () => {
                   <InputPhoneNoControler
                      label="Phone"
                      placeholder="Phone"
-                     autocomplete="on"
+                     autoComplete="on"
                      onChange={(value) => handleSaveSelect({ name: "phone", value: value })}
                      value={contactObj.phone}
                   />
@@ -309,7 +309,7 @@ const FormContact = () => {
                      label="Adress"
                      placeholder="Adress"
                      value={contactObj.address}
-                     autocomplete="on"
+                     autoComplete="on"
                      obj={
                         register("address", {
                            minLength: {
@@ -324,7 +324,7 @@ const FormContact = () => {
                      label="Zip Code"
                      placeholder="Zip Code"
                      value={contactObj.zipCode}
-                     autocomplete="on"
+                     autoComplete="on"
                      type="number"
                      obj={
                         register("zipCode", {

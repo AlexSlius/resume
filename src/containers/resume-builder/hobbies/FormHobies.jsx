@@ -23,7 +23,8 @@ import {
    fetchPostAddCvHobie,
    fetchDeleteHobie,
    fetchGetCvHobie,
-   fetchPostUpdatePositionHobie
+   fetchPostUpdatePositionHobie,
+   fetchDeleteAll
 } from "../../../controllers/hobies";
 
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
@@ -83,6 +84,10 @@ const FormHobies = ({
 
       dispatch(fetchPostUpdatePositionHobie({ idCv, data: updateArr }));
       dispatch(updatePosition(items));
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -146,6 +151,7 @@ const FormHobies = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

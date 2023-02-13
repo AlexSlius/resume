@@ -33,7 +33,8 @@ import {
    fetchPostAddCvOneEducation,
    fetchDeleteEducation,
    fetchUpdateEducation,
-   fetchPostUpdatePositionEducations
+   fetchPostUpdatePositionEducations,
+   fetchDeleteAll
 } from "../../../controllers/educations";
 
 const FormEducation = ({
@@ -122,6 +123,10 @@ const FormEducation = ({
       dispatch(updateItemFieldEducationNew({ name, value: date }));
    }
    // end new
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
+   }
 
    React.useEffect(() => {
       fetchGetCvEducations({ idCv });
@@ -337,6 +342,7 @@ const FormEducation = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

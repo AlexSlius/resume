@@ -4,7 +4,8 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
   fetchGetCvReferences,
   fetchPostAddCvOneReferences,
-  fetchDeleteReferences
+  fetchDeleteReferences,
+  fetchDeleteAll,
 } from '../controllers/references';
 
 const initialState = {
@@ -39,6 +40,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete 
     [fetchDeleteReferences.pending]: (state) => {
       state.status = statusLoader;

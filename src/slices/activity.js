@@ -1,7 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
-import { fetchGetCvActivitys, fetchPostAddCvOneActivitys, fetchDeleteActivitys } from '../controllers/activitys';
+import {
+  fetchGetCvActivitys,
+  fetchPostAddCvOneActivitys,
+  fetchDeleteActivitys,
+  fetchDeleteAll,
+} from '../controllers/activitys';
 
 const initialState = {
   activityObj: [],
@@ -28,7 +33,7 @@ export const slice = createSlice({
     },
     updateItemFieldActivityDate(state, action) {
       let { index, name, value } = action.payload;
-      state.activityObj[index][name]['date'] = value;
+      state.activityObj[index][name] = { date: value };
     },
     updateItemFieldActivityNew(state, action) {
       let { name, value } = action.payload;
@@ -42,6 +47,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete educations
     [fetchDeleteActivitys.pending]: (state) => {
       state.status = statusLoader;

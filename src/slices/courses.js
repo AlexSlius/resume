@@ -7,7 +7,8 @@ import {
 import {
   fetchGetCvCourses,
   fetchPostAddCvOneCourses,
-  fetchDeleteCourses
+  fetchDeleteCourses,
+  fetchDeleteAll,
 } from '../controllers/courses';
 
 const initialState = {
@@ -32,7 +33,7 @@ export const slice = createSlice({
     },
     updateItemFieldCourseDate(state, action) {
       let { index, name, value } = action.payload;
-      state.courseObj[index][name]['date'] = value;
+      state.courseObj[index][name] = { date: value };
     },
     updateItemFieldCourseNew(state, action) {
       let { name, value } = action.payload;
@@ -46,6 +47,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete educations
     [fetchDeleteCourses.pending]: (state) => {
       state.status = statusLoader;

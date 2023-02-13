@@ -6,6 +6,7 @@ import {
   fetchPostAddCvOneEmployment,
   fetchDeleteEmployment,
   fetchUpdateEmployment,
+  fetchDeleteCleanAllEmployment,
 } from "../controllers/employments";
 
 const initialState = {
@@ -33,7 +34,7 @@ export const slice = createSlice({
     },
     updateItemFieldEmploymentDate(state, action) {
       let { index, name, value } = action.payload;
-      state.employmentObj[index][name]['date'] = value;
+      state.employmentObj[index][name] = { date: value };
     },
     updateItemFieldEmploymentNew(state, action) {
       let { name, value } = action.payload;
@@ -47,6 +48,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteCleanAllEmployment.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteCleanAllEmployment.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete
     [fetchDeleteEmployment.pending]: (state) => {
       state.status = statusLoader;

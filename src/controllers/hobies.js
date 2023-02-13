@@ -24,3 +24,9 @@ export const fetchPostUpdatePositionHobie = createAsyncThunk('countrus/fetchPost
     await thunkAPI.dispatch(fetchGetCvHobie({ idCv }));
     return response;
 });
+
+export const fetchDeleteAll = createAsyncThunk('hobies/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.hobies.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetCvHobie({ idCv }));
+    return response;
+});

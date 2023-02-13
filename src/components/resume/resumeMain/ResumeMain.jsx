@@ -32,8 +32,8 @@ const ResumeMain = ({
       certificaties,
    } = useSelector((state) => state);
 
-   let notEmptyContactDetails = contactObj.address || contactObj.city?.name || contactObj.zipCode || contactObj.country?.name || contactObj.phone;
-   let notEmptyContactDetailsAll = notEmptyContactDetails || contactObj.email;
+   let notEmptyContactDetails = contactObj?.address || contactObj?.city?.name || contactObj?.zipCode || contactObj?.country?.name || contactObj?.phone;
+   let notEmptyContactDetailsAll = notEmptyContactDetails || contactObj?.email;
 
    // const newArr = objPages.map((el) => {
    //    if (el.page == currentPage) {
@@ -46,9 +46,13 @@ const ResumeMain = ({
          <div className="scroll-style resume-main_scroll">
             <CRow className="resume-main__row r_1" ref={objRef.refContact}>
                <CCol className="resume-main__col1">
-                  <div className="resume-main__avatar-img">
-                     <img src={contactObj?.picture || '/images/other/avatar-big.png'} />
-                  </div>
+                  {
+                     contactObj?.picture && (
+                        <div className="resume-main__avatar-img">
+                           <img src={contactObj?.picture || '/images/other/avatar-big.png'} />
+                        </div>
+                     )
+                  }
                </CCol>
                <CCol className="resume-main__col2">
                   {
@@ -62,9 +66,9 @@ const ResumeMain = ({
                   <div className="resume-main__title">
                      {`${contactObj?.firstName || ''} ${contactObj?.lastName}`}{contactObj.jobTitle && (`, ${contactObj.jobTitle}`)}
                   </div>
-                  <div className="resume-main__text">
+                  {/* <div className="resume-main__text">
                      <p>Most foreign employers ask for a cover letter. The content should hook the potential employer. Describe your key skills, your advantages, and why you are the right person for the job.</p>
-                  </div>
+                  </div> */}
                </CCol>
             </CRow>
 
@@ -129,7 +133,7 @@ const ResumeMain = ({
                                           {el?.facility}
                                        </div>
                                        <div className="resume-main__head-text">
-                                          {el?.study} {(el?.dateFrom || el?.dateFrom) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
+                                          {el?.study} {(el?.dateFrom || el?.dateFrom) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">
@@ -244,7 +248,7 @@ const ResumeMain = ({
 
                            {
                               isObjDatas(hobies?.hobieObjNew) && (
-                                 <div className="item-col" key={el?.id}>
+                                 <div className="item-col">
                                     <div className="text-blk">
                                        <span >{hobies?.hobieObjNew?.text}</span>
                                     </div>
@@ -275,7 +279,7 @@ const ResumeMain = ({
                                           {el?.title}
                                        </div>
                                        <div className="resume-main__head-text">
-                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
+                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">
@@ -322,7 +326,7 @@ const ResumeMain = ({
                                        </div>
                                        <div className="resume-main__head-text">
                                           {
-                                             el?.institution} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`
+                                             el?.institution} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`
                                           }
                                        </div>
                                     </div>
@@ -365,7 +369,7 @@ const ResumeMain = ({
                                           {el?.jobTitle}
                                        </div>
                                        <div className="text-blk">
-                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo.date)})`}
+                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">

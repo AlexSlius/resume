@@ -28,12 +28,6 @@ let startDates = [
         keyIcon: [keysIcons["iconSkills"]],
     },
     {
-        name: 'Skills',
-        status: true,
-        link: '/resume-builder/skills',
-        keyIcon: [keysIcons["iconSkills"]],
-    },
-    {
         name: 'Career Objective',
         status: true,
         link: '/resume-builder/career-objective',

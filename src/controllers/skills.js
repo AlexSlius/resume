@@ -47,7 +47,11 @@ export const fetchGetExperienceLevel = createAsyncThunk('countrus/fetchGetExperi
     return response;
 });
 
-
+export const fetchDeleteAll = createAsyncThunk('skills/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.skills.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetSkillslistAll({ idCv }));
+    return response;
+});
 
 export const fetchUpdateExperienceLevel = createAsyncThunk('countrus/fetchUpdateExperienceLevel', async ({ idCv, data }, thunkAPI) => {
     const response = await api.skills.updateExperienceLevel(idCv, { hide_experience_level: data });

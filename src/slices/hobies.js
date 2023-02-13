@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
-  fetchGetCvHobie
+  fetchGetCvHobie,
+  fetchDeleteAll,
 } from "../controllers/hobies";
 
 const initialState = {
@@ -31,6 +32,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.hobieObjNew = initialState.hobieObjNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // get list skills all
     [fetchGetCvHobie.pending]: (state) => {
       state.statusList = statusLoader;

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
-  fetchGetCvCertificates
+  fetchGetCvCertificates,
+  fetchDeleteAll,
 } from "../controllers/certificaties";
 
 const initialState = {
@@ -31,6 +32,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // get list 
     [fetchGetCvCertificates.pending]: (state) => {
       state.status = statusLoader;

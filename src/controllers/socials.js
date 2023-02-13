@@ -25,3 +25,8 @@ export const fetchDeleteItemLink = createAsyncThunk('link/fetchDeleteItemLink', 
     return response;
 });
 
+export const fetchDeleteAll = createAsyncThunk('social/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+    const response = await api.social.cleanAll(idCv);
+    await thunkAPI.dispatch(fetchGetAllLinks({ idCv }));
+    return response;
+});

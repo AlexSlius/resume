@@ -30,8 +30,10 @@ import {
    fetchPostAddCvOneCourses,
    fetchDeleteCourses,
    fetchUpdateCourses,
-   fetchPostUpdatePositionCourses
+   fetchPostUpdatePositionCourses,
+   fetchDeleteAll
 } from "../../../controllers/courses";
+
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormCourse = ({
@@ -107,6 +109,10 @@ const FormCourse = ({
    const handleAddOne = async () => {
       let re = await dispatch(fetchPostAddCvOneCourses({ idCv, position: newPosition(courseObj) }));
       setSelected(re?.payload?.id);
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
    }
 
    React.useEffect(() => {
@@ -280,6 +286,7 @@ const FormCourse = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

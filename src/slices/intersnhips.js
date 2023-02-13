@@ -5,6 +5,7 @@ import {
   fetchGetCvInternships,
   fetchPostAddCvOneInternships,
   fetchDeleteInternships,
+  fetchDeleteAll,
 } from '../controllers/interships';
 
 const initialState = {
@@ -32,7 +33,7 @@ export const slice = createSlice({
     },
     updateItemFieldIntershipDate(state, action) {
       let { index, name, value } = action.payload;
-      state.interhipObj[index][name]['date'] = value;
+      state.interhipObj[index][name] = { date: value };
     },
     updateItemFieldIntershipNew(state, action) {
       let { name, value } = action.payload;
@@ -46,6 +47,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    // delete all
+    [fetchDeleteAll.pending]: (state) => {
+      state.objNew = initialState.objNew;
+      state.status = statusLoader;
+    },
+    [fetchDeleteAll.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    },
     // delete 
     [fetchDeleteInternships.pending]: (state) => {
       state.status = statusLoader;

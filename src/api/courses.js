@@ -16,4 +16,7 @@ export default class ClientsAPI extends Base {
     updatePosition(data) {
         return this.apiClient.post(`cv/courses/position/update`, data);
     }
+    cleanAll(idCv) {
+        return this.apiClient.delete(`cv/courses/delete_all/${idCv}`);
+    }
 }

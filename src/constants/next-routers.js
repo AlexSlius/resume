@@ -57,7 +57,6 @@ export const routersPages = {
     'newPassword': 'new-password',
     'dashboard': `dashboard?tab=${tabsDashboardPage['resumes'].link}`,
     'settings': 'settings',
-    'help': 'help',
     'resumeBuilder': 'resume-builder',
     'addSection': 'add_section',
     'resumeNow': 'resume-now',
