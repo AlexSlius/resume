@@ -4,30 +4,35 @@ import { keysIcons } from "../constants/next-routers";
 
 let startDates = [
     {
+        key: 'contact',
         name: 'Contact',
         status: true,
         link: '/resume-builder',
         keyIcon: [keysIcons["iconContact"]],
     },
     {
+        key: 'employment',
         name: 'Employment',
         status: true,
         link: '/resume-builder/employment',
         keyIcon: [keysIcons["iconEmploymen"]],
     },
     {
+        key: 'education',
         name: 'Education',
         status: true,
         link: '/resume-builder/education',
         keyIcon: [keysIcons["iconEducation"]],
     },
     {
+        key: 'skills',
         name: 'Skills',
         status: true,
         link: '/resume-builder/skills',
         keyIcon: [keysIcons["iconSkills"]],
     },
     {
+        key: 'careerObjective',
         name: 'Career Objective',
         status: true,
         link: '/resume-builder/career-objective',

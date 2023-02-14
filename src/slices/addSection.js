@@ -5,11 +5,14 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
     fetchGetCategoryStatus,
     fetchPostUpdateCategoryStatus,
+    getCategoryViewedStatus
 } from "../controllers/addSections";
 
 const initialState = {
     list: [],
+    viewedList: null,
     status: statusLoaded,
+    statusViewed: statusLoaded,
 };
 
 export const slice = createSlice({
@@ -21,6 +24,14 @@ export const slice = createSlice({
         },
     },
     extraReducers: {
+        [getCategoryViewedStatus.pending]: (state) => {
+            state.viewedList = initialState.viewedList;
+            state.statusViewed = statusLoader;
+        },
+        [getCategoryViewedStatus.fulfilled]: (state, action) => {
+            state.statusViewed = statusLoaded;
+            state.viewedList = action.payload;
+        },
         [fetchGetCategoryStatus.pending]: (state) => {
             state.list = initialState.list;
             state.status = statusLoader;

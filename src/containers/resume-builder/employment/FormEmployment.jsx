@@ -45,6 +45,7 @@ import {
   fetchPostUpdatePositionEmployment,
   fetchDeleteCleanAllEmployment
 } from "../../../controllers/employments";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
@@ -180,6 +181,7 @@ const FormEmployment = ({
   useEffect(() => {
     dispatch(fetchGetCountrys());
     fetchGetCvEmployments({ idCv });
+    dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
   }, []);
 
   return (

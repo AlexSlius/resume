@@ -26,6 +26,7 @@ const MenuSideBar = () => {
     const {
         addSection: {
             list,
+            viewedList,
         },
         menuAsideResume,
         auth: {
@@ -34,8 +35,6 @@ const MenuSideBar = () => {
             }
         },
     } = useSelector(state => state);
-    // const [currentListmenu, setCurrentListMenu] = React.useState([]);
-
     const idCv = localStorageGet('idCv');
 
     const handleClick = (e) => {
@@ -81,23 +80,31 @@ const MenuSideBar = () => {
         });
 
         dispatch(addAllSection([...menuAsideResume.listStart, ...newArrAdd]));
-
-        // setCurrentListMenu([...menuAsideResume.list, ...newArrAdd]);
     }, [list]);
 
     return (
         <CSidebarNav>
             {
                 menuAsideResume.list.map((obj, index) => {
+                    let activeClassActives = "";
+
                     if (obj?.key) {
                         if (obj?.status == false)
                             return;
                     }
 
+                    if (!!viewedList?.[obj?.key]?.status) {
+                        activeClassActives = style.link_current;
+                    }
+
+                    if (obj?.key == 'contact' && !!idCv) {
+                        activeClassActives = style.link_current;
+                    }
+
                     return (
                         <CNavItem key={index}>
                             <ActiveLink href={`${obj.link}`} activeClassName={style.active}>
-                                <a className={`${style.nav_link} nav-link`} onClick={handleClick}>
+                                <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={handleClick}>
                                     <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                     {obj.name || ""}
                                 </a>
@@ -107,17 +114,16 @@ const MenuSideBar = () => {
                 })
             }
 
+            {/* !!sectionIndexAndAll(list)?.lengAll && ( */}
             {
-                !!sectionIndexAndAll(list)?.lengAll && (
-                    <CNavItem>
-                        <ActiveLink href={`/resume-builder/add_section`} activeClassName={style.active}>
-                            <a className={`${style.nav_link} nav-link`} onClick={handleClick}>
-                                <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
-                                Advanced
-                            </a>
-                        </ActiveLink>
-                    </CNavItem>
-                )
+                <CNavItem>
+                    <ActiveLink href={`/resume-builder/add_section`} activeClassName={style.active}>
+                        <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={handleClick}>
+                            <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
+                            Advanced
+                        </a>
+                    </ActiveLink>
+                </CNavItem>
             }
         </CSidebarNav>
     )

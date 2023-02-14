@@ -26,6 +26,7 @@ import {
    fetchPostUpdatePositionHobie,
    fetchDeleteAll
 } from "../../../controllers/hobies";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
@@ -92,6 +93,7 @@ const FormHobies = ({
 
    React.useEffect(() => {
       dispatch(fetchGetCvHobie({ idCv }));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'hobbies' }));
    }, []);
 
    return (

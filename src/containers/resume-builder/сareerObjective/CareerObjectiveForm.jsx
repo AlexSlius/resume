@@ -9,6 +9,7 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { isLoader } from "../../../helpers/loadings"
 
 import { fetchGetListObjective } from "../../../controllers/dependencies";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
     ssr: false
@@ -35,6 +36,10 @@ const FormSocials = ({
     const handleServerRequestObjective = (value) => {
         dispatch(fetchGetListObjective(value));
     }
+
+    React.useEffect(() => {
+        dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'careerObjective' }));
+    }, []);
 
     return (
         <>

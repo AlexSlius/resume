@@ -38,6 +38,7 @@ import {
    getCompanyList,
    addCompany
 } from '../../../controllers/dependencies';
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormReference = ({
@@ -127,6 +128,7 @@ const FormReference = ({
 
    useEffect(() => {
       fetchGetCvReferences({ idCv });
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'references' }));
    }, []);
 
    return (

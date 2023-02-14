@@ -39,6 +39,7 @@ import {
    fetchGetCities,
    fetchGetCountrys,
 } from '../../../controllers/dependencies';
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
 const FormInterShip = ({
@@ -132,6 +133,7 @@ const FormInterShip = ({
    React.useEffect(() => {
       dispatch(fetchGetCountrys());
       fetchGetCvInternships({ idCv });
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
    }, []);
 
    return (

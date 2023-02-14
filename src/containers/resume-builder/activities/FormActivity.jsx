@@ -38,6 +38,7 @@ import {
    fetchGetCities,
    fetchGetCountrys,
 } from '../../../controllers/dependencies';
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
@@ -131,6 +132,7 @@ const FormActivity = ({
    React.useEffect(() => {
       dispatch(fetchGetCountrys());
       fetchGetCvActivitys({ idCv });
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
    }, []);
 
    return (

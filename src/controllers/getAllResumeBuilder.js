@@ -10,10 +10,11 @@ import { fetchGetCvInternships } from "./interships"
 import { fetchGetCvLanguages } from "./languages"
 import { fetchGetCvReferences } from "./references"
 import { fetchGetCvCertificates } from "./certificaties"
-import { fetchGetCategoryStatus } from "./addSections"
+import { fetchGetCategoryStatus, getCategoryViewedStatus } from "./addSections"
 
 export const getAllResumeBuildre = async ({ dispatch, idCv }) => {
     await dispatch(fetchGetCategoryStatus({ idCv }));
+    await dispatch(getCategoryViewedStatus({ idCv }));
     dispatch(getBasicContact(idCv));
     dispatch(fetchGetCvEmployments({ idCv }));
     dispatch(fetchGetCvEducations({ idCv }));

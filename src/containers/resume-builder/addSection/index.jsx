@@ -5,6 +5,7 @@ import {
 } from "@coreui/react";
 import { isArray } from "lodash";
 import Router from "next/router";
+import React from "react";
 
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { ButtonSteps } from "../../../components/buttonSteps"
@@ -33,6 +34,7 @@ import {
 } from "../../../constants/next-routers";
 import { sectionIndexAndAll } from "../../../helpers/sections";
 import { addItemSection } from "../../../slices/menuAsideResume";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 
 const AddSection = () => {
@@ -54,7 +56,7 @@ const AddSection = () => {
     const handleAddItemSection = async (name) => {
         const { index } = sectionIndexAndAll(list);
 
-        let res = await dispatch(fetchPostUpdateCategoryStatus({ idCv, data: `${name}/true/${index}` }));
+        let res = await dispatch(fetchPostUpdateCategoryStatus({ idCv, data: `${name}/active/${index}` }));
 
         if (isUpdate(res.payload, "update")) {
             let keyLink = camelCaseStrind(name);
@@ -71,6 +73,10 @@ const AddSection = () => {
     const clickFinish = () => {
         Router.push(`/${routersPages['dashboard']}`);
     }
+
+    React.useEffect(() => {
+        dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'customSection' }));
+    }, []);
 
     return (
         <>

@@ -26,6 +26,7 @@ import {
    fetchGetCvCertificates,
    fetchDeleteAll
 } from "../../../controllers/certificaties";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 const FormCertificaties = ({
    dispatch,
@@ -74,6 +75,7 @@ const FormCertificaties = ({
 
    React.useEffect(() => {
       dispatch(fetchGetCvCertificates({ idCv }));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certifications' }));
    }, [])
 
    return (

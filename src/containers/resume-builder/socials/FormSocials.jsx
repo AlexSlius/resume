@@ -21,6 +21,7 @@ import {
    fetchDeleteItemLink,
    fetchDeleteAll
 } from "../../../controllers/socials";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 
 const FormSocials = ({
@@ -92,6 +93,7 @@ const FormSocials = ({
 
    React.useEffect(() => {
       dispatch(fetchGetAllLinks({ idCv }));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'socialLinks' }));
    }, [])
 
    return (

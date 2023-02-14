@@ -33,6 +33,7 @@ import {
    fetchPostUpdatePositionCourses,
    fetchDeleteAll
 } from "../../../controllers/courses";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
@@ -117,6 +118,7 @@ const FormCourse = ({
 
    React.useEffect(() => {
       fetchGetCvCourses({ idCv });
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'courses' }));
    }, []);
 
    return (

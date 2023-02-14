@@ -33,6 +33,7 @@ import {
    fetchPostUpdatePositionSkills,
    fetchDeleteAll
 } from "../../../controllers/skills";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
 const FormSkill = ({
    dispatch,
@@ -122,6 +123,7 @@ const FormSkill = ({
 
    React.useEffect(() => {
       dispatch(fetchGetSkillslistAll(idCv));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'skills' }));
    }, []);
 
    return (

@@ -20,6 +20,7 @@ import {
    fetchDeleteLanguages,
    fetchUpdateLanguages
 } from "../../../controllers/languages";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { updateItemLanguageFiled } from "../../../slices/languages";
 import { ButtonDeleteItem } from "../../../components/uis/buttonDelete";
 
@@ -72,6 +73,7 @@ const FormLanguages = ({
 
    useEffect(() => {
       fetchGetCvLanguages({ idCv });
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
    }, []);
 
    return (
