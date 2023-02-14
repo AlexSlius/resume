@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 import Link from "next/link"
 import React from "react";
-import Router from "next/router";
 
 import { FormHead } from "../../components/formHead"
 import { AutorizationWrapper } from "../../wrappers/autorization"
@@ -26,7 +25,6 @@ import { routersPages } from "../../constants/next-routers"
 export const RegisterPage = () => {
     const dispatch = useDispatch();
     const { status, textError } = useSelector(prev => prev.auth.register)
-    const idCv = localStorageGet('idCv');
 
     const {
         register,
@@ -56,12 +54,6 @@ export const RegisterPage = () => {
 
         return () => subscription.unsubscribe();
     }, [watch]);
-
-    // React.useEffect(() => {
-    //     // if (!idCv) {
-    //     //     Router.push(`${routersPages['login']}`);
-    //     // }
-    // }, []);
 
     return (
         <AutorizationWrapper>

@@ -1,11 +1,12 @@
 import { CButton } from "@coreui/react"
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 import { LoadChildrenBtn } from "../loadChildrenBtn"
 import { isLoader } from "../../helpers/loadings"
-
 import { isAllActive, nextofLink, prevOfLink } from "../../helpers/routers";
+
+import { routersPages } from "../../constants/next-routers";
 
 import style from "./Style.module.scss";
 
@@ -26,6 +27,7 @@ export const ButtonSteps = ({
     onClean = () => { },
     clickFinish = () => { },
 }) => {
+    const router = useRouter();
     const {
         menuAsideResume: {
             list
@@ -33,18 +35,19 @@ export const ButtonSteps = ({
     } = useSelector(state => state);
 
     const isAll = isAllActive(list);
+    const idCv = router.query.idCv;
 
     const clickNext = () => {
         if (isNew) {
             onHandleNew();
         } else {
-            let pathName = Router.pathname;
+            let pathName = router.asPath;
 
             if (isAthorized) {
                 let linkNext = nextofLink(list, pathName);
 
                 if (!!linkNext)
-                    Router.push(linkNext);
+                    Router.push(`/${routersPages['resumeBuilder']}/${idCv}${linkNext}`);
             } else {
                 onHandleBtnNext();
             }
@@ -52,7 +55,7 @@ export const ButtonSteps = ({
     }
 
     // const clickPrev = () => {
-    //     let pathName = Router.pathname;
+    //     let pathName = router.asPath;
     //     let linkPrev = prevOfLink(list, pathName);
 
     //     if (!!linkPrev)

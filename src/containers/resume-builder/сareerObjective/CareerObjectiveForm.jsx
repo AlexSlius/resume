@@ -7,9 +7,16 @@ import { FormSearchContent } from "../../../components/uis/formSearchContent/for
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import { isLoader } from "../../../helpers/loadings"
-
 import { fetchGetListObjective } from "../../../controllers/dependencies";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import {
+    fetchUpdateServer,
+    fetchDeleteAll
+} from "../../../controllers/careers";
+import {
+    updateCareer,
+    addCareer
+} from "../../../slices/careers";
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
     ssr: false
@@ -31,10 +38,40 @@ const FormSocials = ({
                 isAthorized
             }
         },
+        careers: {
+            data
+        }
     } = states;
+
+    const isDataPage = data?.length > 0;
 
     const handleServerRequestObjective = (value) => {
         dispatch(fetchGetListObjective(value));
+    }
+
+    const handleAddText = (text) => {
+        dispatch(addCareer(`<p>${text}</p></br>`))
+    }
+
+    const handleUpdateText = (text) => {
+        dispatch(updateCareer(text));
+
+        handleUpdateServer();
+    }
+
+    const handleClean = () => {
+        dispatch(fetchDeleteAll({ idCv }));
+    }
+
+    const handleUpdateServer = async (index) => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            await dispatch((fetchUpdateServer({ idCv })));
+            clearTimeout(refIdTimeout.current);
+        }, 1000);
     }
 
     React.useEffect(() => {
@@ -48,12 +85,9 @@ const FormSocials = ({
                     <div className="wr-edit-text">
                         <TextEditorProvider>
                             <TextEditor
-                                // isLoad={isLoader(employers.status)}
-                                // data={employers.list}
                                 isAddModal={false}
-                            // devValue={item.assignment}
-                            // handleServerRequest={handleServerRequest}
-                            // handleServeDispatchContent={(textContent) => handleServeDispatchContent(index, textContent)}
+                                devValue={data}
+                                handleServeDispatchContent={(textContent) => handleUpdateText(textContent)}
                             />
                         </TextEditorProvider>
                     </div>
@@ -64,6 +98,7 @@ const FormSocials = ({
                             data={objective.list}
                             isLoad={isLoader(objective.status)}
                             handleServerRequest={handleServerRequestObjective}
+                            handleUpdateText={handleAddText}
                         />
                     </div>
                 </CCol>
@@ -72,8 +107,8 @@ const FormSocials = ({
                 <CCol className="mt-4">
                     <ButtonSteps
                         isAthorized={isAthorized}
-                    // disabledNext={!isDataPage}
-                    // onClean
+                        disabledNext={!isDataPage}
+                        onClean={handleClean}
                     />
                 </CCol>
             </CRow>

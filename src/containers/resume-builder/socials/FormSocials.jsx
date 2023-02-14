@@ -92,7 +92,7 @@ const FormSocials = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetAllLinks({ idCv }));
+      // dispatch(fetchGetAllLinks({ idCv }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'socialLinks' }));
    }, [])
 

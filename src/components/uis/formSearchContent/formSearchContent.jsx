@@ -1,6 +1,7 @@
 import React from "react";
 import { isArray } from 'lodash';
 import { CFormInput } from "@coreui/react"
+import { convertToHTML } from "draft-convert"
 
 import Icon from "../../Icon"
 
@@ -14,11 +15,15 @@ export const FormSearchContent = ({
     data,
     labelEmpty = "empty list",
     nTimeMs = 500,
-    handleOnClickAddTextList = () => { },
     handleServerRequest = () => { },
+    handleUpdateText = () => { },
 }) => {
     const refIdTimeout = React.useRef(null);
     const [textSearch, setTextSearch] = React.useState('');
+
+    const handleOnClickAddTextList = (value) => {
+        handleUpdateText(value);
+    }
 
     React.useEffect(() => {
         if (textSearch.length > 0) {

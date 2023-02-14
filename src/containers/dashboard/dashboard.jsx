@@ -14,12 +14,10 @@ import { routersPages } from "../../constants/next-routers";
 import { fetchGetResumesList } from "../../controllers/resumes";
 import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
-import { localStorageSet, localStorageRemove } from "../../helpers/localStorage";
 import { isLoader } from "../../helpers/loadings"
 
 import style from "./Style.module.scss";
 import { CardNew } from "../../components/cardNew";
-
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -28,6 +26,7 @@ const Dashboard = () => {
         resumers
     } = useSelector(state => state);
     let type = "resume";
+    let idCv = router.query.idCv;
 
     switch (router.query.tab) {
         case tabsDashboardPage['resumes'].link:
@@ -39,14 +38,12 @@ const Dashboard = () => {
     }
 
     const handleOnUpdateResume = async (data) => {
-        await localStorageSet('idCv', data.id);
-        await Router.push(routersPages['resumeBuilder']);
+        await Router.push(`${routersPages['resumeBuilder']}/${data.id}/contact`);
     }
 
     const hangleAddNewResume = async () => {
-        await localStorageRemove('idCv');
         await cleanResumeSlices(dispatch);
-        await Router.push(`${routersPages['resumeBuilder']}?new=resume`);
+        await Router.push(`${routersPages['resumeBuilderNew']}`);
     }
 
     React.useEffect(() => {

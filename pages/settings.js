@@ -10,6 +10,6 @@ const SettingsPage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute();
+export const getServerSideProps = withPrivateRoute({});
 
 export default SettingsPage;

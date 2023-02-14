@@ -117,7 +117,7 @@ const FormCourse = ({
    }
 
    React.useEffect(() => {
-      fetchGetCvCourses({ idCv });
+      // fetchGetCvCourses({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'courses' }));
    }, []);
 

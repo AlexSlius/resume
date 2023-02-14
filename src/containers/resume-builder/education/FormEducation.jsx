@@ -130,7 +130,7 @@ const FormEducation = ({
    }
 
    React.useEffect(() => {
-      fetchGetCvEducations({ idCv });
+      // fetchGetCvEducations({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
    }, []);
 

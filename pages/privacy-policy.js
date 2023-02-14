@@ -17,6 +17,6 @@ const PrivacyPolicyPage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default PrivacyPolicyPage;

@@ -69,7 +69,7 @@ export const HomePage = () => {
                                 of job seekers land more interviews and get hired faster.
                             </p>
                             <div className="promo-ofer__bottom">
-                                <Link href={`${routersPages['resumeBuilder']}`} className="promo-ofer__btn btns btn--blue">
+                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-ofer__btn btns btn--blue">
                                     Create My Resume
                                 </Link>
                                 <div className="user-icons">

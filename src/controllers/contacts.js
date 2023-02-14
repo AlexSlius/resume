@@ -15,8 +15,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (data
     const response = await api.contact.setAddResume(newObj);
 
     if (isRespondServerSuccesss(response)) {
-        await localStorageSet("idCv", response.id);
-        await Router.push(menuAsideResume.list[1].link);
+        await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
     }
 
     if (isError(response)) {
@@ -26,7 +25,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (data
     return response;
 })
 
-export const contactSetNew = createAsyncThunk('fetch/setNewContact', async (dataImage, thunkAPI) => {
+export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async (dataImage, thunkAPI) => {
     const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
     const newObj = newObjContact(contactObj, dataImage)
 

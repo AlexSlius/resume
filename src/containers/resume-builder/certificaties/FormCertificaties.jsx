@@ -5,12 +5,10 @@ import {
 } from "@coreui/react";
 import React from "react";
 import { isArray } from "lodash";
-import Router from "next/router";
 
 import Input from "../../../components/uis/input"
 import { LoadWr } from "../../../components/loadWr";
 import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet } from "../../../helpers/localStorage";
 import { isObjDatas } from '../../../helpers/datasPage';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
@@ -30,7 +28,8 @@ import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections
 
 const FormCertificaties = ({
    dispatch,
-   storeDate
+   storeDate,
+   idCv
 }) => {
    const {
       certificaties: {
@@ -44,8 +43,6 @@ const FormCertificaties = ({
          }
       },
    } = storeDate;
-   const idCv = localStorageGet('idCv');
-
    const isDataPage = (isArray(certificatiesObj) && (certificatiesObj.length > 0)) || isObjDatas(ObjNew);
 
    const updateitemFiled = async ({ index, name, value }) => {
@@ -74,7 +71,7 @@ const FormCertificaties = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvCertificates({ idCv }));
+      // dispatch(fetchGetCvCertificates({ idCv }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certifications' }));
    }, [])
 

@@ -92,7 +92,7 @@ const FormHobies = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetCvHobie({ idCv }));
+      // dispatch(fetchGetCvHobie({ idCv }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'hobbies' }));
    }, []);
 

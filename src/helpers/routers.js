@@ -12,8 +12,10 @@ export const nextofLink = (routerLinksAsideMenu, path) => {
     let ind = 0;
 
     arrkeys.map((key, index) => {
-        if (len != index)
-            if (routerLinksAsideMenu[key].link == path) {
+        if (len != index) {
+            let ln = routerLinksAsideMenu[key].link;
+
+            if (path.includes(ln)) {
                 let current = routerLinksAsideMenu[arrkeys[index + 1]];
 
                 if (!!current?.status) {
@@ -22,6 +24,7 @@ export const nextofLink = (routerLinksAsideMenu, path) => {
 
                 ind = index;
             }
+        }
     });
 
     if (!nextLink && ind > 0) {
@@ -35,7 +38,7 @@ export const nextofLink = (routerLinksAsideMenu, path) => {
     }
 
     if (!nextLink) {
-        nextLink = routersPages['addSection'];
+        nextLink = `/${routersPages['addSection']}`;
     }
 
     return nextLink;
@@ -49,7 +52,7 @@ export const prevOfLink = (routerLinksAsideMenu, path) => {
     let prevLink = undefined;
 
     arrkeys.map((key, index) => {
-        if (routerLinksAsideMenu[key].link == path) {
+        if (path.includes(routerLinksAsideMenu[key].link)) {
             if (index != 0)
                 prevLink = routerLinksAsideMenu[arrkeys[index - 1]]?.link
         }

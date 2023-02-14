@@ -10,6 +10,6 @@ const ResumeActivityPage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute();
+export const getServerSideProps = withPrivateRoute({});
 
 export default ResumeActivityPage;

@@ -54,7 +54,7 @@ export const Footer = () => {
                             !isAthorized && (
                                 <>
                                     <Link href={`${routersPages['login']}`} className="logins">Login</Link>
-                                    <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
+                                    <Link href={`${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                         <img src="/images/page/get-start.svg" alt="img" />
                                         Get started
                                     </Link>

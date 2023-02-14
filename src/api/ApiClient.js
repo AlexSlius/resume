@@ -31,19 +31,21 @@ export default class ApiClient {
     });
   }
 
-  async put(url, payload = {}) {
+  async put(url, payload = {}, type = "json") {
     return this.request({
       url,
       method: "PUT",
       body: payload,
+      type,
     });
   }
 
-  async patch(url, payload = {}) {
+  async patch(url, payload = {}, type = "json") {
     return this.request({
       url,
       method: "PATCH",
       body: payload,
+      type,
     });
   }
 

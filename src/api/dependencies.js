@@ -44,6 +44,6 @@ export default class ClientsAPI extends Base {
         return this.apiClient.get(`profile/list/hobbies`, params);
     }
     getListObjective(params) {
-        return this.apiClient.get(`api/career/objective`, params);
+        return this.apiClient.get(`api/career_objective`, params);
     }
 }

@@ -20,7 +20,7 @@ import { reducer as usersReducer } from '../slices/users';
 import { reducer as addSectionReducer } from '../slices/addSection';
 import { reducer as menuAsideResume } from "../slices/menuAsideResume";
 import { reducer as notificationData } from "../slices/notifications";
-
+import { reducer as careers } from "../slices/careers";
 
 export const combinedReducers = combineReducers({
   app: appReducer,
@@ -38,6 +38,7 @@ export const combinedReducers = combineReducers({
   references: referencesReducer,
   skills: skillsReducer,
   socials: socialsReducer,
+  careers,
   resumers: resumesReducer,
   users: usersReducer,
   addSection: addSectionReducer,

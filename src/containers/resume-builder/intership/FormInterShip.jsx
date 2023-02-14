@@ -132,7 +132,7 @@ const FormInterShip = ({
 
    React.useEffect(() => {
       dispatch(fetchGetCountrys());
-      fetchGetCvInternships({ idCv });
+      // fetchGetCvInternships({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
    }, []);
 

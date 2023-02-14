@@ -28,7 +28,7 @@ export const Header = () => {
                 <nav className="nav">
                     <ul>
                         <li className="submenu-item">
-                            <Link href="#">Resume</Link>
+                            <Link href={routersPages['jobWinningResumeTemplates']}>Resume</Link>
                             <div className="submenu">
                                 <div className="submenu__top">
                                     <div className="submenu__title">Resume Templates</div>
@@ -73,7 +73,7 @@ export const Header = () => {
                                     <div className="submenu__item__fot-center">
                                         <div className="submenu__item-bot_t">Resume Builder</div>
                                         <p className="submenu__item-bot_text">Build powerful resumes in only 5 minutes with our easy to use Resume Builder and get hired faster.</p>
-                                        <Link href={routersPages['resumeBuilder']} className="submenu__item-bot_link link-a">Get Started Now</Link>
+                                        <Link href={routersPages['resumeBuilderNew']} className="submenu__item-bot_link link-a">Get Started Now</Link>
                                     </div>
                                     <div className="submenu__item__fot-right">
                                         <img src="/images/icons/img-r-sub.png" />
@@ -111,7 +111,7 @@ export const Header = () => {
                         ) : (
                             <>
                                 <Link href={`${routersPages['login']}`} className="logins">Login</Link>
-                                <Link href={`${routersPages['resumeBuilder']}`} className="get-startend btns btn--grey">
+                                <Link href={`${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                     <img src="/images/page/get-start.svg" alt="img" />
                                     <span>Get started</span>
                                 </Link>

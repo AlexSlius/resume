@@ -17,6 +17,6 @@ const Faqs = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default Faqs;

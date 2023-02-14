@@ -3,8 +3,7 @@ import {
     CCol,
     CRow,
 } from "@coreui/react";
-import { isArray } from "lodash";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import React from "react";
 
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
@@ -17,6 +16,13 @@ import { localStorageGet } from "../../../helpers/localStorage";
 import { isUpdate } from "../../../helpers/checkingStatuses";
 import { isLoader } from "../../../helpers/loadings"
 import { camelCaseStrind } from "../../../helpers/caseConverters";
+import { sectionIndexAndAll } from "../../../helpers/sections";
+import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import { addItemSection } from "../../../slices/menuAsideResume";
+
+import {
+    routersPages
+} from "../../../constants/next-routers";
 
 import style from "./Style.module.scss"
 import iconPlus from "/public/images/icons/icon_plus.svg?sprite";
@@ -29,15 +35,11 @@ import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import socialIcon from '/public/images/icons/social.svg?sprite'
 import hobbiesIcon from '/public/images/icons/hobies.svg?sprite'
 
-import {
-    routersPages
-} from "../../../constants/next-routers";
-import { sectionIndexAndAll } from "../../../helpers/sections";
-import { addItemSection } from "../../../slices/menuAsideResume";
-import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+
 
 
 const AddSection = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const {
         auth: {
@@ -51,7 +53,7 @@ const AddSection = () => {
         },
         menuAsideResume
     } = useSelector((state) => state);
-    const idCv = localStorageGet('idCv');
+    const idCv = router.query.idCv
 
     const handleAddItemSection = async (name) => {
         const { index } = sectionIndexAndAll(list);
@@ -65,13 +67,13 @@ const AddSection = () => {
             // dispatch(addItemSection({ value: itemObj }));
 
             if (itemObj) {
-                Router.push(itemObj.link);
+                Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}`);
             }
         }
     }
 
     const clickFinish = () => {
-        Router.push(`/${routersPages['dashboard']}`);
+        Router.push(`/ ${routersPages['dashboard']} `);
     }
 
     React.useEffect(() => {
@@ -95,12 +97,12 @@ const AddSection = () => {
                             {
                                 (list?.socialLinks?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={socialIcon} />
                                                 <span>Social Links</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("socialLinks")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -113,12 +115,12 @@ const AddSection = () => {
                             {
                                 (list?.hobbies?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={hobbiesIcon} />
                                                 <span>Hobbies</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("hobbies")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -132,12 +134,12 @@ const AddSection = () => {
                             {
                                 (list?.extraCurricular?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={activityIcon} />
                                                 <span>Extra-curricular activities</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("extraCurricular")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -150,12 +152,12 @@ const AddSection = () => {
                             {
                                 (list?.reference?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={referencesIcon} />
                                                 <span>References</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("reference")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -168,12 +170,12 @@ const AddSection = () => {
                             {
                                 (list?.courses?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={coursesIcon} />
                                                 <span>Courses</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("courses")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -186,12 +188,12 @@ const AddSection = () => {
                             {
                                 (list?.certificates?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={certificationsIcon} />
                                                 <span>Certifications</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("certificates")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -204,12 +206,12 @@ const AddSection = () => {
                             {
                                 (list?.internship?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={internshipIcon} />
                                                 <span>Internship</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("internship")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>
@@ -222,12 +224,12 @@ const AddSection = () => {
                             {
                                 (list?.customSection?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section}`}>
-                                            <div className={`${style.item_section__left}`}>
+                                        <div className={`${style.item_section} `}>
+                                            <div className={`${style.item_section__left} `}>
                                                 <Icon svg={iconSettings} />
                                                 <span>Custom section</span>
                                             </div>
-                                            <div className={`${style.item_section__right}`}>
+                                            <div className={`${style.item_section__right} `}>
                                                 <button className="btn-pl" onClick={() => handleAddItemSection("customSection")}>
                                                     <Icon svg={iconPlus} />
                                                 </button>

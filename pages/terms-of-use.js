@@ -17,6 +17,6 @@ const TermsOfUsePage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default TermsOfUsePage;

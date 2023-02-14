@@ -7,35 +7,35 @@ let startDates = [
         key: 'contact',
         name: 'Contact',
         status: true,
-        link: '/resume-builder',
+        link: '/contact',
         keyIcon: [keysIcons["iconContact"]],
     },
     {
         key: 'employment',
         name: 'Employment',
         status: true,
-        link: '/resume-builder/employment',
+        link: '/employment',
         keyIcon: [keysIcons["iconEmploymen"]],
     },
     {
         key: 'education',
         name: 'Education',
         status: true,
-        link: '/resume-builder/education',
+        link: '/education',
         keyIcon: [keysIcons["iconEducation"]],
     },
     {
         key: 'skills',
         name: 'Skills',
         status: true,
-        link: '/resume-builder/skills',
+        link: '/skills',
         keyIcon: [keysIcons["iconSkills"]],
     },
     {
         key: 'careerObjective',
         name: 'Career Objective',
         status: true,
-        link: '/resume-builder/career-objective',
+        link: '/career-objective',
         keyIcon: [keysIcons["сareerObjective"]],
     },
 ];
@@ -46,7 +46,7 @@ let adds = [
         name: 'Social Links',
         status: true,
         audit: true,
-        link: '/resume-builder/socials',
+        link: '/socials',
         keyIcon: [keysIcons["iconSocial"]],
     },
     {
@@ -54,7 +54,7 @@ let adds = [
         name: 'Hobbies',
         status: true,
         audit: true,
-        link: '/resume-builder/hobies',
+        link: '/hobies',
         keyIcon: [keysIcons["iconHobbies"]],
     },
     {
@@ -62,7 +62,7 @@ let adds = [
         status: true,
         audit: true,
         name: 'Extra-curricular activities',
-        link: '/resume-builder/activity',
+        link: '/activity',
         keyIcon: [keysIcons["iconActivity"]],
     },
     {
@@ -70,7 +70,7 @@ let adds = [
         status: true,
         audit: true,
         name: 'Courses',
-        link: '/resume-builder/course',
+        link: '/course',
         keyIcon: [keysIcons["iconCourses"]],
     },
     {
@@ -78,7 +78,7 @@ let adds = [
         status: true,
         audit: true,
         name: 'Internship',
-        link: '/resume-builder/intership',
+        link: '/intership',
         keyIcon: [keysIcons["iconInternship"]],
     },
     {
@@ -86,7 +86,7 @@ let adds = [
         status: true,
         audit: true,
         name: 'References',
-        link: '/resume-builder/reference',
+        link: '/reference',
         keyIcon: [keysIcons["iconReferences"]],
     },
     {
@@ -94,7 +94,7 @@ let adds = [
         status: true,
         audit: true,
         name: 'Certifications',
-        link: '/resume-builder/certificaties',
+        link: '/certificaties',
         keyIcon: [keysIcons["iconCertifications"]],
     },
 ]

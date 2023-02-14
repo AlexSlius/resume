@@ -10,6 +10,6 @@ const ResumeNowPage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute();
+export const getServerSideProps = withPrivateRoute({});
 
 export default ResumeNowPage;

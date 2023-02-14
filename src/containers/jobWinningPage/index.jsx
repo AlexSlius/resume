@@ -28,7 +28,7 @@ export const JobWinningPage = () => {
                 </p>
 
                 <div className="btn-centers-w mt-40">
-                    <ButtonIcon href={routersPages['resumeBuilder']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
+                    <ButtonIcon href={routersPages['resumeBuilderNew']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
                 </div>
 
                 <div className="wr-resumes">

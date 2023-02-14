@@ -122,7 +122,7 @@ const FormSkill = ({
    }
 
    React.useEffect(() => {
-      dispatch(fetchGetSkillslistAll(idCv));
+      // dispatch(fetchGetSkillslistAll(idCv));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'skills' }));
    }, []);
 

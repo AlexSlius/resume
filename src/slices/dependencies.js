@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader, statusError } from '../constants/statuses';
 import {
@@ -86,6 +87,12 @@ export const sliceDepenndecies = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
+        [HYDRATE]: (state, action) => {
+            return {
+              ...state,
+              ...action.payload.dependencies,
+            }
+          },
         // get careers objective
         [fetchGetListObjective.pending]: (state) => {
             state.objective.list = [];

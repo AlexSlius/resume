@@ -1,15 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router'
 
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormActivity from "./FormActivity";
 
-import { localStorageGet } from "../../../helpers/localStorage";
-
 
 const Activity = () => {
+   const router = useRouter();
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
-   const idCv = localStorageGet('idCv');
+   const idCv = router.query.idCv;
 
    return (
       <>

@@ -1,7 +1,6 @@
 
 import { useEffect, useState, useRef } from "react"
-import { CForm, CCol, CRow, CButton } from "@coreui/react"
-import { useSelector, useDispatch } from "react-redux"
+import { CForm, CCol, CRow } from "@coreui/react"
 import { useForm } from "react-hook-form"
 
 import { DatePicker } from "../../../components/uis/datePicker"
@@ -31,15 +30,18 @@ import {
    addJopsTitle
 } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
-import { localStorageGet, sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
+import { sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 
-const FormContact = () => {
-   const dispatch = useDispatch()
+const FormContact = ({
+   dispatch,
+   storeDate,
+   idCv
+}) => {
    const refIdTimeout = useRef(undefined);
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
@@ -64,8 +66,7 @@ const FormContact = () => {
             isAthorized
          }
       },
-   } = useSelector(state => state);
-   const idCv = localStorageGet('idCv');
+   } = storeDate;
 
    const {
       register,
@@ -89,10 +90,10 @@ const FormContact = () => {
          reader.readAsDataURL(e.target.files[0]);
          await setPictureFile(e.target.files[0]);
 
-         if (!!idCv)
+         if (idCv != "new")
             await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
 
-         if (!idCv) {
+         if (idCv != "new") {
             sessionStorageSet('picture', e.target.files[0]);
          }
       }
@@ -142,7 +143,7 @@ const FormContact = () => {
    }
 
    const updateContactServer = async () => {
-      if (!!idCv) {
+      if (idCv != "new") {
          if (refIdTimeout.current) {
             clearTimeout(refIdTimeout.current);
          }
@@ -175,8 +176,8 @@ const FormContact = () => {
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
-      if (!!idCv) {
-         dispatch(getBasicContact(idCv));
+      if (idCv != "new") {
+         // dispatch(getBasicContact(idCv));
       } else {
          sessionStorageRemove('picture');
       }
@@ -397,7 +398,7 @@ const FormContact = () => {
                   onHandleNew={onHandleNewAutorization}
                   isAthorized={isAthorized}
                   isFirstStep={true}
-                  isNew={!!!idCv && isAthorized}
+                  isNew={idCv == "new" && isAthorized}
                   disabledNext={!contactObj.firstName || !contactObj.lastName}
                />
             </CCol>

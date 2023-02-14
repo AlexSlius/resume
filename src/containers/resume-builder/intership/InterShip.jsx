@@ -1,13 +1,13 @@
 import FormInterShip from "./FormInterShip"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { useSelector, useDispatch } from "react-redux";
-
-import { localStorageGet } from "../../../helpers/localStorage";
+import { useRouter } from 'next/router'
 
 const InterShip = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
-   const idCv = localStorageGet('idCv');
+   const router = useRouter();
+   const idCv = router.query.idCv;
 
    return (
       <>

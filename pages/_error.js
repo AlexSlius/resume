@@ -17,6 +17,6 @@ const Error404 = () => {
   )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default Error404;

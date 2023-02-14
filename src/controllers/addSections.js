@@ -12,7 +12,7 @@ export const fetchGetCategoryStatus = createAsyncThunk('category/fetchGetCategor
 export const fetchPostUpdateCategoryStatus = createAsyncThunk('category/fetchPostUpdateCategoryStatus', async ({ idCv, data }, thunkAPI) => {
     const response = await api.addSection.updateCategoryStatus(idCv, data);
 
-    await thunkAPI.dispatch(fetchGetCategoryStatus({ idCv }));
+    // await thunkAPI.dispatch(fetchGetCategoryStatus({ idCv }));
     return response;
 });
 

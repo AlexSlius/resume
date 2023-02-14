@@ -72,7 +72,7 @@ const FormLanguages = ({
    }
 
    useEffect(() => {
-      fetchGetCvLanguages({ idCv });
+      // fetchGetCvLanguages({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
    }, []);
 

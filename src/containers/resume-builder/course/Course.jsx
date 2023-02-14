@@ -1,13 +1,14 @@
-import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
-import FormCourse from "./FormCourse";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router'
 
-import { localStorageGet } from "../../../helpers/localStorage";
+import HeadMainContent from "../../../components/headMainContent/HeadMainContent";
+import FormCourse from "./FormCourse";
 
 const Course = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);
-   const idCv = localStorageGet('idCv');
+   const router = useRouter();
+   const idCv = router.query.idCv;
 
    return (
       <>

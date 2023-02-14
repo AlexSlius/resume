@@ -8,7 +8,6 @@ import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 import { routersPages } from '../constants/next-routers';
 import { setLogout } from '../slices/auth';
 import {
-    localStorageSet,
     sessionStorageGet,
     localStorageRemove
 } from '../helpers/localStorage';
@@ -16,7 +15,6 @@ import {
 export const logout = async (dispatch) => {
     await cookieDestroy({ key: 'token' });
     await localStorageRemove('session_id');
-    await localStorageRemove('idCv');
     await dispatch(setLogout());
     await Router.push('/');
 }
@@ -27,7 +25,6 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
         Router.push(`${routersPages['dashboard']}`);
-        await localStorageRemove('idCv');
     }
 
     return response;
@@ -39,18 +36,17 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (d
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
-        localStorageSet("idCv", response.id);
 
         let nextRouterPage = sessionStorageGet('routet_page_next');
 
         if (!!nextRouterPage) {
-            Router.push(nextRouterPage);
+            Router.push(`/${routersPages['resumeBuilder']}/${response.id}${nextRouterPage}`);
         } else {
             Router.push(`${menuAsideResume?.list[0].link}`);
         }
     } else {
         if (response?.errors == "session_empty") {
-            Router.push(`${routersPages['resumeBuilder']}`);
+            Router.push(`${routersPages['resumeBuilderNew']}`);
         }
     }
 

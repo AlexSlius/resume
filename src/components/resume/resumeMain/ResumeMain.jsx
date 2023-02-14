@@ -30,6 +30,7 @@ const ResumeMain = ({
       languages,
       references,
       certificaties,
+      careers
    } = useSelector((state) => state);
 
    let notEmptyContactDetails = contactObj?.address || contactObj?.city?.name || contactObj?.zipCode || contactObj?.country?.name || contactObj?.phone;
@@ -66,9 +67,11 @@ const ResumeMain = ({
                   <div className="resume-main__title">
                      {`${contactObj?.firstName || ''} ${contactObj?.lastName}`}{contactObj.jobTitle && (`, ${contactObj.jobTitle}`)}
                   </div>
-                  {/* <div className="resume-main__text">
-                     <p>Most foreign employers ask for a cover letter. The content should hook the potential employer. Describe your key skills, your advantages, and why you are the right person for the job.</p>
-                  </div> */}
+                  {
+                     (careers?.data?.length > 0) && (
+                        <div className="resume-main__text" dangerouslySetInnerHTML={{ __html: careers.data }}></div>
+                     )
+                  }
                </CCol>
             </CRow>
 

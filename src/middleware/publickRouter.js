@@ -4,8 +4,9 @@ import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
+import { getAllResumeBuildre } from "../controllers/getAllResumeBuilder";
 
-export const withPublickRoute = () => {
+export const withPublickRoute = (isGetAllBuilder) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
@@ -15,6 +16,9 @@ export const withPublickRoute = () => {
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
             }
+
+            if (!!isGetAllBuilder)
+                await getAllResumeBuildre({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
             return { props: {} };
         } catch (error) {

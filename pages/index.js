@@ -17,6 +17,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default Home;

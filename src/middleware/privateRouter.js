@@ -4,20 +4,24 @@ import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
-
+import { getAllResumeBuildre } from "../controllers/getAllResumeBuilder";
 import { routersPages } from "../constants/next-routers";
 
-export const withPrivateRoute = () => {
+export const withPrivateRoute = ({ isGetAllBuilder = false }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
 
             if (!!cookis?.token) {
-
                 api.apiClient.setToken(cookis.token);
 
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
+
+                console.log("ctx?.query?.idCv: ", ctx?.query?.idCv);
+
+                if (!!isGetAllBuilder)
+                    await getAllResumeBuildre({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
                 if (!isExist(serverRespons)) {
                     return {

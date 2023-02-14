@@ -131,7 +131,7 @@ const FormActivity = ({
 
    React.useEffect(() => {
       dispatch(fetchGetCountrys());
-      fetchGetCvActivitys({ idCv });
+      // fetchGetCvActivitys({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
    }, []);
 

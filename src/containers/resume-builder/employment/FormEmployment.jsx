@@ -180,7 +180,7 @@ const FormEmployment = ({
 
   useEffect(() => {
     dispatch(fetchGetCountrys());
-    fetchGetCvEmployments({ idCv });
+    // fetchGetCvEmployments({ idCv });
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
   }, []);
 

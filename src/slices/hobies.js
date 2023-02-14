@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
@@ -32,6 +33,12 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.hobies,
+      }
+    },
     // delete all
     [fetchDeleteAll.pending]: (state) => {
       state.hobieObjNew = initialState.hobieObjNew;

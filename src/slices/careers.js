@@ -1,51 +1,63 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
+import { isString } from 'lodash';
 
-// import { statusLoaded, statusLoader } from '../constants/statuses';
+import { statusLoaded, statusLoader } from '../constants/statuses';
 
-// import {
-//     fetchGetCvHobie
-// } from "../controllers/hobies";
+import {
+    fetchGetCvCarreers,
+    fetchDeleteAll
+} from "../controllers/careers";
 
-// const initialState = {
-//     hobiesObj: [],
-//     hobieObjNew: {
-//         text: '',
-//     },
-//     status: statusLoaded,
-//     statusList: statusLoaded
-// };
+const initialState = {
+    data: "",
+    status: statusLoaded,
+};
 
-// export const slice = createSlice({
-//     name: 'hobies',
-//     initialState,
-//     reducers: {
-//         updateItemHobiesFiledNew(state, action) {
-//             let { name, value } = action.payload;
-//             state.hobieObjNew[name] = value;
-//         },
-//         updatePosition(state, action) {
-//             state.hobiesObj = action.payload;
-//         },
-//         cleanSlise(state, action) {
-//             state.hobiesObj = initialState.hobiesObj;
-//         },
-//     },
-//     extraReducers: {
-//         // get list skills all
-//         [fetchGetCvHobie.pending]: (state) => {
-//             state.statusList = statusLoader;
-//         },
-//         [fetchGetCvHobie.fulfilled]: (state, action) => {
-//             state.statusList = statusLoaded;
-//             state.hobiesObj = action.payload;
-//         },
-//     }
-// });
+export const slice = createSlice({
+    name: 'careers',
+    initialState,
+    reducers: {
+        updateCareer(state, action) {
+            state.data = action.payload;
+        },
+        addCareer(state, action) {
+            if (isString(state.data)) {
+                state.data = state.data + action.payload;
+            } else {
+                state.data = action.payload;
+            }
+        },
+    },
+    extraReducers: {
+        [HYDRATE]: (state, action) => {
+            return {
+                ...state,
+                ...action.payload.careers,
+            }
+        },
+        // clean all
+        [fetchDeleteAll.pending]: (state) => {
+            state.data = "";
+            state.status = statusLoader;
+        },
+        [fetchDeleteAll.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
+        },
+        // get 
+        [fetchGetCvCarreers.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [fetchGetCvCarreers.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
+            state.data = action.payload;
+        },
+    }
+});
 
-// export const {
-//     updateItemHobiesFiledNew,
-//     updatePosition,
-//     cleanSlise,
-// } = slice.actions;
+export const {
+    updateCareer,
+    addCareer
+} = slice.actions;
 
-// export const { reducer } = slice;
+export const { reducer } = slice;

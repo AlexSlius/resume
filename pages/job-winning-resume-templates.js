@@ -17,6 +17,6 @@ const ContactUs = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({});
 
 export default ContactUs;

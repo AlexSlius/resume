@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
@@ -24,6 +25,12 @@ export const slice = createSlice({
         },
     },
     extraReducers: {
+        [HYDRATE]: (state, action) => {
+            return {
+                ...state,
+                ...action.payload.addSection,
+            }
+        },
         [getCategoryViewedStatus.pending]: (state) => {
             state.viewedList = initialState.viewedList;
             state.statusViewed = statusLoader;

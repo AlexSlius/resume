@@ -132,16 +132,14 @@ const TextEditor = ({
     }, []);
 
     React.useEffect(() => {
-        if (!!!devValue) {
-            const blocksFromHTML = convertFromHTML("");
+        const blocksFromHTML = convertFromHTML(devValue || "");
 
-            const states = ContentState.createFromBlockArray(
-                blocksFromHTML.contentBlocks,
-                blocksFromHTML.entityMap
-            );
+        const states = ContentState.createFromBlockArray(
+            blocksFromHTML.contentBlocks,
+            blocksFromHTML.entityMap
+        );
 
-            onChange(EditorState.createWithContent(states));
-        }
+        onChange(EditorState.createWithContent(states));
     }, [devValue]);
 
     React.useEffect(() => {

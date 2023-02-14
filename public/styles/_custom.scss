@@ -447,6 +447,23 @@ input.form-control {
 .wr-edit-text {
     .DraftEditor-root {
         min-height: 400px;
+        max-height: 400px;
+        overflow: auto;
+        scrollbar-color: #3679FD #EEF0F2;
+        scrollbar-width: 6px;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+            background-color: #EEF0F2;
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #3679FD;
+            border-radius: 4px;
+            width: 6px;
+        }
     }
 }
 
@@ -613,7 +630,7 @@ input[type="number"]:focus {
         li {
             margin-top: 10px;
             display: flex;
-            align-items: center;
+            // align-items: center;
             transition: 0.1s;
             padding: 3px 16px;
             cursor: pointer;
