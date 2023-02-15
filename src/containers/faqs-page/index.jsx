@@ -2,6 +2,8 @@ import Link from "next/link";
 import { AccordionComponent } from "../../components/accordion"
 import { InputPage } from "../../components/uis/input-page";
 
+import { routersPages } from "../../constants/next-routers"
+
 const arr = [
     {
         title: "Can I change my plan?",
@@ -54,7 +56,7 @@ export const FaqsPage = () => {
                         </div>
                         <div className="faq-page__bottom">
                             Didn't find what you're looking for?
-                            <Link href="#">You can always contact us.</Link>
+                            <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
                         </div>
                     </div>
                 </div>

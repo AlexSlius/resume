@@ -95,7 +95,7 @@
     margin-left: 8px;
     background: #FFAD61;
     border-radius: 6px;
-    padding: 6px;
+    padding: 6px 8px;
     color: #fff;
     font-size: 12px;
     background: #FFAD61;
@@ -191,10 +191,10 @@
 
     a {
         color: #1c63ef !important;
-        text-decoration: underline!important;
+        text-decoration: underline !important;
 
         &:hover {
-            text-decoration: none!important;
+            text-decoration: none !important;
         }
     }
 

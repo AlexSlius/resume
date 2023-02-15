@@ -1,10 +1,7 @@
 import {
    CSidebar,
-   CSidebarNav,
-   CNavItem,
 } from "@coreui/react"
 
-// import Link from "next/link"
 import Link from "next/link"
 import Icon from "../Icon"
 
@@ -12,6 +9,8 @@ import vars from "./varsStyle"
 import style from './SideBar.module.scss'
 
 import helpIcon from '/public/images/icons/chat.svg?sprite'
+
+import { routersPages } from "../../constants/next-routers"
 
 const SideBar = ({
    children
@@ -25,7 +24,7 @@ const SideBar = ({
          {children}
 
          <div className={`${style.nav_help}`}>
-            <Link href="/certificaties" className={`${style.nav_help_link}`}>
+            <Link href={`/${routersPages['contactUs']}`} className={`${style.nav_help_link}`}>
                <Icon svg={helpIcon} classNames={[style.nav_icon, 'nav-icon']} />
                Need help?
             </Link>

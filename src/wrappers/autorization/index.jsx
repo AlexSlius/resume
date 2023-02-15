@@ -6,6 +6,8 @@ import style from "./Autorization-wraper.module.scss"
 import { AutorizationHeader } from "../../components/autorizationHeader"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 
+import { routersPages } from "../../constants/next-routers";
+
 export const AutorizationWrapper = (props) => {
     return (
         <div className={`${style.main_wrapper_autorization}`}>
@@ -19,7 +21,7 @@ export const AutorizationWrapper = (props) => {
                         {props.children}
                     </div>
                     <div className={`${style.autoriaztion__right_bottom}`}>
-                        <Buttonhelp />
+                        <Buttonhelp href={`/${routersPages['contactUs']}`} />
                     </div>
                 </div>
             </div>

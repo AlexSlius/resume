@@ -406,7 +406,7 @@ export const HomePage = () => {
                             </p>
                             <div className="faq__left--bottom">
                                 Didn't find what you're looking for?
-                                <Link href="#">You can always contact us.</Link>
+                                <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
                             </div>
                         </div>
                         <div className="faq__right">

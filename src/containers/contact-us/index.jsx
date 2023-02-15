@@ -5,6 +5,8 @@ import { InputCheckboxPageBtn } from "../../components/uis/input-checkbox-page-b
 import { InputPage } from "../../components/uis/input-page";
 import { TextAreaPage } from "../../components/uis/textarea-page";
 
+import { routersPages } from "../../constants/next-routers"
+
 export const ContactUsPage = () => {
     const [stat, setStat] = React.useState(0);
 
@@ -50,7 +52,7 @@ export const ContactUsPage = () => {
                 </form>
                 <div className="contact-page__bottom">
                     Check out the answers to popular questions.
-                    <Link href="#">Go to the FAQ page.</Link>
+                    <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
                 </div>
             </div>
         </section>
