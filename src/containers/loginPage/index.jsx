@@ -24,7 +24,7 @@ import { isLoader } from "../../helpers/loadings"
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const { status } = useSelector(prev => prev.auth.login)
-    const [isSaveDataAuth, setIsSaveDataAuth] = React.useState(false);
+    const [isSaveDataAuth, setIsSaveDataAuth] = React.useState(true);
 
     const {
         register,
@@ -52,8 +52,8 @@ export const LoginPage = () => {
             let dataStorageAuth = localStorageGet('authData', true);
 
             if (dataStorageAuth) {
-                await setValue('email', dataStorageAuth.email);
-                await setValue('password', dataStorageAuth.password);
+                setValue('email', dataStorageAuth.email);
+                setValue('password', dataStorageAuth.password);
             }
         })();
     }, []);
@@ -108,8 +108,11 @@ export const LoginPage = () => {
                                 <div className="row-remove-aut">
                                     <div className="row-remove-aut__left">
                                         <Checked
+                                            id="flexCheckDefault"
                                             onChange={() => setIsSaveDataAuth(prev => !prev)}
                                             label="Remember me"
+                                            checkbox={isSaveDataAuth}
+                                            defaultChecked={true}
                                         />
                                     </div>
                                     <div className="row-remove-aut__link">
@@ -134,7 +137,7 @@ export const LoginPage = () => {
                             <CCol>
                                 <div className="auth-bot-text">
                                     Don’t have an account?{' '}
-                                    <Link href={routersPages['register']} className="link-form-auth">Request a free trial</Link>
+                                    <Link href={routersPages['register']} className="link-form-auth">Register</Link>
                                 </div>
                             </CCol>
                         </CRow>

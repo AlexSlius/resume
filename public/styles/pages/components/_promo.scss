@@ -74,12 +74,17 @@
 }
 
 .promo-img {
-    margin-right: -140px;
+    margin-right: -165px;
     position: absolute;
     right: 0;
     height: 100%;
     z-index: -1;
     object-fit: cover;
+    width: 851px;
+
+    img {
+        width: inherit;
+    }
 }
 
 .promo-num {

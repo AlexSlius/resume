@@ -88,7 +88,7 @@ export const HomePage = () => {
                             </div>
                         </div>
                         <div className="promo-img">
-                            <img src="/images/page/promo-img.png" alt="img" />
+                            <img src="/images/page/promo-img.svg" alt="img" />
                         </div>
                     </div>
                     <div className="promo-num">
@@ -137,7 +137,7 @@ export const HomePage = () => {
                             </Link>
                         </div>
                         <div className="ofer-sec__img">
-                            <img loading="lazy" src="images/page/section-img.png" alt="img" />
+                            <img loading="lazy" src="images/page/section-img1.png" alt="img" />
                         </div>
                     </div>
                 </div>

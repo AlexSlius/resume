@@ -17,7 +17,7 @@ export const ErrorPage = () => {
                     its name changed or is temporarily unavailable
                 </p>
                 <div className="error-page-404">
-                    <img src="/images/page/img-404.png" alt="img 404" />
+                    <img src="/images/page/img-404.svg" alt="img 404" />
                 </div>
                 <div className="btn-centers-w mtw-2">
                     <ButtonIcon icon={iconArrHome} href="/" label="Go Home" className="btn--blue" />

@@ -1,7 +1,9 @@
 import Image from 'next/image'
 
 import { ButtonBack } from "../uis/buttonBack"
+
 import style from "./Style.module.scss"
+import Link from 'next/link';
 
 export const AutorizationHeader = ({ isHidenBtnBack = false }) => {
     return (
@@ -15,12 +17,14 @@ export const AutorizationHeader = ({ isHidenBtnBack = false }) => {
                     )
                 }
                 <div className={`${style.head__logo}`}>
-                    <Image
-                        src={'/images/other/logo_site.svg'}
-                        width={140}
-                        height={30}
-                        alt=""
-                    />
+                    <Link href="/">
+                        <Image
+                            src={'/images/other/logo_site.svg'}
+                            width={140}
+                            height={30}
+                            alt=""
+                        />
+                    </Link>
                 </div>
             </div>
         </div>
