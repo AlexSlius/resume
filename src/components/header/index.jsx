@@ -28,7 +28,8 @@ export const Header = () => {
                 <nav className="nav">
                     <ul>
                         <li className="submenu-item">
-                            <Link href={routersPages['jobWinningResumeTemplates']}>Resume</Link>
+                            {/* href={routersPages['jobWinningResumeTemplates']} */}
+                            <Link href="#" onClick={(e) => e.preventDefault()}>Resume</Link>
                             <div className="submenu">
                                 <div className="submenu__top">
                                     <div className="submenu__title">Resume Templates</div>

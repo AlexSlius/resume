@@ -33,6 +33,7 @@ const TextEditor = ({
     isAddModal = false,
     keys = "name"
 }) => {
+    const refStart = React.useRef(false);
     const refMod = React.useRef(undefined);
     const editorRef = React.useRef(null);
     const reBtn = React.useRef(undefined);
@@ -66,7 +67,7 @@ const TextEditor = ({
     }
 
     React.useEffect(() => {
-        const blocksFromHTML = convertFromHTML(devValue);
+        const blocksFromHTML = convertFromHTML(devValue || "");
 
         const states = ContentState.createFromBlockArray(
             blocksFromHTML.contentBlocks,
@@ -151,7 +152,7 @@ const TextEditor = ({
                 }
 
                 refIdTimeout.current = setTimeout(async () => {
-                    await handleServerRequest(textSearch);
+                    handleServerRequest(textSearch);
                     clearTimeout(refIdTimeout.current);
                 }, nTimeMs);
             }
@@ -169,16 +170,20 @@ const TextEditor = ({
             refIdDispatchTimeout.current = setTimeout(async () => {
                 let contentHtml = convertToHTML(state.getCurrentContent());
 
-                if (contentHtml.length > 7) {
-                    await handleServeDispatchContent(contentHtml);
+                if (refStart.current) {
+                    if (contentHtml.length > 7) {
+                        handleServeDispatchContent(contentHtml);
+                    } else {
+                        handleServeDispatchContent("");
+                    }
                 } else {
-                    await handleServeDispatchContent("");
+                    refStart.current = true;
                 }
 
                 clearTimeout(refIdDispatchTimeout.current);
             }, nTimeMs);
         }
-    }, [state]);
+    }, [state.getCurrentContent()]);
 
     return (
         <div className='wr-text-edit'>

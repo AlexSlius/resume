@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 14px 6px 12px 6px;
+    padding: 10px 6px 10px 6px;
 }
 
 .submenu__item-icon {
@@ -124,7 +124,7 @@
     margin-bottom: 0;
     padding: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 9px;
     color: #838799;
 }
 
@@ -144,14 +144,14 @@
 
 .submenu__item-bot_t {
     color: #01153A;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
 }
 
 .submenu__item-bot_text {
     margin-top: 5px;
     color: #838799;
-    font-size: 12px;
+    font-size: 9px;
 }
 
 .submenu__item-bot_link {
@@ -232,5 +232,15 @@
 
     &__auth {
         margin-left: 45px;
+    }
+}
+
+.submenu__item-bot_link {
+    font-size: 12px;
+}
+
+.submenu__r {
+    a {
+        font-size: 12px!important;
     }
 }

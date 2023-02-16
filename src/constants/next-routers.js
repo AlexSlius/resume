@@ -66,4 +66,5 @@ export const routersPages = {
     'jobWinningResumeTemplates': 'job-winning-resume-templates',
     'termsOfUse': 'terms-of-use',
     'privacyPolicy': 'privacy-policy',
+    'templates': 'templates',
 }

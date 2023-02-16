@@ -9,6 +9,7 @@ const Textarea = ({
    return (
       <div className={`textarea__item`}>
          <CFormTextarea
+            autocomplete="off"
             placeholder={placeholder}
             value={value}
             onChange={onChange}

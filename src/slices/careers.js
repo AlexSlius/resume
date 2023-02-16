@@ -6,11 +6,12 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
     fetchGetCvCarreers,
-    fetchDeleteAll
+    fetchDeleteAll,
 } from "../controllers/careers";
 
 const initialState = {
     data: "",
+    isData: false,
     status: statusLoaded,
 };
 
@@ -50,6 +51,11 @@ export const slice = createSlice({
         },
         [fetchGetCvCarreers.fulfilled]: (state, action) => {
             state.status = statusLoaded;
+
+            if (isString(action.payload) && action.payload.length > 0) {
+                state.isData = true;
+            }
+
             state.data = action.payload;
         },
     }

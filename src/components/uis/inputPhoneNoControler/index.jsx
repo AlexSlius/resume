@@ -32,6 +32,7 @@ export const InputPhoneNoControler = ({
                 placeholder={placeholder}
                 name={name}
                 onBlur={handleOnBlur}
+                autocomplete="off"
             />
             <label className="form-label">{label}</label>
         </div>

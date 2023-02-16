@@ -668,6 +668,13 @@ input[type="number"]:focus {
     .text-div-in {
         width: calc(100% - 36px);
         padding-left: 16px;
+
+        b,
+        i {
+            color: #3679FD;
+            font-style: normal;
+            font-weight: 400;
+        }
     }
 }
 

@@ -234,6 +234,7 @@ export const InputSelect = ({
                     name={name}
                     value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
                     type="text"
+                    autocomplete="off"
                     {...obj}
                 />
             </div>

@@ -7,7 +7,10 @@ export default class ClientsAPI extends Base {
     getCvCarreers(idCv) {
         return this.apiClient.get(`cv/${idCv}/career_objective/get`);
     }
+    create(idCv, data, type = "formData") {
+        return this.apiClient.post(`cv/${idCv}/career_objective/add`, data, type);
+    }
     update(idCv, data, type = "formData") {
-        return this.apiClient.patch(`cv/${idCv}/career_objective/add`, data, type);
+        return this.apiClient.post(`cv/${idCv}/career_objective/update`, data, type);
     }
 }

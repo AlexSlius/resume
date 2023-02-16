@@ -128,7 +128,7 @@ const FormReference = ({
 
    useEffect(() => {
       // fetchGetCvReferences({ idCv });
-      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'references' }));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
    }, []);
 
    return (

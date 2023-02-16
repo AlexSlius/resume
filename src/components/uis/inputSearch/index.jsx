@@ -41,6 +41,7 @@ const InputSearch = ({
             floatingLabel={label}
             placeholder={placeholder}
             name={name}
+            autocomplete="off"
          />
          <Icon svg={iconSearch} />
       </div>

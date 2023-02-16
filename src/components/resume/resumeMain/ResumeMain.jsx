@@ -519,4 +519,5 @@ const ResumeMain = ({
       </div>
    )
 }
+
 export default ResumeMain;

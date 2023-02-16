@@ -11,7 +11,8 @@ import { fetchGetListObjective } from "../../../controllers/dependencies";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import {
     fetchUpdateServer,
-    fetchDeleteAll
+    fetchDeleteAll,
+    fetchAddServer
 } from "../../../controllers/careers";
 import {
     updateCareer,
@@ -39,7 +40,8 @@ const FormSocials = ({
             }
         },
         careers: {
-            data
+            data,
+            isData
         }
     } = states;
 
@@ -55,7 +57,6 @@ const FormSocials = ({
 
     const handleUpdateText = (text) => {
         dispatch(updateCareer(text));
-
         handleUpdateServer();
     }
 
@@ -69,7 +70,11 @@ const FormSocials = ({
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            await dispatch((fetchUpdateServer({ idCv })));
+            if (isData) {
+                await dispatch((fetchUpdateServer({ idCv })));
+            } else {
+                await dispatch((fetchAddServer({ idCv })));
+            }
             clearTimeout(refIdTimeout.current);
         }, 1000);
     }

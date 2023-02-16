@@ -32,6 +32,13 @@ let startDates = [
         keyIcon: [keysIcons["iconSkills"]],
     },
     {
+        key: 'languages',
+        name: 'Languages',
+        status: true,
+        link: '/languages',
+        keyIcon: [keysIcons["iconLanguages"]],
+    },
+    {
         key: 'careerObjective',
         name: 'Career Objective',
         status: true,

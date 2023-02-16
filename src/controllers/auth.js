@@ -13,8 +13,8 @@ import {
 } from '../helpers/localStorage';
 
 export const logout = async (dispatch) => {
-    await cookieDestroy({ key: 'token' });
-    await localStorageRemove('session_id');
+    cookieDestroy({ key: 'token' });
+    localStorageRemove('session_id');
     await dispatch(setLogout());
     await Router.push('/');
 }

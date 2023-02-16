@@ -11,6 +11,7 @@ import { routersPages } from "../../constants/next-routers";
 import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
+import CustomizedSlider from '../../components/uis/range';
 
 const Templates = () => {
     return (
@@ -107,6 +108,24 @@ const Templates = () => {
                             <div className="color-it" style={{ background: "#FE8484" }}></div>
                             <div className="color-it color-select">
                                 <Icon svg={iconPlusColor} />
+                            </div>
+                        </div>
+                        <div className="ranges-row">
+                            <div className='item-range'>
+                                <CustomizedSlider
+                                    defaultValue={50}
+                                    label="Line Spacing"
+                                    textLeft="50%"
+                                    textRight="150%"
+                                />
+                            </div>
+                            <div className='item-range'>
+                                <CustomizedSlider
+                                    defaultValue={50}
+                                    label="Text size"
+                                    textLeft="12 pt"
+                                    textRight="48 pt"
+                                />
                             </div>
                         </div>
                         <div className="btns-tem">

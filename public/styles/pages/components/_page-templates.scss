@@ -156,9 +156,74 @@
 
 .btns-tem {
     display: flex;
+
     button {
         &:not(:last-child) {
             margin-right: 16px;
         }
+    }
+}
+
+.ranges-row {
+    display: flex;
+    align-items: center;
+}
+
+.item-range {
+    padding-top: 5px;
+    &:not(:last-child) {
+        margin-right: 50px;
+    }
+}
+
+.css-d3wcwz-MuiTypography-root {
+    color: #838799;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0;
+    font-family: "GTEestiProDisplay", sans-serif;
+}
+
+.css-eg0mwd-MuiSlider-thumb::after {
+    width: 20px;
+    height: 20px;
+}
+
+.wrapper-ranges {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #546C97;
+
+    .ite-t-r {
+        padding: 0 7px;
+    }
+}
+
+.css-173nvfb-MuiSlider-root {
+    width: 180px!important;
+}
+
+.css-eg0mwd-MuiSlider-thumb:hover, .css-eg0mwd-MuiSlider-thumb.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 3px rgb(25 118 210 / 16%)!important;
+}
+
+
+
+@media(max-width: 1700px) {
+    .css-173nvfb-MuiSlider-root {
+        width: 150px!important;
+    }
+    .item-range {
+        &:not(:last-child) {
+            margin-right: 30px;
+        }
+    }
+    .color-it {
+        width: 30px;
+        height: 30px;
     }
 }

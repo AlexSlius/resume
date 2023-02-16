@@ -1,7 +1,10 @@
 import { CButton } from '@coreui/react'
 import { useSelector } from 'react-redux'
+import Router from 'next/router';
 
 import Icon from "../../../components/Icon"
+
+import { routersPages } from "../../../constants/next-routers";
 
 import templateIcon from '/public/images/icons/select.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
@@ -19,7 +22,12 @@ const ResumeFooter = () => {
    return (
       <div className="resume-footer d-flex gap-3 justify-content-between py-3">
          <div className="resume-footer__left">
-            <CButton className='resume-footer__button' color="secondary" variant="outline">
+            <CButton
+               className='resume-footer__button'
+               color="secondary"
+               variant="outline"
+               onClick={() => Router.push(`/${routersPages['templates']}`)}
+            >
                <Icon svg={templateIcon} classNames={['icon-20']} />
                Select template
             </CButton>

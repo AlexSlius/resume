@@ -74,6 +74,7 @@ const InputCode = ({
         <div className={`${style.rows}`}>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldFirst}
                     name="first"
                     namenext="Two"
@@ -86,6 +87,7 @@ const InputCode = ({
             </div>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldTwo}
                     name="two"
                     namenext="Three"
@@ -98,6 +100,7 @@ const InputCode = ({
             </div>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldThree}
                     name="three"
                     namenext="Four"
@@ -110,6 +113,7 @@ const InputCode = ({
             </div>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldFour}
                     name="four"
                     namenext="Five"
@@ -122,6 +126,7 @@ const InputCode = ({
             </div>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldFive}
                     name="five"
                     namenext="Six"
@@ -134,6 +139,7 @@ const InputCode = ({
             </div>
             <div className={`${style.item_filed}`}>
                 <CFormInput
+                    autocomplete="off"
                     ref={refFieldSix}
                     name="six"
                     value={stateNumber['six']}

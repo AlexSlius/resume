@@ -11,6 +11,7 @@ export const InputPage = ({
                 type={type}
                 value={value}
                 onChange={onChange}
+                autocomplete="off"
             />
         </div>
     )

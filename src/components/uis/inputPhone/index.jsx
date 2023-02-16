@@ -34,6 +34,7 @@ export const InputPhone = ({
                 placeholder={placeholder}
                 name={name}
                 onBlur={handleOnBlur}
+                autocomplete="off"
                 rules={{
                     required: required,
                 }}

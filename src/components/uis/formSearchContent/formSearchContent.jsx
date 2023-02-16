@@ -66,7 +66,7 @@ export const FormSearchContent = ({
                                                 <span className='text-icon-in'>
                                                     <Icon svg={iconLeftText} />
                                                 </span>
-                                                <div className='text-div-in'>{item?.[keys] || ""}</div>
+                                                <div className='text-div-in' dangerouslySetInnerHTML={{ __html: item?.[keys] || "" }}></div>
                                             </li>
                                         ))
                                     ) : (

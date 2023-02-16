@@ -72,7 +72,7 @@ const FormCertificaties = ({
 
    React.useEffect(() => {
       // dispatch(fetchGetCvCertificates({ idCv }));
-      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certifications' }));
+      dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certificates' }));
    }, [])
 
    return (
