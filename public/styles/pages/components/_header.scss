@@ -244,3 +244,17 @@
         font-size: 12px!important;
     }
 }
+
+@media (max-width: 992px) {
+    .nav ul {
+        grid-gap: 26px;
+    }
+    .right-info  {
+        .get-startend {
+            margin-left: 25px;
+        }
+        .logins {
+            margin-left: 0;
+        }
+    }
+}

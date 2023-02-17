@@ -1,5 +1,3 @@
-
-import { formatDate } from "../../../utils";
 import {
    CCol,
    CRow,
@@ -19,6 +17,7 @@ import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isObjDatas } from '../../../helpers/datasPage';
+import { cardData } from "../../../utils";
 
 import {
    updateItemFieldActivity,
@@ -116,8 +115,28 @@ const FormActivity = ({
       setSelected(re?.payload?.id);
    }
 
+   const automateNew = async (index) => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         handleAddOne();
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
+   }
+
    const handleSaveSelectNew = async ({ name, value }) => {
       await dispatch(updateItemFieldActivityNew({ name, value }));
+      automateNew();
+   }
+
+   const handleSaveSelectNewCity = ({ name, value }, data) => {
+      dispatch(updateItemFieldActivityNew({ name, value }));
+
+      if (!!data) {
+         automateNew();
+      }
    }
 
    const handleServerRequestCity = async (value, nameCountry) => {
@@ -170,9 +189,7 @@ const FormActivity = ({
                                                          setSelected={setSelected}
                                                          selected={selected}
                                                          skillsList={[
-                                                            `${formatDate(item?.dateFrom?.date)} - ${formatDate(
-                                                               item?.dateTo?.date
-                                                            )}`,
+                                                            cardData(item?.dateFrom?.date, item?.dateTo?.date),
                                                             item.employer
                                                          ]}
                                                       >
@@ -245,6 +262,7 @@ const FormActivity = ({
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                   handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                                                   isOutDataObj={false}
+                                                                  isRequire={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={12}>
@@ -343,9 +361,10 @@ const FormActivity = ({
                         name="city"
                         data={cities.list}
                         isLoad={isLoader(cities?.status)}
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={handleSaveSelectNewCity}
                         handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
                         isOutDataObj={false}
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol xs={12}>

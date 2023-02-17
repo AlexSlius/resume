@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useSelector } from 'react-redux'
+
 import { AccordionComponent } from "../../components/accordion"
 import { InputPage } from "../../components/uis/input-page";
 
@@ -32,6 +34,12 @@ const arr = [
 ];
 
 export const FaqsPage = () => {
+    const {
+        theme: {
+            currentResolution
+        }
+    } = useSelector((state) => state);
+
     return (
         <section className="faq-page">
             <div className="containers">
@@ -46,9 +54,13 @@ export const FaqsPage = () => {
                         </p>
                         <form action="page" className="form">
                             <InputPage placeholder="Search by keyword..." />
-                            <button className="form-btn btns btn--blue btn--search" type="button">
+                            <button className="form-btn btns btn--blue btn--search btn-search-fag" type="button">
                                 <img loading="lazy" src="/images/page/search-icon.svg" alt="img" />
-                                Find a question
+                                {
+                                    currentResolution !== "xs" && (
+                                        "Find a question"
+                                    )
+                                }
                             </button>
                         </form>
                         <div className="faq-page__wrapper">

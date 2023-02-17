@@ -1,6 +1,6 @@
 import ContainerPageTemplates from "../../src/containers/templates"
 import TemplatesWrapper from "../../src/wrappers/templates"
-import { withPrivateRoute } from "../../src/middleware/privateRouter"
+import { withPublickRoute } from "../../src/middleware/publickRouter"
 
 const TemplatesPage = () => {
     return (
@@ -10,6 +10,6 @@ const TemplatesPage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute({});
+export const getServerSideProps = withPublickRoute();
 
 export default TemplatesPage;

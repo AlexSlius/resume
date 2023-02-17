@@ -7,7 +7,7 @@ export const InputCheckboxPageBtn = ({
 }) => {
     return (
         <label className="form-checkbox">
-            <input type={type} checked={checked} name={name} onChange={onChange} autocomplete="off" />
+            <input type={type} checked={checked} name={name} onChange={onChange} autoComplete="off" />
             <span>{label}</span>
         </label>
     )

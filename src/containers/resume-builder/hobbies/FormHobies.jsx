@@ -140,6 +140,7 @@ const FormHobies = ({
                                  handleSaveSelect={updateitemFiledNew}
                                  handleServerRequest={handleGetHobiesList}
                                  isOutDataObj={false}
+                                 isRequire={true}
                               />
                            </CCol>
                         </CRow>

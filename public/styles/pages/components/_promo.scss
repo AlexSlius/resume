@@ -209,3 +209,20 @@
         left: -57px;
     }
 }
+
+
+@media (max-width: 1399px) {
+    .icon-right-top::before {
+        width: 43px;
+        height: 40px;
+        right: -23px;
+        top: -3px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .icon-right-top::before {
+        right: -25px;
+        top: -6px;
+    }
+}

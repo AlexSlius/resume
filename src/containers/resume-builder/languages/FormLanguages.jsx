@@ -8,20 +8,23 @@ import { useRef, useEffect } from 'react';
 import uuid from "react-uuid";
 import { isArray } from "lodash";
 
-import AddButton from "../../../components/uis/addButton/AddButton"
+// import AddButton from "../../../components/uis/addButton/AddButton"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { isLoader } from "../../../helpers/loadings"
 import { LoadWr } from "../../../components/loadWr"
 
 import {
-   fetchGetCvLanguages,
+   // fetchGetCvLanguages,
    fetchPostAddCvOneLanguages,
    fetchDeleteLanguages,
    fetchUpdateLanguages
 } from "../../../controllers/languages";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
-import { updateItemLanguageFiled } from "../../../slices/languages";
+import {
+   updateItemLanguageFiled,
+   updateItemLanguageFiledNew
+} from "../../../slices/languages";
 import { ButtonDeleteItem } from "../../../components/uis/buttonDelete";
 
 const FormLanguages = ({
@@ -35,7 +38,8 @@ const FormLanguages = ({
       },
       languages: {
          languageObj,
-         status
+         status,
+         objNew
       },
       auth: {
          autorizate: {
@@ -71,10 +75,20 @@ const FormLanguages = ({
       dispatch(fetchDeleteLanguages({ idCv, id }))
    }
 
+   const handleSaveSelectNew = ({ name, value }) => {
+      dispatch(updateItemLanguageFiledNew({ name, value }));
+   }
+
    useEffect(() => {
       // fetchGetCvLanguages({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
    }, []);
+
+   useEffect(() => {
+      if (!!objNew.language.length && objNew.level > 0) {
+         handleAddOne();
+      }
+   }, [objNew]);
 
    return (
       <>
@@ -115,15 +129,42 @@ const FormLanguages = ({
                   </div>
                ))
             }
+
+            <div className="rows-lan mt-4">
+               <CRow className="g-30 r-gap-30 flex-auto">
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Language"
+                        placeholder="Language"
+                        valueState={objNew.language || ""}
+                        name="language"
+                        handleSaveSelect={handleSaveSelectNew}
+                        isOutDataObj={false}
+                        isFirstList={false}
+                        isModal={false}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <div className="items-level">
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 1 })} checked={!!(objNew.level == 1)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=1`} autoComplete="off" label="A1" />
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 2 })} checked={!!(objNew.level == 2)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=2`} autoComplete="off" label="A2" />
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 3 })} checked={!!(objNew.level == 3)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=3`} autoComplete="off" label="B2" />
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 4 })} checked={!!(objNew.level == 4)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=4`} autoComplete="off" label="B3" />
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 5 })} checked={!!(objNew.level == 5)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=5`} autoComplete="off" label="B4" />
+                        <CFormCheck disabled={objNew.language.length == 0} onChange={() => handleSaveSelectNew({ name: 'level', value: 6 })} checked={!!(objNew.level == 6)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`levelNew=6`} autoComplete="off" label="B5" />
+                     </div>
+                  </CCol>
+               </CRow>
+            </div>
          </LoadWr>
          <CRow className="mt-4">
-            <CCol xs={12}>
+            {/* <CCol xs={12}>
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more language'}
                />
-            </CCol>
-            <CCol className="mt-4">
+            </CCol> */}
+            <CCol>
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}

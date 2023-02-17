@@ -1,4 +1,4 @@
-import { formatDate } from "../../../utils";
+
 import {
    CCol,
    CRow
@@ -18,6 +18,7 @@ import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isObjDatas } from '../../../helpers/datasPage';
+import { cardData } from "../../../utils";
 
 import {
    updateItemFieldIntership,
@@ -38,6 +39,8 @@ import {
 import {
    fetchGetCities,
    fetchGetCountrys,
+   getJopsTitle,
+   addJopsTitle
 } from '../../../controllers/dependencies';
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
@@ -53,6 +56,7 @@ const FormInterShip = ({
       dependencies: {
          coutrys,
          cities,
+         jopsTitle,
       },
       interships: {
          interhipObj,
@@ -105,6 +109,15 @@ const FormInterShip = ({
 
    const handleSaveSelectNew = async ({ name, value }) => {
       await dispatch(updateItemFieldIntershipNew({ name, value }));
+
+      automateNew();
+   }
+
+   const handleSaveSelectNewSelect = async ({ name, value }, data) => {
+      await dispatch(updateItemFieldIntershipNew({ name, value }));
+
+      if (!!data)
+         automateNew();
    }
 
    const handleSetDateStateData = async (index, name, date) => {
@@ -121,13 +134,38 @@ const FormInterShip = ({
       setSelected(re?.payload?.id);
    }
 
-   const handleServerRequestCity = async (value, nameCountry) => {
+   const handleServerRequest = async (value, nameCountry) => {
       let idCountru = getIdOfNameCountrys({ objArr: coutrys.list, nameCountry });
       await dispatch(fetchGetCities({ id: idCountru, params: value }));
    }
 
+   const automateNew = () => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         handleAddOne();
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
+   }
+
    const handleClean = () => {
       dispatch(fetchDeleteAll({ idCv }));
+   }
+
+   const handleServerRequestGetJopsTitle = async (text) => {
+      await dispatch(getJopsTitle(text)); // get all jops title
+   }
+
+   const handleAddNewJobTitle = async (text, isNewForm = false) => {
+      let re = await dispatch(addJopsTitle(text));
+
+      if (isNewForm) {
+         automateNew();
+      }
+
+      return re?.payload?.id;
    }
 
    React.useEffect(() => {
@@ -171,22 +209,25 @@ const FormInterShip = ({
                                                          selected={selected}
                                                          onDelete={() => handleDeleteOne(item.id)}
                                                          skillsList={[
-                                                            `${formatDate(item?.dateFrom?.date)} - ${formatDate(
-                                                               item?.dateTo?.date
-                                                            )}`,
+                                                            cardData(item?.dateFrom?.date, item?.dateTo?.date),
                                                             item?.employer
                                                          ]}
                                                       >
                                                          <CRow className="row g-30 r-gap-30 mt-4">
                                                             <CCol xs={6}>
                                                                <InputSelect
-                                                                  label="Job title"
-                                                                  placeholder="Job title"
+                                                                  label="Job Title"
+                                                                  placeholder="Job Title"
                                                                   valueState={item?.jobTitle || ""}
+                                                                  data={jopsTitle?.list || []}
+                                                                  isAddDiv={true}
                                                                   name="jobTitle"
+                                                                  isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                  handleServerRequest={handleServerRequestGetJopsTitle}
+                                                                  handleAddNew={handleAddNewJobTitle}
                                                                   isOutDataObj={false}
-                                                                  isModal={false}
+                                                                  isRequire={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -244,7 +285,7 @@ const FormInterShip = ({
                                                                   data={cities.list}
                                                                   isLoad={isLoader(cities?.status)}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                                  handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
+                                                                  handleServerRequest={(value) => handleServerRequest(value, item.country)}
                                                                   isOutDataObj={false}
                                                                />
                                                             </CCol>
@@ -281,13 +322,18 @@ const FormInterShip = ({
                <CRow className="row g-30 r-gap-30 mb-4">
                   <CCol xs={6}>
                      <InputSelect
-                        label="Job title"
-                        placeholder="Job title"
+                        label="Job Title"
+                        placeholder="Job Title"
                         valueState={objNew.job_title || ""}
+                        data={jopsTitle?.list || []}
+                        isAddDiv={true}
                         name="job_title"
-                        handleSaveSelect={handleSaveSelectNew}
+                        isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj }, data)}
+                        handleServerRequest={handleServerRequestGetJopsTitle}
+                        handleAddNew={(value) => handleAddNewJobTitle(value, true)}
                         isOutDataObj={false}
-                        isModal={false}
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -325,12 +371,12 @@ const FormInterShip = ({
                   </CCol>
                   <CCol xs={3}>
                      <InputSelect
-                        placeholder="Country"
+                        placeholder="Country" updateResolution
                         valueState={objNew.country || ""}
                         data={coutrys.list}
                         name="country"
                         isLoad={isLoader(coutrys.status)}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj }, data)}
                         isOutDataObj={false}
                         isIconArrow={true}
                         isFlag={true}
@@ -344,9 +390,10 @@ const FormInterShip = ({
                         name="city"
                         data={cities.list}
                         isLoad={isLoader(cities?.status)}
-                        handleSaveSelect={handleSaveSelectNew}
-                        handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
+                        handleSaveSelect={handleSaveSelectNewSelect}
+                        handleServerRequest={(value) => handleServerRequest(value, objNew.country)}
                         isOutDataObj={false}
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol xs={12}>

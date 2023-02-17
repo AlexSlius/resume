@@ -31,6 +31,8 @@ const FormCertificaties = ({
    storeDate,
    idCv
 }) => {
+   const refIdTimeout = React.useRef(undefined);
+
    const {
       certificaties: {
          ObjNew,
@@ -59,11 +61,23 @@ const FormCertificaties = ({
 
    const updateitemFiledNew = async ({ name, value }) => {
       await dispatch(updateItemCertificatieFiledNew({ name, value }));
+
+      automateNew();
    }
 
    const addNewOne = async () => {
       await dispatch(fetchPostAddCvOneCertificates({ idCv }));
-      await updateitemFiledNew({ name: "name", value: '' });
+   }
+
+   const automateNew = async (index) => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         addNewOne();
+         clearTimeout(refIdTimeout.current);
+      }, 500);
    }
 
    const handleClean = () => {
@@ -104,7 +118,7 @@ const FormCertificaties = ({
                      placeholder={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
                      value={ObjNew.name}
                      name="name"
-                     onBlur={addNewOne}
+                     // onBlur={addNewOne}
                      onChange={(e) => updateitemFiledNew({ name: e.target.name, value: e.target.value })}
                   />
                </CCol>

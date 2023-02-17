@@ -15,14 +15,28 @@
         font-weight: 400;
         font-size: 18px;
         color: #01153A;
+        text-align: left;
     }
 
     &_text {
         color: #838799;
         line-height: 1.4;
+        text-align: left;
 
         p {
             margin-bottom: 0;
+        }
+    }
+}
+
+@media(max-width: 576px) {
+    .accordeon {
+        &_title {
+            font-size: 16px;
+        }
+
+        &_text {
+            font-size: 14px;
         }
     }
 }

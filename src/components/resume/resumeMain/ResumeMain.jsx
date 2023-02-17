@@ -136,7 +136,7 @@ const ResumeMain = ({
                                           {el?.facility}
                                        </div>
                                        <div className="resume-main__head-text">
-                                          {el?.study} {(el?.dateFrom || el?.dateFrom) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
+                                          {el?.study} {(el?.dateFrom || el?.dateFrom) && `(${formatDate(el?.dateFrom?.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">
@@ -282,7 +282,7 @@ const ResumeMain = ({
                                           {el?.title}
                                        </div>
                                        <div className="resume-main__head-text">
-                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
+                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom?.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">
@@ -329,7 +329,7 @@ const ResumeMain = ({
                                        </div>
                                        <div className="resume-main__head-text">
                                           {
-                                             el?.institution} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`
+                                             el?.institution} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom?.date)} - ${formatDate(el?.dateTo?.date)})`
                                           }
                                        </div>
                                     </div>
@@ -372,7 +372,7 @@ const ResumeMain = ({
                                           {el?.jobTitle}
                                        </div>
                                        <div className="text-blk">
-                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom.date)} - ${formatDate(el?.dateTo?.date)})`}
+                                          {el?.employer} {(el?.dateFrom || el?.dateTo) && `(${formatDate(el?.dateFrom?.date)} - ${formatDate(el?.dateTo?.date)})`}
                                        </div>
                                     </div>
                                     <div className="resume-main__bottom">

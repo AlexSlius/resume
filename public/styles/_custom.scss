@@ -574,10 +574,10 @@ input[type="number"]:focus {
 .modal-text {
     position: absolute;
     left: calc(100% + 6px);
-    top: 80%;
+    top: 0;
     z-index: 20;
     opacity: 0;
-    visibility: 0;
+    visibility: hidden;
 
     .modal-text__head {
         position: relative;
@@ -608,12 +608,12 @@ input[type="number"]:focus {
     &.open {
         top: 0;
         opacity: 1;
-        visibility: 1;
+        visibility: visible;
     }
 
     &.pos_bot {
         top: auto;
-        bottom: 80%;
+        bottom: 0;
 
         &.open {
             bottom: 0;
@@ -960,6 +960,9 @@ button {
     background: transparent;
     transition: 0.4s;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     svg {
         width: inherit;
@@ -968,6 +971,12 @@ button {
     }
 
     &:hover {
+        background: #3679FD;
+    }
+}
+
+.itm-s:hover {
+    .btn-pl {
         background: #3679FD;
     }
 }
@@ -1088,7 +1097,7 @@ button {
     left: 0;
     width: 100%;
     opacity: 1;
-    visibility: 1;
+    visibility: visible;
 
     .modal-text__main {
         width: 100%;

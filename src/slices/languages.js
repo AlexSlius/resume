@@ -13,7 +13,7 @@ const initialState = {
   languageObj: [],
   objNew: {
     language: "",
-    level: "0",
+    level: 0,
   },
   status: statusLoaded,
   statusList: statusLoaded
@@ -30,6 +30,10 @@ export const slice = createSlice({
     cleanSlise(state, action) {
       state.languageObj = initialState.languageObj;
     },
+    updateItemLanguageFiledNew(state, action) {
+      let { name, value } = action.payload;
+      state.objNew[name] = value;
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -45,11 +49,12 @@ export const slice = createSlice({
     [fetchDeleteLanguages.fulfilled]: (state, action) => {
       state.status = statusLoaded;
     },
-    // app
+    // add
     [fetchPostAddCvOneLanguages.pending]: (state) => {
       state.status = statusLoader;
     },
     [fetchPostAddCvOneLanguages.fulfilled]: (state, action) => {
+      state.objNew = initialState.objNew;
       state.status = statusLoaded;
     },
     // get
@@ -64,8 +69,9 @@ export const slice = createSlice({
 });
 
 export const {
-   updateItemLanguageFiled,
-   cleanSlise,
- } = slice.actions;
+  updateItemLanguageFiled,
+  cleanSlise,
+  updateItemLanguageFiledNew,
+} = slice.actions;
 
 export const { reducer } = slice;

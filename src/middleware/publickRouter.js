@@ -14,7 +14,7 @@ export const withPublickRoute = (isGetAllBuilder) => {
             if (!!cookis?.token) {
                 api.apiClient.setToken(cookis.token);
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
-                await store.dispatch(setIsAuth(isExist(serverRespons)));
+                store.dispatch(setIsAuth(isExist(serverRespons)));
             }
 
             if (!!isGetAllBuilder)

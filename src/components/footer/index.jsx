@@ -8,8 +8,11 @@ export const Footer = () => {
         auth: {
             autorizate: {
                 isAthorized,
-            }
+            },
         },
+        theme: {
+            currentResolution
+        }
     } = useSelector((state) => state);
 
     return (
@@ -48,24 +51,28 @@ export const Footer = () => {
                             <li><Link href={`${routersPages['faqs']}`}>FAQ</Link></li>
                         </ul>
                     </nav>
-                    <div className="right-info">
-                        {/* <Link href="#" className="lang">English</Link> */}
-                        {
-                            !isAthorized && (
+                    {/* <Link href="#" className="lang">English</Link> */}
+                    {
+                        !isAthorized && (
+                            <div className="right-info">
                                 <>
-                                    <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                    {
+                                        currentResolution !== "xs" && (
+                                            <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                        )
+                                    }
                                     <Link href={`${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                         <img src="/images/page/get-start.svg" alt="img" />
                                         Get started
                                     </Link>
                                 </>
-                            )
-                        }
-                    </div>
+                            </div>
+                        )
+                    }
                 </div>
                 <div className="footer-r-bottom">
-                    <p>Copyright © 2022</p>
-                    <p>Adress: 32 Merrion Street Upper, Dublin 2, D02 KW80, Ireland</p>
+                    <p className="footer-r-bottom__copy">Copyright © 2022</p>
+                    <p className="footer-r-bottom__addres">Adress: 32 Merrion Street Upper, Dublin 2, D02 KW80, Ireland</p>
                 </div>
             </div>
         </footer>

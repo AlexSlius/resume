@@ -31,7 +31,8 @@ const TextEditor = ({
     labelEmpty = "empty list",
     isLoad = false,
     isAddModal = false,
-    keys = "name"
+    keys = "name",
+    defParams = "",
 }) => {
     const refStart = React.useRef(false);
     const refMod = React.useRef(undefined);
@@ -78,29 +79,20 @@ const TextEditor = ({
 
         if (isAddModal) {
             const handleClick = (e) => {
-                let promis = new Promise(async (resolve, reject) => {
-                    await resolve(true);
-                });
+                const cordinate = e.target.getBoundingClientRect();
+                const windowInnerHeight = window.innerHeight;
 
-                promis.then(
-                    function (result) {
-                        const cordinate = e.target.getBoundingClientRect();
-                        const windowInnerHeight = window.innerHeight;
-
-                        if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
-                            setmodalClass(prev => {
-                                refCurentClass.current = `${prev} open`;
-                                return `${prev} open`;
-                            });
-                        } else {
-                            setmodalClass(prev => {
-                                refCurentClass.current = `${prev} pos_bot open`;
-                                return `${prev} pos_bot open`;
-                            });
-                        }
-                    },
-                    function (error) { /* обработает ошибку */ }
-                )
+                if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
+                    setmodalClass(prev => {
+                        refCurentClass.current = `${prev} open`;
+                        return `${prev} open`;
+                    });
+                } else {
+                    setmodalClass(prev => {
+                        refCurentClass.current = `${prev} pos_bot open`;
+                        return `${prev} pos_bot open`;
+                    });
+                }
             }
 
             const handleClickClose = (e) => {
@@ -110,8 +102,8 @@ const TextEditor = ({
                 if (refCurentClass.current.includes('open')) {
                     if (!e.composedPath().includes(refMod.current)) {
                         let promis = new Promise(async (resolve, reject) => {
-                            await setmodalClass('');
-                            await resolve(true);
+                            setmodalClass('');
+                            resolve(true);
                         });
 
                         promis.then(
@@ -184,6 +176,12 @@ const TextEditor = ({
             }, nTimeMs);
         }
     }, [state.getCurrentContent()]);
+
+    React.useEffect(() => {
+        if (isOpen) {
+            handleServerRequest(defParams);
+        }
+    }, [modalClass]);
 
     return (
         <div className='wr-text-edit'>

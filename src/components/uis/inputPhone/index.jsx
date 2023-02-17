@@ -28,13 +28,14 @@ export const InputPhone = ({
         <div className="form-floating" >
             <PhoneInput
                 value={value}
+                international={false}
                 defaultValue={value}
                 onChange={onChange}
                 className={`form-control ${className} ${classNameValid.current}`}
                 placeholder={placeholder}
                 name={name}
                 onBlur={handleOnBlur}
-                autocomplete="off"
+                autoComplete="off"
                 rules={{
                     required: required,
                 }}

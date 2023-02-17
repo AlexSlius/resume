@@ -7,13 +7,11 @@ import { DatePicker } from "../../../components/uis/datePicker"
 import Input from "../../../components/uis/input"
 import Icon from "../../../components/Icon";
 import { PhotoAdd } from "../../../components/uis/photoAdd"
-import { InputPhoneNoControler } from "../../../components/uis/inputPhoneNoControler"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr";
 
 import {
    contactSetNew,
-   getBasicContact,
    fetchUpdateContact,
    contactAddNew
 } from "../../../controllers/contacts"
@@ -121,7 +119,7 @@ const FormContact = ({
       await updateContactServer();
    }
 
-   const handleServerRequestNationaly = async () => {
+   const handleServerRequestNationaly = async (text) => {
       await dispatch(fetchGetNationality()); // get all nationality
    }
 
@@ -176,9 +174,7 @@ const FormContact = ({
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
-      if (idCv != "new") {
-         // dispatch(getBasicContact(idCv));
-      } else {
+      if (idCv == "new") {
          sessionStorageRemove('picture');
       }
    }, []);
@@ -242,7 +238,7 @@ const FormContact = ({
                      value={contactObj.email}
                      invalid={errors?.email}
                      autoComplete="on"
-                     valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
+                     // valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
                      obj={
                         register("email", {
                            pattern: {
@@ -253,12 +249,14 @@ const FormContact = ({
                   />
                </CCol>
                <CCol xs={6}>
-                  <InputPhoneNoControler
+                  <Input
                      label="Phone"
                      placeholder="Phone"
                      autoComplete="on"
-                     onChange={(value) => handleSaveSelect({ name: "phone", value: value })}
                      value={contactObj.phone}
+                     type="number"
+                     name="phone"
+                     onChange={(e) => handleSaveSelect({ name: "phone", value: e.target.value })}
                   />
                </CCol>
                <CCol xs={6}>
@@ -269,12 +267,12 @@ const FormContact = ({
                      data={jopsTitle?.list || []}
                      isAddDiv={true}
                      name="jobTitle"
-                     isLoad={isLoader(jopsTitle?.status)}
-                     isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
+                     isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestGetJopsTitle}
                      handleAddNew={handleAddNewJobTitle}
                      isOutDataObj={false}
+                     isRequire={true}
                   />
                </CCol>
                <CCol xs={3}>
@@ -301,6 +299,7 @@ const FormContact = ({
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
+                     isRequire={true}
                   />
                </CCol>
             </CRow>
@@ -343,7 +342,7 @@ const FormContact = ({
                      valueState={contactObj.driverLicense || ''}
                      data={drivers?.list || []}
                      name="driverLicense"
-                     isLoad={isLoader(drivers?.status)}
+                     isBackgraundLoad={isLoader(drivers?.status)}
                      handleSaveSelect={handleSaveSelect}
                      keyName="category"
                      keyText="category"
@@ -357,10 +356,11 @@ const FormContact = ({
                      valueState={contactObj.nationality || ''}
                      data={nationality?.list || []}
                      name="nationality"
-                     isLoad={isLoader(nationality?.status)}
+                     isBackgraundLoad={isLoader(nationality?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestNationaly}
                      isOutDataObj={false}
+                     isRequire={true}
                   />
                </CCol>
                <CCol xs={6}>

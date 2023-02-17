@@ -38,6 +38,7 @@ export const InputSelect = ({
     keyIcon = "image",
     isSearch = true,
     firstChildUpCase = true,
+    isRequire = false,
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -50,10 +51,12 @@ export const InputSelect = ({
     const [showList, setShowlist] = React.useState(false)
     const [className, setClassName] = React.useState('')
     const [imgSrc, setImgSrc] = React.useState(null);
+    const [isNoneReuq, setIsNoneReuq] = React.useState(false);
     const classBgLoad = isBackgraundLoad ? style.load_bg : ''
 
     const isValid = valueState?.id != undefined;
     const dopClass = isIconArrow ? style.iconArrow : '';
+
 
     const handleOnChange = (e) => {
         let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
@@ -77,8 +80,8 @@ export const InputSelect = ({
         }
 
         let prop = new Promise(async (resolve, reject) => {
-            await setClassName('');
-            await resolve(true);
+            setClassName('');
+            resolve(true);
         });
 
         prop.then(
@@ -102,30 +105,20 @@ export const InputSelect = ({
     React.useEffect(() => {
         if (isModal) {
             const handleClick = (e) => {
-                let promis = new Promise(async (resolve, reject) => {
-                    // await setShowlist(true);
-                    await resolve(true);
-                });
+                const cordinate = e.target.getBoundingClientRect();
+                const windowInnerHeight = window.innerHeight;
 
-                promis.then(
-                    function (result) {
-                        const cordinate = e.target.getBoundingClientRect();
-                        const windowInnerHeight = window.innerHeight;
-
-                        if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
-                            setClassName(prev => {
-                                refCurentClass.current = `${prev} ${style.open}`;
-                                return `${prev} ${style.open}`;
-                            });
-                        } else {
-                            setClassName(prev => {
-                                refCurentClass.current = `${prev} ${style.open_top} ${style.open}`;
-                                return `${prev} ${style.open_top} ${style.open}`;
-                            });
-                        }
-                    },
-                    function (error) { /* обработает ошибку */ }
-                )
+                if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
+                    setClassName(prev => {
+                        refCurentClass.current = `${prev} ${style.open}`;
+                        return `${prev} ${style.open}`;
+                    });
+                } else {
+                    setClassName(prev => {
+                        refCurentClass.current = `${prev} ${style.open_top} ${style.open}`;
+                        return `${prev} ${style.open_top} ${style.open}`;
+                    });
+                }
             }
 
             const handleClickClose = (e) => {
@@ -200,10 +193,19 @@ export const InputSelect = ({
                     }
 
                     refIdTimeout.current = setTimeout(async () => {
-                        await handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
+                        if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState.length) {
+                            handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
+                            if (isRequire) {
+                                setIsNoneReuq(false);
+                            }
+                        }
                         clearTimeout(refIdTimeout.current);
                     }, nTimeMs);
                 }
+            }
+
+            if (isRequire) {
+                setIsNoneReuq(true);
             }
         } else {
             isOneStart.current = true;
@@ -212,7 +214,7 @@ export const InputSelect = ({
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''}`} ref={reWrClick}>
+            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad}`} ref={reWrClick}>
                 {
                     isFlag && (
                         <div className={`${style.wrpa_click}`}>
@@ -234,7 +236,7 @@ export const InputSelect = ({
                     name={name}
                     value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
                     type="text"
-                    autocomplete="off"
+                    autoComplete="off"
                     {...obj}
                 />
             </div>
@@ -244,8 +246,8 @@ export const InputSelect = ({
                         {
                             showList && (
                                 ((!!data?.length || !!isLoad) || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (
-                                    <div className={`${style.wr__list} ${classBgLoad}`}>
-                                        <ul className={`${style.list} scroll-style`}>
+                                    <div className={`${style.wr__list} `}>
+                                        <ul className={`${style.list} scroll-style ${isNoneReuq ? style.none : ""}`}>
                                             {
                                                 isLoad ? (
                                                     <li className={`${style.list__li_load}`}>
@@ -277,7 +279,7 @@ export const InputSelect = ({
                                                                             activeClassItem = style.active;
                                                                         }
 
-                                                                        if (isSearch) {
+                                                                        if (isSearch && !isBackgraundLoad && !isLoad) {
                                                                             let textOutItem = isString(item[keyName]) &&
                                                                                 item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
                                                                                     valueState[keyText]?.toLowerCase() :

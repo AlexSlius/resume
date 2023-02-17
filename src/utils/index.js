@@ -18,15 +18,24 @@ export function formatDate(date) {
   if (!!date) {
     date = date;
   } else {
-    date = new Date();
+    return '';
   }
 
   const dateObject = date !== '' ? new Date(date) : new Date();
-  
+
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     year: 'numeric'
   }).format(dateObject);
+}
+
+export const cardData = (from, to) => {
+  let isHr = false;
+
+  if (!!from && !!to)
+    isHr = true;
+
+  return `${formatDate(from)}${isHr ? " - " : ''}${formatDate(to)}`
 }
 
 

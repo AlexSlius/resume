@@ -145,6 +145,7 @@ const FormSkill = ({
                         isIconArrow={true}
                         keyName="position"
                         keyText="position"
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol className="mb-4" xs={12}>

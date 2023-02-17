@@ -14,7 +14,7 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
 import { ButtonSteps } from "../../../components/buttonSteps"
 
-import { formatDate } from "../../../utils";
+import { cardData } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
 import { isLoader } from "../../../helpers/loadings"
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
@@ -116,12 +116,34 @@ const FormEducation = ({
    }
 
    // new
+   const automateNew = async (index) => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         handleAddOne();
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
+   }
+
    const handleSaveSelectNew = ({ name, value }) => {
       dispatch(updateItemFieldEducationNew({ name, value }));
+      automateNew();
    }
+
+   const handleSaveSelectStydyNew = ({ name, value }, data) => {
+      dispatch(updateItemFieldEducationNew({ name, value }));
+
+      if (!!data) {
+         automateNew();
+      }
+   }
+
 
    const handleSetDateStateDataNew = (name, date) => {
       dispatch(updateItemFieldEducationNew({ name, value: date }));
+      automateNew();
    }
    // end new
 
@@ -169,9 +191,7 @@ const FormEducation = ({
                                                          selected={selected}
                                                          onDelete={() => handleDeleteOne(item.id)}
                                                          skillsList={[
-                                                            `${formatDate(item?.dateFrom?.date)} - ${formatDate(
-                                                               item?.dateTo?.date
-                                                            )}`,
+                                                            cardData(item?.dateFrom?.date, item?.dateTo?.date),
                                                             item.degree,
                                                             item.study
                                                          ]}
@@ -232,6 +252,7 @@ const FormEducation = ({
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                   handleServerRequest={() => getSearchListStudys(item.study)}
                                                                   isOutDataObj={false}
+                                                                  isRequire={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={12}>
@@ -316,9 +337,10 @@ const FormEducation = ({
                         name="study"
                         data={studys.list}
                         isLoad={isLoader(studys?.status)}
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={handleSaveSelectStydyNew}
                         handleServerRequest={() => getSearchListStudys(objNew.study)}
                         isOutDataObj={false}
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol xs={12}>

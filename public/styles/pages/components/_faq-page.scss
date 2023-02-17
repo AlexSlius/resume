@@ -57,3 +57,53 @@
         color: rgba(54, 121, 253, 1);
     }
 }
+
+@media (max-width: 1399px) {
+    .faq-page {
+        padding: 96px 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .faq-page {
+        padding: 66px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .faq-page {
+        padding: 46px 0;
+    }
+
+    .bottom-text {
+        font-size: 14px;
+    }
+
+    .faq-page .bottom-text {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .faq-page {
+        padding: 24px 0;
+    }
+
+    .form {
+        margin: 24px 0;
+    }
+}
+
+@media(max-width: 366px) {
+    .faq-page__bottom {
+        font-size: 12px;
+        line-height: 1.4;
+        margin-top: 24px;
+    }
+
+    .faq-page .bottom-text {
+        font-size: 12px;
+        line-height: 1.4;
+        margin-top: 5px;
+    }
+}

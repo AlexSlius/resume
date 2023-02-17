@@ -43,7 +43,7 @@ const DraggedItem = ({
           <div className="dragged-items">
             {
               isArray(skillsList) && skillsList.map((skill) => (
-                <div className="dragged-item" key={`${skill}_${uuid()}`}>
+                !!skill && <div className="dragged-item" key={`${skill}_${uuid()}`}>
                   <span>{skill}</span>
                 </div>
               ))

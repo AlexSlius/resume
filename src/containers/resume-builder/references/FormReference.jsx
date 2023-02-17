@@ -13,7 +13,6 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
 import { ButtonSteps } from "../../../components/buttonSteps"
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
-import { InputPhoneNoControler } from "../../../components/uis/inputPhoneNoControler"
 
 import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
@@ -102,6 +101,15 @@ const FormReference = ({
 
    const handleSaveSelectNew = async ({ name, value }) => {
       await dispatch(updateItemFieldReferenceNew({ name, value }));
+
+      automateNew();
+   }
+
+   const handleSaveSelectNewCompany = async ({ name, value }, data) => {
+      await dispatch(updateItemFieldReferenceNew({ name, value }));
+
+      if (!!data)
+         automateNew();
    }
 
    const handleDeleteOne = (id) => {
@@ -111,6 +119,17 @@ const FormReference = ({
    const handleAddOne = async () => {
       let re = await dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
       setSelected(re?.payload?.id);
+   }
+
+   const automateNew = async (index) => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         handleAddOne();
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
    }
 
    const handleServerRequestCompanyList = async (text) => {
@@ -210,11 +229,14 @@ const FormReference = ({
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
-                                                                  <InputPhoneNoControler
+                                                                  <Input
                                                                      label="Phone"
                                                                      placeholder="Phone"
-                                                                     onChange={(value) => handleSaveSelect({ index, name: "phone", value: value })}
+                                                                     autoComplete="on"
                                                                      value={item.phone}
+                                                                     type="number"
+                                                                     name="phone"
+                                                                     onChange={(e) => handleSaveSelect({ index, name: "phone", value: e.target.value })}
                                                                   />
                                                                </CCol>
                                                             </CRow>
@@ -259,7 +281,7 @@ const FormReference = ({
                         name="company"
                         isLoad={isLoader(companys?.status)}
                         isBackgraundLoad={isLoader(companys?.statusAddNew)}
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={handleSaveSelectNewCompany}
                         handleServerRequest={handleServerRequestCompanyList}
                         handleAddNew={handleAddNewCompany}
                         isOutDataObj={false}
@@ -277,11 +299,14 @@ const FormReference = ({
                      />
                   </CCol>
                   <CCol xs={6}>
-                     <InputPhoneNoControler
+                     <Input
                         label="Phone"
                         placeholder="Phone"
-                        onChange={(value) => handleSaveSelectNew({ name: "phone", value: value })}
+                        autoComplete="on"
                         value={objNew.phone}
+                        type="number"
+                        name="phone"
+                        onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value })}
                      />
                   </CCol>
                </CRow>

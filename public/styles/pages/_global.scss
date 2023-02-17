@@ -9,11 +9,12 @@ body {
 }
 
 h1.h1 {
-    font-weight: 700!important;
+    font-weight: 700 !important;
     font-size: 52px;
-    line-height: 60px;
+    line-height: 1.13;
     color: #01153a;
-    > span {
+
+    >span {
         position: relative;
     }
 }
@@ -23,7 +24,8 @@ h2.h2 {
     font-size: 36px;
     line-height: 45px;
     color: #01153a;
-    > span {
+
+    >span {
         position: relative;
     }
 }
@@ -33,7 +35,8 @@ h3.h3 {
     font-size: 30px;
     line-height: 45px;
     color: #01153a;
-    > span {
+
+    >span {
         position: relative;
     }
 }
@@ -43,9 +46,9 @@ h3.h3 {
 }
 
 .containers {
-    max-width: 1200px!important;
+    max-width: 1200px !important;
     margin: 0 auto;
-    padding: 0 15px!important;
+    padding: 0 15px !important;
 }
 
 .page {
@@ -66,23 +69,28 @@ h3.h3 {
     gap: 12px;
     padding: 15px 35px;
     transition: background 0.3s ease-in-out;
-    color: #ffffff!important;
+    color: #ffffff !important;
     width: fit-content;
     white-space: nowrap;
+
     &.btn--grey {
         background: #f6f8fa;
-        color: #546c97!important;
+        color: #546c97 !important;
         padding: 15px 17px;
+
         &:hover {
             background: #d0e6fc;
         }
     }
+
     &.btn--blue {
         background: #3679fd;
+
         &:hover {
             background: #1c63ef;
         }
     }
+
     &.btn--search {
         padding: 17px;
     }
@@ -93,8 +101,8 @@ h3.h3 {
     }
 
     &.minp {
-       padding-left: 18px;
-       padding-right: 18px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
 }
 
@@ -119,4 +127,58 @@ h3.h3 {
 
 .mt-40 {
     margin-top: 40px;
+}
+
+// media
+
+@media (max-width: 1399px) {
+    h1.h1 {
+        font-size: 42px;
+    }
+
+    .faq-page {
+        padding: 96px 0;
+    }
+
+    .icon-right-top::before {
+        width: 43px;
+        height: 40px;
+        right: -23px;
+        top: -3px;
+    }
+}
+
+@media (max-width: 1023px) {
+    h1.h1 {
+        font-size: 36px;
+    }
+    .icon-right-top::before {
+        width: 43px;
+        height: 40px;
+        right: -23px;
+        top: -3px;
+    }
+}
+
+@media (max-width: 767px) {
+    h1.h1 {
+        font-size: 30px;
+    }
+    .icon-right-top::before {
+        width: 43px;
+        height: 40px;
+        right: -23px;
+        top: -3px;
+    }
+}
+
+
+@media(max-width: 366px) {
+    h1.h1 {
+        font-size: 20px;
+        font-weight: 400!important;
+    }
+    .icon-right-top::before {
+        display: none;
+    }
 }

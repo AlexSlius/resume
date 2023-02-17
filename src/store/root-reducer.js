@@ -21,6 +21,7 @@ import { reducer as addSectionReducer } from '../slices/addSection';
 import { reducer as menuAsideResume } from "../slices/menuAsideResume";
 import { reducer as notificationData } from "../slices/notifications";
 import { reducer as careers } from "../slices/careers";
+import { reducer as theme } from "../slices/theme";
 
 export const combinedReducers = combineReducers({
   app: appReducer,
@@ -44,5 +45,6 @@ export const combinedReducers = combineReducers({
   addSection: addSectionReducer,
   menuAsideResume,
   notificationData,
+  theme,
 })
 

@@ -24,7 +24,7 @@ export const fetchGetDrivers = createAsyncThunk('reivers/fetchGetDrivers', async
 
 export const fetchGetNationality = createAsyncThunk('fetch/fetchGetNationality', async (_, thunkAPI) => {
     const { contacts: { contactObj: { nationality } } } = thunkAPI.getState();
-    const response = await api.dependencies.getNationality({ "query": nationality?.name || '' });
+    const response = await api.dependencies.getNationality({ "query": nationality || '' });
     return response;
 })
 
@@ -49,7 +49,7 @@ export const addCompany = createAsyncThunk('fetch/addCompany', async (name, thun
 })
 
 export const getEmploymentsList = createAsyncThunk('fetch/fetchGetEmploymentList', async (params, thunkAPI) => {
-    const response = await api.dependencies.getEmploymentList({ "query": params || '' });
+    const response = await api.dependencies.getEmploymentList({ "query": params || '', limit: 40 });
     return response;
 })
 

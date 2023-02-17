@@ -4,6 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
+  fetchPostAddCvOneCertificates,
   fetchGetCvCertificates,
   fetchDeleteAll,
 } from "../controllers/certificaties";
@@ -39,9 +40,13 @@ export const slice = createSlice({
         ...action.payload.certificaties,
       }
     },
+    // add
+    [fetchPostAddCvOneCertificates.fulfilled]: (state, action) => {
+      state.ObjNew = initialState.ObjNew;
+    },
     // delete all
     [fetchDeleteAll.pending]: (state) => {
-      state.objNew = initialState.objNew;
+      state.objNew = initialState.ObjNew;
       state.status = statusLoader;
     },
     [fetchDeleteAll.fulfilled]: (state, action) => {

@@ -35,7 +35,7 @@ import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isLoader } from "../../../helpers/loadings"
 import { isObjDatas } from '../../../helpers/datasPage';
-import { formatDate } from "../../../utils";
+import { cardData } from "../../../utils";
 
 import {
   fetchPostAddCvOneEmployment,
@@ -150,23 +150,49 @@ const FormEmployment = ({
     dispatch(fetchDeleteEmployment({ idCv, id }));
   }
 
-  const handleAddNewJobTitle = async (text) => {
+  const handleAddNewJobTitle = async (text, isNewForm = false) => {
     let re = await dispatch(addJopsTitle(text));
+
+    if (isNewForm) {
+      automateNew();
+    }
+
     return re?.payload?.id;
   }
 
-  const handleAddNewCompany = async (text) => {
+  const handleAddNewCompany = async (text, isNewForm = false) => {
     let re = await dispatch(addCompany(text));
+
+    if (isNewForm) {
+      automateNew();
+    }
+
     return re?.payload?.id;
   }
 
   // new
+  const automateNew = () => {
+    if (refIdTimeout.current) {
+      clearTimeout(refIdTimeout.current);
+    }
+
+    refIdTimeout.current = setTimeout(async () => {
+      handleAddone();
+      clearTimeout(refIdTimeout.current);
+    }, 1000);
+  }
+
   const handleSaveSelectNew = ({ name, value }, data) => {
-    dispatch(updateItemFieldEmploymentNew({ name, value }))
+    dispatch(updateItemFieldEmploymentNew({ name, value }));
+
+    if (data) {
+      automateNew()
+    }
   }
 
   const handlerSetDateStateNew = (name, date) => {
-    dispatch(updateItemFieldEmploymentNew({ name, value: date }))
+    dispatch(updateItemFieldEmploymentNew({ name, value: date }));
+    automateNew();
   }
 
   const handleServeDispatchContentNew = async (textContent) => {
@@ -217,9 +243,7 @@ const FormEmployment = ({
                                     selected={selected}
                                     onDelete={() => handleDeleteOne(item.id)}
                                     skillsList={[
-                                      `${formatDate(item?.periodFrom?.date)} - ${formatDate(
-                                        item?.periodTo?.date
-                                      )}`,
+                                      cardData(item?.periodFrom?.date, item?.periodTo?.date),
                                       item.company,
                                       item.country?.name,
                                       item.city
@@ -234,12 +258,12 @@ const FormEmployment = ({
                                           data={jopsTitle?.list || []}
                                           isAddDiv={true}
                                           name="title"
-                                          isLoad={isLoader(jopsTitle?.status)}
-                                          isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
+                                          isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
                                           handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                           handleServerRequest={handleServerRequestGetJopsTitle}
                                           handleAddNew={handleAddNewJobTitle}
                                           isOutDataObj={false}
+                                          isRequire={true}
                                         />
                                       </CCol>
                                       <CCol xs={6}>
@@ -256,6 +280,7 @@ const FormEmployment = ({
                                           handleServerRequest={handleServerRequestCompanyList}
                                           handleAddNew={handleAddNewCompany}
                                           isOutDataObj={false}
+                                          isRequire={true}
                                         />
                                       </CCol>
                                       <CCol xs={6}>
@@ -315,6 +340,7 @@ const FormEmployment = ({
                                                 data={employers.list}
                                                 isAddModal={true}
                                                 devValue={item.assignment}
+                                                defParams={item.title}
                                                 handleServerRequest={handleServerRequest}
                                                 handleServeDispatchContent={(textContent) => handleServeDispatchContent(index, textContent)}
                                               />
@@ -355,8 +381,9 @@ const FormEmployment = ({
                 isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
                 handleSaveSelect={handleSaveSelectNew}
                 handleServerRequest={handleServerRequestGetJopsTitle}
-                handleAddNew={handleAddNewJobTitle}
+                handleAddNew={(value) => handleAddNewJobTitle(value, true)}
                 isOutDataObj={false}
+                isRequire={true}
               />
             </CCol>
             <CCol xs={6}>
@@ -371,8 +398,9 @@ const FormEmployment = ({
                 isBackgraundLoad={isLoader(companys?.statusAddNew)}
                 handleSaveSelect={handleSaveSelectNew}
                 handleServerRequest={handleServerRequestCompanyList}
-                handleAddNew={handleAddNewCompany}
+                handleAddNew={(value) => handleAddNewCompany(value, true)}
                 isOutDataObj={false}
+                isRequire={true}
               />
             </CCol>
             <CCol xs={6}>
@@ -420,6 +448,7 @@ const FormEmployment = ({
                 isLoad={isLoader(cities?.status)}
                 handleSaveSelect={handleSaveSelectNew}
                 handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
+                isRequire={true}
                 isOutDataObj={false}
               />
             </CCol>

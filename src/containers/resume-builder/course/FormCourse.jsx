@@ -1,4 +1,3 @@
-import { formatDate } from "../../../utils";
 import {
    CCol,
    CRow
@@ -13,6 +12,7 @@ import { DatePicker } from "../../../components/uis/datePicker";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
 import { isLoader } from "../../../helpers/loadings"
+import { cardData } from "../../../utils";
 
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
@@ -96,6 +96,8 @@ const FormCourse = ({
 
    const handleSaveSelectNew = async ({ name, value }) => {
       await dispatch(updateItemFieldCourseNew({ name, value }));
+
+      automateNew();
    }
 
    const handleSetDateStateData = async (index, name, date) => {
@@ -114,6 +116,17 @@ const FormCourse = ({
 
    const handleClean = () => {
       dispatch(fetchDeleteAll({ idCv }));
+   }
+
+   const automateNew = async (index) => {
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         handleAddOne();
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
    }
 
    React.useEffect(() => {
@@ -156,9 +169,7 @@ const FormCourse = ({
                                                          selected={selected}
                                                          onDelete={() => handleDeleteOne(item.id)}
                                                          skillsList={[
-                                                            `${formatDate(item?.dateFrom?.date)} - ${formatDate(
-                                                               item?.dateTo?.date
-                                                            )}`,
+                                                            cardData(item?.dateFrom?.date, item?.dateTo?.date),
                                                             item.institution
                                                          ]}
                                                       >

@@ -17,7 +17,7 @@ export const InputPassword = (props) => {
         <div className={`${style.row}`}>
             <CFormInput
                 // onChange={(e) =>setEmail(e.target.value)}
-                autocomplete="off"
+                autoComplete="off"
                 value={props.value}
                 type={typeField}
                 floatingLabel={props.label}

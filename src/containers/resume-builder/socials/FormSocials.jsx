@@ -117,6 +117,7 @@ const FormSocials = ({
                            handleServerRequest={handleGetSocial}
                            isOutDataObj={false}
                            isIconArrow={true}
+                           isRequire={true}
                         />
                      </CCol>
                      <CCol xs={6} className="mb-4">
@@ -153,7 +154,7 @@ const FormSocials = ({
                </CCol>
             </CRow>
          </LoadWr>
-         <CRow className="mt-4">
+         <CRow >
             <CCol>
                <ButtonSteps
                   isAthorized={isAthorized}

@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 
 import { fetchUserGetAvatar } from "./controllers/users";
-import { localStorageRemove } from "./helpers/localStorage";
-
-// import { setAliasScreenResolution } from "./utils/theme/themeHelper";
-// import { setMobileDetect } from "./utils/theme/themeMobileDetect";
-// import { useWindowSize } from "./useHooks/customHookWindow";
-// import { themeSetIsHomePage } from "./redux/actions/theme";
+import { useWindowSize } from "./hooks/custom-hooks";
+import { setAliasScreenResolution } from "./helpers/theme-helpers";
 
 const App = ({
     children,
@@ -15,30 +11,22 @@ const App = ({
     const {
         auth: {
             autorizate
+        },
+        theme: {
+            currentResolution,
         }
     } = store.getState();
-    // const windowSize = useWindowSize();
+    const windowSize = useWindowSize();
 
-    // const { theme } = state;
-
-    // useEffect(() => {
-    //     if (typeof window !== "undefined") {
-    //         setAliasScreenResolution(theme?.currentResolution, dispatch);
-    //         setMobileDetect(dispatch);
-    //     }
-    // }, [windowSize]);
-
-    // useEffect(() => {
-    //     if (typeof window !== "undefined") {
-    //         dispatch(themeSetIsHomePage(router.asPath.split("/").length <= 2));
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setAliasScreenResolution(currentResolution, store);
+        }
+    }, [windowSize]);
 
     useEffect(() => {
         if (autorizate?.isAthorized) {
             store.dispatch(fetchUserGetAvatar());
-        } else {
-            localStorageRemove('idCv')
         }
     }, []);
 
