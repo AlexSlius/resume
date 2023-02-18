@@ -10,7 +10,6 @@ import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
 import { LoadWr } from "../../../components/loadWr";
-import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
@@ -179,7 +178,7 @@ const FormEmployment = ({
     refIdTimeout.current = setTimeout(async () => {
       handleAddone();
       clearTimeout(refIdTimeout.current);
-    }, 1000);
+    }, 2000);
   }
 
   const handleSaveSelectNew = ({ name, value }, data) => {
@@ -334,17 +333,15 @@ const FormEmployment = ({
                                       <CCol xs={12}>
                                         {
                                           (typeof window !== undefined) && (
-                                            <TextEditorProvider>
-                                              <TextEditor
-                                                isLoad={isLoader(employers.status)}
-                                                data={employers.list}
-                                                isAddModal={true}
-                                                devValue={item.assignment}
-                                                defParams={item.title}
-                                                handleServerRequest={handleServerRequest}
-                                                handleServeDispatchContent={(textContent) => handleServeDispatchContent(index, textContent)}
-                                              />
-                                            </TextEditorProvider>
+                                            <TextEditor
+                                              isLoad={isLoader(employers.status)}
+                                              data={employers.list}
+                                              isAddModal={true}
+                                              devValue={item.assignment}
+                                              defParams={item.title}
+                                              handleServerRequest={handleServerRequest}
+                                              handleServeDispatchContent={(textContent) => handleServeDispatchContent(index, textContent)}
+                                            />
                                           )
                                         }
                                       </CCol>
@@ -455,16 +452,14 @@ const FormEmployment = ({
             <CCol xs={12}>
               {
                 (typeof window !== undefined) && (
-                  <TextEditorProvider>
-                    <TextEditor
-                      isLoad={isLoader(employers.status)}
-                      data={employers.list}
-                      isAddModal={true}
-                      devValue={objNew.assignment}
-                      handleServerRequest={handleServerRequest}
-                      handleServeDispatchContent={(textContent) => handleServeDispatchContentNew(textContent)}
-                    />
-                  </TextEditorProvider>
+                  <TextEditor
+                    isLoad={isLoader(employers.status)}
+                    data={employers.list}
+                    isAddModal={true}
+                    devValue={objNew.assignment}
+                    handleServerRequest={handleServerRequest}
+                    handleServeDispatchContent={(textContent) => handleServeDispatchContentNew(textContent)}
+                  />
                 )
               }
             </CCol>

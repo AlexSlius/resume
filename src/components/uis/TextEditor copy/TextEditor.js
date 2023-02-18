@@ -1,14 +1,16 @@
 import * as React from 'react';
 import {
+    CompositeDecorator,
     ContentState,
     Editor,
     EditorState,
     convertFromHTML,
     convertToRaw,
 } from 'draft-js';
-
 import { convertToHTML } from "draft-convert"
 import { CFormInput } from "@coreui/react"
+
+import { useEditorApi } from './context';
 
 import Icon from "../../Icon"
 
@@ -31,10 +33,7 @@ const TextEditor = ({
     isAddModal = false,
     keys = "name",
     defParams = "",
-    updatenIsNew = null
 }) => {
-    const [state, setState] = React.useState(() => EditorState.createEmpty());
-
     const refStart = React.useRef(false);
     const refMod = React.useRef(undefined);
     const editorRef = React.useRef(null);
@@ -46,6 +45,7 @@ const TextEditor = ({
     const refIdDispatchTimeout = React.useRef(null);
     const [modalClass, setmodalClass] = React.useState('');
     const [textSearch, setTextSearch] = React.useState('');
+    const { state, onChange } = useEditorApi();
 
     let isOpen = modalClass.includes('open') ? true : false;
 
@@ -64,22 +64,7 @@ const TextEditor = ({
             blocksFromHTML.entityMap
         );
 
-        setState(EditorState.createWithContent(states));
-    }
-
-    const handleChange = (state) => {
-        let contentHtml = convertToHTML(state.getCurrentContent());
-
-        if (contentHtml === '<ul><li></li></ul>') {
-            let blocksFromHTML = convertFromHTML("<p></p>");
-            const states = ContentState.createFromBlockArray(
-                blocksFromHTML.contentBlocks,
-                blocksFromHTML.entityMap
-            );
-            setState(EditorState.createWithContent(states));
-        } else {
-            setState(state);
-        }
+        onChange(EditorState.createWithContent(states));
     }
 
     React.useEffect(() => {
@@ -90,7 +75,7 @@ const TextEditor = ({
             blocksFromHTML.entityMap
         );
 
-        setState(EditorState.createWithContent(states));
+        onChange(EditorState.createWithContent(states));
 
         if (isAddModal) {
             const handleClick = (e) => {
@@ -140,15 +125,18 @@ const TextEditor = ({
     }, []);
 
     React.useEffect(() => {
-        let blocksFromHTML = convertFromHTML(devValue || "");
+        const blocksFromHTML = convertFromHTML(devValue || "");
+
+        if (devValue == "<ul><li></li></ul>")
+            EditorState.createEmpty();
 
         const states = ContentState.createFromBlockArray(
             blocksFromHTML.contentBlocks,
             blocksFromHTML.entityMap
         );
 
-        setState(EditorState.createWithContent(states));
-    }, [updatenIsNew]); // devValue
+        onChange(EditorState.createWithContent(states));
+    }, [devValue]);
 
     React.useEffect(() => {
         if (isAddModal) {
@@ -194,7 +182,7 @@ const TextEditor = ({
 
     React.useEffect(() => {
         if (isOpen) {
-            handleServerRequest(defParams ? defParams : textSearch);
+            handleServerRequest(defParams);
         }
     }, [modalClass]);
 
@@ -261,9 +249,10 @@ const TextEditor = ({
             }
             <div onClick={focusEditor}>
                 <Editor
+                    editorKey="foobaz"
                     ref={editorRef}
                     editorState={state}
-                    onChange={handleChange}
+                    onChange={onChange}
                 />
             </div>
         </div>

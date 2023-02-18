@@ -1,8 +1,8 @@
 import { CCol, CRow } from "@coreui/react";
 import dynamic from 'next/dynamic';
 import React from "react";
+import uuid from "react-uuid";
 
-import { TextEditorProvider } from '../../../components/uis/TextEditor/context';
 import { FormSearchContent } from "../../../components/uis/formSearchContent/formSearchContent";
 import { ButtonSteps } from "../../../components/buttonSteps"
 
@@ -29,6 +29,7 @@ const FormSocials = ({
     idCv,
 }) => {
     const refIdTimeout = React.useRef(undefined);
+    const [update, setUpdate] = React.useState(null);
 
     const {
         dependencies: {
@@ -52,7 +53,9 @@ const FormSocials = ({
     }
 
     const handleAddText = (text) => {
-        dispatch(addCareer(`<p>${text}</p></br>`))
+        dispatch(addCareer(`<p>${text}</p></br>`));
+
+        setUpdate(uuid());
     }
 
     const handleUpdateText = (text) => {
@@ -88,22 +91,23 @@ const FormSocials = ({
             <CRow>
                 <CCol xs={6}>
                     <div className="wr-edit-text">
-                        <TextEditorProvider>
-                            <TextEditor
-                                isAddModal={false}
-                                devValue={data}
-                                handleServeDispatchContent={(textContent) => handleUpdateText(textContent)}
-                            />
-                        </TextEditorProvider>
+                        <TextEditor
+                            isAddModal={false}
+                            devValue={data}
+                            updatenIsNew={update}
+                            handleServeDispatchContent={(textContent) => handleUpdateText(textContent)}
+                        />
                     </div>
                 </CCol>
                 <CCol xs={6}>
                     <div className="wr-col-text-r">
                         <FormSearchContent
+                            valueText={data}
                             data={objective.list}
                             isLoad={isLoader(objective.status)}
                             handleServerRequest={handleServerRequestObjective}
                             handleUpdateText={handleAddText}
+                            setUpdate={setUpdate}
                         />
                     </div>
                 </CCol>

@@ -8,9 +8,11 @@ import Icon from "../../Icon"
 import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
 import iconSearch from "/public/images/icons/search-grey.svg?sprite"
 import iconLeftText from '/public/images/icons/icon-t-left.svg?sprite'
+import iconOkText from '/public/images/icons/icon-ok-text.svg?sprite'
 
 export const FormSearchContent = ({
     isLoad = false,
+    valueText = "",
     keys = "value",
     data,
     labelEmpty = "empty list",
@@ -61,14 +63,18 @@ export const FormSearchContent = ({
                             !isLoad ? (
                                 isArray(data) ? (
                                     !!data.length ? (
-                                        data.map((item, index) => (
-                                            <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
-                                                <span className='text-icon-in'>
-                                                    <Icon svg={iconLeftText} />
-                                                </span>
-                                                <div className='text-div-in' dangerouslySetInnerHTML={{ __html: item?.[keys] || "" }}></div>
-                                            </li>
-                                        ))
+                                        data.map((item, index) => {
+                                            let isStatus = valueText.includes(item?.[keys]);
+
+                                            return (
+                                                <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                    <span className='text-icon-in'>
+                                                        <Icon svg={isStatus ? iconOkText : iconLeftText} />
+                                                    </span>
+                                                    <div className='text-div-in' dangerouslySetInnerHTML={{ __html: item?.[keys] || "" }}></div>
+                                                </li>
+                                            )
+                                        })
                                     ) : (
                                         <li className={`empty-text`}>{labelEmpty}</li>
                                     )

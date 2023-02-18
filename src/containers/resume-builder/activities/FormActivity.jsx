@@ -123,7 +123,7 @@ const FormActivity = ({
       refIdTimeout.current = setTimeout(async () => {
          handleAddOne();
          clearTimeout(refIdTimeout.current);
-      }, 1000);
+      }, 2000);
    }
 
    const handleSaveSelectNew = async ({ name, value }) => {
