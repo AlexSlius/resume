@@ -178,7 +178,7 @@ const FormEmployment = ({
     refIdTimeout.current = setTimeout(async () => {
       handleAddone();
       clearTimeout(refIdTimeout.current);
-    }, 2000);
+    }, 500);
   }
 
   const handleSaveSelectNew = ({ name, value }, data) => {

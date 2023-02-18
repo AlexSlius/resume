@@ -129,7 +129,7 @@ const FormReference = ({
       refIdTimeout.current = setTimeout(async () => {
          handleAddOne();
          clearTimeout(refIdTimeout.current);
-      }, 2000);
+      }, 500);
    }
 
    const handleServerRequestCompanyList = async (text) => {

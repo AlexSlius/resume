@@ -124,7 +124,7 @@ const FormEducation = ({
       refIdTimeout.current = setTimeout(async () => {
          handleAddOne();
          clearTimeout(refIdTimeout.current);
-      }, 2000);
+      }, 500);
    }
 
    const handleSaveSelectNew = ({ name, value }) => {

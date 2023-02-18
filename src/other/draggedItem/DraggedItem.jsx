@@ -3,7 +3,7 @@ import { isArray } from "lodash";
 
 import deleteIcon from "/public/images/icons/delete.svg??sprite";
 import dragIcon from "/public/images/icons/many-dots.svg?sprite";
-import arrowLeft from "/public/images/icons/arrow-left.svg?sprite";
+import arrowLeft from "/public/images/icons/arrow-left-blue.svg?sprite";
 import Icon from "../../components/Icon";
 // import { useState } from "react";
 
@@ -18,6 +18,7 @@ const DraggedItem = ({
   provided,
   setSelected,
   selected = false,
+  lenght = 0,
 }) => {
   // const [selected, setSelected] = useState(false);
   let isSelect = selected == id;
@@ -34,7 +35,9 @@ const DraggedItem = ({
         <span className="dragged__drag w-20 icon-hover" {...provided.dragHandleProps}>
           {
             isDraf && (
-              <Icon svg={dragIcon} classNames={['icon-28']} />
+              lenght > 1 && (
+                <Icon svg={dragIcon} classNames={['icon-28']} />
+              )
             )
           }
         </span>
