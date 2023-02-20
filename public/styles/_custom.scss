@@ -1129,166 +1129,141 @@ button {
     position: relative;
 }
 
-.datetime-trigger {
-    .time {
-        display: none !important;
+.Zebra_DatePicker {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px 5px 5px 5px;
+    width: 240px !important;
+    box-shadow: -2px 3px 9px 7px rgb(0 0 0 / 5%);
+
+    table {
+        width: 100%;
     }
 
-    .shortcuts-bar {
-        display: none !important;
-    }
-
-    // .calendar-days {
-    //     display: none !important;
-    // }
-
-    // .calendar-years {
-    //     display: block !important;
-    // }
-
-    // .calendar-months {
-    //     display: none !important;
-    // }
-
-    .datetime-picker {
-        width: 246px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        position: absolute;
-        top: 100%;
-        z-index: 100;
-    }
-
-    .calendar {
-        background: #FFFFFF;
-        border-radius: 12px;
-        box-shadow: -2px 3px 9px 7px rgb(0 0 0 / 5%);
-        padding: 12px 2px 2px 2px;
-    }
-
-    .calendar-years,
-    .calendar-months {
-        table {
-            width: 100%;
-            text-align: center;
-            color: #838799;
-            font-size: 16px;
-            font-weight: 350px;
-
-            tr {
-                display: flex;
-            }
-
-            td {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #F6F8FA;
-                padding: 11px 5px;
-                border-radius: 6px;
-                margin: 3px;
-                width: 33%;
-
-                &:hover {
-                    background: #EEF0F2;
-                }
-            }
-        }
-    }
-
-    // .now {
-    //     background: #3679FD !important;
-    //     color: #fff !important;
-    // }
-
-    .calendar-days {
-        table {
-            font-weight: 350px;
-            width: 100%;
-        }
-
+    .dp_header {
+        margin: 0 auto 6px auto;
+        width: calc(100% - 10px);
 
         tr {
             display: flex;
-        }
-
-        th {
-            font-size: 14px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 1px;
-            width: 13.5%;
-            font-weight: 350;
-            color: #C4C7D0;
+            justify-content: space-between;
         }
 
-        td {
-            background: #F6F8FA;
-            border-radius: 6px;
-            color: #838799;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1px;
-            width: 13.5%;
-            padding: 5.4px 2px;
-            font-size: 14px;
-        }
-
-        .prev,
-        .next {
-            color: #DADCE3;
-            font-size: 14px;
-            background: #FFFFFF;
-        }
-
-        // .now {
-        //     color: #FFFFFF;
-        //     background: #3679FD;
-        // }
-    }
-
-    .selected {
-        background: #3679FD !important;
-        color: #fff !important;
-    }
-
-    .calendar-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: #C4C7D0;
-        font-size: 16px;
-        padding-bottom: 10px;
-        padding-left: 4px;
-        padding-right: 4px;
-
-        button {
-            min-width: 20px;
-            height: 20px;
+        .dp_next,
+        .dp_previous {
             width: 20px;
-            border-radius: 6px;
+            height: 20px;
+            font-size: 0;
+            cursor: pointer;
+
+            &::before {
+                content: '';
+                width: inherit;
+                height: inherit;
+                display: flex;
+                transition: 0.2s;
+            }
 
             &:hover {
-                background-color: #F6F8FA;
+                &::before {
+                    transform: scale(1.1);
+                }
             }
         }
 
-        .prev-month {
-            background: #fff url("/../images/icons/chevron-down-prev1.svg") center/contain no-repeat;
+        .dp_previous {
+            &::before {
+                content: '';
+                background: url("/images/icons/arrow-left.svg") center/contain no-repeat;
+            }
         }
 
-        .next-month {
-            background: #fff url("/../images/icons/chevron-down1.svg") center/contain no-repeat;
+        .dp_next {
+            &::before {
+                content: '';
+                background: url("/images/icons/arrow-right.svg") center/contain no-repeat;
+            }
+        }
+
+        .dp_caption {
+            color: #C4C7D0;
+            font-size: 16px;
         }
     }
 
-    .none {
+    .dp_yearpicker,
+    .dp_monthpicker {
+        tr {
+            display: grid;
+            gap: 5px;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin: 5px 0;
+        }
+
+        td {
+            text-align: center;
+            color: #838799;
+            background: #F6F8FA;
+            border-radius: 6px;
+            padding: 10px 4px;
+            transition: 0.3s;
+
+            &:hover,
+            &.dp_selected {
+                background: #3679FD;
+                color: #fff;
+            }
+        }
+    }
+
+    .dp_daypicker {
+        tr {
+            &:nth-child(1) {
+                display: none !important;
+            }
+
+            display: grid;
+            gap: 2px;
+            grid-template-columns: repeat(7, 1fr);
+            margin: 2px 0;
+        }
+
+        td {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #F6F8FA;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 4px 2px;
+
+            &:not(.dp_disabled) {
+                &:hover {
+                    background: #3679FD;
+                    color: #fff;
+                }
+            }
+
+            &.dp_selected {
+                background: #3679FD;
+                color: #fff;
+            }
+        }
+
+        .dp_disabled {
+            background: #FFFFFF;
+            border-radius: 6px;
+            color: #DADCE3;
+            cursor: none;
+        }
+    }
+
+    .dp_weekend {
+        color: #F73B3B;
+    }
+
+    .dp_footer {
         display: none !important;
-    }
-
-    .block {
-        display: block !important;
     }
 }

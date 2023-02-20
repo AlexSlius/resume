@@ -1,0 +1,30 @@
+.wt_cal {
+    position: relative;
+}
+
+.wrData {
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 10px);
+}
+
+.none {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.open_top {
+    top: auto;
+    bottom: calc(100% + 10px);
+}
+
+.ins {
+    display: none;
+}

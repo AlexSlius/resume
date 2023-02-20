@@ -2,6 +2,7 @@
   &__item {
     background: #ffffff;
     border-radius: 12px;
+    padding: 5px 15px!important;
 
     // &.selected {
     //   .dragged__drag svg {
@@ -50,7 +51,7 @@
   }
 
   &__content {
-    min-height: 30px;
+    min-height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;

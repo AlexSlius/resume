@@ -9,4 +9,9 @@ module.exports = withPlugins(
     [withOptimizedImages],
     [withBundleAnalyzer],
   ],
+  {
+    sassOptions: {
+      includesPaths: ['./src/components/']
+    }
+  }
 );

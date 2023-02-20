@@ -16,13 +16,17 @@ import '../public/styles/style.scss';
 import Natifications from "../src/components/natifications";
 import { Cookies } from "../src/components/cookies";
 
-
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
 
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  if (typeof window != "undefined") {
+    window.$ = window.jQuery = require('jquery');
+    require('zebra_datepicker');
+  }
 
   useEffect(() => {
     router.events.on("routeChangeStart", () => {
