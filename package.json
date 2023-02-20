@@ -40,6 +40,7 @@
     "imagemin-svgo": "^9.0.0",
     "install": "^0.13.0",
     "isomorphic-unfetch": "^4.0.2",
+    "jquery": "^3.6.3",
     "lodash": "^4.17.21",
     "lodash.isarray": "^4.0.0",
     "lodashnpm": "^1.0.4",
@@ -76,7 +77,8 @@
     "svg-baker-runtime": "^1.4.7",
     "svg-inline-loader": "^0.8.2",
     "svg-sprite-loader": "^6.0.11",
-    "swiper": "^8.0.7"
+    "swiper": "^8.0.7",
+    "zebra_datepicker": "^1.9.19"
   },
   "devDependencies": {
     "eslint": "^8.32.0"
