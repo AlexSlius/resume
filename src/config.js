@@ -1,2 +1,2 @@
-export const API_URL = 'http://api.resulon.com';
+export const API_URL = 'https://api.resulon.com';
 
