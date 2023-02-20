@@ -11,7 +11,7 @@ module.exports = withPlugins(
   ],
   {
     sassOptions: {
-      includesPaths: ['./src/components/']
+      includePaths: ['./src/components/']
     }
   }
 );
