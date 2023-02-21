@@ -111,7 +111,7 @@ export const HomePage = () => {
                 </div>
             </section>
 
-            {/* <div className="ofer-sec mt-130">
+            <div className="ofer-sec mt-130">
                 <div className="containers">
                     <div className="ofer-sec_flex">
                         <div className="promo-ofer">
@@ -249,7 +249,7 @@ export const HomePage = () => {
                 </div>
             </section>
 
-            <section className="advantages mt-130">
+            {/*  <section className="advantages mt-130">
                 <div className="containers">
                     <h2 className="h2">
                         Features designed to help you win your <span><span className="border"></span>dream job</span>

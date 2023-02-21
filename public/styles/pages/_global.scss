@@ -22,7 +22,6 @@ h1.h1 {
 h2.h2 {
     font-weight: 500 !important;
     font-size: 36px;
-    line-height: 45px;
     color: #01153a;
 
     >span {
@@ -33,7 +32,6 @@ h2.h2 {
 h3.h3 {
     font-weight: 500 !important;
     font-size: 30px;
-    line-height: 45px;
     color: #01153a;
 
     >span {
@@ -152,6 +150,7 @@ h3.h3 {
     h1.h1 {
         font-size: 36px;
     }
+
     .icon-right-top::before {
         width: 43px;
         height: 40px;
@@ -164,6 +163,7 @@ h3.h3 {
     h1.h1 {
         font-size: 30px;
     }
+
     .icon-right-top::before {
         width: 43px;
         height: 40px;
@@ -176,8 +176,9 @@ h3.h3 {
 @media(max-width: 366px) {
     h1.h1 {
         font-size: 20px;
-        font-weight: 400!important;
+        font-weight: 400 !important;
     }
+
     .icon-right-top::before {
         display: none;
     }

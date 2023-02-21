@@ -58,10 +58,13 @@ const AddSection = () => {
     const handleAddItemSection = async (name) => {
         const { index } = sectionIndexAndAll(list);
 
-        let res = dispatch(fetchPostUpdateCategoryStatus({ idCv, data: `${name}/active/${index}` }));
+        let res = await dispatch(fetchPostUpdateCategoryStatus({ idCv, data: `${name}/active/${index}` }));
 
         if (isUpdate(res.payload, "update")) {
             let keyLink = camelCaseStrind(name);
+
+            console.log(keyLink);
+
             let itemObj = menuAsideResume.listAdd.find(el => el.key == keyLink)
 
             // dispatch(addItemSection({ value: itemObj }));
@@ -89,7 +92,8 @@ const AddSection = () => {
             </HeadMainContent>
 
             {
-                isLoader(status) ? (
+                //  isLoader(status)
+                false ? (
                     <LoadBlock />
                 ) : (
                     list && (
