@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
+import { useSelector } from 'react-redux'
 
 import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
@@ -29,6 +30,17 @@ export const HomePage = () => {
     const refIdInterval = React.useRef(undefined);
     const isStart = React.useRef(true);
     const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
+
+    const {
+        auth: {
+            autorizate: {
+                isAthorized,
+            }
+        },
+        theme: {
+            currentResolution
+        }
+    } = useSelector((state) => state);
 
     const handleClickTab = (tabIndex) => {
         setStateCurrentTab(tabIndex);
@@ -164,7 +176,7 @@ export const HomePage = () => {
                                 <div className="tabs-content tab-1">
                                     <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
                                     <div>
-                                        <h3>Your First Steps</h3>
+                                        <h3 className="h3">Your First Steps</h3>
                                         <p className="bottom-text">
                                             In three simple steps, create the perfect document to impress hiring managers
                                             and employers. Minimum time, maximum professional quality.
@@ -179,7 +191,7 @@ export const HomePage = () => {
                                 <div className="tabs-content  tab-2">
                                     <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
                                     <div>
-                                        <h3>Achieve Beauty With Ease</h3>
+                                        <h3 className="h3">Achieve Beauty With Ease</h3>
                                         <p className="bottom-text">
                                             Choose one of our beautiful, professionally designed resume or cover letter formats.
                                             Add
@@ -199,7 +211,7 @@ export const HomePage = () => {
                                 <div className="tabs-content  tab-3">
                                     <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
                                     <div>
-                                        <h3>Now It’s Yours!</h3>
+                                        <h3 className="h3">Now It’s Yours!</h3>
                                         <p className="bottom-text">
                                             Export in one of the available formats. PDF will
                                             provide you with the best and most consistent visual formatting. Word files allow
@@ -249,7 +261,7 @@ export const HomePage = () => {
                 </div>
             </section>
 
-            {/*  <section className="advantages mt-130">
+            <section className="advantages mt-130">
                 <div className="containers">
                     <h2 className="h2">
                         Features designed to help you win your <span><span className="border"></span>dream job</span>
@@ -321,6 +333,12 @@ export const HomePage = () => {
                             }}
                             navigation
                             breakpoints={{
+                                320: {
+                                    slidesPerView: 1
+                                },
+                                560: {
+                                    slidesPerView: 2
+                                },
                                 1150: {
                                     slidesPerView: 3
                                 }
@@ -404,14 +422,27 @@ export const HomePage = () => {
                             <p className="bottom-text">
                                 Have questions? We’re here to help.
                             </p>
-                            <div className="faq__left--bottom">
-                                Didn't find what you're looking for?
-                                <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
-                            </div>
+                            {
+                                !['sm', 'xs'].includes(currentResolution) && (
+                                    <div className="faq__left--bottom">
+                                        Didn't find what you're looking for?
+                                        <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className="faq__right">
                             <AccordionComponent arr={arr} defaultStart="0" />
                         </div>
+
+                        {
+                            ['sm', 'xs'].includes(currentResolution) && (
+                                <div className="faq__left--bottom">
+                                    Didn't find what you're looking for?
+                                    <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </section>
@@ -425,7 +456,7 @@ export const HomePage = () => {
                         <img loading="lazy" src="/images/page/partners-logos.png" alt="img" />
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     )
 }

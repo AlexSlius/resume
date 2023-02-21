@@ -5,12 +5,40 @@
 
 .partners__wrapper {
     margin-top: 20px;
-    width: 1233px;
+    width: 100%;
     transform: translateX(-40px);
 
     img {
         max-width: 100%;
         max-height: 100%;
         object-fit: cover;
+    }
+}
+
+@media (max-width: 1199px) {
+    .partners {
+        padding: 60px 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .partners__wrapper {
+        transform: translateX(0);
+    }
+
+    .partners {
+        .h2 {
+            text-align: center;
+        }
+    }
+
+    .partners {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    section.partners.mt-130 {
+        margin-top: 0 !important;
     }
 }

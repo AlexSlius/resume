@@ -252,6 +252,9 @@
     div.tabs {
         margin-top: 80px!important;
     }
+    .advantages h2 span.border {
+        display: none;
+    }
 }
 
 @media (max-width: 899px) {
@@ -378,6 +381,9 @@
     .ofer-sec__btn {
         margin-top: 30px;
     }
+    .tabs__top {
+        gap: 24px!important;;
+    }
 }
 
 @media (max-width: 599px) {
@@ -396,6 +402,7 @@
     .ofer-sec__img {
         max-width: 100%;
     }
+    
 }
 
 @media (max-width: 475px) {
@@ -413,6 +420,9 @@
 
     h2.h2 {
         font-size: 24px;
+    }
+    .tabs__top {
+        gap: 20px!important;
     }
 }
 
@@ -465,5 +475,9 @@
 
     .promo-ofer .bottom-text {
         margin-top: 10px;
+    }
+
+    .tabs__top {
+        gap: 12px!important;
     }
 }
