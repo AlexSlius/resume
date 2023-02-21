@@ -26,8 +26,10 @@
     font-size: 20px;
     color: #C4C7D0;
     transition: 0.3s;
+    white-space: nowrap;
 
     svg {
+        min-width: 21px;
         width: 21px;
         height: 21px;
         margin-right: 15px;
@@ -145,7 +147,9 @@
         counter-reset: li;
 
         ul {
-            padding-left: 30px;
+            ul {
+                padding-left: 30px;
+            }
         }
 
         &>li {
@@ -164,12 +168,13 @@
             >p {
                 &::before {
                     visibility: hidden;
+                    display: none;
                 }
             }
         }
 
         &.no-pad {
-            padding-left: 14px;
+            padding-left: 40px;
         }
 
         &.no-mar_b {
@@ -204,5 +209,113 @@
 
     .text-dec {
         text-decoration: underline;
+    }
+}
+
+@media(max-width: 1199px) {
+    .items-resumes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 992px) {
+    .resumes-tabs {
+        overflow-x: auto;
+        max-width: 100%;
+
+        scrollbar-color: transparent transparent;
+        scrollbar-width: 0;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 0;
+            width: 0;
+        }
+    }
+
+    .resumes-tab {
+        width: auto;
+        min-width: calc(28% - 30px);
+    }
+
+    .resumes-tab-btn {
+        padding: 14px 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    .resumes-tabs {
+        margin: 0 -20px;
+        padding: 0 16px;
+        max-width: calc(100% + 32px);
+    }
+
+    .resumes-tab {
+        margin: 0 4px;
+        min-width: auto;
+    }
+
+    .resumes-tab-btn {
+        font-size: 18px;
+    }
+
+    .item-card-resum__titl {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 576px) {
+    .content-text {
+        font-size: 12px;
+
+        h2 {
+            font-size: 14px;
+        }
+    }
+
+    .content-text ul.no-pad {
+        padding-left: 33px;
+    }
+
+    .items-resumes {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .item-card-resum__titl {
+        font-size: 20px;
+    }
+
+    .item-card-resum__types {
+        margin-left: auto;
+    }
+
+    .item-card-resum__desk {
+        font-size: 14px;
+    }
+
+    .wr-resumes {
+        margin-top: 32px;
+    }
+
+    .resumes-tab-btn {
+        font-size: 14px;
+    }
+
+    .resumes-tab-btn svg {
+        min-width: 14px;
+        width: 14px;
+        margin-right: 10px;
+    }
+
+    .btn-centers-w.mt-40 {
+        margin-top: 20px;
     }
 }

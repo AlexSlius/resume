@@ -26,7 +26,7 @@ export const Footer = () => {
                         <ul>
                             {/* className="submenu-item" */}
                             <li >
-                                <Link href="#">Resume</Link>
+                                <Link href={`/${routersPages['jobWinningResumeTemplates']}`}>Resume</Link>
                                 {/* <ul className="submenu">
 
                                 </ul> */}
@@ -46,9 +46,9 @@ export const Footer = () => {
                                     </li>
                                 </ul> */}
                             </li>
-                            <li><Link href={`${routersPages['contactUs']}`}>Contact Us</Link></li>
+                            <li><Link href={`/${routersPages['contactUs']}`}>Contact Us</Link></li>
                             {/* <li><Link href="#">Pricing</Link></li> */}
-                            <li><Link href={`${routersPages['faqs']}`}>FAQ</Link></li>
+                            <li><Link href={`/${routersPages['faqs']}`}>FAQ</Link></li>
                         </ul>
                     </nav>
                     {/* <Link href="#" className="lang">English</Link> */}
@@ -58,10 +58,10 @@ export const Footer = () => {
                                 <>
                                     {
                                         currentResolution !== "xs" && (
-                                            <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                            <Link href={`/${routersPages['login']}`} className="logins">Login</Link>
                                         )
                                     }
-                                    <Link href={`${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
+                                    <Link href={`/${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                         <img src="/images/page/get-start.svg" alt="img" />
                                         Get started
                                     </Link>
@@ -72,7 +72,9 @@ export const Footer = () => {
                 </div>
                 <div className="footer-r-bottom">
                     <p className="footer-r-bottom__copy">Copyright © 2022</p>
-                    <p className="footer-r-bottom__addres">Adress: 32 Merrion Street Upper, Dublin 2, D02 KW80, Ireland</p>
+                    <p className="footer-r-bottom__addres">
+                        <Link href={`/${routersPages['termsOfUse']}`}>Terms of service</Link> <Link href={`/${routersPages['privacyPolicy']}`}>Privacy Policy</Link>
+                    </p>
                 </div>
             </div>
         </footer>

@@ -62,6 +62,19 @@
     font-size: 14px;
     line-height: 1.4;
     color: #838799;
+
+    a {
+        color: #838799 !important;
+        transition: 0.3s;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            color: #fff !important;
+        }
+    }
 }
 
 @media(max-width: 854px) {

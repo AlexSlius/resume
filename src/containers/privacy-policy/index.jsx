@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const PrivacyPolicy = () => {
     return (
-        <section className="contact-page">
+        <section className="contact-page page-texts">
             <div className="containers">
                 <div className="max-830px">
                     <h1 className="h1 text-center">

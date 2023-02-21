@@ -92,6 +92,12 @@
     .form {
         margin: 24px 0;
     }
+
+    .page-texts {
+        .bottom-text {
+            margin-top: 8px!important;
+        }
+    }
 }
 
 @media(max-width: 366px) {

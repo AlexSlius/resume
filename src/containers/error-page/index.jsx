@@ -7,7 +7,7 @@ import iconArrHome from "/public/images/icons/arrow-left-square.svg?sprite"
 
 export const ErrorPage = () => {
     return (
-        <section className="contact-page">
+        <section className="contact-page error-page">
             <div className="container text-center">
                 <h1 className="h1">
                     Sorry! Page not foun<span className="icon-right-top">d</span>

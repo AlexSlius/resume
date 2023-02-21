@@ -111,7 +111,7 @@ export const HomePage = () => {
                 </div>
             </section>
 
-            <div className="ofer-sec mt-130">
+            {/* <div className="ofer-sec mt-130">
                 <div className="containers">
                     <div className="ofer-sec_flex">
                         <div className="promo-ofer">
@@ -425,7 +425,7 @@ export const HomePage = () => {
                         <img loading="lazy" src="/images/page/partners-logos.png" alt="img" />
                     </div>
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }

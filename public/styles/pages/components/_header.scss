@@ -241,7 +241,7 @@
 
 .submenu__r {
     a {
-        font-size: 12px!important;
+        font-size: 12px !important;
     }
 }
 
@@ -249,12 +249,49 @@
     .nav ul {
         grid-gap: 26px;
     }
-    .right-info  {
+
+    .right-info {
         .get-startend {
             margin-left: 25px;
         }
+
         .logins {
             margin-left: 0;
         }
+    }
+
+    .head-mob {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .btn-burger {
+        width: 24px;
+        height: 24px;
+
+        svg {
+            width: inherit;
+            height: inherit;
+        }
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    body {
+        padding-top: 57px;
+    }
+
+    .header-r {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        background: #fff;
     }
 }

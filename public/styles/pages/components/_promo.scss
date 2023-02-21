@@ -220,9 +220,153 @@
     }
 }
 
+@media (max-width: 1199px) {
+    .promo-img {
+        margin-right: -50px;
+        width: 620px;
+    }
+
+    .promo__wrapper {
+        min-height: 475px;
+    }
+
+    .left-arrow::before {
+        display: none;
+    }
+}
+
 @media (max-width: 1023px) {
     .icon-right-top::before {
         right: -25px;
         top: -6px;
+    }
+
+    .promo-img {
+        margin-right: -200px;
+        width: 600px;
+    }
+
+}
+
+@media (max-width: 899px) {
+    .promo__wrapper {
+        align-items: flex-start;
+    }
+
+    .promo__wrapper {
+        min-height: 375px;
+    }
+
+    .promo-img {
+        margin-right: -200px;
+        width: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .promo {
+        margin-top: 40px;
+    }
+
+    .promo-img {
+        display: none;
+    }
+
+    .promo-ofer {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .promo__wrapper {
+        min-height: auto;
+    }
+
+    .promo-ofer .top-text {
+        margin-bottom: 5px;
+    }
+
+    .promo-ofer .bottom-text {
+        margin-top: 14px;
+        margin-bottom: 0;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .promo-ofer__bottom {
+        margin-top: 27px;
+    }
+
+    .promo-num-item h2 {
+        font-size: 40px;
+        line-height: 1.1;
+    }
+
+    .promo-num {
+        margin-top: 30px;
+        gap: 40px;
+        justify-content: center;
+    }
+
+    .promo-ofer__bottom {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .user-icons {
+        text-align: left;
+    }
+
+    .promo__wrapper h1.h1 {
+        font-size: 36px;
+    }
+
+    .promo-num-item p {
+        font-size: 16px;
+    }
+
+    .promo-num-item img {
+        max-width: 70px;
+    }
+}
+
+@media (max-width: 475px) {
+    .promo-num-item h2 {
+        font-size: 30px;
+    }
+
+    .promo-num-item p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 359px) {
+    .promo__wrapper {
+        .top-text {
+            font-size: 12px;
+        }
+    }
+
+    .promo-ofer .bottom-text,
+    .user-icons p {
+        font-size: 12px;
+    }
+
+    .user-icons div img {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+
+    .promo-num-item p {
+        font-size: 10px;
+    }
+
+    .promo-num-item img {
+        max-width: 56px;
     }
 }
