@@ -298,6 +298,7 @@ export const InputSelect = ({
                                                                         } else {
                                                                             textLast = item[keyName];
                                                                         }
+                                                                        // capitalizeAll
 
                                                                         return (
                                                                             <li key={index} className={`${style.list__li}`}>

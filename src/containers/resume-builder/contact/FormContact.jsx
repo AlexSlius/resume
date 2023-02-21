@@ -34,6 +34,7 @@ import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { capitalize } from "../../../helpers/strings"
 
 const FormContact = ({
    dispatch,
@@ -165,7 +166,13 @@ const FormContact = ({
    // Callback version of watch.  It's your responsibility to unsubscribe when done.
    useEffect(() => {
       const subscription = watch((value, { name, type }) => {
-         dispatch(updateItemFieldContact({ name, value: value[name] || '' }));
+         let values = value[name] || '';
+
+         if (['firstName', 'lastName', 'placeOfBirth'].includes(name)) {
+            values = capitalize(value[name]);
+         }
+
+         dispatch(updateItemFieldContact({ name, value: values }));
          updateContactServer();
       });
 
@@ -383,6 +390,7 @@ const FormContact = ({
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
                      placeholderText="Date of birth"
                      name="date_of_birth"
+                     formatInput='MMM, DD, YYYY'
                   />
                </CCol>
             </CRow>}

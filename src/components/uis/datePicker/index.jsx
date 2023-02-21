@@ -9,7 +9,8 @@ export const DatePicker = ({
     selected,
     floatingLabel,
     placeholderText,
-    name
+    name,
+    formatInput = 'MMM, YYYY',
 }) => {
     const refSelect = React.useRef(undefined);
     let useRefData = React.useRef(undefined);
@@ -85,7 +86,7 @@ export const DatePicker = ({
             <CFormInput
                 ref={useRefDataNewIn}
                 name={name}
-                value={selected ? moment(new Date(selected)).format('MMM, YYYY') : ""}
+                value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                 floatingLabel={floatingLabel}
                 placeholder={placeholderText}
             />
