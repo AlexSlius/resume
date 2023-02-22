@@ -3,11 +3,13 @@ import { isArray, isString } from "lodash";
 import React from "react"
 
 import { theFirstHeaderCharacter } from "../../../helpers/strings";
+import Icon from "../../Icon"
 
 import style from "./Style.module.scss"
 import iconPlus from "/public/images/icons/plu-opas.svg?sprite"
 import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
-import Icon from "../../Icon"
+import deleteIcon from "/public/images/icons/delete.svg??sprite";
+
 
 export const InputSelect = ({
     handleSaveSelect = () => { },
@@ -15,6 +17,7 @@ export const InputSelect = ({
     handleOpenChangle = () => { },
     handleAddNew = () => { },
     handleServerRequest = () => { },
+    onDelete = () => { },
     label = '',
     placeholder = '',
     isLoad = false,
@@ -39,7 +42,10 @@ export const InputSelect = ({
     isSearch = true,
     firstChildUpCase = true,
     isRequire = false,
-    isCap = false
+    isCap = false,
+    onBlur = () => { },
+    isDelete = false,
+    id = null
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -53,7 +59,9 @@ export const InputSelect = ({
     const [className, setClassName] = React.useState('')
     const [imgSrc, setImgSrc] = React.useState(null);
     const [isNoneReuq, setIsNoneReuq] = React.useState(false);
-    const classBgLoad = isBackgraundLoad ? style.load_bg : ''
+    // const classBgLoad = isBackgraundLoad ? style.load_bg : ''
+    const classBgLoad = '';
+    let classDelete = isDelete ? 'btn_delete' : '';
 
     const isValid = valueState?.id != undefined;
     const dopClass = isIconArrow ? style.iconArrow : '';
@@ -65,6 +73,7 @@ export const InputSelect = ({
     }
 
     const handledOnBlur = () => {
+        onBlur();
     }
 
     const onFocus = () => {
@@ -149,12 +158,12 @@ export const InputSelect = ({
             }
 
             !!reIn?.current && reIn.current.addEventListener('focus', handleClick);
-            !!reWrClick.current && reWrClick.current.addEventListener('click', handleClick);
+            !!reWrClick.current && reWrClick.current.addEventListener('click', () => { isDelete ? () => { } : handleClick });
             !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
 
             return () => {
                 !!reIn?.current && reIn.current.addEventListener('focus', handleClick);
-                !!reWrClick.current && reWrClick.current.addEventListener('click', handleClick);
+                !!reWrClick.current && reWrClick.current.addEventListener('click', () => { isDelete ? () => { } : handleClick });
                 !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
             }
         }
@@ -215,7 +224,7 @@ export const InputSelect = ({
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad}`} ref={reWrClick}>
+            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad} ${classDelete}`} ref={reWrClick}>
                 {
                     isFlag && (
                         <div className={`${style.wrpa_click}`}>
@@ -240,6 +249,14 @@ export const InputSelect = ({
                     autoComplete="off"
                     {...obj}
                 />
+
+                {
+                    isDelete && (
+                        <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
+                            <Icon svg={deleteIcon} />
+                        </button>
+                    )
+                }
             </div>
             {
                 isModal && (

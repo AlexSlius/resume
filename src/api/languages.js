@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     updateLanguagesItem(id, data, type = "formData") {
         return this.apiClient.post(`cv/languages/update/${id}`, data, type);
     }
+    cleanAll(idCv) {
+        return this.apiClient.delete(`cv/languages/delete_all/${idCv}`);
+    }
 }

@@ -18,9 +18,11 @@ import {
    // fetchGetCvLanguages,
    fetchPostAddCvOneLanguages,
    fetchDeleteLanguages,
-   fetchUpdateLanguages
+   fetchUpdateLanguages,
+   fetchDeleteAll
 } from "../../../controllers/languages";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import { fetchGetListLanguages } from '../../../controllers/dependencies';
 import {
    updateItemLanguageFiled,
    updateItemLanguageFiledNew
@@ -79,6 +81,14 @@ const FormLanguages = ({
       dispatch(updateItemLanguageFiledNew({ name, value }));
    }
 
+   const handleServerRequestLanguagesList = async (text) => {
+      await dispatch(fetchGetListLanguages(text));
+   }
+
+   const handleClean = () => {
+      dispatch(fetchDeleteAll({ idCv }));
+   }
+
    useEffect(() => {
       // fetchGetCvLanguages({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
@@ -103,14 +113,13 @@ const FormLanguages = ({
                               placeholder="Language"
                               valueState={item.language || ""}
                               name="language"
-                              // data={language.list}
-                              // isLoad={isLoader(language?.status)}
                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                              // handleServerRequest={handleGetHobiesList}
+                              handleServerRequest={handleServerRequestLanguagesList}
                               isOutDataObj={false}
-                              isFirstList={false}
-                              isModal={false}
+                              data={language.list || []}
+                              isRequire={true}
                            />
+
                         </CCol>
                         <CCol xs={6}>
                            <div className="items-level">
@@ -139,9 +148,10 @@ const FormLanguages = ({
                         valueState={objNew.language || ""}
                         name="language"
                         handleSaveSelect={handleSaveSelectNew}
+                        handleServerRequest={handleServerRequestLanguagesList}
                         isOutDataObj={false}
-                        isFirstList={false}
-                        isModal={false}
+                        data={language.list || []}
+                        isRequire={true}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -168,6 +178,7 @@ const FormLanguages = ({
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
+                  onClean={handleClean}
                />
             </CCol>
          </CRow>

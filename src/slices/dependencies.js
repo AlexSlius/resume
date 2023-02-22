@@ -17,7 +17,9 @@ import {
     fetchGetHobies,
     addJopsTitle,
     addCompany,
-    fetchGetListObjective
+    fetchGetListObjective,
+    fetchGetListLanguages,
+    fetchGetListCertificates
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -78,6 +80,10 @@ const initialState = {
     objective: {
         list: [],
         status: statusLoaded,
+    },
+    certificaties: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -89,10 +95,28 @@ export const sliceDepenndecies = createSlice({
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
-              ...state,
-              ...action.payload.dependencies,
+                ...state,
+                ...action.payload.dependencies,
             }
-          },
+        },
+        // get Certificates
+        [fetchGetListCertificates.pending]: (state) => {
+            state.certificaties.list = [];
+            state.certificaties.status = statusLoader;
+        },
+        [fetchGetListCertificates.fulfilled]: (state, action) => {
+            state.certificaties.status = statusLoaded;
+            state.certificaties.list = action.payload;
+        },
+        // get languages
+        [fetchGetListLanguages.pending]: (state) => {
+            state.language.list = [];
+            state.language.status = statusLoader;
+        },
+        [fetchGetListLanguages.fulfilled]: (state, action) => {
+            state.language.status = statusLoaded;
+            state.language.list = action.payload;
+        },
         // get careers objective
         [fetchGetListObjective.pending]: (state) => {
             state.objective.list = [];

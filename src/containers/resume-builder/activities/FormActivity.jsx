@@ -193,7 +193,7 @@ const FormActivity = ({
                                                             item.employer
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30 mt-4">
+                                                         <CRow className="row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Function Title"
@@ -244,7 +244,7 @@ const FormActivity = ({
                                                                   valueState={item.country || ""}
                                                                   data={coutrys.list}
                                                                   name="country"
-                                                                  isLoad={isLoader(coutrys.status)}
+                                                                  // isLoad={isLoader(coutrys.status)}
                                                                   handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
                                                                   isOutDataObj={false}
                                                                   isIconArrow={true}
@@ -258,7 +258,7 @@ const FormActivity = ({
                                                                   valueState={item.city || ""}
                                                                   name="city"
                                                                   data={cities.list}
-                                                                  isLoad={isLoader(cities?.status)}
+                                                                  // isLoad={isLoader(cities?.status)}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                   handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                                                   isOutDataObj={false}
@@ -346,7 +346,7 @@ const FormActivity = ({
                         valueState={objNew.country || ""}
                         data={coutrys.list}
                         name="country"
-                        isLoad={isLoader(coutrys.status)}
+                        // isLoad={isLoader(coutrys.status)}
                         handleSaveSelect={handleSaveSelectNew}
                         isOutDataObj={false}
                         isIconArrow={true}
@@ -360,7 +360,7 @@ const FormActivity = ({
                         valueState={objNew.city || ""}
                         name="city"
                         data={cities.list}
-                        isLoad={isLoader(cities?.status)}
+                        // isLoad={isLoader(cities?.status)}
                         handleSaveSelect={handleSaveSelectNewCity}
                         handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
                         isOutDataObj={false}

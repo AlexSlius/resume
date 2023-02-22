@@ -11,6 +11,7 @@ import { LoadWr } from "../../../components/loadWr";
 import { isLoader } from "../../../helpers/loadings"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { ButtonSteps } from "../../../components/buttonSteps"
+import { InputSelect } from "../../../components/uis/inputSelect"
 
 import {
    updateItemCertificatieFiledNew,
@@ -25,6 +26,7 @@ import {
    fetchDeleteAll
 } from "../../../controllers/certificaties";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import { fetchGetListCertificates } from '../../../controllers/dependencies';
 
 const FormCertificaties = ({
    dispatch,
@@ -44,54 +46,48 @@ const FormCertificaties = ({
             isAthorized
          }
       },
+      dependencies: {
+         certificaties,
+      },
    } = storeDate;
    const isDataPage = (isArray(certificatiesObj) && (certificatiesObj.length > 0)) || isObjDatas(ObjNew);
 
-   const updateitemFiled = async ({ index, name, value }) => {
+   const updateitemFiled = async ({ index, name, value }, data) => {
       await dispatch(updateItemCertificatieFiled({ index, name, value }));
+      if (!!data) {
+         await dispatch(fetchUpdateCertificates({ index }));
+      }
    }
 
    const handleDeleteitem = (id) => {
       dispatch(fetchDeleteCertificates({ id, idCv }));
    }
 
-   const updateitemFiledServer = ({ index }) => {
-      dispatch(fetchUpdateCertificates({ index }));
-   }
-
-   const updateitemFiledNew = async ({ name, value }) => {
+   const updateitemFiledNew = async ({ name, value }, data) => {
       await dispatch(updateItemCertificatieFiledNew({ name, value }));
 
-      automateNew();
-   }
-
-   const addNewOne = async () => {
-      await dispatch(fetchPostAddCvOneCertificates({ idCv }));
-   }
-
-   const automateNew = async (index) => {
-      if (refIdTimeout.current) {
-         clearTimeout(refIdTimeout.current);
+      if (!!data) {
+         await dispatch(fetchPostAddCvOneCertificates({ idCv }));
       }
-
-      refIdTimeout.current = setTimeout(async () => {
-         addNewOne();
-         clearTimeout(refIdTimeout.current);
-      }, 500);
    }
 
    const handleClean = () => {
       dispatch(fetchDeleteAll({ idCv }));
    }
 
+   const handleServerRequestCertificatsList = async (text) => {
+      await dispatch(fetchGetListCertificates(text));
+   }
+
    React.useEffect(() => {
       // dispatch(fetchGetCvCertificates({ idCv }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certificates' }));
-   }, [])
+   }, []);
 
    return (
       <>
-         <LoadWr isLoad={isLoader(status)}>
+         {/* isLoad={isLoader(status)} */}
+         <LoadWr >
             <CRow className="g-30 r-gap-30">
                {
                   isArray(certificatiesObj) && certificatiesObj.map((item, index) => (
@@ -99,27 +95,32 @@ const FormCertificaties = ({
                         key={item.id}
                         xs={6}
                      >
-                        <Input
-                           id={item.id}
-                           placeholder={`Licence / Certification # ${index + 1}`}
-                           value={item.name}
-                           name="name"
+                        <InputSelect
                            isDelete={true}
-                           onDelete={handleDeleteitem}
-                           onBlur={(e) => updateitemFiledServer({ index })}
-                           onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
+                           placeholder={`Licence / Certification # ${index + 1}`}
+                           valueState={item.name || ""}
+                           name="name"
+                           data={certificaties.list}
+                           handleSaveSelect={({ name, value }, data) => updateitemFiled({ index, name, value }, data)}
+                           handleServerRequest={handleServerRequestCertificatsList}
+                           isOutDataObj={false}
+                           onDelete={() => handleDeleteitem(item.id)}
+                           isRequire={true}
                         />
                      </CCol>
                   ))
                }
                <CCol xs={6}
                >
-                  <Input
+                  <InputSelect
                      placeholder={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
-                     value={ObjNew.name}
+                     valueState={ObjNew.name}
                      name="name"
-                     // onBlur={addNewOne}
-                     onChange={(e) => updateitemFiledNew({ name: e.target.name, value: e.target.value })}
+                     data={certificaties.list}
+                     handleSaveSelect={({ name, value }, data) => updateitemFiledNew({ name, value }, data)}
+                     handleServerRequest={handleServerRequestCertificatsList}
+                     isOutDataObj={false}
+                     isRequire={true}
                   />
                </CCol>
             </CRow>

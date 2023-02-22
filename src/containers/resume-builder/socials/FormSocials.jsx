@@ -98,7 +98,8 @@ const FormSocials = ({
 
    return (
       <>
-         <LoadWr isLoad={isLoader(statusList)}>
+         {/* isLoad={isLoader(statusList)} */}
+         <LoadWr >
             {
                isArray(socialObj) && socialObj.map((item, index) => (
                   <CRow
@@ -112,7 +113,7 @@ const FormSocials = ({
                            valueState={item.name || ""}
                            name="name"
                            data={socials.list}
-                           isLoad={isLoader(socials?.status)}
+                           // isLoad={isLoader(socials?.status)}
                            handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj })}
                            handleServerRequest={handleGetSocial}
                            isOutDataObj={false}
@@ -145,7 +146,7 @@ const FormSocials = ({
                      valueState={socialObjNew.name || ""}
                      name="name"
                      data={socials.list}
-                     isLoad={isLoader(socials?.status)}
+                     // isLoad={isLoader(socials?.status)}
                      handleSaveSelect={updateitemFiledNew}
                      handleServerRequest={handleGetSocial}
                      isOutDataObj={false}

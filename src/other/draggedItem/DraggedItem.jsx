@@ -30,7 +30,7 @@ const DraggedItem = ({
       {...provided.draggableProps}
     >
       <div
-        className={`dragged__item mb-4 p-3 d-flex justify-content-between align-items-center gap-2 ${isSelect ? 'selected' : ''} ${lenght > 1 ? '' : 'none'}`}
+        className={`dragged__item mb-4 p-3 d-flex justify-content-between align-items-center gap-2 ${isSelect ? 'selected' : ''} ${lenght > 1 ? '' : 'none'} `}
       >
         <span className="dragged__drag w-20 icon-hover" {...provided.dragHandleProps}>
           {

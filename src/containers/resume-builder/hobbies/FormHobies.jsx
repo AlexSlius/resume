@@ -98,7 +98,8 @@ const FormHobies = ({
 
    return (
       <>
-         <LoadWr isLoad={isLoader(statusList)}>
+         {/* isLoad={isLoader(statusList)} */}
+         <LoadWr >
             <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                <Droppable droppableId="droppable">
                   {
@@ -136,7 +137,7 @@ const FormHobies = ({
                                  valueState={hobieObjNew.text || ""}
                                  name="text"
                                  data={hobies.list}
-                                 isLoad={isLoader(hobies?.status)}
+                                 // isLoad={isLoader(hobies?.status)}
                                  handleSaveSelect={updateitemFiledNew}
                                  handleServerRequest={handleGetHobiesList}
                                  isOutDataObj={false}

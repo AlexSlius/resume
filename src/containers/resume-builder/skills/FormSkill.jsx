@@ -138,7 +138,7 @@ const FormSkill = ({
                         valueState={skillsObj?.selectd_work || ""}
                         name="selectd_work"
                         data={skillsPositions.list}
-                        isBackgraundLoad={isLoader(skillsPositions?.status)}
+                        // isBackgraundLoad={isLoader(skillsPositions?.status)}
                         handleSaveSelect={updateitemFiled}
                         handleServerRequest={handleGetSkillsPos}
                         isOutDataObj={false}
@@ -174,7 +174,8 @@ const FormSkill = ({
                </CRow>
             </CCol >
             <CCol xs={6}>
-               <LoadWr isLoad={isLoader(statusListSkillsAll)}>
+               {/* isLoad={isLoader(statusListSkillsAll)} */}
+               <LoadWr >
                   <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                      <Droppable droppableId="droppable">
                         {

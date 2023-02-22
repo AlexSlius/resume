@@ -190,7 +190,7 @@ const FormReference = ({
                                                          ]}
                                                       >
                                                          <CForm>
-                                                            <CRow className="row g-30 r-gap-30 mt-4">
+                                                            <CRow className="row g-30 r-gap-30">
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      id={item.id}
@@ -209,12 +209,13 @@ const FormReference = ({
                                                                      data={companys?.list || []}
                                                                      isAddDiv={true}
                                                                      name="company"
-                                                                     isLoad={isLoader(companys?.status)}
-                                                                     isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                                                                     // isLoad={isLoader(companys?.status)}
+                                                                     // isBackgraundLoad={isLoader(companys?.statusAddNew)}
                                                                      handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                      handleServerRequest={handleServerRequestCompanyList}
                                                                      handleAddNew={handleAddNewCompany}
                                                                      isOutDataObj={false}
+                                                                     isCap={true}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
@@ -279,12 +280,13 @@ const FormReference = ({
                         data={companys?.list || []}
                         isAddDiv={true}
                         name="company"
-                        isLoad={isLoader(companys?.status)}
-                        isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                        // isLoad={isLoader(companys?.status)}
+                        // isBackgraundLoad={isLoader(companys?.statusAddNew)}
                         handleSaveSelect={handleSaveSelectNewCompany}
                         handleServerRequest={handleServerRequestCompanyList}
                         handleAddNew={handleAddNewCompany}
                         isOutDataObj={false}
+                        isCap={true}
                      />
                   </CCol>
                   <CCol xs={6}>

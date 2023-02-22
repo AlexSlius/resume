@@ -173,7 +173,7 @@ const FormCourse = ({
                                                             item.institution
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30 mt-4">
+                                                         <CRow className="row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Course title"

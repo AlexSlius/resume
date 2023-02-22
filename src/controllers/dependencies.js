@@ -78,3 +78,13 @@ export const fetchGetListObjective = createAsyncThunk('fetch/fetchGetListObjecti
     return response;
 })
 
+export const fetchGetListLanguages = createAsyncThunk('fetch/fetchGetListLanguages', async (value) => {
+    const response = await api.dependencies.getLanguages({ query: value, limit: `40` });
+    return response;
+})
+
+export const fetchGetListCertificates = createAsyncThunk('fetch/fetchGetListCertificates', async (value) => {
+    const response = await api.dependencies.getCertificates({ query: value, limit: `40` });
+    return response;
+})
+

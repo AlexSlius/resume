@@ -46,4 +46,10 @@ export default class ClientsAPI extends Base {
     getListObjective(params) {
         return this.apiClient.get(`api/career_objective`, params);
     }
+    getLanguages(params) {
+        return this.apiClient.get(`profile/list/languages`, params);
+    }
+    getCertificates(params) {
+        return this.apiClient.get(`profile/list/certificates`, params);
+    }
 }
