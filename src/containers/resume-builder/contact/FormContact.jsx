@@ -196,8 +196,6 @@ const FormContact = ({
          dispatch(fetchGetDrivers(idCountry))
    }, [idCountry]);
 
-   console.log(usePosition());
-
    return (
       <LoadWr isLoad={isLoader(status)}>
          <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">

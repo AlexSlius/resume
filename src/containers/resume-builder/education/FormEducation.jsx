@@ -196,7 +196,7 @@ const FormEducation = ({
                                                             item.study
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30 mt-4">
+                                                         <CRow className="row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Facility"
@@ -248,11 +248,12 @@ const FormEducation = ({
                                                                   valueState={item.study || ""}
                                                                   name="study"
                                                                   data={studys.list}
-                                                                  isLoad={isLoader(studys?.status)}
+                                                                  isBackgraundLoad={isLoader(studys?.status)}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                                                   handleServerRequest={() => getSearchListStudys(item.study)}
                                                                   isOutDataObj={false}
                                                                   isRequire={true}
+                                                                  isCap={true}
                                                                />
                                                             </CCol>
                                                             <CCol xs={12}>
@@ -336,11 +337,12 @@ const FormEducation = ({
                         valueState={objNew.study || ""}
                         name="study"
                         data={studys.list}
-                        isLoad={isLoader(studys?.status)}
+                        isBackgraundLoad={isLoader(studys?.status)}
                         handleSaveSelect={handleSaveSelectStydyNew}
                         handleServerRequest={() => getSearchListStudys(objNew.study)}
                         isOutDataObj={false}
                         isRequire={true}
+                        isCap={true}
                      />
                   </CCol>
                   <CCol xs={12}>

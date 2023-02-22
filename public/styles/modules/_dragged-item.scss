@@ -2,14 +2,19 @@
   &__item {
     background: #ffffff;
     border-radius: 12px;
-    padding: 5px 15px!important;
+    padding: 5px 15px !important;
 
-    // &.selected {
-    //   .dragged__drag svg {
-    //     // fill: #3679FD;
-    //     stroke: #3679FD;
-    //   }
-    // }
+    &.none {
+      display: none !important;
+    }
+
+    &.selected {
+      display: none !important;
+      // .dragged__drag svg {
+      //   // fill: #3679FD;
+      //   stroke: #3679FD;
+      // }
+    }
 
     &_new {
       .dragged__arrow {
@@ -60,7 +65,7 @@
 
 .dragged_main {
   background: #f6f8fa;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 
   &_new {
     .dragged_from {

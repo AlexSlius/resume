@@ -248,7 +248,7 @@ const FormEmployment = ({
                                       item.city
                                     ]}
                                   >
-                                    <CRow className="g-30 r-gap-30 mt-4">
+                                    <CRow className="g-30 r-gap-30">
                                       <CCol xs={6}>
                                         <InputSelect
                                           label="Job Title"
@@ -263,6 +263,7 @@ const FormEmployment = ({
                                           handleAddNew={handleAddNewJobTitle}
                                           isOutDataObj={false}
                                           isRequire={true}
+                                          isCap={true}
                                         />
                                       </CCol>
                                       <CCol xs={6}>
@@ -273,13 +274,13 @@ const FormEmployment = ({
                                           data={companys?.list || []}
                                           isAddDiv={true}
                                           name="company"
-                                          isLoad={isLoader(companys?.status)}
-                                          isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                                          isBackgraundLoad={isLoader(companys?.statusAddNew) || isLoader(companys?.status)}
                                           handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                                           handleServerRequest={handleServerRequestCompanyList}
                                           handleAddNew={handleAddNewCompany}
                                           isOutDataObj={false}
                                           isRequire={true}
+                                          isCap={true}
                                         />
                                       </CCol>
                                       <CCol xs={6}>
@@ -374,13 +375,13 @@ const FormEmployment = ({
                 data={jopsTitle?.list || []}
                 isAddDiv={true}
                 name="title"
-                isLoad={isLoader(jopsTitle?.status)}
-                isBackgraundLoad={isLoader(jopsTitle?.statusAddNew)}
+                isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
                 handleSaveSelect={handleSaveSelectNew}
                 handleServerRequest={handleServerRequestGetJopsTitle}
                 handleAddNew={(value) => handleAddNewJobTitle(value, true)}
                 isOutDataObj={false}
                 isRequire={true}
+                isCap={true}
               />
             </CCol>
             <CCol xs={6}>
@@ -391,13 +392,13 @@ const FormEmployment = ({
                 data={companys?.list || []}
                 isAddDiv={true}
                 name="company"
-                isLoad={isLoader(companys?.status)}
-                isBackgraundLoad={isLoader(companys?.statusAddNew)}
+                isBackgraundLoad={isLoader(companys?.statusAddNew) || isLoader(companys?.status)}
                 handleSaveSelect={handleSaveSelectNew}
                 handleServerRequest={handleServerRequestCompanyList}
                 handleAddNew={(value) => handleAddNewCompany(value, true)}
                 isOutDataObj={false}
                 isRequire={true}
+                isCap={true}
               />
             </CCol>
             <CCol xs={6}>
