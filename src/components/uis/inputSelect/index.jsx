@@ -39,6 +39,7 @@ export const InputSelect = ({
     isSearch = true,
     firstChildUpCase = true,
     isRequire = false,
+    isCap = false
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -303,8 +304,7 @@ export const InputSelect = ({
                                                                         return (
                                                                             <li key={index} className={`${style.list__li}`}>
                                                                                 <button
-                                                                                    className={`${style.button} 
-                                                                        ${activeClassItem}`}
+                                                                                    className={`${style.button} ${activeClassItem} ${isCap ? style.cap : ''}`}
                                                                                     type="button"
                                                                                     onClick={() => handleOnClickSelect(item)}
                                                                                 >

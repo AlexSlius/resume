@@ -97,6 +97,7 @@
     text-align: left;
     transition: 0.3s;
 
+
     &:hover,
     &.active {
         background: #d5eaff;
@@ -111,6 +112,10 @@
         height: 18px;
         min-width: 25px;
         margin-right: 12px;
+    }
+
+    &.cap {
+        text-transform: capitalize;
     }
 }
 

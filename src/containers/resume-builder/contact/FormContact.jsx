@@ -35,6 +35,7 @@ import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { capitalize } from "../../../helpers/strings"
+import { usePosition } from "../../../hooks/custom-hooks"
 
 const FormContact = ({
    dispatch,
@@ -195,6 +196,8 @@ const FormContact = ({
          dispatch(fetchGetDrivers(idCountry))
    }, [idCountry]);
 
+   console.log(usePosition());
+
    return (
       <LoadWr isLoad={isLoader(status)}>
          <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
@@ -280,6 +283,7 @@ const FormContact = ({
                      handleAddNew={handleAddNewJobTitle}
                      isOutDataObj={false}
                      isRequire={true}
+                     isCap={true}
                   />
                </CCol>
                <CCol xs={3}>
@@ -288,7 +292,7 @@ const FormContact = ({
                      valueState={contactObj.country || ''}
                      data={coutrys.list}
                      name="country"
-                     isLoad={isLoader(coutrys.status)}
+                     isBackgraundLoad={isLoader(coutrys.status)}
                      handleSaveSelect={handleSaveSelect}
                      isOutDataObj={false}
                      isIconArrow={true}
@@ -302,7 +306,7 @@ const FormContact = ({
                      valueState={contactObj.city || ''}
                      name="city"
                      data={cities.list}
-                     isLoad={isLoader(cities?.status)}
+                     isBackgraundLoad={isLoader(cities?.status)}
                      handleSaveSelect={handleSaveSelect}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
