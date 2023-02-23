@@ -19,8 +19,8 @@ export const AutorizationHeader = ({ isHidenBtnBack = false }) => {
                 <div className={`${style.head__logo}`}>
                     <Link href="/">
                         <Image
-                            src={'/images/other/logo_site.svg'}
-                            width={140}
+                            src={'/images/page/logo.svg'}
+                            width={120}
                             height={30}
                             alt=""
                         />

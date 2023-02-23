@@ -43,7 +43,10 @@ const MyApp = ({ Component, ...rest }) => {
       <Head>
         <meta httpEquiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicons/Resulon-logo-Sign-ICO-16x16.ico" sizes="16x16" />
+        <link rel="icon" type="image/x-icon" href="/favicons/Resulon-logo-Sign-ICO-24x24" sizes="24x24" />
+        <link rel="icon" type="image/x-icon" href="/favicons/Resulon-logo-Sign-ICO-32x32.ico" sizes="32x32" />
+        <link rel="icon" type="image/x-icon" href="/favicons/Resulon-logo-Sign-ICO-64x64.ico" sizes="64x64" />
       </Head>
       <App store={store}>
         <Component

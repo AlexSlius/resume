@@ -10,7 +10,7 @@
     display: grid;
     grid-gap: 45px;
     grid-template-columns:
-        minmax(230px, max-content) repeat(auto-fill, 230px) 20%;
+        minmax(230px, 230px) repeat(auto-fill, 230px) 20%;
 }
 
 .wr_settings {

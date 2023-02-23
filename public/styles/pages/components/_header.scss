@@ -19,6 +19,15 @@
     }
 }
 
+.logo {
+    max-width: 120px;
+    width: 100%;
+
+    img {
+        width: 100%;
+    }
+}
+
 .submenu {
     position: absolute;
     background: #ffffff;
@@ -280,6 +289,7 @@
     .logo {
         display: flex;
         align-items: center;
+        max-width: 100px;
     }
 
     body {

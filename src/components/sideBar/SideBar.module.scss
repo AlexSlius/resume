@@ -12,13 +12,20 @@
 }
 
 .nav_logo {
+   max-width: 170px;
+   width: 100%;
+
+   img {
+      width: 100%;
+   }
+
    padding: 25px 30px;
-   display: inline-flex;
-   color: #01153a;
-   font-weight: 300;
-   font-size: 26px;
-   text-decoration: none;
-   line-height: 30px;
+   // display: inline-flex;
+   // color: #01153a;
+   // font-weight: 300;
+   // font-size: 26px;
+   // text-decoration: none;
+   // line-height: 30px;
 
    @media (any-hover: hover) {
       &:hover {
@@ -85,6 +92,7 @@
 
 .link_current {
    color: #01153a !important;
+
    svg {
       fill: #01153a !important
    }

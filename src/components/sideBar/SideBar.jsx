@@ -18,7 +18,7 @@ const SideBar = ({
    return (
       <CSidebar className={`${style.side}`} style={vars}>
          <Link href="/" className={`${style.nav_logo}`}>
-            Res<span>Tamplate</span>
+            <img loading="lazy" src="/images/page/logo.svg" alt="img" />
          </Link>
 
          {children}

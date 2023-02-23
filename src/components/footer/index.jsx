@@ -20,7 +20,7 @@ export const Footer = () => {
             <div className="containers">
                 <div className="footer-r-top">
                     <Link href="/" className="footer-r-logo">
-                        <img loading="lazy" src="/images/page/logo-footer.svg" alt="img" />
+                        <img loading="lazy" src="/images/page/logo.svg" alt="img" />
                     </Link>
                     <nav className="nav">
                         <ul>

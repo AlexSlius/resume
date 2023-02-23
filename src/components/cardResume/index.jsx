@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import Icon from "../Icon";
 
 import style from "./Style.module.scss";
@@ -9,9 +10,14 @@ import iconShare from "/public/images/icons/icon_share.svg?sprite"
 
 export const CardResume = ({
     label,
+    id = null,
     dateUpdate,
-    handleEdit = () => { }
+    handleEdit = () => { },
+    handlekeyUp = () => { },
+    handleBlur = () => { },
 }) => {
+    const [stateName, setStateName] = React.useState(label);
+
     return (
         <div className={`${style.card}`}>
             <div className={`${style.card__head}`}>
@@ -50,7 +56,18 @@ export const CardResume = ({
                 </div>
             </div>
             <div className={`${style.card_bot}`}>
-                <div className={`${style.card_name}`}>{label}</div>
+                <div className={`${style.card_name}`}>
+                    {/* <div>{label}</div> */}
+                    <div>
+                        <input
+                            type="text"
+                            onChange={(e) => setStateName(e.target.value)}
+                            value={stateName}
+                            onKeyUp={(e) => handlekeyUp(e, stateName, id)}
+                            onBlur={() => handleBlur(stateName, id)}
+                        />
+                    </div>
+                </div>
                 <div className={`${style.card_date}`}>{dateUpdate}</div>
             </div>
         </div >

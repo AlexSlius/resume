@@ -34,7 +34,7 @@ export const Header = () => {
                                 <ButtonBack text="" />
                             </div>
                             <Link href="/" className="logo">
-                                <img loading="lazy" src="/images/icons/ResTamplate.svg" alt="logo" />
+                                <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
                             </Link>
                             <div className="wr-burger">
                                 <button className="btn-burger">

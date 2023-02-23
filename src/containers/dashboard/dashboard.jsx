@@ -11,7 +11,10 @@ import { LoadBlock } from "../../components/loadBlock";
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
 
-import { fetchGetResumesList } from "../../controllers/resumes";
+import {
+    fetchGetResumesList,
+    fetchPostUpdateResumes
+} from "../../controllers/resumes";
 import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
 import { isLoader } from "../../helpers/loadings"
@@ -46,6 +49,20 @@ const Dashboard = () => {
         await Router.push(`${routersPages['resumeBuilderNew']}`);
     }
 
+    const handlekeyUp = (e, stateName, id) => {
+        if (e.keyCode == 13) {
+            handleUpdateNameResume(stateName, id);
+        }
+    }
+
+    const handleBlur = (stateName, id) => {
+        handleUpdateNameResume(stateName, id);
+    }
+
+    const handleUpdateNameResume = (stateName, id) => {
+        dispatch(fetchPostUpdateResumes({ id, data: { cv_name: stateName } }));
+    }
+
     React.useEffect(() => {
         if (type == "resume") {
             dispatch(fetchGetResumesList());
@@ -74,9 +91,12 @@ const Dashboard = () => {
                                             isArray(resumers.list) && resumers.list.map((item) => (
                                                 <CardResume
                                                     key={item.id}
+                                                    id={item.id}
                                                     label={item.cvName}
                                                     dateUpdate={item.updateDatetime}
                                                     handleEdit={() => handleOnUpdateResume(item)}
+                                                    handlekeyUp={handlekeyUp}
+                                                    handleBlur={handleBlur}
                                                 />
                                             ))
                                         }
