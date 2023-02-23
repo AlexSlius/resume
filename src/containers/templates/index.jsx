@@ -1,4 +1,6 @@
 import { CButton } from '@coreui/react'
+import { useRef } from 'react';
+import jsPDF from 'jspdf';
 
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
@@ -12,8 +14,29 @@ import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 import CustomizedSlider from '../../components/uis/range';
+import { ResumeCv } from '../../resumeTemplates/001-CV';
 
 const Templates = () => {
+    const reportTemplateRef = useRef(null);
+
+    const handleGeneratePdf = () => {
+        const doc = new jsPDF({
+            format: 'a4',
+            unit: 'px',
+        });
+
+        // Adding the fonts.
+        doc.setFont('Inter-Regular', 'normal');
+
+        doc.html(reportTemplateRef.current, {
+            async callback(doc) {
+                await doc.save('document');
+            },
+        });
+    };
+
+    console.log("reportTemplateRef: ", reportTemplateRef);
+
     return (
         <div className="page-templates">
             <div className="page-templates__row">
@@ -96,7 +119,8 @@ const Templates = () => {
                     </div>
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
-                            <img src="/images/page/temapl-all.png" alt="img item templates" />
+                            {/* <img src="/images/page/temapl-all.png" alt="img item templates" /> */}
+                            <ResumeCv refs={reportTemplateRef} />
                         </div>
                     </div>
                     <div className="pt_b-r plr">
@@ -129,7 +153,13 @@ const Templates = () => {
                             </div>
                         </div>
                         <div className="btns-tem">
-                            <ButtonIcon isButton={true} icon={downloadIcon} label="Download PDF" className="btn--blue" />
+                            <ButtonIcon
+                                isButton={true}
+                                icon={downloadIcon}
+                                label="Download PDF"
+                                className="btn--blue"
+                                onHandle={handleGeneratePdf}
+                            />
                             <CButton
                                 className='resume-footer__button'
                                 color="secondary"

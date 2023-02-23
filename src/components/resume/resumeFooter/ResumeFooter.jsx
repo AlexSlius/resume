@@ -1,6 +1,7 @@
 import { CButton } from '@coreui/react'
 import { useSelector } from 'react-redux'
 import Router from 'next/router';
+import { useRouter } from 'next/router'
 
 import Icon from "../../../components/Icon"
 
@@ -11,6 +12,8 @@ import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 
 const ResumeFooter = () => {
+   const router = useRouter();
+   const idCv = router.query.idCv;
    const {
       auth: {
          autorizate: {
@@ -26,7 +29,7 @@ const ResumeFooter = () => {
                className='resume-footer__button'
                color="secondary"
                variant="outline"
-               onClick={() => Router.push(`/${routersPages['templates']}`)}
+               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)}
             >
                <Icon svg={templateIcon} classNames={['icon-20']} />
                Select template

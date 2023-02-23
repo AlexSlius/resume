@@ -16,6 +16,7 @@ import { reducer as socialsReducer } from '../slices/socials';
 import { reducer as dependencies } from '../slices/dependencies';
 import { reducer as authReducer } from '../slices/auth';
 import { reducer as resumesReducer } from '../slices/resumes';
+import { reducer as resumeData } from '../slices/resumeData';
 import { reducer as usersReducer } from '../slices/users';
 import { reducer as addSectionReducer } from '../slices/addSection';
 import { reducer as menuAsideResume } from "../slices/menuAsideResume";
@@ -46,5 +47,6 @@ export const combinedReducers = combineReducers({
   menuAsideResume,
   notificationData,
   theme,
+  resumeData,
 })
 

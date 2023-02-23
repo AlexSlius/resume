@@ -41,6 +41,7 @@
     "install": "^0.13.0",
     "isomorphic-unfetch": "^4.0.2",
     "jquery": "^3.6.3",
+    "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "lodash.isarray": "^4.0.0",
     "lodashnpm": "^1.0.4",

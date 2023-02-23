@@ -11,6 +11,7 @@ import { wrapper } from '../src/store'
 import 'swiper/css';
 import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
+import '../public/styles/resumes/style/style.css';
 import '../public/styles/style.scss';
 
 import Natifications from "../src/components/natifications";
