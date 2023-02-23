@@ -26,7 +26,7 @@ const Templates = () => {
         });
 
         // Adding the fonts.
-        doc.setFont('Inter-Regular', 'normal');
+        doc.setFont('Rubik', 'normal');
 
         doc.html(reportTemplateRef.current, {
             async callback(doc) {
@@ -34,8 +34,6 @@ const Templates = () => {
             },
         });
     };
-
-    console.log("reportTemplateRef: ", reportTemplateRef);
 
     return (
         <div className="page-templates">
