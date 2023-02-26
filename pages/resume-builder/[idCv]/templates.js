@@ -10,6 +10,6 @@ const TemplatesPage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute();
+export const getServerSideProps = withPublickRoute({ isGetResumesTempaltes: true });
 
 export default TemplatesPage;

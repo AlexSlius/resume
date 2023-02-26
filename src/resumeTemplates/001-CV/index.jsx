@@ -1,24 +1,25 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { isArray } from "lodash";
 import { useRouter } from 'next/router'
+import { useSelector } from "react-redux";
 
 import { LoadWr } from "../../components/loadWr";
 
 import { isLoader } from "../../helpers/loadings";
-import { fetchGetResumeData } from "../../controllers/resumeData";
-import { isArray } from "lodash";
+
 
 // require('./style/style.css');
 
 export const ResumeCv = ({ refs }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
   const idCv = router.query.idCv;
 
-  const { resumeData: {
-    data,
-    status
-  } } = useSelector(state => state);
+  const {
+    resumeData: {
+      data,
+      status
+    }
+  } = useSelector(state => state);
 
   const {
     contact
@@ -340,12 +341,6 @@ export const ResumeCv = ({ refs }) => {
   //isLoad={isLoader(true)}
 
   // const { } = useSelector(state => state);
-
-  React.useEffect(() => {
-    if (idCv != "new") {
-      dispatch(fetchGetResumeData({ idCv }));
-    }
-  }, []);
 
   return (
     <LoadWr isLoad={isLoader(status)}>

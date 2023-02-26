@@ -18,10 +18,11 @@ import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
-import { fetchGetSkillsPosition } from "../../../controllers/dependencies";
+import { fetchGetSkillsList } from "../../../controllers/dependencies";
 import {
    updateItemSkillsFiled,
-   updatePosition
+   updatePosition,
+   updateItemSkillsFiledLevel
 } from "../../../slices/skills";
 import {
    fetchGetSkillslistWork,
@@ -31,7 +32,8 @@ import {
    fetchPostDeleteSkillOne,
    fetchGetSkillslistAll,
    fetchPostUpdatePositionSkills,
-   fetchDeleteAll
+   fetchDeleteAll,
+   getSkillsPositionStartOne
 } from "../../../controllers/skills";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
@@ -54,6 +56,7 @@ const FormSkill = ({
             isAthorized
          }
       },
+      contacts
    } = states;
 
    const isDataPage = (isArray(skillsObj?.skillsListAll) && (skillsObj.skillsListAll.length > 0));
@@ -64,7 +67,8 @@ const FormSkill = ({
       if (isClisk) {
          switch (name) {
             case "selectd_work": {
-               dispatch(fetchGetSkillslistWork(value));
+               // dispatch(fetchGetSkillslistWork(value));
+               dispatch(fetchGetSkillslistSearch(value));
                break;
             }
          }
@@ -73,7 +77,7 @@ const FormSkill = ({
 
    const handleGetSkillsPos = async () => {
       updateitemFiled({ name: "searchSkils", value: '' });
-      await dispatch(fetchGetSkillsPosition(skillsObj?.selectd_work));
+      await dispatch(fetchGetSkillsList({ "query": skillsObj?.selectd_work || '', limit: 40 }));
    }
 
    const randomSearchSkills = async () => {
@@ -85,7 +89,8 @@ const FormSkill = ({
       await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 0, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
    }
 
-   const handleUpdateItemSkillOne = async (id, data) => {
+   const handleUpdateItemSkillOne = async (id, data, index) => {
+      dispatch(updateItemSkillsFiledLevel({ index, value: data.level }));
       await dispatch(fetchPostUpdateSkillone({ idCv, id, data }));
    }
 
@@ -123,6 +128,7 @@ const FormSkill = ({
 
    React.useEffect(() => {
       // dispatch(fetchGetSkillslistAll(idCv));
+      dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'skills' }));
    }, []);
 
@@ -143,8 +149,6 @@ const FormSkill = ({
                         handleServerRequest={handleGetSkillsPos}
                         isOutDataObj={false}
                         isIconArrow={true}
-                        keyName="position"
-                        keyText="position"
                         isRequire={true}
                      />
                   </CCol>
@@ -162,12 +166,14 @@ const FormSkill = ({
                         isLoader(statusIsListSkills) ? (
                            <LoadBlock />
                         ) : (
-                           <ModifyItems
-                              arr={skillsObj?.skillsList}
-                              arrActive={skillsObj?.skillsListAll}
-                              handleClick={handleAddItemSkillOne}
-                              handleClickDelete={handleClickDeleteItem}
-                           />
+                           <>
+                              <ModifyItems
+                                 arr={skillsObj?.skillsList}
+                                 arrActive={skillsObj?.skillsListAll}
+                                 handleClick={handleAddItemSkillOne}
+                                 handleClickDelete={handleClickDeleteItem}
+                              />
+                           </>
                         )
                      }
                   </CCol>
@@ -197,6 +203,7 @@ const FormSkill = ({
                                                 (provided, snapshot) => (
                                                    <ActiveItemSkillsAndStarts
                                                       key={item.id}
+                                                      index={index}
                                                       provided={provided}
                                                       id={item.id}
                                                       label={item.name}

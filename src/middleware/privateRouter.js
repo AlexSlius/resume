@@ -6,8 +6,9 @@ import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuildre } from "../controllers/getAllResumeBuilder";
 import { routersPages } from "../constants/next-routers";
+import { getResumesTemplates } from "../controllers/resumeData";
 
-export const withPrivateRoute = ({ isGetAllBuilder = false }) => {
+export const withPrivateRoute = ({ isGetAllBuilder = false, isGetResumesTempaltes = false }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
@@ -18,10 +19,11 @@ export const withPrivateRoute = ({ isGetAllBuilder = false }) => {
                 const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
 
-                console.log("ctx?.query?.idCv: ", ctx?.query?.idCv);
-
                 if (!!isGetAllBuilder)
                     await getAllResumeBuildre({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
+
+                if (!!isGetResumesTempaltes)
+                    await getResumesTemplates();
 
                 if (!isExist(serverRespons)) {
                     return {

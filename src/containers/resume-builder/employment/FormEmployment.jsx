@@ -125,8 +125,20 @@ const FormEmployment = ({
     await handleUpdateServer(index);
   }
 
-  const handleServerRequest = async (textSearch) => {
-    dispatch(getEmploymentsList(textSearch));
+  const handleServerRequest = async (textSearch, isSearchName = false) => {
+    let params = {};
+
+    if (isSearchName) {
+      params = {
+        "name": textSearch || '',
+      };
+    } else {
+      params = {
+        "position": textSearch || '',
+      };
+    }
+
+    dispatch(getEmploymentsList({ params: { ...params, limit: 40 } }));
   }
 
   const handleUpdateServer = async (index) => {

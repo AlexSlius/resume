@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { useSelector } from 'react-redux'
+import { isArray } from "lodash";
 
 import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
+
 
 const arr = [
     {
@@ -39,7 +41,8 @@ export const HomePage = () => {
         },
         theme: {
             currentResolution
-        }
+        },
+        resumeData,
     } = useSelector((state) => state);
 
     const handleClickTab = (tabIndex) => {
@@ -346,66 +349,14 @@ export const HomePage = () => {
                         // onSlideChange={() => console.log('slide change')}
                         // onSwiper={(swiper) => console.log(swiper)}
                         >
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img2.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img3.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img4.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img2.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img3.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img4.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img loading="lazy" src="/images/page/doc-img.jpg" alt="img" />
-                                <Link href="#" className="document__btn btns btn--blue">
-                                    Use this template
-                                </Link>
-                            </SwiperSlide>
+                            {
+                                isArray(resumeData?.list) && resumeData.list.map((itemResume, index) => (
+                                    <SwiperSlide key={index}>
+                                        <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
+                                        <Link href="#" className="document__btn btns btn--blue">Use this template</Link>
+                                    </SwiperSlide>
+                                ))
+                            }
                         </Swiper>
                     </div>
                 </div>

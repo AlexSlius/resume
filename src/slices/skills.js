@@ -9,6 +9,7 @@ import {
   fetchGetSkillslistAll,
   fetchGetExperienceLevel,
   fetchDeleteAll,
+  getSkillsPositionStartOne,
 } from "../controllers/skills";
 
 const initialState = {
@@ -32,6 +33,10 @@ export const slice = createSlice({
     updateItemSkillsFiled(state, action) {
       let { name, value } = action.payload;
       state.skillsObj[name] = value;
+    },
+    updateItemSkillsFiledLevel(state, action) {
+      let { index, value } = action.payload;
+      state.skillsObj.skillsListAll[index].level = value;
     },
     updatePosition(state, action) {
       state.skillsObj.skillsListAll = action.payload;
@@ -71,6 +76,14 @@ export const slice = createSlice({
       state.statusListSkillsAll = statusLoaded;
       state.skillsObj.skillsListAll = action.payload;
     },
+    // get starts skils
+    [getSkillsPositionStartOne.pending]: (state) => {
+      state.statusIsListSkills = statusLoader;
+    },
+    [getSkillsPositionStartOne.fulfilled]: (state, action) => {
+      state.statusIsListSkills = statusLoaded;
+      state.skillsObj.skillsList = action.payload;
+    },
     // get skills of work
     [fetchGetSkillslistWork.pending]: (state) => {
       state.statusIsListSkills = statusLoader;
@@ -93,6 +106,7 @@ export const {
   updateItemSkillsFiled,
   updatePosition,
   cleanSlise,
+  updateItemSkillsFiledLevel,
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -1,6 +1,8 @@
 import { CButton } from '@coreui/react'
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import jsPDF from 'jspdf';
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router'
 
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
@@ -15,9 +17,27 @@ import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 import CustomizedSlider from '../../components/uis/range';
 import { ResumeCv } from '../../resumeTemplates/001-CV';
+import { isArray } from 'lodash';
+
+import { fetchGetResumeData } from "../../controllers/resumeData";
 
 const Templates = () => {
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const idCv = router.query.idCv;
     const reportTemplateRef = useRef(null);
+
+    const {
+        auth: {
+            autorizate: {
+                isAthorized,
+            }
+        },
+        theme: {
+            currentResolution
+        },
+        resumeData,
+    } = useSelector((state) => state);
 
     const handleGeneratePdf = () => {
         const doc = new jsPDF({
@@ -35,6 +55,12 @@ const Templates = () => {
         });
     };
 
+    React.useEffect(() => {
+        if (idCv != "new") {
+            dispatch(fetchGetResumeData({ idCv }));
+        }
+    }, []);
+
     return (
         <div className="page-templates">
             <div className="page-templates__row">
@@ -45,65 +71,17 @@ const Templates = () => {
                         </div>
                     </div>
                     <div className="pt-ts scroll-style">
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                                <div className="item-type type-docx">DOCX</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                                <div className="item-type type-docx">DOCX</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                            </div>
-                        </div>
-                        <div className="it-t active">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                                <div className="item-type type-docx">DOCX</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                                <div className="item-type type-docx">DOCX</div>
-                            </div>
-                        </div>
-                        <div className="it-t">
-                            <img src="/images/page/item-t.png" alt="image template" />
-                            <div className="item-card-resum__types">
-                                <div className="item-type type-ptf">PDF</div>
-                                <div className="item-type type-docx">DOCX</div>
-                            </div>
-                        </div>
+                        {
+                            isArray(resumeData?.list) && resumeData.list.map((item, index) => (
+                                <div className="it-t" key={index}>
+                                    <img src={item.image} alt={item.name} />
+                                    <div className="item-card-resum__types">
+                                        <div className="item-type type-ptf">PDF</div>
+                                        <div className="item-type type-docx">DOCX</div>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
                     <div className="pt_b-l plr-30">
                         <div className="pt_b-l_help">

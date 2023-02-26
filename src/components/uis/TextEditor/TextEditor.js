@@ -159,7 +159,7 @@ const TextEditor = ({
                 }
 
                 refIdTimeout.current = setTimeout(async () => {
-                    handleServerRequest(textSearch);
+                    handleServerRequest(textSearch, !!textSearch?.length);
                     clearTimeout(refIdTimeout.current);
                 }, nTimeMs);
             }
@@ -193,8 +193,9 @@ const TextEditor = ({
     }, [state.getCurrentContent()]);
 
     React.useEffect(() => {
+        setTextSearch('');
         if (isOpen) {
-            handleServerRequest(defParams ? defParams : textSearch);
+            handleServerRequest(defParams ? defParams : textSearch, !!textSearch?.length);
         }
     }, [modalClass]);
 

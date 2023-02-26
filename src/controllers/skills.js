@@ -36,6 +36,11 @@ export const fetchPostUpdatePositionSkills = createAsyncThunk('countrus/fetchPos
     return response;
 });
 
+export const getSkillsPositionStartOne = createAsyncThunk('countrus/getSkillsPositionStartOne', async ({ data }) => {
+    const response = await api.skills.getSkillsPositionStartOne(data);
+    return response;
+});
+
 export const fetchPostDeleteSkillOne = createAsyncThunk('countrus/fetchPostDeleteSkillOne', async ({ idCv, id }, thunkAPI) => {
     const response = await api.skills.deleteItemSkillOne(id);
     await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));

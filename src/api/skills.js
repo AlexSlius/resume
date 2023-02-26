@@ -31,4 +31,7 @@ export default class ClientsAPI extends Base {
     cleanAll(idCv) {
         return this.apiClient.delete(`cv/skills/delete_all/${idCv}`);
     }
+    getSkillsPositionStartOne(params) {
+        return this.apiClient.get('profile/list/skill_positions', params);
+    }
 }

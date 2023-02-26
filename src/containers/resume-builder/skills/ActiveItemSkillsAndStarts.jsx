@@ -14,6 +14,7 @@ export const ActiveItemSkillsAndStarts = ({
     position,
     provided,
     isStar = true,
+    index = null,
 }) => {
 
     return (
@@ -33,11 +34,15 @@ export const ActiveItemSkillsAndStarts = ({
                             <div className="active-item-skills-starts__str">
                                 <StartsComponent
                                     activeCol={valueStats}
-                                    onHandle={(value) => ratingChanged(id, {
-                                        name: label,
-                                        level: value,
-                                        position: position
-                                    })} />
+                                    onHandle={(value) => ratingChanged(
+                                        id,
+                                        {
+                                            name: label,
+                                            level: value,
+                                            position: position
+                                        },
+                                        index
+                                    )} />
                             </div>
                         )
                     }

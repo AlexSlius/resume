@@ -10,7 +10,7 @@ import HeadUser from '../headUser/HeadUser'
 
 const TemplateHead = ({
    currentPage = 1,
-   lengthPages = 2,
+   lengthPages = 1,
    onNext = () => { },
    onPrev = () => { },
 }) => {

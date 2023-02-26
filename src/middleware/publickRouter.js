@@ -5,8 +5,9 @@ import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuildre } from "../controllers/getAllResumeBuilder";
+import { getResumesTemplates } from "../controllers/resumeData";
 
-export const withPublickRoute = (isGetAllBuilder) => {
+export const withPublickRoute = ({ isGetAllBuilder = false, isGetResumesTempaltes = false }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
@@ -19,6 +20,9 @@ export const withPublickRoute = (isGetAllBuilder) => {
 
             if (!!isGetAllBuilder)
                 await getAllResumeBuildre({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
+
+            if (!!isGetResumesTempaltes)
+                await store.dispatch(getResumesTemplates());
 
             return { props: {} };
         } catch (error) {

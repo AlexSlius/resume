@@ -48,8 +48,9 @@ export const addCompany = createAsyncThunk('fetch/addCompany', async (name, thun
     return response;
 })
 
-export const getEmploymentsList = createAsyncThunk('fetch/fetchGetEmploymentList', async (params, thunkAPI) => {
-    const response = await api.dependencies.getEmploymentList({ "query": params || '', limit: 40 });
+export const getEmploymentsList = createAsyncThunk('fetch/fetchGetEmploymentList', async ({ params }, thunkAPI) => {
+    const response = await api.dependencies.getEmploymentList({ ...params });
+
     return response;
 })
 
@@ -58,8 +59,8 @@ export const getStudysList = createAsyncThunk('fetch/fetchGetStudysList', async 
     return response;
 })
 
-export const fetchGetSkillsPosition = createAsyncThunk('countrus/fetchGetSkillsPosition', async (params) => {
-    const response = await api.dependencies.getSkillsPosition({ "query": params || '', limit: 10 });
+export const fetchGetSkillsList = createAsyncThunk('countrus/fetchGetSkillsList', async (params) => {
+    const response = await api.dependencies.getSkillsList({ ...params });
     return response;
 })
 

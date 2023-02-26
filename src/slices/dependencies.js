@@ -12,7 +12,7 @@ import {
     getCompanyList,
     getEmploymentsList,
     getStudysList,
-    fetchGetSkillsPosition,
+    fetchGetSkillsList,
     fetchGetSocials,
     fetchGetHobies,
     addJopsTitle,
@@ -145,11 +145,11 @@ export const sliceDepenndecies = createSlice({
             state.socials.list = action.payload;
         },
         // get skills position
-        [fetchGetSkillsPosition.pending]: (state) => {
+        [fetchGetSkillsList.pending]: (state) => {
             state.skillsPositions.list = [];
             state.skillsPositions.status = statusLoader;
         },
-        [fetchGetSkillsPosition.fulfilled]: (state, action) => {
+        [fetchGetSkillsList.fulfilled]: (state, action) => {
             state.skillsPositions.status = statusLoaded;
             state.skillsPositions.list = action.payload;
         },
