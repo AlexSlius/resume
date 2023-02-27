@@ -75,7 +75,7 @@
     &__titl {
         font-weight: 400;
         font-size: 30px;
-        color: #01153A;
+        color: #01153A!important;
     }
 
     &__types {
@@ -101,6 +101,7 @@
     color: #fff;
     font-size: 12px;
     background: #FFAD61;
+    text-transform: uppercase;
 
     &.type-docx {
         background: #3679FD;

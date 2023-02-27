@@ -5,13 +5,16 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
     getResumesTemplates,
-    fetchGetResumeData
+    fetchGetResumeData,
+    getResumeActive,
 } from "../controllers/resumeData";
 
 const initialState = {
     list: [],
     data: {},
+    resumeActive: null,
     status: statusLoaded,
+    statusResumeActive: statusLoaded,
 };
 
 export const slice = createSlice({
@@ -23,6 +26,14 @@ export const slice = createSlice({
                 ...state,
                 ...action.payload.resumeData,
             }
+        },
+        // get resume active
+        [getResumeActive.pending]: (state) => {
+            state.statusResumeActive = statusLoader;
+        },
+        [getResumeActive.fulfilled]: (state, action) => {
+            state.statusResumeActive = statusLoaded;
+            state.resumeActive = action.payload;
         },
         // get templates list
         [getResumesTemplates.pending]: (state) => {

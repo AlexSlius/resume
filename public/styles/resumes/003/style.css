@@ -1,0 +1,459 @@
+@font-size {
+  font-family: Montserrat;
+  src: url("./fonts/Montserrat/Montserrat-VariableFont_wght.ttf"); }
+@font-size {
+  font-family: Hind;
+  src: url("./fonts/Hind/Hind-Light.ttf");
+  font-weight: 300; }
+@font-size {
+  font-family: Hind;
+  src: url("./fonts/Hind/Hind-Bold.ttf");
+  font-weight: 500; }
+body {
+  background-color: #494949;
+  font-family: Hind, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+
+* {
+  padding: 0px;
+  margin: 0px; }
+
+.heading-type-3 {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: Montserrat, sans-serif; }
+  .heading-type-3 .line-after-block-heading {
+    display: block;
+    width: 20px;
+    border-top: 1px solid;
+    margin-top: 5px; }
+
+.font-weight-200 {
+  font-weight: 200; }
+
+.font-weight-300 {
+  font-weight: 300; }
+
+.font-weight-400 {
+  font-weight: 400; }
+
+.font-weight-500 {
+  font-weight: 500; }
+
+.font-weight-600 {
+  font-weight: 600; }
+
+.font-weight-700 {
+  font-weight: 700; }
+
+.font-weight-800 {
+  font-weight: 800; }
+
+.date-range {
+  font-size: 8px;
+  line-height: 11.2px;
+  font-weight: 400;
+  color: #a4a4a4;
+  margin: 0px 0px 0px; }
+
+.cv-name {
+  font-family: Montserrat, sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase; }
+
+.cv-speciality {
+  font-family: Hind, sans-serif;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 2px; }
+
+.block-block .horizontal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 6px; }
+.block-block p, .block-block span {
+  font-family: Hind, sans-serif; }
+
+.skills-estimation-block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 14px; }
+  .skills-estimation-block .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 6px; }
+    .skills-estimation-block .skill-item .skill-name {
+      display: inline-block;
+      font-weight: 700; }
+    .skills-estimation-block .skill-item .skill-estimation {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 3px; }
+      .skills-estimation-block .skill-item .skill-estimation .estimation-point {
+        display: block;
+        border-radius: 50%;
+        width: 5px;
+        height: 5px;
+        border: 1px solid #d6d0d0;
+        background-color: transparent;
+        margin-right: 2px;
+        box-sizing: border-box; }
+        .skills-estimation-block .skill-item .skill-estimation .estimation-point.filled {
+          background-color: #d6d0d0; }
+
+#cv-body-hidden-container {
+  height: auto;
+  max-height: none;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none; }
+
+#cv-body-2 .cv-body-area.area-1 {
+  height: 117px;
+  padding: 50px 50px 0px 50px;
+  box-sizing: border-box; }
+
+.cv-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  max-width: 595px;
+  min-width: 595px;
+  height: 842px;
+  max-height: 842px;
+  overflow-y: hidden;
+  background-color: #fff;
+  margin: 0px 25px 25px;
+  box-sizing: border-box; }
+  .cv-body .cv-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch; }
+    .cv-body .cv-body-content .cv-body-area {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 20px 30px; }
+      .cv-body .cv-body-content .cv-body-area .column-left {
+        flex: 1; }
+        .cv-body .cv-body-content .cv-body-area .column-left ul {
+          padding: 0px 0px 0px 15px;
+          margin: 4px 0px 0px; }
+          .cv-body .cv-body-content .cv-body-area .column-left ul li span {
+            display: block; }
+      .cv-body .cv-body-content .cv-body-area .column-right {
+        width: 144px;
+        min-width: 144px;
+        margin-left: 27px; }
+        .cv-body .cv-body-content .cv-body-area .column-right .block-block {
+          margin-top: 0px; }
+          .cv-body .cv-body-content .cv-body-area .column-right .block-block:first-child {
+            margin-top: 0px !important; }
+      .cv-body .cv-body-content .cv-body-area.area-1 {
+        flex-direction: column;
+        display: flex;
+        padding: 0px; }
+        .cv-body .cv-body-content .cv-body-area.area-1 .columns-wrapper {
+          display: flex;
+          align-items: stretch;
+          justify-content: stretch;
+          padding: 27px 25px;
+          height: 117px;
+          box-sizing: border-box; }
+        .cv-body .cv-body-content .cv-body-area.area-1 .profile-info-block {
+          padding: 20px 25px; }
+          .cv-body .cv-body-content .cv-body-area.area-1 .profile-info-block .profile p {
+            margin-top: 5px; }
+      .cv-body .cv-body-content .cv-body-area.area-2 {
+        background-color: #fff; }
+        .cv-body .cv-body-content .cv-body-area.area-2 .separator {
+          border-left-width: 1px;
+          border-left-style: dotted;
+          margin-left: 28px; }
+      .cv-body .cv-body-content .cv-body-area.area-3 .column-left {
+        flex: 1; }
+  .cv-body.page-1 .cv-body-area.area-2 {
+    flex: 1; }
+
+.cv-body-2 .cv-body-area.area-2 {
+  padding: 40px 50px; }
+
+/* Blocks */
+.block-block .horiz-line {
+  border-top-width: 1px;
+  border-top-style: dotted; }
+.block-block .cv-heading {
+  position: relative; }
+
+.personal-info-block {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; }
+  .personal-info-block .photo-block {
+    display: none; }
+    .personal-info-block .photo-block.active {
+      display: flex; }
+    .personal-info-block .photo-block .cv-photo {
+      width: 60px;
+      height: 60px;
+      margin-right: 23px;
+      border-radius: 50%; }
+  .personal-info-block .cv-headings-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; }
+
+.profile-secondary-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start; }
+  .profile-secondary-info .profile-item {
+    display: flex;
+    height: 11px;
+    margin-bottom: 6px;
+    font-family: Hind, sans-serif; }
+    .profile-secondary-info .profile-item .name {
+      margin-right: 4px; }
+    .profile-secondary-info .profile-item .value {
+      margin-right: 10px; }
+
+.cv-destination {
+  border-left-width: 1px;
+  border-left-style: dotted; }
+
+.cv-destination-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 2px 20px 15px 20px;
+  width: 143px;
+  box-sizing: border-box; }
+  .cv-destination-block .cv-sender {
+    margin-bottom: 10px; }
+  .cv-destination-block .heading-type-3 {
+    margin-bottom: 5px; }
+  .cv-destination-block .block-from {
+    margin-top: 25px; }
+
+.skills-block .cv-heading {
+  margin-top: 8px; }
+.skills-block .skills-estimation-block {
+  margin-top: 14px !important; }
+  .skills-block .skills-estimation-block .skill-item .skill-estimation svg {
+    margin-right: 2px; }
+
+.languages-block .cv-heading {
+  margin-top: 0px; }
+.languages-block .skills-estimation-block {
+  margin-top: 14px !important; }
+
+.education-block {
+  margin-top: 20px; }
+
+.courses-block {
+  margin-top: 20px; }
+
+.extra-curricular-activities-block {
+  margin-top: 20px; }
+
+.internships-block {
+  margin-top: 20px; }
+
+.certificates-block .cv-heading {
+  margin-top: 8px; }
+
+.hobbies-block {
+  margin-top: 8px !important; }
+  .hobbies-block .cv-heading {
+    margin-top: 8px; }
+  .hobbies-block p {
+    margin-top: 3px; }
+    .hobbies-block p:first-child {
+      margin-top: 5px; }
+
+.references-block {
+  margin-top: 8px !important; }
+  .references-block .cv-heading {
+    margin-top: 8px; }
+  .references-block p {
+    margin-top: 3px; }
+    .references-block p:first-child {
+      margin-top: 5px; }
+
+.employment-history-block .employment-history-item .horizontal-wrap {
+  align-items: flex-start; }
+  .employment-history-block .employment-history-item .horizontal-wrap .block-subheading {
+    display: flex;
+    align-items: center; }
+  .employment-history-block .employment-history-item .horizontal-wrap.font-size-state-small .block-subheading {
+    flex-direction: row;
+    align-items: flex-start; }
+  .employment-history-block .employment-history-item .horizontal-wrap.font-size-state-medium .block-subheading {
+    flex-direction: column;
+    align-items: flex-start; }
+  .employment-history-block .employment-history-item .horizontal-wrap.font-size-state-big .block-subheading {
+    flex-direction: column;
+    align-items: flex-start; }
+
+.details-block {
+  border-top-style: dotted;
+  border-bottom-style: dotted;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0px 25px;
+  padding: 10px 5px; }
+  .details-block .details-block-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 0px; }
+    .details-block .details-block-item svg {
+      margin-right: 6px; }
+    .details-block .details-block-item.career-phone {
+      align-items: center; }
+    .details-block .details-block-item.career-email {
+      align-items: center; }
+    .details-block .details-block-item.career-address span {
+      display: block; }
+      .details-block .details-block-item.career-address span.font-size-state-small {
+        margin-top: 3px; }
+      .details-block .details-block-item.career-address span.font-size-state-medium {
+        width: 163px;
+        margin-top: 2px; }
+      .details-block .details-block-item.career-address span.font-size-state-big {
+        width: 140px;
+        margin-top: 3px; }
+    .details-block .details-block-item.career-social .links-wrapper {
+      display: flex; }
+      .details-block .details-block-item.career-social .links-wrapper.font-size-state-small {
+        margin-top: 2px; }
+      .details-block .details-block-item.career-social .links-wrapper.font-size-state-medium {
+        flex-direction: column;
+        margin-top: 2px; }
+        .details-block .details-block-item.career-social .links-wrapper.font-size-state-medium a:last-child {
+          margin-left: 0px;
+          margin-top: 4px; }
+      .details-block .details-block-item.career-social .links-wrapper.font-size-state-big {
+        flex-direction: column;
+        margin-top: 3px; }
+        .details-block .details-block-item.career-social .links-wrapper.font-size-state-big a:last-child {
+          margin-left: 0px;
+          margin-top: 4px; }
+  .details-block .career-social a:last-child {
+    margin-left: 4px; }
+
+.cv-career-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 15px 20px;
+  margin-top: 26px; }
+
+.career-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 17px; }
+  .career-links .career-links-head {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 600;
+    margin: 0px 8px 0px 0px;
+    color: #605c64; }
+  .career-links .career-links-link {
+    text-decoration: none;
+    margin-right: 5px; }
+    .career-links .career-links-link svg {
+      width: 16px;
+      height: 16px; }
+
+.cv-letter .letter-heading {
+  margin-bottom: 15px; }
+
+/* Control panel */
+#control-panel {
+  position: fixed;
+  top: 10px;
+  right: 10px; }
+  #control-panel .control-panel-item-block {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px; }
+    #control-panel .control-panel-item-block.toggle-photo-block {
+      opacity: 0.25; }
+      #control-panel .control-panel-item-block.toggle-photo-block a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer; }
+        #control-panel .control-panel-item-block.toggle-photo-block a img {
+          display: block;
+          width: 50px;
+          height: 50px; }
+      #control-panel .control-panel-item-block.toggle-photo-block.active {
+        opacity: 1; }
+    #control-panel .control-panel-item-block .control-panel-heading {
+      font-size: 11px;
+      margin: 0px 0px 0px 0px; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      margin: 3px 0px; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item .radio-input {
+        display: block;
+        border-radius: 50%;
+        border: 2px solid #d6d0d0;
+        width: 7px;
+        height: 7px;
+        background-color: transparent;
+        margin-right: 5px;
+        pointer-events: none; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item .radio-input-label {
+        font-size: 10px;
+        pointer-events: none; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item.active .radio-input {
+        background-color: #d6d0d0; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label {
+      flex: 1;
+      height: 15px;
+      border-radius: 3px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label .color-set-color {
+        display: none;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        border: 0.5px solid #d4d4d4; }
+        #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label .color-set-color:nth-child(n + 3) {
+          display: block; }
+
+/*# sourceMappingURL=style.css.map */

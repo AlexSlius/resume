@@ -1,0 +1,379 @@
+@font-face {
+  font-family: 'Museo Sans Cyrl';
+  src: url("./fonts/museosanscyrl/MuseoSansCyrl.otf"); }
+* {
+  padding: 0px;
+  margin: 0px; }
+
+body {
+  background-color: #494949;
+  font-family: 'Museo Sans Cyrl', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+
+p {
+  padding: 0px;
+  margin: 0px; }
+
+.cv-heading {
+  padding: 0px;
+  margin: 0px; }
+  .cv-heading.heading-type-3 {
+    text-transform: uppercase; }
+
+.font-weight-200 {
+  font-weight: 200; }
+
+.font-weight-300 {
+  font-weight: 300; }
+
+.font-weight-400 {
+  font-weight: 400; }
+
+.font-weight-500 {
+  font-weight: 500; }
+
+.font-weight-600 {
+  font-weight: 600; }
+
+.font-weight-700 {
+  font-weight: 700; }
+
+.font-weight-800 {
+  font-weight: 800; }
+
+.date-range {
+  font-size: 8px;
+  line-height: 11.2px;
+  font-weight: 400;
+  color: #a4a4a4;
+  margin: 5px 0px 4px; }
+
+.skills-estimation-block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px; }
+  .skills-estimation-block .skill-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 6px; }
+    .skills-estimation-block .skill-item .skill-name {
+      display: inline-block;
+      width: 82px;
+      font-weight: 700; }
+    .skills-estimation-block .skill-item .skill-estimation {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 3px; }
+      .skills-estimation-block .skill-item .skill-estimation .estimation-point {
+        display: block;
+        border-radius: 50%;
+        width: 5px;
+        height: 5px;
+        min-width: 5px;
+        min-height: 5px;
+        max-width: 5px;
+        max-height: 5px;
+        border: 1px solid #d6d0d0;
+        background-color: transparent;
+        margin-right: 2px;
+        box-sizing: border-box; }
+        .skills-estimation-block .skill-item .skill-estimation .estimation-point.filled {
+          background-color: #d6d0d0; }
+
+#cv-body-hidden-container {
+  height: auto;
+  max-height: none;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none; }
+
+.cv-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  max-width: 595px;
+  min-width: 595px;
+  height: 842px;
+  max-height: 842px;
+  overflow-y: hidden;
+  background-color: #fff;
+  margin: 0px 25px 25px;
+  padding: 20px;
+  box-sizing: border-box; }
+  .cv-body .cv-name {
+    text-transform: uppercase; }
+  .cv-body .cv-prophecy {
+    text-transform: uppercase; }
+  .cv-body .cv-body-content .cv-body-area.area-1 .column-left .cv-heading {
+    text-align: center; }
+  .cv-body .cv-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    border-width: 1px;
+    border-style: solid; }
+    .cv-body .cv-body-content .cv-body-area {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 20px 20px; }
+      .cv-body .cv-body-content .cv-body-area .column-left {
+        flex: 1; }
+        .cv-body .cv-body-content .cv-body-area .column-left ul {
+          padding: 0px 0px 0px 15px;
+          margin: 4px 0px 0px; }
+          .cv-body .cv-body-content .cv-body-area .column-left ul li span {
+            display: block; }
+      .cv-body .cv-body-content .cv-body-area .column-right {
+        width: 144px;
+        min-width: 144px;
+        padding-left: 27px; }
+      .cv-body .cv-body-content .cv-body-area.area-1 {
+        flex-direction: column; }
+      .cv-body .cv-body-content .cv-body-area.area-2 {
+        background-color: #fff;
+        padding: 0px 20px; }
+        .cv-body .cv-body-content .cv-body-area.area-2 .separator {
+          border-left: 1px solid #d6d0d0;
+          margin-left: 28px; }
+      .cv-body .cv-body-content .cv-body-area.area-3 {
+        padding: 10px 0px;
+        margin: 10px 20px 0px;
+        border-top-style: solid;
+        border-top-width: 1px; }
+        .cv-body .cv-body-content .cv-body-area.area-3 .column-left {
+          flex: 1; }
+  .cv-body.page-1 .cv-body-area.area-2 {
+    flex: 1; }
+
+.cv-body-2 .cv-body-area.area-2 {
+  margin-top: 22px;
+  padding: 20px 50px; }
+
+/* Blocks */
+.block-block .cv-heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  margin: 0px 0px 10px 0px; }
+  .block-block .cv-heading .line-after-block-heading {
+    flex: 1;
+    border-top-style: solid;
+    border-top-width: 1px;
+    margin-left: 5px; }
+
+.personal-info-block {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin: 0px auto; }
+  .personal-info-block .cv-photo {
+    width: 55px;
+    height: 55px;
+    margin-right: 23px;
+    border-radius: 50%; }
+  .personal-info-block .cv-headings-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; }
+
+.profile-secondary-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border: none;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  height: 34px; }
+  .profile-secondary-info .name {
+    font-weight: 300;
+    color: #605c64;
+    margin-right: 4px; }
+  .profile-secondary-info .value {
+    font-weight: 400;
+    margin-right: 10px; }
+  .profile-secondary-info span {
+    font-size: 8px;
+    line-height: 11.2px; }
+
+.cv-destination-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 143px;
+  box-sizing: border-box; }
+  .cv-destination-block .cv-sender {
+    margin-bottom: 10px; }
+
+.skills-block .skills-estimation-block {
+  margin-top: 10px; }
+
+.languages-block {
+  margin-top: 12px; }
+  .languages-block .skills-estimation-block {
+    margin-top: 10px; }
+
+.courses-block {
+  margin-top: 12px; }
+
+.certificates-block {
+  margin-top: 12px; }
+
+.hobbies-block {
+  margin-top: 12px; }
+
+.extra-curricular-activities-block {
+  margin-top: 12px; }
+
+.education-block {
+  margin-top: 12px; }
+
+.internships-block {
+  margin-top: 12px; }
+
+.references-block {
+  margin-top: 12px; }
+
+.skills-block {
+  margin-top: 12px; }
+
+.career-details-block {
+  margin-left: 17px; }
+
+.cv-career-block {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 15px 20px;
+  margin-top: 26px; }
+  .cv-career-block .career-details {
+    font-size: 8px;
+    line-height: 11.2px; }
+
+.career-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start; }
+  .career-links .career-links-head {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 600;
+    margin: 0px 8px 0px 0px;
+    color: #605c64; }
+  .career-links .career-links-link {
+    text-decoration: none;
+    margin-right: 5px; }
+    .career-links .career-links-link svg {
+      width: 16px;
+      height: 16px; }
+
+.letter-heading {
+  margin-bottom: 21px; }
+
+/* Control panel */
+#control-panel {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px; }
+  #control-panel .control-panel-item-block {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px; }
+    #control-panel .control-panel-item-block .control-panel-heading {
+      font-size: 11px;
+      margin: 0px 0px 0px 0px; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      margin: 3px 0px; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item .radio-input {
+        display: block;
+        border-radius: 50%;
+        border: 2px solid #d6d0d0;
+        width: 7px;
+        height: 7px;
+        background-color: transparent;
+        margin-right: 5px;
+        pointer-events: none; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item .radio-input-label {
+        font-size: 10px;
+        pointer-events: none; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list .input-list-item.active .radio-input {
+        background-color: #d6d0d0; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label {
+      flex: 1;
+      height: 15px;
+      border-radius: 3px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start; }
+      #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label .color-set-color {
+        display: none;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px; }
+        #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item .radio-input-label .color-set-color:nth-child(n + 4) {
+          display: block; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-1 .color-set-table .color-set-color-1 {
+      background-color: #605c64; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-1 .color-set-table .color-set-color-2 {
+      background-color: #a29a9d; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-1 .color-set-table .color-set-color-3 {
+      background-color: #d6d0d0; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-2 .color-set-table .color-set-color-1 {
+      background-color: #740842; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-2 .color-set-table .color-set-color-2 {
+      background-color: #b8a2b2; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-2 .color-set-table .color-set-color-3 {
+      background-color: #ddcbde; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-3 .color-set-table .color-set-color-1 {
+      background-color: #554853; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-3 .color-set-table .color-set-color-2 {
+      background-color: #ad8695; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-3 .color-set-table .color-set-color-3 {
+      background-color: #edd7df; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-4 .color-set-table .color-set-color-1 {
+      background-color: #724c9d; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-4 .color-set-table .color-set-color-2 {
+      background-color: #b4a2c9; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-4 .color-set-table .color-set-color-3 {
+      background-color: #dccae9; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-5 .color-set-table .color-set-color-1 {
+      background-color: #0e9292; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-5 .color-set-table .color-set-color-2 {
+      background-color: #8dbbaa; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-5 .color-set-table .color-set-color-3 {
+      background-color: #d7f2e8; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-6 .color-set-table .color-set-color-1 {
+      background-color: #ac132a; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-6 .color-set-table .color-set-color-2 {
+      background-color: #b69a9e; }
+    #control-panel .control-panel-item-block .control-panel-item-input-list.radio-input-list.color-list .input-list-item.color-scheme-6 .color-set-table .color-set-color-3 {
+      background-color: #e7d8da; }
+
+/*# sourceMappingURL=style.css.map */

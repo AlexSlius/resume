@@ -9,17 +9,22 @@ import { routersPages } from '../constants/next-routers';
 import { setLogout } from '../slices/auth';
 import {
     sessionStorageGet,
-    localStorageRemove
+    localStorageRemove,
+    sessionStorageRemove
 } from '../helpers/localStorage';
+import { setUpdateResumeActive } from './resumeData';
 
 export const logout = async (dispatch) => {
     cookieDestroy({ key: 'token' });
     localStorageRemove('session_id');
+    sessionStorageRemove("typeResume");
     await dispatch(setLogout());
     await Router.push('/');
 }
 
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {
+    sessionStorageRemove("typeResume");
+
     const response = await api.auth.login(data);
 
     if (response?.token) {
@@ -30,12 +35,16 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     return response;
 })
 
-export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async (data, thunkAPI) => {
+export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({ data, typeResume }, thunkAPI) => {
     const { menuAsideResume } = thunkAPI.getState();
     const response = await api.auth.register(data);
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
+
+        if (!!typeResume) {
+            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: typeResume }, isRemoveSesion: true }));
+        }
 
         let nextRouterPage = sessionStorageGet('routet_page_next');
 

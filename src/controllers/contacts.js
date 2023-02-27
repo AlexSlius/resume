@@ -3,18 +3,20 @@ import Router from "next/router";
 
 import api from "../apiSingleton";
 import { isSuccessNewContact, isRespondServerSuccesss, isError } from '../helpers/checkingStatuses';
-import { localStorageSet, sessionStorageSet } from "../helpers/localStorage"
+import { localStorageSet, sessionStorageSet, sessionStorageRemove } from "../helpers/localStorage"
 import { routersPages } from '../constants/next-routers';
 import { newObjContact } from '../helpers/resumeDestructObj';
 import { addItemNotification } from "../slices/notifications";
+import { setUpdateResumeActive } from './resumeData';
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (dataImage, thunkAPI) => {
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, typeResume }, thunkAPI) => {
     const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
-    const newObj = newObjContact(contactObj, dataImage)
+    const newObj = newObjContact(contactObj, pictureFile)
 
     const response = await api.contact.setAddResume(newObj);
 
     if (isRespondServerSuccesss(response)) {
+        thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: typeResume } }));
         await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
     }
 
@@ -25,7 +27,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async (data
     return response;
 })
 
-export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async (dataImage, thunkAPI) => {
+export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, typeResume }, thunkAPI) => {
     const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
     const newObj = newObjContact(contactObj, dataImage)
 
@@ -33,6 +35,13 @@ export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', asy
 
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
+
+        if (typeResume !== null) {
+            sessionStorageSet("typeResume", typeResume);
+        } else {
+            sessionStorageRemove("typeResume");
+        }
+
         sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)
         Router.push(`/${routersPages['register']}`);
     }

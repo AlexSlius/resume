@@ -350,10 +350,10 @@ export const HomePage = () => {
                         // onSwiper={(swiper) => console.log(swiper)}
                         >
                             {
-                                isArray(resumeData?.list) && resumeData.list.map((itemResume, index) => (
+                                isArray(resumeData?.list?.items) && resumeData.list.items.map((itemResume, index) => (
                                     <SwiperSlide key={index}>
                                         <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
-                                        <Link href="#" className="document__btn btns btn--blue">Use this template</Link>
+                                        <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}`} className="document__btn btns btn--blue">Use this template</Link>
                                     </SwiperSlide>
                                 ))
                             }

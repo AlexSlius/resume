@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useSelector } from 'react-redux'
-import { isArray } from "lodash";
+import { isArray, isString } from "lodash";
 
 import { ButtonIcon } from "../../components/uis/buttonIcon";
 import Icon from "../../components/Icon";
@@ -18,6 +18,12 @@ import iconModern from "/public/images/icons/icon-modern.svg?sprite";
 import { routersPages } from "../../constants/next-routers";
 
 export const JobWinningPage = () => {
+    const [stateCategory, setStateCategory] = React.useState(null);
+
+    const handleCategory = (nameCategory) => {
+        setStateCategory(nameCategory);
+    }
+
     const {
         auth: {
             autorizate: {
@@ -48,31 +54,31 @@ export const JobWinningPage = () => {
                 <div className="wr-resumes">
                     <div className="resumes-tabs">
                         <div className="resumes-tab">
-                            <button className="resumes-tab-btn active">
+                            <button className={`resumes-tab-btn ${stateCategory === null ? 'active' : ''}`} onClick={() => handleCategory(null)}>
                                 <Icon svg={iconAll} />
                                 <span>All templates</span>
                             </button>
                         </div>
                         <div className="resumes-tab">
-                            <button className="resumes-tab-btn">
+                            <button className={`resumes-tab-btn ${stateCategory === 'Creative' ? 'active' : ''}`} onClick={() => handleCategory('Creative')}>
                                 <Icon svg={iconCreative} />
                                 <span>Creative</span>
                             </button>
                         </div>
                         <div className="resumes-tab">
-                            <button className="resumes-tab-btn">
+                            <button className={`resumes-tab-btn ${stateCategory === 'Simple' ? 'active' : ''}`} onClick={() => handleCategory('Simple')}>
                                 <Icon svg={iconSimple} />
                                 <span>Simple</span>
                             </button>
                         </div>
                         <div className="resumes-tab">
-                            <button className="resumes-tab-btn">
+                            <button className={`resumes-tab-btn ${stateCategory === 'Professional' ? 'active' : ''}`} onClick={() => handleCategory('Professional')}>
                                 <Icon svg={iconProfessional} />
                                 <span>Professional</span>
                             </button>
                         </div>
                         <div className="resumes-tab">
-                            <button className="resumes-tab-btn">
+                            <button className={`resumes-tab-btn ${stateCategory === 'Modern' ? 'active' : ''}`} onClick={() => handleCategory('Modern')}>
                                 <Icon svg={iconModern} />
                                 <span>Modern</span>
                             </button>
@@ -81,26 +87,44 @@ export const JobWinningPage = () => {
 
                     <div className="items-resumes">
                         {
-                            isArray(resumeData?.list) && resumeData.list.map((item, index) => (
-                                <div className="item-card-resum" key={index}>
-                                    <div className="item-card-resum__head">
-                                        <Link href="#">
-                                            <img loading="lazy" src={item.image} />
-                                        </Link>
-                                    </div>
-                                    <div className="item-card-resum__bot">
-                                        <div className="item-card-resum__tt">
-                                            <div className="item-card-resum__titl">{item.name}</div>
-                                            <div className="item-card-resum__types">
-                                                <div className="item-type type-ptf">PDF</div>
-                                                <div className="item-type type-docx">DOCX</div>
-                                            </div>
+                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
+
+                                if (isString(stateCategory)) {
+                                    if (item.category != stateCategory)
+                                        return <></>
+                                }
+
+                                return (
+                                    <div className="item-card-resum" key={index}>
+                                        <div className="item-card-resum__head">
+                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}`}>
+                                                <img loading="lazy" src={item.image} />
+                                            </Link>
                                         </div>
-                                        <p className="item-card-resum__desk">Striking modern header, professional two
-                                            column template structure.</p>
+                                        <div className="item-card-resum__bot">
+                                            <div className="item-card-resum__tt">
+                                                <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}`} className="item-card-resum__titl">{item.name}</Link>
+                                                {
+                                                    (isArray(item?.types) && item.types.length > 0) && (
+                                                        <div className="item-card-resum__types">
+                                                            {
+                                                                item.types.map((itemType, index) => (
+                                                                    <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                            {
+                                                !!item?.description && (
+                                                    <p className="item-card-resum__desk">{item?.description}</p>
+                                                )
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                )
+                            })
                         }
                     </div>
                 </div>

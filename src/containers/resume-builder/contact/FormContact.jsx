@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react"
 import { CForm, CCol, CRow } from "@coreui/react"
 import { useForm } from "react-hook-form"
+import { useRouter } from 'next/router'
 
 import { DatePicker } from "../../../components/uis/datePicker"
 import Input from "../../../components/uis/input"
@@ -42,6 +43,7 @@ const FormContact = ({
    storeDate,
    idCv
 }) => {
+   const router = useRouter();
    const refIdTimeout = useRef(undefined);
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
@@ -134,12 +136,12 @@ const FormContact = ({
 
    const formSubmit = async () => {
       if (!isAthorized) {
-         await dispatch(contactSetNew(pictureFile));
+         await dispatch(contactSetNew({ pictureFile, typeResume: router.query.type || null }));
       }
    }
 
    const onHandleNewAutorization = async () => {
-      await dispatch(contactAddNew(pictureFile));
+      await dispatch(contactAddNew({ pictureFile, typeResume: router.query.type || null }));
    }
 
    const updateContactServer = async () => {

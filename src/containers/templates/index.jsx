@@ -2,7 +2,7 @@ import { CButton } from '@coreui/react'
 import React, { useRef } from 'react';
 import jsPDF from 'jspdf';
 import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
@@ -16,10 +16,14 @@ import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 import CustomizedSlider from '../../components/uis/range';
-import { ResumeCv } from '../../resumeTemplates/001-CV';
 import { isArray } from 'lodash';
 
-import { fetchGetResumeData } from "../../controllers/resumeData";
+import {
+    fetchGetResumeData,
+    getResumeActive,
+    setUpdateResumeActive
+} from "../../controllers/resumeData";
+import { TemplatesSelect } from './templatesSelect';
 
 const Templates = () => {
     const dispatch = useDispatch();
@@ -55,9 +59,18 @@ const Templates = () => {
         });
     };
 
+    const handleResume = (item) => {
+        if (idCv != "new") {
+            dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
+        } else {
+            Router.push(`/${routersPages['resumeBuilderNew']}?type=${item.id}`)
+        }
+    }
+
     React.useEffect(() => {
         if (idCv != "new") {
             dispatch(fetchGetResumeData({ idCv }));
+            dispatch(getResumeActive({ idCv }));
         }
     }, []);
 
@@ -72,13 +85,24 @@ const Templates = () => {
                     </div>
                     <div className="pt-ts scroll-style">
                         {
-                            isArray(resumeData?.list) && resumeData.list.map((item, index) => (
-                                <div className="it-t" key={index}>
+                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`it-t ${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`}
+                                    onClick={() => handleResume(item)}
+                                >
                                     <img src={item.image} alt={item.name} />
-                                    <div className="item-card-resum__types">
-                                        <div className="item-type type-ptf">PDF</div>
-                                        <div className="item-type type-docx">DOCX</div>
-                                    </div>
+                                    {
+                                        (isArray(item?.types) && item.types.length > 0) && (
+                                            <div className="item-card-resum__types">
+                                                {
+                                                    item.types.map((itemType, index) => (
+                                                        <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                    ))
+                                                }
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             ))
                         }
@@ -95,8 +119,10 @@ const Templates = () => {
                     </div>
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
-                            {/* <img src="/images/page/temapl-all.png" alt="img item templates" /> */}
-                            <ResumeCv refs={reportTemplateRef} />
+                            <TemplatesSelect
+                                reportTemplateRef={reportTemplateRef}
+                                status={resumeData?.status}
+                            />
                         </div>
                     </div>
                     <div className="pt_b-r plr">

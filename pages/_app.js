@@ -11,7 +11,7 @@ import { wrapper } from '../src/store'
 import 'swiper/css';
 import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
-import '../public/styles/resumes/style/style.css';
+import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
 
 import Natifications from "../src/components/natifications";
@@ -19,7 +19,11 @@ import { Cookies } from "../src/components/cookies";
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
-
+  // const {
+  //   resumeData: {
+  //     resumeActive
+  //   }
+  // } = store.getState();
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();

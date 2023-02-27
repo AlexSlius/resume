@@ -48,7 +48,7 @@ const MenuSideBar = () => {
             if (isAthorized) {
                 dispatch(contactAddNew(pictureFile));
             } else {
-                dispatch(contactSetNew(pictureFile || null));
+                dispatch(contactSetNew({ pictureFile: pictureFile || null, typeResume: router.query.type || null }));
             }
         }
     }

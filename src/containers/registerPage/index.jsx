@@ -17,7 +17,7 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { fetchAuthRegister } from "../../controllers/auth"
 import { isLoader } from "../../helpers/loadings"
-import { localStorageGet } from "../../helpers/localStorage"
+import { localStorageGet, sessionStorageGet } from "../../helpers/localStorage"
 import { cleanError } from "../../slices/auth";
 
 import { routersPages } from "../../constants/next-routers"
@@ -42,7 +42,17 @@ export const RegisterPage = () => {
 
     const onSubmit = (data) => {
         let session_empty = localStorageGet('session_id');
-        dispatch(fetchAuthRegister({ email: data.email, password: data.password, session_id: session_empty }));
+        let typeResume = sessionStorageGet('typeResume');
+        
+        dispatch(fetchAuthRegister({
+            data: {
+                email: data.email,
+                password: data.password,
+                session_id: session_empty,
+
+            },
+            typeResume
+        }));
     }
 
     React.useEffect(() => {
