@@ -8,3 +8,17 @@
   min-height: calc(100vh - 180px);
   background: #fff;
 }
+
+.desrip-content {
+  ul {
+    li {
+      list-style: disc;
+    }
+  }
+
+  p {
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+}

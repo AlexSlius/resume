@@ -10,7 +10,7 @@ export const PrivacyPolicy = () => {
                         PRIVACY POLIC<span className="icon-right-top">Y</span>
                     </h1>
                     <p className="bottom-text text-center">
-                        Publication date: ________
+                        Publication date: 24.02.2023
                     </p>
 
                     <div className="mt-text-content">

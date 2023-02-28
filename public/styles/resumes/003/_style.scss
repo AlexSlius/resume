@@ -15,7 +15,7 @@
   font-weight: 500;
 }
 
-.sv_002 {
+.sv_003 {
   // body {
   //   background-color: #494949;
   //   font-family: Hind, sans-serif;
@@ -148,14 +148,14 @@
     }
   }
 
-  #cv-body-hidden-container {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-  }
+  // #cv-body-hidden-container {
+  //   height: auto;
+  //   max-height: none;
+  //   position: absolute;
+  //   z-index: -1;
+  //   opacity: 0;
+  //   pointer-events: none;
+  // }
 
   #cv-body-2 {
     .cv-body-area {
@@ -172,13 +172,13 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    max-width: 595px;
-    min-width: 595px;
-    height: 842px;
-    max-height: 842px;
-    overflow-y: hidden;
+    // max-width: 595px;
+    // min-width: 595px;
+    // height: 842px;
+    // max-height: 842px;
+    // overflow-y: hidden;
     background-color: #fff;
-    margin: 0px 25px 25px;
+    // margin: 0px 25px 25px;
     box-sizing: border-box;
 
 
