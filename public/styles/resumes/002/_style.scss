@@ -4,19 +4,6 @@
 }
 
 .sv_002 {
-  // body {
-  //   background-color: #494949;
-  //   font-family: 'Museo Sans Cyrl', sans-serif;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: flex-start;
-  // }
-
-  * {
-    padding: 0px;
-    margin: 0px;
-  }
-
   p {
     padding: 0px;
     margin: 0px;
@@ -110,6 +97,11 @@
           margin-right: 2px;
           box-sizing: border-box;
 
+          &.additional-color-1-background {
+            border-color: rgb(51, 51, 51);
+            background-color: rgb(51, 51, 51);
+          }
+
           &.filled {
             background-color: rgba(214, 208, 208, 1);
           }
@@ -118,6 +110,8 @@
 
     }
   }
+
+
 
   // #cv-body-hidden-container {
   //   height: auto;
@@ -189,6 +183,8 @@
             margin: 4px 0px 0px;
 
             li {
+              list-style-type: disc;
+
               span {
                 display: block;
               }
@@ -197,8 +193,8 @@
         }
 
         .column-right {
-          width: 144px;
-          min-width: 144px;
+          width: calc(144px + 27px);
+          min-width: calc(144px + 27px);
           padding-left: 27px;
         }
 
@@ -432,8 +428,10 @@
     .career-links-link {
       text-decoration: none;
       margin-right: 5px;
+      line-height: 0;
 
-      svg {
+      svg,
+      img {
         width: 16px;
         height: 16px;
       }

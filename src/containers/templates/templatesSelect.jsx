@@ -18,42 +18,46 @@ export const TemplatesSelect = ({
     const {
         resumeData: {
             data,
-            resumeActive
+            resumeActive,
+            statusResumeActive
         }
     } = useSelector(state => state);
 
+    let statusLoad = statusResumeActive || status;
+
     return (
-        <LoadWr isLoad={isLoader(status)}>
-            {
-                resumeActive?.template_slug == "001-CV" && (
-                    <ResumeCv001
-                        refs={reportTemplateRef}
-                        data={data}
-                        idCv={idCv}
-                    />
-                )
-            }
+        <LoadWr isLoad={isLoader(statusLoad)}>
+            <div className="body-template-resume">
+                {
+                    resumeActive?.template_slug == "001-CV" && (
+                        <ResumeCv001
+                            refs={reportTemplateRef}
+                            data={data}
+                            idCv={idCv}
+                        />
+                    )
+                }
 
-            {
-                resumeActive?.template_slug == "002-CV" && (
-                    <ResumeCv002
-                        refs={reportTemplateRef}
-                        data={data}
-                        idCv={idCv}
-                    />
-                )
-            }
+                {
+                    resumeActive?.template_slug == "002-CV" && (
+                        <ResumeCv002
+                            refs={reportTemplateRef}
+                            data={data}
+                            idCv={idCv}
+                        />
+                    )
+                }
 
-            {
-                resumeActive?.template_slug == "003-CV" && (
-                    <ResumeCv003
-                        refs={reportTemplateRef}
-                        data={data}
-                        idCv={idCv}
-                    />
-                )
-            }
-
+                {
+                    resumeActive?.template_slug == "003-CV" && (
+                        <ResumeCv003
+                            refs={reportTemplateRef}
+                            data={data}
+                            idCv={idCv}
+                        />
+                    )
+                }
+            </div>
         </LoadWr>
     )
 }

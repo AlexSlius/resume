@@ -5,12 +5,7 @@
 
 .sv_001 {
   .body-template-resume {
-    // background-color: #494949;
     font-family: Rubik;
-    // display: flex;
-    // justify-content: center;
-
-    // align-items: flex-start;
     min-height: calc(100vh - 180px);
     background: #fff;
   }
@@ -683,6 +678,11 @@
                   .career-links-link {
                     text-decoration: none;
                     margin-right: 5px;
+
+                    img {
+                      width: 16px;
+                      height: 16px;
+                    }
 
                     svg {
                       width: 16px;
