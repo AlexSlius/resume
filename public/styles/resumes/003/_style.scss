@@ -16,6 +16,11 @@
 }
 
 .sv_003 {
+  p {
+    padding: 0px;
+    margin: 0px;
+  }
+  
   .heading-type-3 {
     font-weight: 600;
     text-transform: uppercase;
@@ -380,10 +385,6 @@
   }
 
   .skills-block {
-    .cv-heading {
-      margin-top: 8px;
-    }
-
     .skills-estimation-block {
       margin-top: 14px !important;
 
@@ -508,6 +509,7 @@
     justify-content: space-between;
     margin: 0px 25px;
     padding: 10px 5px;
+    flex-wrap: wrap;
 
     .details-block-item {
       display: flex;

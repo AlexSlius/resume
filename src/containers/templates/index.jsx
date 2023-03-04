@@ -46,8 +46,10 @@ const Templates = () => {
     const handleGeneratePdf = () => {
         const doc = new jsPDF({
             format: 'a4',
-            unit: 'px',
+            // unit: 'px',
         });
+
+        doc.setLineWidth(1);
 
         // Adding the fonts.
         doc.setFont('Rubik', 'normal');

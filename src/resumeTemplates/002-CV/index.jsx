@@ -118,7 +118,7 @@ export const ResumeCv002 = ({
                   <div className="column-left wrappable-content-container" data-dom-id="area-2---column-left">
                     {/* employment */}
                     {
-                      isArray(employment) && employment.length && (
+                      isArray(employment) && !!employment.length && (
                         <div className="employment-history-block block-block wrappable-block">
                           <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
                             Employment history
@@ -171,7 +171,7 @@ export const ResumeCv002 = ({
                                   (itemEd?.facility || itemEd?.degree) && (
                                     <p className="education-text font-size-1 line-height-1 main-color-1-text">
                                       {itemEd?.facility && (`${itemEd.facility}, `)}
-                                      {itemEd?.degree && (`${itemEd.degree}, `)}
+                                      {itemEd?.degree && (`${itemEd.degree}`)}
                                     </p>
                                   )
                                 }
@@ -222,7 +222,7 @@ export const ResumeCv002 = ({
 
                     {/* extra_curricular */}
                     {
-                      isArray(extra_curricular) && extra_curricular.length && (
+                      isArray(extra_curricular) && !!extra_curricular.length && (
                         <div className="extra-curricular-activities-block block-block wrappable-block">
                           <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
                             Extra-curricular activities
@@ -251,7 +251,7 @@ export const ResumeCv002 = ({
 
                     {/* internship */}
                     {
-                      isArray(internship) && internship.length && (
+                      isArray(internship) && !!internship.length && (
                         <div className="internships-block block-block wrappable-block">
                           <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
                             Internships
@@ -297,7 +297,7 @@ export const ResumeCv002 = ({
 
                     <div className="skills-block block-block wrappable-block">
                       {
-                        isArray(skills) && skills.length && (
+                        isArray(skills) && !!skills.length && (
                           <>
                             <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
                               Skills
@@ -365,7 +365,7 @@ export const ResumeCv002 = ({
 
                       {/* references */}
                       {
-                        isArray(reference) && reference.length && (
+                        isArray(reference) && !!reference.length && (
                           <div className="references-block block-block wrappable-block">
                             <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
                               References
@@ -462,8 +462,6 @@ export const ResumeCv002 = ({
                       </div>
                     )
                   }
-
-
                   {
                     isArray(social_links) && !!social_links.length && (
                       <div className="column-right wrappable-wrapper">

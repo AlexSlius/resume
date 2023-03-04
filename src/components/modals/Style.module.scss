@@ -1,0 +1,143 @@
+.hystmodal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    padding: 30px 0;
+    visibility: hidden;
+
+    &.open {
+        visibility: visible;
+
+        .hystmodal__window {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
+.hystmodal__wrap {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 100%;
+    min-height: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.hystmodal__window {
+    position: relative;
+    margin: 50px 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background: #fff;
+    max-width: 360px;
+    width: 100%;
+    transition: all 0.3s;
+    background: #F6F8FA;
+    border-radius: 12px;
+    padding: 32px 20px;
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.hystmodal__close {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+
+
+.hystmodal__shadow {
+    position: fixed;
+    border: none;
+    display: block;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 98;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hystmodal__bg_clos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.hystmodal__shadow_show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.flex_c_center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon_center {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(54, 121, 253, 0.1);
+    border-radius: 12px;
+
+    svg {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+.title {
+    color: #01153A;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 25px;
+}
+
+.desc {
+    color: #546C97;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 350;
+    margin-top: 11px;
+    max-width: 250px;
+}
+
+.wr_btn {
+    display: flex;
+    align-items: center;
+    margin-top: 29px;
+}

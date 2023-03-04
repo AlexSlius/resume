@@ -158,7 +158,7 @@ export const ResumeCv001 = ({
                     <div className="column-left">
                       {/* employment */}
                       {
-                        isArray(employment) && employment.length && (
+                        (isArray(employment) && !!employment.length) && (
                           <div className="employment-history-block">
                             <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Employment history</h3>
                             {
@@ -176,7 +176,7 @@ export const ResumeCv001 = ({
 
                       {/* extra_curricular */}
                       {
-                        isArray(extra_curricular) && extra_curricular.length && (
+                        isArray(extra_curricular) && !!extra_curricular.length && (
                           <div className="extra-curricular-activities-block">
                             <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Extra-curricular activities</h3>
                             {
@@ -196,7 +196,7 @@ export const ResumeCv001 = ({
 
                       {/* internship */}
                       {
-                        isArray(internship) && internship.length && (
+                        isArray(internship) && !!internship.length && (
                           <div className="internships-block">
                             <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Internships</h3>
 
@@ -217,7 +217,7 @@ export const ResumeCv001 = ({
 
                       {/* references */}
                       {
-                        isArray(reference) && reference.length && (
+                        isArray(reference) && !!reference.length && (
                           <div className="references-block">
                             <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">References</h3>
 
@@ -349,50 +349,54 @@ export const ResumeCv001 = ({
                     </div>
                   </div>
 
-                  <div className="cv-body-area area-3 additional-color-3-background">
-                    {
-                      isArray(skills) && skills.length && (
-                        <div className="column-left">
-                          <div className="skills-block">
-                            <h3 className="cv-heading heading-type-5 font-size-1 line-height-1 main-color-2-text additional-color-1-background">Skills</h3>
-                            <div className="skills-estimation-block">
-                              {
-                                skills.map((item, index) => (
-                                  <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.name}</p>
-                                    <Estimation level={item.level} />
-                                  </div>
-                                ))
-                              }
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    }
-
-                    {
-                      isArray(languages) && !!languages.length && (
-                        <div className="column-right">
-                          <div className="languages-block">
-                            <h3 className="cv-heading heading-type-5 font-size-1 line-height-1 main-color-2-text additional-color-1-background">Language</h3>
-                            {
-                              languages.map((item, index) => (
-                                <div className="skills-estimation-block" key={index}>
-                                  <div className="skill-item">
-                                    <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.language}</p>
-                                    <Estimation
-                                      level={item.level}
-                                      startLeng={6}
-                                    />
-                                  </div>
+                  {
+                    ((isArray(skills) && !!skills.length) || (isArray(languages) && !!languages.length)) && (
+                      <div className="cv-body-area area-3 additional-color-3-background">
+                        {
+                          isArray(skills) && !!skills.length && (
+                            <div className="column-left">
+                              <div className="skills-block">
+                                <h3 className="cv-heading heading-type-5 font-size-1 line-height-1 main-color-2-text additional-color-1-background">Skills</h3>
+                                <div className="skills-estimation-block">
+                                  {
+                                    skills.map((item, index) => (
+                                      <div className="skill-item" key={index}>
+                                        <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.name}</p>
+                                        <Estimation level={item.level} />
+                                      </div>
+                                    ))
+                                  }
                                 </div>
-                              ))
-                            }
-                          </div>
-                        </div>
-                      )
-                    }
-                  </div>
+                              </div>
+                            </div>
+                          )
+                        }
+
+                        {
+                          isArray(languages) && !!languages.length && (
+                            <div className="column-right">
+                              <div className="languages-block">
+                                <h3 className="cv-heading heading-type-5 font-size-1 line-height-1 main-color-2-text additional-color-1-background">Language</h3>
+                                {
+                                  languages.map((item, index) => (
+                                    <div className="skills-estimation-block" key={index}>
+                                      <div className="skill-item">
+                                        <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.language}</p>
+                                        <Estimation
+                                          level={item.level}
+                                          startLeng={6}
+                                        />
+                                      </div>
+                                    </div>
+                                  ))
+                                }
+                              </div>
+                            </div>
+                          )
+                        }
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             </div>

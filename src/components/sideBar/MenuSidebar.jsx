@@ -13,6 +13,7 @@ import { sessionStorageGet } from "../../helpers/localStorage";
 import { sectionIndexAndAll } from "../../helpers/sections";
 import { contactSetNew, contactAddNew } from "../../controllers/contacts"
 import { addAllSection } from "../../slices/menuAsideResume";
+import { ModalNoAccess } from "../modals/modalNoAccess";
 
 import {
     routerLinksAsideMenuIcon,
@@ -23,7 +24,10 @@ import { routersPages } from "../../constants/next-routers";
 
 import style from './SideBar.module.scss'
 
+
 const MenuSideBar = () => {
+    const [showModalNoAccess, setShowModalNoAccess] = React.useState(false);
+
     const router = useRouter();
     const dispatch = useDispatch();
     const {
@@ -43,14 +47,20 @@ const MenuSideBar = () => {
     const handleClick = (e) => {
         if (idCv == "new") {
             e.preventDefault();
-            let pictureFile = sessionStorageGet('picture')
+
+            let pictureFile = sessionStorageGet('picture');
 
             if (isAthorized) {
                 dispatch(contactAddNew(pictureFile));
             } else {
-                dispatch(contactSetNew({ pictureFile: pictureFile || null, typeResume: router.query.type || null }));
+                setShowModalNoAccess(true);
             }
         }
+    }
+
+    const onHanleBtnRegister = () => {
+        let pictureFile = sessionStorageGet('picture');
+        dispatch(contactSetNew({ pictureFile: pictureFile || null, typeResume: router.query.type || null }));
     }
 
     React.useEffect(() => {
@@ -86,49 +96,59 @@ const MenuSideBar = () => {
     }, [list]);
 
     return (
-        <CSidebarNav>
-            {
-                menuAsideResume.list.map((obj, index) => {
-                    let activeClassActives = "";
+        <>
+            <CSidebarNav>
+                {
+                    menuAsideResume.list.map((obj, index) => {
+                        let activeClassActives = "";
 
-                    if (obj?.key) {
-                        if (obj?.status == false)
-                            return;
-                    }
+                        if (obj?.key) {
+                            if (obj?.status == false)
+                                return;
+                        }
 
-                    if (!!viewedList?.[obj?.key]?.status) {
-                        activeClassActives = style.link_current;
-                    }
+                        if (!!viewedList?.[obj?.key]?.status) {
+                            activeClassActives = style.link_current;
+                        }
 
-                    if (obj?.key == 'contact' && !!idCv) {
-                        activeClassActives = style.link_current;
-                    }
+                        if (obj?.key == 'contact' && !!idCv) {
+                            activeClassActives = style.link_current;
+                        }
 
-                    return (
-                        <CNavItem key={index}>
-                            <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}`} activeClassName={style.active}>
-                                <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={handleClick}>
-                                    <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
-                                    {obj.name || ""}
-                                </a>
-                            </ActiveLink>
-                        </CNavItem>
-                    )
-                })
-            }
+                        return (
+                            <CNavItem key={index}>
+                                <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}`} activeClassName={style.active}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={handleClick}>
+                                        <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
+                                        {obj.name || ""}
+                                    </a>
+                                </ActiveLink>
+                            </CNavItem>
+                        )
+                    })
+                }
 
-            {/* !!sectionIndexAndAll(list)?.lengAll && ( */}
-            {
-                <CNavItem>
-                    <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
-                        <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={handleClick}>
-                            <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
-                            Advanced
-                        </a>
-                    </ActiveLink>
-                </CNavItem>
-            }
-        </CSidebarNav>
+                {/* !!sectionIndexAndAll(list)?.lengAll && ( */}
+                {
+                    <CNavItem>
+                        <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
+                            <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={handleClick}>
+                                <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
+                                Advanced
+                            </a>
+                        </ActiveLink>
+                    </CNavItem>
+                }
+            </CSidebarNav>
+
+            <ModalNoAccess
+                title="No access!"
+                desc="In order to access this tab you must be registered in the system"
+                visible={showModalNoAccess}
+                onClose={() => setShowModalNoAccess(false)}
+                onHanleBtn={onHanleBtnRegister}
+            />
+        </>
     )
 }
 
