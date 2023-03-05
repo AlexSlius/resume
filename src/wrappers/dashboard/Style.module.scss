@@ -40,6 +40,7 @@
         padding-left: 16px;
         padding-right: 16px;
     }
+
     .container_main_cons {
         padding-right: 0;
     }
@@ -49,5 +50,30 @@
     .container_admin {
         padding-top: 57px;
     }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 16px;
+        border-bottom: 1px solid #F6F8FA;
+        z-index: 99;
+
+        &_l {
+            margin-right: auto;
+        }
+    }
+    .wr_updat_now {
+        padding-right: 20px;
+    }
 }
 
+@media(max-width: 767px) {
+    .link_now {
+        span {
+            display: none;
+        }
+    }
+    
+}

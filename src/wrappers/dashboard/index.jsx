@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 import SideBar from "../../components/sideBar/SideBar"
 import HeadUser from "../../components/headUser/HeadUser"
 import Icon from "../../components/Icon"
+import { ButtonBack } from "../../components/uis/buttonBack"
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -37,6 +38,8 @@ const AdminPage = ({
                         <SideBar isMaxH={isMaxH} />
                     )
                 }
+
+
                 <CCol className={`${style.main_content} main-content`}>
                     {
                         !['md', 'sm', 'xs'].includes(currentResolution) && (
@@ -48,6 +51,15 @@ const AdminPage = ({
                                         </button>
                                     ) : (
                                         <>
+                                            {
+                                                ['md', 'sm', 'xs'].includes(currentResolution) && (
+                                                    <div className={`${style.header_l}`}>
+                                                        <div className={`${style.header_back}`}>
+                                                            <ButtonBack text="" />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
                                             <div className={style.wr_updat_now}>
                                                 <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
                                                     <Icon svg={iconUpdateNow} />
