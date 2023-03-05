@@ -4,7 +4,7 @@ import { withPrivateRoute } from "../../src/middleware/privateRouter"
 
 const ResumeNowPage = () => {
     return (
-        <DashboardWrapper isResume={true}>
+        <DashboardWrapper isResume={true} isMaxH={true}>
             <ContainerPageResumeNow />
         </DashboardWrapper>
     )

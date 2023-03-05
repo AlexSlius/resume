@@ -45,3 +45,13 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .tab {
+        font-size: 20px;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+}

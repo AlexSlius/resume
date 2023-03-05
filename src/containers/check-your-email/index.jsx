@@ -35,7 +35,7 @@ export const CheckYourEmailPage = () => {
             <>
                 <FormHead title="Check your email 📬" subTitle="We sent the code to reset the password" />
                 <div className={`form_wrap form_wrap_mt`}>
-                    <CForm className="row r-gap-30" onSubmit={handleSubmit}>
+                    <CForm className="r-gap-30" onSubmit={handleSubmit}>
                         <CRow className="g-30 r-gap-30">
                             <CCol>
                                 <InputCode setState={setStateNumber} />

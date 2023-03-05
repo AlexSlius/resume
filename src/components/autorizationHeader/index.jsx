@@ -5,14 +5,17 @@ import { ButtonBack } from "../uis/buttonBack"
 import style from "./Style.module.scss"
 import Link from 'next/link';
 
-export const AutorizationHeader = ({ isHidenBtnBack = false }) => {
+export const AutorizationHeader = ({
+    isHidenBtnBack = false,
+    currentResolution
+}) => {
     return (
         <div className={`${style.head}`}>
             <div className={`${style.head__row}`}>
                 {
                     !isHidenBtnBack && (
                         <div className={`${style.head__back}`}>
-                            <ButtonBack />
+                            <ButtonBack text={['md', 'sm', 'xs'].includes(currentResolution) ? "" : "Back"} />
                         </div>
                     )
                 }

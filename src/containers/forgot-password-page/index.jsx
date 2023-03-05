@@ -54,7 +54,7 @@ export const ForgotPasswordPage = () => {
                 <FormHead title="Forgot password? 🔒" subTitle="Receive a password reset code by email" />
                 <div className={`form_wrap form_wrap_mt`}>
                     <CForm
-                        className="row r-gap-30"
+                        className="r-gap-30"
                         onSubmit={handleSubmit(onSubmit)}
                     >
                         <CRow className="g-30 r-gap-30">

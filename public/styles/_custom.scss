@@ -1267,3 +1267,25 @@ button {
         display: none !important;
     }
 }
+
+.form_wrap {
+    .r-gap-30 {
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
+    }
+}
+
+@media(max-width: 767px) {
+    .form-check-label,
+    .link-form-auth,
+    .auth-bot-text {
+        font-size: 14px;
+    }
+
+    .form_wrap {
+        .r-gap-30 {
+            row-gap: 12px;
+        }
+    }
+}

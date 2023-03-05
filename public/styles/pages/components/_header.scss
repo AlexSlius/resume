@@ -2,7 +2,11 @@
     border-bottom: 1px solid #eef0f2;
     padding: 16px 0;
     z-index: 222;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
 
     .containers {
         display: flex !important;
@@ -148,6 +152,7 @@
     &-center {
         padding: 14px 6px;
         text-align: center;
+        width: 158px;
     }
 }
 
@@ -290,10 +295,6 @@
         display: flex;
         align-items: center;
         max-width: 100px;
-    }
-
-    body {
-        padding-top: 57px;
     }
 
     .header-r {

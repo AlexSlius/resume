@@ -17,3 +17,14 @@
         max-width: 677px;
     }
 }
+
+@media (max-width: 767px) {
+    .wr_img {
+        padding: 20px 0;
+        background: none;
+
+        img {
+            min-height: 50px;
+        }
+    }
+}

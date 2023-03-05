@@ -48,7 +48,7 @@ export const ContactPage = () => {
                 <div className={`form_wrap form_wrap_mt`}>
                     <CForm
                         onSubmit={handleSubmit(onSubmit)}
-                        className="row r-gap-30"
+                        className="r-gap-30"
                     >
                         <CRow className="g-30 r-gap-30">
                             <CCol>

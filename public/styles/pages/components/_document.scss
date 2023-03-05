@@ -64,6 +64,11 @@
     }
 }
 
+.doc-img {
+    max-height: 100%;
+    height: inherit;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
     background: #eef0f2;
@@ -143,6 +148,24 @@
 
     .document__wrapper {
         margin-top: 30px;
+    }
+
+    .document__wrapper .swiper-slide::before {
+        display: none;
+    }
+
+    .document__wrapper .document__btn {
+        position: relative;
+        opacity: 1;
+        left: auto;
+        top: auto;
+        transform: none;
+    }
+
+    .doc-btn {
+        margin-top: 23px;
+        display: flex;
+        justify-content: center;
     }
 }
 

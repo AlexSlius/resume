@@ -34,3 +34,20 @@
 .container_main_cons {
     padding-right: 40px;
 }
+
+@media (max-width: 1199px) {
+    .main_content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .container_main_cons {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .container_admin {
+        padding-top: 57px;
+    }
+}
+

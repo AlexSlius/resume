@@ -18,6 +18,7 @@
     max-width: 646px;
     text-align: center;
     line-height: 1.4;
+
     a {
         color: #3679FD;
     }
@@ -129,6 +130,12 @@
         margin: 0 6px;
     }
 
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     img {
         margin: 0 6px;
     }
@@ -146,4 +153,114 @@
 .wr_accar {
     margin: 60px auto 0 auto;
     max-width: 830px;
+}
+
+@media (max-width: 1023px) {
+    .items_grid {
+        grid-gap: 20px;
+        margin-top: 40px;
+    }
+}
+
+@media(max-width: 992px) {
+    .items_grid {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+    }
+
+    .cont {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+    .card {
+        padding: 0 20px 20px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .sub_title {
+        font-size: 14px;
+    }
+
+    .head {
+        font-size: 14px;
+    }
+
+    .wr {
+        margin-top: 20px;
+    }
+
+    .items_grid {
+        margin-top: 20px;
+    }
+
+    .car_days {
+        font-size: 14px;
+    }
+
+    .car_wr_list {
+        font-size: 14px;
+    }
+
+    .cont {
+        margin-top: 36px;
+    }
+
+    .items_payment {
+        flex-direction: column;
+        justify-content: center;
+
+        div {
+            margin-top: 12px;
+        }
+    }
+
+    .m_t_f {
+        margin-top: 50px;
+    }
+
+    .wr_accar {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 599px) {
+    .items_grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+}
+
+@media (max-width: 575px) {
+    .card {
+        padding: 0 20px 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .sub_title {
+        font-size: 12px;
+    }
+
+    .head {
+        font-size: 14px;
+    }
+
+    .wr {
+        margin-top: 24px;
+    }
+
+    .cont {
+        margin-top: 20px;
+    }
+
+    .m_t_f {
+        margin-top: 40px;
+    }
 }

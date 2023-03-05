@@ -13,10 +13,11 @@ import helpIcon from '/public/images/icons/chat.svg?sprite'
 import { routersPages } from "../../constants/next-routers"
 
 const SideBar = ({
-   children
+   children,
+   isMaxH = false,
 }) => {
    return (
-      <CSidebar className={`${style.side}`} style={vars}>
+      <CSidebar className={`${style.side} ${isMaxH ? style.max_he : ""}`} style={vars}>
          <Link href="/" className={`${style.nav_logo}`}>
             <img loading="lazy" src="/images/page/logo.svg" alt="img" />
          </Link>

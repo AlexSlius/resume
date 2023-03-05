@@ -152,7 +152,7 @@ export const HomePage = () => {
                             </Link>
                         </div>
                         <div className="ofer-sec__img">
-                            <img loading="lazy" src="images/page/section-img1.png" alt="img" />
+                            <img loading="lazy" src="images/page/section-img1.svg" alt="img" />
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@ export const HomePage = () => {
                         {
                             stateCurrentTab == 1 && (
                                 <div className="tabs-content tab-1">
-                                    <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
+                                    <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
                                     <div>
                                         <h3 className="h3">Your First Steps</h3>
                                         <p className="bottom-text">
@@ -192,7 +192,7 @@ export const HomePage = () => {
                         {
                             stateCurrentTab == 2 && (
                                 <div className="tabs-content  tab-2">
-                                    <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
+                                    <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
                                     <div>
                                         <h3 className="h3">Achieve Beauty With Ease</h3>
                                         <p className="bottom-text">
@@ -212,7 +212,7 @@ export const HomePage = () => {
                         {
                             stateCurrentTab == 3 && (
                                 <div className="tabs-content  tab-3">
-                                    <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
+                                    <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
                                     <div>
                                         <h3 className="h3">Now It’s Yours!</h3>
                                         <p className="bottom-text">
@@ -235,7 +235,7 @@ export const HomePage = () => {
                             onClick={() => handleClickTab(1)}
                         >
                             <p>1. Sign Up</p>
-                            <img loading="lazy" src="/images/page/section-img2.png" alt="img" />
+                            <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
@@ -245,7 +245,7 @@ export const HomePage = () => {
                             onClick={() => handleClickTab(2)}
                         >
                             <p>2. Create</p>
-                            <img loading="lazy" src="/images/page/section-img3.png" alt="img" />
+                            <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
@@ -255,7 +255,7 @@ export const HomePage = () => {
                             onClick={() => handleClickTab(3)}
                         >
                             <p>3. Download</p>
-                            <img loading="lazy" src="/images/page/section-img4.png" alt="img" />
+                            <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
                             <div className="progress">
                                 <span></span>
                             </div>
@@ -336,13 +336,13 @@ export const HomePage = () => {
                             }}
                             navigation
                             breakpoints={{
-                                320: {
+                                200: {
                                     slidesPerView: 1
                                 },
                                 560: {
                                     slidesPerView: 2
                                 },
-                                1150: {
+                                820: {
                                     slidesPerView: 3
                                 }
                             }}
@@ -352,8 +352,12 @@ export const HomePage = () => {
                             {
                                 isArray(resumeData?.list?.items) && resumeData.list.items.map((itemResume, index) => (
                                     <SwiperSlide key={index}>
-                                        <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
-                                        <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}`} className="document__btn btns btn--blue">Use this template</Link>
+                                        <div className="doc-img">
+                                            <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
+                                        </div>
+                                        <div className="doc-btn">
+                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}`} className="document__btn btns btn--blue">Use this template</Link>
+                                        </div>
                                     </SwiperSlide>
                                 ))
                             }
@@ -404,7 +408,11 @@ export const HomePage = () => {
                         Our customers get hired by top companies
                     </h2>
                     <div className="partners__wrapper">
-                        <img loading="lazy" src="/images/page/partners-logos.png" alt="img" />
+                        <img src="/images/page/icon-par-1.svg" alt="img" />
+                        <img src="/images/page/icon-par-2.svg" alt="img" />
+                        <img src="/images/page/icon-par-3.svg" alt="img" />
+                        <img src="/images/page/icon-par-4.svg" alt="img" />
+                        <img src="/images/page/icon-par-5.svg" alt="img" />
                     </div>
                 </div>
             </section>

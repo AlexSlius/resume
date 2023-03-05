@@ -56,3 +56,13 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .form_wrap_mt {
+        margin-top: 20px;
+    }
+
+    .form_wrap {
+        max-width: 100%;
+    }
+}

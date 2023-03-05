@@ -7,10 +7,9 @@
 }
 
 .row_card {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     grid-gap: 45px;
-    grid-template-columns:
-        minmax(230px, 230px) repeat(auto-fill, 230px) 20%;
 }
 
 .wr_settings {
@@ -62,4 +61,31 @@
     }
 
     &_right {}
+}
+
+@media(max-width: 992px) {
+    .wr_pa {
+        margin-top: 24px;
+    }
+
+    .wt_tabs {
+        margin-top: 9px;
+    }
+
+    .wr_title {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .wr_tabs {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 586px) {
+    .row_card {
+        justify-content: center;
+    }
 }

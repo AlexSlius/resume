@@ -7,6 +7,7 @@ import { Tabs } from "../../components/tabs/Tabs";
 import { TitlePage } from "../../components/titlePage";
 import { CardResume } from "../../components/cardResume";
 import { LoadBlock } from "../../components/loadBlock";
+import { Header } from "../../components/header";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
@@ -26,7 +27,10 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const {
-        resumers
+        resumers,
+        theme: {
+            currentResolution
+        }
     } = useSelector(state => state);
     let type = "resume";
     let idCv = router.query.idCv;
@@ -71,59 +75,70 @@ const Dashboard = () => {
     }, [router.query.tab])
 
     return (
-        <div>
-            <TitlePage titleText="Dashboard" />
-            <div className={`${style.wt_tabs}`}>
-                <Tabs
-                    obj={tabsDashboardPage}
-                />
-            </div>
-            <div className={`${style.wr_cards}`}>
-                {
-                    isLoader(resumers?.status) ? (
-                        <LoadBlock />
-                    ) : (
-                        <div className={`${style.row_card}`}>
-                            {
-                                type == "resume" && (
-                                    <>
-                                        {
-                                            isArray(resumers.list) && resumers.list.map((item) => (
-                                                <CardResume
-                                                    key={item.id}
-                                                    id={item.id}
-                                                    label={item.cvName}
-                                                    dateUpdate={item.updateDatetime}
-                                                    handleEdit={() => handleOnUpdateResume(item)}
-                                                    handlekeyUp={handlekeyUp}
-                                                    handleBlur={handleBlur}
-                                                />
-                                            ))
-                                        }
-                                        <CardNew
-                                            titleNwe="New Resume"
-                                            text="Create a tailored resume for each job application. Double your chances of getting hired!"
-                                            hangleAddNew={hangleAddNewResume}
-                                        />
-                                    </>
-                                )
-                            }
+        <>
+            {
+                ['md', 'sm', 'xs'].includes(currentResolution) && (
+                    <Header />
+                )
+            }
+            <div className={style.wr_pa}>
+                <div className={style.wr_title}>
+                    <TitlePage titleText="Dashboard" />
+                </div>
+                <div className={`${style.wt_tabs}`}>
+                    <div className={style.wr_tabs}>
+                        <Tabs
+                            obj={tabsDashboardPage}
+                        />
+                    </div>
+                </div>
+                <div className={`${style.wr_cards}`}>
+                    {
+                        isLoader(resumers?.status) ? (
+                            <LoadBlock />
+                        ) : (
+                            <div className={`${style.row_card}`}>
+                                {
+                                    type == "resume" && (
+                                        <>
+                                            {
+                                                isArray(resumers.list) && resumers.list.map((item) => (
+                                                    <CardResume
+                                                        key={item.id}
+                                                        id={item.id}
+                                                        label={item.cvName}
+                                                        dateUpdate={item.updateDatetime}
+                                                        handleEdit={() => handleOnUpdateResume(item)}
+                                                        handlekeyUp={handlekeyUp}
+                                                        handleBlur={handleBlur}
+                                                    />
+                                                ))
+                                            }
+                                            <CardNew
+                                                titleNwe="New Resume"
+                                                text="Create a tailored resume for each job application. Double your chances of getting hired!"
+                                                hangleAddNew={hangleAddNewResume}
+                                            />
+                                        </>
+                                    )
+                                }
 
-                            {
-                                type == "cover" && (
-                                    <>
-                                        <CardNew
-                                            titleNwe="New Cover letters"
-                                            text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
-                                        />
-                                    </>
-                                )
-                            }
-                        </div>
-                    )
-                }
+                                {
+                                    type == "cover" && (
+                                        <>
+                                            <CardNew
+                                                titleNwe="New Cover letters"
+                                                text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
+                                            />
+                                        </>
+                                    )
+                                }
+                            </div>
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -91,7 +91,7 @@ export const Header = () => {
                                             </div>
                                             <div className="submenu__item__fot">
                                                 <div className="submenu__item__fot-left">
-                                                    <img src="/images/icons/img-l-sub.png" />
+                                                    <img src="/images/icons/img-l-sub.svg" />
                                                 </div>
                                                 <div className="submenu__item__fot-center">
                                                     <div className="submenu__item-bot_t">Resume Builder</div>
@@ -99,7 +99,7 @@ export const Header = () => {
                                                     <Link href={routersPages['resumeBuilderNew']} className="submenu__item-bot_link link-a">Get Started Now</Link>
                                                 </div>
                                                 <div className="submenu__item__fot-right">
-                                                    <img src="/images/icons/img-r-sub.png" />
+                                                    <img src="/images/icons/img-r-sub.svg" />
                                                 </div>
                                             </div>
                                         </div>
