@@ -92,6 +92,7 @@ const Dashboard = () => {
                         />
                     </div>
                 </div>
+                
                 <div className={`${style.wr_cards}`}>
                     {
                         isLoader(resumers?.status) ? (
