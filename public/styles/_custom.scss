@@ -1277,6 +1277,7 @@ button {
 }
 
 @media(max-width: 767px) {
+
     .form-check-label,
     .link-form-auth,
     .auth-bot-text {
@@ -1287,5 +1288,14 @@ button {
         .r-gap-30 {
             row-gap: 12px;
         }
+    }
+
+    .btn-text-b {
+        font-size: 14px;
+    }
+
+    .menus-card_wr {
+        left: auto;
+        right: 0;
     }
 }

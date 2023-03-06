@@ -57,7 +57,6 @@ export const CardResume = ({
             </div>
             <div className={`${style.card_bot}`}>
                 <div className={`${style.card_name}`}>
-                    {/* <div>{label}</div> */}
                     <div>
                         <input
                             type="text"

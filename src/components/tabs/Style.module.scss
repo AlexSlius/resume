@@ -48,10 +48,31 @@
 
 @media (max-width: 767px) {
     .tab {
-        font-size: 20px;
+        &_btn {
+            font-size: 20px;
+            padding-bottom: 8px;
+        }
 
         &:not(:last-child) {
-            margin-right: 10px;
+            margin-right: 30px;
         }
+    }
+}
+
+@media (max-width: 576px) {
+    .tab {
+        width: 50%;
+
+        &_btn {
+            font-size: 14px;
+            width: 100%;
+        }
+
+        &:not(:last-child) {
+            margin-right: 0;
+        }
+    }
+    .row {
+        width: 100%;
     }
 }

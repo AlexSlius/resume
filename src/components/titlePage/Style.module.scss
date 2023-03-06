@@ -5,3 +5,15 @@
     font-size: 30px;
     line-height: math.div(35, 30);
 }
+
+@media (max-width: 767px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 586px) {
+    .title {
+        font-size: 20px;
+    }
+}

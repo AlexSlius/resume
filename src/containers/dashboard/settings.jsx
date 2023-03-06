@@ -71,7 +71,9 @@ const Settings = () => {
                 )
             }
             <div className={`${style.wr_settings} ${style.wr_pa}`}>
-                <TitlePage titleText="Account Settings" />
+                <div className={style.wr_title}>
+                    <TitlePage titleText="Account Settings" />
+                </div>
                 {
                     isLoader(status) ? (
                         <LoadBlock />
@@ -186,7 +188,7 @@ const Settings = () => {
                                 <CCol xl={12}>
                                     <div className={`${style.info_text}`}>Once you delete your account, it cannot be undone. This is permanent.</div>
                                 </CCol>
-                                <CCol xl={12} className="mt-4">
+                                <CCol xl={12} className={`mt-4 ${style.wr_btn_form}`}>
                                     <LoadChildrenBtn isLoad={isLoader(statusDelete)}>
                                         <CButton type="button" className="btn-red min-220" onClick={handleDeleteProfile}>Delete Account</CButton>
                                     </LoadChildrenBtn>

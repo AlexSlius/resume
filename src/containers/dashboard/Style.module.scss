@@ -84,8 +84,38 @@
     }
 }
 
+@media (max-width: 1200px) {
+    .wr_settings {
+        max-width: 100%;
+    }
+}
+
+@media(max-width: 767px) {
+    .wr_title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .info_text {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .wr_btn_form {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 586px) {
     .row_card {
         justify-content: center;
+        grid-gap: 24px;
+    }
+
+    .item_par {
+        &>p {
+            font-size: 12px;
+        }
     }
 }

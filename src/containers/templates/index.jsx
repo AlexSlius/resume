@@ -2,7 +2,8 @@ import { CButton } from '@coreui/react'
 import React, { useRef } from 'react';
 import jsPDF from 'jspdf';
 import { useSelector, useDispatch } from "react-redux";
-import Router, { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router';
+import { isArray } from 'lodash';
 
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
@@ -16,7 +17,6 @@ import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 import CustomizedSlider from '../../components/uis/range';
-import { isArray } from 'lodash';
 
 import {
     fetchGetResumeData,
@@ -26,6 +26,10 @@ import {
 import { TemplatesSelect } from './templatesSelect';
 
 const Templates = () => {
+    const refIdTimeout = React.useRef(undefined);
+    const [stateLineSpacing, setStateLIneSpacig] = React.useState(50);
+    const [stateFontSize, setStateFontSize] = React.useState(50);
+
     const dispatch = useDispatch();
     const router = useRouter();
     const idCv = router.query.idCv;
@@ -61,12 +65,36 @@ const Templates = () => {
         });
     };
 
+    // update resume
     const handleResume = (item) => {
         if (idCv != "new") {
             dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
         } else {
             Router.push(`/${routersPages['resumeBuilderNew']}?type=${item.id}`)
         }
+    }
+
+    const handleLineSpacing = (e) => {
+        setStateLIneSpacig(e.target.value);
+
+        handleUpdateServer();
+    }
+
+    const handleFontSize = (e) => {
+        setStateFontSize(e.target.value);
+
+        handleUpdateServer();
+    }
+
+    const handleUpdateServer = async (index) => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            //   await dispatch((fetchUpdateEmployment({ index })));
+            clearTimeout(refIdTimeout.current);
+        }, 1000);
     }
 
     React.useEffect(() => {
@@ -124,6 +152,8 @@ const Templates = () => {
                             <TemplatesSelect
                                 reportTemplateRef={reportTemplateRef}
                                 status={resumeData?.status}
+                                stateLineSpacing={stateLineSpacing}
+                                stateFontSize={stateFontSize}
                             />
                         </div>
                     </div>
@@ -142,17 +172,21 @@ const Templates = () => {
                             <div className='item-range'>
                                 <CustomizedSlider
                                     defaultValue={50}
+                                    value={stateLineSpacing}
                                     label="Line Spacing"
                                     textLeft="50%"
                                     textRight="150%"
+                                    onChange={handleLineSpacing}
                                 />
                             </div>
                             <div className='item-range'>
                                 <CustomizedSlider
                                     defaultValue={50}
+                                    value={stateFontSize}
                                     label="Text size"
                                     textLeft="12 pt"
                                     textRight="48 pt"
+                                    onChange={handleFontSize}
                                 />
                             </div>
                         </div>

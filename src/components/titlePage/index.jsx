@@ -5,3 +5,4 @@ export const TitlePage = ({ titleText }) => {
         <h2 className={`${style.title}`}>{titleText}</h2>
     )
 }
+

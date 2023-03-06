@@ -1,0 +1,3 @@
+export const LINE_SPACING_DEFAULЕ = 1.34;
+export const LINE_SPACING_MIN_INTEREST = 50;
+export const LINE_SPACING_MAX_INTEREST = 150;

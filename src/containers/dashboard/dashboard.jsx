@@ -92,7 +92,7 @@ const Dashboard = () => {
                         />
                     </div>
                 </div>
-                
+
                 <div className={`${style.wr_cards}`}>
                     {
                         isLoader(resumers?.status) ? (
@@ -102,6 +102,16 @@ const Dashboard = () => {
                                 {
                                     type == "resume" && (
                                         <>
+                                            {
+                                                ['md', 'sm', 'xs'].includes(currentResolution) && (
+                                                    <CardNew
+                                                        titleNwe="New Resume"
+                                                        text="Create a tailored resume for each job application. Double your chances of getting hired!"
+                                                        hangleAddNew={hangleAddNewResume}
+                                                        currentResolution={currentResolution}
+                                                    />
+                                                )
+                                            }
                                             {
                                                 isArray(resumers.list) && resumers.list.map((item) => (
                                                     <CardResume
@@ -115,11 +125,16 @@ const Dashboard = () => {
                                                     />
                                                 ))
                                             }
-                                            <CardNew
-                                                titleNwe="New Resume"
-                                                text="Create a tailored resume for each job application. Double your chances of getting hired!"
-                                                hangleAddNew={hangleAddNewResume}
-                                            />
+                                            {
+                                                !['md', 'sm', 'xs'].includes(currentResolution) && (
+                                                    <CardNew
+                                                        titleNwe="New Resume"
+                                                        text="Create a tailored resume for each job application. Double your chances of getting hired!"
+                                                        hangleAddNew={hangleAddNewResume}
+                                                        currentResolution={currentResolution}
+                                                    />
+                                                )
+                                            }
                                         </>
                                     )
                                 }
@@ -130,6 +145,7 @@ const Dashboard = () => {
                                             <CardNew
                                                 titleNwe="New Cover letters"
                                                 text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
+                                                currentResolution={currentResolution}
                                             />
                                         </>
                                     )

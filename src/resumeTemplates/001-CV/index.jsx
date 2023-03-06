@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -26,7 +26,12 @@ export const ResumeCv001 = ({
   refs,
   data,
   idCv,
+  stateLineSpacing,
+  stateFontSize
 }) => {
+  const [classFontSize, setClassFontSize] = useState(1);
+  const [classFontLineSpacing, setClassFontLineSpacing] = useState(1);
+
   const {
     contact,
     social_links,
@@ -43,13 +48,56 @@ export const ResumeCv001 = ({
     languages
   } = data;
 
+  React.useEffect(() => {
+    switch (stateLineSpacing) {
+      case 0: {
+        setClassFontLineSpacing(1);
+        break;
+      }
+      case 50: {
+        setClassFontLineSpacing(2);
+        break;
+      }
+      case 100: {
+        setClassFontLineSpacing(3);
+        break;
+      }
+    }
+
+  }, [stateLineSpacing]);
+
+  React.useEffect(() => {
+    switch (stateFontSize) {
+      case 0: {
+        setClassFontSize(1);
+        break;
+      }
+      case 50: {
+        setClassFontSize(2);
+        break;
+      }
+      case 100: {
+        setClassFontSize(3);
+        break;
+      }
+    }
+  }, [stateFontSize]);
+
   return (
     <div ref={refs} className="sv_001">
       {
         idCv != "new" && (
           <>
             <div id="cv-chapter-section-cv" className="cv-chapter-section" data-chapter="cv">
-              <div id="cv-body-hidden-container" className="cv-body cv-body-1 cv-body-visible page-1 font-size-scheme-1 line-height-scheme-1 color-scheme-1">
+              <div id="cv-body-hidden-container"
+                className={`line-height-scheme-${classFontLineSpacing}
+                font-size-scheme-${classFontSize}
+                cv-body 
+                cv-body-1 
+                cv-body-visible 
+                page-1 
+                color-scheme-1
+                `}>
                 <div className="cv-body-content">
                   {/* contact */}
                   <div className="cv-body-area area-1 additional-color-3-background">

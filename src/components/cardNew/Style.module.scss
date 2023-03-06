@@ -1,5 +1,7 @@
 .card_new {
     max-width: 230px;
+    width: 20%;
+
     &__head {
         display: flex;
         min-height: 326px;
@@ -39,5 +41,17 @@
         margin-top: 20px;
         font-size: 14px;
         color: #838799;
+    }
+}
+
+@media (max-width: 767px) {
+    .card_new {
+        width: 46%;
+        max-width: auto;
+
+        &__head {
+            min-height: 170px;
+            padding: 10px;
+        }
     }
 }

@@ -8,15 +8,15 @@ const marks = [
     {
         value: 0,
     },
-    {
-        value: 25,
-    },
+    // {
+    //     value: 25,
+    // },
     {
         value: 50,
     },
-    {
-        value: 75,
-    },
+    // {
+    //     value: 75,
+    // },
     {
         value: 100,
     },
@@ -78,6 +78,9 @@ export default function CustomizedSlider({
     label = "",
     textLeft = "",
     textRight = "",
+    step = 50,
+    value = 0,
+    onChange = () => { },
 }) {
     return (
         <Box>
@@ -88,7 +91,10 @@ export default function CustomizedSlider({
                     aria-label="ios slider"
                     defaultValue={defaultValue}
                     marks={marks}
+                    value={value}
                     valueLabelDisplay={valueLabelDisplay}
+                    onChange={onChange}
+                    step={step}
                 />
                 <div className='ite-t-r'>{textRight}</div>
             </div>

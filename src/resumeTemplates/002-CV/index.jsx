@@ -26,6 +26,7 @@ export const ResumeCv002 = ({
   refs,
   data,
   idCv,
+  stateClasses
 }) => {
   const {
     contact,
@@ -47,7 +48,7 @@ export const ResumeCv002 = ({
     <div className="sv_002" ref={refs}>
       {
         idCv != "new" && (
-          <div id="cv-chapter-section-cv" className="cv-chapter-section" data-chapter="cv">
+          <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo  line-height-scheme-state-small color-scheme-state-color-set-0`} data-chapter="cv">
             <div id="cv-body-hidden-container" className="cv-body">
               <div className="cv-body-content">
                 <div className="cv-body-area area-1">
@@ -138,7 +139,7 @@ export const ResumeCv002 = ({
                                     <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemEm?.title && (`${itemEm?.title},`)} {!!itemEm?.company && (`${itemEm?.company},`)} {!!itemEm?.city && (`${itemEm?.city}`)}</h4>
                                   )
                                 }
-                                <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                                <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                               </div>
                             ))
                           }
@@ -177,7 +178,7 @@ export const ResumeCv002 = ({
                                 }
                                 {
                                   !!itemEd?.description && (
-                                    <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                                    <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
                                   )
                                 }
                               </div>
@@ -241,7 +242,7 @@ export const ResumeCv002 = ({
                                     <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</h4>
                                   )
                                 }
-                                <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
+                                <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
                               </div>
                             ))
                           }
@@ -268,7 +269,7 @@ export const ResumeCv002 = ({
                                 }
                                 {(!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (<h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</h4>)}
 
-                                <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                                <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
                               </div>
                             ))
                           }
@@ -284,12 +285,12 @@ export const ResumeCv002 = ({
                       !!career_objective?.[0]?.data && (
                         <div className="profile-info-block wrappable-block">
                           <div className="profile-block block-block">
-                            <h2 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">
+                            <h2 className="cv-heading heading-type-3 font-size-2 font-weight-700 line-height-2 additional-color-1-text">
                               Profile
                               <span className="line-after-block-heading additional-color-2-border"></span>
                             </h2>
 
-                            <div dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></div>
+                            <div className="profile-text main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></div>
                           </div>
                         </div>
                       )
@@ -484,7 +485,7 @@ export const ResumeCv002 = ({
           </div>
         )
       }
-    </div>
+    </div >
   )
 }
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
@@ -7,11 +8,15 @@ import { isLoader } from "../../helpers/loadings";
 import { ResumeCv001 } from '../../resumeTemplates/001-CV';
 import { ResumeCv002 } from '../../resumeTemplates/002-CV';
 import { ResumeCv003 } from '../../resumeTemplates/003-CV';
+import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
     reportTemplateRef,
-    status
+    status,
+    stateLineSpacing,
+    stateFontSize,
 }) => {
+    const stateClasses = `${sizeLineSpacing(stateLineSpacing)} ${sizeFont(stateFontSize)}`
     const router = useRouter();
     const idCv = router.query.idCv;
 
@@ -31,6 +36,8 @@ export const TemplatesSelect = ({
                 {
                     resumeActive?.template_slug == "001-CV" && (
                         <ResumeCv001
+                            stateLineSpacing={stateLineSpacing}
+                            stateFontSize={stateFontSize}
                             refs={reportTemplateRef}
                             data={data}
                             idCv={idCv}
@@ -41,6 +48,7 @@ export const TemplatesSelect = ({
                 {
                     resumeActive?.template_slug == "002-CV" && (
                         <ResumeCv002
+                            stateClasses={stateClasses}
                             refs={reportTemplateRef}
                             data={data}
                             idCv={idCv}
@@ -51,6 +59,7 @@ export const TemplatesSelect = ({
                 {
                     resumeActive?.template_slug == "003-CV" && (
                         <ResumeCv003
+                            stateClasses={stateClasses}
                             refs={reportTemplateRef}
                             data={data}
                             idCv={idCv}
