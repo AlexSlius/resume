@@ -13,7 +13,8 @@ import dotsIcon from '/public/images/icons/dots.svg?sprite'
 
 const ResumeFooter = () => {
    const router = useRouter();
-   const idCv = router.query.idCv;
+   const { idCv, type = "new", slug = "001-CV" } = router.query;
+
    const {
       auth: {
          autorizate: {
@@ -29,7 +30,7 @@ const ResumeFooter = () => {
                className='resume-footer__button'
                color="secondary"
                variant="outline"
-               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)}
+               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}?type=${type}&slug=${slug}`)}
             >
                <Icon svg={templateIcon} classNames={['icon-20']} />
                Select template

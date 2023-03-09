@@ -97,13 +97,13 @@ export const JobWinningPage = () => {
                                 return (
                                     <div className="item-card-resum" key={index}>
                                         <div className="item-card-resum__head">
-                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}`}>
+                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}&slug=${item.slug}`}>
                                                 <img loading="lazy" src={item.image} />
                                             </Link>
                                         </div>
                                         <div className="item-card-resum__bot">
                                             <div className="item-card-resum__tt">
-                                                <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}`} className="item-card-resum__titl">{item.name}</Link>
+                                                <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}&slug=${item.slug}`} className="item-card-resum__titl">{item.name}</Link>
                                                 {
                                                     (isArray(item?.types) && item.types.length > 0) && (
                                                         <div className="item-card-resum__types">

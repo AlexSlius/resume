@@ -104,3 +104,13 @@
       fill: #01153a !important
    }
 }
+
+@media (max-width: 1559px) {
+   .side {
+      max-width: 240px;
+   }
+
+   .nav_link {
+      white-space: pre-wrap;
+   }
+}

@@ -46,12 +46,12 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
-    [HYDRATE]: (state, action) => {
-      return {
-        ...state,
-        ...action.payload.contacts,
-      }
-    },
+    // [HYDRATE]: (state, action) => {
+    //   return {
+    //     ...state,
+    //     ...action.payload.contacts,
+    //   }
+    // },
     // get
     [getBasicContact.pending]: (state) => {
       state.contactObj = initialState.contactObj;

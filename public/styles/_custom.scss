@@ -1276,6 +1276,24 @@ button {
     }
 }
 
+@media (max-width: 1559px) {
+    .r-gap-30 {
+        row-gap: 20px;
+    }
+
+    .main-content {
+        .row {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        .row>* {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
 @media(max-width: 767px) {
 
     .form-check-label,

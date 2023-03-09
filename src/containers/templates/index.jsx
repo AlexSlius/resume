@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Router, { useRouter } from 'next/router';
 import { isArray } from 'lodash';
 
+import { TemplatesSelect } from '../../components/templatesSelect';
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
 import TemplateHead from "../../components/templateHead/TemplateHead";
@@ -23,7 +24,7 @@ import {
     getResumeActive,
     setUpdateResumeActive
 } from "../../controllers/resumeData";
-import { TemplatesSelect } from './templatesSelect';
+
 
 const Templates = () => {
     const refIdTimeout = React.useRef(undefined);
@@ -32,8 +33,9 @@ const Templates = () => {
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const idCv = router.query.idCv;
+    const { idCv, type = "new", slug = "001-CV" } = router.query;
     const reportTemplateRef = useRef(null);
+    const isNewResume = (idCv == "new");
 
     const {
         auth: {
@@ -45,7 +47,38 @@ const Templates = () => {
             currentResolution
         },
         resumeData,
+        contacts: {
+            contactObj
+        },
+        employment,
+        educations,
+        skills,
+        socials,
+        hobies,
+        interships,
+        courses,
+        activitys,
+        languages,
+        references,
+        certificaties,
+        careers,
     } = useSelector((state) => state);
+
+    let dataResumeTemplate = {
+        contact: [contactObj],
+        employment: employment.employmentObj,
+        education: educations.educationObj,
+        skills: skills.skillsObj,
+        social_links: socials.socialObj,
+        hobbies: hobies.hobiesObj,
+        internship: interships.interhipObj,
+        courses: courses.courseObj,
+        extra_curricular: activitys.activityObj,
+        career_objective: [{ data: careers.data }],
+        languages: languages.languageObj,
+        reference: references.referencesObj,
+        certificates: certificaties.certificatiesObj,
+    };
 
     const handleGeneratePdf = () => {
         const doc = new jsPDF({
@@ -76,14 +109,10 @@ const Templates = () => {
 
     const handleLineSpacing = (e) => {
         setStateLIneSpacig(e.target.value);
-
-        handleUpdateServer();
     }
 
     const handleFontSize = (e) => {
         setStateFontSize(e.target.value);
-
-        handleUpdateServer();
     }
 
     const handleUpdateServer = async (index) => {
@@ -92,10 +121,27 @@ const Templates = () => {
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            //   await dispatch((fetchUpdateEmployment({ index })));
+            await dispatch(setUpdateResumeActive({
+                idCv, data: {
+                    cv_template_id: resumeData?.resumeActive?.template_id,
+                    template_line_spacing: stateLineSpacing,
+                    template_text_size: stateFontSize,
+                }, isGet: false
+            }));
             clearTimeout(refIdTimeout.current);
         }, 1000);
     }
+
+    React.useEffect(() => {
+        if (idCv != "new") {
+            handleUpdateServer();
+        }
+    }, [stateLineSpacing, stateFontSize]);
+
+    React.useEffect(() => {
+        setStateLIneSpacig(resumeData?.resumeActive?.template_line_spacing ? +resumeData?.resumeActive?.template_line_spacing : 50);
+        setStateFontSize(resumeData?.resumeActive?.template_text_size ? +resumeData?.resumeActive?.template_text_size : 50);
+    }, [resumeData]);
 
     React.useEffect(() => {
         if (idCv != "new") {
@@ -115,26 +161,30 @@ const Templates = () => {
                     </div>
                     <div className="pt-ts scroll-style">
                         {
-                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`it-t ${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`}
-                                    onClick={() => handleResume(item)}
-                                >
-                                    <img src={item.image} alt={item.name} />
-                                    {
-                                        (isArray(item?.types) && item.types.length > 0) && (
-                                            <div className="item-card-resum__types">
-                                                {
-                                                    item.types.map((itemType, index) => (
-                                                        <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
-                                                    ))
-                                                }
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            ))
+                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
+                                let classActive = isNewResume ? `${item.slug == slug ? "active" : ""}` : `${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`;
+
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`it-t ${classActive}`}
+                                        onClick={() => handleResume(item)}
+                                    >
+                                        <img src={item.image} alt={item.name} />
+                                        {
+                                            (isArray(item?.types) && item.types.length > 0) && (
+                                                <div className="item-card-resum__types">
+                                                    {
+                                                        item.types.map((itemType, index) => (
+                                                            <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                        ))
+                                                    }
+                                                </div>
+                                            )
+                                        }
+                                    </div>
+                                )
+                            })
                         }
                     </div>
                     <div className="pt_b-l plr-30">
@@ -149,12 +199,17 @@ const Templates = () => {
                     </div>
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
-                            <TemplatesSelect
-                                reportTemplateRef={reportTemplateRef}
-                                status={resumeData?.status}
-                                stateLineSpacing={stateLineSpacing}
-                                stateFontSize={stateFontSize}
-                            />
+                            <div className="body-template-resume">
+                                <TemplatesSelect
+                                    status={resumeData?.status}
+                                    stateLineSpacing={stateLineSpacing}
+                                    stateFontSize={stateFontSize}
+
+                                    data={isNewResume ? dataResumeTemplate : resumeData?.data}
+                                    resumeActive={isNewResume ? slug : resumeData?.resumeActive?.template_slug}
+                                    statusResumeActive={resumeData?.statusResumeActive}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="pt_b-r plr">

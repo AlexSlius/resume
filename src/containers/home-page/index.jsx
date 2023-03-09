@@ -169,7 +169,7 @@ export const HomePage = () => {
                             In three simple steps, create the perfect document to impress hiring managers
                             and employers. Minimum time, maximum professional quality.
                         </p>
-                        <Link href="#" className="tabs__top--btn btns btn--blue">
+                        <Link href={`${routersPages['resumeBuilderNew']}`} className="tabs__top--btn btns btn--blue">
                             Create My Resume
                         </Link>
                     </div>
@@ -356,7 +356,7 @@ export const HomePage = () => {
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
                                         <div className="doc-btn">
-                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}`} className="document__btn btns btn--blue">Use this template</Link>
+                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}&slug=${itemResume.slug}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>
                                 ))
