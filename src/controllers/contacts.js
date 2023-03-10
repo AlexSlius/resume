@@ -10,15 +10,15 @@ import { addItemNotification } from "../slices/notifications";
 import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact"
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, typeResume }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume }, thunkAPI) => {
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState()
     const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, pictureFile)
 
     const response = await api.contact.setAddResume(newObj);
 
     if (isRespondServerSuccesss(response)) {
         thunkAPI.dispatch(cleanSliseNew());
-        thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: typeResume } }));
+        thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
         await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
     }
 
@@ -29,7 +29,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     return response;
 })
 
-export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume, typeResume }, thunkAPI) => {
+export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
     const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, dataImage)
 
@@ -38,12 +38,6 @@ export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', asy
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
         thunkAPI.dispatch(cleanSliseNew());
-
-        if (typeResume !== null) {
-            sessionStorageSet("typeResume", typeResume);
-        } else {
-            sessionStorageRemove("typeResume");
-        }
 
         sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)
         Router.push(`/${routersPages['register']}`);

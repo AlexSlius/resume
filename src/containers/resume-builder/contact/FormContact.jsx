@@ -142,12 +142,12 @@ const FormContact = ({
 
    const formSubmit = async () => {
       if (!isAthorized) {
-         await dispatch(contactSetNew({ pictureFile, isNewResume, typeResume: router.query.type || null }));
+         await dispatch(contactSetNew({ pictureFile, isNewResume }));
       }
    }
 
    const onHandleNewAutorization = async () => {
-      await dispatch(contactAddNew({ pictureFile, isNewResume, typeResume: router.query.type || null }));
+      await dispatch(contactAddNew({ pictureFile, isNewResume }));
    }
 
    const updateContactServer = async () => {

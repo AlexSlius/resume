@@ -30,7 +30,7 @@ const ResumeFooter = () => {
                className='resume-footer__button'
                color="secondary"
                variant="outline"
-               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}?type=${type}&slug=${slug}`)}
+               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)}
             >
                <Icon svg={templateIcon} classNames={['icon-20']} />
                Select template
