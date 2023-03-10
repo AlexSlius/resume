@@ -12,6 +12,8 @@ import TemplateHead from "../../components/templateHead/TemplateHead";
 import { ButtonBack } from "../../components/uis/buttonBack"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 
+import { updateActiveResumeNew } from "../../slices/resumeData";
+
 import { routersPages } from "../../constants/next-routers";
 
 import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
@@ -48,7 +50,8 @@ const Templates = () => {
         },
         resumeData,
         contacts: {
-            contactObj
+            contactObj,
+            contactObjNew,
         },
         employment,
         educations,
@@ -65,7 +68,7 @@ const Templates = () => {
     } = useSelector((state) => state);
 
     let dataResumeTemplate = {
-        contact: [contactObj],
+        contact: isNewResume ? [contactObjNew] : [contactObj],
         employment: employment.employmentObj,
         education: educations.educationObj,
         skills: skills.skillsObj,
@@ -103,7 +106,7 @@ const Templates = () => {
         if (idCv != "new") {
             dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
         } else {
-            Router.push(`/${routersPages['resumeBuilderNew']}?type=${item.id}`)
+            dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))
         }
     }
 
@@ -162,7 +165,7 @@ const Templates = () => {
                     <div className="pt-ts scroll-style">
                         {
                             isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
-                                let classActive = isNewResume ? `${item.slug == slug ? "active" : ""}` : `${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`;
+                                let classActive = isNewResume ? `${item.slug == resumeData.resumeActiveNew.slug ? "active" : ""}` : `${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`;
 
                                 return (
                                     <div
@@ -206,7 +209,7 @@ const Templates = () => {
                                     stateFontSize={stateFontSize}
 
                                     data={isNewResume ? dataResumeTemplate : resumeData?.data}
-                                    resumeActive={isNewResume ? slug : resumeData?.resumeActive?.template_slug}
+                                    resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
                                     statusResumeActive={resumeData?.statusResumeActive}
                                 />
                             </div>

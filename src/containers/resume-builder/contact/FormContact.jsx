@@ -14,11 +14,13 @@ import { LoadWr } from "../../../components/loadWr";
 import {
    contactSetNew,
    fetchUpdateContact,
-   contactAddNew
+   contactAddNew,
+   getBasicContact
 } from "../../../controllers/contacts"
 import {
    updatePictureContact,
-   updateItemFieldContact
+   updateItemFieldContact,
+   cleanSliseNew
 } from "../../../slices/contact"
 import {
    fetchGetCountrys,
@@ -50,10 +52,12 @@ const FormContact = ({
    const [pictureFile, setPictureFile] = useState(undefined);
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
+   const isNewResume = (idCv == "new");
 
    const {
       contacts: {
          contactObj,
+         contactObjNew,
          status,
       },
       dependencies: {
@@ -69,6 +73,8 @@ const FormContact = ({
          }
       },
    } = storeDate;
+
+   let contObj = (isNewResume ? contactObjNew : contactObj);
 
    const {
       register,
@@ -131,17 +137,17 @@ const FormContact = ({
       if (!!!idCountry)
          return false;
 
-      await dispatch(fetchGetCities({ id: idCountry, params: contactObj.city }));
+      await dispatch(fetchGetCities({ id: idCountry, params: contObj.city }));
    }
 
    const formSubmit = async () => {
       if (!isAthorized) {
-         await dispatch(contactSetNew({ pictureFile, typeResume: router.query.type || null }));
+         await dispatch(contactSetNew({ pictureFile, isNewResume, typeResume: router.query.type || null }));
       }
    }
 
    const onHandleNewAutorization = async () => {
-      await dispatch(contactAddNew({ pictureFile, typeResume: router.query.type || null }));
+      await dispatch(contactAddNew({ pictureFile, isNewResume, typeResume: router.query.type || null }));
    }
 
    const updateContactServer = async () => {
@@ -184,14 +190,17 @@ const FormContact = ({
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
+      // dispatch(cleanSliseNew());
       if (idCv == "new") {
          sessionStorageRemove('picture');
+      } else {
+         // dispatch(getBasicContact(idCv));
       }
    }, []);
 
    useEffect(() => {
-      setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contactObj.country }));
-   }, [coutrys.list, contactObj.country]);
+      setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contObj.country }));
+   }, [coutrys.list, contObj.country]);
 
    useEffect(() => {
       if (idCountry)
@@ -207,7 +216,7 @@ const FormContact = ({
                      <Input
                         label="First Name*"
                         placeholder="First Name*"
-                        value={contactObj.firstName}
+                        value={contObj.firstName}
                         autoComplete="on"
                         obj={
                            register("firstName", {
@@ -224,7 +233,7 @@ const FormContact = ({
                         label="Last Name*"
                         placeholder="Last Name*"
                         autoComplete="on"
-                        value={contactObj.lastName}
+                        value={contObj.lastName}
                         obj={
                            register("lastName", {
                               required: true,
@@ -237,7 +246,7 @@ const FormContact = ({
                   </div>
                </CCol>
                <CCol xs={6}>
-                  <PhotoAdd handleFileSelect={handleFileSelect} value={contactObj?.picture} />
+                  <PhotoAdd handleFileSelect={handleFileSelect} value={contObj?.picture} />
                </CCol>
             </CRow>
             <CRow className="g-30 r-gap-30">
@@ -245,10 +254,10 @@ const FormContact = ({
                   <Input
                      label="E-mail"
                      placeholder="E-mail"
-                     value={contactObj.email}
+                     value={contObj.email}
                      invalid={errors?.email}
                      autoComplete="on"
-                     // valid={!errors?.email && /\S+@\S+\.\S+/.test(contactObj.email)}
+                     // valid={!errors?.email && /\S+@\S+\.\S+/.test(contObj.email)}
                      obj={
                         register("email", {
                            pattern: {
@@ -263,7 +272,7 @@ const FormContact = ({
                      label="Phone"
                      placeholder="Phone"
                      autoComplete="on"
-                     value={contactObj.phone}
+                     value={contObj.phone}
                      type="number"
                      name="phone"
                      onChange={(e) => handleSaveSelect({ name: "phone", value: e.target.value })}
@@ -273,7 +282,7 @@ const FormContact = ({
                   <InputSelect
                      label="Job Title"
                      placeholder="Job Title"
-                     valueState={contactObj.jobTitle || ""}
+                     valueState={contObj.jobTitle || ""}
                      data={jopsTitle?.list || []}
                      isAddDiv={true}
                      name="jobTitle"
@@ -289,7 +298,7 @@ const FormContact = ({
                <CCol xs={3}>
                   <InputSelect
                      placeholder="Country"
-                     valueState={contactObj.country || ''}
+                     valueState={contObj.country || ''}
                      data={coutrys.list}
                      name="country"
                      isBackgraundLoad={isLoader(coutrys.status)}
@@ -303,7 +312,7 @@ const FormContact = ({
                   <InputSelect
                      label="City"
                      placeholder="City"
-                     valueState={contactObj.city || ''}
+                     valueState={contObj.city || ''}
                      name="city"
                      data={cities.list}
                      isBackgraundLoad={isLoader(cities?.status)}
@@ -319,7 +328,7 @@ const FormContact = ({
                   <Input
                      label="Adress"
                      placeholder="Adress"
-                     value={contactObj.address}
+                     value={contObj.address}
                      autoComplete="on"
                      obj={
                         register("address", {
@@ -334,7 +343,7 @@ const FormContact = ({
                   <Input
                      label="Zip Code"
                      placeholder="Zip Code"
-                     value={contactObj.zipCode}
+                     value={contObj.zipCode}
                      autoComplete="on"
                      type="number"
                      obj={
@@ -350,7 +359,7 @@ const FormContact = ({
                   <InputSelect
                      label="Driver license"
                      placeholder="Driver license"
-                     valueState={contactObj.driverLicense || ''}
+                     valueState={contObj.driverLicense || ''}
                      data={drivers?.list || []}
                      name="driverLicense"
                      isBackgraundLoad={isLoader(drivers?.status)}
@@ -364,7 +373,7 @@ const FormContact = ({
                   <InputSelect
                      label="Nationality"
                      placeholder="Nationality"
-                     valueState={contactObj.nationality || ''}
+                     valueState={contObj.nationality || ''}
                      data={nationality?.list || []}
                      name="nationality"
                      isBackgraundLoad={isLoader(nationality?.status)}
@@ -378,7 +387,7 @@ const FormContact = ({
                   <Input
                      label="Place of birth"
                      placeholder="Place of birth"
-                     value={contactObj.placeOfBirth}
+                     value={contObj.placeOfBirth}
                      obj={
                         register("placeOfBirth", {
                            minLength: {
@@ -390,7 +399,7 @@ const FormContact = ({
                </CCol>
                <CCol xs={6}>
                   <DatePicker
-                     selected={contactObj.dateOfBirth}
+                     selected={contObj.dateOfBirth}
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
                      placeholderText="Date of birth"
                      name="date_of_birth"
@@ -411,7 +420,7 @@ const FormContact = ({
                   isAthorized={isAthorized}
                   isFirstStep={true}
                   isNew={idCv == "new" && isAthorized}
-                  disabledNext={!contactObj.firstName || !contactObj.lastName}
+                  disabledNext={!contObj.firstName || !contObj.lastName}
                />
             </CCol>
          </CForm>

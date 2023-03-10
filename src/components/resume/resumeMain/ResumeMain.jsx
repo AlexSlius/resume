@@ -21,7 +21,8 @@ const ResumeMain = ({
 
    const {
       contacts: {
-         contactObj
+         contactObj,
+         contactObjNew
       },
       employment,
       educations,
@@ -36,12 +37,13 @@ const ResumeMain = ({
       certificaties,
       careers,
       resumeData: {
-         resumeActive
+         resumeActive,
+         resumeActiveNew
       }
    } = useSelector((state) => state);
 
    let dataResumeTemplate = {
-      contact: [contactObj],
+      contact: isNewResume ? [contactObjNew] : [contactObj],
       employment: employment.employmentObj,
       education: educations.educationObj,
       skills: skills.skillsObj,
@@ -67,7 +69,7 @@ const ResumeMain = ({
          <div className="scroll-style resume-main_scroll">
             <TemplatesSelect
                isResume={true}
-               resumeActive={isNewResume ? !!slug ? slug : "001-CV" : resumeActive?.template_slug}
+               resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
                data={dataResumeTemplate}
             />
          </div>

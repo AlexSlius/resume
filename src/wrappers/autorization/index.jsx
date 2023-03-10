@@ -1,5 +1,5 @@
 import React from "react"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { AutorizationBigPicture } from "../../components/autorizationBigPicture"
 
@@ -7,14 +7,22 @@ import style from "./Autorization-wraper.module.scss"
 import { AutorizationHeader } from "../../components/autorizationHeader"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 
+import { cleanSliseNew } from "../../slices/contact";
+
 import { routersPages } from "../../constants/next-routers";
 
 export const AutorizationWrapper = (props) => {
+    const dispatch = useDispatch();
+
     const {
         theme: {
             currentResolution
         }
     } = useSelector((state) => state);
+
+    React.useEffect(() => {
+        dispatch(cleanSliseNew());
+    }, []);
 
     return (
         <div className={`${style.main_wrapper_autorization}`}>

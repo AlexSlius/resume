@@ -35,15 +35,16 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     return response;
 })
 
+// typeResume пока не использую
 export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({ data, typeResume }, thunkAPI) => {
-    const { menuAsideResume } = thunkAPI.getState();
+    const { menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState();
     const response = await api.auth.register(data);
 
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
 
-        if (!!typeResume) {
-            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: typeResume }, isRemoveSesion: true }));
+        if (!!resumeActiveNew.id) {
+            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id }, isRemoveSesion: true }));
         }
 
         let nextRouterPage = sessionStorageGet('routet_page_next');

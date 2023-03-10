@@ -8,14 +8,16 @@ import { routersPages } from '../constants/next-routers';
 import { newObjContact } from '../helpers/resumeDestructObj';
 import { addItemNotification } from "../slices/notifications";
 import { setUpdateResumeActive } from './resumeData';
+import { cleanSliseNew } from "../slices/contact"
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, typeResume }, thunkAPI) => {
-    const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
-    const newObj = newObjContact(contactObj, pictureFile)
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, typeResume }, thunkAPI) => {
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
+    const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, pictureFile)
 
     const response = await api.contact.setAddResume(newObj);
 
     if (isRespondServerSuccesss(response)) {
+        thunkAPI.dispatch(cleanSliseNew());
         thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: typeResume } }));
         await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
     }
@@ -27,14 +29,15 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     return response;
 })
 
-export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, typeResume }, thunkAPI) => {
-    const { contacts: { contactObj }, menuAsideResume } = thunkAPI.getState()
-    const newObj = newObjContact(contactObj, dataImage)
+export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume, typeResume }, thunkAPI) => {
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
+    const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, dataImage)
 
     const response = await api.contact.setBaseInfo(newObj);
 
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
+        thunkAPI.dispatch(cleanSliseNew());
 
         if (typeResume !== null) {
             sessionStorageSet("typeResume", typeResume);

@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { Footer } from "../../components/footer"
 import { Header } from "../../components/header"
 
-import { localStorageRemove } from "../../helpers/localStorage";
+import { cleanSliseNew } from "../../slices/contact";
+import { useDispatch } from "react-redux";
 
 export const WrapperPage = ({ children }) => {
+    const dispatch = useDispatch()
     useEffect(() => {
-        localStorageRemove("idCv");
+        dispatch(cleanSliseNew());
     }, []);
 
     return <div className="page">

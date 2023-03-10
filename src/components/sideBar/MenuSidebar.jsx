@@ -43,6 +43,7 @@ const MenuSideBar = () => {
         },
     } = useSelector(state => state);
     const idCv = router.query.idCv;
+    const isNewResume = (idCv == "new");
 
     const handleClick = (e) => {
         if (idCv == "new") {
@@ -51,7 +52,7 @@ const MenuSideBar = () => {
             let pictureFile = sessionStorageGet('picture');
 
             if (isAthorized) {
-                dispatch(contactAddNew(pictureFile));
+                dispatch(contactAddNew({ pictureFile, isNewResume }));
             } else {
                 setShowModalNoAccess(true);
             }
@@ -60,7 +61,7 @@ const MenuSideBar = () => {
 
     const onHanleBtnRegister = () => {
         let pictureFile = sessionStorageGet('picture');
-        dispatch(contactSetNew({ pictureFile: pictureFile || null, typeResume: router.query.type || null }));
+        dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
     }
 
     React.useEffect(() => {

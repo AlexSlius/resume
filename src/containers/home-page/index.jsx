@@ -2,12 +2,13 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
 
 import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
 
+import { updateActiveResumeNew } from "../../slices/resumeData";
 
 const arr = [
     {
@@ -29,6 +30,7 @@ const arr = [
 ];
 
 export const HomePage = () => {
+    const dispatch = useDispatch();
     const refIdInterval = React.useRef(undefined);
     const isStart = React.useRef(true);
     const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
@@ -355,8 +357,8 @@ export const HomePage = () => {
                                         <div className="doc-img">
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
-                                        <div className="doc-btn">
-                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${itemResume.id}&slug=${itemResume.slug}`} className="document__btn btns btn--blue">Use this template</Link>
+                                        <div className="doc-btn" onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))} >
+                                            <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>
                                 ))
@@ -364,7 +366,7 @@ export const HomePage = () => {
                         </Swiper>
                     </div>
                 </div>
-            </section>
+            </section >
 
             <section className="faq mt-130">
                 <div className="containers">

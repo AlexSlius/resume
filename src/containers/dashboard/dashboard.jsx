@@ -16,6 +16,9 @@ import {
     fetchGetResumesList,
     fetchPostUpdateResumes
 } from "../../controllers/resumes";
+import {
+    cleanSliseNew
+} from "../../slices/contact";
 import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
 import { isLoader } from "../../helpers/loadings"
@@ -72,7 +75,11 @@ const Dashboard = () => {
             dispatch(fetchGetResumesList());
         }
 
-    }, [router.query.tab])
+    }, [router.query.tab]);
+
+    React.useEffect(() => {
+        dispatch(cleanSliseNew());
+    }, []);
 
     return (
         <>

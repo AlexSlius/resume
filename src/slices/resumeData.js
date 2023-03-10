@@ -13,6 +13,10 @@ const initialState = {
     list: [],
     data: {},
     resumeActive: null,
+    resumeActiveNew: {
+        slug: "001-CV",
+        id: 1,
+    },
     status: statusLoaded,
     statusResumeActive: statusLoaded,
 };
@@ -20,11 +24,18 @@ const initialState = {
 export const slice = createSlice({
     name: 'resumeData',
     initialState,
+    reducers: {
+        updateActiveResumeNew(state, action) {
+            state.resumeActiveNew = action.payload;
+        }
+    },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                ...action.payload.resumeData,
+                list: { ...state.list, ...action.payload.resumeData.list },
+                data: { ...state.data, ...action.payload.resumeData.data },
+                resumeActive: { ...state.resumeActive, ...action.payload.resumeData.resumeActive },
             }
         },
         // get resume active
@@ -53,5 +64,9 @@ export const slice = createSlice({
         },
     }
 });
+
+export const {
+    updateActiveResumeNew
+} = slice.actions;
 
 export const { reducer } = slice;

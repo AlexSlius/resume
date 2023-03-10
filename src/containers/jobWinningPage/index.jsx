@@ -1,10 +1,12 @@
 import Link from "next/link";
 import React from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { isArray, isString } from "lodash";
 
 import { ButtonIcon } from "../../components/uis/buttonIcon";
 import Icon from "../../components/Icon";
+
+import { updateActiveResumeNew } from "../../slices/resumeData";
 
 import iconAddNew from "/public/images/icons/icon-add-new-white.svg?sprite";
 import iconUploadMore from "/public/images/icons/upload-more.svg?sprite";
@@ -18,6 +20,7 @@ import iconModern from "/public/images/icons/icon-modern.svg?sprite";
 import { routersPages } from "../../constants/next-routers";
 
 export const JobWinningPage = () => {
+    const dispatch = useDispatch();
     const [stateCategory, setStateCategory] = React.useState(null);
 
     const handleCategory = (nameCategory) => {
@@ -96,14 +99,14 @@ export const JobWinningPage = () => {
 
                                 return (
                                     <div className="item-card-resum" key={index}>
-                                        <div className="item-card-resum__head">
-                                            <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}&slug=${item.slug}`}>
+                                        <div className="item-card-resum__head " onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
+                                            <Link href={`/${routersPages['resumeBuilderNew']}`}>
                                                 <img loading="lazy" src={item.image} />
                                             </Link>
                                         </div>
                                         <div className="item-card-resum__bot">
-                                            <div className="item-card-resum__tt">
-                                                <Link href={`/${routersPages['resumeBuilderNew']}?type=${item.id}&slug=${item.slug}`} className="item-card-resum__titl">{item.name}</Link>
+                                            <div className="item-card-resum__tt" onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
+                                                <Link href={`/${routersPages['resumeBuilderNew']}`} className="item-card-resum__titl">{item.name}</Link>
                                                 {
                                                     (isArray(item?.types) && item.types.length > 0) && (
                                                         <div className="item-card-resum__types">

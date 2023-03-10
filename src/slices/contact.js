@@ -26,6 +26,22 @@ const initialState = {
     placeOfBirth: "",
     dateOfBirth: null
   },
+  contactObjNew: {
+    firstName: "",
+    lastName: "",
+    job_title: "",
+    picture: null,
+    email: "",
+    phone: "",
+    country: "",
+    nationality: "",
+    city: "",
+    address: "",
+    zipCode: "",
+    driverLicense: "",
+    placeOfBirth: "",
+    dateOfBirth: null
+  },
   status: statusLoaded,
   statusNew: statusLoaded,
 };
@@ -37,21 +53,29 @@ export const slice = createSlice({
     updateItemFieldContact(state, action) {
       let { name, value } = action.payload;
       state.contactObj[name] = value;
+      state.contactObjNew[name] = value;
     },
     updatePictureContact(state, action) {
       state.contactObj.picture = action.payload;
+      state.contactObjNew.picture = action.payload;
     },
     cleanSlise(state, action) {
       state.contactObj = initialState.contactObj;
     },
+    cleanSliseNew(state, action) {
+      state.contactObjNew = initialState.contactObjNew;
+    },
   },
   extraReducers: {
-    // [HYDRATE]: (state, action) => {
-    //   return {
-    //     ...state,
-    //     ...action.payload.contacts,
-    //   }
-    // },
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        contactObj: {
+          ...state.contactObj,
+          ...action.payload.contacts.contactObj,
+        }
+      }
+    },
     // get
     [getBasicContact.pending]: (state) => {
       state.contactObj = initialState.contactObj;
@@ -82,6 +106,7 @@ export const {
   updateItemFieldContact,
   updatePictureContact,
   cleanSlise,
+  cleanSliseNew,
 } = slice.actions;
 
 export const { reducer } = slice;
