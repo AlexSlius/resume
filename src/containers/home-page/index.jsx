@@ -9,6 +9,7 @@ import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
+import { getResumesTemplates } from "../../controllers/resumeData"
 
 const arr = [
     {
@@ -34,6 +35,9 @@ export const HomePage = () => {
     const refIdInterval = React.useRef(undefined);
     const isStart = React.useRef(true);
     const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
+    const [currentPage, setCurrentPage] = React.useState(2);
+    const [fetching, setFetching] = React.useState();
+    const [cuNext, setCuNext] = React.useState(0);
 
     const {
         auth: {
@@ -50,6 +54,31 @@ export const HomePage = () => {
     const handleClickTab = (tabIndex) => {
         setStateCurrentTab(tabIndex);
     }
+
+    const handleSlider = (e) => {
+        let col = e.imagesLoaded;
+        let current = e.activeIndex;
+
+        if ((current + 4) > (col + cuNext)) {
+            setFetching(true);
+        }
+    }
+
+    React.useEffect(() => {
+        async function start() {
+            if (fetching && resumeData?.list?.count_pages > currentPage) {
+                let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+
+                if (res?.payload?.items) {
+                    setCurrentPage(prev => prev + 1);
+                    setFetching(false);
+                    setCuNext(prev => prev + 9);
+                }
+            }
+        }
+
+        start();
+    }, [fetching]);
 
     useEffect(() => {
         if (isStart.current) {
@@ -331,7 +360,7 @@ export const HomePage = () => {
                             spaceBetween={30}
                             slidesPerView={3}
                             loopedSlides={4}
-                            loop={true}
+                            // loop={true}
                             speed={1000}
                             pagination={{
                                 clickable: true
@@ -348,7 +377,7 @@ export const HomePage = () => {
                                     slidesPerView: 3
                                 }
                             }}
-                        // onSlideChange={() => console.log('slide change')}
+                            onSlideChange={(e) => handleSlider(e)}
                         // onSwiper={(swiper) => console.log(swiper)}
                         >
                             {
