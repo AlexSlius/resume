@@ -102,7 +102,7 @@ export const ResumeCv001 = ({
                   {
                     isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
                       <h1 className="cv-heading additional-color-1-text heading-type-1 font-size-3 line-height-3">
-                        {`${contact[0]?.firstName}, ${contact[0]?.lastName}`}
+                        {`${contact[0]?.firstName} ${contact[0]?.lastName}`}
                       </h1>
                     )
                   }

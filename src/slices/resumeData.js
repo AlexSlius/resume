@@ -10,7 +10,10 @@ import {
 } from "../controllers/resumeData";
 
 const initialState = {
-    list: [],
+    list: {
+        items: [],
+        count_pages: 0,
+    },
     data: {},
     resumeActive: null,
     resumeActiveNew: {
@@ -52,7 +55,8 @@ export const slice = createSlice({
         },
         [getResumesTemplates.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            state.list = action.payload;
+            // state.list = action.payload;
+            state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
         },
         // get data
         [fetchGetResumeData.pending]: (state) => {

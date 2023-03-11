@@ -11,6 +11,7 @@ import { ButtonIcon } from "../../components/uis/buttonIcon";
 import TemplateHead from "../../components/templateHead/TemplateHead";
 import { ButtonBack } from "../../components/uis/buttonBack"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
+import CustomizedSlider from '../../components/uis/range';
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 
@@ -19,17 +20,19 @@ import { routersPages } from "../../constants/next-routers";
 import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
-import CustomizedSlider from '../../components/uis/range';
 
 import {
     fetchGetResumeData,
     getResumeActive,
-    setUpdateResumeActive
+    setUpdateResumeActive,
+    getResumesTemplates
 } from "../../controllers/resumeData";
-
 
 const Templates = () => {
     const refIdTimeout = React.useRef(undefined);
+    const refWr = React.useRef(undefined);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [fetching, setFetching] = React.useState(false);
     const [stateLineSpacing, setStateLIneSpacig] = React.useState(50);
     const [stateFontSize, setStateFontSize] = React.useState(50);
 
@@ -135,6 +138,27 @@ const Templates = () => {
         }, 1000);
     }
 
+    const handleScroll = async (e) => {
+        if (e.target.scrollHeight - (e.target.offsetHeight + e.target.scrollTop) < 100) {
+            setFetching(true);
+        }
+    }
+
+    React.useEffect(() => {
+        async function start() {
+            if (fetching && resumeData?.list?.count_pages > currentPage) {
+                let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+
+                if (res?.payload?.items) {
+                    setCurrentPage(prev => prev + 1);
+                    setFetching(false);
+                }
+            }
+        }
+
+        start();
+    }, [fetching]);
+
     React.useEffect(() => {
         if (idCv != "new") {
             handleUpdateServer();
@@ -151,6 +175,12 @@ const Templates = () => {
             dispatch(fetchGetResumeData({ idCv }));
             dispatch(getResumeActive({ idCv }));
         }
+
+        !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+
+        return () => {
+            !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+        }
     }, []);
 
     return (
@@ -162,7 +192,7 @@ const Templates = () => {
                             <ButtonBack text="Back to editor" />
                         </div>
                     </div>
-                    <div className="pt-ts scroll-style">
+                    <div className="pt-ts scroll-style" ref={refWr}>
                         {
                             isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
                                 let classActive = isNewResume ? `${item.slug == resumeData.resumeActiveNew.slug ? "active" : ""}` : `${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`;

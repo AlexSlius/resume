@@ -52,7 +52,7 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({
         if (!!nextRouterPage) {
             Router.push(`/${routersPages['resumeBuilder']}/${response.id}${nextRouterPage}`);
         } else {
-            Router.push(`${menuAsideResume?.list[0].link}`);
+            Router.push(`/${routersPages['dashboard']}`);
         }
     } else {
         if (response?.errors == "session_empty") {

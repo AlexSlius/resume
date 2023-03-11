@@ -7,8 +7,8 @@ import {
 } from '../helpers/localStorage';
 
 // all list
-export const getResumesTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async () => {
-    const response = await api.resumesData.getResumesTemplates();
+export const getResumesTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async (params) => {
+    const response = await api.resumesData.getResumesTemplates(params);
     return response;
 });
 

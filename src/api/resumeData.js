@@ -1,8 +1,8 @@
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
-    getResumesTemplates() {
-        return this.apiClient.get(`list/cv/templates`);
+    getResumesTemplates(params) {
+        return this.apiClient.get(`list/cv/templates`, params);
     }
     fetchGetResumeData(cvId) {
         return this.apiClient.get(`cv/get/${cvId}`);

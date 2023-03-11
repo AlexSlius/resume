@@ -20,9 +20,9 @@ export const AutorizationWrapper = (props) => {
         }
     } = useSelector((state) => state);
 
-    React.useEffect(() => {
-        dispatch(cleanSliseNew());
-    }, []);
+    // React.useEffect(() => {
+    //     dispatch(cleanSliseNew());
+    // }, []);
 
     return (
         <div className={`${style.main_wrapper_autorization}`}>

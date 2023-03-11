@@ -5,8 +5,10 @@ import { isArray, isString } from "lodash";
 
 import { ButtonIcon } from "../../components/uis/buttonIcon";
 import Icon from "../../components/Icon";
+import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
+import { isLoader } from "../../helpers/loadings"
 
 import iconAddNew from "/public/images/icons/icon-add-new-white.svg?sprite";
 import iconUploadMore from "/public/images/icons/upload-more.svg?sprite";
@@ -18,8 +20,10 @@ import iconProfessional from "/public/images/icons/icon-professional.svg?sprite"
 import iconModern from "/public/images/icons/icon-modern.svg?sprite";
 
 import { routersPages } from "../../constants/next-routers";
+import { getResumesTemplates } from "../../controllers/resumeData";
 
 export const JobWinningPage = () => {
+    const [currentPage, setCurrentPage] = React.useState(2);
     const dispatch = useDispatch();
     const [stateCategory, setStateCategory] = React.useState(null);
 
@@ -38,6 +42,14 @@ export const JobWinningPage = () => {
         },
         resumeData,
     } = useSelector((state) => state);
+
+    const handleUpload = async () => {
+        let res = await dispatch(getResumesTemplates({ page: currentPage }));
+
+        if (res?.payload?.items) {
+            setCurrentPage(prev => prev + 1)
+        }
+    };
 
     return (
         <section className="contact-page">
@@ -131,10 +143,21 @@ export const JobWinningPage = () => {
                         }
                     </div>
                 </div>
-
-                <div className="btn-centers-w mt-40">
-                    <ButtonIcon icon={iconUploadMore} label="Upload more" className="btn--blue" />
-                </div>
+                {
+                    ((resumeData?.list?.count_pages > 1) && (resumeData?.list?.count_pages + 1 > currentPage)) && (
+                        <div className="btn-centers-w mt-40">
+                            <LoadChildrenBtn isLoad={isLoader(resumeData.status)}>
+                                <ButtonIcon
+                                    icon={iconUploadMore}
+                                    label="Upload more"
+                                    className="btn--blue"
+                                    isButton={true}
+                                    onHandle={handleUpload}
+                                />
+                            </LoadChildrenBtn>
+                        </div>
+                    )
+                }
             </div>
         </section>
     )
