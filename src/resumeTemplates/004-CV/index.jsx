@@ -52,7 +52,7 @@ export const ResumeCv004 = ({
           <div className="cv-body-content">
             <div className="profile-info-block no-photo">
               {
-                contact[0]?.jobTitle && (
+                isArray(contact) && contact[0]?.jobTitle && (
                   <h3 className="profile-speciality main-color-1-text font-size-2 line-height-2 toggle-photo-state toggle-photo-state-active">{contact[0]?.jobTitle}</h3>
                 )
               }
@@ -63,76 +63,78 @@ export const ResumeCv004 = ({
               }
               <p className="main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
             </div>
-
             <div className="main-columns-wrapper">
-              <div className="column-1 column-left additional-color-1-background toggle-photo-state toggle-photo-state-active">
-                {
-                  contact[0]?.picture && (
-                    <div className="photo-block">
-                      <img src={contact[0].picture} />
+              {
+                (contact[0]?.picture || (isArray(skills) && !!skills.length) || (isArray(languages) && !!languages.length) || (isArray(hobbies) && !!hobbies.length)) && (
+                  <div className="column-1 column-left additional-color-1-background toggle-photo-state toggle-photo-state-active">
+                    {
+                      contact[0]?.picture && (
+                        <div className="photo-block">
+                          <img src={contact[0].picture} />
+                        </div>
+                      )
+                    }
+                    <div className="informations-container">
+                      {/* skills */}
+                      {
+                        isArray(skills) && !!skills.length && (
+                          <div className="skills-block block-block main-color-2-border toggle-photo-state toggle-photo-state-active">
+                            <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">SKILLS</h3>
+                            {
+                              skills.map((item, index) => (
+                                <p key={index} className="block-list-item main-color-2-text skill-item font-size-1 line-height-1">{item.name}</p>
+                              ))
+                            }
+                          </div>
+                        )
+                      }
+                      {/* languages */}
+                      {
+                        isArray(languages) && !!languages.length && (
+                          <div className="languages-block block-block main-color-2-border">
+                            <>
+                              <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">LANGUAGES</h3>
+
+                              {
+                                languages.map((item, index) => (
+                                  <div key={index} className="block-list-item language-item">
+                                    <p className="language-name main-color-2-text font-size-1 line-height-1">{item.language}</p>
+                                    <Estimation
+                                      level={item.level}
+                                      startLeng={6}
+                                    />
+                                  </div>
+                                ))
+                              }
+                            </>
+                          </div>
+                        )
+                      }
+                      {/* hobbies */}
+                      {
+                        isArray(hobbies) && !!hobbies.length && (
+                          <div className="hobbies-block block-block main-color-2-border">
+                            <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">HOBBIES</h3>
+                            <p className="block-list-item main-color-2-text font-size-1 line-height-1">Squash, Surfing, Swimming,<br />
+                              {
+                                hobbies.map((item, index) => (
+                                  <span key={index}>
+                                    {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
+                                  </span>
+                                ))
+                              }
+                            </p>
+                          </div>
+                        )
+                      }
                     </div>
-                  )
-                }
-                <div className="informations-container">
-                  {/* skills */}
-                  {
-                    isArray(skills) && !!skills.length && (
-                      <div className="skills-block block-block main-color-2-border toggle-photo-state toggle-photo-state-active">
-                        <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">SKILLS</h3>
-                        {
-                          skills.map((item, index) => (
-                            <p key={index} className="block-list-item main-color-2-text skill-item font-size-1 line-height-1">{item.name}</p>
-                          ))
-                        }
-                      </div>
-                    )
-                  }
-                  {/* languages */}
-                  {
-                    isArray(languages) && !!languages.length && (
-                      <div className="languages-block block-block main-color-2-border">
-                        <>
-                          <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">LANGUAGES</h3>
-
-                          {
-                            languages.map((item, index) => (
-                              <div key={index} className="block-list-item language-item">
-                                <p className="language-name main-color-2-text font-size-1 line-height-1">{item.language}</p>
-                                <Estimation
-                                  level={item.level}
-                                  startLeng={6}
-                                />
-                              </div>
-                            ))
-                          }
-                        </>
-                      </div>
-                    )
-                  }
-                  {/* hobbies */}
-                  {
-                    isArray(hobbies) && !!hobbies.length && (
-                      <div className="hobbies-block block-block main-color-2-border">
-                        <h3 className="heading-type-3 main-color-2-text font-size-3 line-height-3 font-family-arsenal">HOBBIES</h3>
-                        <p className="block-list-item main-color-2-text font-size-1 line-height-1">Squash, Surfing, Swimming,<br />
-                          {
-                            hobbies.map((item, index) => (
-                              <span key={index}>
-                                {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
-                              </span>
-                            ))
-                          }
-                        </p>
-                      </div>
-                    )
-                  }
-                </div>
-              </div>
-
+                  </div>
+                )
+              }
               <div className="column-2 column-right">
                 <div className="profile-info-block is-photo">
                   {
-                    contact[0]?.jobTitle && (
+                    isArray(contact) && contact[0]?.jobTitle && (
                       <h3 className="profile-speciality main-color-1-text font-size-2 line-height-2 toggle-photo-state toggle-photo-state-active">{contact[0]?.jobTitle}</h3>
                     )
                   }
