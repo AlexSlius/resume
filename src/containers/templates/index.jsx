@@ -74,7 +74,7 @@ const Templates = () => {
         contact: isNewResume ? [contactObjNew] : [contactObj],
         employment: employment.employmentObj,
         education: educations.educationObj,
-        skills: skills.skillsObj,
+        skills: skills?.skillsObj?.skillsListAll || [],
         social_links: socials.socialObj,
         hobbies: hobies.hobiesObj,
         internship: interships.interhipObj,

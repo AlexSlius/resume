@@ -7,6 +7,7 @@ import { isLoader } from "../../helpers/loadings";
 import { ResumeCv001 } from '../../resumeTemplates/001-CV';
 import { ResumeCv002 } from '../../resumeTemplates/002-CV';
 import { ResumeCv003 } from '../../resumeTemplates/003-CV';
+import { ResumeCv004 } from '../../resumeTemplates/004-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
@@ -50,6 +51,15 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "003-CV" && (
                     <ResumeCv003
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+            {
+                resumeActive == "004-CV" && (
+                    <ResumeCv004
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
