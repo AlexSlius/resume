@@ -304,7 +304,7 @@ export const ResumeCv004 = ({
                               }
                               {
                                 (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                                  <p className="additional-color-1-text date-range font-size-1 line-height-1">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} to`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
+                                  <p className="additional-color-1-text date-range font-size-1 line-height-1">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
                                 )
                               }
                             </div>
