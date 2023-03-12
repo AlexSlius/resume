@@ -57,7 +57,7 @@ export const ResumeCv004 = ({
                 )
               }
               {
-                (contact[0]?.firstName || contact[0]?.lastName) && (
+                isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
                   <h1 className="profile-name additional-color-1-text font-size-4 line-height-4 font-family-arsenal toggle-photo-state toggle-photo-state-active">{contact[0]?.firstName} {contact[0]?.lastName}</h1>
                 )
               }
@@ -65,7 +65,7 @@ export const ResumeCv004 = ({
             </div>
             <div className="main-columns-wrapper">
               {
-                (contact[0]?.picture || (isArray(skills) && !!skills.length) || (isArray(languages) && !!languages.length) || (isArray(hobbies) && !!hobbies.length)) && (
+                ((isArray(contact) && contact[0]?.picture) || (isArray(skills) && !!skills.length) || (isArray(languages) && !!languages.length) || (isArray(hobbies) && !!hobbies.length)) && (
                   <div className="column-1 column-left additional-color-1-background toggle-photo-state toggle-photo-state-active">
                     {
                       contact[0]?.picture && (
@@ -139,7 +139,7 @@ export const ResumeCv004 = ({
                     )
                   }
                   {
-                    (contact[0]?.firstName || contact[0]?.lastName) && (
+                    isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
                       <h1 className="profile-name additional-color-1-text font-size-4 line-height-4 font-family-arsenal toggle-photo-state toggle-photo-state-active">{contact[0]?.firstName} {contact[0]?.lastName}</h1>
                     )
                   }
