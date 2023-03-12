@@ -278,9 +278,9 @@ export const ResumeCv004 = ({
                     </div>
                   )
                 }
-                {/* extra_curricular */}
+                {/* employment */}
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  isArray(employment) && !!employment.length && (
                     <div className="work-experience-block block-block additional-color-2-border">
                       <h3 className="block-heading additional-color-1-text font-size-3 line-height-3 font-family-arsenal">
                         <div className="left-side">WORK EXPERIENCE</div>
@@ -288,28 +288,28 @@ export const ResumeCv004 = ({
                       </h3>
 
                       {
-                        extra_curricular.map((itemEx, index) => (
+                        employment.map((itemEm, index) => (
                           <div className="work-experience-subblock" key={index}>
                             <div className="left-side">
                               <span className="pointer-circle additional-color-1-background"></span>
                               {
-                                !!itemEx?.title && (
-                                  <p className="additional-color-1-text font-weight-600 font-size-1 line-height-1">{itemEx?.title}</p>
+                                !!itemEm?.title && (
+                                  <p className="additional-color-1-text font-weight-600 font-size-1 line-height-1">{itemEm?.title}</p>
                                 )
                               }
                               {
-                                !!itemEx?.employer && (
-                                  <p className="additional-color-1-text font-size-1 line-height-1">{itemEx?.employer}</p>
+                                (!!itemEm?.employer || !!itemEm?.city) && (
+                                  <p className="additional-color-1-text font-size-1 line-height-1">{!!itemEm?.company && (`${itemEm?.company},`)} {!!itemEm?.city && (`${itemEm?.city} `)}</p>
                                 )
                               }
                               {
-                                (
-                                  !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="additional-color-1-text date-range font-size-1 line-height-1">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} to`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
+                                (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
+                                  <p className="additional-color-1-text date-range font-size-1 line-height-1">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} to`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
                                 )
                               }
                             </div>
                             <div className="right-side">
-                              <div className="list-wrapper main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemEx.description }}>
+                              <div className="list-wrapper main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}>
                               </div>
                             </div>
                           </div>
