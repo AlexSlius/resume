@@ -47,19 +47,16 @@ const ResumeNow = () => {
                             </div>
                             <div className={style.car_center}>
                                 <div className={style.car_price}>
-                                    <span>$</span>9.90
+                                    <span>$</span>399.00
                                 </div>
-                                <div className={style.car_days}>7-Day trial subscription</div>
+                                <div className={style.car_days}>Forever</div>
                                 <div className={style.car_wr_list}>
                                     <ul className="list-check">
                                         <li>Unlimited PDF Downloads</li>
                                         <li>Unlimited Resumes</li>
                                         <li>Unlimited Cover Letters</li>
-                                        <li>After 7 days, auto-renews to $24.95</li>
-                                        <li>billed every 4 weeks</li>
                                         <li>Cancel any time</li>
-                                        <li>7-day money back guarantee*</li>
-                                        <li>Free resume critique from an HR expert</li>
+                                        <li>7-day money-back guarantee*</li>
                                     </ul>
                                 </div>
                             </div>
@@ -75,17 +72,18 @@ const ResumeNow = () => {
                             </div>
                             <div className={style.car_center}>
                                 <div className={style.car_price}>
-                                    <span>$</span>44.95
+                                    <span>$</span>1.95
                                 </div>
-                                <div className={style.car_days}>6 mouths</div>
+                                <div className={style.car_days}>7-Day trial subscription</div>
                                 <div className={style.car_wr_list}>
                                     <ul className="list-check">
                                         <li>Unlimited PDF Downloads</li>
                                         <li>Unlimited Resumes</li>
                                         <li>Unlimited Cover Letters</li>
+                                        <li>After 7 days, auto-renews to $19.95</li>
+                                        <li>Billed every 4 weeks</li>
                                         <li>Cancel any time</li>
-                                        <li>7-day money back guarantee*</li>
-                                        <li>Free resume critique from an HR expert</li>
+                                        <li>7-day money-back guarantee*</li>
                                     </ul>
                                 </div>
                             </div>
@@ -101,17 +99,16 @@ const ResumeNow = () => {
                             </div>
                             <div className={style.car_center}>
                                 <div className={style.car_price}>
-                                    <span>$</span>74.95
+                                    <span>$</span>69.95
                                 </div>
-                                <div className={style.car_days}>12 mouths</div>
+                                <div className={style.car_days}>12 months</div>
                                 <div className={style.car_wr_list}>
                                     <ul className="list-check">
                                         <li>Unlimited PDF Downloads</li>
                                         <li>Unlimited Resumes</li>
                                         <li>Unlimited Cover Letters</li>
                                         <li>Cancel any time</li>
-                                        <li>7-day money back guarantee*</li>
-                                        <li>Free resume critique from an HR expert</li>
+                                        <li>7-day money-back guarantee*</li>
                                     </ul>
                                 </div>
                             </div>

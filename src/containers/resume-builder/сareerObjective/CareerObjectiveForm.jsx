@@ -7,7 +7,7 @@ import { FormSearchContent } from "../../../components/uis/formSearchContent/for
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import { isLoader } from "../../../helpers/loadings"
-import { fetchGetListObjective } from "../../../controllers/dependencies";
+import { fetchGetListObjective, fetchGetListObjectiveById } from "../../../controllers/dependencies";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import {
     fetchUpdateServer,
@@ -43,7 +43,10 @@ const FormSocials = ({
         careers: {
             data,
             isData
-        }
+        },
+        contacts: {
+            contactObj
+        },
     } = states;
 
     const isDataPage = data?.length > 0;
@@ -84,6 +87,9 @@ const FormSocials = ({
 
     React.useEffect(() => {
         dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'careerObjective' }));
+        if (!!contactObj?.jobTitleId) {
+            dispatch(fetchGetListObjectiveById(contactObj.jobTitleId));
+        }
     }, []);
 
     return (

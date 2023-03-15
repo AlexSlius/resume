@@ -115,9 +115,11 @@ const FormLanguages = ({
                               name="language"
                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
                               handleServerRequest={handleServerRequestLanguagesList}
+                              onDelete={() => { handDeleteitem(item.id) }}
                               isOutDataObj={false}
                               data={language.list || []}
                               isRequire={true}
+                              isDelete={true}
                            />
 
                         </CCol>
@@ -132,9 +134,9 @@ const FormLanguages = ({
                            </div>
                         </CCol>
                      </CRow>
-                     <div className="btn-wr-ite">
+                     {/* <div className="btn-wr-ite">
                         <ButtonDeleteItem onDelete={() => handDeleteitem(item.id)} />
-                     </div>
+                     </div> */}
                   </div>
                ))
             }

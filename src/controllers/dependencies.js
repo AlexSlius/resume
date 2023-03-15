@@ -65,7 +65,7 @@ export const fetchGetSkillsList = createAsyncThunk('countrus/fetchGetSkillsList'
 })
 
 export const fetchGetSocials = createAsyncThunk('fetch/fetchGetSocials', async (params) => {
-    const response = await api.dependencies.getSocials({ "query": params || '' });
+    const response = await api.dependencies.getSocials(params ? { "query": params || '' } : {});
     return response;
 })
 
@@ -76,6 +76,11 @@ export const fetchGetHobies = createAsyncThunk('fetch/fetchGetHobies', async (pa
 
 export const fetchGetListObjective = createAsyncThunk('fetch/fetchGetListObjective', async (value) => {
     const response = await api.dependencies.getListObjective({ query: value, limit: `40` });
+    return response;
+})
+
+export const fetchGetListObjectiveById = createAsyncThunk('fetch/fetchGetListObjective', async (id) => {
+    const response = await api.dependencies.getListObjectiveById(id);
     return response;
 })
 

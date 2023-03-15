@@ -11,6 +11,7 @@ export const DatePicker = ({
     placeholderText,
     name,
     formatInput = 'MMM, YYYY',
+    formatData = 'M, Y'
 }) => {
     const refSelect = React.useRef(undefined);
     let useRefData = React.useRef(undefined);
@@ -27,7 +28,7 @@ export const DatePicker = ({
             if (!!useRefData.current) {
                 $(useRefData.current).Zebra_DatePicker({
                     view: 'years',
-                    format: 'M, d, Y',
+                    format: formatData,
                     start_date: new Date(!!selected ? selected : null),
                     always_visible: $(useRefContainer.current),
 

@@ -35,7 +35,8 @@ export default class ClientsAPI extends Base {
         return this.apiClient.get(`profile/list/field_of_study`, params);
     }
     getSkillsList(params) {
-        return this.apiClient.get('profile/list/skills', params);
+        return this.apiClient.get('profile/list/skills_by_name', params);
+        // return this.apiClient.get('profile/list/skills', params);
     }
     getSocials(params) {
         return this.apiClient.get(`profile/list/links`, params);
@@ -45,6 +46,9 @@ export default class ClientsAPI extends Base {
     }
     getListObjective(params) {
         return this.apiClient.get(`api/career_objective`, params);
+    }
+    getListObjectiveById(id) {
+        return this.apiClient.get(`api/recomendation/career_objective/${id}`);
     }
     getLanguages(params) {
         return this.apiClient.get(`profile/list/languages`, params);

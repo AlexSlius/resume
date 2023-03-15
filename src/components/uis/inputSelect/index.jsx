@@ -226,9 +226,9 @@ export const InputSelect = ({
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
             <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad} ${classDelete}`} ref={reWrClick}>
                 {
-                    isFlag && (
+                    (!!isFlag && !!imgSrc?.length) && (
                         <div className={`${style.wrpa_click}`}>
-                            {imgSrc && <img src={imgSrc} />}
+                            <img src={imgSrc} />
                         </div>
                     )
                 }
@@ -325,7 +325,7 @@ export const InputSelect = ({
                                                                                     type="button"
                                                                                     onClick={() => handleOnClickSelect(item)}
                                                                                 >
-                                                                                    {isFlag && <img src={item[keyIcon]} />}
+                                                                                    {(!!isFlag && !!item[keyIcon]?.length) && <img src={item[keyIcon]} />}
                                                                                     {!!textFirst && <span>{textFirst}</span>}{textLast}
                                                                                 </button>
                                                                             </li>

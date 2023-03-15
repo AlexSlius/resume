@@ -24,7 +24,8 @@ const initialState = {
     zipCode: "",
     driverLicense: "",
     placeOfBirth: "",
-    dateOfBirth: null
+    dateOfBirth: null,
+    jobTitleId: null,
   },
   contactObjNew: {
     firstName: "",
@@ -40,7 +41,8 @@ const initialState = {
     zipCode: "",
     driverLicense: "",
     placeOfBirth: "",
-    dateOfBirth: null
+    dateOfBirth: null,
+    jobTitleId: null,
   },
   status: statusLoaded,
   statusNew: statusLoaded,

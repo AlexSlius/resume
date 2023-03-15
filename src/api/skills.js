@@ -5,7 +5,8 @@ export default class ClientsAPI extends Base {
         return this.apiClient.get('profile/list/skills', params);
     }
     getSkillslistSearch(params) {
-        return this.apiClient.get('profile/list/skills_by_name', params);
+        // profile/list/skills
+        return this.apiClient.get('profile/list/skills', params);
     }
     addItemSkillOne(id, data, type = "formData") {
         return this.apiClient.post(`cv/${id}/skills/add`, data, type);

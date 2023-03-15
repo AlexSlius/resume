@@ -14,5 +14,6 @@ export const newObjContact = (contactObj, dataImage) => {
         nationality: contactObj.nationality || '',
         email: contactObj.email,
         picture: dataImage || null,
+        job_title_id: contactObj.jobTitleId
     }
 }

@@ -117,6 +117,10 @@ const FormContact = ({
             }
          }
          await dispatch(updateItemFieldContact({ name, value }));
+
+         if (name == 'jobTitle') {
+            await dispatch(updateItemFieldContact({ name: "jobTitleId", value: data.id }));
+         }
       } else {
          await dispatch(updateItemFieldContact({ name, value }));
       }
@@ -404,6 +408,7 @@ const FormContact = ({
                      placeholderText="Date of birth"
                      name="date_of_birth"
                      formatInput='MMM, DD, YYYY'
+                     formatData='M, d, Y'
                   />
                </CCol>
             </CRow>}

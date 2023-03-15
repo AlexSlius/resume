@@ -33,15 +33,15 @@ const MyApp = ({ Component, ...rest }) => {
     require('zebra_datepicker');
   }
 
-  useEffect(() => {
-    router.events.on("routeChangeStart", () => {
-      setLoading(true);
-    });
+  // useEffect(() => {
+  //   router.events.on("routeChangeStart", () => {
+  //     setLoading(true);
+  //   });
 
-    router.events.on("routeChangeComplete", () => {
-      setLoading(false);
-    });
-  }, []);
+  //   router.events.on("routeChangeComplete", () => {
+  //     setLoading(false);
+  //   });
+  // }, []);
 
   return (
     <Provider store={store}>

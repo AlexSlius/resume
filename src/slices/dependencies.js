@@ -18,6 +18,7 @@ import {
     addJopsTitle,
     addCompany,
     fetchGetListObjective,
+    fetchGetListObjectiveById,
     fetchGetListLanguages,
     fetchGetListCertificates
 } from "../controllers/dependencies";
@@ -123,6 +124,14 @@ export const sliceDepenndecies = createSlice({
             state.objective.status = statusLoader;
         },
         [fetchGetListObjective.fulfilled]: (state, action) => {
+            state.objective.status = statusLoaded;
+            state.objective.list = action.payload;
+        },
+        [fetchGetListObjectiveById.pending]: (state) => {
+            state.objective.list = [];
+            state.objective.status = statusLoader;
+        },
+        [fetchGetListObjectiveById.fulfilled]: (state, action) => {
             state.objective.status = statusLoaded;
             state.objective.list = action.payload;
         },
