@@ -1,5 +1,5 @@
 import { CButton } from '@coreui/react'
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import jsPDF from 'jspdf';
 import { useSelector, useDispatch } from "react-redux";
 import Router, { useRouter } from 'next/router';
@@ -35,6 +35,9 @@ const Templates = () => {
     const [fetching, setFetching] = React.useState(false);
     const [stateLineSpacing, setStateLIneSpacig] = React.useState(50);
     const [stateFontSize, setStateFontSize] = React.useState(50);
+
+    const [pagesPag, setPagesPag] = React.useState(1);
+    const [pagePagCurrent, setPagePagCurrent] = React.useState(1);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -87,21 +90,21 @@ const Templates = () => {
     };
 
     const handleGeneratePdf = () => {
-        const doc = new jsPDF({
-            format: 'a4',
-            // unit: 'px',
-        });
+        // const doc = new jsPDF({
+        //     format: 'a4',
+        //     // unit: 'px',
+        // });
 
-        doc.setLineWidth(1);
+        // doc.setLineWidth(1);
 
-        // Adding the fonts.
-        doc.setFont('Rubik', 'normal');
+        // // Adding the fonts.
+        // doc.setFont('Rubik', 'normal');
 
-        doc.html(reportTemplateRef.current, {
-            async callback(doc) {
-                await doc.save('document');
-            },
-        });
+        // doc.html(reportTemplateRef.current, {
+        //     async callback(doc) {
+        //         await doc.save('document');
+        //     },
+        // });
     };
 
     // update resume
@@ -144,6 +147,22 @@ const Templates = () => {
         }
     }
 
+    const handleUpdateColor = (dataResume, value) => {
+        if (idCv != "new") {
+            dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
+        } else {
+            dispatch(updateActiveResumeNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
+        }
+    }
+
+    const onNext = () => {
+        setPagePagCurrent(prev => prev + 1);
+    }
+
+    const onPrev = () => {
+        setPagePagCurrent(prev => prev - 1);
+    }
+
     React.useEffect(() => {
         async function start() {
             if (fetching && resumeData?.list?.count_pages > currentPage) {
@@ -182,6 +201,38 @@ const Templates = () => {
             !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
         }
     }, []);
+
+    React.useEffect(() => {
+        setPagePagCurrent(1);
+    }, [resumeData.resumeActive]);
+
+    React.useEffect(() => {
+        if (typeof window != "undefined") {
+            if (!!reportTemplateRef.current) {
+                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                setPagesPag(devPages.length);
+            }
+        }
+    }, [resumeData?.data, resumeData.resumeActive]);
+
+    React.useEffect(() => {
+        if (typeof window != "undefined") {
+            if (!!reportTemplateRef.current) {
+                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+
+                devPages.forEach(element => {
+                    element.classList.add("none");
+                });
+
+                let currentPage = devPages[pagePagCurrent - 1];
+
+                if (!!currentPage) {
+                    currentPage.classList.remove("none");
+                    currentPage.classList.add("active");
+                }
+            }
+        }
+    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive]);
 
     return (
         <div className="page-templates">
@@ -228,7 +279,12 @@ const Templates = () => {
                 </div>
                 <div className="page-templates__right">
                     <div className="pt_h pt_h-r">
-                        <TemplateHead />
+                        <TemplateHead
+                            currentPage={pagePagCurrent}
+                            lengthPages={pagesPag}
+                            onNext={onNext}
+                            onPrev={onPrev}
+                        />
                     </div>
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
@@ -237,7 +293,9 @@ const Templates = () => {
                                     status={resumeData?.status}
                                     stateLineSpacing={stateLineSpacing}
                                     stateFontSize={stateFontSize}
+                                    reportTemplateRef={reportTemplateRef}
 
+                                    resumeData={resumeData}
                                     data={isNewResume ? dataResumeTemplate : resumeData?.data}
                                     resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
                                     statusResumeActive={resumeData?.statusResumeActive}
@@ -247,11 +305,11 @@ const Templates = () => {
                     </div>
                     <div className="pt_b-r plr">
                         <div className="colors-t">
-                            <div className="color-it" style={{ background: "#36F0AB" }}></div>
-                            <div className="color-it" style={{ background: "#F0E208" }}></div>
-                            <div className="color-it" style={{ background: "#63E1FF" }}></div>
-                            <div className="color-it" style={{ background: "#FFC85E" }}></div>
-                            <div className="color-it" style={{ background: "#FE8484" }}></div>
+                            {
+                                isArray(resumeData?.resumeActive?.template?.colors) && resumeData?.resumeActive?.template?.colors.map((item, index) => (
+                                    <div onClick={() => handleUpdateColor(resumeData?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
+                                ))
+                            }
                             <div className="color-it color-select">
                                 <Icon svg={iconPlusColor} />
                             </div>

@@ -21,23 +21,14 @@ const TemplateHead = ({
       <div className={`${style.resume_head}`}>
          <div>
          </div>
-
          <div className={`${style.resume_head__pagination}`}>
-            {
-               isPrev && (
-                  <button className={`${style.resume_head__pagination_button}`} onClick={onPrev}>
-                     <Icon svg={arrowLeftIcon} classNames={[style.icon]} />
-                  </button>
-               )
-            }
+            <button className={`${style.resume_head__pagination_button} ${!isPrev ? style.non : ""}`} onClick={onPrev}>
+               <Icon svg={arrowLeftIcon} classNames={[style.icon]} />
+            </button>
             <p>{currentPage}/{lengthPages}</p>
-            {
-               isNext && (
-                  <button className={`${style.resume_head__pagination_button}`} onClick={onNext}>
-                     <Icon svg={arrowRightIcon} classNames={[style.icon]} />
-                  </button>
-               )
-            }
+            <button className={`${style.resume_head__pagination_button} ${!isNext ? style.non : ""}`} onClick={onNext}>
+               <Icon svg={arrowRightIcon} classNames={[style.icon]} />
+            </button>
          </div>
          <HeadUser />
       </div>

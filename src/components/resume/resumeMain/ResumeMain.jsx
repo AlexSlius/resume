@@ -9,10 +9,7 @@ import {
 } from "../../../controllers/resumeData";
 
 const ResumeMain = ({
-   objRef,
-   // currentPage,
-   // lengthPages,
-   // objPages
+   reportTemplateRef,
 }) => {
    const dispatch = useDispatch();
    const router = useRouter();
@@ -36,6 +33,7 @@ const ResumeMain = ({
       references,
       certificaties,
       careers,
+      resumeData,
       resumeData: {
          resumeActive,
          resumeActiveNew
@@ -65,12 +63,14 @@ const ResumeMain = ({
    }, []);
 
    return (
-      <div className="resume-main" ref={objRef.refMain}>
+      <div className="resume-main">
          <div className="scroll-style resume-main_scroll">
             <TemplatesSelect
                isResume={true}
                resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
                data={dataResumeTemplate}
+               resumeData={resumeData}
+               reportTemplateRef={reportTemplateRef}
             />
          </div>
       </div>

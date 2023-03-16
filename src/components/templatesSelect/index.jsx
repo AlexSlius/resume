@@ -16,10 +16,12 @@ export const TemplatesSelect = ({
     stateLineSpacing = 50,
     stateFontSize = 50,
     data,
+    resumeData,
     resumeActive,
-    statusResumeActive
+    statusResumeActive,
+    reportTemplateRef,
 }) => {
-    const stateClasses = `${sizeLineSpacing(stateLineSpacing)} ${sizeFont(stateFontSize)}`
+    const stateClasses = `${sizeLineSpacing(stateLineSpacing)} ${sizeFont(stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
     const router = useRouter();
     const idCv = router.query.idCv;
 
@@ -30,6 +32,8 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "001-CV" && (
                     <ResumeCv001
+                        reportTemplateRef={reportTemplateRef}
+                        templateClass={resumeData?.resumeActive?.template_class}
                         stateLineSpacing={stateLineSpacing}
                         stateFontSize={stateFontSize}
                         data={data}
@@ -41,6 +45,7 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "002-CV" && (
                     <ResumeCv002
+                        reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
@@ -51,6 +56,7 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "003-CV" && (
                     <ResumeCv003
+                        reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
@@ -60,6 +66,7 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "004-CV" && (
                     <ResumeCv004
+                        reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}

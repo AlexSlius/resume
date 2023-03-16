@@ -19,6 +19,9 @@ const initialState = {
     resumeActiveNew: {
         slug: "001-CV",
         id: 1,
+        template_class: "",
+        template_line_spacing: "",
+        template_text_size: "",
     },
     status: statusLoaded,
     statusResumeActive: statusLoaded,
