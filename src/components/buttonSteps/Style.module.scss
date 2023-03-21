@@ -26,13 +26,13 @@
     }
 
     &_prev {
-        background: #fff!important;
-        border: 1px solid #DADCE3!important;
+        background: #fff !important;
+        border: 1px solid #DADCE3 !important;
         color: #838799 !important;
 
         &:hover {
-            color: #3679FD!important;
-            border-color: #3679FD!important;
+            color: #3679FD !important;
+            border-color: #3679FD !important;
         }
     }
 
@@ -46,5 +46,19 @@ fieldset:disabled .btn {
     color: #C4C7D0;
     border-color: #F6F8FA !important;
     opacity: 1 !important;
-    border: 1px solid #DADCE3!important;
+    border: 1px solid #DADCE3 !important;
+}
+
+
+@media (max-width: 1559px) {
+    .row {
+        &>div {
+            min-width: 170px;
+        }
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 16px;
+    }
 }

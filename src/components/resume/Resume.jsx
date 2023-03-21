@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux"
 import ResumeHead from './resumeHead/ResumeHead'
 import ResumeMain from './resumeMain/ResumeMain'
 import ResumeFooter from './resumeFooter/ResumeFooter'
+import Icon from "../Icon";
+
+import backIcon from "/public/images/icons/back.svg?sprite"
 
 import {
    getResumeActive,
@@ -16,7 +19,8 @@ const Resume = () => {
    const router = useRouter();
    const reportTemplateRef = React.useRef(null);
    const [pagesPag, setPagesPag] = React.useState(1);
-   const [pagePagCurrent, setPagePagCurrent] = React.useState(1);
+   const [openMenu, setOpenMenu] = React.useState(false);
+   const [pagePagCurrent, setPagePagCurrent] = React.useState(0);
    const { idCv } = router.query;
 
    const {
@@ -73,17 +77,19 @@ const Resume = () => {
       if (typeof window != "undefined") {
          if (!!reportTemplateRef.current) {
             function star() {
-               let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+               let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
 
-               devPages.forEach(element => {
-                  element.classList.add("none");
-               });
+               if (devPages) {
+                  devPages.forEach(element => {
+                     element.classList.add("none");
+                  });
 
-               let currentPage = devPages[pagePagCurrent - 1];
+                  let currentPage = devPages[pagePagCurrent - 1];
 
-               if (!!currentPage) {
-                  currentPage.classList.remove("none");
-                  currentPage.classList.add("active");
+                  if (!!currentPage) {
+                     currentPage.classList.remove("none");
+                     currentPage.classList.add("active");
+                  }
                }
             }
 
@@ -91,7 +97,7 @@ const Resume = () => {
 
             setTimeout(() => {
                star();
-            }, 100);
+            }, 1000);
          }
       }
    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive, resumeData.resumeActive, contacts,
@@ -108,6 +114,10 @@ const Resume = () => {
       certificaties,
       careers]);
 
+   React.useEffect(() => {
+      setPagePagCurrent(1);
+   }, []);
+
    // React.useEffect(() => {
    //    if (idCv != "new") {
    //       dispatch(getResumeActive({ idCv }));
@@ -115,18 +125,27 @@ const Resume = () => {
    // }, []);
 
    return (
-      <CCol className='resume'>
-         <ResumeHead
-            currentPage={pagePagCurrent}
-            lengthPages={pagesPag}
-            onNext={onNext}
-            onPrev={onPrev}
-         />
-         <ResumeMain
-            reportTemplateRef={reportTemplateRef}
-         />
-         <ResumeFooter />
-      </CCol>
+      <>
+         <button className='resume-btn resume-btn_fix' onClick={() => setOpenMenu(true)}>
+            <Icon svg={backIcon} />
+         </button>
+         <div className={`mob-opas-menu ${openMenu ? "open" : ""}`} onClick={() => setOpenMenu(false)}></div>
+         <CCol className={`resume ${openMenu ? "open" : ""}`}>
+            <button className='resume-btn' onClick={() => setOpenMenu(false)}>
+               <Icon svg={backIcon} />
+            </button>
+            <ResumeHead
+               currentPage={pagePagCurrent}
+               lengthPages={pagesPag}
+               onNext={onNext}
+               onPrev={onPrev}
+            />
+            <ResumeMain
+               reportTemplateRef={reportTemplateRef}
+            />
+            <ResumeFooter />
+         </CCol>
+      </>
    )
 }
 export default Resume;

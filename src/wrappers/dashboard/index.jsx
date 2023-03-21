@@ -39,7 +39,6 @@ const AdminPage = ({
                     )
                 }
 
-
                 <CCol className={`${style.main_content} main-content`}>
                     {
                         !['md', 'sm', 'xs'].includes(currentResolution) && (
