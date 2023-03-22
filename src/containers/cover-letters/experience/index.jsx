@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
-import FormPersonalize from "./FormPersonalize"
+import FormExperience from "./FormExperience"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { Progress } from "../../../components/progress";
 
-import contactIcon from "/public/images/icons/contact.svg?sprite"
+import employmentIcon from '/public/images/icons/employment.svg?sprite'
 
 const Contact = () => {
     const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={24}
-                icon={contactIcon}
+                interest={6}
+                icon={employmentIcon}
             />
-            <FormPersonalize
+            <FormExperience
                 dispatch={dispatch}
                 storeDate={states}
                 idCv={idCv}

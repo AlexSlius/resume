@@ -126,7 +126,7 @@ let startDatesCoverLetters = [
         name: 'Download',
         status: true,
         link: '/download',
-        keyIcon: [keysIcons["iconEducation"]],
+        keyIcon: [keysIcons["iconDownload"]],
     },
 ];
 

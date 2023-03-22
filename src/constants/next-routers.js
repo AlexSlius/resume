@@ -14,6 +14,7 @@ import referencesIcon from '/public/images/icons/references.svg?sprite'
 import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import advancedIcon from '/public/images/icons/icon_settings_aside.svg?sprite'
 import сareerObjectiveIcon from '/public/images/icons/сareerObjective.svg?sprite'
+import downloadIcon from '/public/images/icons/icon-donw.svg?sprite'
 
 export const keysIcons = {
     iconContact: "iconContact",
@@ -29,7 +30,8 @@ export const keysIcons = {
     iconReferences: "iconReferences",
     iconCertifications: "iconCertifications",
     iconAdvanced: "iconAdvanced",
-    сareerObjective: "сareerObjective"
+    сareerObjective: "сareerObjective",
+    iconDownload: "downloadIcon",
 }
 
 export const routerLinksAsideMenuIcon = {
@@ -46,7 +48,8 @@ export const routerLinksAsideMenuIcon = {
     [keysIcons["iconReferences"]]: referencesIcon,
     [keysIcons["iconCertifications"]]: certificationsIcon,
     [keysIcons["iconAdvanced"]]: advancedIcon,
-    [keysIcons["сareerObjective"]]: сareerObjectiveIcon
+    [keysIcons["сareerObjective"]]: сareerObjectiveIcon,
+    [keysIcons["iconDownload"]]: downloadIcon
 };
 
 export const routersPages = {

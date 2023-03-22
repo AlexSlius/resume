@@ -11,7 +11,7 @@ import templateIcon from '/public/images/icons/select.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 
-const ResumeFooter = () => {
+const ResumeFooter = ({ isCover }) => {
    const router = useRouter();
    const { idCv, type = "new", slug = "001-CV" } = router.query;
 
@@ -37,14 +37,18 @@ const ResumeFooter = () => {
             </CButton>
          </div>
          <div className="resume-footer__right d-flex gap-3">
-            <CButton
-               className='resume-footer__button'
-               color="secondary" variant="outline"
-               disabled={!isAthorized}
-            >
-               <Icon svg={downloadIcon} classNames={['icon-20']} />
-               Download PDF
-            </CButton>
+            {
+               !isCover && (
+                  <CButton
+                     className='resume-footer__button'
+                     color="secondary" variant="outline"
+                     disabled={!isAthorized}
+                  >
+                     <Icon svg={downloadIcon} classNames={['icon-20']} />
+                     Download PDF
+                  </CButton>
+               )
+            }
             <CButton
                className='resume-footer__button'
                color="secondary"

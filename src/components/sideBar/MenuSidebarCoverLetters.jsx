@@ -45,22 +45,22 @@ const MenuSidebarCoverLetters = () => {
     const isNewResume = (idCv == "new");
 
     const handleClick = (e) => {
-        if (idCv == "new") {
-            e.preventDefault();
+        // if (idCv == "new") {
+        //     e.preventDefault();
 
-            let pictureFile = sessionStorageGet('picture');
+        //     let pictureFile = sessionStorageGet('picture');
 
-            if (isAthorized) {
-                dispatch(contactAddNew({ pictureFile, isNewResume }));
-            } else {
-                setShowModalNoAccess(true);
-            }
-        }
+        //     if (isAthorized) {
+        //         dispatch(contactAddNew({ pictureFile, isNewResume }));
+        //     } else {
+        //         setShowModalNoAccess(true);
+        //     }
+        // }
     }
 
     const onHanleBtnRegister = () => {
-        let pictureFile = sessionStorageGet('picture');
-        dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
+        // let pictureFile = sessionStorageGet('picture');
+        // dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
     }
 
     React.useEffect(() => {
@@ -111,7 +111,7 @@ const MenuSidebarCoverLetters = () => {
                             activeClassActives = style.link_current;
                         }
 
-                        if (obj?.key == 'contact' && !!idCv) {
+                        if (obj?.key == 'personalize' && !!idCv) {
                             activeClassActives = style.link_current;
                         }
 

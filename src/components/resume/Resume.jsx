@@ -14,7 +14,9 @@ import {
    getResumeActive,
 } from "../../controllers/resumeData";
 
-const Resume = () => {
+const Resume = ({
+   isCover = false,
+}) => {
    const dispatch = useDispatch();
    const router = useRouter();
    const reportTemplateRef = React.useRef(null);
@@ -53,10 +55,12 @@ const Resume = () => {
    }, [resumeData.resumeActive]);
 
    React.useEffect(() => {
-      if (typeof window != "undefined") {
-         if (!!reportTemplateRef.current) {
-            let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-            setPagesPag(devPages.length);
+      if (!isCover) {
+         if (typeof window != "undefined") {
+            if (!!reportTemplateRef.current) {
+               let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+               setPagesPag(devPages.length);
+            }
          }
       }
    }, [resumeData?.data, resumeData.resumeActive, contacts,
@@ -74,30 +78,32 @@ const Resume = () => {
       careers]);
 
    React.useEffect(() => {
-      if (typeof window != "undefined") {
-         if (!!reportTemplateRef.current) {
-            function star() {
-               let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
+      if (!isCover) {
+         if (typeof window != "undefined") {
+            if (!!reportTemplateRef.current) {
+               function star() {
+                  let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
 
-               if (devPages) {
-                  devPages.forEach(element => {
-                     element.classList.add("none");
-                  });
+                  if (devPages) {
+                     devPages.forEach(element => {
+                        element.classList.add("none");
+                     });
 
-                  let currentPage = devPages[pagePagCurrent - 1];
+                     let currentPage = devPages[pagePagCurrent - 1];
 
-                  if (!!currentPage) {
-                     currentPage.classList.remove("none");
-                     currentPage.classList.add("active");
+                     if (!!currentPage) {
+                        currentPage.classList.remove("none");
+                        currentPage.classList.add("active");
+                     }
                   }
                }
-            }
 
-            star();
-
-            setTimeout(() => {
                star();
-            }, 1000);
+
+               setTimeout(() => {
+                  star();
+               }, 1000);
+            }
          }
       }
    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive, resumeData.resumeActive, contacts,
@@ -142,8 +148,9 @@ const Resume = () => {
             />
             <ResumeMain
                reportTemplateRef={reportTemplateRef}
+               isCover={isCover}
             />
-            <ResumeFooter />
+            <ResumeFooter isCover={isCover}/>
          </CCol>
       </>
    )

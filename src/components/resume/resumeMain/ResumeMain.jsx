@@ -10,6 +10,7 @@ import {
 
 const ResumeMain = ({
    reportTemplateRef,
+   isCover,
 }) => {
    const dispatch = useDispatch();
    const router = useRouter();
@@ -64,17 +65,21 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`}>
-         <div className="scroll-style resume-main_scroll">
-            <div className="resume-main_scale">
-               <TemplatesSelect
-                  isResume={true}
-                  resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
-                  data={dataResumeTemplate}
-                  resumeData={resumeData}
-                  reportTemplateRef={reportTemplateRef}
-               />
-            </div>
-         </div>
+         {
+            !isCover && (
+               <div className="scroll-style resume-main_scroll">
+                  <div className="resume-main_scale">
+                     <TemplatesSelect
+                        isResume={true}
+                        resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
+                        data={dataResumeTemplate}
+                        resumeData={resumeData}
+                        reportTemplateRef={reportTemplateRef}
+                     />
+                  </div>
+               </div>
+            )
+         }
       </div>
    )
 }

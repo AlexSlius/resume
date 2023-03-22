@@ -1,16 +1,16 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
-import ContainerPagePersonalize from "../../../src/containers/cover-letters/personalize"
+import ContainerPageExperience from "../../../src/containers/cover-letters/experience"
 
 import { withPublickRoute } from "../../../src/middleware/publickRouter"
 
-const ResumePersonalizePage = () => {
+const ResumeExperiencePage = () => {
     return (
         <WrapepeAdminpage isCover={true}>
-            <ContainerPagePersonalize />
+            <ContainerPageExperience />
         </WrapepeAdminpage>
     )
 }
 
 export const getServerSideProps = withPublickRoute({});
 
-export default ResumePersonalizePage;
+export default ResumeExperiencePage;

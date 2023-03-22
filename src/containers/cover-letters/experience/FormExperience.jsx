@@ -1,6 +1,6 @@
 import { StepContent } from "../../../components/stepContent";
 
-const FormPersonalize = () => {
+const FormExperience = () => {
     return (
         <div>
             <StepContent
@@ -12,4 +12,4 @@ const FormPersonalize = () => {
     )
 }
 
-export default FormPersonalize;
+export default FormExperience;
