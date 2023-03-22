@@ -104,12 +104,39 @@ let adds = [
         link: '/certificaties',
         keyIcon: [keysIcons["iconCertifications"]],
     },
-]
+];
+
+let startDatesCoverLetters = [
+    {
+        key: 'personalize',
+        name: 'Personalize',
+        status: true,
+        link: '/personalize',
+        keyIcon: [keysIcons["iconContact"]],
+    },
+    {
+        key: 'experience',
+        name: 'Experience',
+        status: true,
+        link: '/experience',
+        keyIcon: [keysIcons["iconEmploymen"]],
+    },
+    {
+        key: 'download',
+        name: 'Download',
+        status: true,
+        link: '/download',
+        keyIcon: [keysIcons["iconEducation"]],
+    },
+];
 
 const initialState = {
     list: [...startDates],
     listAdd: [...adds],
-    listStart: [...startDates]
+    listStart: [...startDates],
+    coverLetters: {
+        list: [...startDatesCoverLetters],
+    }
 };
 
 export const slice = createSlice({

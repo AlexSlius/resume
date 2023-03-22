@@ -59,6 +59,8 @@ export const routersPages = {
     'settings': 'settings',
     'resumeBuilder': 'resume-builder',
     'resumeBuilderNew': 'resume-builder/new/contact',
+    'coverLetter': 'cover-letters',
+    'coverLetterNew': 'cover-letters/new/personalize',
     'addSection': 'add_section',
     'resumeNow': 'resume-now',
     'faqs': 'faqs',

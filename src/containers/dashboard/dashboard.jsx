@@ -56,6 +56,10 @@ const Dashboard = () => {
         await Router.push(`${routersPages['resumeBuilderNew']}`);
     }
 
+    const hangleAddNewCover = async () => {
+        await Router.push(`${routersPages['coverLetterNew']}`);
+    }
+
     const handlekeyUp = (e, stateName, id) => {
         if (e.keyCode == 13) {
             handleUpdateNameResume(stateName, id);
@@ -153,6 +157,7 @@ const Dashboard = () => {
                                                 titleNwe="New Cover letters"
                                                 text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
                                                 currentResolution={currentResolution}
+                                                hangleAddNew={hangleAddNewCover}
                                             />
                                         </>
                                     )
