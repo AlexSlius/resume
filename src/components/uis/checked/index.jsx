@@ -9,10 +9,11 @@ export const Checked = ({
     label = '',
     onChange = () => { },
     checkbox = false,
-    defaultChecked = false
+    defaultChecked = false,
+    isBold = false
 }) => {
     return (
-        <div className={`${style.main}`} onChange={onChange}>
+        <div className={`${style.main} ${isBold ? style.bold : ""}`} onChange={onChange}>
             <CFormCheck
                 id={id}
                 label={label}

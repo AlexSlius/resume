@@ -10,5 +10,11 @@ export const ROUTES = {
     'intership': 'intership',
     'languages': 'languages',
     'reference': 'reference',
-    'certificaties': 'certificaties'
+    'certificaties': 'certificaties',
+    'experience': 'experience'
+}
+
+export const ROUTES_COVER = {
+    '': 'personalize',
+    'experience': 'experience',
 }

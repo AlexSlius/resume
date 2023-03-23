@@ -16,7 +16,7 @@ export const ButtonIcon = ({
                 className={`${className} form-btn btns minp`}
                 onClick={onHandle}
             >
-                <Icon svg={icon} />
+                {!!icon && <Icon svg={icon} />}
                 <span>{label}</span>
             </button>
         ) : (
@@ -24,7 +24,7 @@ export const ButtonIcon = ({
                 href={href}
                 className={`${className} form-btn btns minp`}
             >
-                <Icon svg={icon} />
+                {!!icon && <Icon svg={icon} />}
                 <span>{label}</span>
             </Link >
         )

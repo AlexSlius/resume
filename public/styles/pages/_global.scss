@@ -82,6 +82,24 @@ h3.h3 {
         }
     }
 
+    &.btn--grey-two {
+        background: #EEF0F2 !important;
+        color: #838799 !important;
+        padding: 15px 17px;
+
+        svg {
+            fill: #838799;
+        }
+
+        &:hover {
+            color: #3679FD!important;
+
+            svg {
+                fill: #3679FD;
+            }
+        }
+    }
+
     &.btn--blue {
         background: #3679fd;
 

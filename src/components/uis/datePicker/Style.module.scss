@@ -28,3 +28,23 @@
 .ins {
     display: none;
 }
+
+.wt_cal_in {
+    position: relative;
+
+    input {
+        padding-right: 50px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 4;
+        background: url("/../images/icons/icon-data.svg") center/contain no-repeat;
+    }
+}

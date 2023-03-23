@@ -9,26 +9,48 @@ export const ItemDragDrop = ({
     id = null,
     label = "",
     provided,
+    isCol = true
 }) => {
     return (
-        <CCol
-            xs={6}
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-        >
-            <div className="active-item-skills-starts item-drag-drops">
-                <div className="active-item-skills-starts__row">
-                    <span className="btn-drops" {...provided.dragHandleProps}>
-                        <Icon svg={dragIcon} />
-                    </span>
-                    <div className="active-item-skills-starts__center">
-                        <span>{label}</span>
+        isCol ? (
+            <CCol
+                xs={6}
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+            >
+                <div className="active-item-skills-starts item-drag-drops">
+                    <div className="active-item-skills-starts__row">
+                        <span className="btn-drops" {...provided.dragHandleProps}>
+                            <Icon svg={dragIcon} />
+                        </span>
+                        <div className="active-item-skills-starts__center">
+                            <span>{label}</span>
+                        </div>
+                        <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
+                            <Icon svg={deleteIcon} />
+                        </button>
                     </div>
-                    <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
-                        <Icon svg={deleteIcon} />
-                    </button>
+                </div>
+            </CCol>
+        ) : (
+            <div
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+            >
+                <div className="active-item-skills-starts item-drag-drops">
+                    <div className="active-item-skills-starts__row">
+                        <span className="btn-drops" {...provided.dragHandleProps}>
+                            <Icon svg={dragIcon} />
+                        </span>
+                        <div className="active-item-skills-starts__center">
+                            <span>{label}</span>
+                        </div>
+                        <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
+                            <Icon svg={deleteIcon} />
+                        </button>
+                    </div>
                 </div>
             </div>
-        </CCol>
+        )
     )
 }

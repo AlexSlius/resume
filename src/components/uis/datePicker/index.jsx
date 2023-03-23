@@ -84,13 +84,15 @@ export const DatePicker = ({
 
     return (
         <div className={`${style.wt_cal}`} ref={refSelect}>
-            <CFormInput
-                ref={useRefDataNewIn}
-                name={name}
-                value={selected ? moment(new Date(selected)).format(formatInput) : ""}
-                floatingLabel={floatingLabel}
-                placeholder={placeholderText}
-            />
+            <div className={`${style.wt_cal_in}`}>
+                <CFormInput
+                    ref={useRefDataNewIn}
+                    name={name}
+                    value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                    floatingLabel={floatingLabel}
+                    placeholder={placeholderText}
+                />
+            </div>
             <input type="text" ref={useRefData} className={`${style.ins}`} />
             <div ref={useRefWrContainer} className={`${style.wrData} ${clases}`}>
                 {

@@ -1,0 +1,23 @@
+.wr-form-cover {
+    margin-top: 30px;
+}
+
+.wr-gab-30 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.wr-btn-cover {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.cover-checks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 100px;
+    row-gap: 30px;
+    max-width: 680px;
+}
