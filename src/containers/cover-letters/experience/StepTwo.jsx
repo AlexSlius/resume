@@ -5,39 +5,60 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { BtnsStatus } from "../component/btnsStatus";
 
-export const StepTwo = () => {
+export const StepTwo = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = (value) => {
+        handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value });
+        handleClicQuery(StepsName["nameCollege"]);
+    }
+
     return (
         <div className="step-wr">
-            <div>
-                <StepContent
-                    icon="/images/cover/icon-cover-2.svg"
-                    title="What year did you graduate in?"
-                />
-                <div className="wr-form-cover">
-                    <CForm className="wr-gab-30">
-                        <CRow>
-                            <CCol xs={6}>
-                                <DatePicker
-                                    // selected={contObj.dateOfBirth}
-                                    // onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                                    placeholderText="Date"
-                                    name="date_of_birth"
-                                />
-                            </CCol>
-                        </CRow>
-                    </CForm>
-                </div>
-                <BtnContinue isButton={true} />
-            </div>
+            {
+                (experienceObj.questionGraduateFromCollege == "yes") && (
+                    <div>
+                        <StepContent
+                            icon="/images/cover/icon-cover-2.svg"
+                            title="What year did you graduate in?"
+                        />
+                        <div className="wr-form-cover">
+                            <CForm className="wr-gab-30">
+                                <CRow>
+                                    <CCol xs={6}>
+                                        <DatePicker
+                                            selected={experienceObj.graduate_date}
+                                            onChange={(date) => handleUpdateField({ name: "graduate_date", value: date })}
+                                            placeholderText="Date"
+                                            name="graduate_date"
+                                        />
+                                    </CCol>
+                                </CRow>
+                            </CForm>
+                        </div>
+                        <BtnContinue
+                            isButton={true}
+                            onHanleBtn={() => { handleClicQuery(StepsName["nameCollege"]); }}
+                        />
+                    </div>
+                )
+            }
 
-            <div>
-                <StepContent
-                    icon="/images/cover/icon-cover-1.svg"
-                    title="Are you currently in college/university? "
-                />
+            {
+                (experienceObj.questionGraduateFromCollege == "no") && (
+                    <div>
+                        <StepContent
+                            icon="/images/cover/icon-cover-1.svg"
+                            title="Are you currently in college/university? "
+                        />
 
-                <BtnsStatus />
-            </div>
+                        <BtnsStatus onHanlebtn={(value) => handleClickBtn(value)} />
+                    </div>
+                )
+            }
         </div>
     )
 }

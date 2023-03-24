@@ -5,7 +5,8 @@ import iconBtnNext from "/public/images/icons/icon-bnt-next.svg?sprite";
 export const BtnContinue = ({
     href = '',
     isButton = false,
-    label = "Continue"
+    label = "Continue",
+    onHanleBtn = () => { },
 }) => {
     return (
         <div className="wr-btn-cover">
@@ -15,7 +16,7 @@ export const BtnContinue = ({
                 isButton={isButton}
                 className="btn--blue btn-style-min"
                 href={href}
-            // onHandle={onHanleBtn}
+                onHandle={onHanleBtn}
             />
         </div>
     )

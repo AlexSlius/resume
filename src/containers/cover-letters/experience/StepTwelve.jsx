@@ -4,7 +4,16 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepTwelve = () => {
+export const StepTwelve = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["graduatedStep"]);
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -43,7 +52,7 @@ export const StepTwelve = () => {
                     </CRow>
                 </CForm>
             </div>
-            <BtnContinue isButton={true} />
+            <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
         </div>
     )
 }

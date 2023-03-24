@@ -4,7 +4,16 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepFive = () => {
+export const StepFive = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["professionalSkills"]);
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -24,13 +33,12 @@ export const StepFive = () => {
                                 // handleSaveSelect={handleSaveSelect}
                                 isOutDataObj={false}
                                 isIconArrow={true}
-                                isFlag={true}
                             />
                         </CCol>
                     </CRow>
                 </CForm>
             </div>
-            <BtnContinue isButton={true} />
+            <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
         </div>
     )
 }

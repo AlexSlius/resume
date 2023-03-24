@@ -4,7 +4,12 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepSixteen = () => {
+export const StepSixteen = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
     return (
         <div className="step-wr">
             <div>

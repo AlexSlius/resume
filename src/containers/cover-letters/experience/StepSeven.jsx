@@ -2,7 +2,16 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { Checked } from "../../../components/uis/checked"
 
-export const StepSeven = () => {
+export const StepSeven = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["describes"]);
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -27,7 +36,7 @@ export const StepSeven = () => {
                         label="Creative thinking"
                         isBold={true}
                     />
-                    
+
                     <Checked
                         id="check4"
                         label="Critical thinking"
@@ -110,9 +119,7 @@ export const StepSeven = () => {
                 </div>
             </div>
 
-
-
-            <BtnContinue isButton={true} />
+            <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
         </div>
     )
 }

@@ -37,6 +37,7 @@ export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', asy
 
     if (isSuccessNewContact(response)) {
         localStorageSet("session_id", response.session_id);
+        localStorageSet("is_page", "resume");
         // thunkAPI.dispatch(cleanSliseNew());
 
         sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)

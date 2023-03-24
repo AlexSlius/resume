@@ -43,14 +43,19 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({
     if (response?.token) {
         cookieSet({ key: 'token', data: response.token });
 
-        if (!!resumeActiveNew.id) {
-            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id }, isRemoveSesion: true }));
+        let nextRouterPage = sessionStorageGet('routet_page_next');
+        let isPages = sessionStorageGet("is_page");
+
+        if (isPages == "resume") {
+            if (!!resumeActiveNew.id) {
+                thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id }, isRemoveSesion: true }));
+            }
+        } else if (isPages == "cover") {
+            // шаблон для cover 
         }
 
-        let nextRouterPage = sessionStorageGet('routet_page_next');
-
         if (!!nextRouterPage) {
-            Router.push(`/${routersPages['resumeBuilder']}/${response.id}${nextRouterPage}`);
+            Router.push(`/${routersPages[(isPages == "cover") ? 'coverLetter' : 'resumeBuilder']}/${response.id}${nextRouterPage}`);
         } else {
             Router.push(`/${routersPages['dashboard']}`);
         }

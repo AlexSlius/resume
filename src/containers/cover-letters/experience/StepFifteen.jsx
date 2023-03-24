@@ -4,7 +4,19 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnsStatus } from "../component/btnsStatus";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepFifteen = () => {
+export const StepFifteen = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = (value) => {
+        if (value == "no") {
+            handleUpdateField({ name: "explainAnyWorkGaps", value: "no" });
+        }
+        handleClicQuery(StepsName["graduatedFinish"]);
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -30,7 +42,7 @@ export const StepFifteen = () => {
                     </CRow>
                 </CForm>
             </div>
-            <BtnsStatus textBtnCont="Continue" />
+            <BtnsStatus textBtnCont="Continue" onHanlebtn={(value) => handleClickBtn(value)} />
         </div>
     )
 }

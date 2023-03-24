@@ -8,7 +8,16 @@ import { ItemDragDrop } from "../../../components/ItemDragDrop";
 
 import { reorder } from '../../../helpers/drageDrop';
 
-export const StepSix = () => {
+export const StepSix = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["skillSet"]);
+    }
+
     const onDragEnd = (result) => {
         if (!result.destination) {
             return;
@@ -90,7 +99,7 @@ export const StepSix = () => {
                     </CRow>
                 </CForm>
             </div>
-            <BtnContinue isButton={true} />
+            <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
         </div>
     )
 }
