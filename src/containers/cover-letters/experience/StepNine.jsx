@@ -9,9 +9,18 @@ export const StepNine = ({
     handleClicQuery = () => { },
     StepsName,
     experienceObj,
+    dispatch,
 }) => {
     const handleClickBtn = () => {
         handleClicQuery(StepsName["workExperinence"]);
+    }
+
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequest = () => {
+
     }
 
     return (
@@ -27,14 +36,13 @@ export const StepNine = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
-                                // valueState={contObj.country || ''}
+                                valueState={experienceObj.othersDescribe || ''}
                                 // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                name="othersDescribe"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isIconArrow={true}
-                                isFlag={true}
                             />
                         </CCol>
                     </CRow>

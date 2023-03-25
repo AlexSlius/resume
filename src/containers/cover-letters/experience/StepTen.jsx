@@ -12,6 +12,8 @@ export const StepTen = ({
         handleClicQuery(StepsName["previousJob"]);
     }
 
+    experienceObj.questionHaveWorkExperience
+
     return (
         <div className="step-wr">
             <StepContent
@@ -19,7 +21,7 @@ export const StepTen = ({
                 title="Do you have work experience?"
                 label="(includes volunteer work, summer jobs, and unofficial jobs)"
             />
-            <BtnsStatus onHanlebtn={(value) => handleClickBtn(value)}/>
+            <BtnsStatus onHanlebtn={(value) => handleClickBtn(value)} />
         </div>
     )
 }

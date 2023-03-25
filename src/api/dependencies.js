@@ -1,6 +1,9 @@
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
+    getFieldOfStudy(params) {
+        return this.apiClient.get(`profile/list/field_of_study`, params);
+    }
     getCountrys() {
         return this.apiClient.get('profile/list/countrys');
     }

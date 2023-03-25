@@ -15,10 +15,8 @@ const initialState = {
         questionCurrentlyInCollegeUniversity: "",
         expectedYearOfGraduation: "",
         nameCollegeOrUniversity: "",
-
         pointAverage: "",
         fieldOfStudyOrDegree: "",
-        
         professionalSkills: "",
         skillSet: "",
         wordDescribes: "",

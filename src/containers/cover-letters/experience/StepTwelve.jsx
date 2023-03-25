@@ -9,6 +9,7 @@ export const StepTwelve = ({
     handleClicQuery = () => { },
     StepsName,
     experienceObj,
+    dispatch,
 }) => {
     const handleClickBtn = () => {
         handleClicQuery(StepsName["graduatedStep"]);

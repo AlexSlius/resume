@@ -1,5 +1,4 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-
 import { StepContent } from "../../../components/stepContent";
 import Input from "../../../components/uis/input";
 import { BtnContinue } from "../component/btnContinue";
@@ -13,6 +12,10 @@ export const StepThree = ({
 }) => {
     const handleClickBtn = () => {
         handleClicQuery(StepsName["pointAverage"]);
+    }
+
+    const handleClickBtnPage = () => {
+        handleClicQuery(StepsName["professionalSkills"]);
     }
 
     return (
@@ -67,6 +70,15 @@ export const StepThree = ({
                             </CForm>
                         </div>
                         <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
+                    </div>
+                )
+            }
+
+            {
+                (experienceObj.questionCurrentlyInCollegeUniversity == "no") && (
+                    <div className="cover-card-no">
+                        <div>Page:</div>
+                        <button onClick={handleClickBtnPage} className="btn-text-cover">What are your professional skills?</button>
                     </div>
                 )
             }

@@ -40,6 +40,7 @@ const FormExperience = ({
         dependencies: {
             coutrys,
             cities,
+            fieldOfStudy,
         },
         auth: {
             autorizate: {
@@ -114,6 +115,8 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
+                        fieldOfStudy={fieldOfStudy}
                     />
                 )
             }
@@ -125,6 +128,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -136,6 +140,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -147,6 +152,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -158,6 +164,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -180,6 +187,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -191,6 +199,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
+                        dispatch={dispatch}
                     />
                 )
             }

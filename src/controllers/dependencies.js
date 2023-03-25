@@ -12,6 +12,11 @@ export const fetchGetCities = createAsyncThunk('sities/fetchGetCities', async ({
     return response;
 })
 
+export const fetchGetFieldOfStudy = createAsyncThunk('fetch/getFieldOfStudy', async (params, thunkAPI) => {
+    const response = await api.dependencies.getFieldOfStudy({ "query": params || '' });
+    return response;
+})
+
 export const fetchGetZipCodes = createAsyncThunk('zip/fetchGetCodes', async (id) => {
     const response = await api.dependencies.getZipCodes(id);
     return response;

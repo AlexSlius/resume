@@ -4,7 +4,6 @@ import { StepContent } from "../../../components/stepContent";
 import Input from "../../../components/uis/input";
 import { BtnContinue } from "../component/btnContinue";
 
-
 export const StepFour = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
@@ -32,6 +31,7 @@ export const StepFour = ({
                                         <Input
                                             label="Point Average"
                                             placeholder="Point Average"
+                                            type="number"
                                             value={experienceObj.pointAverage}
                                             onChange={(e) => handleUpdateField({ name: "pointAverage", value: e.target.value })}
                                         />
@@ -58,8 +58,8 @@ export const StepFour = ({
                                         <Input
                                             label="Name university"
                                             placeholder="Name university"
-                                            value={experienceObj.fieldOfStudyOrDegree}
-                                            onChange={(e) => handleUpdateField({ name: "fieldOfStudyOrDegree", value: e.target.value })}
+                                            value={experienceObj.nameCollegeOrUniversity}
+                                            onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
                                         />
                                     </CCol>
                                 </CRow>

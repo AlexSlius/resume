@@ -4,14 +4,26 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
+import { fetchGetFieldOfStudy } from "../../../controllers/dependencies";
+
 export const StepFive = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
     experienceObj,
+    dispatch,
+    fieldOfStudy,
 }) => {
     const handleClickBtn = () => {
         handleClicQuery(StepsName["professionalSkills"]);
+    }
+
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequest = () => {
+        dispatch(fetchGetFieldOfStudy(experienceObj.fieldOfStudyOrDegree));
     }
 
     return (
@@ -26,11 +38,11 @@ export const StepFive = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
-                                // valueState={contObj.country || ''}
-                                // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                valueState={experienceObj.fieldOfStudyOrDegree || ''}
+                                data={fieldOfStudy.list}
+                                name="fieldOfStudyOrDegree"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                             />
