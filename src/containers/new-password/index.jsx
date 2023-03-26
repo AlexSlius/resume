@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
 
 import { FormHead } from "../../components/formHead"
-import { AutorizationWrapper } from "../../wrappers/autorization"
+import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { InputPassword } from "../../components/uis/inputPassword"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
@@ -39,7 +39,7 @@ export const NewPasswordPage = () => {
     }
 
     return (
-        <AutorizationWrapper>
+        <AuthorizationWrapper>
             <>
                 <FormHead title="New password 🔒" subTitle="Enter your new password twice" />
                 <div className={`form_wrap form_wrap_mt`}>
@@ -99,6 +99,6 @@ export const NewPasswordPage = () => {
                     </CForm>
                 </div>
             </>
-        </AutorizationWrapper >
+        </AuthorizationWrapper >
     )
 }

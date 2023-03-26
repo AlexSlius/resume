@@ -1,7 +1,7 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
 import ContainerPageExperience from "../../../src/containers/cover-letters/experience"
 
-import { withPublickRoute } from "../../../src/middleware/publickRouter"
+import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const ResumeExperiencePage = () => {
     return (
@@ -11,6 +11,6 @@ const ResumeExperiencePage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({});
+export const getServerSideProps = withPublicRoute({});
 
 export default ResumeExperiencePage;

@@ -10,7 +10,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { FormHead } from "../../components/formHead"
-import { AutorizationWrapper } from "../../wrappers/autorization"
+import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { Checked } from "../../components/uis/checked"
 import { InputPassword } from "../../components/uis/inputPassword"
 import Input from "../../components/uis/input"
@@ -42,7 +42,7 @@ export const ContactPage = () => {
     }
 
     return (
-        <AutorizationWrapper >
+        <AuthorizationWrapper >
             <>
                 <FormHead title="Payment Details 🏦" subTitle="Please enter your details." />
                 <div className={`form_wrap form_wrap_mt`}>
@@ -141,6 +141,6 @@ export const ContactPage = () => {
                     </div>
                 </div>
             </>
-        </AutorizationWrapper>
+        </AuthorizationWrapper>
     )
 }

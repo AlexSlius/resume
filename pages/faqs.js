@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { FaqsPage } from '../src/containers/faqs-page'
-import { withPublickRoute } from "../src/middleware/publickRouter";
+import { withPublicRoute } from "../src/middleware/publicRouter";
 
 const Faqs = () => {
     return (
@@ -17,6 +17,6 @@ const Faqs = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({});
+export const getServerSideProps = withPublicRoute({});
 
 export default Faqs;

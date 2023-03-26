@@ -1,0 +1,40 @@
+.imageSprite {
+  width: 229px;
+  height: 37px;
+  display: inline-block;
+  line-height: 37px;
+  text-align: center;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-image: url("/../images/sprite.png");
+  background-size: 1932px 1422px;
+  position: relative;
+
+  &.mashable{ background-position: -145px -2px }
+  &.forbes{ background-position: 3px -2px }
+  &.cnn{ background-position: -383px -2px }
+  &.tnw{ background-position: -624px -2px }
+  &.cbc{ background-position: -470px -2px }
+  &.wsj{ background-position: -788px -2px }
+  &.lettersMain{ background-position: -7px -53px }
+  &.colors{ background-position: -781px -74px }
+  &.pdf{ background-position: -1096px -51px }
+  &.protection{ background-position: -779px -315px }
+  &.protectionSmall{ background-position: -1094px -315px }
+  &.colorsSmall{ background-position: -1198px -315px }
+  &.pdfSmall{ background-position: -1309px -315px }
+  &.chat{ background-position: -1107px -401px }
+  &.conversation{ background-position: -1194px -401px }
+  &.fire{ background-position: -1281px -401px }
+  &.cursor{ background-position: -1369px -421px }
+  &.documents-background{ background-position: -7px -618px }
+
+
+  @media (-webkit-min-device-pixel-ratio: 1.25) {
+    width: 278px;
+    height: 74px;
+    background-image: url("/../images/sprite-x2.png");
+  }
+}
+
+

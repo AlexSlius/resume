@@ -1,7 +1,7 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
 import ContainerPagePersonalize from "../../../src/containers/cover-letters/personalize"
 
-import { withPublickRoute } from "../../../src/middleware/publickRouter"
+import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const ResumePersonalizePage = () => {
     return (
@@ -11,6 +11,6 @@ const ResumePersonalizePage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({});
+export const getServerSideProps = withPublicRoute({});
 
 export default ResumePersonalizePage;

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { JobWinningPage } from '../src/containers/jobWinningPage'
-import { withPublickRoute } from "../src/middleware/publickRouter";
+import { withPublicRoute } from "../src/middleware/publicRouter";
 
 const ContactUs = () => {
     return (
@@ -17,6 +17,6 @@ const ContactUs = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({ isGetResumesTempaltes: true });
+export const getServerSideProps = withPublicRoute({ isGetResumesTemplates: true });
 
 export default ContactUs;

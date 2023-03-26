@@ -13,7 +13,7 @@ import { fetchGetCvCertificates } from "./certificaties"
 import { fetchGetCvCarreers } from "./careers";
 import { fetchGetCategoryStatus, getCategoryViewedStatus } from "./addSections"
 
-export const getAllResumeBuildre = async ({ dispatch, idCv }) => {
+export const getAllResumeBuilder = async ({ dispatch, idCv }) => {
     // console.log("start gett all: ", idCv);
 
     if (idCv != "new" && idCv !== undefined && idCv !== null) {

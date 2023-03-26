@@ -15,7 +15,7 @@ export const withRedirectPublickPage = () => {
             const cookis = cookieParse({ ctx });
 
             if (!!cookis?.token) {
-                const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
+                const serverRespons = await api.auth.isAuthorization({ 'token': cookis.token });
                 await store.dispatch(setIsAuth(isExist(serverRespons)));
 
                 if (isExist(serverRespons)) {

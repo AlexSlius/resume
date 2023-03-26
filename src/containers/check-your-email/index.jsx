@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { isString } from "lodash"
 
 import { FormHead } from "../../components/formHead"
-import { AutorizationWrapper } from "../../wrappers/autorization"
+import { AuthorizationWrapper } from "../../wrappers/autorization"
 import InputCode from "../../components/uis/inputCode"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
@@ -31,7 +31,7 @@ export const CheckYourEmailPage = () => {
     }
 
     return (
-        <AutorizationWrapper>
+        <AuthorizationWrapper>
             <>
                 <FormHead title="Check your email 📬" subTitle="We sent the code to reset the password" />
                 <div className={`form_wrap form_wrap_mt`}>
@@ -56,6 +56,6 @@ export const CheckYourEmailPage = () => {
                     </CForm>
                 </div>
             </>
-        </AutorizationWrapper>
+        </AuthorizationWrapper>
     )
 }

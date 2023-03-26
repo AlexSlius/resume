@@ -150,7 +150,7 @@ const FormContact = ({
       }
    }
 
-   const onHandleNewAutorization = async () => {
+   const onHandleNewAuthorization = async () => {
       await dispatch(contactAddNew({ pictureFile, isNewResume }));
    }
 
@@ -421,7 +421,7 @@ const FormContact = ({
             <CCol>
                <ButtonSteps
                   onHandleBtnNext={formSubmit}
-                  onHandleNew={onHandleNewAutorization}
+                  onHandleNew={onHandleNewAuthorization}
                   isAthorized={isAthorized}
                   isFirstStep={true}
                   isNew={idCv == "new" && isAthorized}
