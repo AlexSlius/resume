@@ -4,7 +4,25 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepEight = () => {
+export const StepEight = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+    dispatch,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["othersDescribe"]);
+    }
+
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequest = () => {
+
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -18,20 +36,19 @@ export const StepEight = () => {
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
-                                // valueState={contObj.country || ''}
+                                valueState={experienceObj.wordDescribes || ''}
                                 // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                name="wordDescribes"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isIconArrow={true}
-                                isFlag={true}
                             />
                         </CCol>
                     </CRow>
                 </CForm>
             </div>
-            <BtnContinue isButton={true} />
+            <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
         </div>
     )
 }

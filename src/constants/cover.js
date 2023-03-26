@@ -1,0 +1,17 @@
+export const StepsName = {
+    "graduated": "graduated",
+    "nameCollege": "name_college",
+    "pointAverage": "point_average",
+    "studyOrDegree": "study_or_degree",
+    "professionalSkills": "professional_skills",
+    "skillSet": "skill_set",
+    "describes": "describes",
+    "othersDescribe": "others_describe",
+    "workExperinence": "work_experinence",
+    "previousJob": "previous_job",
+    "howMachWork": "how_mach_work",
+    "graduatedStep": "graduated_step",
+    "graduatedTwo": "graduated_two",
+    "workGaps": "work_gaps",
+    "graduatedFinish": "graduatedFinish",
+};

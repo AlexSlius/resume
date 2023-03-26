@@ -5,6 +5,7 @@ import iconClos from "/public/images/icons/icon-btn-clos.svg?sprite";
 
 export const BtnsStatus = ({
     textBtnCont = "Yes",
+    onHanlebtn = () => { },
 }) => {
     return (
         <div className="wr-btn-cover">
@@ -13,14 +14,14 @@ export const BtnsStatus = ({
                 label={textBtnCont}
                 isButton={true}
                 className="btn--blue btn-style-min"
-            // onHandle={onHanleBtn}
+                onHandle={() => onHanlebtn("yes")}
             />
             <ButtonIcon
                 icon={iconClos}
                 label="No"
                 isButton={true}
                 className="btn--grey-two btn-style-min"
-            // onHandle={onHanleBtn}
+                onHandle={() => onHanlebtn("no")}
             />
         </div>
     )

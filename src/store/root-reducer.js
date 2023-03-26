@@ -24,6 +24,10 @@ import { reducer as notificationData } from "../slices/notifications";
 import { reducer as careers } from "../slices/careers";
 import { reducer as theme } from "../slices/theme";
 
+// cover
+import { reducer as coverPerson } from "../slices/cover/coverPerson";
+import { reducer as coverExperince } from "../slices/cover/coverExperience";
+
 export const combinedReducers = combineReducers({
   app: appReducer,
   auth: authReducer,
@@ -48,5 +52,7 @@ export const combinedReducers = combineReducers({
   notificationData,
   theme,
   resumeData,
+  coverPerson,
+  coverExperince,
 })
 

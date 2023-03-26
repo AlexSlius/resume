@@ -4,7 +4,27 @@ import { StepContent } from "../../../components/stepContent";
 import { BtnsStatus } from "../component/btnsStatus";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
-export const StepFifteen = () => {
+export const StepFifteen = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = (value) => {
+        if (value == "no") {
+            handleUpdateField({ name: "explainAnyWorkGaps", value: "no" });
+        }
+        handleClicQuery(StepsName["graduatedFinish"]);
+    }
+
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequestReason = (text) => {
+
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -18,11 +38,11 @@ export const StepFifteen = () => {
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Reason"
-                                // valueState={contObj.country || ''}
+                                valueState={experienceObj.explainAnyWorkGaps || ''}
                                 // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                name="explainAnyWorkGaps"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequestReason}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                             />
@@ -30,7 +50,7 @@ export const StepFifteen = () => {
                     </CRow>
                 </CForm>
             </div>
-            <BtnsStatus textBtnCont="Continue" />
+            <BtnsStatus textBtnCont="Continue" onHanlebtn={(value) => handleClickBtn(value)} />
         </div>
     )
 }

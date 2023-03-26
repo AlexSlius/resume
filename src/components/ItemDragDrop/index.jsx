@@ -45,7 +45,7 @@ export const ItemDragDrop = ({
                         <div className="active-item-skills-starts__center">
                             <span>{label}</span>
                         </div>
-                        <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
+                        <button type="button" className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
                             <Icon svg={deleteIcon} />
                         </button>
                     </div>

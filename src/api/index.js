@@ -18,6 +18,7 @@ import userApi from './users';
 import addSectionApi from "./addSections";
 import careersApi from "./careers";
 import resumesDataApi from "./resumeData";
+import personalizeApi from "./cover/personalize";
 
 export default function apiConstruct({
   apiUrl,
@@ -53,5 +54,6 @@ export default function apiConstruct({
     addSection: new addSectionApi({ apiClient }),
     careers: new careersApi({ apiClient }),
     resumesData: new resumesDataApi({ apiClient }),
+    personalize: new personalizeApi({ apiClient }),
   };
 }

@@ -1,57 +1,87 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-
 import { StepContent } from "../../../components/stepContent";
 import Input from "../../../components/uis/input";
 import { BtnContinue } from "../component/btnContinue";
 import { DatePicker } from "../../../components/uis/datePicker"
 
-export const StepThree = () => {
+export const StepThree = ({
+    handleUpdateField = () => { },
+    handleClicQuery = () => { },
+    StepsName,
+    experienceObj,
+}) => {
+    const handleClickBtn = () => {
+        handleClicQuery(StepsName["pointAverage"]);
+    }
+
+    const handleClickBtnPage = () => {
+        handleClicQuery(StepsName["professionalSkills"]);
+    }
+
     return (
         <div className="step-wr">
-            <div>
-                <StepContent
-                    icon="/images/cover/icon-cover-1.svg"
-                    title="What's the name of your college or university?"
-                />
-                <div className="wr-form-cover">
-                    <CForm className="wr-gab-30">
-                        <CRow>
-                            <CCol xs={6}>
-                                <Input
-                                    label="Name university"
-                                    placeholder="Name university"
-                                    // value={contObj.firstName}
-                                    autoComplete="on"
-                                />
-                            </CCol>
-                        </CRow>
-                    </CForm>
-                </div>
-                <BtnContinue isButton={true} />
-            </div>
+            {
+                (experienceObj.questionCurrentlyInCollegeUniversity == "") && (
+                    <div>
+                        <StepContent
+                            icon="/images/cover/icon-cover-1.svg"
+                            title="What's the name of your college or university?"
+                        />
+                        <div className="wr-form-cover">
+                            <CForm className="wr-gab-30">
+                                <CRow>
+                                    <CCol xs={6}>
+                                        <Input
+                                            label="Name university"
+                                            placeholder="Name university"
+                                            value={experienceObj.nameCollegeOrUniversity}
+                                            autoComplete="on"
+                                            onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
+                                        />
+                                    </CCol>
+                                </CRow>
+                            </CForm>
+                        </div>
+                        <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
+                    </div>
+                )
+            }
 
-            <div>
-                <StepContent
-                    icon="/images/cover/icon-cover-2.svg"
-                    title="What is your expected year of graduation?"
-                    label="If applicable/optional"
-                />
-                <div className="wr-form-cover">
-                    <CForm className="wr-gab-30">
-                        <CRow>
-                            <CCol xs={6}>
-                                <DatePicker
-                                    // selected={contObj.dateOfBirth}
-                                    // onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                                    placeholderText="Date"
-                                    name="date_of_birth"
-                                />
-                            </CCol>
-                        </CRow>
-                    </CForm>
-                </div>
-                <BtnContinue isButton={true} />
-            </div>
+            {
+                (experienceObj.questionCurrentlyInCollegeUniversity == "yes") && (
+                    <div>
+                        <StepContent
+                            icon="/images/cover/icon-cover-2.svg"
+                            title="What is your expected year of graduation?"
+                            label="If applicable/optional"
+                        />
+                        <div className="wr-form-cover">
+                            <CForm className="wr-gab-30">
+                                <CRow>
+                                    <CCol xs={6}>
+                                        <DatePicker
+                                            selected={experienceObj.expectedYearOfGraduation}
+                                            onChange={(date) => handleUpdateField({ name: 'expectedYearOfGraduation', value: date })}
+                                            placeholderText="Date"
+                                            name="expectedYearOfGraduation"
+                                        />
+                                    </CCol>
+                                </CRow>
+                            </CForm>
+                        </div>
+                        <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
+                    </div>
+                )
+            }
+
+            {
+                (experienceObj.questionCurrentlyInCollegeUniversity == "no") && (
+                    <div className="cover-card-no">
+                        <div>Page:</div>
+                        <button onClick={handleClickBtnPage} className="btn-text-cover">What are your professional skills?</button>
+                    </div>
+                )
+            }
         </div>
     )
 }

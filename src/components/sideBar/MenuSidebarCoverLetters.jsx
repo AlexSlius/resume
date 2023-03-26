@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
 
-import { sessionStorageGet } from "../../helpers/localStorage";
-import { contactSetNew, contactAddNew } from "../../controllers/contacts"
+import { contactSetNew, contactAddNew } from "../../controllers/contacts";
+import { coverSetNew, coverAddNew } from "../../controllers/cover/personalize";
 import { addAllSection } from "../../slices/menuAsideResume";
 import { ModalNoAccess } from "../modals/modalNoAccess";
 
@@ -45,22 +45,19 @@ const MenuSidebarCoverLetters = () => {
     const isNewResume = (idCv == "new");
 
     const handleClick = (e) => {
-        // if (idCv == "new") {
-        //     e.preventDefault();
+        if (isNewResume) {
+            e.preventDefault();
 
-        //     let pictureFile = sessionStorageGet('picture');
-
-        //     if (isAthorized) {
-        //         dispatch(contactAddNew({ pictureFile, isNewResume }));
-        //     } else {
-        //         setShowModalNoAccess(true);
-        //     }
-        // }
+            if (isAthorized) {
+                dispatch(coverAddNew({}));
+            } else {
+                setShowModalNoAccess(true);
+            }
+        }
     }
 
     const onHanleBtnRegister = () => {
-        // let pictureFile = sessionStorageGet('picture');
-        // dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
+        dispatch(coverSetNew({}));
     }
 
     React.useEffect(() => {

@@ -177,7 +177,7 @@ export const HomePage = () => {
                                 persuasive without
                                 effort!
                             </p>
-                            <Link href="#" className="offer-sec__btn btns btn--grey">
+                            <Link href={`${routersPages['coverLetterNew']}`} className="offer-sec__btn btns btn--grey">
                                 <img src="images/page/edit.svg" alt="img" />
                                 Create Cover Letter
                             </Link>

@@ -20,7 +20,8 @@ import {
     fetchGetListObjective,
     fetchGetListObjectiveById,
     fetchGetListLanguages,
-    fetchGetListCertificates
+    fetchGetListCertificates,
+    fetchGetFieldOfStudy
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -85,6 +86,10 @@ const initialState = {
     certificaties: {
         list: [],
         status: statusLoaded,
+    },
+    fieldOfStudy: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -99,6 +104,15 @@ export const sliceDepenndecies = createSlice({
                 ...state,
                 ...action.payload.dependencies,
             }
+        },
+        // fetchGetFieldOfStudy
+        [fetchGetFieldOfStudy.pending]: (state) => {
+            state.fieldOfStudy.list = [];
+            state.fieldOfStudy.status = statusLoader;
+        },
+        [fetchGetFieldOfStudy.fulfilled]: (state, action) => {
+            state.fieldOfStudy.status = statusLoaded;
+            state.fieldOfStudy.list = action.payload;
         },
         // get Certificates
         [fetchGetListCertificates.pending]: (state) => {
