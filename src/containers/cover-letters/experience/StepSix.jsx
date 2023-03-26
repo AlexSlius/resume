@@ -1,5 +1,6 @@
 import { CForm, CCol, CRow } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
+import React from "react";
 
 import { StepContent } from "../../../components/stepContent";
 import { FormSearchContent } from "../../../components/uis/formSearchContent/formSearchContent";
@@ -14,6 +15,8 @@ export const StepSix = ({
     StepsName,
     experienceObj,
 }) => {
+    const [arrSlills, setArrSkills] = React.useState([]);
+
     const handleClickBtn = () => {
         handleClicQuery(StepsName["skillSet"]);
     }
@@ -23,16 +26,22 @@ export const StepSix = ({
             return;
         }
 
-        // const data = reorder(
-        //    skillsObj.skillsListAll,
-        //    result.source.index,
-        //    result.destination.index
-        // );
+        let arrOfStr = experienceObj.professionalSkills.split(',');
 
-        // let updateArr = arrPositionUpdateItem(data);
+        const data = reorder(
+            arrOfStr,
+            result.source.index,
+            result.destination.index
+        );
 
-        // dispatch(fetchPostUpdatePositionSkills({ idCv, data: updateArr }));
-        // dispatch(updatePosition(updateArr));
+        handleUpdateField({ name: "professionalSkills", value: data.join(',') });
+    }
+
+    const handleDeleteItem = (index) => {
+        let arrOfStr = experienceObj.professionalSkills.split(',');
+        arrOfStr.splice(index, 1);
+
+        handleUpdateField({ name: "professionalSkills", value: arrOfStr.join(',') });
     }
 
     return (
@@ -58,17 +67,17 @@ export const StepSix = ({
                             </div>
                         </CCol>
                         <CCol xs={6}>
-                            <div className="wr-gab-30">
+                            <div className="">
                                 <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                                     <Droppable droppableId="droppable">
                                         {
                                             (provided, snapshot) => (
-                                                <div className="g-30"
+                                                <div className="items-step-skill"
                                                     ref={provided.innerRef}
                                                     {...provided.droppableProps}
                                                 >
                                                     {
-                                                        [...new Array(5)].map((item, index) => (
+                                                        [...experienceObj.professionalSkills.split(',')].map((item, index) => (
                                                             <Draggable
                                                                 key={index}
                                                                 draggableId={String(index)}
@@ -80,8 +89,8 @@ export const StepSix = ({
                                                                             id={1}
                                                                             isCol={false}
                                                                             provided={provided}
-                                                                            label={"User Interface Design"}
-                                                                        // onDelete={onDeleteItemHobies}
+                                                                            label={item}
+                                                                            onDelete={() => handleDeleteItem(index)}
                                                                         />
                                                                     )
                                                                 }

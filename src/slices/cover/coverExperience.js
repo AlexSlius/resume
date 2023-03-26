@@ -17,7 +17,7 @@ const initialState = {
         nameCollegeOrUniversity: "",
         pointAverage: "",
         fieldOfStudyOrDegree: "",
-        professionalSkills: "",
+        professionalSkills: "Communication,Responsive Web Design,User Interface Design,Dashboard,Prototyping",
         skillSet: "",
         wordDescribes: "",
         othersDescribe: "",

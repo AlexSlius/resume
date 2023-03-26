@@ -3,13 +3,46 @@ import { CForm, CCol, CRow } from "@coreui/react"
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
+import Input from "../../../components/uis/input";
+
+import {
+    getJopsTitle,
+    addJopsTitle,
+    getCompanyList,
+    addCompany
+} from "../../../controllers/dependencies"
 
 export const StepSixteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
     experienceObj,
+    dispatch,
+    jopsTitleList,
+    companysList,
 }) => {
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequestJobTitle = async (text) => {
+        await dispatch(getJopsTitle(text));
+    }
+
+    const handleAddNewJobTitle = async (text) => {
+        let re = await dispatch(addJopsTitle(text));
+        return re?.payload?.id;
+    }
+
+    const handleRequestNameCompany = async (text) => {
+        await dispatch(getCompanyList(text));
+    }
+
+    const handleAddNewCompany = async (text) => {
+        let re = await dispatch(addCompany(text));
+        return re?.payload?.id;
+    }
+
     return (
         <div className="step-wr">
             <div>
@@ -22,24 +55,34 @@ export const StepSixteen = ({
                         <CRow>
                             <CCol xs={6}>
                                 <InputSelect
+                                    label="Company Name"
                                     placeholder="Company Name"
-                                    // valueState={contObj.country || ''}
-                                    // data={coutrys.list}
-                                    name="country"
-                                    // isBackgraundLoad={isLoader(coutrys.status)}
-                                    // handleSaveSelect={handleSaveSelect}
+                                    valueState={experienceObj.applyingCompanyName || ''}
+                                    data={companysList || []}
+                                    isAddDiv={true}
+                                    name="applyingCompanyName"
+                                    handleSaveSelect={handleUpdateFiled}
+                                    handleServerRequest={handleRequestNameCompany}
+                                    handleAddNew={(value) => handleAddNewCompany(value, true)}
                                     isOutDataObj={false}
+                                    isRequire={true}
+                                    isCap={true}
                                 />
                             </CCol>
                             <CCol xs={6}>
                                 <InputSelect
-                                    placeholder="Job title"
-                                    // valueState={contObj.country || ''}
-                                    // data={coutrys.list}
-                                    name="country"
-                                    // isBackgraundLoad={isLoader(coutrys.status)}
-                                    // handleSaveSelect={handleSaveSelect}
+                                    label="Job Title"
+                                    placeholder="Job Title"
+                                    valueState={experienceObj.applyingCompanyJobTitle || ''}
+                                    data={jopsTitleList || []}
+                                    isAddDiv={true}
+                                    name="applyingCompanyJobTitle"
+                                    handleSaveSelect={handleUpdateFiled}
+                                    handleServerRequest={handleRequestJobTitle}
+                                    handleAddNew={handleAddNewJobTitle}
                                     isOutDataObj={false}
+                                    isRequire={true}
+                                    isCap={true}
                                 />
                             </CCol>
                         </CRow>
@@ -47,24 +90,20 @@ export const StepSixteen = ({
                             <CCol xs={2}>
                                 <InputSelect
                                     placeholder="Title"
-                                    // valueState={contObj.country || ''}
+                                    valueState={experienceObj.applyingCompanyTitle || ''}
                                     // data={coutrys.list}
-                                    name="country"
-                                    // isBackgraundLoad={isLoader(coutrys.status)}
-                                    // handleSaveSelect={handleSaveSelect}
+                                    name="applyingCompanyTitle"
+                                    handleSaveSelect={handleUpdateFiled}
                                     isOutDataObj={false}
                                     isIconArrow={true}
                                 />
                             </CCol>
                             <CCol xs={4}>
-                                <InputSelect
+                                <Input
+                                    label="Name of Company Contact"
                                     placeholder="Name of Company Contact"
-                                    // valueState={contObj.country || ''}
-                                    // data={coutrys.list}
-                                    name="country"
-                                    // isBackgraundLoad={isLoader(coutrys.status)}
-                                    // handleSaveSelect={handleSaveSelect}
-                                    isOutDataObj={false}
+                                    value={experienceObj.applyingCompanyContact}
+                                    onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value })}
                                 />
                             </CCol>
                         </CRow>

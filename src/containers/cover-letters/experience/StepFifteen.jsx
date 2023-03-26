@@ -17,6 +17,14 @@ export const StepFifteen = ({
         handleClicQuery(StepsName["graduatedFinish"]);
     }
 
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequestReason = (text) => {
+
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -30,11 +38,11 @@ export const StepFifteen = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Reason"
-                                // valueState={contObj.country || ''}
+                                valueState={experienceObj.explainAnyWorkGaps || ''}
                                 // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                name="explainAnyWorkGaps"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequestReason}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                             />

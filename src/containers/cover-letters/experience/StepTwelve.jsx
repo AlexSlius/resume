@@ -3,6 +3,7 @@ import { CForm, CCol, CRow } from "@coreui/react"
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
+import Input from "../../../components/uis/input";
 
 export const StepTwelve = ({
     handleUpdateField = () => { },
@@ -13,6 +14,14 @@ export const StepTwelve = ({
 }) => {
     const handleClickBtn = () => {
         handleClicQuery(StepsName["graduatedStep"]);
+    }
+
+    const handleUpdateFiled = ({ name, value }) => {
+        handleUpdateField({ name, value });
+    }
+
+    const handleRequestInceYears = () => {
+
     }
 
     return (
@@ -26,14 +35,12 @@ export const StepTwelve = ({
                 <CForm className="wr-gab-30">
                     <CRow>
                         <CCol xs={6}>
-                            <InputSelect
+                            <Input
+                                label="Work experience"
                                 placeholder="Work experience"
-                                // valueState={contObj.country || ''}
-                                // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
-                                isOutDataObj={false}
+                                type="number"
+                                value={experienceObj.workExperience}
+                                onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value })}
                             />
                         </CCol>
                     </CRow>
@@ -41,11 +48,11 @@ export const StepTwelve = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Year(s)"
-                                // valueState={contObj.country || ''}
+                                valueState={experienceObj.workExperienceYears || ''}
                                 // data={coutrys.list}
-                                name="country"
-                                // isBackgraundLoad={isLoader(coutrys.status)}
-                                // handleSaveSelect={handleSaveSelect}
+                                name="workExperienceYears"
+                                handleSaveSelect={handleUpdateFiled}
+                                handleServerRequest={handleRequestInceYears}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                             />
