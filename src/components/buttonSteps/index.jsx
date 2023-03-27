@@ -1,6 +1,7 @@
 import { CButton } from "@coreui/react"
 import Router, { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import classnames from 'classnames';
 
 import { LoadChildrenBtn } from "../loadChildrenBtn"
 import { isLoader } from "../../helpers/loadings"
@@ -65,8 +66,8 @@ export const ButtonSteps = ({
     // }
 
     return (
-        <div className={`${style.wr}`}>
-            <div className={`${style.row}`}>
+        <div>
+            <div className={classnames(style.buttonWrapper, style.row)}>
 
                 {
                     isFinish ? (

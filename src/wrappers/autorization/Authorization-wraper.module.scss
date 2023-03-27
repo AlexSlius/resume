@@ -1,0 +1,62 @@
+.main_wrapper_autorization {
+    min-height: 100vh;
+}
+
+.authorization__row {
+    display: flex;
+    min-height: inherit;
+}
+
+.authorization__col {
+    width: 50%;
+    min-height: inherit;
+}
+
+.authorization__left {
+    padding: 0;
+}
+
+.authorization__right {
+    padding: 25px 32px 20px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &_center {
+        padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &_bottom {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .authorization__right {
+        padding: 0 16px 16px 16px;
+        min-height: auto;
+
+        &_center {
+            padding: 0 0 30px 0;
+        }
+    }
+
+    .main_wrapper_autorization {
+        min-height: auto;
+        padding-top: 51px;
+    }
+
+    .authorization__col {
+        width: 100%;
+    }
+
+    .authorization__left {
+        max-height: 200px;
+        min-height: auto;
+    }
+}

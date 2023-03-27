@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { TermsOfUse } from '../src/containers/terms-of-use'
-import { withPublickRoute } from "../src/middleware/publickRouter";
+import { withPublicRoute } from "../src/middleware/publicRouter";
 
 const TermsOfUsePage = () => {
     return (
@@ -17,6 +17,6 @@ const TermsOfUsePage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({});
+export const getServerSideProps = withPublicRoute({});
 
 export default TermsOfUsePage;

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { ErrorPage } from '../src/containers/error-page'
-import { withPublickRoute } from "../src/middleware/publickRouter";
+import { withPublicRoute } from "../src/middleware/publicRouter";
 
 const Error404 = () => {
   return (
@@ -17,6 +17,6 @@ const Error404 = () => {
   )
 }
 
-export const getServerSideProps = withPublickRoute({});
+export const getServerSideProps = withPublicRoute({});
 
 export default Error404;

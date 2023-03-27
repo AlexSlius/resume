@@ -104,7 +104,7 @@ export const HomePage = () => {
             <section className="promo">
                 <div className="containers">
                     <div className="promo__wrapper">
-                        <div className="promo-ofer">
+                        <div className="promo-offer">
                             <p className="top-text">ONLINE RESUME BUILDER</p>
                             <h1 className="h1">
                                 The Best <span className="icon-right-top">Online</span><br />
@@ -114,8 +114,8 @@ export const HomePage = () => {
                                 Our professional Resume Builder has helped thousands
                                 of job seekers land more interviews and get hired faster.
                             </p>
-                            <div className="promo-ofer__bottom">
-                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-ofer__btn btns btn--blue">
+                            <div className="promo-offer__bottom">
+                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
                                     Create My Resume
                                 </Link>
                                 <div className="user-icons">
@@ -157,10 +157,10 @@ export const HomePage = () => {
                 </div>
             </section>
 
-            <div className="ofer-sec mt-130">
+            <div className="offer-sec mt-130">
                 <div className="containers">
-                    <div className="ofer-sec_flex">
-                        <div className="promo-ofer">
+                    <div className="offer-sec_flex">
+                        <div className="promo-offer">
                             <p className="top-text">SECURE YOUR DREAM JOB</p>
                             <h2 className="h2">
                                 Create your professional story
@@ -177,12 +177,12 @@ export const HomePage = () => {
                                 persuasive without
                                 effort!
                             </p>
-                            <Link href={`${routersPages['coverLetterNew']}`} className="ofer-sec__btn btns btn--grey">
+                            <Link href={`${routersPages['coverLetterNew']}`} className="offer-sec__btn btns btn--grey">
                                 <img src="images/page/edit.svg" alt="img" />
                                 Create Cover Letter
                             </Link>
                         </div>
-                        <div className="ofer-sec__img">
+                        <div className="offer-sec__img">
                             <img loading="lazy" src="images/page/section-img1.svg" alt="img" />
                         </div>
                     </div>

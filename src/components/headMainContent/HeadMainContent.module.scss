@@ -23,6 +23,12 @@
       padding-right: 10px;
       padding-top: 8px;
    }
+
+   @media screen and (max-width: 768px) {
+      &__title {
+         text-align: center;
+      }
+   }
 }
 
 .row.row-main {

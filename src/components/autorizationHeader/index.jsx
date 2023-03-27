@@ -5,7 +5,7 @@ import { ButtonBack } from "../uis/buttonBack"
 import style from "./Style.module.scss"
 import Link from 'next/link';
 
-export const AutorizationHeader = ({
+export const AuthorizationHeader = ({
     isHidenBtnBack = false,
     currentResolution
 }) => {

@@ -4,28 +4,28 @@ import { wrapper } from "../../src/store"
 import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
-import { getAllResumeBuildre } from "../controllers/getAllResumeBuilder";
+import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
 import { routersPages } from "../constants/next-routers";
 import { getResumesTemplates } from "../controllers/resumeData";
 
-export const withPrivateRoute = ({ isGetAllBuilder = false, isGetResumesTempaltes = false }) => {
+export const withPrivateRoute = ({ isGetAllBuilder = false, isGetResumesTemplates = false }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
-            const cookis = cookieParse({ ctx });
+            const cookies = cookieParse({ ctx });
 
-            if (!!cookis?.token) {
-                api.apiClient.setToken(cookis.token);
+            if (!!cookies?.token) {
+                api.apiClient.setToken(cookies.token);
 
-                const serverRespons = await api.auth.isAutorization({ 'token': cookis.token });
-                await store.dispatch(setIsAuth(isExist(serverRespons)));
+                const serverResponse = await api.auth.isAuthorization({ 'token': cookies.token });
+                await store.dispatch(setIsAuth(isExist(serverResponse)));
 
                 if (!!isGetAllBuilder)
-                    await getAllResumeBuildre({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
+                    await getAllResumeBuilder({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
-                if (!!isGetResumesTempaltes)
+                if (!!isGetResumesTemplates)
                     await getResumesTemplates();
 
-                if (!isExist(serverRespons)) {
+                if (!isExist(serverResponse)) {
                     return {
                         redirect: { destination: `/${routersPages['login']}`, permanent: false },
                     }

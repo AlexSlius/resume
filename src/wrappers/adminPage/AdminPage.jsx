@@ -13,7 +13,7 @@ import MenuSidebarCoverLetters from "../../components/sideBar/MenuSidebarCoverLe
 import Resume from "../../components/resume/Resume";
 import { Header } from "../../components/header";
 
-// import { getAllResumeBuildre } from "../../controllers/getAllResumeBuilder";
+// import { getAllResumeBuilder } from "../../controllers/getAllResumeBuilder";
 
 // import { routersPages } from "../../constants/next-routers";
 
@@ -36,7 +36,7 @@ const AdminPage = ({ children, isCover = false }) => {
    //    if (router.asPath.includes(routersPages['resumeBuilder'])) {
    //       if (idCv != "new") {
    //          if (useStatusGet.current) {
-   //             getAllResumeBuildre({ dispatch, idCv });
+   //             getAllResumeBuilder({ dispatch, idCv });
    //             useStatusGet.current = false;
    //          }
    //       }

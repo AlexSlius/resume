@@ -1,0 +1,32 @@
+.sureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 294px;
+}
+
+.photo {
+  width: 66px;
+  height: 66px;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 22px;
+}
+
+.name {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.text {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: var(--grey);
+  margin: 0;
+}

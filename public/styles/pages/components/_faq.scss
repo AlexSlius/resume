@@ -6,15 +6,51 @@
     }
 }
 
+.cover-letter {
+    .faq {
+        .h2 {
+            text-align: center;
+        }
+    }
+}
+
 .faq-flex {
     display: flex;
     justify-content: space-between;
     gap: 50px;
 }
 
+.faq-flex-c {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @media screen and (max-width: 768px) {
+        gap: 24px;
+    }
+}
+
 .faq__left {
     display: flex;
     flex-direction: column;
+}
+
+.faq-bottom-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+
+    a {
+        color: var(--blue);
+    }
+
+    @media screen and (max-width: 768px) {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+        color: var(--grey-2);
+    }
 }
 
 .bottom-text {

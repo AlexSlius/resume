@@ -106,7 +106,7 @@ const FormLanguages = ({
             {
                isArray(languageObj) && languageObj.map((item, index) => (
                   <div className="rows-lan mt-4" key={index}>
-                     <CRow key={item.id} className="g-30 r-gap-30 flex-auto">
+                     <CRow key={item.id} className="mobile-rows g-30 r-gap-30 flex-auto">
                         <CCol xs={6}>
                            <InputSelect
                               label="Language"
@@ -142,7 +142,7 @@ const FormLanguages = ({
             }
 
             <div className="rows-lan mt-4">
-               <CRow className="g-30 r-gap-30 flex-auto">
+               <CRow className="mobile-rows g-30 r-gap-30 flex-auto">
                   <CCol xs={6}>
                      <InputSelect
                         label="Language"

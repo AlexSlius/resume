@@ -55,7 +55,7 @@ h3.h3 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 83px;
+    padding-top: 120px;
 }
 
 .btns {
@@ -195,7 +195,7 @@ h6 {
 
 @media (max-width: 992px) {
     .page {
-        padding-top: 57px;
+        padding-top: 105px;
     }
 }
 
@@ -222,4 +222,30 @@ h6 {
     .icon-right-top::before {
         display: none;
     }
+}
+
+
+@media screen and (max-width: 768px) {
+    .mobile-rows {
+        display: flex;
+        flex-direction: column;
+    
+        &>div {
+           width: 100%;
+        }
+     }
+
+     .career-form {
+        gap: 12px;
+     }
+
+     .dates-wrap {
+        .date-block {
+            &:last-child {
+                .popup {
+                    left: -105px;
+                }
+            }
+        }
+     }
 }

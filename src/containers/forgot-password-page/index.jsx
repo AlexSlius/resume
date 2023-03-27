@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form"
 
 import { FormHead } from "../../components/formHead"
 import Input from "../../components/uis/input"
-import { AutorizationWrapper } from "../../wrappers/autorization"
+import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
 import { localStorageGet } from "../../helpers/localStorage"
@@ -49,7 +49,7 @@ export const ForgotPasswordPage = () => {
     }, []);
 
     return (
-        <AutorizationWrapper>
+        <AuthorizationWrapper>
             <>
                 <FormHead title="Forgot password? 🔒" subTitle="Receive a password reset code by email" />
                 <div className={`form_wrap form_wrap_mt`}>
@@ -90,6 +90,6 @@ export const ForgotPasswordPage = () => {
                     </CForm>
                 </div>
             </>
-        </AutorizationWrapper>
+        </AuthorizationWrapper>
     )
 }
