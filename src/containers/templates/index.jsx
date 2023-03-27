@@ -213,6 +213,7 @@ const Templates = ({ isCover = false }) => {
             }
         }
     }, [resumeData?.data, resumeData.resumeActive]);
+    
 
     React.useEffect(() => {
         if (typeof window != "undefined") {
