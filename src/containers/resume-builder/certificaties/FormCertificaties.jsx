@@ -88,7 +88,7 @@ const FormCertificaties = ({
       <>
          {/* isLoad={isLoader(status)} */}
          <LoadWr >
-            <CRow className="g-30 r-gap-30">
+            <CRow className="mobile-rows g-30 r-gap-30">
                {
                   isArray(certificatiesObj) && certificatiesObj.map((item, index) => (
                      <CCol

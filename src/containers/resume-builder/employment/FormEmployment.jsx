@@ -286,7 +286,7 @@ const FormEmployment = ({
                                     item.city
                                   ]}
                                 >
-                                  <CRow className="g-30 r-gap-30">
+                                  <CRow className="mobile-rows g-30 r-gap-30">
                                     <CCol xs={6}>
                                       <InputSelect
                                         label="Job Title"
@@ -322,8 +322,8 @@ const FormEmployment = ({
                                       />
                                     </CCol>
                                     <CCol xs={6}>
-                                      <CRow>
-                                        <CCol xs={6}>
+                                      <CRow className='dates-wrap'>
+                                        <CCol xs={6} className='date-block'>
                                           <DatePicker
                                             selected={item?.periodFrom?.date}
                                             onChange={(date) => handlerSetDateState(index, 'periodFrom', date)}
@@ -332,7 +332,7 @@ const FormEmployment = ({
                                             name="periodFrom"
                                           />
                                         </CCol>
-                                        <CCol xs={6}>
+                                        <CCol xs={6} className='date-block'>
                                           <DatePicker
                                             selected={item?.periodTo?.date}
                                             onChange={(date) => handlerSetDateState(index, 'periodTo', date)}
@@ -440,8 +440,8 @@ const FormEmployment = ({
               />
             </CCol>
             <CCol xs={6}>
-              <CRow>
-                <CCol xs={6}>
+              <CRow className='dates-wrap'>
+                <CCol xs={6} className='date-block'>
                   <DatePicker
                     selected={objNew?.period_from}
                     onChange={(date) => handlerSetDateStateNew('period_from', date)}
@@ -450,7 +450,7 @@ const FormEmployment = ({
                     name="period_from"
                   />
                 </CCol>
-                <CCol xs={6}>
+                <CCol xs={6} className='date-block'>
                   <DatePicker
                     selected={objNew?.period_to}
                     onChange={(date) => handlerSetDateStateNew('period_to', date)}
@@ -506,7 +506,7 @@ const FormEmployment = ({
         )
       }
 
-      <CRow>
+      <CRow className="buttons-wrap">
         <CCol xs={12}>
           <AddButton
             onClick={handleAddone}

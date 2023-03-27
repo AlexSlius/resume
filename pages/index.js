@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages'
 import { HomePage } from '../src/containers/home-page'
-import { withPublickRoute } from "../src/middleware/publickRouter";
+import { withPublicRoute } from "../src/middleware/publicRouter";
 
 const Home = () => {
   return (
@@ -17,6 +17,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublickRoute({ isGetResumesTempaltes: true });
+export const getServerSideProps = withPublicRoute({ isGetResumesTemplates: true });
 
 export default Home;

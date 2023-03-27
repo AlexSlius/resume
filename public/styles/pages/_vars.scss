@@ -1,6 +1,10 @@
-// если вы хотите использовать sass-переменные - удалите root
-// colors
 :root {
-  --color-black: #000;
-  --color-white: #fff;
+  --white: #fff;
+  --blue: #3679fd;
+  --orange: #ffad61;
+  --orange-opacity: rgba(255, 173, 97, 0.15);
+  --grey: #546C97;
+  --grey-2: #838799;
+  --light-grey: #FDFDFD;
+  --light-grey-1: #F8FAFB;
 }

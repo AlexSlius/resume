@@ -1,7 +1,7 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
 import ContainerPageContact from "../../../src/containers/resume-builder/contact/Contact"
 
-import { withPublickRoute } from "../../../src/middleware/publickRouter"
+import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const ResumeContactPage = () => {
     return (
@@ -11,6 +11,6 @@ const ResumeContactPage = () => {
     )
 }
 
-export const getServerSideProps = withPublickRoute({ isGetAllBuilder: true });
+export const getServerSideProps = withPublicRoute({ isGetAllBuilder: true });
 
 export default ResumeContactPage;

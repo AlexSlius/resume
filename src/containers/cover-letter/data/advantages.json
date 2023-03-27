@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "image": "chat",
+      "width": "66px",
+      "height": "66px",
+      "title": "Expert recommendations",
+      "text": "Take your pick of our auto-suggested phrases crafted by our team of career experts."
+    },
+    {
+      "image": "conversation",
+      "width": "66px",
+      "height": "66px",
+      "title": "Keyword-optimized",
+      "text": "Target your cover letter to the exact job title to which you’re applying with laser-precise words!"
+    },
+    {
+      "image": "fire",
+      "width": "66px",
+      "height": "66px",
+      "title": "Complete in minutes",
+      "text": "Don’t miss out on a job because you didn’t know where to begin formatting your document."
+    }
+  ]
+}

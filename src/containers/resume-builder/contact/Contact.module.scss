@@ -19,3 +19,42 @@
    width: 20px;
    height: 20px;
 }
+
+@media screen and (max-width: 768px) {
+   .firstRow {
+      flex-direction: column-reverse;
+      gap: 24px;
+   }
+
+   .rowWidth {
+      width: 100%;
+   }
+
+   .imageBlock {
+      display: flex;
+      justify-content: center;
+   }
+
+   .otherRows {
+      display: flex;
+      flex-direction: column;
+
+      &>div {
+         width: 100%;
+      }
+   }
+
+   .formText {
+      text-align: center;
+   }
+
+   .buttonWrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+   }
+
+   .buttons-wrap {
+      
+   }
+}

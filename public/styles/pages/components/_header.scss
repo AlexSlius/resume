@@ -1,4 +1,5 @@
 .header-r {
+    height: 81px;
     border-bottom: 1px solid #eef0f2;
     padding: 16px 0;
     z-index: 222;
@@ -12,6 +13,7 @@
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        height: 100%;
     }
 
     .submenu {
@@ -238,6 +240,7 @@
         margin-left: 45px;
         display: flex;
         align-items: center;
+        padding: 14px 17px 14px 16px;
     }
 
     .logins {
@@ -282,8 +285,8 @@
     }
 
     .btn-burger {
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
 
         svg {
             width: inherit;
@@ -303,6 +306,7 @@
         left: 0;
         width: 100%;
         z-index: 10;
-        background: #fff;
+        background: var(--white);
+        height: 50px;
     }
 }

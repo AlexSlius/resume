@@ -196,7 +196,7 @@ const FormEducation = ({
                                                             item.study
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30">
+                                                         <CRow className="mobile-rows row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Facility"
@@ -220,8 +220,8 @@ const FormEducation = ({
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
-                                                               <CRow>
-                                                                  <CCol xs={6}>
+                                                               <CRow className='dates-wrap'>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
@@ -230,7 +230,7 @@ const FormEducation = ({
                                                                         name="dateFrom"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6}>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}

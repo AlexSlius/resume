@@ -173,7 +173,7 @@ const FormCourse = ({
                                                             item.institution
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30">
+                                                         <CRow className="mobile-rows row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Course title"
@@ -197,8 +197,8 @@ const FormCourse = ({
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
-                                                               <CRow>
-                                                                  <CCol xs={6}>
+                                                               <CRow className='dates-wrap'>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
@@ -207,7 +207,7 @@ const FormCourse = ({
                                                                         name="dateFrom"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6}>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
@@ -239,7 +239,7 @@ const FormCourse = ({
 
          {
             isArray(courseObj) && (courseObj.length == 0) && (
-               <CRow className="row g-30 r-gap-30 mb-4">
+               <CRow className="mobile-rows row g-30 r-gap-30 mb-4">
                   <CCol xs={6}>
                      <InputSelect
                         label="Course title"
@@ -263,8 +263,8 @@ const FormCourse = ({
                      />
                   </CCol>
                   <CCol xs={6}>
-                     <CRow>
-                        <CCol xs={6}>
+                     <CRow className='dates-wrap'>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_from}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
@@ -273,7 +273,7 @@ const FormCourse = ({
                               name="period_from"
                            />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}

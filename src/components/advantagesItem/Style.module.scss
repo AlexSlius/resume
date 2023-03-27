@@ -1,0 +1,25 @@
+.advantagesBlock {
+  width: 269px;
+
+  &:first-child {
+    width: 255px;
+  }
+
+  .imageBlock {
+    margin-bottom: 30px;
+  }
+
+  strong {
+    font-weight: 400;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: var(--grey);
+  }
+}

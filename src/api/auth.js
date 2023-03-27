@@ -16,7 +16,7 @@ export default class ClientsAPI extends Base {
     newPassword(data) {
         return this.apiClient.post('api/change_password', data);
     }
-    isAutorization(data) {
+    isAuthorization(data) {
         return this.apiClient.post('api/check_token', data);
     }
 }

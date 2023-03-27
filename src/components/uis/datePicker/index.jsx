@@ -1,6 +1,7 @@
 import React, { Component, useEffect } from 'react';
 import moment from 'moment';
 import { CFormInput } from "@coreui/react"
+import classnames from 'classnames';
 
 import style from "./Style.module.scss";
 
@@ -94,7 +95,7 @@ export const DatePicker = ({
                 />
             </div>
             <input type="text" ref={useRefData} className={`${style.ins}`} />
-            <div ref={useRefWrContainer} className={`${style.wrData} ${clases}`}>
+            <div ref={useRefWrContainer} className={classnames('popup', style.wrData, clases)}>
                 {
                     isHiden && (
                         <div ref={useRefContainer}></div>

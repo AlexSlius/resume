@@ -106,7 +106,7 @@ export const Header = () => {
                                     </li>
                                     {/*  className="submenu-item" */}
                                     <li>
-                                        <Link href="#">Cover Letter</Link>
+                                        <Link href="cover-letter">Cover Letter</Link>
                                         {/* <ul className="submenu">
                                 <li>
                                     <Link href="#">Cover Letter1</Link>

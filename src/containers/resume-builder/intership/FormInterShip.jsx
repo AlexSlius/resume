@@ -213,7 +213,7 @@ const FormInterShip = ({
                                                             item?.employer
                                                          ]}
                                                       >
-                                                         <CRow className="row g-30 r-gap-30">
+                                                         <CRow className="mobile-rows row g-30 r-gap-30">
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Job Title"
@@ -243,8 +243,8 @@ const FormInterShip = ({
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
-                                                               <CRow>
-                                                                  <CCol xs={6}>
+                                                               <CRow className='dates-wrap'>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
@@ -253,7 +253,7 @@ const FormInterShip = ({
                                                                         name="dateFrom"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6}>
+                                                                  <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
@@ -320,7 +320,7 @@ const FormInterShip = ({
 
          {
             isArray(interhipObj) && (interhipObj.length == 0) && (
-               <CRow className="row g-30 r-gap-30 mb-4">
+               <CRow className="mobile-rows row g-30 r-gap-30 mb-4">
                   <CCol xs={6}>
                      <InputSelect
                         label="Job Title"
@@ -350,8 +350,8 @@ const FormInterShip = ({
                      />
                   </CCol>
                   <CCol xs={6}>
-                     <CRow>
-                        <CCol xs={6}>
+                     <CRow className='dates-wrap'>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_from}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
@@ -360,7 +360,7 @@ const FormInterShip = ({
                               name="period_from"
                            />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}

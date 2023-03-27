@@ -1,17 +1,17 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux'
 
-import { AutorizationBigPicture } from "../../components/autorizationBigPicture"
+import { AuthorizationBigPicture } from "../../components/autorizationBigPicture"
 
-import style from "./Autorization-wraper.module.scss"
-import { AutorizationHeader } from "../../components/autorizationHeader"
+import style from "./Authorization-wraper.module.scss"
+import { AuthorizationHeader } from "../../components/autorizationHeader"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 
 import { cleanSliseNew } from "../../slices/contact";
 
 import { routersPages } from "../../constants/next-routers";
 
-export const AutorizationWrapper = (props) => {
+export const AuthorizationWrapper = (props) => {
     const dispatch = useDispatch();
 
     const {
@@ -26,29 +26,29 @@ export const AutorizationWrapper = (props) => {
 
     return (
         <div className={`${style.main_wrapper_autorization}`}>
-            <div className={`${style.autoriaztion__row}`}>
+            <div className={`${style.authorization__row}`}>
                 {
                     !['sm', 'xs'].includes(currentResolution) && (
-                        <div className={`${style.autoriaztion__left} ${style.autoriaztion__col}`}>
-                            <AutorizationBigPicture />
+                        <div className={`${style.authorization__left} ${style.authorization__col}`}>
+                            <AuthorizationBigPicture />
                         </div>
                     )
                 }
-                <div className={`${style.autoriaztion__right} ${style.autoriaztion__col}`}>
-                    <AutorizationHeader currentResolution={currentResolution} isHidenBtnBack={props.isHidenBtnBack} />
+                <div className={`${style.authorization__right} ${style.authorization__col}`}>
+                    <AuthorizationHeader currentResolution={currentResolution} isHidenBtnBack={props.isHidenBtnBack} />
                     {
                         ['sm', 'xs'].includes(currentResolution) && (
-                            <div className={`${style.autoriaztion__left} ${style.autoriaztion__col}`}>
-                                <AutorizationBigPicture />
+                            <div className={`${style.authorization__left} ${style.authorization__col}`}>
+                                <AuthorizationBigPicture />
                             </div>
                         )
                     }
-                    <div className={`${style.autoriaztion__right_center}`}>
+                    <div className={`${style.authorization__right_center}`}>
                         {props.children}
                     </div>
                     {
                         !['md', 'sm', 'xs'].includes(currentResolution) && (
-                            <div className={`${style.autoriaztion__right_bottom}`}>
+                            <div className={`${style.authorization__right_bottom}`}>
                                 <Buttonhelp href={`/${routersPages['contactUs']}`} />
                             </div>
                         )

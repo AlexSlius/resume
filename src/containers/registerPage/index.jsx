@@ -10,7 +10,7 @@ import Link from "next/link"
 import React from "react";
 
 import { FormHead } from "../../components/formHead"
-import { AutorizationWrapper } from "../../wrappers/autorization"
+import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { InputPassword } from "../../components/uis/inputPassword"
 import Input from "../../components/uis/input"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
@@ -66,7 +66,7 @@ export const RegisterPage = () => {
     }, [watch]);
 
     return (
-        <AutorizationWrapper>
+        <AuthorizationWrapper>
             <>
                 <FormHead title="Register ✍️" subTitle="Please enter your details." />
                 <div className={`form_wrap form_wrap_mt`}>
@@ -153,6 +153,6 @@ export const RegisterPage = () => {
                     </CForm>
                 </div>
             </>
-        </AutorizationWrapper>
+        </AuthorizationWrapper>
     )
 }

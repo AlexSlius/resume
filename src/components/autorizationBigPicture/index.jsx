@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import style from "./style.module.scss"
 
-export const AutorizationBigPicture = () => {
+export const AuthorizationBigPicture = () => {
     return (
         <div className={`${style.wr_img}`}>
             <Image

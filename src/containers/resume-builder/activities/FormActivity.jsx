@@ -295,7 +295,7 @@ const FormActivity = ({
 
          {
             isArray(activityObj) && (activityObj.length == 0) && (
-               <CRow className="row g-30 r-gap-30 mb-4">
+               <CRow className="mobile-rows row g-30 r-gap-30 mb-4">
                   <CCol xs={6}>
                      <InputSelect
                         label="Function Title"
@@ -319,8 +319,8 @@ const FormActivity = ({
                      />
                   </CCol>
                   <CCol xs={6}>
-                     <CRow>
-                        <CCol xs={6}>
+                     <CRow className='dates-wrap'>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_from}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
@@ -329,7 +329,7 @@ const FormActivity = ({
                               name="period_from"
                            />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
