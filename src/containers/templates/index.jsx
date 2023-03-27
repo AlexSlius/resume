@@ -6,6 +6,7 @@ import Router, { useRouter } from 'next/router';
 import { isArray } from 'lodash';
 
 import { TemplatesSelect } from '../../components/templatesSelect';
+import { TemplatesSelectCover } from '../../components/templateSelectCover';
 import Icon from "../../components/Icon";
 import { ButtonIcon } from "../../components/uis/buttonIcon";
 import TemplateHead from "../../components/templateHead/TemplateHead";
@@ -28,7 +29,7 @@ import {
     getResumesTemplates
 } from "../../controllers/resumeData";
 
-const Templates = () => {
+const Templates = ({ isCover = false }) => {
     const refIdTimeout = React.useRef(undefined);
     const refWr = React.useRef(undefined);
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -89,30 +90,16 @@ const Templates = () => {
         certificates: certificaties.certificatiesObj,
     };
 
-    const handleGeneratePdf = () => {
-        // const doc = new jsPDF({
-        //     format: 'a4',
-        //     // unit: 'px',
-        // });
-
-        // doc.setLineWidth(1);
-
-        // // Adding the fonts.
-        // doc.setFont('Rubik', 'normal');
-
-        // doc.html(reportTemplateRef.current, {
-        //     async callback(doc) {
-        //         await doc.save('document');
-        //     },
-        // });
-    };
-
     // update resume
     const handleResume = (item) => {
-        if (idCv != "new") {
-            dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
+        if (!isCover) {
+            if (idCv != "new") {
+                dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
+            } else {
+                dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))
+            }
         } else {
-            dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))
+
         }
     }
 
@@ -130,13 +117,18 @@ const Templates = () => {
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            await dispatch(setUpdateResumeActive({
-                idCv, data: {
-                    cv_template_id: resumeData?.resumeActive?.template_id,
-                    template_line_spacing: stateLineSpacing,
-                    template_text_size: stateFontSize,
-                }, isGet: false
-            }));
+            if (!isCover) {
+                dispatch(setUpdateResumeActive({
+                    idCv, data: {
+                        cv_template_id: resumeData?.resumeActive?.template_id,
+                        template_line_spacing: stateLineSpacing,
+                        template_text_size: stateFontSize,
+                    }, isGet: false
+                }));
+            } else {
+                // cover
+            }
+
             clearTimeout(refIdTimeout.current);
         }, 1000);
     }
@@ -165,16 +157,19 @@ const Templates = () => {
 
     React.useEffect(() => {
         async function start() {
-            if (fetching && resumeData?.list?.count_pages > currentPage) {
-                let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+            if (!isCover) {
+                if (fetching && resumeData?.list?.count_pages > currentPage) {
+                    let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
 
-                if (res?.payload?.items) {
-                    setCurrentPage(prev => prev + 1);
-                    setFetching(false);
+                    if (res?.payload?.items) {
+                        setCurrentPage(prev => prev + 1);
+                        setFetching(false);
+                    }
                 }
+            } else {
+                // get cover 
             }
         }
-
         start();
     }, [fetching]);
 
@@ -191,8 +186,12 @@ const Templates = () => {
 
     React.useEffect(() => {
         if (idCv != "new") {
-            dispatch(fetchGetResumeData({ idCv }));
-            dispatch(getResumeActive({ idCv }));
+            if (!isCover) {
+                dispatch(fetchGetResumeData({ idCv }));
+                dispatch(getResumeActive({ idCv }));
+            } else {
+                // get cover 
+            }
         }
 
         !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
@@ -289,17 +288,37 @@ const Templates = () => {
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
                             <div className="body-template-resume">
-                                <TemplatesSelect
-                                    status={resumeData?.status}
-                                    stateLineSpacing={stateLineSpacing}
-                                    stateFontSize={stateFontSize}
-                                    reportTemplateRef={reportTemplateRef}
+                                {
+                                    !isCover && (
+                                        <TemplatesSelect
+                                            status={resumeData?.status}
+                                            stateLineSpacing={stateLineSpacing}
+                                            stateFontSize={stateFontSize}
+                                            reportTemplateRef={reportTemplateRef}
 
-                                    resumeData={resumeData}
-                                    data={isNewResume ? dataResumeTemplate : resumeData?.data}
-                                    resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
-                                    statusResumeActive={resumeData?.statusResumeActive}
-                                />
+                                            resumeData={resumeData}
+                                            data={isNewResume ? dataResumeTemplate : resumeData?.data}
+                                            resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
+                                            statusResumeActive={resumeData?.statusResumeActive}
+                                        />
+                                    )
+                                }
+
+                                {
+                                    isCover && (
+                                        <TemplatesSelectCover
+                                            status={resumeData?.status}
+                                            stateLineSpacing={stateLineSpacing}
+                                            stateFontSize={stateFontSize}
+                                            reportTemplateRef={reportTemplateRef}
+
+                                            resumeData={resumeData}
+                                            data={isNewResume ? dataResumeTemplate : resumeData?.data}
+                                            resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
+                                            statusResumeActive={resumeData?.statusResumeActive}
+                                        />
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
@@ -342,7 +361,7 @@ const Templates = () => {
                                 icon={downloadIcon}
                                 label="Download PDF"
                                 className="btn--blue"
-                                onHandle={handleGeneratePdf}
+                            // onHandle={handleGeneratePdf}
                             />
                             <CButton
                                 className='resume-footer__button'

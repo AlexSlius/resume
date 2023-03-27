@@ -238,7 +238,7 @@ export const ResumeCv002 = ({
 
   return (
     <div className="sv_002" ref={reportTemplateRef}>
-      <WrDiv id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo  line-height-scheme-state-small color-scheme-state-color-set-0`} data-chapter="cv">
+      <WrDiv id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo  color-scheme-state-color-set-0`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content">
             <div className="cv-body-area area-1">

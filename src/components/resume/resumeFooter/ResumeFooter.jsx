@@ -23,6 +23,14 @@ const ResumeFooter = ({ isCover }) => {
       },
    } = useSelector((state) => state);
 
+   const handleRouter = () => {
+      if (!isCover) {
+         Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)
+      } else {
+         Router.push(`/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}`)
+      }
+   }
+
    return (
       <div className="resume-footer d-flex gap-3 justify-content-between py-3">
          <div className="resume-footer__left">
@@ -30,7 +38,7 @@ const ResumeFooter = ({ isCover }) => {
                className='resume-footer__button'
                color="secondary"
                variant="outline"
-               onClick={() => Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)}
+               onClick={handleRouter}
             >
                <Icon svg={templateIcon} classNames={['icon-20']} />
                Select template

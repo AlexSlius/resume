@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from 'next/router'
 
 import { TemplatesSelect } from '../../templatesSelect';
+import { TemplatesSelectCover } from "../../templateSelectCover";
 
 import {
    getResumeActive,
@@ -65,9 +66,9 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`}>
-         {
-            !isCover && (
-               <div className="scroll-style resume-main_scroll">
+         <div className="scroll-style resume-main_scroll">
+            {
+               !isCover && (
                   <div className="resume-main_scale">
                      <TemplatesSelect
                         isResume={true}
@@ -77,9 +78,23 @@ const ResumeMain = ({
                         reportTemplateRef={reportTemplateRef}
                      />
                   </div>
-               </div>
-            )
-         }
+               )
+            }
+
+            {
+               isCover && (
+                  <div className="resume-main_scale_cover">
+                     <TemplatesSelectCover
+                        isResume={true}
+                        resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
+                        data={dataResumeTemplate}
+                        resumeData={resumeData}
+                        reportTemplateRef={reportTemplateRef}
+                     />
+                  </div>
+               )
+            }
+         </div>
       </div>
    )
 }
