@@ -1,6 +1,6 @@
 import ContainerPageTemplates from "../../../src/containers/templates"
 import TemplatesWrapper from "../../../src/wrappers/templates"
-import { withPublickRoute } from "../../../src/middleware/publickRouter"
+import { withPublickRoute } from "../../../src/middleware/publicRouter"
 
 const TemplatesPage = () => {
     return (
