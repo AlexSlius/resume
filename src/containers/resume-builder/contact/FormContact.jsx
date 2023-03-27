@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react"
 import { CForm, CCol, CRow } from "@coreui/react"
 import { useForm } from "react-hook-form"
 import { useRouter } from 'next/router'
+import classnames from 'classnames';
 
 import { DatePicker } from "../../../components/uis/datePicker"
 import Input from "../../../components/uis/input"
@@ -214,8 +215,8 @@ const FormContact = ({
    return (
       <LoadWr isLoad={isLoader(status)}>
          <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
-            <CRow>
-               <CCol xs={6} className="gap-3">
+            <CRow className={style.firstRow}>
+               <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-3">
                      <Input
                         label="First Name*"
@@ -249,11 +250,11 @@ const FormContact = ({
                      />
                   </div>
                </CCol>
-               <CCol xs={6}>
+               <CCol xs={6} className={classnames(style.rowWidth, style.imageBlock)}>
                   <PhotoAdd handleFileSelect={handleFileSelect} value={contObj?.picture} />
                </CCol>
             </CRow>
-            <CRow className="g-30 r-gap-30">
+            <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
                <CCol xs={6}>
                   <Input
                      label="E-mail"
@@ -327,7 +328,7 @@ const FormContact = ({
                   />
                </CCol>
             </CRow>
-            {visibleAllInputs && <CRow className="g-30 r-gap-30">
+            {visibleAllInputs && <CRow className={classnames( "mobile-rows g-30 r-gap-30")}>
                <CCol xs={6}>
                   <Input
                      label="Adress"
@@ -412,13 +413,13 @@ const FormContact = ({
                   />
                </CCol>
             </CRow>}
-            <CCol xs={12}>
+            <CCol xs={12} className={style.formText}>
                <button type="button" onClick={() => setVisibleAllInputs(prev => !prev)} className={`${classButton}`}>
                   {textInButton}
                   <Icon svg={reactComponent} classNames={[style.icon_bnt]} />
                </button>
             </CCol>
-            <CCol>
+            <CCol className={style.buttonWrap}>
                <ButtonSteps
                   onHandleBtnNext={formSubmit}
                   onHandleNew={onHandleNewAuthorization}

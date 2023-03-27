@@ -190,7 +190,7 @@ const FormReference = ({
                                                          ]}
                                                       >
                                                          <CForm>
-                                                            <CRow className="row g-30 r-gap-30">
+                                                            <CRow className="mobile-rows row g-30 r-gap-30">
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      id={item.id}
@@ -262,7 +262,7 @@ const FormReference = ({
 
          {
             isArray(referencesObj) && (referencesObj.length == 0) && (
-               <CRow className="row g-30 r-gap-30 mb-4">
+               <CRow className="mobile-rows row g-30 r-gap-30 mb-4">
                   <CCol xs={6}>
                      <Input
                         label="Referent Full name"

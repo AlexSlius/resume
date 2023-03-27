@@ -223,3 +223,29 @@ h6 {
         display: none;
     }
 }
+
+
+@media screen and (max-width: 768px) {
+    .mobile-rows {
+        display: flex;
+        flex-direction: column;
+    
+        &>div {
+           width: 100%;
+        }
+     }
+
+     .career-form {
+        gap: 12px;
+     }
+
+     .dates-wrap {
+        .date-block {
+            &:last-child {
+                .popup {
+                    left: -105px;
+                }
+            }
+        }
+     }
+}

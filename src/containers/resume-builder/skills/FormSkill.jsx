@@ -134,7 +134,7 @@ const FormSkill = ({
 
    return (
       <>
-         <CRow className="g-30 r-gap-30">
+         <CRow className="mobile-rows g-30 r-gap-30">
             <CCol className="gap-3" xs={6}>
                <CRow>
                   <CCol className="mb-4" xs={12}>

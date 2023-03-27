@@ -94,7 +94,7 @@ const FormSocials = ({
 
     return (
         <>
-            <CRow>
+            <CRow className="mobile-rows career-form">
                 <CCol xs={6}>
                     <div className="wr-edit-text">
                         <TextEditor

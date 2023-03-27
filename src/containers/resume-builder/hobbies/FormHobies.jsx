@@ -104,7 +104,7 @@ const FormHobies = ({
                <Droppable droppableId="droppable">
                   {
                      (provided, snapshot) => (
-                        <CRow className="g-30"
+                        <CRow className="mobile-rows g-30"
                            ref={provided.innerRef}
                            {...provided.droppableProps}
                         >
