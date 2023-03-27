@@ -14,10 +14,6 @@ export const StepThree = ({
         handleClicQuery(StepsName["pointAverage"]);
     }
 
-    const handleClickBtnPage = () => {
-        handleClicQuery(StepsName["professionalSkills"]);
-    }
-
     return (
         <div className="step-wr">
             {
@@ -70,15 +66,6 @@ export const StepThree = ({
                             </CForm>
                         </div>
                         <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
-                    </div>
-                )
-            }
-
-            {
-                (experienceObj.questionCurrentlyInCollegeUniversity == "no") && (
-                    <div className="cover-card-no">
-                        <div>Page:</div>
-                        <button onClick={handleClickBtnPage} className="btn-text-cover">What are your professional skills?</button>
                     </div>
                 )
             }

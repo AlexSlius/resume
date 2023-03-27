@@ -9,10 +9,13 @@ export const StepTen = ({
 }) => {
     const handleClickBtn = (value) => {
         handleUpdateField({ name: "questionHaveWorkExperience", value });
-        handleClicQuery(StepsName["previousJob"]);
-    }
 
-    experienceObj.questionHaveWorkExperience
+        if (value == "yes") {
+            handleClicQuery(StepsName["previousJob"]);
+        } else if (value == "no") {
+            handleClicQuery(StepsName["graduatedFinish"]);
+        }
+    }
 
     return (
         <div className="step-wr">

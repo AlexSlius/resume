@@ -13,7 +13,12 @@ export const StepTwo = ({
 }) => {
     const handleClickBtn = (value) => {
         handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value });
-        handleClicQuery(StepsName["nameCollege"]);
+
+        if (value == "yes") {
+            handleClicQuery(StepsName["nameCollege"]);
+        } else if (value == "no") {
+            handleClicQuery(StepsName["professionalSkills"]);
+        }
     }
 
     return (
@@ -30,10 +35,10 @@ export const StepTwo = ({
                                 <CRow>
                                     <CCol xs={6}>
                                         <DatePicker
-                                            selected={experienceObj.graduate_date}
-                                            onChange={(date) => handleUpdateField({ name: "graduate_date", value: date })}
+                                            selected={experienceObj.graduateDate}
+                                            onChange={(date) => handleUpdateField({ name: "graduateDate", value: date })}
                                             placeholderText="Date"
-                                            name="graduate_date"
+                                            name="graduateDate"
                                         />
                                     </CCol>
                                 </CRow>

@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 
@@ -9,37 +10,52 @@ import { helperProgress } from "../../../helpers/helperProgress";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
 
-let fieldsName = [
+const constFiled = [
     "questionGraduateFromCollege",
-    "graduate_date",
-    "questionCurrentlyInCollegeUniversity",
-    "expectedYearOfGraduation",
-    "nameCollegeOrUniversity",
-    "pointAverage",
-    "fieldOfStudyOrDegree",
     "professionalSkills",
     "skillSet",
     "wordDescribes",
     "othersDescribe",
     "questionHaveWorkExperience",
-    "industryHoldExperienceJobTitle",
-    "industryHoldExperienceCompanyName",
-    "workExperience",
-    "workExperienceYears",
-    "questionCurrentlyWorking",
-    "currentRoleJobTitle",
-    "currentRoleCompanyName",
-    "recentRoleJobTitle",
-    "recentRoleCompanyName",
-    "explainAnyWorkGaps",
     "applyingCompanyName",
     "applyingCompanyJobTitle",
     "applyingCompanyTitle",
-    "applyingCompanyContact",
+    "applyingCompanyContact"
 ];
+
+const stepsField = (experienceObj) => {
+    let ar = [...constFiled];
+
+    if (experienceObj.questionGraduateFromCollege == "yes") {
+        ar = [...ar, ...["graduateDate", "nameCollegeOrUniversity", "pointAverage", "fieldOfStudyOrDegree"]];
+    } else if (experienceObj.questionGraduateFromCollege == "no") {
+        ar = [...ar, ...["questionCurrentlyInCollegeUniversity"]];
+
+        if (experienceObj.questionCurrentlyInCollegeUniversity == "yes") {
+            ar = [...ar, ...["expectedYearOfGraduation", "nameCollegeOrUniversity", "fieldOfStudyOrDegree"]];
+        } else if (experienceObj.questionCurrentlyInCollegeUniversity == "no") {
+            // ar = [...ar, ...["expectedYearOfGraduation"]];
+        }
+    }
+
+    if (experienceObj.questionHaveWorkExperience == "yes") {
+        ar = [...ar, ...["industryHoldExperienceJobTitle", "industryHoldExperienceCompanyName", "workExperience", "workExperienceYears", "questionCurrentlyWorking"]];
+    } else if (experienceObj.questionHaveWorkExperience == "no") {
+        // ar = [...ar, ...["expectedYearOfGraduation"]];
+    }
+
+    if (experienceObj.questionCurrentlyWorking == "yes") {
+        ar = [...ar, ...["currentRoleCompanyName", "currentRoleJobTitle", "explainAnyWorkGaps"]];
+    } else if (experienceObj.questionCurrentlyWorking == "no") {
+        ar = [...ar, ...["recentRoleCompanyName", "recentRoleJobTitle", "explainAnyWorkGaps"]];
+    }
+
+    return ar;
+}
 
 const Contact = () => {
     const dispatch = useDispatch();
+    // const [statFields, setFields] = React.useState(constFiled);
     const states = useSelector((state) => state);
     const router = useRouter();
     const idCv = router.query.idCv;
@@ -57,7 +73,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={helperProgress({ objForms: experienceObj, arrField: fieldsName })}
+                interest={helperProgress({ objForms: experienceObj, arrField: stepsField(experienceObj) })}
                 icon={employmentIcon}
             />
             <FormExperience

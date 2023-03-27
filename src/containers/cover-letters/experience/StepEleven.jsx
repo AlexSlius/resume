@@ -24,10 +24,6 @@ export const StepEleven = ({
         handleClicQuery(StepsName["howMachWork"]);
     }
 
-    const handleClickBtnPage = () => {
-        handleClicQuery(StepsName["graduatedFinish"]);
-    }
-
     const handleUpdateFiled = ({ name, value }) => {
         handleUpdateField({ name, value });
     }
@@ -102,15 +98,6 @@ export const StepEleven = ({
                         </div>
                         <BtnContinue isButton={true} onHanleBtn={handleClickBtn} />
                     </>
-                )
-            }
-
-            {
-                (experienceObj.questionHaveWorkExperience == "no") && (
-                    <div className="cover-card-no">
-                        <div>Page:</div>
-                        <button onClick={handleClickBtnPage} className="btn-text-cover">What position are you applying for?</button>
-                    </div>
                 )
             }
         </div>

@@ -11,7 +11,7 @@ import { statusLoaded, statusLoader } from '../../constants/statuses';
 const initialState = {
     experienceObj: {
         questionGraduateFromCollege: "",
-        graduate_date: "",
+        graduateDate: "",
         questionCurrentlyInCollegeUniversity: "",
         expectedYearOfGraduation: "",
         nameCollegeOrUniversity: "",
