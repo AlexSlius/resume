@@ -68,7 +68,7 @@ export const CoverLetterTemplates = () => {
                 </p>
 
                 <div className="btn-centers-w mt-40">
-                    <ButtonIcon href={routersPages['resumeBuilderNew']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
+                    <ButtonIcon href={routersPages['coverLetterNew']} icon={iconAddNew} label="Create cover letter" className="btn--blue" />
                 </div>
 
                 <div className="wr-resumes">

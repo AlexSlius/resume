@@ -8,6 +8,6 @@ export default class ClientsAPI extends Base {
         return this.apiClient.post(`cover_letter/add`, data, type);
     }
     getCoverLetterById(id) {
-        return this.apiClient.get(`cover_letter/get/${id}`);
+        return this.apiClient.get(`cover_letter/get/${id}/`);
     }
 }

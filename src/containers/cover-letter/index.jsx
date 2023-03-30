@@ -348,7 +348,7 @@ export const CoverLatter = () => {
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
                                         <div className="doc-btn" onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))} >
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__btn btns btn--blue">Use this template</Link>
+                                            <Link href={`/${routersPages['coverLetterNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>
                                 ))
