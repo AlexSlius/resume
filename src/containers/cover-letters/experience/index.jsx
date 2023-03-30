@@ -7,6 +7,7 @@ import HeadMainContent from "../../../components/headMainContent/HeadMainContent
 import { Progress } from "../../../components/progress";
 
 import { helperProgress } from "../../../helpers/helperProgress";
+import { getCoverLetterById } from "../../../controllers/cover/personalize";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
 
@@ -65,6 +66,12 @@ const Contact = () => {
             experienceObj,
         }
     } = states;
+
+    React.useEffect(() => {
+        if (idCv != "new") {
+            dispatch(getCoverLetterById(idCv));
+        }
+    }, []);
 
     return (
         <>

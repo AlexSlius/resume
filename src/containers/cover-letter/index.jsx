@@ -120,7 +120,7 @@ export const CoverLatter = () => {
                                 of job seekers land more interviews and get hired faster.
                             </p>
                             <div className="promo-offer__bottom">
-                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
+                                <Link href={`${routersPages['coverLetterNew']}`} className="promo-offer__btn btns btn--blue">
                                     Create Cover Letter
                                 </Link>
                                 <div className="user-icons">
@@ -146,7 +146,7 @@ export const CoverLatter = () => {
                         {
                             promoNumbers ?
                                 (
-                                    promoNumbers.map(({count, firstText, secondText, image, percent}, index) => (
+                                    promoNumbers.map(({ count, firstText, secondText, image, percent }, index) => (
                                         <PromoNumbers key={`promoNumber-${index}`} count={count} firstText={firstText} secondText={secondText} image={image} percent={percent} />
                                     ))
                                 ) :
@@ -172,7 +172,7 @@ export const CoverLatter = () => {
 
                             <ul className="advantage-list">
                                 {
-                                    advantages.map(({image, width, height, title, text}, index) => (
+                                    advantages.map(({ image, width, height, title, text }, index) => (
                                         <AdvantagesItem key={`advantage-${index}`} image={image} width={width} height={height} title={title} text={text} />
                                     ))
                                 }
@@ -195,7 +195,7 @@ export const CoverLatter = () => {
                             In three simple steps, create the perfect document to impress hiring managers
                             and  employers. Minimum time, maximum professional quality.
                         </p>
-                        <Link href={`${routersPages['resumeBuilderNew']}`} className="tabs__top--btn btns btn--blue">
+                        <Link href={`${routersPages['coverLetterNew']}`} className="tabs__top--btn btns btn--blue">
                             Create Cover Letter
                         </Link>
                     </div>
@@ -299,7 +299,7 @@ export const CoverLatter = () => {
 
                     <ul className="sure-list">
                         {
-                            sureItems.map(({image, name, text}, index) => (
+                            sureItems.map(({ image, name, text }, index) => (
                                 <SureItem key={`sire-item-${index}`} photo={image} name={name} text={text} />
                             ))
                         }
@@ -368,7 +368,7 @@ export const CoverLatter = () => {
                         <div className="faq-bottom-text">
                             Didn't find what you're looking for?
                             {
-                                ['xs'].includes(currentResolution) ? 
+                                ['xs'].includes(currentResolution) ?
                                     (
                                         <Link href={`/${routersPages['contactUs']}`}>Use our FAQ</Link>
                                     ) :

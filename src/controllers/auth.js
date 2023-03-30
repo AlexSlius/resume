@@ -10,7 +10,8 @@ import { setLogout } from '../slices/auth';
 import {
     sessionStorageGet,
     localStorageRemove,
-    sessionStorageRemove
+    sessionStorageRemove,
+    localStorageGet
 } from '../helpers/localStorage';
 import { setUpdateResumeActive } from './resumeData';
 
@@ -44,7 +45,7 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({
         cookieSet({ key: 'token', data: response.token });
 
         let nextRouterPage = sessionStorageGet('routet_page_next');
-        let isPages = sessionStorageGet("is_page");
+        let isPages = localStorageGet("is_page");
 
         if (isPages == "resume") {
             if (!!resumeActiveNew.id) {

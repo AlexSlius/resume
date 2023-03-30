@@ -6,8 +6,13 @@ import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
 import { getResumesTemplates } from "../controllers/resumeData";
+import { getCoverTemplates } from "../controllers/cover/coverData";
 
-export const withPublicRoute = ({ isGetAllBuilder = false, isGetResumesTemplates = false }) => {
+export const withPublicRoute = ({
+    isGetAllBuilder = false,
+    isGetResumesTemplates = false,
+    isGetCoverTemplates = false
+}) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
@@ -22,7 +27,10 @@ export const withPublicRoute = ({ isGetAllBuilder = false, isGetResumesTemplates
                 await getAllResumeBuilder({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
             if (!!isGetResumesTemplates)
-                await store.dispatch(getResumesTemplates());
+                await store.dispatch(getResumesTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+
+            if (!!isGetCoverTemplates)
+                await store.dispatch(getCoverTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
 
             return { props: {} };
         } catch (error) {

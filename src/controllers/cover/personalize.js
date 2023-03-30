@@ -48,10 +48,12 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewC
     return {};
 })
 
-// export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (idCv, thunkAPI) => {
-//     const response = await api.contact.getBasic(idCv);
-//     return response[0];
-// })
+export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
+    const response = await api.personalize.getCoverLetterById(idCv);
+
+    console.log("response: ", response);
+    return response[0];
+})
 
 // export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv, dataImage }, thunkAPI) => {
 //     const { contacts: { contactObj } } = thunkAPI.getState()

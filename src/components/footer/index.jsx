@@ -24,27 +24,11 @@ export const Footer = () => {
                     </Link>
                     <nav className="nav">
                         <ul>
-                            {/* className="submenu-item" */}
                             <li >
-                                <Link href={`/${routersPages['jobWinningResumeTemplates']}`}>Resume</Link>
-                                {/* <ul className="submenu">
-
-                                </ul> */}
+                                <Link href={`/`}>Resume</Link>
                             </li>
-                            {/* className="submenu-item" */}
                             <li>
-                                <Link href="#">Cover Letter</Link>
-                                {/* <ul className="submenu">
-                                    <li>
-                                        <Link href="#">Cover Letter1</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Cover Letter2</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Cover Letter3</Link>
-                                    </li>
-                                </ul> */}
+                                <Link href={`/${routersPages['pageCoverLetter']}`}>Cover Letter</Link>
                             </li>
                             <li><Link href={`/${routersPages['contactUs']}`}>Contact Us</Link></li>
                             {/* <li><Link href="#">Pricing</Link></li> */}
