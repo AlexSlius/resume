@@ -85,16 +85,16 @@ const FormPersonalize = ({
     }, []);
 
     return (
-        <div>
+        <div className="personalize-form">
             <StepContent
                 icon="/images/cover/seo.svg"
                 title="Your cover letter is almost ready"
                 label="Personalize your cover letter"
             />
             <div className="wr-form-cover">
-                <CForm className="wr-gab-30">
+                <CForm className="wr-gab-30 form-margins">
                     <CRow>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="First Name"
                                 placeholder="First Name"
@@ -104,7 +104,7 @@ const FormPersonalize = ({
                                 onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
                             />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="Last Name"
                                 placeholder="Last Name"
@@ -116,7 +116,7 @@ const FormPersonalize = ({
                         </CCol>
                     </CRow>
                     <CRow>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <InputSelect
                                 placeholder="Country"
                                 valueState={personObj.country || ''}
@@ -128,7 +128,7 @@ const FormPersonalize = ({
                                 isFlag={true}
                             />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <InputSelect
                                 label="City"
                                 placeholder="City"
@@ -143,7 +143,7 @@ const FormPersonalize = ({
                         </CCol>
                     </CRow>
                     <CRow>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="State"
                                 placeholder="State"
@@ -152,7 +152,7 @@ const FormPersonalize = ({
                                 onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
                             />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="Zip Code"
                                 placeholder="Zip Code"
@@ -164,7 +164,7 @@ const FormPersonalize = ({
                         </CCol>
                     </CRow>
                     <CRow>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="E-mail"
                                 placeholder="E-mail"
@@ -175,7 +175,7 @@ const FormPersonalize = ({
                                 onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
                             />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={12} md={6}>
                             <Input
                                 label="Phone"
                                 placeholder="Phone"

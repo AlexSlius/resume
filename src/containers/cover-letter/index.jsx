@@ -120,7 +120,7 @@ export const CoverLatter = () => {
                                 of job seekers land more interviews and get hired faster.
                             </p>
                             <div className="promo-offer__bottom">
-                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
+                                <Link href={`${routersPages['coverLetterNew']}`} className="promo-offer__btn btns btn--blue">
                                     Create Cover Letter
                                 </Link>
                                 <div className="user-icons">
@@ -195,7 +195,7 @@ export const CoverLatter = () => {
                             In three simple steps, create the perfect document to impress hiring managers
                             and  employers. Minimum time, maximum professional quality.
                         </p>
-                        <Link href={`${routersPages['resumeBuilderNew']}`} className="tabs__top--btn btns btn--blue">
+                        <Link href={`${routersPages['coverLetterNew']}`} className="tabs__top--btn btns btn--blue">
                             Create Cover Letter
                         </Link>
                     </div>

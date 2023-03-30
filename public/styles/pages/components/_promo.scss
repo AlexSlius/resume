@@ -166,6 +166,12 @@
     gap: 45px;
 }
 
+.cover-letter {
+    .promo-offer__bottom {
+        margin: 0;
+    }
+}
+
 .user-icons {
     display: flex;
     align-items: center;

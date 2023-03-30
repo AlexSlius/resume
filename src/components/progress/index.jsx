@@ -29,21 +29,21 @@ export const Progress = ({
     }, [interest]);
 
     return (
-        <div className={`${style.wr_prosess}`}>
-            <div className={`${style.prosess_head}`}>
-                <div className={`${style.prosess_head_left}`}>
-                    <span className={`${style.prosess_head_interest}`}>{interest}%</span>
-                    {!!label && <span className={`${style.prosess_head_label}`}>{label}</span>}
+        <div className={style.wr_prosess}>
+            <div className={style.prosess_head}>
+                <div className={style.prosess_head_left}>
+                    <span className={style.prosess_head_interest}>{interest}%</span>
+                    {!!label && <span className={style.prosess_head_label}>{label}</span>}
                 </div>
-                <div className={`${style.prosess_head_right}`}>
+                <div className={style.prosess_head_right}>
                     {!!icon && <Icon svg={icon} classNames={[`${(interest == 100) ? style.active_icon : ""}`, `${style.icon}`]} />}
                 </div>
             </div>
-            <div className={`${style.prosess}`}>
+            <div className={style.prosess}>
                 {
                     [...new Array(4)].map((_, index) => {
                         return (
-                            <div className={`${style.prosess_item}`} key={index}>
+                            <div className={style.prosess_item} key={index}>
                                 <div style={{ width: `${!!state[index] ? (state[index] * 100) : 0}%` }}></div>
                             </div>
                         )

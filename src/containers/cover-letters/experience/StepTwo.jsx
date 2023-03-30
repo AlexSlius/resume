@@ -23,8 +23,8 @@ export const StepTwo = ({
 
     return (
         <div className="step-wr">
-            {
-                (experienceObj.questionGraduateFromCollege == "yes") && (
+            {/* {
+                (experienceObj.questionGraduateFromCollege == "yes") && ( */}
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-2.svg"
@@ -49,8 +49,8 @@ export const StepTwo = ({
                             onHanleBtn={() => { handleClicQuery(StepsName["nameCollege"]); }}
                         />
                     </div>
-                )
-            }
+                {/* )
+            } */}
 
             {
                 (experienceObj.questionGraduateFromCollege == "no") && (

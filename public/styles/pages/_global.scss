@@ -248,4 +248,25 @@ h6 {
             }
         }
      }
+
+     .personalize-form {
+        .form-margins {
+            gap: 12px;
+
+            .row {
+                gap: 12px;
+            }
+        }
+
+        .wr-btn-cover {
+            justify-content: center;
+        }
+     }
+
+     .step-wr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+
 }

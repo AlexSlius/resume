@@ -7,6 +7,7 @@ import { isArray } from "lodash";
 
 import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
+import { Partners } from "../../components/partners";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
@@ -438,13 +439,7 @@ export const HomePage = () => {
                     <h2 className="h2">
                         Our customers get hired by top companies
                     </h2>
-                    <div className="partners__wrapper">
-                        <img src="/images/page/icon-par-1.svg" alt="img" />
-                        <img src="/images/page/icon-par-2.svg" alt="img" />
-                        <img src="/images/page/icon-par-3.svg" alt="img" />
-                        <img src="/images/page/icon-par-4.svg" alt="img" />
-                        <img src="/images/page/icon-par-5.svg" alt="img" />
-                    </div>
+                    <Partners />
                 </div>
             </section>
         </>
