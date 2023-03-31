@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
 
@@ -19,7 +19,7 @@ import { routersPages } from "../../constants/next-routers"
 
 const HeadUser = () => {
    const dispatch = useDispatch();
-   const [showMenu, setShowMenu] = React.useState(false);
+   const [showMenu, setShowMenu] = useState();
    const classIsShowMenu = showMenu ? style.opens : ''
 
    const {
@@ -37,7 +37,9 @@ const HeadUser = () => {
       setShowMenu(prev => !prev);
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
+      setShowMenu(false);
+
       function handleClick(e) {
          if (!e.target.closest('.btn_no_click_menu'))
             setShowMenu(prev => {

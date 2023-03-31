@@ -32,7 +32,7 @@ export const StepNine = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
@@ -42,7 +42,7 @@ export const StepNine = ({
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
-                                isIconArrow={true}
+                                // isIconArrow={true}
                             />
                         </CCol>
                     </CRow>

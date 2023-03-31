@@ -16,12 +16,22 @@
   }
 }
 
+.firstText {
+  margin: 0;
+}
+
+.secondTextWrapper {
+  text-align: left;
+}
+
 .border {
   background: var(--orange-opacity);
   border: 1.3px dashed var(--orange);
   display: inline-block;
   position: relative;
   padding: 3px 8px;
+  line-height: 1;
+  height: 58px;
 
   .iconBlock {
     position: absolute;

@@ -57,8 +57,8 @@ export const StepFourteen = ({
                         />
                         <div className="wr-form-cover">
                             <CForm className="wr-gab-30">
-                                <CRow>
-                                    <CCol xs={6}>
+                                <CRow className="mobile-rows two-items">
+                                    <CCol xs={12} md={6}>
                                         <InputSelect
                                             label="Company Name"
                                             placeholder="Company Name"
@@ -74,7 +74,7 @@ export const StepFourteen = ({
                                             isCap={true}
                                         />
                                     </CCol>
-                                    <CCol xs={6}>
+                                    <CCol xs={12} md={6}>
                                         <InputSelect
                                             label="Job Title"
                                             placeholder="Job Title"

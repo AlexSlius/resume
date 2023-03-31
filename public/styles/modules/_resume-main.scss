@@ -264,6 +264,15 @@
    }
 }
 
+.sidebar-nav .nav-link {
+   gap: 12px;
+
+   svg {
+      width: 20px;
+      height: 20px;
+   }
+}
+
 @media (max-width: 1559px) {
    .col.resume {
       padding: 0px 20px 0px 20px;

@@ -6,7 +6,8 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
     fetchGetCategoryStatus,
     fetchPostUpdateCategoryStatus,
-    getCategoryViewedStatus
+    getCategoryViewedStatus,
+    getCategoryViewedStatusCover
 } from "../controllers/addSections";
 
 const initialState = {
@@ -30,6 +31,14 @@ export const slice = createSlice({
                 ...state,
                 ...action.payload.addSection,
             }
+        },
+        [getCategoryViewedStatusCover.pending]: (state) => {
+            state.viewedList = initialState.viewedList;
+            state.statusViewed = statusLoader;
+        },
+        [getCategoryViewedStatusCover.fulfilled]: (state, action) => {
+            state.statusViewed = statusLoaded;
+            state.viewedList = action.payload;
         },
         [getCategoryViewedStatus.pending]: (state) => {
             state.viewedList = initialState.viewedList;

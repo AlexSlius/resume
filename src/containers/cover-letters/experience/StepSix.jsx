@@ -92,7 +92,7 @@ export const StepSix = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <div className="wr-col-text-r">
                                 <div className="wr-gab-30">
@@ -109,7 +109,7 @@ export const StepSix = ({
                                         isCap={true}
                                     />
                                     <FormSearchContent
-                                        valueText={coverDataObj.professionalSkills}
+                                        valueText={coverDataObj.professionalSkills || ""}
                                         keys="name"
                                         data={skills.list}
                                         isLoad={isLoader(skills.status)}

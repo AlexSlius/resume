@@ -180,6 +180,11 @@ h6 {
     margin-bottom: 0 !important;
 }
 
+svg {
+    width: 20px;
+    height: 20px;
+}
+
 @media (max-width: 1023px) {
     h1.h1 {
         font-size: 36px;
@@ -229,17 +234,21 @@ h6 {
     .mobile-rows {
         display: flex;
         flex-direction: column;
-    
+
         &>div {
-           width: 100%;
+            width: 100%;
         }
-     }
+        
+        &.two-items {
+            gap: 12px;
+        }
+    }
 
-     .career-form {
+    .career-form {
         gap: 12px;
-     }
+    }
 
-     .dates-wrap {
+    .dates-wrap {
         .date-block {
             &:last-child {
                 .popup {
@@ -247,5 +256,108 @@ h6 {
                 }
             }
         }
-     }
+    }
+
+    .personalize-form {
+        .form-margins {
+            gap: 12px;
+
+            .row {
+                gap: 12px;
+            }
+        }
+
+        .wr-btn-cover {
+            justify-content: center;
+        }
+    }
+
+    .step-wr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .date-pickers-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .date-picker-block {
+        position: relative;
+        width: 104px;
+
+        ul {
+            box-shadow: none;
+            width: 100%;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+
+            li {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+
+                span {
+                    display: none;
+                }
+
+                p {
+                    padding: 0;
+                }
+            }
+        }
+
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            background-color: var(--grey-3);
+            left: 0;
+        }
+
+        &:before {
+            // top: 90px;
+            top: calc(50% - 25px);
+        }
+
+        &:after {
+            // top: 140px;
+            top: calc(50% + 25px);
+        }
+    }
+
+    .wr-col-text-r.search-block {
+        min-height: auto;
+        margin-bottom: 25px;
+
+        .search-text-content .modal-text__main {
+            height: auto;
+        }
+
+        .modal-text .modal-text__head input.form-control {
+            border-radius: 12px;
+        }
+    }
+
+    .form-wrapper {
+        width: 100%;
+    }
+
+    form.mobile-gap {
+        gap: 12px;
+    }
+
 }

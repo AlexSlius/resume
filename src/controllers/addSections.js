@@ -35,3 +35,20 @@ export const postUpdateCategoryViewedStatus = createAsyncThunk('category/postUpd
 
     return [];
 });
+
+// cover
+export const getCategoryViewedStatusCover = createAsyncThunk('category/getCategoryViewedStatusCover', async ({ idCv }, thunkAPI) => {
+    const response = await api.addSection.getCategoryViewedStatusCover(idCv);
+    return response;
+});
+
+export const postUpdateCategoryViewedStatusCover = createAsyncThunk('category/postUpdateCategoryViewedStatusCover', async ({ idCv, category }, thunkAPI) => {
+    const { addSection: { viewedList } } = thunkAPI.getState();
+
+    if (viewedList?.[category]?.status === null) {
+        const response = await api.addSection.postUpdateCategoryViewedStatusCover(idCv, category);
+        return response;
+    }
+
+    return [];
+});

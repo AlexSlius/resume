@@ -69,7 +69,7 @@ export const StepSeven = ({
                                 id={`check${index}`}
                                 label={item}
                                 isBold={true}
-                                checkbox={coverDataObj.skillSet.includes(item) ? true : false}
+                                checkbox={coverDataObj?.skillSet?.includes(item) ? true : false}
                                 onChange={() => onHanleUpdate(item)}
                             />
                         ))

@@ -8,6 +8,7 @@ import { Progress } from "../../../components/progress";
 
 import { helperProgress } from "../../../helpers/helperProgress";
 import { getCoverLetterById } from "../../../controllers/cover/personalize";
+import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
 
@@ -69,11 +70,9 @@ const Contact = () => {
         },
     } = states;
 
-    // React.useEffect(() => {
-    //     if (idCv != "new") {
-    //         dispatch(getCoverLetterById(idCv));
-    //     }
-    // }, [router.query]);
+    React.useEffect(() => {
+        dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'experience' }));
+    }, []);
 
     return (
         <>

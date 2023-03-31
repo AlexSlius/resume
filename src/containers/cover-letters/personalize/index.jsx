@@ -8,6 +8,7 @@ import { Progress } from "../../../components/progress";
 
 import { helperProgress } from "../../../helpers/helperProgress";
 import { getCoverLetterById } from "../../../controllers/cover/personalize";
+import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
 
 import contactIcon from "/public/images/icons/contact.svg?sprite"
 
@@ -35,11 +36,11 @@ const Contact = () => {
         },
     } = states;
 
-    // React.useEffect(() => {
-    //     if (idCv != "new") {
-    //         dispatch(getCoverLetterById(idCv));
-    //     }
-    // }, []);
+    React.useEffect(() => {
+        if (idCv != "new") {
+            dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'personalize' }));
+        }
+    }, []);
 
     return (
         <>

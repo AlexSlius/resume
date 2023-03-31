@@ -11,7 +11,7 @@ export const StepEight = ({
     coverDataObj,
     dispatch,
 }) => {
-    const handleClickBtn = async  () => {
+    const handleClickBtn = async () => {
         await handleClicQuery(StepsName["othersDescribe"]);
     }
 
@@ -32,7 +32,7 @@ export const StepEight = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
@@ -42,7 +42,6 @@ export const StepEight = ({
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
-                                isIconArrow={true}
                             />
                         </CCol>
                     </CRow>

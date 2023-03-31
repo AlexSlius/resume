@@ -35,7 +35,7 @@ export const StepFifteen = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Reason"
@@ -45,7 +45,7 @@ export const StepFifteen = ({
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequestReason}
                                 isOutDataObj={false}
-                                isIconArrow={true}
+                                // isIconArrow={true}
                             />
                         </CCol>
                     </CRow>

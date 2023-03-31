@@ -13,4 +13,11 @@ export default class ClientsAPI extends Base {
     postUpdateCategoryViewedStatus(idCv, category, type = "formData") {
         return this.apiClient.post(`api/cv/category/viewed_status/update/${idCv}/${category}/active`, {}, type);
     }
+    // cover 
+    getCategoryViewedStatusCover(idCv) {
+        return this.apiClient.get(`api/cover_letter/category/viewed_status/${idCv}`);
+    }
+    postUpdateCategoryViewedStatusCover(idCv, category, type = "formData") {
+        return this.apiClient.post(`api/cover_letter/category/viewed_status/update/${idCv}/${category}/active`, {}, type);
+    }
 }

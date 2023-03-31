@@ -1,7 +1,8 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { isArray } from 'lodash';
-import { CFormInput } from "@coreui/react"
-import { convertToHTML } from "draft-convert"
+import { CFormInput } from "@coreui/react";
+import { convertToHTML } from "draft-convert";
 
 import Icon from "../../Icon"
 
@@ -22,6 +23,12 @@ export const FormSearchContent = ({
 }) => {
     const refIdTimeout = React.useRef(null);
     const [textSearch, setTextSearch] = React.useState('');
+
+    const {
+        theme: {
+            currentResolution
+        }
+    } = useSelector((state) => state);
 
     const handleOnClickAddTextList = (value) => {
         handleUpdateText(value);

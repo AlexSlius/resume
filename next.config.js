@@ -12,6 +12,25 @@ module.exports = withPlugins(
   {
     sassOptions: {
       includePaths: ['./src/components/']
+    },
+    compiler: {
+      // Enables the styled-components SWC transform
+      styledComponents: true
+    },
+    options: {
+      prettier: false,
+      svgo: true,
+      svgoConfig: {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: { removeViewBox: false },
+            },
+          },
+        ],
+      },
+      titleProp: true,
     }
   }
 );

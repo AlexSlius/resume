@@ -5,8 +5,8 @@ import { BtnContinue } from "../component/btnContinue";
 import { DatePicker } from "../../../components/uis/datePicker"
 
 export const StepThree = ({
-    handleUpdateField = () => { },
-    handleClicQuery = () => { },
+    handleUpdateField,
+    handleClicQuery,
     StepsName,
     coverDataObj,
 }) => {
@@ -25,7 +25,7 @@ export const StepThree = ({
                         />
                         <div className="wr-form-cover">
                             <CForm className="wr-gab-30">
-                                <CRow>
+                                <CRow className="mobile-rows">
                                     <CCol xs={6}>
                                         <Input
                                             label="Name university"
