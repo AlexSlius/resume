@@ -53,9 +53,9 @@ export const StepSix = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
-                            <div className="wr-col-text-r">
+                            <div className="wr-col-text-r search-block">
                                 <FormSearchContent
                                 // valueText={data}
                                 // data={objective.list}

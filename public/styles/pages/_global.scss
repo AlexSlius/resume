@@ -234,17 +234,21 @@ svg {
     .mobile-rows {
         display: flex;
         flex-direction: column;
-    
+
         &>div {
-           width: 100%;
+            width: 100%;
         }
-     }
+        
+        &.two-items {
+            gap: 12px;
+        }
+    }
 
-     .career-form {
+    .career-form {
         gap: 12px;
-     }
+    }
 
-     .dates-wrap {
+    .dates-wrap {
         .date-block {
             &:last-child {
                 .popup {
@@ -252,9 +256,9 @@ svg {
                 }
             }
         }
-     }
+    }
 
-     .personalize-form {
+    .personalize-form {
         .form-margins {
             gap: 12px;
 
@@ -266,21 +270,21 @@ svg {
         .wr-btn-cover {
             justify-content: center;
         }
-     }
+    }
 
-     .step-wr {
+    .step-wr {
         display: flex;
         flex-direction: column;
         align-items: center;
-     }
+    }
 
-     .date-pickers-wrapper {
+    .date-pickers-wrapper {
         display: flex;
         justify-content: center;
         gap: 30px;
-     }
+    }
 
-     .date-picker-block {
+    .date-picker-block {
         position: relative;
         width: 104px;
 
@@ -333,6 +337,27 @@ svg {
             // top: 140px;
             top: calc(50% + 25px);
         }
-     }
+    }
+
+    .wr-col-text-r.search-block {
+        min-height: auto;
+        margin-bottom: 25px;
+
+        .search-text-content .modal-text__main {
+            height: auto;
+        }
+
+        .modal-text .modal-text__head input.form-control {
+            border-radius: 12px;
+        }
+    }
+
+    .form-wrapper {
+        width: 100%;
+    }
+
+    form.mobile-gap {
+        gap: 12px;
+    }
 
 }

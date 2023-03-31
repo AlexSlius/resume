@@ -1,5 +1,9 @@
 .wr-form-cover {
     margin-top: 30px;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
 }
 
 .wr-gab-30 {
@@ -25,6 +29,12 @@
     column-gap: 100px;
     row-gap: 30px;
     max-width: 680px;
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 75px;
+        row-gap: 20px;
+    }
 }
 
 .cover-card-no {
@@ -51,5 +61,15 @@
 .items-step-skill {
     &>div {
         margin-bottom: 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+        &>div {
+            margin-bottom: 12px;
+        }
+        
+        .active-item-skills-starts {
+            margin: 0;
+        }
     }
 }

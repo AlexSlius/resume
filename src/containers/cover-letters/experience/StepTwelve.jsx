@@ -32,8 +32,8 @@ export const StepTwelve = ({
                 label="You can round your experience up or down."
             />
             <div className="wr-form-cover">
-                <CForm className="wr-gab-30">
-                    <CRow>
+                <CForm className="wr-gab-30 mobile-gap">
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <Input
                                 label="Work experience"
@@ -44,7 +44,7 @@ export const StepTwelve = ({
                             />
                         </CCol>
                     </CRow>
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Year(s)"

@@ -18,7 +18,7 @@ export const StepFour = ({
         <div className="step-wr">
             {
                 (experienceObj.questionCurrentlyInCollegeUniversity == "") && (
-                    <div>
+                    <div className="form-wrapper">
                         <StepContent
                             icon="/images/cover/icon-cover-3.svg"
                             title="What's your grade point average?"

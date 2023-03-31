@@ -1,32 +1,31 @@
-import {
-    CSidebarNav,
-    CNavItem,
-} from "@coreui/react"
-import React from "react"
+import { useState, useEffect } from "react"
+import { CSidebarNav, CNavItem } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
+import { addAllSection } from "../../slices/menuAsideResume";
 
+// Components
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
-
-import { sessionStorageGet } from "../../helpers/localStorage";
-import { sectionIndexAndAll } from "../../helpers/sections";
-import { contactSetNew, contactAddNew } from "../../controllers/contacts"
-import { addAllSection } from "../../slices/menuAsideResume";
 import { ModalNoAccess } from "../modals/modalNoAccess";
 
-import {
-    routerLinksAsideMenuIcon,
-    keysIcons
-} from "../../constants/next-routers"
+// Controllers
+import { contactSetNew, contactAddNew } from "../../controllers/contacts"
 
+// Helpers
+import { sessionStorageGet } from "../../helpers/localStorage";
+import { sectionIndexAndAll } from "../../helpers/sections";
+
+// Constants
+import { routerLinksAsideMenuIcon, keysIcons } from "../../constants/next-routers"
 import { routersPages } from "../../constants/next-routers";
 
+// Styles
 import style from './SideBar.module.scss'
 
 
 const MenuSideBar = () => {
-    const [showModalNoAccess, setShowModalNoAccess] = React.useState(false);
+    const [showModalNoAccess, setShowModalNoAccess] = useState();
 
     const router = useRouter();
     const dispatch = useDispatch();
@@ -64,7 +63,7 @@ const MenuSideBar = () => {
         dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         let arrSect = [];
         let newArrAdd = [];
         let keysAll = Object.keys(list);
@@ -95,6 +94,10 @@ const MenuSideBar = () => {
 
         dispatch(addAllSection([...menuAsideResume.listStart, ...newArrAdd]));
     }, [list]);
+
+    useEffect(() => {
+        setShowModalNoAccess(false);
+    }, [])
 
     return (
         <>

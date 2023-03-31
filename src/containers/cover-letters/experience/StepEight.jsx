@@ -32,7 +32,7 @@ export const StepEight = ({
             />
             <div className="wr-form-cover">
                 <CForm className="wr-gab-30">
-                    <CRow>
+                    <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"

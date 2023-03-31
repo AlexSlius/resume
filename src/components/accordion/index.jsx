@@ -1,17 +1,22 @@
+import { useState } from 'react';
+
+// Libraries
+import { isArray } from 'lodash';
+
+// Components
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import React from 'react';
 
+// Styles
 import style from "./Style.module.scss";
-import { isArray } from 'lodash';
 
 export const AccordionComponent = ({
     arr = [],
     defaultStart = false
 }) => {
-    const [expanded, setExpanded] = React.useState(defaultStart ? `panel${defaultStart}` : false);
+    const [expanded, setExpanded] = useState(defaultStart ? `panel${defaultStart}` : false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);

@@ -1,7 +1,8 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { isArray } from 'lodash';
-import { CFormInput } from "@coreui/react"
-import { convertToHTML } from "draft-convert"
+import { CFormInput } from "@coreui/react";
+import { convertToHTML } from "draft-convert";
 
 import Icon from "../../Icon"
 
@@ -22,6 +23,12 @@ export const FormSearchContent = ({
 }) => {
     const refIdTimeout = React.useRef(null);
     const [textSearch, setTextSearch] = React.useState('');
+
+    const {
+        theme: {
+            currentResolution
+        }
+    } = useSelector((state) => state);
 
     const handleOnClickAddTextList = (value) => {
         handleUpdateText(value);
@@ -54,41 +61,46 @@ export const FormSearchContent = ({
                     />
                     <Icon svg={iconSearch} />
                 </div>
-                <div className='modal-text__content'>
-                    {
-                        !!textSearch.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{textSearch}</span></div>
-                    }
-                    <ul className='scroll-style'>
-                        {
-                            !isLoad ? (
-                                isArray(data) ? (
-                                    !!data.length ? (
-                                        data.map((item, index) => {
-                                            let isStatus = valueText.includes(item?.[keys]);
+                {
+                    ['md'].includes(currentResolution) ?
+                        (
+                            <div className='modal-text__content'>
+                                {
+                                    !!textSearch.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{textSearch}</span></div>
+                                }
+                                <ul className='scroll-style'>
+                                    {
+                                        !isLoad ? (
+                                            isArray(data) ? (
+                                                !!data.length ? (
+                                                    data.map((item, index) => {
+                                                        let isStatus = valueText.includes(item?.[keys]);
 
-                                            return (
-                                                <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
-                                                    <span className='text-icon-in'>
-                                                        <Icon svg={isStatus ? iconOkText : iconLeftText} />
-                                                    </span>
-                                                    <div className='text-div-in' dangerouslySetInnerHTML={{ __html: item?.[keys] || "" }}></div>
-                                                </li>
+                                                        return (
+                                                            <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                                <span className='text-icon-in'>
+                                                                    <Icon svg={isStatus ? iconOkText : iconLeftText} />
+                                                                </span>
+                                                                <div className='text-div-in' dangerouslySetInnerHTML={{ __html: item?.[keys] || "" }}></div>
+                                                            </li>
+                                                        )
+                                                    })
+                                                ) : (
+                                                    <li className={`empty-text`}>{labelEmpty}</li>
+                                                )
+                                            ) : (
+                                                <li className={`empty-text`}>{labelEmpty}</li>
                                             )
-                                        })
-                                    ) : (
-                                        <li className={`empty-text`}>{labelEmpty}</li>
-                                    )
-                                ) : (
-                                    <li className={`empty-text`}>{labelEmpty}</li>
-                                )
-                            ) : (
-                                <li className='li-load'>
-                                    <Icon svg={iconPreloader} />
-                                </li>
-                            )
-                        }
-                    </ul>
-                </div>
+                                        ) : (
+                                            <li className='li-load'>
+                                                <Icon svg={iconPreloader} />
+                                            </li>
+                                        )
+                                    }
+                                </ul>
+                            </div>
+                        ) : null
+                }
             </div>
         </div>
     )

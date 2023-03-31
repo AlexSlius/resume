@@ -1,5 +1,5 @@
+import { useState } from "react";
 import Link from "next/link";
-import React from "react";
 import Icon from "../Icon";
 
 import style from "./Style.module.scss";
@@ -17,7 +17,7 @@ export const CardResume = ({
     handlekeyUp = () => { },
     handleBlur = () => { },
 }) => {
-    const [stateName, setStateName] = React.useState(label);
+    const [stateName, setStateName] = useState(label);
 
     return (
         <div className={`${style.card}`}>
