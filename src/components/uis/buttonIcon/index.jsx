@@ -16,7 +16,7 @@ export const ButtonIcon = ({
                 className={`${className} form-btn btns minp`}
                 onClick={onHandle}
             >
-                {!!icon && <Icon svg={icon} />}
+                {icon ? <Icon svg={icon} /> : null}
                 <span>{label}</span>
             </button>
         ) : (

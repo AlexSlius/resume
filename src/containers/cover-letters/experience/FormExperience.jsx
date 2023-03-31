@@ -54,6 +54,8 @@ const FormExperience = ({
     const { step } = router.query;
 
     const handleUpdateField = ({ name, value }) => {
+        console.log('name', name);
+        console.log('value', value);
         dispatch(updateItemField({ name, value }));
     }
 
@@ -66,7 +68,7 @@ const FormExperience = ({
 
     return (
         <div>
-            {/* {
+            {
                 (step === undefined) && (
                     <StepOne
                         handleUpdateField={handleUpdateField}
@@ -75,18 +77,18 @@ const FormExperience = ({
                         experienceObj={experienceObj}
                     />
                 )
-            } */}
+            }
 
-            {/* {
-                (step === StepsName["graduated"]) && ( */}
+            {
+                (step === StepsName["graduated"]) && (
                     <StepTwo
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         experienceObj={experienceObj}
                     />
-                {/* )
-            } */}
+                )
+            }
 
             {
                 (step === StepsName["nameCollege"]) && (

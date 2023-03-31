@@ -26,7 +26,7 @@ export const StepFour = ({
                         />
                         <div className="wr-form-cover">
                             <CForm className="wr-gab-30">
-                                <CRow>
+                                <CRow className="mobile-rows">
                                     <CCol xs={6}>
                                         <Input
                                             label="Point Average"
