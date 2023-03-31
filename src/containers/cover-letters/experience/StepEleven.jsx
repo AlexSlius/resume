@@ -15,13 +15,13 @@ export const StepEleven = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
     jopsTitleList,
     companysList,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["howMachWork"]);
+    const handleClickBtn = async () => {
+        await handleClicQuery(StepsName["howMachWork"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
@@ -49,7 +49,7 @@ export const StepEleven = ({
     return (
         <div className="step-wr">
             {
-                (experienceObj.questionHaveWorkExperience == "yes") && (
+                (coverDataObj.questionHaveWorkExperience == "Y") && (
                     <>
                         <StepContent
                             icon="/images/cover/icon-cover-10.svg"
@@ -63,7 +63,7 @@ export const StepEleven = ({
                                         <InputSelect
                                             label="Job Title"
                                             placeholder="Job Title"
-                                            valueState={experienceObj.industryHoldExperienceJobTitle || ''}
+                                            valueState={coverDataObj.industryHoldExperienceJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}
                                             name="industryHoldExperienceJobTitle"
@@ -81,7 +81,7 @@ export const StepEleven = ({
                                         <InputSelect
                                             label="Name Company"
                                             placeholder="Name Company"
-                                            valueState={experienceObj.industryHoldExperienceCompanyName || ''}
+                                            valueState={coverDataObj.industryHoldExperienceCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
                                             name="industryHoldExperienceCompanyName"

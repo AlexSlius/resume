@@ -9,9 +9,8 @@ export const fetchGetCoversList = createAsyncThunk('resumes/fetchGetCoversList',
 });
 
 // update item name resume
-// export const fetchPostUpdateCovers = createAsyncThunk('resumes/fetchPostUpdateResumes', async ({ id, data }, thunkAPI) => {
-//     const response = await api.resumes.postUpdateResumaName(id, data);
-//     // thunkAPI.dispatch(fetchGetResumesList());
-//     return response;
-// });
+export const fetchPostUpdateCover = createAsyncThunk('resumes/fetchPostUpdateCover', async ({ id, data }, thunkAPI) => {
+    const response = await api.covers.fetchPostUpdateCover(id, data);
+    return response;
+});
 

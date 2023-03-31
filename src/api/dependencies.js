@@ -1,6 +1,13 @@
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
+    // skills
+    getSkillsStartOneJobTitle(params) {
+        return this.apiClient.get('profile/list/skill_positions', params);
+    }
+    getSkillslistSearchRandom(params) {
+        return this.apiClient.get('profile/list/skills', params);
+    }
     getFieldOfStudy(params) {
         return this.apiClient.get(`profile/list/field_of_study`, params);
     }

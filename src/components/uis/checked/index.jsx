@@ -8,7 +8,7 @@ export const Checked = ({
     id = "def",
     label = '',
     onChange = () => { },
-    checkbox = "",
+    checkbox,
     defaultChecked = false,
     isBold = false
 }) => {
@@ -17,8 +17,8 @@ export const Checked = ({
             <CFormCheck
                 id={id}
                 label={label}
-                checkbox={checkbox}
                 defaultChecked={defaultChecked}
+                checked={checkbox}
             />
         </div>
     )

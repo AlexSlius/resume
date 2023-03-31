@@ -8,16 +8,16 @@ export const StepThree = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["pointAverage"]);
+    const handleClickBtn = async  () => {
+        await handleClicQuery(StepsName["pointAverage"]);
     }
 
     return (
         <div className="step-wr">
             {
-                (experienceObj.questionCurrentlyInCollegeUniversity == "") && (
+                (coverDataObj.questionCurrentlyInCollegeUniversity == "N") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-1.svg"
@@ -30,7 +30,7 @@ export const StepThree = ({
                                         <Input
                                             label="Name university"
                                             placeholder="Name university"
-                                            value={experienceObj.nameCollegeOrUniversity}
+                                            value={coverDataObj.nameCollegeOrUniversity}
                                             autoComplete="on"
                                             onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
                                         />
@@ -44,7 +44,7 @@ export const StepThree = ({
             }
 
             {
-                (experienceObj.questionCurrentlyInCollegeUniversity == "yes") && (
+                (coverDataObj.questionCurrentlyInCollegeUniversity == "Y") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-2.svg"
@@ -56,7 +56,7 @@ export const StepThree = ({
                                 <CRow>
                                     <CCol xs={6}>
                                         <DatePicker
-                                            selected={experienceObj.expectedYearOfGraduation}
+                                            selected={coverDataObj.expectedYearOfGraduation}
                                             onChange={(date) => handleUpdateField({ name: 'expectedYearOfGraduation', value: date })}
                                             placeholderText="Date"
                                             name="expectedYearOfGraduation"

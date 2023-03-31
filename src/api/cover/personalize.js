@@ -10,4 +10,7 @@ export default class ClientsAPI extends Base {
     getCoverLetterById(id) {
         return this.apiClient.get(`cover_letter/get/${id}/`);
     }
+    updateCoverLetterById(id, data, type = "formData") {
+        return this.apiClient.post(`cover_letter/update/${id}`, data, type);
+    }
 }

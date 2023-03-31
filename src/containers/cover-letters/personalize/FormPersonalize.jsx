@@ -1,5 +1,6 @@
 import { CForm, CCol, CRow } from "@coreui/react"
 import React from "react";
+import Router from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
 import Input from "../../../components/uis/input";
@@ -11,7 +12,7 @@ import { BtnContinue } from "../component/btnContinue";
 
 import {
     updateItemField
-} from "../../../slices/cover/coverPerson";
+} from "../../../slices/cover/coverDataForm";
 
 import {
     fetchGetCountrys,
@@ -20,6 +21,7 @@ import {
 import {
     coverAddNew,
     coverSetNew,
+    updateCoverLetterById,
 } from "../../../controllers/cover/personalize";
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
@@ -29,11 +31,12 @@ const FormPersonalize = ({
     storeDate,
     idCv,
 }) => {
+    const refIdTimeout = React.useRef(undefined);
     const [idCountry, setIdCountry] = React.useState(undefined);
     const {
-        coverPerson: {
-            personObj,
-            status,
+        coverDataForm: {
+            coverDataObj,
+            status
         },
         dependencies: {
             coutrys,
@@ -45,6 +48,7 @@ const FormPersonalize = ({
             }
         },
     } = storeDate;
+    const isNew = (idCv == "new");
 
     const handleUpdateItemField = ({ name, value }, data = null) => {
         if (!!data) {
@@ -59,13 +63,17 @@ const FormPersonalize = ({
         } else {
             dispatch(updateItemField({ name, value }));
         }
+
+        if (!isNew) {
+            handleUpdateServer();
+        }
     }
 
     const handleServerRequestCity = async () => {
         if (!!!idCountry)
             return false;
 
-        await dispatch(fetchGetCities({ id: idCountry, params: personObj.city }));
+        await dispatch(fetchGetCities({ id: idCountry, params: coverDataObj.city }));
     }
 
     const newBasicNoAutorizstion = async () => {
@@ -73,12 +81,27 @@ const FormPersonalize = ({
     }
 
     const addNewCoverAutorization = async () => {
-        await dispatch(coverAddNew());
+        if (isNew) {
+            await dispatch(coverAddNew());
+        } else {
+            Router.push(`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}`);
+        }
+    }
+
+    const handleUpdateServer = async (index) => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            await dispatch((updateCoverLetterById({ idCv })));
+            clearTimeout(refIdTimeout.current);
+        }, 500);
     }
 
     React.useEffect(() => {
-        setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: personObj.country }));
-    }, [coutrys.list, personObj.country]);
+        setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: coverDataObj.country }));
+    }, [coutrys.list, coverDataObj?.country]);
 
     React.useEffect(() => {
         dispatch(fetchGetCountrys());
@@ -98,7 +121,7 @@ const FormPersonalize = ({
                             <Input
                                 label="First Name"
                                 placeholder="First Name"
-                                value={personObj.firstName}
+                                value={coverDataObj?.firstName}
                                 name="firstName"
                                 autoComplete="on"
                                 onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
@@ -110,7 +133,7 @@ const FormPersonalize = ({
                                 placeholder="Last Name"
                                 name="lastName"
                                 autoComplete="on"
-                                value={personObj.lastName}
+                                value={coverDataObj.lastName}
                                 onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
                             />
                         </CCol>
@@ -119,7 +142,7 @@ const FormPersonalize = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Country"
-                                valueState={personObj.country || ''}
+                                valueState={coverDataObj.country || ''}
                                 data={coutrys.list}
                                 name="country"
                                 handleSaveSelect={handleUpdateItemField}
@@ -132,7 +155,7 @@ const FormPersonalize = ({
                             <InputSelect
                                 label="City"
                                 placeholder="City"
-                                valueState={personObj.city || ''}
+                                valueState={coverDataObj.city || ''}
                                 name="city"
                                 data={cities.list}
                                 handleSaveSelect={handleUpdateItemField}
@@ -147,7 +170,7 @@ const FormPersonalize = ({
                             <Input
                                 label="State"
                                 placeholder="State"
-                                value={personObj.state}
+                                value={coverDataObj.state}
                                 name="state"
                                 onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
                             />
@@ -156,7 +179,7 @@ const FormPersonalize = ({
                             <Input
                                 label="Zip Code"
                                 placeholder="Zip Code"
-                                value={personObj.zipCode}
+                                value={coverDataObj.zipCode}
                                 name="zipCode"
                                 onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
                                 type="number"
@@ -168,10 +191,10 @@ const FormPersonalize = ({
                             <Input
                                 label="E-mail"
                                 placeholder="E-mail"
-                                value={personObj.email}
+                                value={coverDataObj.email}
                                 name="email"
-                                invalid={(personObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(personObj.email))}
-                                valid={/\S+@\S+\.\S+/.test(personObj.email)}
+                                invalid={(coverDataObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(coverDataObj.email))}
+                                valid={/\S+@\S+\.\S+/.test(coverDataObj.email)}
                                 onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
                             />
                         </CCol>
@@ -180,7 +203,7 @@ const FormPersonalize = ({
                                 label="Phone"
                                 placeholder="Phone"
                                 autoComplete="on"
-                                value={personObj.phone}
+                                value={coverDataObj.phone}
                                 type="number"
                                 name="phone"
                                 onChange={(e) => handleUpdateItemField({ name: "phone", value: e.target.value })}
@@ -191,7 +214,6 @@ const FormPersonalize = ({
                 <BtnContinue
                     onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
                     isButton={true}
-                // href={`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}`}
                 />
             </div>
         </div>

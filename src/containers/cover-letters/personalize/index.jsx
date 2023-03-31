@@ -30,16 +30,16 @@ const Contact = () => {
     const idCv = router.query.idCv;
 
     const {
-        coverPerson: {
-            personObj,
-        }
+        coverDataForm: {
+            coverDataObj,
+        },
     } = states;
 
-    React.useEffect(() => {
-        if (idCv != "new") {
-            dispatch(getCoverLetterById(idCv));
-        }
-    }, []);
+    // React.useEffect(() => {
+    //     if (idCv != "new") {
+    //         dispatch(getCoverLetterById(idCv));
+    //     }
+    // }, []);
 
     return (
         <>
@@ -48,7 +48,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={helperProgress({ objForms: personObj, arrField: fieldsName })}
+                interest={helperProgress({ objForms: coverDataObj, arrField: fieldsName })}
                 icon={contactIcon}
             />
             <FormPersonalize

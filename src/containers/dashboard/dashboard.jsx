@@ -19,7 +19,8 @@ import {
 } from "../../controllers/resumes";
 
 import {
-    fetchGetCoversList
+    fetchGetCoversList,
+    fetchPostUpdateCover
 } from "../../controllers/cover/covers";
 
 import {
@@ -79,6 +80,20 @@ const Dashboard = () => {
 
     const handleBlur = (stateName, id) => {
         handleUpdateNameResume(stateName, id);
+    }
+
+    const handlekeyUpCover = (e, stateName, id) => {
+        if (e.keyCode == 13) {
+            handleUpdateNameCover(stateName, id);
+        }
+    }
+
+    const handleBlurCover = (stateName, id) => {
+        handleUpdateNameCover(stateName, id);
+    }
+
+    const handleUpdateNameCover = (stateName, id) => {
+        dispatch(fetchPostUpdateCover({ id, data: { cover_name: stateName } }));
     }
 
     const handleUpdateNameResume = (stateName, id) => {
@@ -191,8 +206,8 @@ const Dashboard = () => {
                                                     label={item.coverName}
                                                     dateUpdate={item.updateDatetime}
                                                     handleEdit={() => handleOnUpdateCover(item)}
-                                                // handlekeyUp={handlekeyUpCover}
-                                                // handleBlur={handleBlurCover}
+                                                    handlekeyUp={handlekeyUpCover}
+                                                    handleBlur={handleBlurCover}
                                                 />
                                             ))
                                         }

@@ -1,4 +1,5 @@
 import Router, { useRouter } from "next/router";
+import React from "react";
 
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
@@ -17,9 +18,10 @@ import { StepFourteen } from "./StepFourteen";
 import { StepFifteen } from "./StepFifteen";
 import { StepSixteen } from "./StepSixteen";
 
-import { updateItemField } from "../../../slices/cover/coverExperience";
+import { updateItemField } from "../../../slices/cover/coverDataForm";
 import { routersPages } from "../../../constants/next-routers";
 import { ROUTES_COVER } from "../../../constants/routes";
+import { updateCoverLetterById } from "../../../controllers/cover/personalize";
 import { StepsName } from "../../../constants/cover";
 
 const FormExperience = ({
@@ -28,14 +30,13 @@ const FormExperience = ({
     idCv,
 }) => {
     const router = useRouter();
+    const refIdTimeout = React.useRef(undefined);
+    const isNew = (idCv == "new");
 
     const {
-        coverPerson: {
-            personObj,
-            status,
-        },
-        coverExperince: {
-            experienceObj,
+        coverDataForm: {
+            coverDataObj,
+            status
         },
         dependencies: {
             coutrys,
@@ -43,6 +44,7 @@ const FormExperience = ({
             fieldOfStudy,
             jopsTitle,
             companys,
+            skills,
         },
         auth: {
             autorizate: {
@@ -53,15 +55,35 @@ const FormExperience = ({
 
     const { step } = router.query;
 
-    const handleUpdateField = ({ name, value }) => {
-        dispatch(updateItemField({ name, value }));
+    const handleUpdateField = async ({ name, value, step = null }) => {
+        await dispatch(updateItemField({ name, value }));
+
+        if (!isNew && !step) {
+            await handleUpdateServer();
+        }
+
+        if (!!step) {
+            await dispatch((updateCoverLetterById({ idCv })));
+            await handleClicQuery(StepsName[step]);
+        }
     }
 
-    const handleClicQuery = (queryStep) => {
-        Router.push({
+    const handleClicQuery = async (queryStep) => {
+        await Router.push({
             pathname: `/${routersPages['coverLetter']}/${idCv}/${ROUTES_COVER['experience']}`,
             query: { step: queryStep },
         });
+    }
+
+    const handleUpdateServer = async (index) => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            await dispatch((updateCoverLetterById({ idCv })));
+            clearTimeout(refIdTimeout.current);
+        }, 300);
     }
 
     return (
@@ -72,7 +94,7 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         handleClicQuery={handleClicQuery}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -83,7 +105,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -94,7 +116,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -105,7 +127,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -116,7 +138,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                         fieldOfStudy={fieldOfStudy}
                     />
@@ -129,8 +151,10 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
+                        jopsTitleList={jopsTitle.list}
                         dispatch={dispatch}
+                        skills={skills}
                     />
                 )
             }
@@ -141,7 +165,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                     />
                 )
@@ -153,7 +177,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                     />
                 )
@@ -165,7 +189,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                     />
                 )
@@ -177,7 +201,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -188,7 +212,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                         jopsTitleList={jopsTitle.list}
                         companysList={companys.list}
@@ -202,7 +226,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                     />
                 )
@@ -214,7 +238,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -225,7 +249,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                         jopsTitleList={jopsTitle.list}
                         companysList={companys.list}
@@ -239,7 +263,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                     />
                 )
             }
@@ -250,7 +274,7 @@ const FormExperience = ({
                         handleClicQuery={handleClicQuery}
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
-                        experienceObj={experienceObj}
+                        coverDataObj={coverDataObj}
                         dispatch={dispatch}
                         jopsTitleList={jopsTitle.list}
                         companysList={companys.list}

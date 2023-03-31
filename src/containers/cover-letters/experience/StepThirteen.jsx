@@ -5,11 +5,11 @@ export const StepThirteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = (value) => {
-        handleUpdateField({ name: "questionCurrentlyWorking", value });
-        handleClicQuery(StepsName["graduatedTwo"]);
+    const handleClickBtn = async (value) => {
+        await handleUpdateField({ name: "questionCurrentlyWorking", value, step: "graduatedTwo" });
+        // await handleClicQuery(StepsName["graduatedTwo"]);
     }
 
     return (

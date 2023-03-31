@@ -9,22 +9,22 @@ export const StepTwo = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = (value) => {
-        handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value });
+    const handleClickBtn = async (value) => {
+        await handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value, step: value == "Y" ? "nameCollege" : "professionalSkills" });
 
-        if (value == "yes") {
-            handleClicQuery(StepsName["nameCollege"]);
-        } else if (value == "no") {
-            handleClicQuery(StepsName["professionalSkills"]);
-        }
+        // if (value == "Y") {
+        //     await handleClicQuery(StepsName["nameCollege"]);
+        // } else if (value == "N") {
+        //     await handleClicQuery(StepsName["professionalSkills"]);
+        // }
     }
 
     return (
         <div className="step-wr">
             {
-                (experienceObj.questionGraduateFromCollege == "yes") && (
+                (coverDataObj.questionGraduateFromCollege == "Y") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-2.svg"
@@ -35,7 +35,7 @@ export const StepTwo = ({
                                 <CRow>
                                     <CCol xs={6}>
                                         <DatePicker
-                                            selected={experienceObj.graduateDate}
+                                            selected={coverDataObj.graduateDate}
                                             onChange={(date) => handleUpdateField({ name: "graduateDate", value: date })}
                                             placeholderText="Date"
                                             name="graduateDate"
@@ -53,7 +53,7 @@ export const StepTwo = ({
             }
 
             {
-                (experienceObj.questionGraduateFromCollege == "no") && (
+                (coverDataObj.questionGraduateFromCollege == "N") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-1.svg"

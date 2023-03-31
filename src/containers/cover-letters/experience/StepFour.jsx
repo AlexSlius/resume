@@ -8,16 +8,16 @@ export const StepFour = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["studyOrDegree"]);
+    const handleClickBtn = async  () => {
+        await handleClicQuery(StepsName["studyOrDegree"]);
     }
 
     return (
         <div className="step-wr">
             {
-                (experienceObj.questionCurrentlyInCollegeUniversity == "") && (
+                (coverDataObj.questionCurrentlyInCollegeUniversity == "N") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-3.svg"
@@ -32,7 +32,7 @@ export const StepFour = ({
                                             label="Point Average"
                                             placeholder="Point Average"
                                             type="number"
-                                            value={experienceObj.pointAverage}
+                                            value={coverDataObj.pointAverage}
                                             onChange={(e) => handleUpdateField({ name: "pointAverage", value: e.target.value })}
                                         />
                                     </CCol>
@@ -45,7 +45,7 @@ export const StepFour = ({
             }
 
             {
-                (experienceObj.questionCurrentlyInCollegeUniversity == "yes") && (
+                (coverDataObj.questionCurrentlyInCollegeUniversity == "Y") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-1.svg"
@@ -58,7 +58,7 @@ export const StepFour = ({
                                         <Input
                                             label="Name university"
                                             placeholder="Name university"
-                                            value={experienceObj.nameCollegeOrUniversity}
+                                            value={coverDataObj.nameCollegeOrUniversity}
                                             onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
                                         />
                                     </CCol>

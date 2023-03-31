@@ -12,42 +12,44 @@ import { getCoverLetterById } from "../../../controllers/cover/personalize";
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
 
 const constFiled = [
-    "questionGraduateFromCollege",
+    // "questionGraduateFromCollege",
     "professionalSkills",
     "skillSet",
     "wordDescribes",
     "othersDescribe",
-    "questionHaveWorkExperience",
+    // "questionHaveWorkExperience",
     "applyingCompanyName",
     "applyingCompanyJobTitle",
     "applyingCompanyTitle",
     "applyingCompanyContact"
 ];
 
-const stepsField = (experienceObj) => {
+const stepsField = (coverDataObj) => {
     let ar = [...constFiled];
 
-    if (experienceObj.questionGraduateFromCollege == "yes") {
+    if (coverDataObj.questionGraduateFromCollege == "Y") {
         ar = [...ar, ...["graduateDate", "nameCollegeOrUniversity", "pointAverage", "fieldOfStudyOrDegree"]];
-    } else if (experienceObj.questionGraduateFromCollege == "no") {
-        ar = [...ar, ...["questionCurrentlyInCollegeUniversity"]];
+    } else if (coverDataObj.questionGraduateFromCollege == "N") {
+        // ar = [...ar, ...["questionCurrentlyInCollegeUniversity"]];
 
-        if (experienceObj.questionCurrentlyInCollegeUniversity == "yes") {
-            ar = [...ar, ...["expectedYearOfGraduation", "nameCollegeOrUniversity", "fieldOfStudyOrDegree"]];
-        } else if (experienceObj.questionCurrentlyInCollegeUniversity == "no") {
+        if (coverDataObj.questionCurrentlyInCollegeUniversity == "Y") {
+            // "expectedYearOfGraduation",
+            ar = [...ar, ...["nameCollegeOrUniversity", "fieldOfStudyOrDegree"]];
+        } else if (coverDataObj.questionCurrentlyInCollegeUniversity == "N") {
             // ar = [...ar, ...["expectedYearOfGraduation"]];
         }
     }
 
-    if (experienceObj.questionHaveWorkExperience == "yes") {
-        ar = [...ar, ...["industryHoldExperienceJobTitle", "industryHoldExperienceCompanyName", "workExperience", "workExperienceYears", "questionCurrentlyWorking"]];
-    } else if (experienceObj.questionHaveWorkExperience == "no") {
+    if (coverDataObj.questionHaveWorkExperience == "Y") {
+        // "questionCurrentlyWorking"
+        ar = [...ar, ...["industryHoldExperienceJobTitle", "industryHoldExperienceCompanyName", "workExperience", "workExperienceYears"]];
+    } else if (coverDataObj.questionHaveWorkExperience == "N") {
         // ar = [...ar, ...["expectedYearOfGraduation"]];
     }
 
-    if (experienceObj.questionCurrentlyWorking == "yes") {
+    if (coverDataObj.questionCurrentlyWorking == "Y") {
         ar = [...ar, ...["currentRoleCompanyName", "currentRoleJobTitle", "explainAnyWorkGaps"]];
-    } else if (experienceObj.questionCurrentlyWorking == "no") {
+    } else if (coverDataObj.questionCurrentlyWorking == "N") {
         ar = [...ar, ...["recentRoleCompanyName", "recentRoleJobTitle", "explainAnyWorkGaps"]];
     }
 
@@ -62,16 +64,16 @@ const Contact = () => {
     const idCv = router.query.idCv;
 
     const {
-        coverExperince: {
-            experienceObj,
-        }
+        coverDataForm: {
+            coverDataObj,
+        },
     } = states;
 
-    React.useEffect(() => {
-        if (idCv != "new") {
-            dispatch(getCoverLetterById(idCv));
-        }
-    }, []);
+    // React.useEffect(() => {
+    //     if (idCv != "new") {
+    //         dispatch(getCoverLetterById(idCv));
+    //     }
+    // }, [router.query]);
 
     return (
         <>
@@ -80,7 +82,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={helperProgress({ objForms: experienceObj, arrField: stepsField(experienceObj) })}
+                interest={helperProgress({ objForms: coverDataObj, arrField: stepsField(coverDataObj) })}
                 icon={employmentIcon}
             />
             <FormExperience

@@ -8,13 +8,14 @@ export const StepFifteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = (value) => {
-        if (value == "no") {
-            handleUpdateField({ name: "explainAnyWorkGaps", value: "no" });
+    const handleClickBtn = async (value) => {
+        if (value == "N") {
+            await handleUpdateField({ name: "explainAnyWorkGaps", value: "N", step: "graduatedFinish" });
+        } else {
+            await handleClicQuery(StepsName["graduatedFinish"]);
         }
-        handleClicQuery(StepsName["graduatedFinish"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
@@ -38,7 +39,7 @@ export const StepFifteen = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Reason"
-                                valueState={experienceObj.explainAnyWorkGaps || ''}
+                                valueState={coverDataObj.explainAnyWorkGaps || ''}
                                 // data={coutrys.list}
                                 name="explainAnyWorkGaps"
                                 handleSaveSelect={handleUpdateFiled}

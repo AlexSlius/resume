@@ -16,7 +16,7 @@ export const StepSixteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
     jopsTitleList,
     companysList,
@@ -57,7 +57,7 @@ export const StepSixteen = ({
                                 <InputSelect
                                     label="Company Name"
                                     placeholder="Company Name"
-                                    valueState={experienceObj.applyingCompanyName || ''}
+                                    valueState={coverDataObj.applyingCompanyName || ''}
                                     data={companysList || []}
                                     isAddDiv={true}
                                     name="applyingCompanyName"
@@ -73,7 +73,7 @@ export const StepSixteen = ({
                                 <InputSelect
                                     label="Job Title"
                                     placeholder="Job Title"
-                                    valueState={experienceObj.applyingCompanyJobTitle || ''}
+                                    valueState={coverDataObj.applyingCompanyJobTitle || ''}
                                     data={jopsTitleList || []}
                                     isAddDiv={true}
                                     name="applyingCompanyJobTitle"
@@ -90,7 +90,7 @@ export const StepSixteen = ({
                             <CCol xs={2}>
                                 <InputSelect
                                     placeholder="Title"
-                                    valueState={experienceObj.applyingCompanyTitle || ''}
+                                    valueState={coverDataObj.applyingCompanyTitle || ''}
                                     // data={coutrys.list}
                                     name="applyingCompanyTitle"
                                     handleSaveSelect={handleUpdateFiled}
@@ -102,7 +102,7 @@ export const StepSixteen = ({
                                 <Input
                                     label="Name of Company Contact"
                                     placeholder="Name of Company Contact"
-                                    value={experienceObj.applyingCompanyContact}
+                                    value={coverDataObj.applyingCompanyContact}
                                     onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value })}
                                 />
                             </CCol>

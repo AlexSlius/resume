@@ -14,14 +14,14 @@ export const BtnsStatus = ({
                 label={textBtnCont}
                 isButton={true}
                 className="btn--blue btn-style-min"
-                onHandle={() => onHanlebtn("yes")}
+                onHandle={() => onHanlebtn("Y")}
             />
             <ButtonIcon
                 icon={iconClos}
                 label="No"
                 isButton={true}
                 className="btn--grey-two btn-style-min"
-                onHandle={() => onHanlebtn("no")}
+                onHandle={() => onHanlebtn("N")}
             />
         </div>
     )

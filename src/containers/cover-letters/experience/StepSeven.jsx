@@ -27,21 +27,27 @@ export const StepSeven = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["describes"]);
+    const handleClickBtn = async () => {
+        await handleClicQuery(StepsName["describes"]);
     }
 
     const onHanleUpdate = (value) => {
-        let arr = experienceObj.skillSet.split(',');
-        let index = arr.findIndex((el) => el == value);
+        let arr = [];
 
-        if (index != -1) {
-            arr.splice(index, 1);
+        if (!!coverDataObj.skillSet) {
+            arr = coverDataObj.skillSet.split(',');
+            let index = arr.findIndex((el) => el == value);
+
+            if (index != -1) {
+                arr.splice(index, 1);
+            } else {
+                arr.push(value);
+            }
         } else {
-            arr.push(value);
+            arr = [value];
         }
 
         handleUpdateField({ name: "skillSet", value: arr.join(",") });
@@ -63,7 +69,7 @@ export const StepSeven = ({
                                 id={`check${index}`}
                                 label={item}
                                 isBold={true}
-                                checkbox={listCheck.includes(item) ? "yes" : ""}
+                                checkbox={coverDataObj.skillSet.includes(item) ? true : false}
                                 onChange={() => onHanleUpdate(item)}
                             />
                         ))

@@ -8,11 +8,11 @@ export const StepNine = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["workExperinence"]);
+    const handleClickBtn = async  () => {
+        await handleClicQuery(StepsName["workExperinence"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
@@ -36,7 +36,7 @@ export const StepNine = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
-                                valueState={experienceObj.othersDescribe || ''}
+                                valueState={coverDataObj.othersDescribe || ''}
                                 // data={coutrys.list}
                                 name="othersDescribe"
                                 handleSaveSelect={handleUpdateFiled}

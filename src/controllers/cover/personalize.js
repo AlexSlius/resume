@@ -8,15 +8,25 @@ import { routersPages } from '../../constants/next-routers';
 import { addItemNotification } from "../../slices/notifications";
 // import { setUpdateResumeActive } from '../resumeData';
 import { camelToSnake } from '../../helpers/caseConverters';
+import { doNotTransmitEmptyData } from '../../utils/emptyData';
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async (_, thunkAPI) => {
-    const { coverPerson: { personObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
+    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
 
-    const newObj = camelToSnake(personObj);
+    const newObj = camelToSnake({
+        firstName: coverDataObj.firstName,
+        lastName: coverDataObj.lastName,
+        country: coverDataObj.country,
+        city: coverDataObj.city,
+        state: coverDataObj.state,
+        zipCode: coverDataObj.zipCode,
+        email: coverDataObj.email,
+        phone: coverDataObj.phone,
+    });
+
     const response = await api.personalize.addCover(newObj);
 
-    if (isRespondServerSuccesss(response)) {
-        // thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
+    if (response?.status == "added") {
         await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
     }
 
@@ -28,9 +38,19 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async (_, thunk
 })
 
 export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewCover = false }, thunkAPI) => {
-    const { coverPerson: { personObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
+    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
 
-    const newObj = camelToSnake(personObj);
+    const newObj = camelToSnake({
+        firstName: coverDataObj.firstName,
+        lastName: coverDataObj.lastName,
+        country: coverDataObj.country,
+        city: coverDataObj.city,
+        state: coverDataObj.state,
+        zipCode: coverDataObj.zipCode,
+        email: coverDataObj.email,
+        phone: coverDataObj.phone,
+    });
+
     const response = await api.personalize.createNewCoverBasic(newObj);
 
     if (isSuccessNewContact(response)) {
@@ -51,19 +71,19 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewC
 export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
 
-    console.log("response: ", response);
-    return response[0];
+    return response;
 })
 
-// export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv, dataImage }, thunkAPI) => {
-//     const { contacts: { contactObj } } = thunkAPI.getState()
-//     const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture);
+export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterById', async ({ idCv }, thunkAPI) => {
+    const { coverDataForm: { coverDataObj } } = thunkAPI.getState();
 
-//     const response = await api.contact.updateContact(idCv, newObj);
+    const newObj = camelToSnake(doNotTransmitEmptyData(coverDataObj));
 
-//     if (isError(response)) {
-//         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
-//     }
+    const response = await api.personalize.updateCoverLetterById(idCv, newObj);
 
-//     return response;
-// });
+    if (isError(response)) {
+        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+    }
+
+    return response;
+});

@@ -11,6 +11,6 @@ const ResumePersonalizePage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({});
+export const getServerSideProps = withPublicRoute({ isGetFormCover: true });
 
 export default ResumePersonalizePage;

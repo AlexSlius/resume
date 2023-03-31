@@ -5,16 +5,16 @@ export const StepTen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
 }) => {
-    const handleClickBtn = (value) => {
-        handleUpdateField({ name: "questionHaveWorkExperience", value });
+    const handleClickBtn = async (value) => {
+        await handleUpdateField({ name: "questionHaveWorkExperience", value, step: value == "Y" ? "previousJob" : "graduatedFinish" });
 
-        if (value == "yes") {
-            handleClicQuery(StepsName["previousJob"]);
-        } else if (value == "no") {
-            handleClicQuery(StepsName["graduatedFinish"]);
-        }
+        // if (value == "Y") {
+        //     await handleClicQuery(StepsName["previousJob"]);
+        // } else if (value == "N") {
+        //     await handleClicQuery(StepsName["graduatedFinish"]);
+        // }
     }
 
     return (

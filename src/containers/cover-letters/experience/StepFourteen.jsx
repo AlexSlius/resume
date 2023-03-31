@@ -15,13 +15,13 @@ export const StepFourteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
     jopsTitleList,
     companysList,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["workGaps"]);
+    const handleClickBtn = async  () => {
+        await handleClicQuery(StepsName["workGaps"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
@@ -49,7 +49,7 @@ export const StepFourteen = ({
     return (
         <div className="step-wr">
             {
-                (experienceObj.questionCurrentlyWorking == "yes") && (
+                (coverDataObj.questionCurrentlyWorking == "Y") && (
                     <div>
                         <StepContent
                             icon="/images/cover/icon-cover-1.svg"
@@ -62,7 +62,7 @@ export const StepFourteen = ({
                                         <InputSelect
                                             label="Company Name"
                                             placeholder="Company Name"
-                                            valueState={experienceObj.currentRoleCompanyName || ''}
+                                            valueState={coverDataObj.currentRoleCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
                                             name="currentRoleCompanyName"
@@ -78,7 +78,7 @@ export const StepFourteen = ({
                                         <InputSelect
                                             label="Job Title"
                                             placeholder="Job Title"
-                                            valueState={experienceObj.currentRoleJobTitle || ''}
+                                            valueState={coverDataObj.currentRoleJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}
                                             name="currentRoleJobTitle"
@@ -99,7 +99,7 @@ export const StepFourteen = ({
             }
 
             {
-                (experienceObj.questionCurrentlyWorking == "no") && (
+                (coverDataObj.questionCurrentlyWorking == "N") && (
                     < div >
                         <StepContent
                             icon="/images/cover/icon-cover-1.svg"
@@ -112,7 +112,7 @@ export const StepFourteen = ({
                                         <InputSelect
                                             label="Company Name"
                                             placeholder="Company Name"
-                                            valueState={experienceObj.recentRoleCompanyName || ''}
+                                            valueState={coverDataObj.recentRoleCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
                                             name="recentRoleCompanyName"
@@ -128,7 +128,7 @@ export const StepFourteen = ({
                                         <InputSelect
                                             label="Job Title"
                                             placeholder="Job Title"
-                                            valueState={experienceObj.recentRoleJobTitle || ''}
+                                            valueState={coverDataObj.recentRoleJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}
                                             name="recentRoleJobTitle"

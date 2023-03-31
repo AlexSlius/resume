@@ -6,10 +6,23 @@ import { HYDRATE } from 'next-redux-wrapper';
 //   getBasicContact,
 //   contactAddNew
 // } from "../controllers/contacts";
+
+import {
+    getCoverLetterById
+} from "../../controllers/cover/personalize";
+
 import { statusLoaded, statusLoader } from '../../constants/statuses';
 
 const initialState = {
-    experienceObj: {
+    coverDataObj: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        country: "",
+        city: "",
+        zipCode: "",
+        state: "",
         questionGraduateFromCollege: "",
         graduateDate: "",
         questionCurrentlyInCollegeUniversity: "",
@@ -17,7 +30,7 @@ const initialState = {
         nameCollegeOrUniversity: "",
         pointAverage: "",
         fieldOfStudyOrDegree: "",
-        professionalSkills: "Communication,Responsive Web Design,User Interface Design,Dashboard,Prototyping",
+        professionalSkills: "",
         skillSet: "",
         wordDescribes: "",
         othersDescribe: "",
@@ -42,23 +55,32 @@ const initialState = {
 };
 
 export const slice = createSlice({
-    name: 'coverExperince',
+    name: 'coverDataForm',
     initialState,
     reducers: {
         updateItemField(state, action) {
             let { name, value } = action.payload;
-            state.experienceObj[name] = value;
+            state.coverDataObj[name] = value;
         },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                experienceObj: {
-                    ...state.experienceObj,
-                    ...action.payload.coverPerson.experienceObj,
+                coverDataObj: {
+                    ...state.coverDataObj,
+                    ...action.payload.coverDataForm.coverDataObj,
                 }
             }
+        },
+        // get
+        [getCoverLetterById.pending]: (state) => {
+            state.coverDataObj = initialState.coverDataObj;
+            state.status = statusLoader;
+        },
+        [getCoverLetterById.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
+            state.coverDataObj = action.payload.data;
         },
     }
 });

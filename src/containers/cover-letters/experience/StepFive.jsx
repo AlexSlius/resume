@@ -10,20 +10,20 @@ export const StepFive = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
     fieldOfStudy,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["professionalSkills"]);
+    const handleClickBtn = async () => {
+        await handleClicQuery(StepsName["professionalSkills"]);
     }
 
-    const handleUpdateFiled = ({ name, value }) => {
-        handleUpdateField({ name, value });
+    const handleUpdateFiled = async ({ name, value }) => {
+        await handleUpdateField({ name, value });
     }
 
-    const handleRequest = () => {
-        dispatch(fetchGetFieldOfStudy(experienceObj.fieldOfStudyOrDegree));
+    const handleRequest = async () => {
+        await dispatch(fetchGetFieldOfStudy(coverDataObj.fieldOfStudyOrDegree));
     }
 
     return (
@@ -38,7 +38,7 @@ export const StepFive = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Please Select"
-                                valueState={experienceObj.fieldOfStudyOrDegree || ''}
+                                valueState={coverDataObj.fieldOfStudyOrDegree || ''}
                                 data={fieldOfStudy.list}
                                 name="fieldOfStudyOrDegree"
                                 handleSaveSelect={handleUpdateFiled}

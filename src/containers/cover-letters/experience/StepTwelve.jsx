@@ -9,11 +9,11 @@ export const StepTwelve = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
-    experienceObj,
+    coverDataObj,
     dispatch,
 }) => {
-    const handleClickBtn = () => {
-        handleClicQuery(StepsName["graduatedStep"]);
+    const handleClickBtn = async () => {
+        await handleClicQuery(StepsName["graduatedStep"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
@@ -39,7 +39,7 @@ export const StepTwelve = ({
                                 label="Work experience"
                                 placeholder="Work experience"
                                 type="number"
-                                value={experienceObj.workExperience}
+                                value={coverDataObj.workExperience}
                                 onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value })}
                             />
                         </CCol>
@@ -48,7 +48,7 @@ export const StepTwelve = ({
                         <CCol xs={6}>
                             <InputSelect
                                 placeholder="Year(s)"
-                                valueState={experienceObj.workExperienceYears || ''}
+                                valueState={coverDataObj.workExperienceYears || ''}
                                 // data={coutrys.list}
                                 name="workExperienceYears"
                                 handleSaveSelect={handleUpdateFiled}
