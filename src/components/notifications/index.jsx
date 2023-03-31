@@ -3,11 +3,11 @@ import { isArray } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 
 import style from "./Style.module.scss";
-import { Notification } from "./natification";
+import { Notification } from "./notification";
 import { removeItemNotification, removeItemShift } from "../../slices/notifications";
 
 
-const Natifications = ({ store }) => {
+const Notifications = ({ store }) => {
     const dispatch = useDispatch();
     const { notificationData } = useSelector(state => state);
 
@@ -40,4 +40,4 @@ const Natifications = ({ store }) => {
     )
 }
 
-export default Natifications;
+export default Notifications;

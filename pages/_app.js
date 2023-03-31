@@ -1,21 +1,24 @@
-import Head from "next/head"
-import { Provider } from "react-redux"
 import { useState, useEffect } from "react";
+import Head from "next/head";
+import { Provider } from "react-redux"
 import { useRouter } from "next/router";
 
 import App from "../src/App";
+
+// Components
 import { PreloaderPage } from "../src/components/preloaderPage";
+import Notifications from "../src/components/notifications";
+import { Cookies } from "../src/components/cookies";
 
 import { wrapper } from '../src/store'
 
+// Styles
 import 'swiper/css';
 import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
 
-import Natifications from "../src/components/natifications";
-import { Cookies } from "../src/components/cookies";
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
@@ -24,7 +27,7 @@ const MyApp = ({ Component, ...rest }) => {
   //     resumeActive
   //   }
   // } = store.getState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
   const router = useRouter();
 
@@ -33,7 +36,8 @@ const MyApp = ({ Component, ...rest }) => {
     require('zebra_datepicker');
   }
 
-  // useEffect(() => {
+  useEffect(() => {
+    setLoading(false);
   //   router.events.on("routeChangeStart", () => {
   //     setLoading(true);
   //   });
@@ -41,7 +45,7 @@ const MyApp = ({ Component, ...rest }) => {
   //   router.events.on("routeChangeComplete", () => {
   //     setLoading(false);
   //   });
-  // }, []);
+  }, []);
 
   return (
     <Provider store={store}>
@@ -54,7 +58,7 @@ const MyApp = ({ Component, ...rest }) => {
         <Component
           {...props}
         />
-        <Natifications />
+        <Notifications />
         {
           loading && (
             <PreloaderPage />
