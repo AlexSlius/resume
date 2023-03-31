@@ -146,7 +146,7 @@ export const CoverLatter = () => {
                         {
                             promoNumbers ?
                                 (
-                                    promoNumbers.map(({count, firstText, secondText, image, percent}, index) => (
+                                    promoNumbers.map(({ count, firstText, secondText, image, percent }, index) => (
                                         <PromoNumbers key={`promoNumber-${index}`} count={count} firstText={firstText} secondText={secondText} image={image} percent={percent} />
                                     ))
                                 ) :
@@ -172,7 +172,7 @@ export const CoverLatter = () => {
 
                             <ul className="advantage-list">
                                 {
-                                    advantages.map(({image, width, height, title, text}, index) => (
+                                    advantages.map(({ image, width, height, title, text }, index) => (
                                         <AdvantagesItem key={`advantage-${index}`} image={image} width={width} height={height} title={title} text={text} />
                                     ))
                                 }
@@ -299,7 +299,7 @@ export const CoverLatter = () => {
 
                     <ul className="sure-list">
                         {
-                            sureItems.map(({image, name, text}, index) => (
+                            sureItems.map(({ image, name, text }, index) => (
                                 <SureItem key={`sire-item-${index}`} photo={image} name={name} text={text} />
                             ))
                         }
@@ -348,7 +348,7 @@ export const CoverLatter = () => {
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
                                         <div className="doc-btn" onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))} >
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__btn btns btn--blue">Use this template</Link>
+                                            <Link href={`/${routersPages['coverLetterNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>
                                 ))
@@ -368,7 +368,7 @@ export const CoverLatter = () => {
                         <div className="faq-bottom-text">
                             Didn't find what you're looking for?
                             {
-                                ['xs'].includes(currentResolution) ? 
+                                ['xs'].includes(currentResolution) ?
                                     (
                                         <Link href={`/${routersPages['contactUs']}`}>Use our FAQ</Link>
                                     ) :

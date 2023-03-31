@@ -11,6 +11,7 @@ import iconShare from "/public/images/icons/icon_share.svg?sprite"
 export const CardResume = ({
     label,
     id = null,
+    image = null,
     dateUpdate,
     handleEdit = () => { },
     handlekeyUp = () => { },
@@ -21,7 +22,7 @@ export const CardResume = ({
     return (
         <div className={`${style.card}`}>
             <div className={`${style.card__head}`}>
-                <img src="/images/other/img_resume.png" alt="picture resume" />
+                <img src={image} alt="picture resume" />
                 <div className={`${style.card__navigation}`}>
                     <div>
                         <button className="btn-download">

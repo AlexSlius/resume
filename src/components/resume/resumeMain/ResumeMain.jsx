@@ -60,7 +60,9 @@ const ResumeMain = ({
 
    React.useEffect(() => {
       if (idCv != "new") {
-         dispatch(getResumeActive({ idCv }));
+         if (!isCover) {
+            dispatch(getResumeActive({ idCv }));
+         }
       }
    }, []);
 

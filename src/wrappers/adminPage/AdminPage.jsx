@@ -67,7 +67,7 @@ const AdminPage = ({ children, isCover = false }) => {
                <CCol className={`${style.main_content} main-content`}>
                   {children}
                </CCol>
-               <Resume isCover={isCover}/>
+               <Resume isCover={isCover} />
             </CRow>
          </CContainer>
       </>

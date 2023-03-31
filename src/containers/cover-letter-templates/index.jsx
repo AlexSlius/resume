@@ -8,7 +8,7 @@ import { ButtonIcon } from "../../components/uis/buttonIcon";
 import Icon from "../../components/Icon";
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 
-import { updateActiveResumeNew } from "../../slices/resumeData";
+import { updateActiveCoverNew } from "../../slices/cover/coverData";
 import { isLoader } from "../../helpers/loadings"
 
 import iconAddNew from "/public/images/icons/icon-add-new-white.svg?sprite";
@@ -21,9 +21,9 @@ import iconProfessional from "/public/images/icons/icon-professional.svg?sprite"
 import iconModern from "/public/images/icons/icon-modern.svg?sprite";
 
 import { routersPages } from "../../constants/next-routers";
-import { getResumesTemplates } from "../../controllers/resumeData";
+import { getCoverTemplates } from "../../controllers/cover/coverData";
 
-export const JobWinningPage = () => {
+export const CoverLetterTemplates = () => {
     const [currentPage, setCurrentPage] = React.useState(2);
     const dispatch = useDispatch();
     const router = useRouter();
@@ -45,11 +45,11 @@ export const JobWinningPage = () => {
         theme: {
             currentResolution
         },
-        resumeData,
+        coverData,
     } = useSelector((state) => state);
 
     const handleUpload = async () => {
-        let res = await dispatch(getResumesTemplates({ page: currentPage, category: (category === "undefined" || category == "all") ? "" : category }));
+        let res = await dispatch(getCoverTemplates({ page: currentPage, category: (category === "undefined" || category == "all") ? "" : category }));
 
         if (res?.payload?.items) {
             setCurrentPage(prev => prev + 1)
@@ -60,7 +60,7 @@ export const JobWinningPage = () => {
         <section className="contact-page">
             <div className="containers text-center">
                 <h1 className="h1">
-                    Job-winning resume template<span className="icon-right-top">s</span>
+                    Cover letter template<span className="icon-right-top">s</span>
                 </h1>
                 <p className="bottom-text">
                     Each resume template is expertly designed and follows the exact “resume rules” hiring
@@ -68,7 +68,7 @@ export const JobWinningPage = () => {
                 </p>
 
                 <div className="btn-centers-w mt-40">
-                    <ButtonIcon href={routersPages['resumeBuilderNew']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
+                    <ButtonIcon href={routersPages['coverLetterNew']} icon={iconAddNew} label="Create cover letter" className="btn--blue" />
                 </div>
 
                 <div className="wr-resumes">
@@ -107,17 +107,17 @@ export const JobWinningPage = () => {
 
                     <div className="items-resumes">
                         {
-                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
+                            isArray(coverData?.list?.items) && coverData.list.items.map((item, index) => {
                                 return (
                                     <div className="item-card-resum" key={index}>
-                                        <div className="item-card-resum__head " onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`}>
+                                        <div className="item-card-resum__head " onClick={() => dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))}>
+                                            <Link href={`/${routersPages['coverLetterNew']}`}>
                                                 <img loading="lazy" src={item.image} />
                                             </Link>
                                         </div>
                                         <div className="item-card-resum__bot">
-                                            <div className="item-card-resum__tt" onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
-                                                <Link href={`/${routersPages['resumeBuilderNew']}`} className="item-card-resum__titl">{item.name}</Link>
+                                            <div className="item-card-resum__tt" onClick={() => dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))}>
+                                                <Link href={`/${routersPages['coverLetterNew']}`} className="item-card-resum__titl">{item.name}</Link>
                                                 {
                                                     (isArray(item?.types) && item.types.length > 0) && (
                                                         <div className="item-card-resum__types">
@@ -143,9 +143,9 @@ export const JobWinningPage = () => {
                     </div>
                 </div>
                 {
-                    ((resumeData?.list?.count_pages > 1) && (resumeData?.list?.count_pages + 1 > currentPage)) && (
+                    ((coverData?.list?.count_pages > 1) && (coverData?.list?.count_pages + 1 > currentPage)) && (
                         <div className="btn-centers-w mt-40">
-                            <LoadChildrenBtn isLoad={isLoader(resumeData.status)}>
+                            <LoadChildrenBtn isLoad={isLoader(coverData.status)}>
                                 <ButtonIcon
                                     icon={iconUploadMore}
                                     label="Upload more"

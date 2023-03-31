@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
@@ -6,6 +7,7 @@ import HeadMainContent from "../../../components/headMainContent/HeadMainContent
 import { Progress } from "../../../components/progress";
 
 import { helperProgress } from "../../../helpers/helperProgress";
+import { getCoverLetterById } from "../../../controllers/cover/personalize";
 
 import contactIcon from "/public/images/icons/contact.svg?sprite"
 
@@ -32,6 +34,12 @@ const Contact = () => {
             personObj,
         }
     } = states;
+
+    React.useEffect(() => {
+        if (idCv != "new") {
+            dispatch(getCoverLetterById(idCv));
+        }
+    }, []);
 
     return (
         <>
