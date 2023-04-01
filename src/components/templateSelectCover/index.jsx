@@ -12,7 +12,6 @@ import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelectCover = ({
     status = "",
-    isResume = false,
     stateLineSpacing = 50,
     stateFontSize = 50,
     data,

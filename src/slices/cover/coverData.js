@@ -3,14 +3,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
 
-// import {
-//     getResumesTemplates,
-//     fetchGetcoverData,
-//     getResumeActive,
-// } from "../controllers/coverData";
-
 import {
     getCoverTemplates,
+    getCoverDataActive,
 } from "../../controllers/cover/coverData";
 
 const initialState = {
@@ -18,9 +13,8 @@ const initialState = {
         items: [],
         count_pages: 0,
     },
-    data: {},
-    coverActive: null,
-    coverActiveNew: {
+    resumeActive: null,
+    resumeActiveNew: {
         slug: "001-CV",
         id: 1,
         template_class: "",
@@ -36,7 +30,7 @@ export const slice = createSlice({
     initialState,
     reducers: {
         updateActiveCoverNew(state, action) {
-            state.coverActiveNew = action.payload;
+            state.resumeActiveNew = action.payload;
         }
     },
     extraReducers: {
@@ -45,34 +39,25 @@ export const slice = createSlice({
                 ...state,
                 list: { ...state.list, ...action.payload.coverData.list },
                 data: { ...state.data, ...action.payload.coverData.data },
-                coverActive: { ...state.coverActive, ...action.payload.coverData.coverActive },
+                resumeActive: { ...state.resumeActive, ...action.payload.coverData.resumeActive },
             }
         },
         // get resume active
-        // [getResumeActive.pending]: (state) => {
-        //     state.statusResumeActive = statusLoader;
-        // },
-        // [getResumeActive.fulfilled]: (state, action) => {
-        //     state.statusResumeActive = statusLoaded;
-        //     state.coverActive = action.payload;
-        // },
+        [getCoverDataActive.pending]: (state) => {
+            state.statusResumeActive = statusLoader;
+        },
+        [getCoverDataActive.fulfilled]: (state, action) => {
+            state.statusResumeActive = statusLoaded;
+            state.resumeActive = action.payload;
+        },
         // get templates list
         [getCoverTemplates.pending]: (state) => {
             state.status = statusLoader;
         },
         [getCoverTemplates.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            // state.list = action.payload;
             state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
         },
-        // get data
-        // [fetchGetcoverData.pending]: (state) => {
-        //     state.status = statusLoader;
-        // },
-        // [fetchGetcoverData.fulfilled]: (state, action) => {
-        //     state.status = statusLoaded;
-        //     state.data = action.payload;
-        // },
     }
 });
 

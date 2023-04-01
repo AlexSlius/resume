@@ -15,6 +15,7 @@ import { Buttonhelp } from "../../components/uis/buttonHelp"
 import CustomizedSlider from '../../components/uis/range';
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
+import { updateActiveCoverNew } from "../../slices/cover/coverData";
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -28,6 +29,17 @@ import {
     setUpdateResumeActive,
     getResumesTemplates
 } from "../../controllers/resumeData";
+
+import {
+    getCoverDataActive,
+    setUpdateCoverDataActive,
+    getCoverTemplates,
+} from "../../controllers/cover/coverData";
+
+import {
+    getCoverLetterById
+} from "../../controllers/cover/personalize";
+
 
 const Templates = ({ isCover = false }) => {
     const refIdTimeout = React.useRef(undefined);
@@ -56,6 +68,8 @@ const Templates = ({ isCover = false }) => {
             currentResolution
         },
         resumeData,
+        coverData,
+        coverDataForm,
         contacts: {
             contactObj,
             contactObjNew,
@@ -74,6 +88,8 @@ const Templates = ({ isCover = false }) => {
         careers,
     } = useSelector((state) => state);
 
+    const dataOther = isCover ? coverData : resumeData;
+
     let dataResumeTemplate = {
         contact: isNewResume ? [contactObjNew] : [contactObj],
         employment: employment.employmentObj,
@@ -90,6 +106,18 @@ const Templates = ({ isCover = false }) => {
         certificates: certificaties.certificatiesObj,
     };
 
+    let dataCoverLetterTemplate = {
+        firstName: coverDataForm.coverDataObjNew.firstName,
+        lastName: coverDataForm.coverDataObjNew.lastName,
+        email: coverDataForm.coverDataObjNew.email,
+        phone: coverDataForm.coverDataObjNew.phone,
+        country: coverDataForm.coverDataObjNew.country,
+        city: coverDataForm.coverDataObjNew.city,
+        zipCode: coverDataForm.coverDataObjNew.zipCode,
+        state: coverDataForm.coverDataObjNew.state,
+        coverGenerateDate: null,
+    };
+
     // update resume
     const handleResume = (item) => {
         if (!isCover) {
@@ -99,7 +127,11 @@ const Templates = ({ isCover = false }) => {
                 dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))
             }
         } else {
-
+            if (idCv != "new") {
+                dispatch(setUpdateCoverDataActive({ idCv, data: { cover_template_id: item.id }, isGet: true }));
+            } else {
+                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))
+            }
         }
     }
 
@@ -117,16 +149,24 @@ const Templates = ({ isCover = false }) => {
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            if (!isCover) {
-                dispatch(setUpdateResumeActive({
-                    idCv, data: {
-                        cv_template_id: resumeData?.resumeActive?.template_id,
-                        template_line_spacing: stateLineSpacing,
-                        template_text_size: stateFontSize,
-                    }, isGet: false
-                }));
-            } else {
-                // cover
+            if (idCv != "new") {
+                if (!isCover) {
+                    dispatch(setUpdateResumeActive({
+                        idCv, data: {
+                            cv_template_id: dataOther?.resumeActive?.template_id,
+                            template_line_spacing: stateLineSpacing,
+                            template_text_size: stateFontSize,
+                        }, isGet: false
+                    }));
+                } else {
+                    dispatch(setUpdateCoverDataActive({
+                        idCv, data: {
+                            cover_template_id: dataOther?.resumeActive?.template_id,
+                            template_line_spacing: stateLineSpacing,
+                            template_text_size: stateFontSize,
+                        }, isGet: false
+                    }));
+                }
             }
 
             clearTimeout(refIdTimeout.current);
@@ -140,10 +180,18 @@ const Templates = ({ isCover = false }) => {
     }
 
     const handleUpdateColor = (dataResume, value) => {
-        if (idCv != "new") {
-            dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
+        if (!isCover) {
+            if (idCv != "new") {
+                dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
+            } else {
+                dispatch(updateActiveResumeNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
+            }
         } else {
-            dispatch(updateActiveResumeNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
+            if (idCv != "new") {
+                dispatch(setUpdateCoverDataActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
+            } else {
+                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))
+            }
         }
     }
 
@@ -158,7 +206,7 @@ const Templates = ({ isCover = false }) => {
     React.useEffect(() => {
         async function start() {
             if (!isCover) {
-                if (fetching && resumeData?.list?.count_pages > currentPage) {
+                if (fetching && dataOther?.list?.count_pages > currentPage) {
                     let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
 
                     if (res?.payload?.items) {
@@ -167,7 +215,14 @@ const Templates = ({ isCover = false }) => {
                     }
                 }
             } else {
-                // get cover 
+                if (fetching && dataOther?.list?.count_pages > currentPage) {
+                    let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
+
+                    if (res?.payload?.items) {
+                        setCurrentPage(prev => prev + 1);
+                        setFetching(false);
+                    }
+                }
             }
         }
         start();
@@ -180,9 +235,9 @@ const Templates = ({ isCover = false }) => {
     }, [stateLineSpacing, stateFontSize]);
 
     React.useEffect(() => {
-        setStateLIneSpacig(resumeData?.resumeActive?.template_line_spacing ? +resumeData?.resumeActive?.template_line_spacing : 50);
-        setStateFontSize(resumeData?.resumeActive?.template_text_size ? +resumeData?.resumeActive?.template_text_size : 50);
-    }, [resumeData]);
+        setStateLIneSpacig(dataOther?.resumeActive?.template_line_spacing ? +dataOther?.resumeActive?.template_line_spacing : 50);
+        setStateFontSize(dataOther?.resumeActive?.template_text_size ? +dataOther?.resumeActive?.template_text_size : 50);
+    }, [dataOther]);
 
     React.useEffect(() => {
         if (idCv != "new") {
@@ -191,6 +246,8 @@ const Templates = ({ isCover = false }) => {
                 dispatch(getResumeActive({ idCv }));
             } else {
                 // get cover 
+                dispatch(getCoverLetterById(idCv));
+                dispatch(getCoverDataActive({ idCv }));
             }
         }
 
@@ -203,7 +260,7 @@ const Templates = ({ isCover = false }) => {
 
     React.useEffect(() => {
         setPagePagCurrent(1);
-    }, [resumeData.resumeActive]);
+    }, [dataOther.resumeActive]);
 
     React.useEffect(() => {
         if (typeof window != "undefined") {
@@ -212,8 +269,8 @@ const Templates = ({ isCover = false }) => {
                 setPagesPag(devPages.length);
             }
         }
-    }, [resumeData?.data, resumeData.resumeActive]);
-    
+    }, [dataOther?.data, dataOther.resumeActive]);
+
 
     React.useEffect(() => {
         if (typeof window != "undefined") {
@@ -232,7 +289,7 @@ const Templates = ({ isCover = false }) => {
                 }
             }
         }
-    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive]);
+    }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
 
     return (
         <div className="page-templates">
@@ -245,8 +302,8 @@ const Templates = ({ isCover = false }) => {
                     </div>
                     <div className="pt-ts scroll-style" ref={refWr}>
                         {
-                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
-                                let classActive = isNewResume ? `${item.slug == resumeData.resumeActiveNew.slug ? "active" : ""}` : `${item.id == resumeData?.resumeActive?.template_id ? "active" : ""}`;
+                            isArray(dataOther?.list?.items) && dataOther.list.items.map((item, index) => {
+                                let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
 
                                 return (
                                     <div
@@ -292,15 +349,15 @@ const Templates = ({ isCover = false }) => {
                                 {
                                     !isCover && (
                                         <TemplatesSelect
-                                            status={resumeData?.status}
+                                            status={dataOther?.status}
                                             stateLineSpacing={stateLineSpacing}
                                             stateFontSize={stateFontSize}
                                             reportTemplateRef={reportTemplateRef}
 
-                                            resumeData={resumeData}
-                                            data={isNewResume ? dataResumeTemplate : resumeData?.data}
-                                            resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
-                                            statusResumeActive={resumeData?.statusResumeActive}
+                                            dataOther={dataOther}
+                                            data={isNewResume ? dataResumeTemplate : dataOther?.data}
+                                            resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
+                                            statusResumeActive={dataOther?.statusResumeActive}
                                         />
                                     )
                                 }
@@ -308,15 +365,15 @@ const Templates = ({ isCover = false }) => {
                                 {
                                     isCover && (
                                         <TemplatesSelectCover
-                                            status={resumeData?.status}
+                                            status={dataOther?.status}
                                             stateLineSpacing={stateLineSpacing}
                                             stateFontSize={stateFontSize}
                                             reportTemplateRef={reportTemplateRef}
 
-                                            resumeData={resumeData}
-                                            data={isNewResume ? dataResumeTemplate : resumeData?.data}
-                                            resumeActive={isNewResume ? resumeData.resumeActiveNew.slug : resumeData?.resumeActive?.template_slug}
-                                            statusResumeActive={resumeData?.statusResumeActive}
+                                            resumeData={dataOther}
+                                            data={isNewResume ? dataCoverLetterTemplate : { ...coverDataForm.coverDataObj, coverGenerateDate: coverDataForm.coverGenerateDate }}
+                                            resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
+                                            statusResumeActive={dataOther?.statusResumeActive}
                                         />
                                     )
                                 }
@@ -326,8 +383,8 @@ const Templates = ({ isCover = false }) => {
                     <div className="pt_b-r plr">
                         <div className="colors-t">
                             {
-                                isArray(resumeData?.resumeActive?.template?.colors) && resumeData?.resumeActive?.template?.colors.map((item, index) => (
-                                    <div onClick={() => handleUpdateColor(resumeData?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
+                                isArray(dataOther?.resumeActive?.template?.colors) && dataOther?.resumeActive?.template?.colors.map((item, index) => (
+                                    <div onClick={() => handleUpdateColor(dataOther?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
                                 ))
                             }
                             <div className="color-it color-select">

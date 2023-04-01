@@ -70,28 +70,11 @@ export const CoverCv001 = ({
                             <div className="column-left">
                                 <div className="cv-letter">
                                     <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">Dear Dr. Boater,</h2>
-                                    <p className="cv-letter-text font-size-1 line-height-1 main-color-1-text">Having worked as an LPN in geriatric residential care for eight years, I intend to
-                                        transition to a smaller care home that specializes in Alzheimer’s and dementia
-                                        and residents with learning difficulties. I believe Glenview Assisted Living
-                                        would be the perfect fit for my experience.
-                                        While studying for my LPN, I was most intrigued by coursework related to
-                                        Alzheimer’s and other forms of dementias. Caring for my elderly grandparents
-                                        in my youth showed me the importance of connecting with patients on
-                                        whatever level possible and how various therapies can genuinely help to slow
-                                        the mental decline. Working in a specialized center focused on dementia care
-                                        would be my ideal next step.
-                                        I know that as an LPN in Glenview Assisted Living, I will also spend a significant
-                                        amount of time helping relatives come to terms with the changes in their
-                                        family members. My own experiences allow me to adopt an empathetic
-                                        approach. For me, it is an honor to guide and support families through this
-                                        emotional journey.
-                                        I have well-rounded experience in many areas of general nursing care – from
-                                        administration of medication and condition assessment to wound care and
-                                        patient documentation. I look forward to the opportunity of visiting Glenview
-                                        and hope that my skills and experiences may help me to make a difference to your residents.
-                                        <br /><br /><br />
-                                        Sincerely,<br />
-                                        Kath Jilkins</p>
+                                    {
+                                        !!data?.coverGenerateDate && (
+                                            <p className="cv-letter-text font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
+                                        )
+                                    }
                                 </div>
                             </div>
                             <div className="column-right">

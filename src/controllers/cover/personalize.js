@@ -70,9 +70,13 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewC
 
 export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
-
     return response;
-})
+});
+
+export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
+    const response = await api.personalize.getCoverLetterById(idCv);
+    return response;
+});
 
 export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterById', async ({ idCv }, thunkAPI) => {
     const { coverDataForm: { coverDataObj } } = thunkAPI.getState();
@@ -83,6 +87,8 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+    } else {
+        await thunkAPI.dispatch(getCoverGenerateDate(idCv));
     }
 
     return response;

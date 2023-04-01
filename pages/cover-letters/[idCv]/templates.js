@@ -10,6 +10,6 @@ const TemplatesPage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({});
+export const getServerSideProps = withPublicRoute({ isGetCoverTemplates: true });
 
 export default TemplatesPage;

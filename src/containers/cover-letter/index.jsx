@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { updateActiveResumeNew } from "../../slices/resumeData";
+import { updateActiveCoverNew } from "../../slices/cover/coverData";
 
 // Libraries
 import { isArray } from "lodash";
@@ -22,7 +22,7 @@ import { SureItem } from '../../components/sureItem';
 import { routersPages } from "../../constants/next-routers";
 
 // Data
-import { getResumesTemplates } from "../../controllers/resumeData"
+import { getCoverTemplates } from "../../controllers/cover/coverData";
 import promoNumbersData from './data/promo-numbers.json';
 import advantagesData from './data/advantages.json';
 import sureData from './data/sure.json';
@@ -53,7 +53,7 @@ export const CoverLatter = () => {
         theme: {
             currentResolution
         },
-        resumeData,
+        coverData,
     } = useSelector((state) => state);
 
     const handleClickTab = (tabIndex) => {
@@ -71,8 +71,8 @@ export const CoverLatter = () => {
 
     React.useEffect(() => {
         async function start() {
-            if (fetching && resumeData?.list?.count_pages > currentPage) {
-                let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+            if (fetching && coverData?.list?.count_pages > currentPage) {
+                let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
 
                 if (res?.payload?.items) {
                     setCurrentPage(prev => prev + 1);
@@ -342,12 +342,12 @@ export const CoverLatter = () => {
                             onSlideChange={(e) => handleSlider(e)}
                         >
                             {
-                                isArray(resumeData?.list?.items) && resumeData.list.items.map((itemResume, index) => (
+                                isArray(coverData?.list?.items) && coverData.list.items.map((itemResume, index) => (
                                     <SwiperSlide key={index}>
                                         <div className="doc-img">
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
-                                        <div className="doc-btn" onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))} >
+                                        <div className="doc-btn" onClick={() => dispatch(updateActiveCoverNew({ slug: itemResume.slug, id: itemResume.id }))} >
                                             <Link href={`/${routersPages['coverLetterNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>

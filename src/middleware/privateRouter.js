@@ -30,16 +30,16 @@ export const withPrivateRoute = ({
                     if (!!isGetAllBuilder)
                         await getAllResumeBuilder({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
-                    if (!!isGetResumesTemplates)
-                        await getResumesTemplates();
-
                     if (!!isGetFormCover) {
                         await store.dispatch(getCoverLetterById(ctx?.query?.idCv));
                     }
-
-                    if (!!isGetCoverTemplates)
-                        await store.dispatch(getCoverTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
                 }
+
+                if (!!isGetResumesTemplates)
+                    await store.dispatch(getResumesTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+
+                if (!!isGetCoverTemplates)
+                    await store.dispatch(getCoverTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
 
                 if (!isExist(serverResponse)) {
                     return {

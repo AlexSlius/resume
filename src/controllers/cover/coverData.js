@@ -12,28 +12,23 @@ export const getCoverTemplates = createAsyncThunk('resumeData/fetchGetResumesTem
     return response;
 });
 
-// export const fetchGetResumeData = createAsyncThunk('resumeData/fetchfetchGetResumeData', async ({ idCv }) => {
-//     const response = await api.resumesData.fetchGetResumeData(idCv);
-//     return response;
-// });
+export const setUpdateCoverDataActive = createAsyncThunk('resumeData/setUpdateCoverDataActive', async ({ idCv, data, isGet = false, isRemoveSesion = false }, thunkAPI) => {
+    const response = await api.coverData.setUpdateCoverDataActive(idCv, data);
 
-// export const setUpdateResumeActive = createAsyncThunk('resumeData/setUpdateResumeActive', async ({ idCv, data, isGet = false, isRemoveSesion = false }, thunkAPI) => {
-//     const response = await api.resumesData.setUpdateResumeDataActive(idCv, data);
+    if (response) {
+        if (isRemoveSesion) {
+            sessionStorageRemove("typeResume");
+        }
 
-//     if (response) {
-//         if (isRemoveSesion) {
-//             sessionStorageRemove("typeResume");
-//         }
+        if (isGet) {
+            await thunkAPI.dispatch(getCoverDataActive({ idCv }));
+        }
+    }
 
-//         if (isGet) {
-//             await thunkAPI.dispatch(getResumeActive({ idCv }));
-//         }
-//     }
+    return response;
+});
 
-//     return response;
-// });
-
-// export const getResumeActive = createAsyncThunk('resumeData/getResumeActive', async ({ idCv }) => {
-//     const response = await api.resumesData.getResumeDataActive(idCv);
-//     return response;
-// });
+export const getCoverDataActive = createAsyncThunk('resumeData/getCoverDataActive', async ({ idCv }) => {
+    const response = await api.coverData.getCoverDataActive(idCv);
+    return response;
+});

@@ -18,6 +18,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetResumesTemplates: true });
+export const getServerSideProps = withPublicRoute({ isGetCoverTemplates: true });
 
 export default Home;
