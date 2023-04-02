@@ -9,16 +9,34 @@ export const CoverCv002 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
+    const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        country,
+        city,
+        zipCode,
+        state,
+    } = data;
+
     return (
         <div className="sv_002" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume page-2">
                     <div className="cv-body-content">
-                        <div className="cv-body-area area-1">
-                            <div className="column-left">
-                                <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">Matthew Mcconaghey</h1>
-                            </div>
-                        </div>
+                        {
+                            (!!firstName || !!lastName) && (
+                                <div className="cv-body-area area-1 ">
+                                    <div className="column-left">
+                                        <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">
+                                            {!!firstName && (firstName)}
+                                            {!!lastName && (lastName)}
+                                        </h1>
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 <h2 className="cv-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">Dear Dr. Boater,</h2>

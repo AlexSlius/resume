@@ -35,7 +35,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async (_, thunk
     }
 
     return {};
-})
+});
 
 export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewCover = false }, thunkAPI) => {
     const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
@@ -66,14 +66,14 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewC
     }
 
     return {};
-})
+});
 
 export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
     return response;
 });
 
-export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
+export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
     return response;
 });

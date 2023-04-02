@@ -48,6 +48,17 @@ export const CoverCv001 = ({
         }
     }, [stateFontSize]);
 
+    const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        country,
+        city,
+        zipCode,
+        state,
+    } = data;
+
     return (
         <div className="sv_001" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
@@ -61,11 +72,18 @@ export const CoverCv001 = ({
                     line-height-scheme-${classFontLineSpacing}
                 `}>
                     <div className="cv-body-content">
-                        <div className="cv-body-area area-1 additional-color-3-background">
-                            <div className="column-left">
-                                <h1 className="cv-heading heading-type-1 additional-color-1-text font-size-3 line-height-3">Matthew Mcconaghey</h1>
-                            </div>
-                        </div>
+                        {
+                            (!!firstName || !!lastName) && (
+                                <div className="cv-body-area area-1 additional-color-3-background">
+                                    <div className="column-left">
+                                        <h1 className="cv-heading heading-type-1 additional-color-1-text font-size-3 line-height-3">
+                                            {!!firstName && (firstName)}
+                                            {!!lastName && (lastName)}
+                                        </h1>
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 <div className="cv-letter">
@@ -85,13 +103,14 @@ export const CoverCv001 = ({
                                             <p className="cv-sender font-size-1 line-height-1 main-color-1-text">Glenview Assisted Living<br />Dr. Henry Boater</p>
                                             <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">From</p>
                                             <p className="cv-destination font-size-1 line-height-1 main-color-1-text">
-                                                Piter Black<br />
-                                                5th avenue<br />
-                                                New York City<br />
-                                                084736<br />
-                                                USA<br />
-                                                +4862534823<br />
-                                                sellegro@hotmail.com
+                                                {!!state && (<>{state}<br /></>)}
+                                                {!!city && (<>{city}<br /></>)}
+                                                {!!zipCode && (<>{zipCode}<br /></>)}
+                                                {!!country && (<>{country}<br /></>)}
+                                                {!!phone && (<>{phone}<br /></>)}
+                                                {
+                                                    !!email && (email)
+                                                }
                                             </p>
                                         </div>
                                     </div>

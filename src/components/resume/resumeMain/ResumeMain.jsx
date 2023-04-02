@@ -9,6 +9,10 @@ import {
    getResumeActive,
 } from "../../../controllers/resumeData";
 
+import {
+   getCoverDataActive,
+} from "../../../controllers/cover/coverData";
+
 const ResumeMain = ({
    reportTemplateRef,
    isCover,
@@ -36,11 +40,11 @@ const ResumeMain = ({
       certificaties,
       careers,
       resumeData,
-      resumeData: {
-         resumeActive,
-         resumeActiveNew
-      }
+      coverDataForm,
+      coverData,
    } = useSelector((state) => state);
+
+   const dataOther = isCover ? coverData : resumeData;
 
    let dataResumeTemplate = {
       contact: isNewResume ? [contactObjNew] : [contactObj],
@@ -58,10 +62,29 @@ const ResumeMain = ({
       certificates: certificaties.certificatiesObj,
    };
 
+   let dataCoverLetterTemplate = {
+      ...coverDataForm.coverDataObj,
+      coverGenerateDate: coverDataForm.coverGenerateDate,
+   }
+
+   let dataCoverLetterTemplateNew = {
+      firstName: coverDataForm.coverDataObjNew.firstName,
+      lastName: coverDataForm.coverDataObjNew.lastName,
+      email: coverDataForm.coverDataObjNew.email,
+      phone: coverDataForm.coverDataObjNew.phone,
+      country: coverDataForm.coverDataObjNew.country,
+      city: coverDataForm.coverDataObjNew.city,
+      zipCode: coverDataForm.coverDataObjNew.zipCode,
+      state: coverDataForm.coverDataObjNew.state,
+      coverGenerateDate: null,
+   };
+
    React.useEffect(() => {
       if (idCv != "new") {
          if (!isCover) {
             dispatch(getResumeActive({ idCv }));
+         } else {
+            dispatch(getCoverDataActive({ idCv }));
          }
       }
    }, []);
@@ -74,9 +97,9 @@ const ResumeMain = ({
                   <div className="resume-main_scale">
                      <TemplatesSelect
                         isResume={true}
-                        resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
+                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={dataResumeTemplate}
-                        resumeData={resumeData}
+                        resumeData={dataOther}
                         reportTemplateRef={reportTemplateRef}
                      />
                   </div>
@@ -88,9 +111,9 @@ const ResumeMain = ({
                   <div className="resume-main_scale_cover">
                      <TemplatesSelectCover
                         isResume={true}
-                        resumeActive={isNewResume ? !!resumeActiveNew.slug ? resumeActiveNew.slug : "001-CV" : resumeActive?.template_slug}
-                        data={dataResumeTemplate}
-                        resumeData={resumeData}
+                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
+                        data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
+                        resumeData={dataOther}
                         reportTemplateRef={reportTemplateRef}
                      />
                   </div>
