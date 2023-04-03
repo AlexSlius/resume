@@ -18,6 +18,7 @@ const initialState = {
         slug: "001-CV",
         id: 1,
         template_class: "",
+        colors: [],
         template_line_spacing: "",
         template_text_size: "",
     },
@@ -30,7 +31,7 @@ export const slice = createSlice({
     initialState,
     reducers: {
         updateActiveCoverNew(state, action) {
-            state.resumeActiveNew = action.payload;
+            state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
         }
     },
     extraReducers: {

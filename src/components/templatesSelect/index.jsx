@@ -8,6 +8,9 @@ import { ResumeCv001 } from '../../resumeTemplates/001-CV';
 import { ResumeCv002 } from '../../resumeTemplates/002-CV';
 import { ResumeCv003 } from '../../resumeTemplates/003-CV';
 import { ResumeCv004 } from '../../resumeTemplates/004-CV';
+import { ResumeCv005 } from '../../resumeTemplates/005-CV';
+import { ResumeCv006 } from '../../resumeTemplates/006-CV';
+
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
@@ -63,6 +66,7 @@ export const TemplatesSelect = ({
                     />
                 )
             }
+
             {
                 resumeActive == "004-CV" && (
                     <ResumeCv004
@@ -73,6 +77,30 @@ export const TemplatesSelect = ({
                     />
                 )
             }
+
+            {
+                resumeActive == "005-CV" && (
+                    <ResumeCv005
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "006-CV" && (
+                    <ResumeCv006
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+
         </LoadWr>
     )
 }

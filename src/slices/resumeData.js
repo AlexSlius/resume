@@ -19,6 +19,7 @@ const initialState = {
     resumeActiveNew: {
         slug: "001-CV",
         id: 1,
+        colors: [],
         template_class: "",
         template_line_spacing: "",
         template_text_size: "",
@@ -32,7 +33,7 @@ export const slice = createSlice({
     initialState,
     reducers: {
         updateActiveResumeNew(state, action) {
-            state.resumeActiveNew = action.payload;
+            state.resumeActiveNew = {...state.resumeActiveNew, ...action.payload };
         }
     },
     extraReducers: {

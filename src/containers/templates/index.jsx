@@ -128,13 +128,13 @@ const Templates = ({ isCover = false }) => {
             if (idCv != "new") {
                 dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
             } else {
-                dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))
+                dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id, colors: item.colors }))
             }
         } else {
             if (idCv != "new") {
                 dispatch(setUpdateCoverDataActive({ idCv, data: { cover_template_id: item.id }, isGet: true }));
             } else {
-                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))
+                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id, colors: item.colors }))
             }
         }
     }
@@ -195,7 +195,7 @@ const Templates = ({ isCover = false }) => {
             if (idCv != "new") {
                 dispatch(setUpdateCoverDataActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
             } else {
-                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id }))
+                dispatch(updateActiveCoverNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
             }
         }
     }
@@ -282,7 +282,6 @@ const Templates = ({ isCover = false }) => {
         }
     }, [dataOther?.data, dataOther.resumeActive]);
 
-
     useEffect(() => {
         if (typeof window != "undefined") {
             if (!!reportTemplateRef.current) {
@@ -301,6 +300,18 @@ const Templates = ({ isCover = false }) => {
             }
         }
     }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
+
+    useEffect(() => {
+        if (!isCover) {
+            if (isNewResume) {
+                dispatch(updateActiveResumeNew({ colors: templatesItems[0]?.colors || [] }));
+            }
+        } else {
+            if (isNewResume) {
+                dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
+            }
+        }
+    }, []);
 
     return (
         <div className="page-templates">
@@ -324,7 +335,7 @@ const Templates = ({ isCover = false }) => {
                                         cycleNavigation={false}
                                         animation={'slide'}
                                         onChange={templateChangeHandler}
-                                        navButtonsProps={{className: 'nav-button'}}
+                                        navButtonsProps={{ className: 'nav-button' }}
                                         NextIcon={<SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} />}
                                         PrevIcon={<div className="block-rotate arrow-left"><SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} /></div>}
                                     >
@@ -336,32 +347,32 @@ const Templates = ({ isCover = false }) => {
                                     </Carousel>
                                 </div>
                             ) :
-                            (
-                                isArray(templatesItems) && templatesItems.map((item, index) => {
-                                    let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
+                                (
+                                    isArray(templatesItems) && templatesItems.map((item, index) => {
+                                        let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
 
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={`it-t ${classActive}`}
-                                            onClick={() => handleResume(item)}
-                                        >
-                                            <img src={item.image} alt={item.name} />
-                                            {
-                                                (isArray(item?.types) && item.types.length > 0) && (
-                                                    <div className="item-card-resum__types">
-                                                        {
-                                                            item.types.map((itemType, index) => (
-                                                                <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
-                                                            ))
-                                                        }
-                                                    </div>
-                                                )
-                                            }
-                                        </div>
-                                    )
-                                })
-                            )
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={`it-t ${classActive}`}
+                                                onClick={() => handleResume(item)}
+                                            >
+                                                <img src={item.image} alt={item.name} />
+                                                {
+                                                    (isArray(item?.types) && item.types.length > 0) && (
+                                                        <div className="item-card-resum__types">
+                                                            {
+                                                                item.types.map((itemType, index) => (
+                                                                    <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                                ))
+                                                            }
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                        )
+                                    })
+                                )
                         }
                     </div>
                     {
@@ -427,8 +438,9 @@ const Templates = ({ isCover = false }) => {
                     <div className="pt_b-r plr buttons-wrapper">
                         <div className="colors-t">
                             {
-                                isArray(dataOther?.resumeActive?.template?.colors) && dataOther?.resumeActive?.template?.colors.map((item, index) => (
-                                    <div onClick={() => handleUpdateColor(dataOther?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
+                                isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
+                                (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
+                                    <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
                                 ))
                             }
                             <div className="color-it color-select">
