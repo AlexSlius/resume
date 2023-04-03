@@ -16,6 +16,18 @@
         background: #F6F8FA;
         height: 100vh;
     }
+
+    @media screen and (max-width: 768px) {
+        &__row {
+            flex-direction: column;
+        }
+
+        &__left,
+        &__right {
+            height: auto;
+            width: 100%;
+        }
+    }
 }
 
 .pt_h {
@@ -41,6 +53,11 @@
     grid-auto-rows: auto;
     grid-gap: 30px;
     padding: 30px;
+
+    @media screen and (max-width: 768px) {
+        display: inline-block;
+        text-align: center;
+    }
 }
 
 .it-t {
@@ -120,6 +137,12 @@
             max-width: 100%;
         }
     }
+
+    @media screen and (max-width: 768px) {
+        &__content {
+            max-width: 100%;
+        }
+    }
 }
 
 .colors-t {
@@ -163,6 +186,65 @@
             margin-right: 16px;
         }
     }
+
+}
+
+@media screen and (max-width: 768px) {
+    .buttons-wrapper,
+    .btns-tem {
+        flex-direction: row-reverse;
+        gap: 14vw;
+        justify-content: center;
+    }
+
+    .page-templates {
+        height: 100%;
+
+        &__row {
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        &__right {
+            height: 100%;
+            justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scroll-style,
+        .ptr-c__content,
+        .body-template-resume,
+        .body-template-resume>div,
+        .body-template-resume>div>div,
+        .cv-chapter-section,
+        .body-template-resume .cv-body {
+            height: 100%;
+        }
+
+        .buttons-wrapper {
+            .colors-t {
+                margin: 0;
+            }
+
+            .form-btn {
+                margin: 0;
+                width: 168px;
+            }
+        }
+
+        .body-template-resume>div {
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+
+            .cv-body-area {
+                padding: 25px 25px 10px 25px;
+            }
+        }
+    }
+
 }
 
 .ranges-row {

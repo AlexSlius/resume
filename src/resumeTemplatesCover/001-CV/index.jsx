@@ -60,7 +60,7 @@ export const CoverCv001 = ({
     } = data;
 
     return (
-        <div className="sv_001" ref={reportTemplateRef}>
+        <div className="sv_001 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className={`
                     cv-body 

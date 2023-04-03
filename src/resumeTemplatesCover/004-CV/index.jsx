@@ -10,7 +10,7 @@ export const CoverCv004 = ({
     reportTemplateRef,
 }) => {
     return (
-        <div className="sv_004" ref={reportTemplateRef}>
+        <div className="sv_004 template-wrapper" ref={reportTemplateRef}>
 
         </div>
     )

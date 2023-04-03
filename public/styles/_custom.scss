@@ -298,6 +298,22 @@ textarea.form-control {
     }
 }
 
+.carousel-title {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--grey-2);
+}
+
+.carousel-item-block {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: var(--black);
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none; // Yeah, yeah everybody write about it
@@ -1342,5 +1358,25 @@ button {
     .menus-card_wr {
         left: auto;
         right: 0;
+    }
+}
+
+.block-rotate {
+    transform: rotate(180deg);
+
+    &.arrow-left {
+        position: absolute;
+        transform: translateY(3px) rotate(180deg);
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+
+        svg {
+            left: 0;
+            top: 0;
+            position: absolute;
+            transform: none;
+        }
     }
 }

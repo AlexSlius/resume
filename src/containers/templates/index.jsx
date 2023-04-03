@@ -1,9 +1,12 @@
 import { CButton } from '@coreui/react'
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import jsPDF from 'jspdf';
 import { useSelector, useDispatch } from "react-redux";
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { isArray } from 'lodash';
+
+import Carousel from 'react-material-ui-carousel'
+import { SvgImage } from "../../components/svgImage";
 
 import { TemplatesSelect } from '../../components/templatesSelect';
 import { TemplatesSelectCover } from '../../components/templateSelectCover';
@@ -42,15 +45,15 @@ import {
 
 
 const Templates = ({ isCover = false }) => {
-    const refIdTimeout = React.useRef(undefined);
-    const refWr = React.useRef(undefined);
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const [fetching, setFetching] = React.useState(false);
-    const [stateLineSpacing, setStateLIneSpacig] = React.useState(50);
-    const [stateFontSize, setStateFontSize] = React.useState(50);
+    const refIdTimeout = useRef(undefined);
+    const refWr = useRef(undefined);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [fetching, setFetching] = useState(false);
+    const [stateLineSpacing, setStateLIneSpacig] = useState(50);
+    const [stateFontSize, setStateFontSize] = useState(50);
 
-    const [pagesPag, setPagesPag] = React.useState(1);
-    const [pagePagCurrent, setPagePagCurrent] = React.useState(1);
+    const [pagesPag, setPagesPag] = useState(1);
+    const [pagePagCurrent, setPagePagCurrent] = useState(1);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -89,6 +92,7 @@ const Templates = ({ isCover = false }) => {
     } = useSelector((state) => state);
 
     const dataOther = isCover ? coverData : resumeData;
+    const templatesItems = isCover ? coverData?.list?.items : resumeData?.list?.items;
 
     let dataResumeTemplate = {
         contact: isNewResume ? [contactObjNew] : [contactObj],
@@ -150,10 +154,11 @@ const Templates = ({ isCover = false }) => {
 
         refIdTimeout.current = setTimeout(async () => {
             if (idCv != "new") {
+                const isResumeActive = dataOther?.resumeActive?.template_id;
                 if (!isCover) {
                     dispatch(setUpdateResumeActive({
                         idCv, data: {
-                            cv_template_id: dataOther?.resumeActive?.template_id,
+                            cv_template_id: isResumeActive,
                             template_line_spacing: stateLineSpacing,
                             template_text_size: stateFontSize,
                         }, isGet: false
@@ -161,7 +166,7 @@ const Templates = ({ isCover = false }) => {
                 } else {
                     dispatch(setUpdateCoverDataActive({
                         idCv, data: {
-                            cover_template_id: dataOther?.resumeActive?.template_id,
+                            cover_template_id: isResumeActive,
                             template_line_spacing: stateLineSpacing,
                             template_text_size: stateFontSize,
                         }, isGet: false
@@ -203,10 +208,15 @@ const Templates = ({ isCover = false }) => {
         setPagePagCurrent(prev => prev - 1);
     }
 
-    React.useEffect(() => {
+    const templateChangeHandler = (now, previous) => {
+        handleResume(templatesItems[now]);
+    }
+
+    useEffect(() => {
         async function start() {
+            const isNextPage = dataOther?.list?.count_pages > currentPage;
             if (!isCover) {
-                if (fetching && dataOther?.list?.count_pages > currentPage) {
+                if (fetching && isNextPage) {
                     let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
 
                     if (res?.payload?.items) {
@@ -215,7 +225,7 @@ const Templates = ({ isCover = false }) => {
                     }
                 }
             } else {
-                if (fetching && dataOther?.list?.count_pages > currentPage) {
+                if (fetching && isNextPage) {
                     let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
 
                     if (res?.payload?.items) {
@@ -228,18 +238,19 @@ const Templates = ({ isCover = false }) => {
         start();
     }, [fetching]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (idCv != "new") {
             handleUpdateServer();
         }
     }, [stateLineSpacing, stateFontSize]);
 
-    React.useEffect(() => {
-        setStateLIneSpacig(dataOther?.resumeActive?.template_line_spacing ? +dataOther?.resumeActive?.template_line_spacing : 50);
-        setStateFontSize(dataOther?.resumeActive?.template_text_size ? +dataOther?.resumeActive?.template_text_size : 50);
+    useEffect(() => {
+        const activeResume = dataOther?.resumeActive;
+        setStateLIneSpacig(activeResume?.template_line_spacing ? +activeResume?.template_line_spacing : 50);
+        setStateFontSize(activeResume?.template_text_size ? +activeResume?.template_text_size : 50);
     }, [dataOther]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (idCv != "new") {
             if (!isCover) {
                 dispatch(fetchGetResumeData({ idCv }));
@@ -258,11 +269,11 @@ const Templates = ({ isCover = false }) => {
         }
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setPagePagCurrent(1);
     }, [dataOther.resumeActive]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (typeof window != "undefined") {
             if (!!reportTemplateRef.current) {
                 let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
@@ -272,7 +283,7 @@ const Templates = ({ isCover = false }) => {
     }, [dataOther?.data, dataOther.resumeActive]);
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (typeof window != "undefined") {
             if (!!reportTemplateRef.current) {
                 let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
@@ -302,47 +313,80 @@ const Templates = ({ isCover = false }) => {
                     </div>
                     <div className="pt-ts scroll-style" ref={refWr}>
                         {
-                            isArray(dataOther?.list?.items) && dataOther.list.items.map((item, index) => {
-                                let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`it-t ${classActive}`}
-                                        onClick={() => handleResume(item)}
+                            ['sm', 'xs'].includes(currentResolution) ? (
+                                <div className='carousel'>
+                                    <span className='carousel-title'>Template</span>
+                                    <Carousel
+                                        autoPlay={false}
+                                        indicators={false}
+                                        swipe={true}
+                                        navButtonsAlwaysVisible={true}
+                                        cycleNavigation={false}
+                                        animation={'slide'}
+                                        onChange={templateChangeHandler}
+                                        navButtonsProps={{className: 'nav-button'}}
+                                        NextIcon={<SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} />}
+                                        PrevIcon={<div className="block-rotate arrow-left"><SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} /></div>}
                                     >
-                                        <img src={item.image} alt={item.name} />
                                         {
-                                            (isArray(item?.types) && item.types.length > 0) && (
-                                                <div className="item-card-resum__types">
-                                                    {
-                                                        item.types.map((itemType, index) => (
-                                                            <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            )
+                                            isArray(templatesItems) && templatesItems.map((item, index) => (
+                                                <div key={`item-${index}`} className="carousel-item-block">{item.name}</div>
+                                            ))
                                         }
-                                    </div>
-                                )
-                            })
+                                    </Carousel>
+                                </div>
+                            ) :
+                            (
+                                isArray(templatesItems) && templatesItems.map((item, index) => {
+                                    let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
+
+                                    return (
+                                        <div
+                                            key={index}
+                                            className={`it-t ${classActive}`}
+                                            onClick={() => handleResume(item)}
+                                        >
+                                            <img src={item.image} alt={item.name} />
+                                            {
+                                                (isArray(item?.types) && item.types.length > 0) && (
+                                                    <div className="item-card-resum__types">
+                                                        {
+                                                            item.types.map((itemType, index) => (
+                                                                <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                            ))
+                                                        }
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    )
+                                })
+                            )
                         }
                     </div>
-                    <div className="pt_b-l plr-30">
-                        <div className="pt_b-l_help">
-                            <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
-                        </div>
-                    </div>
+                    {
+                        !['sm', 'xs'].includes(currentResolution) ? (
+                            <div className="pt_b-l plr-30">
+                                <div className="pt_b-l_help">
+                                    <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
+                                </div>
+                            </div>
+                        ) : null
+                    }
                 </div>
                 <div className="page-templates__right">
-                    <div className="pt_h pt_h-r">
-                        <TemplateHead
-                            currentPage={pagePagCurrent}
-                            lengthPages={pagesPag}
-                            onNext={onNext}
-                            onPrev={onPrev}
-                        />
-                    </div>
+                    {
+                        !['sm', 'xs'].includes(currentResolution) ? (
+                            <div className="pt_h pt_h-r">
+                                <TemplateHead
+                                    currentPage={pagePagCurrent}
+                                    lengthPages={pagesPag}
+                                    onNext={onNext}
+                                    onPrev={onPrev}
+                                />
+                            </div>
+                        ) : null
+                    }
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
                             <div className="body-template-resume">
@@ -380,7 +424,7 @@ const Templates = ({ isCover = false }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="pt_b-r plr">
+                    <div className="pt_b-r plr buttons-wrapper">
                         <div className="colors-t">
                             {
                                 isArray(dataOther?.resumeActive?.template?.colors) && dataOther?.resumeActive?.template?.colors.map((item, index) => (
@@ -391,28 +435,32 @@ const Templates = ({ isCover = false }) => {
                                 <Icon svg={iconPlusColor} />
                             </div>
                         </div>
-                        <div className="ranges-row">
-                            <div className='item-range'>
-                                <CustomizedSlider
-                                    defaultValue={50}
-                                    value={stateLineSpacing}
-                                    label="Line Spacing"
-                                    textLeft="50%"
-                                    textRight="150%"
-                                    onChange={handleLineSpacing}
-                                />
-                            </div>
-                            <div className='item-range'>
-                                <CustomizedSlider
-                                    defaultValue={50}
-                                    value={stateFontSize}
-                                    label="Text size"
-                                    textLeft="12 pt"
-                                    textRight="48 pt"
-                                    onChange={handleFontSize}
-                                />
-                            </div>
-                        </div>
+                        {
+                            !['sm', 'xs'].includes(currentResolution) ? (
+                                <div className="ranges-row">
+                                    <div className='item-range'>
+                                        <CustomizedSlider
+                                            defaultValue={50}
+                                            value={stateLineSpacing}
+                                            label="Line Spacing"
+                                            textLeft="50%"
+                                            textRight="150%"
+                                            onChange={handleLineSpacing}
+                                        />
+                                    </div>
+                                    <div className='item-range'>
+                                        <CustomizedSlider
+                                            defaultValue={50}
+                                            value={stateFontSize}
+                                            label="Text size"
+                                            textLeft="12 pt"
+                                            textRight="48 pt"
+                                            onChange={handleFontSize}
+                                        />
+                                    </div>
+                                </div>
+                            ) : null
+                        }
                         <div className="btns-tem">
                             <ButtonIcon
                                 isButton={true}
