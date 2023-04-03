@@ -57,6 +57,10 @@ export const CoverCv001 = ({
         city,
         zipCode,
         state,
+        applyingCompanyName,
+        applyingCompanyJobTitle,
+        applyingCompanyTitle,
+        applyingCompanyContact,
     } = data;
 
     return (
@@ -95,27 +99,48 @@ export const CoverCv001 = ({
                                     }
                                 </div>
                             </div>
-                            <div className="column-right">
-                                <div className="cv-destination">
-                                    <div className="cv-destination-block additional-color-2-border">
-                                        <div className="destination-details">
-                                            <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">To</p>
-                                            <p className="cv-sender font-size-1 line-height-1 main-color-1-text">Glenview Assisted Living<br />Dr. Henry Boater</p>
-                                            <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">From</p>
-                                            <p className="cv-destination font-size-1 line-height-1 main-color-1-text">
-                                                {!!state && (<>{state}<br /></>)}
-                                                {!!city && (<>{city}<br /></>)}
-                                                {!!zipCode && (<>{zipCode}<br /></>)}
-                                                {!!country && (<>{country}<br /></>)}
-                                                {!!phone && (<>{phone}<br /></>)}
-                                                {
-                                                    !!email && (email)
-                                                }
-                                            </p>
+                            {
+                                (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact || !!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                    <div className="column-right">
+                                        <div className="cv-destination">
+                                            <div className="cv-destination-block additional-color-2-border">
+                                                <div className="destination-details">
+                                                    {
+                                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
+                                                            <>
+                                                                <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">To</p>
+                                                                <p className="cv-sender font-size-1 line-height-1 main-color-1-text">
+                                                                    {!!applyingCompanyName && (<>{applyingCompanyName}<br /></>)}
+                                                                    {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}
+                                                                    {!!applyingCompanyTitle && (<>{applyingCompanyTitle}<br /></>)}
+                                                                    {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}
+                                                                </p>
+                                                            </>
+                                                        )
+                                                    }
+                                                    {
+                                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                                            <>
+                                                                <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">From</p>
+                                                                <p className="cv-destination font-size-1 line-height-1 main-color-1-text">
+                                                                    {!!state && (<>{state}<br /></>)}
+                                                                    {!!city && (<>{city}<br /></>)}
+                                                                    {!!zipCode && (<>{zipCode}<br /></>)}
+                                                                    {!!country && (<>{country}<br /></>)}
+                                                                    {!!phone && (<>{phone}<br /></>)}
+                                                                    {
+                                                                        !!email && (email)
+                                                                    }
+                                                                </p>
+                                                            </>
+                                                        )
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

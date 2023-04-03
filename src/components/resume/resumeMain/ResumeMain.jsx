@@ -108,7 +108,7 @@ const ResumeMain = ({
 
             {
                isCover && (
-                  <div className="resume-main_scale_cover">
+                  <div className="resume-main_scale resume-main_scale_cover">
                      <TemplatesSelectCover
                         isResume={true}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}

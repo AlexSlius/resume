@@ -9,6 +9,21 @@ export const CoverCv003 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
+    const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        country,
+        city,
+        zipCode,
+        state,
+        applyingCompanyName,
+        applyingCompanyJobTitle,
+        applyingCompanyTitle,
+        applyingCompanyContact,
+    } = data;
+
     return (
         <div className="sv_003 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
@@ -33,36 +48,55 @@ export const CoverCv003 = ({
                                     }
                                 </div>
                             </div>
-                            <div className="column-right">
-                                <div className="cv-destination main-color-1-border">
-                                    <div className="cv-destination-block block-block additional-color-2-border">
-                                        <div className="destination-details">
-                                            <div className="block-to">
-                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
-                                                    TO
-                                                    <span className="line-after-block-heading additional-color-2-border"></span>
-                                                </h3>
-                                                <p className="cv-sender font-size-1 line-height-1 main-color-1-text">Glenview Assisted Living<br />Dr. Henry Boater</p>
-                                            </div>
-                                            <div className="block-from">
-                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
-                                                    FROM
-                                                    <span className="line-after-block-heading additional-color-2-border"></span>
-                                                </h3>
-                                                <p className="font-size-1 line-height-1 main-color-1-text">
-                                                    Piter Black<br />
-                                                    5th avenue<br />
-                                                    New York City<br />
-                                                    084736<br />
-                                                    USA<br />
-                                                    +4862534823<br />
-                                                    sellegro@hotmail.com
-                                                </p>
+                            {
+                                (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact || !!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                    <div className="column-right">
+                                        <div className="cv-destination main-color-1-border">
+                                            <div className="cv-destination-block block-block additional-color-2-border">
+                                                <div className="destination-details">
+                                                    {
+                                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
+                                                            <div className="block-to">
+                                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
+                                                                    TO
+                                                                    <span className="line-after-block-heading additional-color-2-border"></span>
+                                                                </h3>
+                                                                <p className="cv-sender font-size-1 line-height-1 main-color-1-text">
+                                                                    {!!applyingCompanyName && (<>{applyingCompanyName}<br /></>)}
+                                                                    {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}
+                                                                    {!!applyingCompanyTitle && (<>{applyingCompanyTitle}<br /></>)}
+                                                                    {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}
+                                                                </p>
+                                                            </div>
+                                                        )
+                                                    }
+
+                                                    {
+                                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                                            <div className="block-from">
+                                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
+                                                                    FROM
+                                                                    <span className="line-after-block-heading additional-color-2-border"></span>
+                                                                </h3>
+                                                                <p className="font-size-1 line-height-1 main-color-1-text">
+                                                                    {!!state && (<>{state}<br /></>)}
+                                                                    {!!city && (<>{city}<br /></>)}
+                                                                    {!!zipCode && (<>{zipCode}<br /></>)}
+                                                                    {!!country && (<>{country}<br /></>)}
+                                                                    {!!phone && (<>{phone}<br /></>)}
+                                                                    {
+                                                                        !!email && (email)
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        )
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
