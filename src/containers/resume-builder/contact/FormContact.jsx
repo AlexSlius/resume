@@ -211,7 +211,7 @@ const FormContact = ({
 
    return (
       <LoadWr isLoad={isLoader(status)}>
-         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
+         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30" autocomplete="off">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-3">

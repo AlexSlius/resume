@@ -72,8 +72,6 @@ export const ResumeCv002 = ({
         getPageColumnLeft();
         getPageColumnRight();
 
-        console.log("TEST heights: ", getPageContainer().height(), getPageContainer().parent().height());
-
         // Column left
         current_page_number = 1;
         getPageColumnLeft().append(employment_history_block);

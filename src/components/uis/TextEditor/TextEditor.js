@@ -217,7 +217,7 @@ const TextEditor = ({
                                         onChange={(e) => setTextSearch(e.target.value)}
                                         value={textSearch}
                                         type="text"
-                                        placeholder="Filter phrases by keyword and job title"
+                                        placeholder="Filter phrases by keyword"
                                         name="search"
                                     />
                                     <Icon svg={iconSearch} />
@@ -225,31 +225,25 @@ const TextEditor = ({
                                 <div className='modal-text__content'>
                                     <ul className='scroll-style'>
                                         {
-                                            !isLoad ? (
-                                                isArray(data) ? (
-                                                    !!data.length ? (
-                                                        data.map((item, index) => {
-                                                            let isStatus = devValue.includes(item?.[keys]);
+                                            isArray(data) ? (
+                                                !!data.length ? (
+                                                    data.map((item, index) => {
+                                                        let isStatus = devValue.includes(item?.[keys]);
 
-                                                            return (
-                                                                <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
-                                                                    <span className='text-icon-in'>
-                                                                        <Icon svg={isStatus ? iconOkText : iconLeftText} />
-                                                                    </span>
-                                                                    <div className='text-div-in'>{item?.[keys] || ""}</div>
-                                                                </li>
-                                                            )
-                                                        })
-                                                    ) : (
-                                                        <li className={`empty-text`}>{labelEmpty}</li>
-                                                    )
+                                                        return (
+                                                            <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                                <span className='text-icon-in'>
+                                                                    <Icon svg={isStatus ? iconOkText : iconLeftText} />
+                                                                </span>
+                                                                <div className='text-div-in'>{item?.[keys] || ""}</div>
+                                                            </li>
+                                                        )
+                                                    })
                                                 ) : (
                                                     <li className={`empty-text`}>{labelEmpty}</li>
                                                 )
                                             ) : (
-                                                <li className='li-load'>
-                                                    <Icon svg={iconPreloader} />
-                                                </li>
+                                                <li className={`empty-text`}>{labelEmpty}</li>
                                             )
                                         }
                                     </ul>
