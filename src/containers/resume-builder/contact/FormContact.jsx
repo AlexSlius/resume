@@ -220,6 +220,8 @@ const FormContact = ({
                         placeholder="First Name*"
                         value={contObj.firstName}
                         autoComplete="on"
+                        readonly
+                        onfocus="this.removeAttribute('readonly');"
                         obj={
                            register("firstName", {
                               required: true,
@@ -302,7 +304,7 @@ const FormContact = ({
                      placeholder="Country"
                      valueState={contObj.country || ''}
                      data={coutrys.list}
-                     name="country"
+                     name="blaba1"
                      isBackgraundLoad={isLoader(coutrys.status)}
                      handleSaveSelect={handleSaveSelect}
                      isOutDataObj={false}
@@ -315,7 +317,7 @@ const FormContact = ({
                      label="City"
                      placeholder="City"
                      valueState={contObj.city || ''}
-                     name="city"
+                     name=" bvasasd2"
                      data={cities.list}
                      isBackgraundLoad={isLoader(cities?.status)}
                      handleSaveSelect={handleSaveSelect}
