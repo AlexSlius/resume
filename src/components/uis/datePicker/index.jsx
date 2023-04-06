@@ -31,7 +31,7 @@ export const DatePicker = ({
                 $(useRefData.current).Zebra_DatePicker({
                     view: 'years',
                     format: formatData,
-                    start_date: new Date(!!selected ? selected : null),
+                    start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer.current),
 
                     onSelect: function (data) {
@@ -93,6 +93,7 @@ export const DatePicker = ({
                     autoComplete="on"
                     value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                     obj={{ ref: useRefDataNewIn }}
+                    valid={selected?.length > 0}
                 />
             </div>
 

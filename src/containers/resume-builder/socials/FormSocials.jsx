@@ -92,7 +92,6 @@ const FormSocials = ({
    }
 
    React.useEffect(() => {
-      // dispatch(fetchGetAllLinks({ idCv }));
       dispatch(fetchGetSocials());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'socialLinks' }));
    }, []);
@@ -110,16 +109,15 @@ const FormSocials = ({
                      <CCol xs={6} className="mb-4">
                         <InputSelect
                            label="Label"
-                           placeholder="Label"
                            valueState={item.name || ""}
-                           name="name"
                            data={socials.list}
-                           // isLoad={isLoader(socials?.status)}
-                           handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj })}
+                           handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj, name: "name" })}
                            handleServerRequest={handleGetSocial}
                            isOutDataObj={false}
                            isIconArrow={true}
                            isRequire={true}
+                           isValidIn={true}
+                           validIn={item.name?.length > 2}
                         />
                      </CCol>
                      <CCol xs={6} className="mb-4">
@@ -132,6 +130,8 @@ const FormSocials = ({
                            onDelete={handleDeleteitem}
                            onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
                            onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
+                           isValidIn={true}
+                           validIn={item.link?.length > 4}
                         />
                      </CCol>
                   </CRow>
@@ -145,13 +145,13 @@ const FormSocials = ({
                      label="Label"
                      placeholder="Label"
                      valueState={socialObjNew.name || ""}
-                     name="name"
                      data={socials.list}
-                     // isLoad={isLoader(socials?.status)}
-                     handleSaveSelect={updateitemFiledNew}
+                     handleSaveSelect={(obj) => updateitemFiledNew({ ...obj, name: "name" })}
                      handleServerRequest={handleGetSocial}
                      isOutDataObj={false}
                      isIconArrow={true}
+                     isValidIn={true}
+                     validIn={socialObjNew.name?.length > 4}
                   />
                </CCol>
             </CRow>

@@ -25,7 +25,6 @@ import {
 } from "../../../slices/reference";
 
 import {
-   fetchGetCvReferences,
    fetchPostAddCvOneReferences,
    fetchDeleteReferences,
    fetchUpdateReferences,
@@ -146,7 +145,6 @@ const FormReference = ({
    }
 
    useEffect(() => {
-      // fetchGetCvReferences({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
    }, []);
 
@@ -195,49 +193,43 @@ const FormReference = ({
                                                                   <Input
                                                                      id={item.id}
                                                                      label="Referent Full name"
-                                                                     placeholder="Referent Full name"
                                                                      value={item.fullName}
-                                                                     name="fullName"
-                                                                     onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                     onChange={(e) => handleSaveSelect({ index, name: "fullName", value: e.target.value })}
+                                                                     valid={item.fullName?.length > 2}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
                                                                   <InputSelect
                                                                      label="Company"
-                                                                     placeholder="Company"
                                                                      valueState={item.company}
                                                                      data={companys?.list || []}
                                                                      isAddDiv={true}
-                                                                     name="company"
-                                                                     // isLoad={isLoader(companys?.status)}
-                                                                     // isBackgraundLoad={isLoader(companys?.statusAddNew)}
-                                                                     handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                     handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "company" })}
                                                                      handleServerRequest={handleServerRequestCompanyList}
                                                                      handleAddNew={handleAddNewCompany}
                                                                      isOutDataObj={false}
                                                                      isCap={true}
+                                                                     isValidIn={true}
+                                                                     validIn={item.company?.length > 3}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      label="E-mail*"
-                                                                     placeholder="E-mail*"
                                                                      value={item.email}
-                                                                     name="email"
                                                                      invalid={(item.email.length > 0) && !(/\S+@\S+\.\S+/.test(item.email))}
                                                                      valid={/\S+@\S+\.\S+/.test(item.email)}
-                                                                     onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                     onChange={(e) => handleSaveSelect({ index, name: "email", value: e.target.value })}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      label="Phone"
-                                                                     placeholder="Phone"
                                                                      autoComplete="on"
                                                                      value={item.phone}
                                                                      type="number"
-                                                                     name="phone"
                                                                      onChange={(e) => handleSaveSelect({ index, name: "phone", value: e.target.value })}
+                                                                     valid={item.phone?.length > 6}
                                                                   />
                                                                </CCol>
                                                             </CRow>
@@ -266,49 +258,43 @@ const FormReference = ({
                   <CCol xs={6}>
                      <Input
                         label="Referent Full name"
-                        placeholder="Referent Full name"
                         value={objNew.full_name}
-                        name="full_name"
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: "full_name", value: e.target.value })}
+                        valid={objNew.full_name?.length > 2}
                      />
                   </CCol>
                   <CCol xs={6}>
                      <InputSelect
                         label="Company"
-                        placeholder="Company"
                         valueState={objNew.company}
                         data={companys?.list || []}
                         isAddDiv={true}
-                        name="company"
-                        // isLoad={isLoader(companys?.status)}
-                        // isBackgraundLoad={isLoader(companys?.statusAddNew)}
-                        handleSaveSelect={handleSaveSelectNewCompany}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewCompany({ ...obj, name: "company" }, data)}
                         handleServerRequest={handleServerRequestCompanyList}
                         handleAddNew={handleAddNewCompany}
                         isOutDataObj={false}
                         isCap={true}
+                        isValidIn={true}
+                        validIn={objNew.company?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
                      <Input
                         label="E-mail*"
-                        placeholder="E-mail*"
                         value={objNew.email}
-                        name="email"
                         invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
                         valid={/\S+@\S+\.\S+/.test(objNew.email)}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: "email", value: e.target.value })}
                      />
                   </CCol>
                   <CCol xs={6}>
                      <Input
                         label="Phone"
-                        placeholder="Phone"
                         autoComplete="on"
                         value={objNew.phone}
                         type="number"
-                        name="phone"
                         onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value })}
+                        valid={objNew.phone?.length > 6}
                      />
                   </CCol>
                </CRow>

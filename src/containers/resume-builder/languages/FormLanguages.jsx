@@ -8,14 +8,12 @@ import { useRef, useEffect } from 'react';
 import uuid from "react-uuid";
 import { isArray } from "lodash";
 
-// import AddButton from "../../../components/uis/addButton/AddButton"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { isLoader } from "../../../helpers/loadings"
 import { LoadWr } from "../../../components/loadWr"
 
 import {
-   // fetchGetCvLanguages,
    fetchPostAddCvOneLanguages,
    fetchDeleteLanguages,
    fetchUpdateLanguages,
@@ -27,7 +25,6 @@ import {
    updateItemLanguageFiled,
    updateItemLanguageFiledNew
 } from "../../../slices/languages";
-import { ButtonDeleteItem } from "../../../components/uis/buttonDelete";
 
 const FormLanguages = ({
    dispatch,
@@ -90,7 +87,6 @@ const FormLanguages = ({
    }
 
    useEffect(() => {
-      // fetchGetCvLanguages({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
    }, []);
 
@@ -110,16 +106,16 @@ const FormLanguages = ({
                         <CCol xs={6}>
                            <InputSelect
                               label="Language"
-                              placeholder="Language"
                               valueState={item.language || ""}
-                              name="language"
-                              handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                              handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "language" })}
                               handleServerRequest={handleServerRequestLanguagesList}
                               onDelete={() => { handDeleteitem(item.id) }}
                               isOutDataObj={false}
                               data={language.list || []}
                               isRequire={true}
                               isDelete={true}
+                              isValidIn={true}
+                              validIn={item.language?.length > 4}
                            />
 
                         </CCol>
@@ -134,9 +130,6 @@ const FormLanguages = ({
                            </div>
                         </CCol>
                      </CRow>
-                     {/* <div className="btn-wr-ite">
-                        <ButtonDeleteItem onDelete={() => handDeleteitem(item.id)} />
-                     </div> */}
                   </div>
                ))
             }
@@ -146,14 +139,14 @@ const FormLanguages = ({
                   <CCol xs={6}>
                      <InputSelect
                         label="Language"
-                        placeholder="Language"
                         valueState={objNew.language || ""}
-                        name="language"
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={(obj) => handleSaveSelectNew({ ...obj, name: "language" })}
                         handleServerRequest={handleServerRequestLanguagesList}
                         isOutDataObj={false}
                         data={language.list || []}
                         isRequire={true}
+                        isValidIn={true}
+                        validIn={objNew.language?.length > 4}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -170,12 +163,6 @@ const FormLanguages = ({
             </div>
          </LoadWr>
          <CRow className="mt-4">
-            {/* <CCol xs={12}>
-               <AddButton
-                  onClick={handleAddOne}
-                  text={'Add one more language'}
-               />
-            </CCol> */}
             <CCol>
                <ButtonSteps
                   isAthorized={isAthorized}

@@ -47,7 +47,10 @@ export const InputSelect = ({
     isCap = false,
     onBlur = () => { },
     isDelete = false,
-    id = null
+    id = null,
+    isValidIn = false,
+    validIn = false,
+    isUpperCase = false,
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -249,8 +252,8 @@ export const InputSelect = ({
                         autoComplete="off"
                         label={label}
                         value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
-                        // invalid={!!invalid}
-                        // valid={isCouValid ? !!isValid : false}
+                        invalid={!!invalid}
+                        valid={!isValidIn ? isCouValid ? !!isValid : false : validIn}
                         name={name}
                         className={`${style.contoll} ${(!!isFlag && !!imgSrc?.length > 0) ? style.imput_img : ""}`}
                         placeholder={placeholder}
@@ -337,7 +340,7 @@ export const InputSelect = ({
                                                                                     onClick={() => handleOnClickSelect(item)}
                                                                                 >
                                                                                     {(!!isFlag && !!item[keyIcon]?.length) && <img src={item[keyIcon]} />}
-                                                                                    {!!textFirst && <span>{textFirst}</span>}{textLast}
+                                                                                    {!!textFirst && <span>{isUpperCase ? textFirst.toUpperCase() : textFirst}</span>}{isUpperCase ? textLast.toUpperCase() : textLast}
                                                                                 </button>
                                                                             </li>
                                                                         )

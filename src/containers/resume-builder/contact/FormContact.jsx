@@ -208,13 +208,14 @@ const FormContact = ({
 
    return (
       <LoadWr isLoad={isLoader(status)}>
-         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30" autoComplete="off">
+         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-3">
                      <Input
                         label="First Name*"
                         value={contObj.firstName}
+                        valid={contObj.firstName?.length > 0}
                         autoComplete="on"
                         obj={
                            register("firstName", {
@@ -231,6 +232,7 @@ const FormContact = ({
                         label="Last Name*"
                         autoComplete="on"
                         value={contObj.lastName}
+                        valid={contObj.lastName?.length > 0}
                         obj={
                            register("lastName", {
                               required: true,
@@ -253,6 +255,7 @@ const FormContact = ({
                      value={contObj.email}
                      invalid={errors?.email}
                      autoComplete="on"
+                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                      obj={
                         register("email", {
                            pattern: {
@@ -267,6 +270,7 @@ const FormContact = ({
                      label="Phone"
                      autoComplete="on"
                      value={contObj.phone}
+                     valid={contObj.phone?.length > 6}
                      type="number"
                      onChange={(e) => handleSaveSelect({ name: "phone", value: e.target.value })}
                   />
@@ -283,6 +287,8 @@ const FormContact = ({
                      isOutDataObj={false}
                      isRequire={true}
                      isCap={true}
+                     isValidIn={true}
+                     validIn={contObj.jobTitle?.length > 2}
                   />
                </CCol>
                <CCol xs={3}>
@@ -294,6 +300,8 @@ const FormContact = ({
                      isOutDataObj={false}
                      isIconArrow={true}
                      isFlag={true}
+                     isValidIn={true}
+                     validIn={contObj.country?.length > 3}
                   />
                </CCol>
                <CCol xs={3}>
@@ -306,6 +314,8 @@ const FormContact = ({
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
                      isRequire={true}
+                     isValidIn={true}
+                     validIn={contObj.city?.length > 3}
                   />
                </CCol>
             </CRow>
@@ -315,6 +325,7 @@ const FormContact = ({
                      label="Adress"
                      value={contObj.address}
                      autoComplete="on"
+                     valid={contObj.address?.length > 10}
                      obj={
                         register("address", {
                            minLength: {
@@ -330,6 +341,7 @@ const FormContact = ({
                      value={contObj.zipCode}
                      autoComplete="on"
                      type="number"
+                     valid={contObj.zipCode?.length > 0}
                      obj={
                         register("zipCode", {
                            minLength: {
@@ -349,6 +361,9 @@ const FormContact = ({
                      keyName="category"
                      keyText="category"
                      isOutDataObj={false}
+                     isValidIn={true}
+                     validIn={contObj.driverLicense?.length > 3}
+                     isUpperCase={true}
                   />
                </CCol>
                <CCol xs={6}>
@@ -361,12 +376,15 @@ const FormContact = ({
                      handleServerRequest={handleServerRequestNationaly}
                      isOutDataObj={false}
                      isRequire={true}
+                     isValidIn={true}
+                     validIn={contObj.nationality?.length > 3}
                   />
                </CCol>
                <CCol xs={6}>
                   <Input
                      label="Place of birth"
                      value={contObj.placeOfBirth}
+                     valid={contObj.placeOfBirth?.length > 0}
                      obj={
                         register("placeOfBirth", {
                            minLength: {

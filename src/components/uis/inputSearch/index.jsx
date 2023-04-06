@@ -1,6 +1,8 @@
 import { CFormInput } from "@coreui/react"
 import React from "react"
+
 import Icon from "../../Icon";
+import Input from "../input";
 
 import style from "./Style.module.scss";
 import iconSearch from "/public/images/icons/search-grey.svg?sprite";
@@ -33,15 +35,15 @@ const InputSearch = ({
 
    return (
       <div className={style.wr}>
-         <CFormInput
+         <Input
             onChange={onChange}
-            value={value}
-            className={`${className}`}
-            type={type}
-            floatingLabel={label}
-            placeholder={placeholder}
-            name={name}
             autoComplete="off"
+            label={label}
+            type={type}
+            value={value}
+            name={name}
+            className={`${className}`}
+            placeholder={placeholder}
          />
          <Icon svg={iconSearch} />
       </div>

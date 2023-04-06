@@ -218,7 +218,6 @@ const TextEditor = ({
                                         value={textSearch}
                                         type="text"
                                         placeholder="Filter phrases by keyword"
-                                        name="search"
                                     />
                                     <Icon svg={iconSearch} />
                                 </div>

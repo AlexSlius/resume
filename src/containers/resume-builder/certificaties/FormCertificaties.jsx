@@ -97,15 +97,17 @@ const FormCertificaties = ({
                      >
                         <InputSelect
                            isDelete={true}
-                           placeholder={`Licence / Certification # ${index + 1}`}
+                           label={`Licence / Certification # ${index + 1}`}
                            valueState={item.name || ""}
-                           name="name"
                            data={certificaties.list}
-                           handleSaveSelect={({ name, value }, data) => updateitemFiled({ index, name, value }, data)}
+                           handleSaveSelect={({ name, value }, data) => updateitemFiled({ index, name: "name", value }, data)}
                            handleServerRequest={handleServerRequestCertificatsList}
                            isOutDataObj={false}
                            onDelete={() => handleDeleteitem(item.id)}
                            isRequire={true}
+                           
+                           isValidIn={true}
+                           validIn={item.name?.length > 2}
                         />
                      </CCol>
                   ))
@@ -113,11 +115,10 @@ const FormCertificaties = ({
                <CCol xs={6}
                >
                   <InputSelect
-                     placeholder={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
+                     label={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
                      valueState={ObjNew.name}
-                     name="name"
                      data={certificaties.list}
-                     handleSaveSelect={({ name, value }, data) => updateitemFiledNew({ name, value }, data)}
+                     handleSaveSelect={({ name, value }, data) => updateitemFiledNew({ name: "name", value }, data)}
                      handleServerRequest={handleServerRequestCertificatsList}
                      isOutDataObj={false}
                      isRequire={true}

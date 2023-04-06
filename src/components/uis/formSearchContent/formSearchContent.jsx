@@ -56,8 +56,7 @@ export const FormSearchContent = ({
                         onChange={(e) => setTextSearch(e.target.value)}
                         value={textSearch}
                         type="text"
-                        placeholder="Filter phrases by keyword and job title"
-                        name="search"
+                        placeholder="Filter phrases by keyword"
                     />
                     <Icon svg={iconSearch} />
                 </div>

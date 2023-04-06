@@ -110,7 +110,6 @@ const FormSocials = ({
                         <FormSearchContent
                             valueText={data}
                             data={objective.list}
-                            isLoad={isLoader(objective.status)}
                             handleServerRequest={handleServerRequestObjective}
                             handleUpdateText={handleAddText}
                             setUpdate={setUpdate}

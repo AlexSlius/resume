@@ -18,19 +18,20 @@ import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
-import { fetchGetSkillsList } from "../../../controllers/dependencies";
+import {
+   getJopsTitle
+} from "../../../controllers/dependencies";
+
 import {
    updateItemSkillsFiled,
    updatePosition,
    updateItemSkillsFiledLevel
 } from "../../../slices/skills";
 import {
-   fetchGetSkillslistWork,
    fetchGetSkillslistSearch,
    fetchPostAddSkillone,
    fetchPostUpdateSkillone,
    fetchPostDeleteSkillOne,
-   fetchGetSkillslistAll,
    fetchPostUpdatePositionSkills,
    fetchDeleteAll,
    getSkillsPositionStartOne
@@ -46,10 +47,9 @@ const FormSkill = ({
       skills: {
          skillsObj,
          statusIsListSkills,
-         statusListSkillsAll
       },
       dependencies: {
-         skillsPositions,
+         jopsTitle,
       },
       auth: {
          autorizate: {
@@ -67,8 +67,7 @@ const FormSkill = ({
       if (isClisk) {
          switch (name) {
             case "selectd_work": {
-               // dispatch(fetchGetSkillslistWork(value));
-               dispatch(fetchGetSkillslistSearch(value));
+               dispatch(getSkillsPositionStartOne({ data: { "query": value || '', limit: 15 } }));
                break;
             }
          }
@@ -77,7 +76,7 @@ const FormSkill = ({
 
    const handleGetSkillsPos = async () => {
       updateitemFiled({ name: "searchSkils", value: '' });
-      await dispatch(fetchGetSkillsList({ "query": skillsObj?.selectd_work || '', limit: 40 }));
+      await dispatch(getJopsTitle(skillsObj?.selectd_work || ""));
    }
 
    const randomSearchSkills = async () => {
@@ -127,7 +126,6 @@ const FormSkill = ({
    }
 
    React.useEffect(() => {
-      // dispatch(fetchGetSkillslistAll(idCv));
       dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'skills' }));
    }, []);
@@ -140,12 +138,9 @@ const FormSkill = ({
                   <CCol className="mb-4" xs={12}>
                      <InputSelect
                         label="Selected work"
-                        placeholder="Selected work"
                         valueState={skillsObj?.selectd_work || ""}
-                        name="selectd_work"
-                        data={skillsPositions.list}
-                        // isBackgraundLoad={isLoader(skillsPositions?.status)}
-                        handleSaveSelect={updateitemFiled}
+                        data={jopsTitle?.list || []}
+                        handleSaveSelect={(obj) => updateitemFiled({ ...obj, name: "selectd_work" })}
                         handleServerRequest={handleGetSkillsPos}
                         isOutDataObj={false}
                         isIconArrow={true}
@@ -154,8 +149,7 @@ const FormSkill = ({
                   </CCol>
                   <CCol className="mb-4" xs={12}>
                      <InputSearch
-                        placeholder="Search skill"
-                        floatingLabel="Search skill"
+                        label="Search skill"
                         value={skillsObj?.searchSkils}
                         onChange={(e) => updateitemFiled({ name: "searchSkils", value: e.target.value })}
                         handleServerRequest={randomSearchSkills}
