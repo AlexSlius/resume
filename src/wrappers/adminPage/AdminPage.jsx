@@ -13,10 +13,6 @@ import MenuSidebarCoverLetters from "../../components/sideBar/MenuSidebarCoverLe
 import Resume from "../../components/resume/Resume";
 import { Header } from "../../components/header";
 
-// import { getAllResumeBuilder } from "../../controllers/getAllResumeBuilder";
-
-// import { routersPages } from "../../constants/next-routers";
-
 import style from "./AdminPage.module.scss"
 
 const AdminPage = ({ children, isCover = false }) => {
@@ -28,20 +24,6 @@ const AdminPage = ({ children, isCover = false }) => {
          currentResolution
       }
    } = useSelector((state) => state);
-
-   // const useStatusGet = React.useRef(true);
-   // const idCv = router.query.idCv;
-
-   // React.useEffect(() => {
-   //    if (router.asPath.includes(routersPages['resumeBuilder'])) {
-   //       if (idCv != "new") {
-   //          if (useStatusGet.current) {
-   //             getAllResumeBuilder({ dispatch, idCv });
-   //             useStatusGet.current = false;
-   //          }
-   //       }
-   //    }
-   // }, []);
 
    return (
       <>

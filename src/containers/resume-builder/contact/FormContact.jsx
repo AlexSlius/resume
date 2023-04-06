@@ -16,7 +16,6 @@ import {
    contactSetNew,
    fetchUpdateContact,
    contactAddNew,
-   getBasicContact
 } from "../../../controllers/contacts"
 import {
    updatePictureContact,
@@ -198,8 +197,6 @@ const FormContact = ({
       // dispatch(cleanSliseNew());
       if (idCv == "new") {
          sessionStorageRemove('picture');
-      } else {
-         // dispatch(getBasicContact(idCv));
       }
    }, []);
 
@@ -328,7 +325,7 @@ const FormContact = ({
                   />
                </CCol>
             </CRow>
-            {visibleAllInputs && <CRow className={classnames( "mobile-rows g-30 r-gap-30")}>
+            {visibleAllInputs && <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
                <CCol xs={6}>
                   <Input
                      label="Adress"

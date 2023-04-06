@@ -48,10 +48,13 @@ export const slice = createSlice({
     },
   },
   extraReducers: {
+
     [HYDRATE]: (state, action) => {
+      let objData = !!action?.payload?.resumeData?.data?.extra_curricular ? action.payload.resumeData.data.extra_curricular : action.payload.activitys.activityObj;
+
       return {
         ...state,
-        ...action.payload.activitys,
+        activityObj: objData,
       }
     },
     // delete all

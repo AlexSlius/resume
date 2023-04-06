@@ -31,10 +31,13 @@ export const slice = createSlice({
         },
     },
     extraReducers: {
+        // career_objective
         [HYDRATE]: (state, action) => {
+            let objData = !!action?.payload?.resumeData?.data?.career_objective?.[0] ? action.payload.resumeData.data.career_objective[0].data : action.payload.careers.data;
+
             return {
                 ...state,
-                ...action.payload.careers,
+                data: objData,
             }
         },
         // clean all

@@ -6,6 +6,7 @@ import {
   getBasicContact,
   contactAddNew
 } from "../controllers/contacts";
+
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 const initialState = {
@@ -70,11 +71,13 @@ export const slice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      let objData = !!action?.payload?.resumeData?.data?.contact?.[0] ? action.payload.resumeData.data.contact[0] : action.payload.contacts.contactObj;
+
       return {
         ...state,
         contactObj: {
           ...state.contactObj,
-          ...action.payload.contacts.contactObj,
+          ...objData,
         }
       }
     },

@@ -160,134 +160,134 @@ const FormActivity = ({
             isArray(activityObj) && (activityObj.length > 0) && (
                <CRow>
                   <CCol>
-                     <LoadWr isLoad={isLoader(status)}>
-                        <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                           <Droppable droppableId="droppable">
-                              {
-                                 (provided, snapshot) => (
-                                    <div
-                                       ref={provided.innerRef}
-                                       {...provided.droppableProps}
-                                    >
-                                       {
-                                          isArray(activityObj) && activityObj.map((item, index) => (
-                                             <Draggable
-                                                key={item.id}
-                                                draggableId={String(item.id)}
-                                                index={index}
-                                             >
-                                                {
-                                                   (provided, snapshot) => (
-                                                      <DraggedItem
-                                                         id={item.id}
-                                                         lenght={activityObj.length}
-                                                         provided={provided}
-                                                         key={item.id}
-                                                         title={item.title}
-                                                         index={index}
-                                                         onDelete={() => handleDeleteOne(item.id)}
-                                                         setSelected={setSelected}
-                                                         selected={selected}
-                                                         skillsList={[
-                                                            cardData(item?.dateFrom?.date, item?.dateTo?.date),
-                                                            item.employer
-                                                         ]}
-                                                      >
-                                                         <CRow className="row g-30 r-gap-30">
-                                                            <CCol xs={6}>
-                                                               <InputSelect
-                                                                  label="Function Title"
-                                                                  placeholder="Function Title"
-                                                                  valueState={item?.title || ""}
-                                                                  name="title"
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                                  isOutDataObj={false}
-                                                                  isModal={false}
-                                                               />
-                                                            </CCol>
-                                                            <CCol xs={6}>
-                                                               <InputSelect
-                                                                  label="Employer"
-                                                                  placeholder="Employer"
-                                                                  valueState={item?.employer || ""}
-                                                                  name="employer"
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                                  isOutDataObj={false}
-                                                                  isModal={false}
-                                                               />
-                                                            </CCol>
-                                                            <CCol xs={6}>
-                                                               <CRow>
-                                                                  <CCol xs={6}>
-                                                                     <DatePicker
-                                                                        selected={item?.dateFrom?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
-                                                                        floatingLabel="From"
-                                                                        placeholderText="From"
-                                                                        name="dateFrom"
-                                                                     />
-                                                                  </CCol>
-                                                                  <CCol xs={6}>
-                                                                     <DatePicker
-                                                                        selected={item?.dateTo?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
-                                                                        floatingLabel="To"
-                                                                        placeholderText="To"
-                                                                        name="dateTo"
-                                                                     />
-                                                                  </CCol>
-                                                               </CRow>
-                                                            </CCol>
-                                                            <CCol xs={3}>
-                                                               <InputSelect
-                                                                  placeholder="Country"
-                                                                  valueState={item.country || ""}
-                                                                  data={coutrys.list}
-                                                                  name="country"
-                                                                  // isLoad={isLoader(coutrys.status)}
-                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
-                                                                  isOutDataObj={false}
-                                                                  isIconArrow={true}
-                                                                  isFlag={true}
-                                                               />
-                                                            </CCol>
-                                                            <CCol xs={3}>
-                                                               <InputSelect
-                                                                  label="City"
-                                                                  placeholder="City"
-                                                                  valueState={item.city || ""}
-                                                                  name="city"
-                                                                  data={cities.list}
-                                                                  // isLoad={isLoader(cities?.status)}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
-                                                                  handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
-                                                                  isOutDataObj={false}
-                                                                  isRequire={true}
-                                                               />
-                                                            </CCol>
-                                                            <CCol xs={12}>
-                                                               <Textarea
-                                                                  value={item.description}
-                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
-                                                                  hideButton={true}
-                                                                  name="description"
-                                                                  placeholder={'Description of activity'}
-                                                               />
-                                                            </CCol>
-                                                         </CRow>
-                                                      </DraggedItem>
-                                                   )
-                                                }
-                                             </Draggable>
-                                          ))
-                                       }
-                                       {provided.placeholder}
-                                    </div>
-                                 )
-                              }
-                           </Droppable>
-                        </DragDropContext>
-                     </LoadWr>
+                     {/* <LoadWr isLoad={isLoader(status)}> */}
+                     <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+                        <Droppable droppableId="droppable">
+                           {
+                              (provided, snapshot) => (
+                                 <div
+                                    ref={provided.innerRef}
+                                    {...provided.droppableProps}
+                                 >
+                                    {
+                                       isArray(activityObj) && activityObj.map((item, index) => (
+                                          <Draggable
+                                             key={item.id}
+                                             draggableId={String(item.id)}
+                                             index={index}
+                                          >
+                                             {
+                                                (provided, snapshot) => (
+                                                   <DraggedItem
+                                                      id={item.id}
+                                                      lenght={activityObj.length}
+                                                      provided={provided}
+                                                      key={item.id}
+                                                      title={item.title}
+                                                      index={index}
+                                                      onDelete={() => handleDeleteOne(item.id)}
+                                                      setSelected={setSelected}
+                                                      selected={selected}
+                                                      skillsList={[
+                                                         cardData(item?.dateFrom?.date, item?.dateTo?.date),
+                                                         item.employer
+                                                      ]}
+                                                   >
+                                                      <CRow className="row g-30 r-gap-30">
+                                                         <CCol xs={6}>
+                                                            <InputSelect
+                                                               label="Function Title"
+                                                               placeholder="Function Title"
+                                                               valueState={item?.title || ""}
+                                                               name="title"
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               isOutDataObj={false}
+                                                               isModal={false}
+                                                            />
+                                                         </CCol>
+                                                         <CCol xs={6}>
+                                                            <InputSelect
+                                                               label="Employer"
+                                                               placeholder="Employer"
+                                                               valueState={item?.employer || ""}
+                                                               name="employer"
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               isOutDataObj={false}
+                                                               isModal={false}
+                                                            />
+                                                         </CCol>
+                                                         <CCol xs={6}>
+                                                            <CRow>
+                                                               <CCol xs={6}>
+                                                                  <DatePicker
+                                                                     selected={item?.dateFrom?.date}
+                                                                     onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
+                                                                     floatingLabel="From"
+                                                                     placeholderText="From"
+                                                                     name="dateFrom"
+                                                                  />
+                                                               </CCol>
+                                                               <CCol xs={6}>
+                                                                  <DatePicker
+                                                                     selected={item?.dateTo?.date}
+                                                                     onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
+                                                                     floatingLabel="To"
+                                                                     placeholderText="To"
+                                                                     name="dateTo"
+                                                                  />
+                                                               </CCol>
+                                                            </CRow>
+                                                         </CCol>
+                                                         <CCol xs={3}>
+                                                            <InputSelect
+                                                               placeholder="Country"
+                                                               valueState={item.country || ""}
+                                                               data={coutrys.list}
+                                                               name="country"
+                                                               // isLoad={isLoader(coutrys.status)}
+                                                               handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
+                                                               isOutDataObj={false}
+                                                               isIconArrow={true}
+                                                               isFlag={true}
+                                                            />
+                                                         </CCol>
+                                                         <CCol xs={3}>
+                                                            <InputSelect
+                                                               label="City"
+                                                               placeholder="City"
+                                                               valueState={item.city || ""}
+                                                               name="city"
+                                                               data={cities.list}
+                                                               // isLoad={isLoader(cities?.status)}
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
+                                                               isOutDataObj={false}
+                                                               isRequire={true}
+                                                            />
+                                                         </CCol>
+                                                         <CCol xs={12}>
+                                                            <Textarea
+                                                               value={item.description}
+                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                               hideButton={true}
+                                                               name="description"
+                                                               placeholder={'Description of activity'}
+                                                            />
+                                                         </CCol>
+                                                      </CRow>
+                                                   </DraggedItem>
+                                                )
+                                             }
+                                          </Draggable>
+                                       ))
+                                    }
+                                    {provided.placeholder}
+                                 </div>
+                              )
+                           }
+                        </Droppable>
+                     </DragDropContext>
+                     {/* </LoadWr> */}
                   </CCol>
                </CRow>
             )

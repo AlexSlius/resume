@@ -42,9 +42,11 @@ export const slice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      let objData = !!action?.payload?.resumeData?.data?.reference ? action.payload.resumeData.data.reference : action.payload.references.referencesObj;
+
       return {
         ...state,
-        ...action.payload.references,
+        referencesObj: objData,
       }
     },
     // delete all

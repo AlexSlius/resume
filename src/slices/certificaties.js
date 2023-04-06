@@ -35,9 +35,11 @@ export const slice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      let objData = !!action?.payload?.resumeData?.data?.certificates ? action.payload.resumeData.data.certificates : action.payload.certificaties.certificatiesObj;
+
       return {
         ...state,
-        ...action.payload.certificaties,
+        certificatiesObj: objData,
       }
     },
     // add

@@ -37,9 +37,11 @@ export const slice = createSlice({
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      let objData = !!action?.payload?.resumeData?.data?.languages ? action.payload.resumeData.data.languages : action.payload.languages.languageObj;
+
       return {
         ...state,
-        ...action.payload.languages,
+        languageObj: objData,
       }
     },
     // delete 

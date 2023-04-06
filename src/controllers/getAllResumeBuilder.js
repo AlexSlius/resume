@@ -13,25 +13,27 @@ import { fetchGetCvCertificates } from "./certificaties"
 import { fetchGetCvCarreers } from "./careers";
 import { fetchGetCategoryStatus, getCategoryViewedStatus } from "./addSections"
 
-export const getAllResumeBuilder = async ({ dispatch, idCv }) => {
-    // console.log("start gett all: ", idCv);
+import { fetchGetResumeData } from "./resumeData";
 
+export const getAllResumeBuilder = async ({ dispatch, idCv }) => {
     if (idCv != "new" && idCv !== undefined && idCv !== null) {
         await dispatch(fetchGetCategoryStatus({ idCv }));
         await dispatch(getCategoryViewedStatus({ idCv }));
-        await dispatch(getBasicContact(idCv));
-        await dispatch(fetchGetCvEmployments({ idCv }));
-        await dispatch(fetchGetCvEducations({ idCv }));
-        await dispatch(fetchGetSkillslistAll(idCv));
-        await dispatch(fetchGetExperienceLevel({ idCv }));
-        await dispatch(fetchGetAllLinks({ idCv }));
-        await dispatch(fetchGetCvHobie({ idCv }));
-        await dispatch(fetchGetCvActivitys({ idCv }));
-        await dispatch(fetchGetCvCourses({ idCv }));
-        await dispatch(fetchGetCvInternships({ idCv }));
-        await dispatch(fetchGetCvLanguages({ idCv }));
-        await dispatch(fetchGetCvReferences({ idCv }));
-        await dispatch(fetchGetCvCertificates({ idCv }));
-        await dispatch(fetchGetCvCarreers({ idCv }));
+        await dispatch(fetchGetResumeData({ idCv }));
+
+        // await dispatch(getBasicContact(idCv));
+        // await dispatch(fetchGetCvEmployments({ idCv }));
+        // await dispatch(fetchGetCvEducations({ idCv }));
+        // await dispatch(fetchGetSkillslistAll(idCv));
+        // await dispatch(fetchGetExperienceLevel({ idCv }));
+        // await dispatch(fetchGetAllLinks({ idCv }));
+        // await dispatch(fetchGetCvHobie({ idCv }));
+        // await dispatch(fetchGetCvActivitys({ idCv }));
+        // await dispatch(fetchGetCvCourses({ idCv }));
+        // await dispatch(fetchGetCvInternships({ idCv }));
+        // await dispatch(fetchGetCvLanguages({ idCv }));
+        // await dispatch(fetchGetCvReferences({ idCv }));
+        // await dispatch(fetchGetCvCertificates({ idCv }));
+        // await dispatch(fetchGetCvCarreers({ idCv }));
     }
 }
