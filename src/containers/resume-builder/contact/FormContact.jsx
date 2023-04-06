@@ -301,12 +301,12 @@ const FormContact = ({
                </CCol>
                <CCol xs={3}>
                   <InputSelect
-                     placeholder=""
+                     // placeholder=""
                      valueState={contObj.country || ''}
                      data={coutrys.list}
                      name="blaba1"
                      isBackgraundLoad={isLoader(coutrys.status)}
-                     handleSaveSelect={handleSaveSelect}
+                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'country', value }, data)}
                      isOutDataObj={false}
                      isIconArrow={true}
                      isFlag={true}
@@ -315,12 +315,13 @@ const FormContact = ({
                <CCol xs={3}>
                   <InputSelect
                      label="City"
-                     placeholder=""
+                     // placeholder=""
                      valueState={contObj.city || ''}
                      name=" bvasasd2"
                      data={cities.list}
                      isBackgraundLoad={isLoader(cities?.status)}
-                     handleSaveSelect={handleSaveSelect}
+                     // handleSaveSelect={handleSaveSelect}
+                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
                      isRequire={true}
