@@ -301,7 +301,7 @@ const FormContact = ({
                </CCol>
                <CCol xs={3}>
                   <InputSelect
-                     placeholder="Country"
+                     placeholder=""
                      valueState={contObj.country || ''}
                      data={coutrys.list}
                      name="blaba1"
@@ -315,7 +315,7 @@ const FormContact = ({
                <CCol xs={3}>
                   <InputSelect
                      label="City"
-                     placeholder="City"
+                     placeholder=""
                      valueState={contObj.city || ''}
                      name=" bvasasd2"
                      data={cities.list}
