@@ -9,15 +9,16 @@ const Input = ({
    onChange = () => { },
    onBlur = () => { },
    onDelete = () => { },
+   onFocus = () => { },
    value,
    defaultValue,
    label = null,
-   placeholder = "",
+   placeholder = undefined,
    type = "text",
    className = "",
    invalid = false,
    valid = false,
-   name = '',
+   name = undefined,
    obj,
    isDelete = false,
    disabled = false,
@@ -25,6 +26,7 @@ const Input = ({
    autoComplete = "off"
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
+   let classNames = `${className} ${!!value?.length > 0 ? "text" : ""}`;
 
    return (
       <>
@@ -32,8 +34,9 @@ const Input = ({
             <CFormInput
                onChange={onChange}
                onBlur={onBlur}
+               onFocus={onFocus}
                value={value}
-               className={`${className}`}
+               className={classNames}
                defaultValue={defaultValue}
                type={type}
                floatingLabel={label}

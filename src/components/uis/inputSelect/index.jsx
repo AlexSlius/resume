@@ -2,6 +2,8 @@ import { CFormInput } from "@coreui/react"
 import { isArray, isString } from "lodash";
 import React from "react"
 
+import Input from "../input";
+
 import { theFirstHeaderCharacter } from "../../../helpers/strings";
 import Icon from "../../Icon"
 
@@ -18,14 +20,14 @@ export const InputSelect = ({
     handleAddNew = () => { },
     handleServerRequest = () => { },
     onDelete = () => { },
-    label = '',
-    placeholder = '',
+    label = undefined,
+    placeholder = undefined,
     isLoad = false,
     isBackgraundLoad = false,
     invalid = false,
     isFirstList = true,
     valueState = '',
-    name = '',
+    name = undefined,
     data = [],
     keyName = "name",
     keyText = "name",
@@ -220,35 +222,44 @@ export const InputSelect = ({
         } else {
             isOneStart.current = true;
         }
+
+        if (!!isFlag) {
+            if ((!!isOutDataObj ? valueState[keyText] : valueState).length == 0 && (!!imgSrc?.length > 0)) {
+                setImgSrc(null);
+            }
+        }
     }, [(!!isOutDataObj ? valueState[keyText] : valueState)])
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
             <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad} ${classDelete}`} ref={reWrClick}>
-                {
-                    (!!isFlag && !!imgSrc?.length) && (
-                        <div className={`${style.wrpa_click}`}>
-                            <img src={imgSrc} />
-                        </div>
-                    )
-                }
+                <div className={`${style.mod__wr_r}`}>
+                    {
+                        (!!isFlag && (!!imgSrc?.length > 0) && (!!isOutDataObj ? valueState[keyText] || '' : valueState || '')) && (
+                            <div className={`${style.wrpa_click}`}>
+                                <img src={imgSrc} />
+                            </div>
+                        )
+                    }
 
-                <CFormInput
-                    onChange={handleOnChange}
-                    onBlur={handledOnBlur}
-                    onFocus={onFocus}
-                    ref={reIn}
-                    floatingLabel={label}
-                    placeholder={placeholder}
-                    floatingClassName={style.contoll}
-                    invalid={!!invalid}
-                    valid={isCouValid ? !!isValid : false}
-                    name={name}
-                    value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
-                    type="text"
-                    autoComplete="off"
-                    {...obj}
-                />
+                    <Input
+                        onChange={handleOnChange}
+                        onBlur={handledOnBlur}
+                        onFocus={onFocus}
+                        autoComplete="off"
+                        label={label}
+                        value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
+                        // invalid={!!invalid}
+                        // valid={isCouValid ? !!isValid : false}
+                        name={name}
+                        className={`${style.contoll} ${(!!isFlag && !!imgSrc?.length > 0) ? style.imput_img : ""}`}
+                        placeholder={placeholder}
+                        obj={{
+                            ref: reIn,
+                            ...obj
+                        }}
+                    />
+                </div>
 
                 {
                     isDelete && (

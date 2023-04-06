@@ -1,7 +1,8 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
-import { CFormInput } from "@coreui/react"
 import classnames from 'classnames';
+
+import Input from "../input";
 
 import style from "./Style.module.scss";
 
@@ -86,14 +87,15 @@ export const DatePicker = ({
     return (
         <div className={`${style.wt_cal}`} ref={refSelect}>
             <div className={`${style.wt_cal_in}`}>
-                <CFormInput
-                    ref={useRefDataNewIn}
+                <Input
                     name={name}
+                    label={floatingLabel}
+                    autoComplete="on"
                     value={selected ? moment(new Date(selected)).format(formatInput) : ""}
-                    floatingLabel={floatingLabel}
-                    placeholder={placeholderText}
+                    obj={{ ref: useRefDataNewIn }}
                 />
             </div>
+
             <input type="text" ref={useRefData} className={`${style.ins}`} />
             <div ref={useRefWrContainer} className={classnames('popup', style.wrData, clases)}>
                 {

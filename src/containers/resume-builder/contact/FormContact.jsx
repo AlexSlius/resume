@@ -2,7 +2,6 @@
 import { useEffect, useState, useRef } from "react"
 import { CForm, CCol, CRow } from "@coreui/react"
 import { useForm } from "react-hook-form"
-import { useRouter } from 'next/router'
 import classnames from 'classnames';
 
 import { DatePicker } from "../../../components/uis/datePicker"
@@ -38,14 +37,12 @@ import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { capitalize } from "../../../helpers/strings"
-import { usePosition } from "../../../hooks/custom-hooks"
 
 const FormContact = ({
    dispatch,
    storeDate,
    idCv
 }) => {
-   const router = useRouter();
    const refIdTimeout = useRef(undefined);
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
@@ -211,17 +208,14 @@ const FormContact = ({
 
    return (
       <LoadWr isLoad={isLoader(status)}>
-         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30" autocomplete="off">
+         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30" autoComplete="off">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-3">
                      <Input
                         label="First Name*"
-                        placeholder="First Name*"
                         value={contObj.firstName}
                         autoComplete="on"
-                        readonly
-                        onfocus="this.removeAttribute('readonly');"
                         obj={
                            register("firstName", {
                               required: true,
@@ -235,7 +229,6 @@ const FormContact = ({
                   <div>
                      <Input
                         label="Last Name*"
-                        placeholder="Last Name*"
                         autoComplete="on"
                         value={contObj.lastName}
                         obj={
@@ -257,11 +250,9 @@ const FormContact = ({
                <CCol xs={6}>
                   <Input
                      label="E-mail"
-                     placeholder="E-mail"
                      value={contObj.email}
                      invalid={errors?.email}
                      autoComplete="on"
-                     // valid={!errors?.email && /\S+@\S+\.\S+/.test(contObj.email)}
                      obj={
                         register("email", {
                            pattern: {
@@ -274,24 +265,19 @@ const FormContact = ({
                <CCol xs={6}>
                   <Input
                      label="Phone"
-                     placeholder="Phone"
                      autoComplete="on"
                      value={contObj.phone}
                      type="number"
-                     name="phone"
                      onChange={(e) => handleSaveSelect({ name: "phone", value: e.target.value })}
                   />
                </CCol>
                <CCol xs={6}>
                   <InputSelect
                      label="Job Title"
-                     placeholder="Job Title"
                      valueState={contObj.jobTitle || ""}
                      data={jopsTitle?.list || []}
                      isAddDiv={true}
-                     name="jobTitle"
-                     isBackgraundLoad={isLoader(jopsTitle?.statusAddNew) || isLoader(jopsTitle?.status)}
-                     handleSaveSelect={handleSaveSelect}
+                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'jobTitle', value }, data)}
                      handleServerRequest={handleServerRequestGetJopsTitle}
                      handleAddNew={handleAddNewJobTitle}
                      isOutDataObj={false}
@@ -301,11 +287,9 @@ const FormContact = ({
                </CCol>
                <CCol xs={3}>
                   <InputSelect
-                     // placeholder=""
+                     label="Country"
                      valueState={contObj.country || ''}
                      data={coutrys.list}
-                     name="blaba1"
-                     isBackgraundLoad={isLoader(coutrys.status)}
                      handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'country', value }, data)}
                      isOutDataObj={false}
                      isIconArrow={true}
@@ -315,12 +299,9 @@ const FormContact = ({
                <CCol xs={3}>
                   <InputSelect
                      label="City"
-                     // placeholder=""
                      valueState={contObj.city || ''}
-                     name=" bvasasd2"
                      data={cities.list}
                      isBackgraundLoad={isLoader(cities?.status)}
-                     // handleSaveSelect={handleSaveSelect}
                      handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
@@ -332,7 +313,6 @@ const FormContact = ({
                <CCol xs={6}>
                   <Input
                      label="Adress"
-                     placeholder="Adress"
                      value={contObj.address}
                      autoComplete="on"
                      obj={
@@ -347,7 +327,6 @@ const FormContact = ({
                <CCol xs={6}>
                   <Input
                      label="Zip Code"
-                     placeholder="Zip Code"
                      value={contObj.zipCode}
                      autoComplete="on"
                      type="number"
@@ -363,12 +342,10 @@ const FormContact = ({
                <CCol xs={6}>
                   <InputSelect
                      label="Driver license"
-                     placeholder="Driver license"
                      valueState={contObj.driverLicense || ''}
                      data={drivers?.list || []}
-                     name="driverLicense"
                      isBackgraundLoad={isLoader(drivers?.status)}
-                     handleSaveSelect={handleSaveSelect}
+                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'driverLicense', value }, data)}
                      keyName="category"
                      keyText="category"
                      isOutDataObj={false}
@@ -377,12 +354,10 @@ const FormContact = ({
                <CCol xs={6}>
                   <InputSelect
                      label="Nationality"
-                     placeholder="Nationality"
                      valueState={contObj.nationality || ''}
                      data={nationality?.list || []}
-                     name="nationality"
                      isBackgraundLoad={isLoader(nationality?.status)}
-                     handleSaveSelect={handleSaveSelect}
+                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'nationality', value }, data)}
                      handleServerRequest={handleServerRequestNationaly}
                      isOutDataObj={false}
                      isRequire={true}
@@ -391,7 +366,6 @@ const FormContact = ({
                <CCol xs={6}>
                   <Input
                      label="Place of birth"
-                     placeholder="Place of birth"
                      value={contObj.placeOfBirth}
                      obj={
                         register("placeOfBirth", {
@@ -404,9 +378,9 @@ const FormContact = ({
                </CCol>
                <CCol xs={6}>
                   <DatePicker
+                     floatingLabel="Date of birth"
                      selected={contObj.dateOfBirth}
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                     placeholderText="Date of birth"
                      name="date_of_birth"
                      formatInput='MMM, DD, YYYY'
                      formatData='M, d, Y'
