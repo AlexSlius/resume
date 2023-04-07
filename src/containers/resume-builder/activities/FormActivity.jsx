@@ -26,7 +26,6 @@ import {
    updatePosition
 } from "../../../slices/activity";
 import {
-   fetchGetCvActivitys,
    fetchPostAddCvOneActivitys,
    fetchDeleteActivitys,
    fetchUpdateActivitys,
@@ -36,6 +35,8 @@ import {
 import {
    fetchGetCities,
    fetchGetCountrys,
+   getCompanyList,
+   addCompany
 } from '../../../controllers/dependencies';
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
@@ -52,6 +53,7 @@ const FormActivity = ({
       dependencies: {
          coutrys,
          cities,
+         companys,
       },
       activitys: {
          activityObj,
@@ -148,9 +150,22 @@ const FormActivity = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
+   const handleServerRequestCompanyList = async (text) => {
+      await dispatch(getCompanyList(text)); // get all compay list
+   }
+
+   const handleAddNewCompany = async (text, isNewForm = false) => {
+      let re = await dispatch(addCompany(text));
+
+      if (isNewForm) {
+         automateNew();
+      }
+
+      return re?.payload?.id;
+   }
+
    React.useEffect(() => {
       dispatch(fetchGetCountrys());
-      // fetchGetCvActivitys({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
    }, []);
 
@@ -197,24 +212,28 @@ const FormActivity = ({
                                                          <CCol xs={6}>
                                                             <InputSelect
                                                                label="Function Title"
-                                                               placeholder="Function Title"
                                                                valueState={item?.title || ""}
-                                                               name="title"
-                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "title" })}
                                                                isOutDataObj={false}
                                                                isModal={false}
+                                                               isValidIn={true}
+                                                               validIn={item?.title?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={6}>
                                                             <InputSelect
                                                                label="Employer"
-                                                               placeholder="Employer"
+                                                               data={companys?.list || []}
                                                                valueState={item?.employer || ""}
-                                                               name="employer"
-                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "employer" })}
+                                                               handleServerRequest={handleServerRequestCompanyList}
+                                                               handleAddNew={handleAddNewCompany}
                                                                isOutDataObj={false}
-                                                               isModal={false}
+                                                               isAddDiv={true}
+                                                               isValidIn={true}
+                                                               validIn={item?.employer?.length > 3}
                                                             />
+
                                                          </CCol>
                                                          <CCol xs={6}>
                                                             <CRow>
@@ -223,8 +242,6 @@ const FormActivity = ({
                                                                      selected={item?.dateFrom?.date}
                                                                      onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
                                                                      floatingLabel="From"
-                                                                     placeholderText="From"
-                                                                     name="dateFrom"
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
@@ -232,37 +249,34 @@ const FormActivity = ({
                                                                      selected={item?.dateTo?.date}
                                                                      onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                      floatingLabel="To"
-                                                                     placeholderText="To"
-                                                                     name="dateTo"
                                                                   />
                                                                </CCol>
                                                             </CRow>
                                                          </CCol>
                                                          <CCol xs={3}>
                                                             <InputSelect
-                                                               placeholder="Country"
+                                                               label="Country"
                                                                valueState={item.country || ""}
                                                                data={coutrys.list}
-                                                               name="country"
-                                                               // isLoad={isLoader(coutrys.status)}
-                                                               handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj }, data)}
+                                                               handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "country" }, data)}
                                                                isOutDataObj={false}
                                                                isIconArrow={true}
                                                                isFlag={true}
+                                                               isValidIn={true}
+                                                               validIn={item.country?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={3}>
                                                             <InputSelect
                                                                label="City"
-                                                               placeholder="City"
                                                                valueState={item.city || ""}
-                                                               name="city"
                                                                data={cities.list}
-                                                               // isLoad={isLoader(cities?.status)}
-                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                               handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "city" })}
                                                                handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                                                isOutDataObj={false}
                                                                isRequire={true}
+                                                               isValidIn={true}
+                                                               validIn={item.city?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={12}>
@@ -299,24 +313,28 @@ const FormActivity = ({
                   <CCol xs={6}>
                      <InputSelect
                         label="Function Title"
-                        placeholder="Function Title"
                         valueState={objNew.title || ""}
-                        name="title"
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "title" }, data)}
                         isOutDataObj={false}
                         isModal={false}
+                        isValidIn={true}
+                        validIn={objNew.title?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
                      <InputSelect
                         label="Employer"
-                        placeholder="Employer"
+                        data={companys?.list || []}
                         valueState={objNew.employer || ""}
-                        name="employer"
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleServerRequest={handleServerRequestCompanyList}
+                        handleAddNew={(value) => handleAddNewCompany(value, true)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "employer" }, data)}
+                        isAddDiv={true}
                         isOutDataObj={false}
-                        isModal={false}
+                        isValidIn={true}
+                        validIn={objNew.employer?.length > 3}
                      />
+
                   </CCol>
                   <CCol xs={6}>
                      <CRow className='dates-wrap'>
@@ -325,8 +343,6 @@ const FormActivity = ({
                               selected={objNew.period_from}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
                               floatingLabel="From"
-                              placeholderText="From"
-                              name="period_from"
                            />
                         </CCol>
                         <CCol xs={6} className='date-block'>
@@ -334,37 +350,34 @@ const FormActivity = ({
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
                               floatingLabel="To"
-                              placeholderText="To"
-                              name="period_to"
                            />
                         </CCol>
                      </CRow>
                   </CCol>
                   <CCol xs={3}>
                      <InputSelect
-                        placeholder="Country"
+                        label="Country"
                         valueState={objNew.country || ""}
                         data={coutrys.list}
-                        name="country"
-                        // isLoad={isLoader(coutrys.status)}
-                        handleSaveSelect={handleSaveSelectNew}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "country" }, data)}
                         isOutDataObj={false}
                         isIconArrow={true}
                         isFlag={true}
+                        isValidIn={true}
+                        validIn={objNew.country?.length > 3}
                      />
                   </CCol>
                   <CCol xs={3}>
                      <InputSelect
                         label="City"
-                        placeholder="City"
                         valueState={objNew.city || ""}
-                        name="city"
                         data={cities.list}
-                        // isLoad={isLoader(cities?.status)}
-                        handleSaveSelect={handleSaveSelectNewCity}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewCity({ ...obj, name: "city" }, data)}
                         handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
                         isOutDataObj={false}
                         isRequire={true}
+                        isValidIn={true}
+                        validIn={objNew.city?.length > 3}
                      />
                   </CCol>
                   <CCol xs={12}>

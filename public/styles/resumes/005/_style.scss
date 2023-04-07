@@ -9,11 +9,10 @@
 }
 
 .sv_005 {
-  font-family: "Hind", sans-serif;
-
   * {
     padding: 0px;
     margin: 0px;
+    font-family: "Hind", sans-serif;
   }
 
   *,
@@ -68,8 +67,8 @@
 
   .cv-body {
     // width: 595px;
-    height: 842px;
-    max-height: 842px;
+    // height: 842px;
+    // max-height: 842px;
     background-color: #fff;
     box-sizing: border-box;
     // margin: 0px 25px 25px;
@@ -128,6 +127,7 @@
             .photo-block {
               display: none;
               margin-right: 34px;
+              min-width: 150px;
 
               &.active {
                 display: flex;

@@ -54,6 +54,7 @@ export const NewPasswordPage = () => {
                                     placeholder="Password"
                                     invalid={!!errors?.password}
                                     valid={!errors?.password && watch("password").length > 0}
+                                    value={watch("password")}
                                     obj={
                                         register("password", {
                                             required: true,
@@ -72,6 +73,7 @@ export const NewPasswordPage = () => {
                                     placeholder="Repeat password"
                                     invalid={!!errors?.repeatPassword}
                                     valid={!errors?.repeatPassword && (watch("password").length > 0) && (watch("password") == watch("repeatPassword"))}
+                                    value={watch("repeatPassword")}
                                     obj={
                                         register("repeatPassword", {
                                             required: true,

@@ -139,6 +139,7 @@
 }
 
 .resume-main_scale {
+   pointer-events: none;
    &>div {
       min-width: 624px;
    }

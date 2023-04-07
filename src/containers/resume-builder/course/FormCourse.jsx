@@ -26,7 +26,6 @@ import {
 } from "../../../slices/courses";
 
 import {
-   fetchGetCvCourses,
    fetchPostAddCvOneCourses,
    fetchDeleteCourses,
    fetchUpdateCourses,
@@ -130,7 +129,6 @@ const FormCourse = ({
    }
 
    React.useEffect(() => {
-      // fetchGetCvCourses({ idCv });
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'courses' }));
    }, []);
 
@@ -177,23 +175,23 @@ const FormCourse = ({
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Course title"
-                                                                  placeholder="Course title"
                                                                   valueState={item?.title || ""}
-                                                                  name="title"
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "title" })}
                                                                   isOutDataObj={false}
                                                                   isModal={false}
+                                                                  isValidIn={true}
+                                                                  validIn={item?.title?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Institution"
-                                                                  placeholder="Institution"
                                                                   valueState={item?.institution || ""}
-                                                                  name="institution"
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj })}
+                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "institution" })}
                                                                   isOutDataObj={false}
                                                                   isModal={false}
+                                                                  isValidIn={true}
+                                                                  validIn={item?.institution?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -203,8 +201,6 @@ const FormCourse = ({
                                                                         selected={item?.dateFrom?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
                                                                         floatingLabel="From"
-                                                                        placeholderText="From"
-                                                                        name="dateFrom"
                                                                      />
                                                                   </CCol>
                                                                   <CCol xs={6} className='date-block'>
@@ -212,8 +208,6 @@ const FormCourse = ({
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                         floatingLabel="To"
-                                                                        placeholderText="To"
-                                                                        name="dateTo"
                                                                      />
                                                                   </CCol>
                                                                </CRow>
@@ -243,23 +237,25 @@ const FormCourse = ({
                   <CCol xs={6}>
                      <InputSelect
                         label="Course title"
-                        placeholder="Course title"
                         valueState={objNew.title || ""}
                         name="title"
                         handleSaveSelect={handleSaveSelectNew}
                         isOutDataObj={false}
                         isModal={false}
+                        isValidIn={true}
+                        validIn={objNew.title?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
                      <InputSelect
                         label="Institution"
-                        placeholder="Institution"
                         valueState={objNew.institution || ""}
                         name="institution"
                         handleSaveSelect={handleSaveSelectNew}
                         isOutDataObj={false}
                         isModal={false}
+                        isValidIn={true}
+                        validIn={objNew.institution?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -269,8 +265,6 @@ const FormCourse = ({
                               selected={objNew.period_from}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
                               floatingLabel="From"
-                              placeholderText="From"
-                              name="period_from"
                            />
                         </CCol>
                         <CCol xs={6} className='date-block'>
@@ -278,8 +272,6 @@ const FormCourse = ({
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
                               floatingLabel="To"
-                              placeholderText="To"
-                              name="period_to"
                            />
                         </CCol>
                      </CRow>

@@ -59,10 +59,13 @@ const Resume = ({
          if (typeof window != "undefined") {
             if (!!reportTemplateRef.current) {
                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-               setPagesPag(devPages.length);
+               setPagesPag(!!devPages.length ? devPages.length : 1);
+            } else {
+               setPagesPag(1);
             }
          }
       }
+
    }, [resumeData?.data, resumeData.resumeActive, contacts,
       employment,
       educations,
@@ -150,7 +153,7 @@ const Resume = ({
                reportTemplateRef={reportTemplateRef}
                isCover={isCover}
             />
-            <ResumeFooter isCover={isCover}/>
+            <ResumeFooter isCover={isCover} />
          </CCol>
       </>
    )

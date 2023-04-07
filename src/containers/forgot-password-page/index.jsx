@@ -64,6 +64,7 @@ export const ForgotPasswordPage = () => {
                                     placeholder="E-mail"
                                     invalid={errors?.email}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
+                                    value={watch("email")}
                                     obj={
                                         register("email", {
                                             required: true,

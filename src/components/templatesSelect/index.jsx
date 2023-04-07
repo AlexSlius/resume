@@ -99,8 +99,6 @@ export const TemplatesSelect = ({
                     />
                 )
             }
-
-
         </LoadWr>
     )
 }

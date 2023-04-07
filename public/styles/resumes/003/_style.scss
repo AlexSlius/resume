@@ -130,6 +130,12 @@
         justify-content: flex-start;
         margin-top: 3px;
 
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+        
+
         .estimation-point {
           display: block;
           border-radius: 50%;
@@ -155,7 +161,7 @@
     // z-index: -1;
     // opacity: 0;
     // pointer-events: none;
-    display: none;
+    // display: none;
   }
 
   #cv-body-2 {
@@ -181,8 +187,8 @@
     justify-content: stretch;
     // max-width: 595px;
     min-width: 595px;
-    height: 842px;
-    max-height: 842px;
+    // height: 842px;
+    // max-height: 842px;
     // overflow-y: hidden;
     background-color: #fff;
     // margin: 0px 25px 25px;

@@ -277,7 +277,9 @@ const Templates = ({ isCover = false }) => {
         if (typeof window != "undefined") {
             if (!!reportTemplateRef.current) {
                 let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-                setPagesPag(devPages.length);
+                setPagesPag(!!devPages.length ? devPages.length : 1);
+            } else {
+                setPagesPag(1);
             }
         }
     }, [dataOther?.data, dataOther.resumeActive]);
@@ -409,7 +411,7 @@ const Templates = ({ isCover = false }) => {
                                             stateFontSize={stateFontSize}
                                             reportTemplateRef={reportTemplateRef}
 
-                                            dataOther={dataOther}
+                                            resumeData={dataOther}
                                             data={isNewResume ? dataResumeTemplate : dataOther?.data}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}

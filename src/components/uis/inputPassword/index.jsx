@@ -8,6 +8,7 @@ import style from "./Style.module.scss"
 import iconEye from "/public/images/icons/eye.svg?sprite"
 
 export const InputPassword = (props) => {
+    let classNames = `${!!props.value?.length > 0 ? "text" : ""}`;
     const [showPassword, setShowPassword] = React.useState(false);
 
     let classBtnEye = showPassword ? style.open : ''
@@ -16,13 +17,12 @@ export const InputPassword = (props) => {
     return (
         <div className={`${style.row}`}>
             <CFormInput
-                // onChange={(e) =>setEmail(e.target.value)}
                 autoComplete="off"
                 value={props.value}
                 type={typeField}
                 floatingLabel={props.label}
                 placeholder={props.placeholder}
-                className={`${style.in_password}`}
+                className={`${style.in_password} ${classNames}`}
                 invalid={props.invalid || false}
                 valid={props.valid || false}
                 {...props?.obj}

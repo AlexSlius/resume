@@ -71,8 +71,8 @@ export const LoginPage = () => {
                             <CCol>
                                 <Input
                                     label="E-mail"
-                                    placeholder="E-mail"
                                     invalid={errors?.email}
+                                    value={watch("email")}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                                     obj={
                                         register("email", {
@@ -89,9 +89,9 @@ export const LoginPage = () => {
                             <CCol>
                                 <InputPassword
                                     label="Password"
-                                    placeholder="Password"
                                     invalid={errors?.password}
                                     valid={!errors?.password && watch("password").length > 0}
+                                    value={watch("password")}
                                     obj={
                                         register("password", {
                                             required: true,

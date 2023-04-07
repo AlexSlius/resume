@@ -7,6 +7,11 @@
     padding: 20px;
     cursor: pointer;
 
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
     &__left {
         display: flex;
         align-items: center;

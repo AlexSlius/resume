@@ -76,7 +76,7 @@ const AddSection = () => {
     }
 
     const clickFinish = () => {
-        Router.push(`/${routersPages['dashboard']} `);
+        Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']} `);
     }
 
     React.useEffect(() => {
@@ -228,7 +228,8 @@ const AddSection = () => {
                             {
                                 (list?.customSection?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        <div className={`${style.item_section} itm-s`} onClick={() => handleAddItemSection("customSection")}>
+                                        {/* onClick={() => handleAddItemSection("customSection")} */}
+                                        <div className={`${style.item_section} ${style.disabled} itm-s`} >
                                             <div className={`${style.item_section__left} `}>
                                                 <Icon svg={iconSettings} />
                                                 <span>Custom section</span>
