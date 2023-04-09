@@ -41,7 +41,8 @@ export const ResumeCv004 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
 
   let classPhoto = (isArray(contact) && contact[0]?.picture) ? "has-photo" : "";

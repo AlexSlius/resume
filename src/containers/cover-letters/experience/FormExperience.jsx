@@ -45,6 +45,7 @@ const FormExperience = ({
             jopsTitle,
             companys,
             skills,
+            university,
         },
         auth: {
             autorizate: {
@@ -117,6 +118,8 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         coverDataObj={coverDataObj}
+                        university={university}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -128,6 +131,8 @@ const FormExperience = ({
                         handleUpdateField={handleUpdateField}
                         StepsName={StepsName}
                         coverDataObj={coverDataObj}
+                        university={university}
+                        dispatch={dispatch}
                     />
                 )
             }
@@ -278,6 +283,7 @@ const FormExperience = ({
                         dispatch={dispatch}
                         jopsTitleList={jopsTitle.list}
                         companysList={companys.list}
+                        idCv={idCv}
                     />
                 )
             }

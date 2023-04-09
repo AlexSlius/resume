@@ -6,69 +6,83 @@ import FormExperience from "./FormExperience";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent";
 import { Progress } from "../../../components/progress";
 
-import { helperProgress } from "../../../helpers/helperProgress";
-import { getCoverLetterById } from "../../../controllers/cover/personalize";
 import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
+import { StepsName } from "../../../constants/cover";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
 
-const constFiled = [
-    // "questionGraduateFromCollege",
-    "professionalSkills",
-    "skillSet",
-    "wordDescribes",
-    "othersDescribe",
-    // "questionHaveWorkExperience",
-    "applyingCompanyName",
-    "applyingCompanyJobTitle",
-    "applyingCompanyTitle",
-    "applyingCompanyContact"
-];
-
-const stepsField = (coverDataObj) => {
-    let ar = [...constFiled];
-
-    if (coverDataObj.questionGraduateFromCollege == "Y") {
-        ar = [...ar, ...["graduateDate", "nameCollegeOrUniversity", "pointAverage", "fieldOfStudyOrDegree"]];
-    } else if (coverDataObj.questionGraduateFromCollege == "N") {
-        // ar = [...ar, ...["questionCurrentlyInCollegeUniversity"]];
-
-        if (coverDataObj.questionCurrentlyInCollegeUniversity == "Y") {
-            // "expectedYearOfGraduation",
-            ar = [...ar, ...["nameCollegeOrUniversity", "fieldOfStudyOrDegree"]];
-        } else if (coverDataObj.questionCurrentlyInCollegeUniversity == "N") {
-            // ar = [...ar, ...["expectedYearOfGraduation"]];
-        }
-    }
-
-    if (coverDataObj.questionHaveWorkExperience == "Y") {
-        // "questionCurrentlyWorking"
-        ar = [...ar, ...["industryHoldExperienceJobTitle", "industryHoldExperienceCompanyName", "workExperience", "workExperienceYears"]];
-    } else if (coverDataObj.questionHaveWorkExperience == "N") {
-        // ar = [...ar, ...["expectedYearOfGraduation"]];
-    }
-
-    if (coverDataObj.questionCurrentlyWorking == "Y") {
-        ar = [...ar, ...["currentRoleCompanyName", "currentRoleJobTitle", "explainAnyWorkGaps"]];
-    } else if (coverDataObj.questionCurrentlyWorking == "N") {
-        ar = [...ar, ...["recentRoleCompanyName", "recentRoleJobTitle", "explainAnyWorkGaps"]];
-    }
-
-    return ar;
-}
+const arrStep = {
+    undefined: {
+        id: 0,
+        value: 1,
+    },
+    [StepsName["graduated"]]: {
+        id: 1,
+        value: 2,
+    },
+    [StepsName["nameCollege"]]: {
+        id: 2,
+        value: 3,
+    },
+    [StepsName["pointAverage"]]: {
+        id: 3,
+        value: 4,
+    },
+    [StepsName["studyOrDegree"]]: {
+        id: 4,
+        value: 5,
+    },
+    [StepsName["professionalSkills"]]: {
+        id: 5,
+        value: 6,
+    },
+    [StepsName["skillSet"]]: {
+        id: 6,
+        value: 7,
+    },
+    [StepsName["describes"]]: {
+        id: 7,
+        value: 8,
+    },
+    [StepsName["othersDescribe"]]: {
+        id: 8,
+        value: 9,
+    },
+    [StepsName["workExperinence"]]: {
+        id: 9,
+        value: 10,
+    },
+    [StepsName["previousJob"]]: {
+        id: 10,
+        value: 11,
+    },
+    [StepsName["howMachWork"]]: {
+        id: 11,
+        value: 12,
+    },
+    [StepsName["graduatedStep"]]: {
+        id: 12,
+        value: 13,
+    },
+    [StepsName["graduatedTwo"]]: {
+        id: 13,
+        value: 14,
+    },
+    [StepsName["workGaps"]]: {
+        id: 14,
+        value: 15,
+    },
+    [StepsName["graduatedFinish"]]: {
+        id: 15,
+        value: 16,
+    },
+};
 
 const Contact = () => {
     const dispatch = useDispatch();
-    // const [statFields, setFields] = React.useState(constFiled);
     const states = useSelector((state) => state);
     const router = useRouter();
-    const idCv = router.query.idCv;
-
-    const {
-        coverDataForm: {
-            coverDataObj,
-        },
-    } = states;
+    const { step, idCv } = router.query;
 
     React.useEffect(() => {
         dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'experience' }));
@@ -81,7 +95,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={helperProgress({ objForms: coverDataObj, arrField: stepsField(coverDataObj) })}
+                interest={arrStep[step].value * 6.25}
                 icon={employmentIcon}
             />
             <FormExperience

@@ -35,13 +35,15 @@ export const StepEight = ({
                     <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
-                                placeholder="Please Select"
+                                label="Please Select"
                                 valueState={coverDataObj.wordDescribes || ''}
                                 // data={coutrys.list}
                                 name="wordDescribes"
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
+                                isValidIn={true}
+                                validIn={coverDataObj.wordDescribes?.length > 3}
                             />
                         </CCol>
                     </CRow>

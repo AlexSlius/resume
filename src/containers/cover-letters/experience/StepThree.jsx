@@ -1,17 +1,25 @@
 import { CForm, CCol, CRow } from "@coreui/react"
 import { StepContent } from "../../../components/stepContent";
-import Input from "../../../components/uis/input";
+import { InputSelect } from "../../../components/uis/inputSelect";
 import { BtnContinue } from "../component/btnContinue";
 import { DatePicker } from "../../../components/uis/datePicker"
+
+import { getUniversityByName } from "../../../controllers/dependencies";
 
 export const StepThree = ({
     handleUpdateField,
     handleClicQuery,
     StepsName,
     coverDataObj,
+    university,
+    dispatch,
 }) => {
-    const handleClickBtn = async  () => {
+    const handleClickBtn = async () => {
         await handleClicQuery(StepsName["pointAverage"]);
+    }
+
+    const handleRequest = (value) => {
+        dispatch(getUniversityByName(value));
     }
 
     return (
@@ -27,12 +35,15 @@ export const StepThree = ({
                             <CForm className="wr-gab-30">
                                 <CRow className="mobile-rows">
                                     <CCol xs={6}>
-                                        <Input
+                                        <InputSelect
                                             label="Name university"
-                                            placeholder="Name university"
-                                            value={coverDataObj.nameCollegeOrUniversity}
-                                            autoComplete="on"
-                                            onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
+                                            valueState={coverDataObj.nameCollegeOrUniversity || ''}
+                                            data={university.list}
+                                            handleSaveSelect={(obj, data) => handleUpdateField({ ...obj, name: "nameCollegeOrUniversity" }, data)}
+                                            handleServerRequest={handleRequest}
+                                            isOutDataObj={false}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.nameCollegeOrUniversity?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

@@ -1,4 +1,5 @@
 import { CForm, CCol, CRow } from "@coreui/react"
+import Router, { useRouter } from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
@@ -12,6 +13,15 @@ import {
     addCompany
 } from "../../../controllers/dependencies"
 
+import {
+    routersPages
+} from "../../../constants/next-routers";
+
+const dataTitle = [
+    { name: "title 1" },
+    { name: "title 2" },
+];
+
 export const StepSixteen = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
@@ -20,6 +30,7 @@ export const StepSixteen = ({
     dispatch,
     jopsTitleList,
     companysList,
+    idCv
 }) => {
     const handleUpdateFiled = ({ name, value }) => {
         handleUpdateField({ name, value });
@@ -43,6 +54,10 @@ export const StepSixteen = ({
         return re?.payload?.id;
     }
 
+    const handleFinish = () => {
+        Router.push(`/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']} `);
+    }
+
     return (
         <div className="step-wr">
             <StepContent
@@ -55,7 +70,6 @@ export const StepSixteen = ({
                         <CCol xs={12} md={6}>
                             <InputSelect
                                 label="Company Name"
-                                placeholder="Company Name"
                                 valueState={coverDataObj.applyingCompanyName || ''}
                                 data={companysList || []}
                                 isAddDiv={true}
@@ -66,12 +80,13 @@ export const StepSixteen = ({
                                 isOutDataObj={false}
                                 isRequire={true}
                                 isCap={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.applyingCompanyName?.length > 4}
                             />
                         </CCol>
                         <CCol xs={12} md={6}>
                             <InputSelect
                                 label="Job Title"
-                                placeholder="Job Title"
                                 valueState={coverDataObj.applyingCompanyJobTitle || ''}
                                 data={jopsTitleList || []}
                                 isAddDiv={true}
@@ -82,33 +97,38 @@ export const StepSixteen = ({
                                 isOutDataObj={false}
                                 isRequire={true}
                                 isCap={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.applyingCompanyJobTitle?.length > 4}
                             />
                         </CCol>
                     </CRow>
                     <CRow className="mobile-rows two-items">
                         <CCol xs={2}>
                             <InputSelect
-                                placeholder="Title"
+                                label={"Title"}
                                 valueState={coverDataObj.applyingCompanyTitle || ''}
-                                // data={coutrys.list}
+                                data={dataTitle}
                                 name="applyingCompanyTitle"
                                 handleSaveSelect={handleUpdateFiled}
                                 isOutDataObj={false}
                                 isIconArrow={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.applyingCompanyTitle?.length > 2}
+                                isSearch={false}
                             />
                         </CCol>
                         <CCol xs={4}>
                             <Input
                                 label="Name of Company Contact"
-                                placeholder="Name of Company Contact"
                                 value={coverDataObj.applyingCompanyContact}
                                 onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value })}
+                                valid={coverDataObj.applyingCompanyContact?.length > 2}
                             />
                         </CCol>
                     </CRow>
                 </CForm>
             </div>
-            <BtnContinue label="Finish" isButton={true} />
+            <BtnContinue label="Finish" isButton={true} onHanleBtn={handleFinish} />
         </div>
     )
 }

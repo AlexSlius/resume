@@ -38,7 +38,7 @@ export const StepFifteen = ({
                     <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
-                                placeholder="Reason"
+                                label="Reason"
                                 valueState={coverDataObj.explainAnyWorkGaps || ''}
                                 // data={coutrys.list}
                                 name="explainAnyWorkGaps"
@@ -46,6 +46,8 @@ export const StepFifteen = ({
                                 handleServerRequest={handleRequestReason}
                                 isOutDataObj={false}
                                 // isIconArrow={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.explainAnyWorkGaps?.length > 4}
                             />
                         </CCol>
                     </CRow>

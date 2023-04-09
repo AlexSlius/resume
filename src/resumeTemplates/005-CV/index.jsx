@@ -41,7 +41,8 @@ export const ResumeCv005 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
 
   let classPhoto = (isArray(contact) && contact[0]?.picture) ? "has-photo" : "";
@@ -518,13 +519,18 @@ export const ResumeCv005 = ({
                           skills.map((item, index) => (
                             <div className="skills-list-item" key={index}>
                               <p className="skill-item-name main-color-1-text font-weight-600 font-size-1 line-height-1">{item.name}</p>
-                              <p className="skill-item-estimation-container main-color-4-border">
-                                <span className="skill-item-estimation-value additional-color-1-background" style={{ width: `${(item.level * 100) / 5}%` }}></span>
-                              </p>
+                              {
+                                !hide_experience_level && (
+                                  <p className="skill-item-estimation-container main-color-4-border">
+                                    <span className="skill-item-estimation-value additional-color-1-background" style={{ width: `${(item.level * 100) / 5}%` }}></span>
+                                  </p>
+                                )
+                              }
                             </div>
                           ))
                         }
                       </div>
+
                     </div>
                   )
                 }

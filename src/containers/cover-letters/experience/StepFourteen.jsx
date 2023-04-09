@@ -20,7 +20,7 @@ export const StepFourteen = ({
     jopsTitleList,
     companysList,
 }) => {
-    const handleClickBtn = async  () => {
+    const handleClickBtn = async () => {
         await handleClicQuery(StepsName["workGaps"]);
     }
 
@@ -61,7 +61,6 @@ export const StepFourteen = ({
                                     <CCol xs={12} md={6}>
                                         <InputSelect
                                             label="Company Name"
-                                            placeholder="Company Name"
                                             valueState={coverDataObj.currentRoleCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
@@ -72,12 +71,13 @@ export const StepFourteen = ({
                                             isOutDataObj={false}
                                             isRequire={true}
                                             isCap={true}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.currentRoleCompanyName?.length > 4}
                                         />
                                     </CCol>
                                     <CCol xs={12} md={6}>
                                         <InputSelect
                                             label="Job Title"
-                                            placeholder="Job Title"
                                             valueState={coverDataObj.currentRoleJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}
@@ -88,6 +88,8 @@ export const StepFourteen = ({
                                             isOutDataObj={false}
                                             isRequire={true}
                                             isCap={true}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.currentRoleJobTitle?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>
@@ -111,7 +113,6 @@ export const StepFourteen = ({
                                     <CCol xs={6}>
                                         <InputSelect
                                             label="Company Name"
-                                            placeholder="Company Name"
                                             valueState={coverDataObj.recentRoleCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
@@ -127,7 +128,6 @@ export const StepFourteen = ({
                                     <CCol xs={6}>
                                         <InputSelect
                                             label="Job Title"
-                                            placeholder="Job Title"
                                             valueState={coverDataObj.recentRoleJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}

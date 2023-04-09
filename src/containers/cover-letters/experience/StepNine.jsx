@@ -11,7 +11,7 @@ export const StepNine = ({
     coverDataObj,
     dispatch,
 }) => {
-    const handleClickBtn = async  () => {
+    const handleClickBtn = async () => {
         await handleClicQuery(StepsName["workExperinence"]);
     }
 
@@ -35,14 +35,16 @@ export const StepNine = ({
                     <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
-                                placeholder="Please Select"
+                                label="Please Select"
                                 valueState={coverDataObj.othersDescribe || ''}
                                 // data={coutrys.list}
                                 name="othersDescribe"
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
-                                // isIconArrow={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.othersDescribe?.length > 3}
+                            // isIconArrow={true}
                             />
                         </CCol>
                     </CRow>

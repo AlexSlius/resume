@@ -41,7 +41,8 @@ export const ResumeCv003 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
 
   // React.useEffect(() => {
@@ -596,18 +597,23 @@ export const ResumeCv003 = ({
                           skills.map((item, index) => (
                             <div className="skill-item" key={index}>
                               <p className="skill-name font-size-1 line-height-1 main-color-1-text">{item.name}</p>
-                              <div className="skill-estimation">
-                                {
-                                  [...new Array(5)].map((_, index) => (
-                                    <svg key={index} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                      className="additional-color-1-svg-path">
-                                      <path
-                                        d="M5 0L6.29313 3.22016L9.75528 3.45492L7.09232 5.67984L7.93893 9.04508L5 7.2L2.06107 9.04508L2.90768 5.67984L0.244718 3.45492L3.70687 3.22016L5 0Z"
-                                        fill="#A0A0A0" style={(index + 1) <= item.level ? { stroke: "#b0b0b0", fill: "#b0b0b0" } : { stroke: "#b0b0b0", fill: "transparent" }} />
-                                    </svg>
-                                  ))
-                                }
-                              </div>
+                              {
+                                !hide_experience_level && (
+                                  <div className="skill-estimation">
+                                    {
+                                      [...new Array(5)].map((_, index) => (
+                                        <svg key={index} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                          className="additional-color-1-svg-path">
+                                          <path
+                                            d="M5 0L6.29313 3.22016L9.75528 3.45492L7.09232 5.67984L7.93893 9.04508L5 7.2L2.06107 9.04508L2.90768 5.67984L0.244718 3.45492L3.70687 3.22016L5 0Z"
+                                            fill="#A0A0A0" style={(index + 1) <= item.level ? { stroke: "#b0b0b0", fill: "#b0b0b0" } : { stroke: "#b0b0b0", fill: "transparent" }} />
+                                        </svg>
+                                      ))
+                                    }
+                                  </div>
+                                )
+                              }
+
                             </div>
                           ))
                         }

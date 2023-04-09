@@ -48,8 +48,8 @@ export const StepTwo = ({
 
     useEffect(() => {
         const dateResult = new Date(year, month);
-
-        handleUpdateField({ name: 'graduateDate', value: dateResult });
+        // это нужно переделать, ну должно записывать при перехде на стариницу
+        // handleUpdateField({ name: 'graduateDate', value: dateResult });
     }, [month, year]);
 
 
@@ -121,10 +121,9 @@ export const StepTwo = ({
                                                 ) :
                                                 (
                                                     <DatePicker
+                                                        floatingLabel="Date"
                                                         selected={coverDataObj.graduateDate}
                                                         onChange={(date) => handleUpdateField({ name: "graduateDate", value: date })}
-                                                        placeholderText="Date"
-                                                        name="graduateDate"
                                                     />
                                                 )
                                         }

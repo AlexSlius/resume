@@ -62,7 +62,6 @@ export const StepEleven = ({
                                     <CCol xs={6}>
                                         <InputSelect
                                             label="Job Title"
-                                            placeholder="Job Title"
                                             valueState={coverDataObj.industryHoldExperienceJobTitle || ''}
                                             data={jopsTitleList || []}
                                             isAddDiv={true}
@@ -73,6 +72,8 @@ export const StepEleven = ({
                                             isOutDataObj={false}
                                             isRequire={true}
                                             isCap={true}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.industryHoldExperienceJobTitle?.length > 3}
                                         />
                                     </CCol>
                                 </CRow>
@@ -80,7 +81,6 @@ export const StepEleven = ({
                                     <CCol xs={6}>
                                         <InputSelect
                                             label="Name Company"
-                                            placeholder="Name Company"
                                             valueState={coverDataObj.industryHoldExperienceCompanyName || ''}
                                             data={companysList || []}
                                             isAddDiv={true}
@@ -91,6 +91,8 @@ export const StepEleven = ({
                                             isOutDataObj={false}
                                             isRequire={true}
                                             isCap={true}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.industryHoldExperienceCompanyName?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

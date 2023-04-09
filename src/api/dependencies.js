@@ -66,4 +66,7 @@ export default class ClientsAPI extends Base {
     getCertificates(params) {
         return this.apiClient.get(`profile/list/certificates`, params);
     }
+    getUniversityByName(params) {
+        return this.apiClient.get(`college_or_university_name`, params);
+    }
 }

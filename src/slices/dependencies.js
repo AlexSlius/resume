@@ -23,7 +23,8 @@ import {
     fetchGetListCertificates,
     fetchGetFieldOfStudy,
     getSkillsStartOneJobTitle,
-    fetchGetSkillslistSearchRandom
+    fetchGetSkillslistSearchRandom,
+    getUniversityByName
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -96,6 +97,10 @@ const initialState = {
     skills: {
         list: [],
         status: statusLoaded,
+    },
+    university: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -110,6 +115,15 @@ export const sliceDepenndecies = createSlice({
                 ...state,
                 ...action.payload.dependencies,
             }
+        },
+        // getUniversityByName
+        [getUniversityByName.pending]: (state) => {
+            state.university.list = [];
+            state.university.status = statusLoader;
+        },
+        [getUniversityByName.fulfilled]: (state, action) => {
+            state.university.status = statusLoaded;
+            state.university.list = action.payload;
         },
         // fetchGetSkillslistSearchRandom
         [fetchGetSkillslistSearchRandom.pending]: (state) => {

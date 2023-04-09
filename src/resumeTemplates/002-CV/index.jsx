@@ -42,7 +42,8 @@ export const ResumeCv002 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
 
   // React.useEffect(() => {
@@ -497,7 +498,11 @@ export const ResumeCv002 = ({
                             skills.map((item, index) => (
                               <div className="skill-item" key={index}>
                                 <p className="skill-name font-size-1 line-height-1 main-color-1-text">{item.name}</p>
-                                <Estimation level={item.level} />
+                                {
+                                  !hide_experience_level && (
+                                    <Estimation level={item.level} />
+                                  )
+                                }
                               </div>
                             ))
                           }

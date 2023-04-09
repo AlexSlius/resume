@@ -61,7 +61,7 @@ export const StepSix = ({
             arrOfStr = coverDataObj.professionalSkills.split(',');
             arrOfStr.push(value);
         } else {
-            arrOfStr = ['value'];
+            arrOfStr = [value];
         }
 
         handleUpdateField({ name: "professionalSkills", value: arrOfStr.join(',') });
@@ -98,7 +98,6 @@ export const StepSix = ({
                                 <div className="wr-gab-30">
                                     <InputSelect
                                         label="Job Title"
-                                        placeholder="Job Title"
                                         valueState={jobTitle || ''}
                                         data={jopsTitleList || []}
                                         name="jobTitle"

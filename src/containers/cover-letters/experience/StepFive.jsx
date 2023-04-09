@@ -37,7 +37,7 @@ export const StepFive = ({
                     <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
-                                placeholder="Please Select"
+                                label="Please Select"
                                 valueState={coverDataObj.fieldOfStudyOrDegree || ''}
                                 data={fieldOfStudy.list}
                                 name="fieldOfStudyOrDegree"
@@ -45,6 +45,8 @@ export const StepFive = ({
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isIconArrow={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.fieldOfStudyOrDegree?.length > 3}
                             />
                         </CCol>
                     </CRow>

@@ -32,8 +32,8 @@ export const CoverCv003 = ({
                         <div className="cv-body-area area-1 additional-color-2-background">
                             <div className="column-left">
                                 <h1 className="cv-heading cv-name heading-type-1 main-color-1-text font-size-3 line-height-3">
-                                    <span className="name-line-1 font-weight-400">Matthew</span>
-                                    <span className="name-line-2 font-weight-600">Mcconaghey</span>
+                                    {!!firstName && (<span className="name-line-1 font-weight-400">{firstName}</span>)}
+                                    {!!lastName && (<span className="name-line-2 font-weight-600">{lastName}</span>)}
                                 </h1>
                             </div>
                         </div>

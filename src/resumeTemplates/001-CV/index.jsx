@@ -46,8 +46,11 @@ export const ResumeCv001 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
+
+  console.log("hideSkillExperienceLevel: ", hide_experience_level);
 
   React.useEffect(() => {
     switch (stateLineSpacing) {
@@ -577,8 +580,12 @@ export const ResumeCv001 = ({
                             {
                               skills.map((item, index) => (
                                 <div className="skill-item" key={index}>
-                                  <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.name}</p>
-                                  <Estimation level={item.level} />
+                                  <p className="skill-name font-size-1 line-height-1 additional-color-1-text">{item.name}</p>{
+                                    !hide_experience_level && (
+                                      <Estimation level={item.level} />
+                                    )
+                                  }
+
                                 </div>
                               ))
                             }

@@ -5,6 +5,8 @@ import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 import Input from "../../../components/uis/input";
 
+const dataSelect = [{ name: "Year(s)" }, { name: "Week(s)" }];
+
 export const StepTwelve = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
@@ -39,6 +41,7 @@ export const StepTwelve = ({
                                 label="Work experience"
                                 placeholder="Work experience"
                                 type="number"
+                                valid={+coverDataObj.workExperience > 0}
                                 value={coverDataObj.workExperience}
                                 onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value })}
                             />
@@ -47,14 +50,18 @@ export const StepTwelve = ({
                     <CRow className="mobile-rows">
                         <CCol xs={6}>
                             <InputSelect
-                                placeholder="Year(s)"
+                                label="Year(s)"
                                 valueState={coverDataObj.workExperienceYears || ''}
-                                // data={coutrys.list}
+                                data={dataSelect}
                                 name="workExperienceYears"
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequestInceYears}
                                 isOutDataObj={false}
-                                // isIconArrow={true}
+                                isIconArrow={true}
+                                isSearch={false}
+                                isCap={true}
+                                isValidIn={true}
+                                validIn={coverDataObj.workExperienceYears?.length > 4}
                             />
                         </CCol>
                     </CRow>

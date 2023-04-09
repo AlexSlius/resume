@@ -1,17 +1,28 @@
 import { CForm, CCol, CRow } from "@coreui/react"
 
 import { StepContent } from "../../../components/stepContent";
-import Input from "../../../components/uis/input";
+import { InputSelect } from "../../../components/uis/inputSelect";
 import { BtnContinue } from "../component/btnContinue";
+import Input from "../../../components/uis/input";
+
+import { getUniversityByName } from "../../../controllers/dependencies";
+
+var rx = /^\d+(?:[\.,]\d+)?$/;
 
 export const StepFour = ({
     handleUpdateField = () => { },
     handleClicQuery = () => { },
     StepsName,
     coverDataObj,
+    university,
+    dispatch,
 }) => {
-    const handleClickBtn = async  () => {
+    const handleClickBtn = async () => {
         await handleClicQuery(StepsName["studyOrDegree"]);
+    }
+
+    const handleRequest = (value) => {
+        dispatch(getUniversityByName(value));
     }
 
     return (
@@ -29,10 +40,10 @@ export const StepFour = ({
                                 <CRow className="mobile-rows">
                                     <CCol xs={6}>
                                         <Input
-                                            label="Point Average"
-                                            placeholder="Point Average"
                                             type="number"
+                                            label="Point Average"
                                             value={coverDataObj.pointAverage}
+                                            valid={+coverDataObj.pointAverage > 3}
                                             onChange={(e) => handleUpdateField({ name: "pointAverage", value: e.target.value })}
                                         />
                                     </CCol>
@@ -55,11 +66,15 @@ export const StepFour = ({
                             <CForm className="wr-gab-30">
                                 <CRow>
                                     <CCol xs={6}>
-                                        <Input
+                                        <InputSelect
                                             label="Name university"
-                                            placeholder="Name university"
-                                            value={coverDataObj.nameCollegeOrUniversity}
-                                            onChange={(e) => handleUpdateField({ name: "nameCollegeOrUniversity", value: e.target.value })}
+                                            valueState={coverDataObj.nameCollegeOrUniversity || ''}
+                                            data={university.list}
+                                            handleSaveSelect={(obj, data) => handleUpdateField({ ...obj, name: "nameCollegeOrUniversity" }, data)}
+                                            handleServerRequest={handleRequest}
+                                            isOutDataObj={false}
+                                            isValidIn={true}
+                                            validIn={coverDataObj.nameCollegeOrUniversity?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

@@ -41,7 +41,8 @@ export const ResumeCv006 = ({
     certificates,
     hobbies,
     skills,
-    languages
+    languages,
+    hide_experience_level
   } = data;
 
   let classPhoto = (isArray(contact) && contact[0]?.picture) ? "has-photo" : "";
@@ -539,16 +540,19 @@ export const ResumeCv006 = ({
                           skills.map((item, index) => (
                             <div className="skills-list-item" key={index}>
                               <p className="font-weight-600 font-size-1 line-height-1">{item.name}</p>
-
-                              <div className="skill-estimation-point-list">
-                                {
-                                  [...new Array(5)].map((_, index) => (
-                                    <svg key={index} className={`additional-color-1-svg-path ${(index + 1) <= item.level ? "additional-color-1-svg" : ""}`} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M5 0L6.29313 3.22016L9.75528 3.45492L7.09232 5.67984L7.93893 9.04508L5 7.2L2.06107 9.04508L2.90768 5.67984L0.244718 3.45492L3.70687 3.22016L5 0Z" fill="#606C70" />
-                                    </svg>
-                                  ))
-                                }
-                              </div>
+                              {
+                                !hide_experience_level && (
+                                  <div className="skill-estimation-point-list">
+                                    {
+                                      [...new Array(5)].map((_, index) => (
+                                        <svg key={index} className={`additional-color-1-svg-path ${(index + 1) <= item.level ? "additional-color-1-svg" : ""}`} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5 0L6.29313 3.22016L9.75528 3.45492L7.09232 5.67984L7.93893 9.04508L5 7.2L2.06107 9.04508L2.90768 5.67984L0.244718 3.45492L3.70687 3.22016L5 0Z" fill="#606C70" />
+                                        </svg>
+                                      ))
+                                    }
+                                  </div>
+                                )
+                              }
                             </div>
                           ))
                         }
