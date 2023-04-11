@@ -88,6 +88,7 @@ const Settings = () => {
                                             value={objForm.firstName}
                                             name="firstName"
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
+                                            valid={objForm.firstName.length > 2}
                                         />
                                     </div>
                                 </CCol>
@@ -98,6 +99,7 @@ const Settings = () => {
                                             placeholder="Last Name"
                                             name="lastName"
                                             value={objForm.lastName}
+                                            valid={objForm.lastName.length > 2}
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
                                         />
                                     </div>
@@ -109,6 +111,7 @@ const Settings = () => {
                                             placeholder="E-mail*"
                                             defaultValue={objForm.username}
                                             name="username"
+                                            valid={/\S+@\S+\.\S+/.test(objForm.username)}
                                             disabled={true}
                                         />
                                     </div>

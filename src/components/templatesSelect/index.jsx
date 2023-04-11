@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from 'next/router'
 
 import { LoadWr } from "../loadWr";
@@ -10,6 +9,10 @@ import { ResumeCv003 } from '../../resumeTemplates/003-CV';
 import { ResumeCv004 } from '../../resumeTemplates/004-CV';
 import { ResumeCv005 } from '../../resumeTemplates/005-CV';
 import { ResumeCv006 } from '../../resumeTemplates/006-CV';
+import { ResumeCv007 } from '../../resumeTemplates/007-CV';
+import { ResumeCv008 } from '../../resumeTemplates/008-CV';
+import { ResumeCv009 } from '../../resumeTemplates/009-CV';
+import { ResumeCv010 } from '../../resumeTemplates/010-CV';
 
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
@@ -92,6 +95,50 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "006-CV" && (
                     <ResumeCv006
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "007-CV" && (
+                    <ResumeCv007
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "008-CV" && (
+                    <ResumeCv008
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "009-CV" && (
+                    <ResumeCv009
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "010-CV" && (
+                    <ResumeCv010
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

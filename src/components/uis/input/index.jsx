@@ -26,7 +26,7 @@ const Input = ({
    autoComplete = "off",
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
-   let classNames = `${className} ${!!value?.length > 0 ? "text" : ""}`;
+   let classNames = `${className} ${(!!value?.length > 0 || !!defaultValue?.length > 0) ? "text" : ""}`;
 
    return (
       <>

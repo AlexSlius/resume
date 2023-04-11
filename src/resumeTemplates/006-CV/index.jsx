@@ -2,26 +2,6 @@ import React from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-const Estimation = ({
-  level = 0,
-  maketLeng = 8,
-  startLeng = 5,
-}) => {
-  let relation = maketLeng / startLeng;
-  let rel = ((level * 100) / maketLeng) * relation;
-  let pros = Math.round((maketLeng * rel) / 100);
-
-  return (
-    <div className="skill-estimation">
-      {
-        [...new Array(maketLeng)].map((_, index) => (
-          <span key={index} className={`estimation-point main-color-2-border ${(index + 1) <= pros ? "main-color-2-background" : ""}`}></span>
-        ))
-      }
-    </div>
-  )
-}
-
 export const ResumeCv006 = ({
   data,
   idCv,
