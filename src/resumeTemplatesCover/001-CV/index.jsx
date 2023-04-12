@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { isArray } from "lodash";
-import moment from 'moment';
+import React, { useState } from "react";
+import { isCheckDescriptionByDataCover } from "../../utils/isChecjDescriptionByData";
 
 export const CoverCv001 = ({
     data,
@@ -69,6 +68,7 @@ export const CoverCv001 = ({
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className={`
                     cv-body 
                     cv-body-2 
+                    cv-body_height
                     cv-body---resume 
                     page-2
                     color-scheme-1
@@ -93,7 +93,7 @@ export const CoverCv001 = ({
                                 <div className="cv-letter">
                                     <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">Dear Dr. Boater,</h2>
                                     {
-                                        !!data?.coverGenerateDate && (
+                                        !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
                                             <p className="cv-letter-text font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
                                         )
                                     }

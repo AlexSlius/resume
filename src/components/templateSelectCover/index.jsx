@@ -8,6 +8,11 @@ import { CoverCv001 } from '../../resumeTemplatesCover/001-CV';
 import { CoverCv002 } from '../../resumeTemplatesCover/002-CV';
 import { CoverCv003 } from '../../resumeTemplatesCover/003-CV';
 import { CoverCv004 } from '../../resumeTemplatesCover/004-CV';
+import { CoverCv005 } from '../../resumeTemplatesCover/005-CV';
+import { CoverCv006 } from '../../resumeTemplatesCover/006-CV';
+import { CoverCv007 } from '../../resumeTemplatesCover/007-CV';
+import { CoverCv008 } from '../../resumeTemplatesCover/008-CV';
+import { CoverCv009 } from '../../resumeTemplatesCover/009-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelectCover = ({
@@ -65,6 +70,61 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "004-CV" && (
                     <CoverCv004
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "005-CV" && (
+                    <CoverCv005
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "006-CV" && (
+                    <CoverCv006
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "007-CV" && (
+                    <CoverCv007
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "008-CV" && (
+                    <CoverCv008
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "009-CV" && (
+                    <CoverCv009
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

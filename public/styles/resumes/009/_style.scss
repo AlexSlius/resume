@@ -15,6 +15,7 @@
 
 .sv_009 {
   font-family: 'Inter', sans-serif;
+  color: #000;
 
   * {
     font-family: 'Inter', sans-serif;
@@ -85,7 +86,8 @@
   .cv-body {
     width: 100%;
     // width: 595px;
-    height: 842px;
+    // height: 842px;
+    min-height: 842px;
     // max-height: 842px;
     background-color: #fff;
     box-sizing: border-box;
@@ -98,7 +100,7 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: stretch;
-      height: 100%;
+      min-height: inherit;
       position: relative;
       z-index: 10;
 
@@ -259,7 +261,7 @@
                 .heading-type-1 {
                   width: 100%;
                   text-align: center;
-                  margin-bottom: 7px;
+                  margin-bottom: 7px !important;
                 }
 
                 .skills-list {
@@ -278,6 +280,8 @@
 
                       svg {
                         margin-right: 5px;
+                        width: 10px;
+                        height: 10px;
                       }
                     }
                   }
@@ -294,7 +298,7 @@
                   width: 100%;
                   text-align: center;
                   margin-top: 15px;
-                  margin-bottom: 7px;
+                  margin-bottom: 7px !important;
                 }
 
                 p {
@@ -309,7 +313,7 @@
                   width: 100%;
                   text-align: center;
                   margin-top: 10px;
-                  margin-bottom: 7px;
+                  margin-bottom: 7px !important;
                 }
 
                 .languages-list {
@@ -343,11 +347,12 @@
               }
 
               .certificates-block {
+                padding-bottom: 60px;
                 .heading-type-1 {
                   width: 100%;
                   text-align: center;
                   margin-top: 10px;
-                  margin-bottom: 7px;
+                  margin-bottom: 7px !important;
                 }
 
                 p {
@@ -408,7 +413,13 @@
               }
             }
 
-            .employment-history-block {}
+            .employment-history-block {
+              ul {
+                li {
+                  list-style: disc;
+                }
+              }
+            }
 
           }
         }
@@ -423,6 +434,13 @@
             position: absolute;
             right: 0px;
             bottom: -5px;
+            width: 525px;
+            height: 143px;
+
+            svg {
+              width: inherit;
+              height: inherit;
+            }
           }
 
           .references-block {

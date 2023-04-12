@@ -1,7 +1,6 @@
 import React from "react";
-import { isArray } from "lodash";
-import moment from 'moment';
-import styled from 'styled-components';
+
+import { isCheckDescriptionByDataCover } from "../../utils/isChecjDescriptionByData";
 
 export const CoverCv003 = ({
     data,
@@ -27,7 +26,7 @@ export const CoverCv003 = ({
     return (
         <div className="sv_003 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
-                <div id="cv-body-2" data-chapter="resume" data-page="1" className={`${stateClasses} cv-body cv-body-2 cv-body---resume page-2 color-scheme-state-color-set-0`}>
+                <div id="cv-body-2" data-chapter="resume" data-page="1" className={`${stateClasses} cv-body cv-body_height cv-body-2 cv-body---resume page-2 color-scheme-state-color-set-0`}>
                     <div className="cv-body-content">
                         <div className="cv-body-area area-1 additional-color-2-background">
                             <div className="column-left">
@@ -42,7 +41,7 @@ export const CoverCv003 = ({
                                 <div className="cv-letter">
                                     <h2 className="cv-heading letter-heading heading-type-6 font-size-2-2 line-height-2-2 main-color-1-text">Dear Dr. Boater,</h2>
                                     {
-                                        !!data?.coverGenerateDate && (
+                                        !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
                                             <p className="cv-text letter-text font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
                                         )
                                     }

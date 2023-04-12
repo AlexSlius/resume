@@ -17,10 +17,7 @@ import {
     routersPages
 } from "../../../constants/next-routers";
 
-const dataTitle = [
-    { name: "title 1" },
-    { name: "title 2" },
-];
+import dataTitle from "./data/selects.json";
 
 export const StepSixteen = ({
     handleUpdateField = () => { },

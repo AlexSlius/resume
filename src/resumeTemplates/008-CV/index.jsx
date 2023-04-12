@@ -47,7 +47,7 @@ export const ResumeCv008 = ({
 
   return (
     <div className="sv_008" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-2`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-3-background">
           <div className="red-circle-1 additional-color-1-background"></div>
           <div className="red-circle-2 additional-color-1-background"></div>
@@ -337,7 +337,7 @@ export const ResumeCv008 = ({
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6 main-color-2-text">Extra-curricular activities</h3>
                       {
                         extra_curricular.map((itemEx, index) => (
-                          <div jey={index}>
+                          <div key={index}>
                             {
                               (!!itemEx?.title || itemEx?.employer) && (
                                 <p className="font-weight-500 font-size-3 line-height-4 main-color-2-text">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>

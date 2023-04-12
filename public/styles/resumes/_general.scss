@@ -52,8 +52,8 @@
         min-width: auto;
       }
 
-      .cv-body-content{
-        .cv-body-area{
+      .cv-body-content {
+        .cv-body-area {
           justify-content: space-between;
 
           .column-right {
@@ -61,7 +61,7 @@
           }
 
           .column-left {
-            flex:none;
+            flex: none;
           }
         }
       }
@@ -73,6 +73,11 @@
   .page-templates .nav-button:active {
     background: none;
     filter: none;
-    opacity: 1!important;
+    opacity: 1 !important;
   }
+}
+
+.cv-body_height {
+  min-height: 842px;
+  ;
 }
