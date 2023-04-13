@@ -58,75 +58,74 @@ const HeadUser = () => {
    return (
       <div className={`${style.users_head}`}>
          <div className={`${style.users_head__profile} ${classIsShowMenu} btn_no_click_menu`}>
-            <div className={`${style.users_head__avatar_img} `} onClick={handleOnClickOpen}>
-               <img src={avatar?.image || `/images/other/avatar-small.png`} />
-            </div>
-            <>
-               <button className={`${style.users_head__profile_arrow}`} onClick={handleOnClickOpen}>
+            <div className={style.users_head__profile_diw} onClick={handleOnClickOpen}>
+               <div className={`${style.users_head__avatar_img} `}>
+                  <img src={avatar?.image || `/images/other/avatar-small.png`} />
+               </div>
+               <button className={`${style.users_head__profile_arrow}`} >
                   <Icon svg={arrowProfileIcon} classNames={[style.icon]} />
                </button>
-
-               <div className={`${style.mod}`}>
-                  <div className={`${style.mod_wr}`}>
-                     <ul className={`${style.mod_m_list}`}>
-                        {
-                           isAthorized && (
-                              <>
-                                 <li>
-                                    <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                                       <Icon svg={iconDashboard} />
-                                       <span>Dashboard</span>
-                                    </Link>
-                                 </li>
-                                 <li>
-                                    <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                                       <Icon svg={iconSettings} />
-                                       <span>Settings</span>
-                                    </Link>
-                                 </li>
-                              </>
-                           )
-                        }
-                        {
-                           !isAthorized && (
-                              <>
-                                 <li>
-                                    <Link href={`/${routersPages['login']}`} className={`${style.link}`}>
-                                       <Icon svg={iconHLogin} />
-                                       <span>Login</span>
-                                    </Link>
-                                 </li>
-                                 <li>
-                                    <Link href={`/${routersPages['register']}`} className={`${style.link}`}>
-                                       <Icon svg={iconSingUp} />
-                                       <span>Sign up</span>
-                                    </Link>
-                                 </li>
-                              </>
-                           )
-                        }
-                        <li>
-                           <Link href={`/${routersPages['contactUs']}`} className={style.link}>
-                              <Icon svg={iconHelp} />
-                              <span>Help</span>
-                           </Link>
-                        </li>
-                        {
-                           isAthorized && (
+            </div>
+            <div className={`${style.mod}`}>
+               <div className={`${style.mod_wr}`}>
+                  <ul className={`${style.mod_m_list}`}>
+                     {
+                        isAthorized && (
+                           <>
                               <li>
-                                 <button onClick={() => logout(dispatch)} className={style.link}>
-                                    <Icon svg={iconLogout} />
-                                    <span>Logout</span>
-                                 </button>
+                                 <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                    <Icon svg={iconDashboard} />
+                                    <span>Dashboard</span>
+                                 </Link>
                               </li>
-                           )
-                        }
-                     </ul>
-                  </div>
+                              <li>
+                                 <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
+                                    <Icon svg={iconSettings} />
+                                    <span>Settings</span>
+                                 </Link>
+                              </li>
+                           </>
+                        )
+                     }
+                     {
+                        !isAthorized && (
+                           <>
+                              <li>
+                                 <Link href={`/${routersPages['login']}`} className={`${style.link}`}>
+                                    <Icon svg={iconHLogin} />
+                                    <span>Login</span>
+                                 </Link>
+                              </li>
+                              <li>
+                                 <Link href={`/${routersPages['register']}`} className={`${style.link}`}>
+                                    <Icon svg={iconSingUp} />
+                                    <span>Sign up</span>
+                                 </Link>
+                              </li>
+                           </>
+                        )
+                     }
+                     <li>
+                        <Link href={`/${routersPages['contactUs']}`} className={style.link}>
+                           <Icon svg={iconHelp} />
+                           <span>Help</span>
+                        </Link>
+                     </li>
+                     {
+                        isAthorized && (
+                           <li>
+                              <button onClick={() => logout(dispatch)} className={style.link}>
+                                 <Icon svg={iconLogout} />
+                                 <span>Logout</span>
+                              </button>
+                           </li>
+                        )
+                     }
+                  </ul>
                </div>
-            </>
+            </div>
          </div>
-      </div >
+      </div>
    )
 }
 export default HeadUser;

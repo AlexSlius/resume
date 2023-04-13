@@ -50,7 +50,7 @@ export const Header = () => {
                             <nav className="nav">
                                 <ul>
                                     <li className="submenu-item">
-                                        <Link href="/" onClick={(e) => e.preventDefault()}>Resume</Link>
+                                        <Link href="/">Resume</Link>
                                         <div className="submenu">
                                             <div className="submenu__top">
                                                 <div className="submenu__title">Resume Templates</div>

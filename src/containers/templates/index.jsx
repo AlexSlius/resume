@@ -446,9 +446,13 @@ const Templates = ({ isCover = false }) => {
                                     <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
                                 ))
                             }
-                            <div className="color-it color-select">
-                                <Icon svg={iconPlusColor} />
-                            </div>
+                            {
+                                isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
+                                    <div className="color-it color-select">
+                                        <Icon svg={iconPlusColor} />
+                                    </div>
+                                )
+                            }
                         </div>
                         {
                             !['sm', 'xs'].includes(currentResolution) ? (

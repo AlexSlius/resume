@@ -40,10 +40,14 @@
    }
 
    &__profile {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       position: relative;
+
+      &_diw {
+         display: inline-flex;
+         align-items: center;
+         gap: 12px;
+         cursor: pointer;
+      }
    }
 
    &__avatar_img {

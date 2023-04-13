@@ -38,9 +38,9 @@
         }
     }
 
-    .form-btn {
+    .form-btn.btn--search {
         width: 172px;
-        min-width: 172px;
+        min-width: 172px !important;
         margin-left: 15px;
     }
 }
@@ -57,6 +57,8 @@
         color: rgba(54, 121, 253, 1);
     }
 }
+
+.btn--search {}
 
 @media (max-width: 1399px) {
     .faq-page {
@@ -95,8 +97,13 @@
 
     .page-texts {
         .bottom-text {
-            margin-top: 8px!important;
+            margin-top: 8px !important;
         }
+    }
+
+    .form .form-btn.btn--search {
+        width: auto;
+        min-width: auto !important;
     }
 }
 

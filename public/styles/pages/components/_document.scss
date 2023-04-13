@@ -46,15 +46,14 @@
 
         &:hover {
 
-            &::before,
+            .document__link_before,
             .document__btn {
                 opacity: 1;
             }
         }
 
-        &::before {
+        .document__link_before {
             position: absolute;
-            content: "";
             width: 100%;
             height: 100%;
             background: #01153a48;

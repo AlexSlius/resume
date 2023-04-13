@@ -343,11 +343,12 @@ export const CoverLatter = () => {
                         >
                             {
                                 isArray(coverData?.list?.items) && coverData.list.items.map((itemResume, index) => (
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide key={index} onClick={() => dispatch(updateActiveCoverNew({ slug: itemResume.slug, id: itemResume.id }))}>
+                                        <Link href={`/${routersPages['coverLetterNew']}`} className="document__link_before"></Link>
                                         <div className="doc-img">
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
-                                        <div className="doc-btn" onClick={() => dispatch(updateActiveCoverNew({ slug: itemResume.slug, id: itemResume.id }))} >
+                                        <div className="doc-btn" >
                                             <Link href={`/${routersPages['coverLetterNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>

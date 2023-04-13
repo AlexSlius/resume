@@ -1,5 +1,4 @@
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import Icon from "../Icon";
 
 import style from "./Style.module.scss";
@@ -17,7 +16,30 @@ export const CardResume = ({
     handlekeyUp = () => { },
     handleBlur = () => { },
 }) => {
+    const refIdTimeout = useRef(undefined);
     const [stateName, setStateName] = useState(label);
+    const [focus, setFocus] = useState(false);
+
+    const handleUpdateServer = async () => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            handleBlur(stateName, id);
+            clearTimeout(refIdTimeout.current);
+        }, 100);
+    }
+
+    const onBlud = () => {
+        // handleBlur(stateName, id);
+        setFocus(false);
+    }
+
+    useEffect(() => {
+        if (focus)
+            handleUpdateServer();
+    }, [stateName]);
 
     return (
         <div className={`${style.card}`}>
@@ -63,8 +85,9 @@ export const CardResume = ({
                             type="text"
                             onChange={(e) => setStateName(e.target.value)}
                             value={stateName}
-                            onKeyUp={(e) => handlekeyUp(e, stateName, id)}
-                            onBlur={() => handleBlur(stateName, id)}
+                            onFocus={() => setFocus(true)}
+                            // onKeyUp={(e) => handlekeyUp(e, stateName, id)}
+                            onBlur={() => onBlud()}
                         />
                     </div>
                 </div>

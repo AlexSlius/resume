@@ -361,7 +361,6 @@ export const HomePage = () => {
                             spaceBetween={30}
                             slidesPerView={3}
                             loopedSlides={4}
-                            // loop={true}
                             speed={1000}
                             pagination={{
                                 clickable: true
@@ -379,15 +378,15 @@ export const HomePage = () => {
                                 }
                             }}
                             onSlideChange={(e) => handleSlider(e)}
-                        // onSwiper={(swiper) => console.log(swiper)}
                         >
                             {
                                 isArray(resumeData?.list?.items) && resumeData.list.items.map((itemResume, index) => (
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide key={index} onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))}>
+                                        <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__link_before"></Link>
                                         <div className="doc-img">
                                             <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
                                         </div>
-                                        <div className="doc-btn" onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))} >
+                                        <div className="doc-btn"  >
                                             <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__btn btns btn--blue">Use this template</Link>
                                         </div>
                                     </SwiperSlide>
