@@ -16,9 +16,9 @@ import {
 import { setUpdateResumeActive } from './resumeData';
 
 export const logout = async (dispatch) => {
-    cookieDestroy({ key: 'token' });
-    localStorageRemove('session_id');
-    sessionStorageRemove("typeResume");
+    await cookieDestroy({ key: 'token' });
+    await localStorageRemove('session_id');
+    await sessionStorageRemove("typeResume");
     await dispatch(setLogout());
     await Router.push('/');
 }

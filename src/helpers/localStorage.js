@@ -9,8 +9,8 @@ export const localStorageGet = (key, isJson = false) => {
     return null;
 }
 
-export const localStorageRemove = (key) => {
-    localStorage.removeItem(key)
+export const localStorageRemove = async (key) => {
+    await localStorage.removeItem(key)
 }
 
 export const localStorageAllClear = () => {
@@ -28,6 +28,6 @@ export const sessionStorageGet = (key, isJson = false) => {
     return null;
 }
 
-export const sessionStorageRemove = (key) => {
-    sessionStorage.removeItem(key)
+export const sessionStorageRemove = async (key) => {
+    // sessionStorage.removeItem(key)
 }

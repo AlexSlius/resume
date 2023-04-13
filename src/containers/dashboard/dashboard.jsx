@@ -125,6 +125,11 @@ const Dashboard = () => {
             <div className={style.wr_pa}>
                 <div className={style.wr_title}>
                     <TitlePage titleText="Dashboard" />
+                    {
+                        (isLoader(covers?.status) || isLoader(resumers?.status)) && (
+                            <LoadBlock isMin={true} />
+                        )
+                    }
                 </div>
                 <div className={`${style.wt_tabs}`}>
                     <div className={style.wr_tabs}>
@@ -138,91 +143,82 @@ const Dashboard = () => {
                     <div className={`${style.row_card}`}>
                         {
                             type == "resume" && (
-                                isLoader(resumers?.status) ? (
-                                    <LoadBlock />
-                                ) : (
-                                    <>
-                                        {
-                                            ['md', 'sm', 'xs'].includes(currentResolution) && (
-                                                <CardNew
-                                                    titleNwe="New Resume"
-                                                    text="Create a tailored resume for each job application. Double your chances of getting hired!"
-                                                    hangleAddNew={hangleAddNewResume}
-                                                    currentResolution={currentResolution}
-                                                />
-                                            )
-                                        }
-                                        {
-                                            isArray(resumers.list) && resumers.list.map((item) => (
-                                                <CardResume
-                                                    key={item.id}
-                                                    id={item.id}
-                                                    image="/images/other/img_resume.png"
-                                                    label={item.cvName}
-                                                    dateUpdate={item.updateDatetime}
-                                                    handleEdit={() => handleOnUpdateResume(item)}
-                                                    handlekeyUp={handlekeyUp}
-                                                    handleBlur={handleBlur}
-                                                />
-                                            ))
-                                        }
-                                        {
-                                            !['md', 'sm', 'xs'].includes(currentResolution) && (
-                                                <CardNew
-                                                    titleNwe="New Resume"
-                                                    text="Create a tailored resume for each job application. Double your chances of getting hired!"
-                                                    hangleAddNew={hangleAddNewResume}
-                                                    currentResolution={currentResolution}
-                                                />
-                                            )
-                                        }
-                                    </>
-                                )
+                                <>
+                                    {
+                                        ['md', 'sm', 'xs'].includes(currentResolution) && (
+                                            <CardNew
+                                                titleNwe="New Resume"
+                                                text="Create a tailored resume for each job application. Double your chances of getting hired!"
+                                                hangleAddNew={hangleAddNewResume}
+                                                currentResolution={currentResolution}
+                                            />
+                                        )
+                                    }
+                                    {
+                                        isArray(resumers.list) && resumers.list.map((item) => (
+                                            <CardResume
+                                                key={item.id}
+                                                id={item.id}
+                                                image="/images/other/img_resume.png"
+                                                label={item.cvName}
+                                                dateUpdate={item.updateDatetime}
+                                                handleEdit={() => handleOnUpdateResume(item)}
+                                                handlekeyUp={handlekeyUp}
+                                                handleBlur={handleBlur}
+                                            />
+                                        ))
+                                    }
+                                    {
+                                        !['md', 'sm', 'xs'].includes(currentResolution) && (
+                                            <CardNew
+                                                titleNwe="New Resume"
+                                                text="Create a tailored resume for each job application. Double your chances of getting hired!"
+                                                hangleAddNew={hangleAddNewResume}
+                                                currentResolution={currentResolution}
+                                            />
+                                        )
+                                    }
+                                </>
                             )
                         }
-
                         {
                             type == "cover" && (
-                                isLoader(covers?.status) ? (
-                                    <LoadBlock />
-                                ) : (
-                                    <>
-                                        {
-                                            ['md', 'sm', 'xs'].includes(currentResolution) && (
-                                                <CardNew
-                                                    titleNwe="New Cover letters"
-                                                    text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
-                                                    currentResolution={currentResolution}
-                                                    hangleAddNew={hangleAddNewCover}
-                                                />
-                                            )
-                                        }
-                                        {
-                                            isArray(covers.list) && covers.list.map((item) => (
-                                                <CardResume
-                                                    key={item.id}
-                                                    id={item.id}
-                                                    image="/images/cover/dash-cover.png"
-                                                    label={item.coverName}
-                                                    dateUpdate={item.updateDatetime}
-                                                    handleEdit={() => handleOnUpdateCover(item)}
-                                                    handlekeyUp={handlekeyUpCover}
-                                                    handleBlur={handleBlurCover}
-                                                />
-                                            ))
-                                        }
-                                        {
-                                            !['md', 'sm', 'xs'].includes(currentResolution) && (
-                                                <CardNew
-                                                    titleNwe="New Cover letters"
-                                                    text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
-                                                    currentResolution={currentResolution}
-                                                    hangleAddNew={hangleAddNewCover}
-                                                />
-                                            )
-                                        }
-                                    </>
-                                )
+                                <>
+                                    {
+                                        ['md', 'sm', 'xs'].includes(currentResolution) && (
+                                            <CardNew
+                                                titleNwe="New Cover letters"
+                                                text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
+                                                currentResolution={currentResolution}
+                                                hangleAddNew={hangleAddNewCover}
+                                            />
+                                        )
+                                    }
+                                    {
+                                        isArray(covers.list) && covers.list.map((item) => (
+                                            <CardResume
+                                                key={item.id}
+                                                id={item.id}
+                                                image="/images/cover/dash-cover.png"
+                                                label={item.coverName}
+                                                dateUpdate={item.updateDatetime}
+                                                handleEdit={() => handleOnUpdateCover(item)}
+                                                handlekeyUp={handlekeyUpCover}
+                                                handleBlur={handleBlurCover}
+                                            />
+                                        ))
+                                    }
+                                    {
+                                        !['md', 'sm', 'xs'].includes(currentResolution) && (
+                                            <CardNew
+                                                titleNwe="New Cover letters"
+                                                text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
+                                                currentResolution={currentResolution}
+                                                hangleAddNew={hangleAddNewCover}
+                                            />
+                                        )
+                                    }
+                                </>
                             )
                         }
                     </div>

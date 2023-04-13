@@ -8,6 +8,21 @@ export const CoverCv009 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
+    const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        country,
+        city,
+        zipCode,
+        state,
+        applyingCompanyName,
+        applyingCompanyJobTitle,
+        applyingCompanyTitle,
+        applyingCompanyContact,
+    } = data;
+
     return (
         <div className="sv_009 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" class={`${stateClasses} cv-chapter-section  color-scheme-state-color-set-1`} data-chapter="resume">
@@ -15,22 +30,19 @@ export const CoverCv009 = ({
                     <div class="cv-body-content">
                         <div class="cv-body-area top-area">
                             <div class="background-image">
-                                <img src="./image/top_area_bg.png" />
+                                <img src="/styles/resumes/009/image/top_area_bg.png" />
                             </div>
                             <div class="column-left">
-                                <div class="photo-wrapper">
-                                    <img src="./image/photo.jpg" />
-                                </div>
                             </div>
                             <div class="column-right">
-                                <h1 class="cv-name main-color-2-text font-weight-400 font-size-8 line-height-9-1">Matthew Mcconaughey</h1>
+                                <h1 class="cv-name main-color-2-text font-weight-400 font-size-8 line-height-9-1">{firstName}{` `} {lastName}</h1>
                                 <div class="white-line main-color-2-border"></div>
                             </div>
                         </div>
                         <div class="cv-body-area middle-area main-color-3-background">
                             <div class="column-right">
                                 <div class="letter-body">
-                                    <h3 class="letter-heading font-weight-500 font-size-3 line-height-5-1">Dear Dr. Boater,</h3>
+                                    <h3 className="letter-heading font-weight-500 font-size-3 line-height-5-1">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
                                     {
                                         !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
                                             <div className="letter-text font-weight-400 font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
@@ -53,18 +65,27 @@ export const CoverCv009 = ({
                             </div>
                             <div class="column-right">
                                 <div class="delivery-block">
-                                    <div class="block-to">
-                                        <h3 class="heading-type-1 font-weight-500 font-size-5 line-height-7 main-color-2-text">To</h3>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">Glenview Assisted Living</p>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">Dr. Henry Boater</p>
-                                    </div>
-                                    <div class="block-from">
-                                        <h3 class="heading-type-1 font-weight-500 font-size-5 line-height-7 main-color-2-text">From</h3>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">Piter Black</p>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">5th avenue, New York City, 084736, USA</p>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">+4862534823</p>
-                                        <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">sellegro@hotmail.com</p>
-                                    </div>
+                                    {
+                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
+                                            <div class="block-to">
+                                                <h3 class="heading-type-1 font-weight-500 font-size-5 line-height-7 main-color-2-text">To</h3>
+                                                <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
+                                                    {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}</>)} </p>
+                                                <p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                            <div class="block-from">
+                                                <h3 class="heading-type-1 font-weight-500 font-size-5 line-height-7 main-color-2-text">From</h3>
+                                                {!!state && (<p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">{state}<br /></p>)}
+                                                {!!city && (<p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">{`${!!city && (`${city}, `)} ${!!zipCode && (`${zipCode}, `)} ${!!country && (`${country}`)}`}<br /></p>)}
+                                                {!!phone && (<p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">{phone}<br /></p>)}
+                                                {!!email && (<p class="font-weight-500 font-size-1 line-height-1 main-color-2-text">{email}</p>)}
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

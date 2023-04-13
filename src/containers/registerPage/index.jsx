@@ -80,6 +80,7 @@ export const RegisterPage = () => {
                                     label="E-mail"
                                     placeholder="E-mail"
                                     invalid={errors?.email}
+                                    value={watch("email")}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                                     textError={textError == "user_exist" ? "A user with this email is already registered" : ""}
                                     obj={
@@ -98,6 +99,7 @@ export const RegisterPage = () => {
                                 <InputPassword
                                     label="Password"
                                     placeholder="Password"
+                                    value={watch("password")}
                                     invalid={!!errors?.password}
                                     valid={!errors?.password && watch("password").length > 0}
                                     obj={
@@ -117,6 +119,7 @@ export const RegisterPage = () => {
                                     label="Repeat password"
                                     placeholder="Repeat password"
                                     invalid={!!errors?.repeatPassword}
+                                    value={watch("repeatPassword")}
                                     valid={!errors?.repeatPassword && (watch("password").length > 0) && (watch("password") == watch("repeatPassword"))}
                                     obj={
                                         register("repeatPassword", {

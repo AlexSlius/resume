@@ -33,7 +33,7 @@ export const CoverCv002 = ({
                                 <div className="cv-body-area area-1 ">
                                     <div className="column-left">
                                         <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">
-                                            {!!firstName && (firstName)}
+                                            {!!firstName && (firstName)}{` `}
                                             {!!lastName && (lastName)}
                                         </h1>
                                     </div>
@@ -42,7 +42,7 @@ export const CoverCv002 = ({
                         }
                         <div className="cv-body-area area-2">
                             <div className="column-left">
-                                <h2 className="cv-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">Dear Dr. Boater,</h2>
+                                <h2 className="cv-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
                                 {
                                     !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
                                         <p className="cv-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
@@ -65,7 +65,7 @@ export const CoverCv002 = ({
                                                                 <p className="cv-sender font-size-1 line-height-1 main-color-1-text">
                                                                     {!!applyingCompanyName && (<>{applyingCompanyName}<br /></>)}
                                                                     {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}
-                                                                    {!!applyingCompanyTitle && (<>{applyingCompanyTitle}<br /></>)}
+                                                                    {!!applyingCompanyTitle && (<> {`Dear ${applyingCompanyTitle}`}<br /></>)}
                                                                     {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}
                                                                 </p>
                                                             </>

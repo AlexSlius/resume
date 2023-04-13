@@ -17,14 +17,14 @@ export const cookieParse = ({ ctx = null }) => {
     return parseCookies(ctx)
 }
 
-export const cookieDestroy = ({ ctx = null, key = null }) => {
+export const cookieDestroy = async ({ ctx = null, key = null }) => {
     if (key === null)
         return {
             error: true,
             message: 'not key'
         }
 
-    destroyCookie(ctx, key);
+    await destroyCookie(ctx, key);
 }
 
 

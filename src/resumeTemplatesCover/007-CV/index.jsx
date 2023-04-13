@@ -8,6 +8,21 @@ export const CoverCv007 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
+    const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        country,
+        city,
+        zipCode,
+        state,
+        applyingCompanyName,
+        applyingCompanyJobTitle,
+        applyingCompanyTitle,
+        applyingCompanyContact,
+    } = data;
+
     return (
         <div className="sv_007 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" class={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
@@ -17,26 +32,49 @@ export const CoverCv007 = ({
                             <div class="cv-destination">
                                 <div class="cv-destination-block">
                                     <div class="destination-details">
-                                        <p class="headint-type-3 heading-to font-weight-900 font-size-2 line-height-3">TO</p>
-                                        <p class="font-size-1 line-height-1">Glenview Assisted Living</p>
-                                        <p class="font-size-1 line-height-1">Dr. Henry Boater</p>
-                                        <p class="heading-type-3 heading-from font-weight-900 font-size-2 line-height-3">FROM</p>
-                                        <p class="font-size-1 line-height-1">Piter Black</p>
-                                        <p class="font-size-1 line-height-1">5th avenue, New York City, 084736, USA</p>
-                                        <p class="font-size-1 line-height-1">+4862534823</p>
-                                        <p class="font-size-1 line-height-1">sellegro@hotmail.com</p>
+                                        {
+                                            (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
+                                                <>
+                                                    <p class="headint-type-3 heading-to font-weight-900 font-size-2 line-height-3">TO</p>
+                                                    <p class="font-size-1 line-height-1"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
+                                                        {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
+                                                    <p class="font-size-1 line-height-1">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
+                                                </>
+                                            )
+                                        }
+                                        {
+                                            (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
+                                                <>
+                                                    <p class="heading-type-3 heading-from font-weight-900 font-size-2 line-height-3">FROM</p>
+                                                    {!!state && (<p class="font-size-1 line-height-1">{state}<br /></p>)}
+                                                    {!!city && (<p class="font-size-1 line-height-1">{city}<br /></p>)}
+                                                    {!!zipCode && (<p class="font-size-1 line-height-1">{zipCode}<br /></p>)}
+                                                    {!!country && (<p class="font-size-1 line-height-1">{country}<br /></p>)}
+                                                    {!!phone && (<p class="font-size-1 line-height-1">{phone}<br /></p>)}
+                                                    {!!email && (<p class="font-size-1 line-height-1">{email}</p>)}
+                                                </>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="column-right">
                             <h1 class="cv-name font-size-5 line-height-6">
-                                <span class="text-line-1 font-weight-300">Matthew</span>&nbsp;
-                                <span class="text-line-2 font-weight-900">Mcconaughey</span>
+                                {
+                                    !!firstName.length && (
+                                        <span class="text-line-1 font-weight-300">{firstName}&nbsp;</span>
+                                    )
+                                }
+                                {
+                                    !!lastName.length && (
+                                        <span class="text-line-2 font-weight-900">{` ${firstName}`}</span>
+                                    )
+                                }
                             </h1>
                             <div class="letter-wrapper additional-color-2-background">
                                 <div class="black-line main-color-1-background"></div>
-                                <h2 class="cv-heading font-weight-600 font-size-2 line-height-3">Dear Dr. Boater,</h2>
+                                <h2 className="cv-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
                                 {
                                     !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
                                         <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
