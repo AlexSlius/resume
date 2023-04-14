@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 768px) {
   #__next {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .body-template-resume {
