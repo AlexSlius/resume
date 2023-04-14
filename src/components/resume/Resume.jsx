@@ -135,12 +135,12 @@ const Resume = ({
 
    return (
       <>
-         <button className='resume-btn resume-btn_fix' onClick={() => setOpenMenu(true)}>
+         <button className='resume-btn show-result resume-btn_fix' onClick={() => setOpenMenu(true)}>
             <Icon svg={backIcon} />
          </button>
          <div className={`mob-opas-menu ${openMenu ? "open" : ""}`} onClick={() => setOpenMenu(false)}></div>
          <CCol className={`resume ${openMenu ? "open" : ""}`}>
-            <button className='resume-btn' onClick={() => setOpenMenu(false)}>
+            <button className='resume-btn hide-result' onClick={() => setOpenMenu(false)}>
                <Icon svg={backIcon} />
             </button>
             <ResumeHead

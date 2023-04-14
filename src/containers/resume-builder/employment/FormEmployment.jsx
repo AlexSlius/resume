@@ -367,7 +367,7 @@ const FormEmployment = ({
 
       {
         isArray(employmentObj) && (employmentObj.length == 0) && (
-          <CRow className="g-30 r-gap-30 mb-4">
+          <CRow className="g-30 r-gap-30 mb-4 mobile-rows">
             <CCol xs={6}>
               <InputSelect
                 label="Job Title"
@@ -461,7 +461,7 @@ const FormEmployment = ({
         )
       }
 
-      <CRow className="buttons-wrap">
+      <CRow className="buttons-wrap mobile-rows two-items">
         <CCol xs={12}>
           <AddButton
             onClick={handleAddone}

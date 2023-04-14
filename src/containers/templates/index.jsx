@@ -54,6 +54,7 @@ const Templates = ({ isCover = false }) => {
 
     const [pagesPag, setPagesPag] = useState(1);
     const [pagePagCurrent, setPagePagCurrent] = useState(1);
+    const [showSettings, setShowSettings] = useState(false);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -211,6 +212,11 @@ const Templates = ({ isCover = false }) => {
 
     const templateChangeHandler = (now, previous) => {
         handleResume(templatesItems[now]);
+    }
+
+    const toggleTextSettings = () => {
+        console.log('click');
+        setShowSettings(!showSettings);
     }
 
     useEffect(() => {
@@ -438,7 +444,35 @@ const Templates = ({ isCover = false }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="pt_b-r plr buttons-wrapper">
+                    <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
+                        
+                        {
+                            ['sm', 'xs'].includes(currentResolution) ? (
+                                <div className="ranges-row">
+                                    <div className='item-range'>
+                                        <CustomizedSlider
+                                            defaultValue={50}
+                                            value={stateLineSpacing}
+                                            label="Line Spacing"
+                                            textLeft="50%"
+                                            textRight="150%"
+                                            onChange={handleLineSpacing}
+                                        />
+                                    </div>
+                                    <div className='item-range'>
+                                        <CustomizedSlider
+                                            defaultValue={50}
+                                            value={stateFontSize}
+                                            label="Text size"
+                                            textLeft="12 pt"
+                                            textRight="48 pt"
+                                            onChange={handleFontSize}
+                                        />
+                                    </div>
+                                </div>
+                            ) : null
+                        }
+
                         <div className="colors-t">
                             {
                                 isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
@@ -488,13 +522,32 @@ const Templates = ({ isCover = false }) => {
                                 className="btn--blue"
                             // onHandle={handleGeneratePdf}
                             />
-                            <CButton
-                                className='resume-footer__button'
-                                color="secondary"
-                                variant="outline"
-                            >
-                                <Icon svg={dotsIcon} classNames={['icon-20']} />
-                            </CButton>
+                            {
+                                ['sm', 'xs'].includes(currentResolution) ? (
+                                    <div className={`font-settings-wrap`}>
+                                        <div className="font-settings" onClick={toggleTextSettings}>
+                                            {
+                                                showSettings ?
+                                                (
+                                                    <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
+                                                ) :
+                                                (
+                                                    <SvgImage image={'text'} width={'18px'} height={'16px'} color={'#838799'} />
+                                                )
+                                            }
+                                        </div>
+                                    </div>
+                                ):
+                                (
+                                    <CButton
+                                        className='resume-footer__button'
+                                        color="secondary"
+                                        variant="outline"
+                                    >
+                                        <Icon svg={dotsIcon} classNames={['icon-20']} />
+                                    </CButton>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

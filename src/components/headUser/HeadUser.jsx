@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
 
+// Components
+import UserMenu from '../userMenu';
 import Icon from '../Icon'
 
 import { logout } from '../../controllers/auth'
@@ -68,60 +70,7 @@ const HeadUser = () => {
             </div>
             <div className={`${style.mod}`}>
                <div className={`${style.mod_wr}`}>
-                  <ul className={`${style.mod_m_list}`}>
-                     {
-                        isAthorized && (
-                           <>
-                              <li>
-                                 <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                                    <Icon svg={iconDashboard} />
-                                    <span>Dashboard</span>
-                                 </Link>
-                              </li>
-                              <li>
-                                 <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`${style.link} ${!isAthorized ? style.disabled : ""}`}>
-                                    <Icon svg={iconSettings} />
-                                    <span>Settings</span>
-                                 </Link>
-                              </li>
-                           </>
-                        )
-                     }
-                     {
-                        !isAthorized && (
-                           <>
-                              <li>
-                                 <Link href={`/${routersPages['login']}`} className={`${style.link}`}>
-                                    <Icon svg={iconHLogin} />
-                                    <span>Login</span>
-                                 </Link>
-                              </li>
-                              <li>
-                                 <Link href={`/${routersPages['register']}`} className={`${style.link}`}>
-                                    <Icon svg={iconSingUp} />
-                                    <span>Sign up</span>
-                                 </Link>
-                              </li>
-                           </>
-                        )
-                     }
-                     <li>
-                        <Link href={`/${routersPages['contactUs']}`} className={style.link}>
-                           <Icon svg={iconHelp} />
-                           <span>Help</span>
-                        </Link>
-                     </li>
-                     {
-                        isAthorized && (
-                           <li>
-                              <button onClick={() => logout(dispatch)} className={style.link}>
-                                 <Icon svg={iconLogout} />
-                                 <span>Logout</span>
-                              </button>
-                           </li>
-                        )
-                     }
-                  </ul>
+                  <UserMenu />
                </div>
             </div>
          </div>

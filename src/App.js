@@ -14,6 +14,7 @@ const App = ({
         },
         theme: {
             currentResolution,
+            isMenuOpen
         }
     } = store.getState();
     const windowSize = useWindowSize();

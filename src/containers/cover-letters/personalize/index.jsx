@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
@@ -36,10 +36,11 @@ const Contact = () => {
         },
     } = states;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (idCv != "new") {
             dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'personalize' }));
         }
+        localStorage.setItem('page', 'personalize');
     }, []);
 
     return (
