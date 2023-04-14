@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { useSelector, useDispatch } from 'react-redux'
@@ -33,12 +33,12 @@ const arr = [
 
 export const HomePage = () => {
     const dispatch = useDispatch();
-    const refIdInterval = React.useRef(undefined);
-    const isStart = React.useRef(true);
-    const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
-    const [currentPage, setCurrentPage] = React.useState(2);
-    const [fetching, setFetching] = React.useState();
-    const [cuNext, setCuNext] = React.useState(0);
+    const refIdInterval = useRef(undefined);
+    const isStart = useRef(true);
+    const [stateCurrentTab, setStateCurrentTab] = useState(0);
+    const [currentPage, setCurrentPage] = useState(2);
+    const [fetching, setFetching] = useState();
+    const [cuNext, setCuNext] = useState(0);
 
     const {
         auth: {
@@ -65,7 +65,7 @@ export const HomePage = () => {
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         async function start() {
             if (fetching && resumeData?.list?.count_pages > currentPage) {
                 let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
@@ -79,6 +79,7 @@ export const HomePage = () => {
         }
 
         start();
+        localStorage.setItem('page', 'home-page');
     }, [fetching]);
 
     useEffect(() => {

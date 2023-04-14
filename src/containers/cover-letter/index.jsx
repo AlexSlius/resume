@@ -102,6 +102,7 @@ export const CoverLatter = () => {
                 return 1;
             });
         }, 5900);
+        localStorage.setItem('page', 'cover-letter');
     }, [stateCurrentTab]);
 
     return (

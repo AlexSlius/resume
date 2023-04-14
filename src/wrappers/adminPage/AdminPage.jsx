@@ -3,7 +3,7 @@ import {
    CRow,
    CCol
 } from "@coreui/react"
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,7 +21,8 @@ const AdminPage = ({ children, isCover = false }) => {
 
    const {
       theme: {
-         currentResolution
+         currentResolution,
+         isMenuOpen
       }
    } = useSelector((state) => state);
 
@@ -49,7 +50,10 @@ const AdminPage = ({ children, isCover = false }) => {
                <CCol className={`${style.main_content} main-content`}>
                   {children}
                </CCol>
-               <Resume isCover={isCover} />
+               {
+                  !isMenuOpen ? 
+                     (<Resume isCover={isCover} />) : null
+               }
             </CRow>
          </CContainer>
       </>

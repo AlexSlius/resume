@@ -100,6 +100,7 @@
             height: 14px;
             margin-top: 3px;
             transition: after 0.3s ease-in-out;
+            display: inline-block;
         }
     }
 }
@@ -309,5 +310,119 @@
         z-index: 10;
         background: var(--white);
         height: 50px;
+    }
+
+    submenu {
+        z-index: 1;
+    }
+
+    .mobile-menu {
+        background-color: var(--white);
+        height: 100vh;
+        width: 80%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+        transition: all ease-out 0.3s;
+        width: 70%;
+
+        .nav {
+            ul {
+                flex-direction: column;
+            }
+        }
+
+        &.show {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+
+            svg {
+                width: 11px;
+                height: 11px;
+            }
+        }
+
+        header {
+            padding: 11px 4px 11px 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-logo {
+            height: 21px;
+        }
+
+        ul {
+            gap: 0;
+        }
+
+        ul, li {
+            width: 100%;
+        }
+
+        li {
+            a.nav-link {
+                padding: 19px 26px;
+                font-weight: 300;
+                font-size: 18px;
+                line-height: 21px;
+                display: block;
+            }
+
+            .submenu {
+                border-radius: 12px 0 0 12px;
+                transition: all ease-out 0.3s;
+                right: 0;
+                z-index: 100;
+            }
+        }
+    }
+
+    .user-menu {
+        border-top: 1px solid var(--grey-3);
+        border-bottom: 1px solid var(--grey-3);
+    }
+
+    .logout-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 1px solid var(--grey-3);
+        width: 100%;
+        padding: 19px 0 19px 30px;
+        color: var(--red);
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 21px;
+
+        button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+        }
+    }
+
+    .overlay {
+        width: 100vw;
+        height: 100vh;
+        background: var(--black);
+        opacity: 0.6;
+        position: absolute;
+        display: none;
+        top: 0;
+
+        &.show {
+            display: block;
+        }
     }
 }
