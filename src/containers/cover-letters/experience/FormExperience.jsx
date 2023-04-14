@@ -46,6 +46,7 @@ const FormExperience = ({
             companys,
             skills,
             university,
+            describes
         },
         auth: {
             autorizate: {
@@ -184,6 +185,7 @@ const FormExperience = ({
                         StepsName={StepsName}
                         coverDataObj={coverDataObj}
                         dispatch={dispatch}
+                        describes={describes}
                     />
                 )
             }

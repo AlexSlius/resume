@@ -277,7 +277,7 @@ export const ResumeCv008 = ({
                 }
 
                 {
-                  isArray(education) && !!education.length && (
+                  isArray(education) && !!education.length > 0 && (
                     <div className="education-block block-block">
                       <div className="horizontal-line main-color-2-border"></div>
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6 main-color-2-text">Education</h3>

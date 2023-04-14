@@ -1,8 +1,11 @@
 import { CForm, CCol, CRow } from "@coreui/react"
+import { useEffect } from "react";
 
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
+
+import { getDescribes } from "../../../controllers/dependencies";
 
 export const StepEight = ({
     handleUpdateField = () => { },
@@ -10,6 +13,7 @@ export const StepEight = ({
     StepsName,
     coverDataObj,
     dispatch,
+    describes,
 }) => {
     const handleClickBtn = async () => {
         await handleClicQuery(StepsName["othersDescribe"]);
@@ -19,9 +23,13 @@ export const StepEight = ({
         handleUpdateField({ name, value });
     }
 
-    const handleRequest = () => {
-
+    const handleRequest = (text) => {
+        dispatch(getDescribes(text));
     }
+
+    useEffect(() => {
+        dispatch(getDescribes());
+    }, []);
 
     return (
         <div className="step-wr">
@@ -37,7 +45,7 @@ export const StepEight = ({
                             <InputSelect
                                 label="Please Select"
                                 valueState={coverDataObj.wordDescribes || ''}
-                                // data={coutrys.list}
+                                data={describes.list}
                                 name="wordDescribes"
                                 handleSaveSelect={handleUpdateFiled}
                                 handleServerRequest={handleRequest}

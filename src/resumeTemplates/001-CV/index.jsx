@@ -50,8 +50,6 @@ export const ResumeCv001 = ({
     hide_experience_level
   } = data;
 
-  console.log("hideSkillExperienceLevel: ", hide_experience_level);
-
   React.useEffect(() => {
     switch (stateLineSpacing) {
       case 0: {

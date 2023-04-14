@@ -25,15 +25,15 @@ export const CoverCv004 = ({
 
     return (
         <div className="sv_004 template-wrapper" ref={reportTemplateRef}>
-            <div id="cv-chapter-section-resume" class="cv-chapter-section" data-chapter="resume">
+            <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
                 <div id="cv-body-2 " data-chapter="resume" data-page="1" class={`${stateClasses} cv-body cv-body_height cv-body-2 cv-body---resume page-2`}>
-                    <div class="cv-body-content">
-                        <div class="name-block toggle-photo-state toggle-photo-state-active">
-                            <h1 class="additional-color-1-text font-size-4 line-height-4 font-family-arsenal">{firstName}{` `} {lastName}</h1>
+                    <div className="cv-body-content">
+                        <div className="name-block toggle-photo-state toggle-photo-state-active">
+                            <h1 className="additional-color-1-text font-size-4 line-height-4 font-family-arsenal">{firstName}{` `} {lastName}</h1>
                         </div>
-                        <div class="columns-wrapper">
-                            <div class="column-1">
-                                <div class="letter-block">
+                        <div className="columns-wrapper">
+                            <div className="column-1">
+                                <div className="letter-block">
                                     <h3 className="first-line additional-color-1-text font-size-3 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
                                     {
                                         !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
@@ -44,16 +44,16 @@ export const CoverCv004 = ({
                             </div>
                             {
                                 (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact || !!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                    <div class="column-2">
+                                    <div className="column-2">
                                         {
                                             (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                <div class="to-block">
-                                                    <h3 class="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">TO</h3>
+                                                <div className="to-block">
+                                                    <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">TO</h3>
                                                     <div className="to-block">
-                                                        <h3 class="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">TO</h3>
-                                                        <p class="font-size-1 line-height-1"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
+                                                        <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">TO</h3>
+                                                        <p className="font-size-1 line-height-1"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
                                                             {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
-                                                        <p class="font-size-1 line-height-1">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
+                                                        <p className="font-size-1 line-height-1">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
                                                     </div>
                                                 </div>
                                             )
@@ -62,7 +62,7 @@ export const CoverCv004 = ({
                                         {
                                             (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
                                                 <div className="from-block block-block">
-                                                    <h3 class="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">FROM</h3>
+                                                    <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">FROM</h3>
                                                     <p className="font-size-1 line-height-1">
                                                         {!!state && (<>{state}<br /></>)}
                                                         {!!city && (<>{city}<br /></>)}

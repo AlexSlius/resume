@@ -149,8 +149,8 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    max-width: 246px;
-    gap: 6px;
+    max-width: 240px;
+    gap: 8px;
 }
 
 .color-it {
@@ -158,6 +158,26 @@
     height: 34px;
     border-radius: 50%;
     cursor: pointer;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        bottom: -3px;
+        left: -3px;
+        border-radius: 100%;
+        border: 2px solid #3679FD;
+        transition: 0.3s;
+        opacity: 0;
+    }
+
+    &.active {
+        &::before {
+            opacity: 1;
+        }
+    }
 }
 
 .color-select {

@@ -443,7 +443,7 @@ const Templates = ({ isCover = false }) => {
                             {
                                 isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
                                 (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
-                                    <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className="color-it" key={index} style={{ background: item.color }}></div>
+                                    <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
                                 ))
                             }
                             {

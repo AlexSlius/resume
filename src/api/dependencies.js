@@ -1,6 +1,9 @@
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
+    getDescribes(params) {
+        return this.apiClient.get('api/describes/list', params);
+    }
     // skills
     getSkillsStartOneJobTitle(params) {
         return this.apiClient.get('profile/list/skill_positions', params);
