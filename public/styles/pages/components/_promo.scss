@@ -42,7 +42,7 @@
             align-items: center;
 
             h1 {
-                font-weight: 700!important;
+                font-weight: 700 !important;
 
                 p {
                     margin-bottom: 3px;
@@ -52,7 +52,7 @@
             .bottom-text {
                 margin-top: 16px;
                 margin-bottom: 27px;
-    
+
                 svg {
                     display: none;
                 }
@@ -390,7 +390,7 @@
 
     .mt-130,
     div.tabs {
-        margin-top: 110px!important;
+        margin-top: 110px !important;
     }
 }
 
@@ -407,8 +407,9 @@
 
     .mt-130,
     div.tabs {
-        margin-top: 80px!important;
+        margin-top: 80px !important;
     }
+
     .advantages h2 span.border {
         display: none;
     }
@@ -430,7 +431,7 @@
 
     .mt-130,
     div.tabs {
-        margin-top: 50px!important;
+        margin-top: 50px !important;
     }
 }
 
@@ -461,7 +462,7 @@
     }
 
     .promo-offer__bottom {
-        margin-top: 27px;
+        margin-top: 0;
     }
 
     .promo-num-item h2 {
@@ -509,7 +510,7 @@
 
     .mt-130,
     div.tabs {
-        margin-top: 40px!important;
+        margin-top: 40px !important;
     }
 
     h2.h2 {
@@ -530,8 +531,15 @@
     .offer-sec__btn {
         margin-top: 30px;
     }
+
     .tabs__top {
-        gap: 24px!important;;
+        gap: 24px !important;
+        ;
+    }
+
+    .promo-offer .bottom-text {
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 
@@ -551,7 +559,7 @@
     .offer-sec__img {
         max-width: 100%;
     }
-    
+
 }
 
 @media (max-width: 475px) {
@@ -570,8 +578,9 @@
     h2.h2 {
         font-size: 24px;
     }
+
     .tabs__top {
-        gap: 20px!important;
+        gap: 20px !important;
     }
 }
 
@@ -631,6 +640,6 @@
     }
 
     .tabs__top {
-        gap: 12px!important;
+        gap: 12px !important;
     }
 }

@@ -18,3 +18,10 @@
       }
    }
 }
+
+@media(max-width: 767px) {
+   .addButton {
+      width: 100%;
+      justify-content: center;
+   } 
+}

@@ -95,29 +95,45 @@ export const Header = () => {
                         <>
                             <div className={`overlay${isMenuShow ? ' show' : ''}`} onClick={toggleMenu}></div>
                             <div className={`mobile-menu${isMenuShow ? ' show' : ''}`}>
-                                <header>
-                                    <img className="mobile-logo" loading="lazy" src="/images/page/logo.svg" alt="logo" />
-                                    <div className="close-menu" onClick={toggleMenu}>
-                                        <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
-                                    </div>
-                                </header>
-                                <Menu pageName={pageName} />
-                                <div className="user-menu">
-                                    <UserMenu />
-                                </div>
-                                {
-                                    isAthorized ?
-                                        (
-                                        <>
-                                            <div className="logout-wrapper">
-                                                <button onClick={() => logout(dispatch)}>
-                                                    <SvgImage image={'logout'} width={'20px'} height={'20px'} color={'#F63B3B'} />
-                                                    <span>Logout</span>
-                                                </button>
+                                <div>
+                                    <header>
+                                        <img className="mobile-logo" loading="lazy" src="/images/page/logo.svg" alt="logo" />
+                                        <div className="close-menu" onClick={toggleMenu}>
+                                            <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
+                                        </div>
+                                    </header>
+                                    <Menu pageName={pageName} />
+                                    {
+                                        isAthorized && (
+                                            <div className="user-menu">
+                                                <UserMenu />
                                             </div>
-                                        </>
-                                    ) : null
-                                }
+                                        )
+                                    }
+                                </div>
+                                <div className="mobile-menu__bot">
+                                    <div className="mobile-menu__mob">
+                                        {
+                                            isAthorized ?
+                                                (
+                                                    <>
+                                                        <div className="logout-wrapper">
+                                                            <button onClick={() => logout(dispatch)}>
+                                                                <SvgImage image={'logout'} width={'20px'} height={'20px'} color={'#F63B3B'} />
+                                                                <span>Logout</span>
+                                                            </button>
+                                                        </div>
+                                                    </>
+                                                ) : <>
+                                                    <Link href={`${routersPages['login']}`} className="logins">Login</Link>
+                                                    <Link href={`${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
+                                                        <img src="/images/page/get-start.svg" alt="img" />
+                                                        <span>Get started</span>
+                                                    </Link>
+                                                </>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </>
                     ) : null

@@ -208,7 +208,7 @@ const FormActivity = ({
                                                          item.employer
                                                       ]}
                                                    >
-                                                      <CRow className="row g-30 r-gap-30">
+                                                      <CRow className="row g-30 r-gap-30 mobile-rows">
                                                          <CCol xs={6}>
                                                             <InputSelect
                                                                label="Function Title"

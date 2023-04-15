@@ -47,7 +47,8 @@
 @media (max-width: 767px) {
     .card_new {
         width: 46%;
-        max-width: auto;
+        max-width: 230px;
+        min-width: 230px;
 
         &__head {
             min-height: 170px;

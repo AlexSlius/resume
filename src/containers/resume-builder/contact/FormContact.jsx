@@ -84,23 +84,29 @@ const FormContact = ({
    });
 
    const handleFileSelect = async (e) => {
-      const reader = new FileReader();
+      if (e !== null) {
+         const reader = new FileReader();
 
-      reader.onloadend = async () => {
-         const content = reader.result;
-         await dispatch(updatePictureContact(content));
-      }
-
-      if (e.target.files[0]) {
-         reader.readAsDataURL(e.target.files[0]);
-         await setPictureFile(e.target.files[0]);
-
-         if (idCv != "new")
-            await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
-
-         if (idCv != "new") {
-            sessionStorageSet('picture', e.target.files[0]);
+         reader.onloadend = async () => {
+            const content = reader.result;
+            await dispatch(updatePictureContact(content));
          }
+
+         if (e.target.files[0]) {
+            await reader.readAsDataURL(e.target.files[0]);
+            await setPictureFile(e.target.files[0]);
+
+            if (idCv != "new")
+               await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
+
+            if (idCv != "new") {
+               sessionStorageSet('picture', e.target.files[0]);
+            }
+         }
+      } else {
+         await dispatch(updatePictureContact(null));
+         await dispatch(fetchUpdateContact({ idCv, dataImage: null }));
+         sessionStorageSet('picture', null);
       }
    }
 
@@ -208,12 +214,12 @@ const FormContact = ({
 
    return (
       <LoadWr isLoad={isLoader(status)}>
-         <CForm onSubmit={handleSubmit(formSubmit)} className="row r-gap-30">
+         <CForm onSubmit={handleSubmit(formSubmit)} className="rowse r-gap-30">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
-                  <div className="mb-3">
+                  <div className="mb-30px">
                      <Input
-                        label="First Name*"
+                        label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
                         autoComplete="on"
@@ -229,7 +235,7 @@ const FormContact = ({
                   </div>
                   <div>
                      <Input
-                        label="Last Name*"
+                        label="Last Name"
                         autoComplete="on"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
@@ -399,7 +405,6 @@ const FormContact = ({
                      floatingLabel="Date of birth"
                      selected={contObj.dateOfBirth}
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                     name="date_of_birth"
                      formatInput='MMM, DD, YYYY'
                      formatData='M, d, Y'
                   />
@@ -418,7 +423,7 @@ const FormContact = ({
                   isAthorized={isAthorized}
                   isFirstStep={true}
                   isNew={idCv == "new" && isAthorized}
-                  disabledNext={!contObj.firstName || !contObj.lastName}
+               // disabledNext={!contObj.firstName || !contObj.lastName}
                />
             </CCol>
          </CForm>

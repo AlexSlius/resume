@@ -92,7 +92,7 @@ h3.h3 {
         }
 
         &:hover {
-            color: #3679FD!important;
+            color: #3679FD !important;
 
             svg {
                 fill: #3679FD;
@@ -200,7 +200,7 @@ svg {
 
 @media (max-width: 992px) {
     .page {
-        padding-top: 105px;
+        padding-top: 60px;
     }
 }
 
@@ -238,7 +238,7 @@ svg {
         &>div {
             width: 100%;
         }
-        
+
         &.two-items {
             gap: 12px;
         }

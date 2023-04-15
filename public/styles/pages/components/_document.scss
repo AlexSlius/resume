@@ -195,6 +195,18 @@
         display: flex;
         justify-content: center;
     }
+
+    .document__wrapper {
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            top: 47%;
+        }
+    }
+
+    .document__wrapper .swiper-slide .document__link_before {
+        background: transparent;
+    }
 }
 
 @media (max-width: 560px) {

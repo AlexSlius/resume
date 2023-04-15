@@ -88,7 +88,7 @@ const Settings = () => {
                                             value={objForm.firstName}
                                             name="firstName"
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
-                                            valid={objForm.firstName.length > 2}
+                                            valid={objForm?.firstName?.length > 2}
                                         />
                                     </div>
                                 </CCol>
@@ -98,8 +98,8 @@ const Settings = () => {
                                             label="Last Name"
                                             placeholder="Last Name"
                                             name="lastName"
-                                            value={objForm.lastName}
-                                            valid={objForm.lastName.length > 2}
+                                            value={objForm?.lastName}
+                                            valid={objForm?.lastName?.length > 2}
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
                                         />
                                     </div>

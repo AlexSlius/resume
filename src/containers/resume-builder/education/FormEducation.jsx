@@ -279,7 +279,7 @@ const FormEducation = ({
 
          {
             isArray(educationObj) && (educationObj.length == 0) && (
-               <CRow className="row g-30 r-gap-30 mb-4">
+               <CRow className="row g-30 r-gap-30 mb-4 mobile-rows">
                   <CCol xs={6}>
                      <InputSelect
                         label="Facility"

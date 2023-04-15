@@ -123,10 +123,13 @@ input.form-control {
 }
 
 .wr-text-edit .DraftEditor-root {
-    @media screen and (max-width: 768px) {
-        padding-top: 40px;
+    @media(max-width: 768px) {
+        padding-top: 0;
+        padding-bottom: 40px;
     }
 }
+
+
 
 .form-control,
 .form-select {
@@ -358,6 +361,12 @@ input[type="number"]:focus {
     .modal-text__main {
         overflow: hidden;
     }
+
+    // @media(max-width: 767px) {
+    //     .modal-text {
+    //         position: relative;
+    //     }
+    // }
 }
 
 .t-wr-btn {
@@ -613,6 +622,7 @@ input[type="number"]:focus {
         }
     }
 }
+
 
 .rows-lan {
     display: flex;
@@ -1339,6 +1349,16 @@ button {
     }
 }
 
+.mb-30px {
+    margin-bottom: 30px;
+}
+
+.rowse.r-gap-30 {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 @media (max-width: 1559px) {
     .r-gap-30 {
         row-gap: 20px;
@@ -1378,8 +1398,63 @@ button {
     .menus-card_wr {
         left: auto;
         right: 0;
+        padding-bottom: 4px;
+    }
+
+    .mb-30px {
+        margin-bottom: 20px;
+    }
+
+    .menus-card:hover .menus-card_wr {
+        top: auto;
+        bottom: 100%;
+    }
+
+    .t-wr-btn {
+        top: auto;
+        right: auto;
+        left: 20px;
+        bottom: 10px;
+        opacity: 0.5;
+        pointer-events: none;
+
+        .wr-btn {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+
+            span {
+                padding-left: 12px;
+            }
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .items-step-skill {
+        margin-top: 30px;
+    }
+
+    .wr-form-cover,
+    .step-wr>div {
+        width: 100%;
+    }
+    .pt_h-l {
+        height: 50px;
+        padding: 10px 16px;
+
+        .pt_h-btn-back {
+            button {
+                font-size: 0;
+            }
+        }
     }
 }
+
+
 
 .block-rotate {
     transform: rotate(180deg);

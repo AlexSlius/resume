@@ -3,8 +3,11 @@ import moment from 'moment';
 import classnames from 'classnames';
 
 import Input from "../input";
+import Icon from '../../Icon';
 
+import iconCloseX from "/public/images/icons/icon_close_x.svg?sprite";
 import style from "./Style.module.scss";
+
 
 export const DatePicker = ({
     onChange,
@@ -33,9 +36,10 @@ export const DatePicker = ({
                     format: formatData,
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer.current),
-
                     onSelect: function (data) {
-                        onChange(moment(data).format());
+                        onChange(moment(data).format(formatInput));
+
+                        useRefData.current.blur();
                         useRefDataNewIn.current.blur();
 
                         setClases(prev => {
@@ -82,19 +86,29 @@ export const DatePicker = ({
                 !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus);
             }
         }
-    }, []);
+    }, [selected]);
 
     return (
         <div className={`${style.wt_cal}`} ref={refSelect}>
-            <div className={`${style.wt_cal_in}`}>
+            <div className={`${style.wt_cal_in} ${style.btn_clean}`}>
                 <Input
                     name={name}
                     label={floatingLabel}
                     autoComplete="on"
                     value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                    // value={selected ? selected : ""}
+                    // onChange={(e) => { onChange(e.target.value); console.log(e.target.value) }}
                     obj={{ ref: useRefDataNewIn }}
                     valid={selected?.length > 0}
+                    isClean={true}
                 />
+                {
+                    (selected?.length > 0) && (
+                        <button type="button" className={style.clean} onClick={() => onChange("")}>
+                            <Icon svg={iconCloseX} />
+                        </button>
+                    )
+                }
             </div>
 
             <input type="text" ref={useRefData} className={`${style.ins}`} />
