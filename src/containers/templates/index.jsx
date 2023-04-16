@@ -1,6 +1,5 @@
 import { CButton } from '@coreui/react'
 import { useEffect, useState, useRef } from 'react';
-import jsPDF from 'jspdf';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import { isArray } from 'lodash';
@@ -17,12 +16,16 @@ import { ButtonBack } from "../../components/uis/buttonBack"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 import CustomizedSlider from '../../components/uis/range';
 
+import {
+    getCoverLetterById
+} from "../../controllers/cover/personalize";
+import { SelectColor } from '../../components/selectColor';
+
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { updateActiveCoverNew } from "../../slices/cover/coverData";
 
 import { routersPages } from "../../constants/next-routers";
 
-import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 
@@ -38,11 +41,6 @@ import {
     setUpdateCoverDataActive,
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
-
-import {
-    getCoverLetterById
-} from "../../controllers/cover/personalize";
-
 
 const Templates = ({ isCover = false }) => {
     const refIdTimeout = useRef(undefined);
@@ -445,7 +443,7 @@ const Templates = ({ isCover = false }) => {
                         </div>
                     </div>
                     <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
-                        
+
                         {
                             ['sm', 'xs'].includes(currentResolution) ? (
                                 <div className="ranges-row">
@@ -482,9 +480,7 @@ const Templates = ({ isCover = false }) => {
                             }
                             {
                                 isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
-                                    <div className="color-it color-select">
-                                        <Icon svg={iconPlusColor} />
-                                    </div>
+                                    <SelectColor />
                                 )
                             }
                         </div>
@@ -528,25 +524,25 @@ const Templates = ({ isCover = false }) => {
                                         <div className="font-settings" onClick={toggleTextSettings}>
                                             {
                                                 showSettings ?
-                                                (
-                                                    <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
-                                                ) :
-                                                (
-                                                    <SvgImage image={'text'} width={'18px'} height={'16px'} color={'#838799'} />
-                                                )
+                                                    (
+                                                        <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
+                                                    ) :
+                                                    (
+                                                        <SvgImage image={'text'} width={'18px'} height={'16px'} color={'#838799'} />
+                                                    )
                                             }
                                         </div>
                                     </div>
-                                ):
-                                (
-                                    <CButton
-                                        className='resume-footer__button'
-                                        color="secondary"
-                                        variant="outline"
-                                    >
-                                        <Icon svg={dotsIcon} classNames={['icon-20']} />
-                                    </CButton>
-                                )
+                                ) :
+                                    (
+                                        <CButton
+                                            className='resume-footer__button'
+                                            color="secondary"
+                                            variant="outline"
+                                        >
+                                            <Icon svg={dotsIcon} classNames={['icon-20']} />
+                                        </CButton>
+                                    )
                             }
                         </div>
                     </div>

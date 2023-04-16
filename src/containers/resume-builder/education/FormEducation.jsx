@@ -26,14 +26,17 @@ import {
    updateItemFieldEducationNew,
    updatePosition,
 } from "../../../slices/education";
-import { getStudysList } from "../../../controllers/dependencies";
+import {
+   getStudysList,
+   getDegree
+} from "../../../controllers/dependencies";
 
 import {
    fetchPostAddCvOneEducation,
    fetchDeleteEducation,
    fetchUpdateEducation,
    fetchPostUpdatePositionEducations,
-   fetchDeleteAll
+   fetchDeleteAll,
 } from "../../../controllers/educations";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
@@ -47,10 +50,11 @@ const FormEducation = ({
       educations: {
          educationObj,
          objNew,
-         status
+         status,
       },
       dependencies: {
-         studys
+         studys,
+         degree
       },
       auth: {
          autorizate: {
@@ -150,6 +154,10 @@ const FormEducation = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
+   const getSearchListDegree = (text) => {
+      dispatch(getDegree(text));
+   }
+
    React.useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
    }, []);
@@ -211,9 +219,11 @@ const FormEducation = ({
                                                                   label="Degree"
                                                                   valueState={item?.degree || ""}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "degree" })}
+                                                                  handleServerRequest={() => getSearchListDegree(item?.degree)}
+                                                                  data={degree.list}
                                                                   isOutDataObj={false}
-                                                                  isModal={false}
                                                                   isValidIn={true}
+                                                                  isCap={true}
                                                                   validIn={item.degree?.length > 2}
                                                                />
                                                             </CCol>
@@ -238,7 +248,6 @@ const FormEducation = ({
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Field of study"
-                                                                  placeholder="Field of study"
                                                                   valueState={item.study || ""}
                                                                   data={studys.list}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "study" })}
@@ -296,9 +305,11 @@ const FormEducation = ({
                         label="Degree"
                         valueState={objNew?.degree || ""}
                         handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "degree" }, data)}
+                        handleServerRequest={() => getSearchListDegree(objNew?.degree)}
+                        data={degree.list}
                         isOutDataObj={false}
-                        isModal={false}
                         isValidIn={true}
+                        isCap={true}
                         validIn={objNew?.degree?.length > 2}
                      />
                   </CCol>

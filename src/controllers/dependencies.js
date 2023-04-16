@@ -2,6 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 
+export const getDegree = createAsyncThunk('fetch/getDegree', async (params) => {
+    const response = await api.dependencies.getDegree({ "query": params || '', limit: 40 });
+    return response;
+});
+
 export const getDescribes = createAsyncThunk('fetch/getDescribes', async (params) => {
     const response = await api.dependencies.getDescribes({ "query": params || '', limit: 40 });
     return response;

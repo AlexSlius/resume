@@ -165,6 +165,7 @@
   .cv-body {
     // width: 595px;
     width: 100%;
+    min-height: 842px;
     /*
   height: 842px;
   max-height: 842px;
@@ -414,6 +415,7 @@
 
                 li {
                   list-style: disc;
+
                   span {
                     display: block;
                     margin-left: -5px;

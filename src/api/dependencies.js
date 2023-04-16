@@ -1,6 +1,9 @@
 import Base from './Base.js';
 
 export default class ClientsAPI extends Base {
+    getDegree(params) {
+        return this.apiClient.get('profile/list/degree_program', params);
+    }
     getDescribes(params) {
         return this.apiClient.get('api/describes/list', params);
     }
