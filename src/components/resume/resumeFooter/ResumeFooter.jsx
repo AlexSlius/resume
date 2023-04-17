@@ -10,6 +10,7 @@ import { routersPages } from "../../../constants/next-routers";
 import templateIcon from '/public/images/icons/select.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
+import { MenuButton } from '../../menuButton';
 
 const ResumeFooter = ({ isCover }) => {
    const router = useRouter();
@@ -44,7 +45,7 @@ const ResumeFooter = ({ isCover }) => {
                Select template
             </CButton>
          </div>
-         <div className="resume-footer__right d-flex gap-3">
+         <div className="resume-footer__right d-flex ">
             {
                !isCover && (
                   <CButton
@@ -57,14 +58,17 @@ const ResumeFooter = ({ isCover }) => {
                   </CButton>
                )
             }
-            <CButton
-               className='resume-footer__button'
-               color="secondary"
-               variant="outline"
-               disabled={!isAthorized}
-            >
-               <Icon svg={dotsIcon} classNames={['icon-20']} />
-            </CButton>
+            <div className="menu-show-tem ab-menu menus-card" >
+               <CButton
+                  className='resume-footer__button'
+                  color="secondary"
+                  variant="outline"
+                  disabled={!isAthorized}
+               >
+                  <Icon svg={dotsIcon} classNames={['icon-20']} />
+               </CButton>
+               <MenuButton isEdit={true} />
+            </div>
          </div>
       </div>
    )

@@ -28,6 +28,8 @@ import { routersPages } from "../../constants/next-routers";
 
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
+import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
+import iconDotMenuH from "/public/images/icons/dot-menu-h.svg?sprite";
 
 import {
     fetchGetResumeData,
@@ -41,6 +43,7 @@ import {
     setUpdateCoverDataActive,
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
+import { MenuButton } from '../../components/menuButton';
 
 const Templates = ({ isCover = false }) => {
     const refIdTimeout = useRef(undefined);
@@ -53,6 +56,7 @@ const Templates = ({ isCover = false }) => {
     const [pagesPag, setPagesPag] = useState(1);
     const [pagePagCurrent, setPagePagCurrent] = useState(1);
     const [showSettings, setShowSettings] = useState(false);
+    const [showColorMob, setShowColorMod] = useState(false);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -325,13 +329,28 @@ const Templates = ({ isCover = false }) => {
             <div className="page-templates__row">
                 <div className="page-templates__left">
                     <div className="pt_h pt_h-l plr-30">
-                        <div className="pt_h-btn-back">
+                        <div className="pt_h-btn-back ">
                             <ButtonBack text="Back to editor" />
                         </div>
+                        {
+                            ['sm', 'xs', 'md'].includes(currentResolution) && (
+                                <>
+                                    <div className="pt_h-logo">
+                                        <img src="/images/page/logo.svg" alt='logo' />
+                                    </div>
+                                    <div className="pt_h-menu ab-menu menus-card">
+                                        <button type='button'>
+                                            <Icon svg={iconDotMenuH} />
+                                        </button>
+                                        <MenuButton />
+                                    </div>
+                                </>
+                            )
+                        }
                     </div>
                     <div className="pt-ts scroll-style" ref={refWr}>
                         {
-                            ['sm', 'xs'].includes(currentResolution) ? (
+                            ['sm', 'xs', 'md'].includes(currentResolution) ? (
                                 <div className='carousel'>
                                     <span className='carousel-title'>Template</span>
                                     <Carousel
@@ -383,7 +402,7 @@ const Templates = ({ isCover = false }) => {
                         }
                     </div>
                     {
-                        !['sm', 'xs'].includes(currentResolution) ? (
+                        !['sm', 'xs', 'md'].includes(currentResolution) ? (
                             <div className="pt_b-l plr-30">
                                 <div className="pt_b-l_help">
                                     <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
@@ -394,7 +413,7 @@ const Templates = ({ isCover = false }) => {
                 </div>
                 <div className="page-templates__right">
                     {
-                        !['sm', 'xs'].includes(currentResolution) ? (
+                        !['sm', 'xs', 'md'].includes(currentResolution) ? (
                             <div className="pt_h pt_h-r">
                                 <TemplateHead
                                     currentPage={pagePagCurrent}
@@ -443,9 +462,8 @@ const Templates = ({ isCover = false }) => {
                         </div>
                     </div>
                     <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
-
                         {
-                            ['sm', 'xs'].includes(currentResolution) ? (
+                            ['sm', 'xs', 'md'].includes(currentResolution) ? (
                                 <div className="ranges-row">
                                     <div className='item-range'>
                                         <CustomizedSlider
@@ -471,21 +489,23 @@ const Templates = ({ isCover = false }) => {
                             ) : null
                         }
 
-                        <div className="colors-t">
-                            {
-                                isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
-                                (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
-                                    <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
-                                ))
-                            }
-                            {
-                                isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
-                                    <SelectColor />
-                                )
-                            }
+                        <div className={`colors-t-wrapper ${showColorMob ? "colors-t-wrapper__open" : ""}`}>
+                            <div className="colors-t">
+                                {
+                                    isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
+                                    (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
+                                        <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
+                                    ))
+                                }
+                                {
+                                    isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
+                                        <SelectColor />
+                                    )
+                                }
+                            </div>
                         </div>
                         {
-                            !['sm', 'xs'].includes(currentResolution) ? (
+                            !['sm', 'xs', 'md'].includes(currentResolution) ? (
                                 <div className="ranges-row">
                                     <div className='item-range'>
                                         <CustomizedSlider
@@ -511,15 +531,8 @@ const Templates = ({ isCover = false }) => {
                             ) : null
                         }
                         <div className="btns-tem">
-                            <ButtonIcon
-                                isButton={true}
-                                icon={downloadIcon}
-                                label="Download PDF"
-                                className="btn--blue"
-                            // onHandle={handleGeneratePdf}
-                            />
                             {
-                                ['sm', 'xs'].includes(currentResolution) ? (
+                                ['sm', 'xs', 'md'].includes(currentResolution) ? (
                                     <div className={`font-settings-wrap`}>
                                         <div className="font-settings" onClick={toggleTextSettings}>
                                             {
@@ -533,8 +546,23 @@ const Templates = ({ isCover = false }) => {
                                             }
                                         </div>
                                     </div>
-                                ) :
-                                    (
+                                ) : null
+
+                            }
+                            <ButtonIcon
+                                isButton={true}
+                                icon={downloadIcon}
+                                label="Download PDF"
+                                className="btn--blue"
+                            // onHandle={handleGeneratePdf}
+                            />
+                            {
+                                ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                    <div className="color-it color-select color-it_select-mob" onClick={() => setShowColorMod(prev => !prev)}>
+                                        <Icon svg={iconPlusColor} />
+                                    </div>
+                                ) : (
+                                    <div className="menu-show-tem ab-menu menus-card">
                                         <CButton
                                             className='resume-footer__button'
                                             color="secondary"
@@ -542,7 +570,9 @@ const Templates = ({ isCover = false }) => {
                                         >
                                             <Icon svg={dotsIcon} classNames={['icon-20']} />
                                         </CButton>
-                                    )
+                                        <MenuButton />
+                                    </div>
+                                )
                             }
                         </div>
                     </div>
