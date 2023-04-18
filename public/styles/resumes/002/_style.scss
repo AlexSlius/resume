@@ -6,6 +6,7 @@
 .sv_002 {
   font-family: 'Museo Sans Cyrl', sans-serif;
 
+
   * {
     padding: 0px;
     margin: 0px;
@@ -127,12 +128,15 @@
   }
 
   #cv-body-hidden-container {
-    // height: auto;
-    // max-height: none;
-    // position: absolute;
-    // z-index: -1;
-    // opacity: 0;
-    // pointer-events: none;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    left: -10000px;
     // display: none;
   }
 
@@ -145,7 +149,7 @@
     min-width: 595px;
     min-height: 842px;
     // height: 842px;
-    // max-height: 842px;
+    max-height: 842px;
     // overflow-y: hidden;
     background-color: #fff;
     // margin: 0px 25px 25px;
