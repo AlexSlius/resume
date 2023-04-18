@@ -97,13 +97,15 @@
   }
 
   #cv-body-hidden-container {
-    // height: auto;
-    // max-height: none;
-    // position: absolute;
-    // z-index: -1;
-    // opacity: 0;
-    // pointer-events: none;
-    // display: none;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    left: -10000px;
   }
 
   .heading-type-3 {
@@ -143,10 +145,11 @@
   .cv-body {
     display: flex;
     flex-direction: column;
-    // width: 595px;
-    // height: 842px;
-    // max-height: 842px;
-    min-height: 842px;
+    width: 595px;
+    height: 764px;
+    max-height: 764px;
+    min-height: 764px;
+    overflow: hidden;
     background-color: #fff;
     box-sizing: border-box;
     // margin: 0px 25px 25px;

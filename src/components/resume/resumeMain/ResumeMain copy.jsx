@@ -44,7 +44,8 @@ const ResumeMain = ({
 
    return (
       <div className="resume-main" ref={objRef.refMain}>
-         <div className="scroll-style resume-main_scroll">
+         {/*  resume-main_scroll */}
+         <div className="scroll-style">
             <CRow className="resume-main__row r_1" ref={objRef.refContact}>
                <CCol className="resume-main__col1">
                   {

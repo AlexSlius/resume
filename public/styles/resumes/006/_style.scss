@@ -79,13 +79,14 @@
 
   .cv-body {
     // width: 595px;
-    // height: 842px;
-    // max-height: 842px;
-    min-height: 842px;
+    // height: 764px;
+    // max-height: 764px;
+    min-height: 764px;
     background-color: #fff;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     // margin: 0px 25px 25px;
 
     .cv-body-content {

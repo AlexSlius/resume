@@ -91,7 +91,8 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`}>
-         <div className="scroll-style resume-main_scroll">
+         {/* resume-main_scroll */}
+         <div className="scroll-style ">
             {
                !isCover && (
                   <div className="resume-main_scale">
