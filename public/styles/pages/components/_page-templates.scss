@@ -458,6 +458,46 @@
     .colors-t-wrapper.colors-t-wrapper__open {
         bottom: 131px;
     }
+}
 
 
+.page-view-share {
+    pointer-events: none;
+
+    .page-templates__right {
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        padding: 0 16px 25px 16px;
+
+        .body-template-resume {
+            background: transparent;
+        }
+
+        .load-ages {
+            min-height: calc(100vh - 50px);
+        }
+
+        .ptr-c.scroll-style {
+            height: auto;
+            max-height: none;
+            min-height: auto;
+            overflow: hidden;
+
+            .body-template-resume {
+                min-height: auto;
+            }
+
+            .cv-body.cv-body-visible {
+                display: flex !important;
+                min-height: 840px;
+                max-height: 840px;
+                height: 840px;
+
+                &:not(:first-child) {
+                    margin-top: 25px;
+                }
+            }
+        }
+    }
 }

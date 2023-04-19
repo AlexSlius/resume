@@ -15,6 +15,7 @@ export const CardResume = ({
     handleEdit = () => { },
     handlekeyUp = () => { },
     handleBlur = () => { },
+    handleShare = () => { },
 }) => {
     const refIdTimeout = useRef(undefined);
     const [stateName, setStateName] = useState(label);
@@ -66,7 +67,7 @@ export const CardResume = ({
                                             </button>
                                         </li>
                                         <li className="menus-card_li">
-                                            <button className="item-btn-m">
+                                            <button className="item-btn-m" onClick={handleShare}>
                                                 <Icon svg={iconShare} />
                                                 <span>Share a link</span>
                                             </button>

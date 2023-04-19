@@ -17,6 +17,16 @@ export const fetchGetResumeData = createAsyncThunk('resumeData/fetchfetchGetResu
     return response;
 });
 
+export const getResumeDataShare = createAsyncThunk('resumeData/getResumeDataShare', async ({ idCv, key }) => {
+    const response = await api.resumesData.getResumeDataShare(idCv, key);
+    return response;
+});
+
+export const getResumeShareTemplateActive = createAsyncThunk('resumeData/getResumeShareTemplateActive', async ({ idCv }) => {
+    const response = await api.resumesData.getResumeShareTemplateActive(idCv);
+    return response;
+});
+
 export const setUpdateResumeActive = createAsyncThunk('resumeData/setUpdateResumeActive', async ({ idCv, data, isGet = false, isRemoveSesion = false }, thunkAPI) => {
     const response = await api.resumesData.setUpdateResumeDataActive(idCv, data);
 

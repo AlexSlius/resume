@@ -7,6 +7,8 @@ import {
     getResumesTemplates,
     fetchGetResumeData,
     getResumeActive,
+    getResumeShareTemplateActive,
+    getResumeDataShare,
 } from "../controllers/resumeData";
 
 const initialState = {
@@ -33,7 +35,7 @@ export const slice = createSlice({
     initialState,
     reducers: {
         updateActiveResumeNew(state, action) {
-            state.resumeActiveNew = {...state.resumeActiveNew, ...action.payload };
+            state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
         }
     },
     extraReducers: {
@@ -69,6 +71,21 @@ export const slice = createSlice({
         [fetchGetResumeData.fulfilled]: (state, action) => {
             state.status = statusLoaded;
             state.data = action.payload;
+        },
+        [getResumeDataShare.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [getResumeDataShare.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
+            state.data = action.payload;
+        },
+        // getResumeShareTemplateActive
+        [getResumeShareTemplateActive.pending]: (state) => {
+            state.statusResumeActive = statusLoader;
+        },
+        [getResumeShareTemplateActive.fulfilled]: (state, action) => {
+            state.statusResumeActive = statusLoaded;
+            state.resumeActive = action.payload;
         },
     }
 });

@@ -45,7 +45,10 @@ import {
 } from "../../controllers/cover/coverData";
 import { MenuButton } from '../../components/menuButton';
 
-const Templates = ({ isCover = false }) => {
+const Templates = ({
+    isCover = false,
+    isPageView = false,
+}) => {
     const refIdTimeout = useRef(undefined);
     const refWr = useRef(undefined);
     const [currentPage, setCurrentPage] = useState(1);
@@ -222,34 +225,38 @@ const Templates = ({ isCover = false }) => {
     }
 
     useEffect(() => {
-        async function start() {
-            const isNextPage = dataOther?.list?.count_pages > currentPage;
-            if (!isCover) {
-                if (fetching && isNextPage) {
-                    let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+        if (!isPageView) {
+            async function start() {
+                const isNextPage = dataOther?.list?.count_pages > currentPage;
+                if (!isCover) {
+                    if (fetching && isNextPage) {
+                        let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
 
-                    if (res?.payload?.items) {
-                        setCurrentPage(prev => prev + 1);
-                        setFetching(false);
+                        if (res?.payload?.items) {
+                            setCurrentPage(prev => prev + 1);
+                            setFetching(false);
+                        }
                     }
-                }
-            } else {
-                if (fetching && isNextPage) {
-                    let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
+                } else {
+                    if (fetching && isNextPage) {
+                        let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
 
-                    if (res?.payload?.items) {
-                        setCurrentPage(prev => prev + 1);
-                        setFetching(false);
+                        if (res?.payload?.items) {
+                            setCurrentPage(prev => prev + 1);
+                            setFetching(false);
+                        }
                     }
                 }
             }
+            start();
         }
-        start();
     }, [fetching]);
 
     useEffect(() => {
-        if (idCv != "new") {
-            handleUpdateServer();
+        if (!isPageView) {
+            if (idCv != "new") {
+                handleUpdateServer();
+            }
         }
     }, [stateLineSpacing, stateFontSize]);
 
@@ -260,170 +267,189 @@ const Templates = ({ isCover = false }) => {
     }, [dataOther]);
 
     useEffect(() => {
-        if (idCv != "new") {
-            if (!isCover) {
-                dispatch(fetchGetResumeData({ idCv }));
-                dispatch(getResumeActive({ idCv }));
-            } else {
-                // get cover 
-                dispatch(getCoverLetterById(idCv));
-                dispatch(getCoverDataActive({ idCv }));
+        if (!isPageView) {
+            if (idCv != "new") {
+                if (!isCover) {
+                    // get resume
+                    dispatch(fetchGetResumeData({ idCv }));
+                    dispatch(getResumeActive({ idCv }));
+                } else {
+                    // get cover 
+                    dispatch(getCoverLetterById(idCv));
+                    dispatch(getCoverDataActive({ idCv }));
+                }
             }
-        }
 
-        !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
-
-        return () => {
             !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+
+            return () => {
+                !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+            }
         }
     }, []);
 
     useEffect(() => {
-        setPagePagCurrent(1);
+        if (!isPageView) {
+            setPagePagCurrent(1);
+        }
     }, [dataOther.resumeActive]);
 
     useEffect(() => {
-        if (typeof window != "undefined") {
-            if (!!reportTemplateRef.current) {
-                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-                setPagesPag(!!devPages.length ? devPages.length : 1);
-            } else {
-                setPagesPag(1);
+        if (!isPageView) {
+            if (typeof window != "undefined") {
+                if (!!reportTemplateRef.current) {
+                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                    setPagesPag(!!devPages.length ? devPages.length : 1);
+                } else {
+                    setPagesPag(1);
+                }
             }
         }
     }, [dataOther?.data, dataOther.resumeActive]);
 
     useEffect(() => {
-        if (typeof window != "undefined") {
-            if (!!reportTemplateRef.current) {
-                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+        if (!isPageView) {
+            if (typeof window != "undefined") {
+                if (!!reportTemplateRef.current) {
+                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
 
-                devPages.forEach(element => {
-                    element.classList.add("none");
-                });
+                    devPages.forEach(element => {
+                        element.classList.add("none");
+                    });
 
-                let currentPage = devPages[pagePagCurrent - 1];
+                    let currentPage = devPages[pagePagCurrent - 1];
 
-                if (!!currentPage) {
-                    currentPage.classList.remove("none");
-                    currentPage.classList.add("active");
+                    if (!!currentPage) {
+                        currentPage.classList.remove("none");
+                        currentPage.classList.add("active");
+                    }
                 }
             }
         }
     }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
 
     useEffect(() => {
-        if (!isCover) {
-            if (isNewResume) {
-                dispatch(updateActiveResumeNew({ colors: templatesItems[0]?.colors || [] }));
-            }
-        } else {
-            if (isNewResume) {
-                dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
+        if (!isPageView) {
+            if (!isCover) {
+                if (isNewResume) {
+                    dispatch(updateActiveResumeNew({ colors: templatesItems[0]?.colors || [] }));
+                }
+            } else {
+                if (isNewResume) {
+                    dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
+                }
             }
         }
     }, []);
 
     return (
-        <div className="page-templates">
+        <div className={`page-templates ${isPageView ? "page-view-share" : ""}`}>
             <div className="page-templates__row">
-                <div className="page-templates__left">
-                    <div className="pt_h pt_h-l plr-30">
-                        <div className="pt_h-btn-back ">
-                            <ButtonBack text="Back to editor" />
-                        </div>
-                        {
-                            ['sm', 'xs', 'md'].includes(currentResolution) && (
-                                <>
-                                    <div className="pt_h-logo">
-                                        <img src="/images/page/logo.svg" alt='logo' />
-                                    </div>
-                                    <div className="pt_h-menu ab-menu menus-card">
-                                        <button type='button'>
-                                            <Icon svg={iconDotMenuH} />
-                                        </button>
-                                        <MenuButton />
-                                    </div>
-                                </>
-                            )
-                        }
-                    </div>
-                    <div className="pt-ts scroll-style" ref={refWr}>
-                        {
-                            ['sm', 'xs', 'md'].includes(currentResolution) ? (
-                                <div className='carousel'>
-                                    <span className='carousel-title'>Template</span>
-                                    <Carousel
-                                        autoPlay={false}
-                                        indicators={false}
-                                        swipe={true}
-                                        navButtonsAlwaysVisible={true}
-                                        cycleNavigation={false}
-                                        animation={'slide'}
-                                        onChange={templateChangeHandler}
-                                        navButtonsProps={{ className: 'nav-button' }}
-                                        NextIcon={<SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} />}
-                                        PrevIcon={<div className="block-rotate arrow-left"><SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} /></div>}
-                                    >
-                                        {
-                                            isArray(templatesItems) && templatesItems.map((item, index) => (
-                                                <div key={`item-${index}`} className="carousel-item-block">{item.name}</div>
-                                            ))
-                                        }
-                                    </Carousel>
+                {
+                    !isPageView && (
+                        <div className="page-templates__left">
+                            <div className="pt_h pt_h-l plr-30">
+                                <div className="pt_h-btn-back ">
+                                    <ButtonBack text="Back to editor" />
                                 </div>
-                            ) :
-                                (
-                                    isArray(templatesItems) && templatesItems.map((item, index) => {
-                                        let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
-
-                                        return (
-                                            <div
-                                                key={index}
-                                                className={`it-t ${classActive}`}
-                                                onClick={() => handleResume(item)}
-                                            >
-                                                <img src={item.image} alt={item.name} />
-                                                {
-                                                    (isArray(item?.types) && item.types.length > 0) && (
-                                                        <div className="item-card-resum__types">
-                                                            {
-                                                                item.types.map((itemType, index) => (
-                                                                    <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    )
-                                                }
+                                {
+                                    ['sm', 'xs', 'md'].includes(currentResolution) && (
+                                        <>
+                                            <div className="pt_h-logo">
+                                                <img src="/images/page/logo.svg" alt='logo' />
                                             </div>
-                                        )
-                                    })
-                                )
-                        }
-                    </div>
-                    {
-                        !['sm', 'xs', 'md'].includes(currentResolution) ? (
-                            <div className="pt_b-l plr-30">
-                                <div className="pt_b-l_help">
-                                    <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
-                                </div>
+                                            <div className="pt_h-menu ab-menu menus-card">
+                                                <button type='button'>
+                                                    <Icon svg={iconDotMenuH} />
+                                                </button>
+                                                <MenuButton />
+                                            </div>
+                                        </>
+                                    )
+                                }
                             </div>
-                        ) : null
-                    }
-                </div>
+                            <div className="pt-ts scroll-style" ref={refWr}>
+                                {
+                                    ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                        <div className='carousel'>
+                                            <span className='carousel-title'>Template</span>
+                                            <Carousel
+                                                autoPlay={false}
+                                                indicators={false}
+                                                swipe={true}
+                                                navButtonsAlwaysVisible={true}
+                                                cycleNavigation={false}
+                                                animation={'slide'}
+                                                onChange={templateChangeHandler}
+                                                navButtonsProps={{ className: 'nav-button' }}
+                                                NextIcon={<SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} />}
+                                                PrevIcon={<div className="block-rotate arrow-left"><SvgImage image={'arrow-right'} width={'14px'} height={'17px'} color={'#C4C7D0'} /></div>}
+                                            >
+                                                {
+                                                    isArray(templatesItems) && templatesItems.map((item, index) => (
+                                                        <div key={`item-${index}`} className="carousel-item-block">{item.name}</div>
+                                                    ))
+                                                }
+                                            </Carousel>
+                                        </div>
+                                    ) :
+                                        (
+                                            isArray(templatesItems) && templatesItems.map((item, index) => {
+                                                let classActive = isNewResume ? `${item.slug == dataOther?.resumeActiveNew?.slug ? "active" : ""}` : `${item.id == dataOther?.resumeActive?.template_id ? "active" : ""}`;
+
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        className={`it-t ${classActive}`}
+                                                        onClick={() => handleResume(item)}
+                                                    >
+                                                        <img src={item.image} alt={item.name} />
+                                                        {
+                                                            (isArray(item?.types) && item.types.length > 0) && (
+                                                                <div className="item-card-resum__types">
+                                                                    {
+                                                                        item.types.map((itemType, index) => (
+                                                                            <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
+                                                                        ))
+                                                                    }
+                                                                </div>
+                                                            )
+                                                        }
+                                                    </div>
+                                                )
+                                            })
+                                        )
+                                }
+                            </div>
+                            {
+                                !['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                    <div className="pt_b-l plr-30">
+                                        <div className="pt_b-l_help">
+                                            <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
+                                        </div>
+                                    </div>
+                                ) : null
+                            }
+                        </div>
+                    )
+                }
+
                 <div className="page-templates__right">
                     {
-                        !['sm', 'xs', 'md'].includes(currentResolution) ? (
-                            <div className="pt_h pt_h-r">
-                                <TemplateHead
-                                    currentPage={pagePagCurrent}
-                                    lengthPages={pagesPag}
-                                    onNext={onNext}
-                                    onPrev={onPrev}
-                                />
-                            </div>
-                        ) : null
+                        !isPageView && (
+                            !['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                <div className="pt_h pt_h-r">
+                                    <TemplateHead
+                                        currentPage={pagePagCurrent}
+                                        lengthPages={pagesPag}
+                                        onNext={onNext}
+                                        onPrev={onPrev}
+                                    />
+                                </div>
+                            ) : null
+                        )
                     }
+
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
                             <div className="body-template-resume">
@@ -461,121 +487,126 @@ const Templates = ({ isCover = false }) => {
                             </div>
                         </div>
                     </div>
-                    <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
-                        {
-                            ['sm', 'xs', 'md'].includes(currentResolution) ? (
-                                <div className="ranges-row">
-                                    <div className='item-range'>
-                                        <CustomizedSlider
-                                            defaultValue={50}
-                                            value={stateLineSpacing}
-                                            label="Line Spacing"
-                                            textLeft="50%"
-                                            textRight="150%"
-                                            onChange={handleLineSpacing}
-                                        />
-                                    </div>
-                                    <div className='item-range'>
-                                        <CustomizedSlider
-                                            defaultValue={50}
-                                            value={stateFontSize}
-                                            label="Text size"
-                                            textLeft="12 pt"
-                                            textRight="48 pt"
-                                            onChange={handleFontSize}
-                                        />
-                                    </div>
-                                </div>
-                            ) : null
-                        }
 
-                        <div className={`colors-t-wrapper ${showColorMob ? "colors-t-wrapper__open" : ""}`}>
-                            <div className="colors-t">
+                    {
+                        !isPageView && (
+                            <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
                                 {
-                                    isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
-                                    (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
-                                        <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
-                                    ))
-                                }
-                                {
-                                    isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
-                                        <SelectColor />
-                                    )
-                                }
-                            </div>
-                        </div>
-                        {
-                            !['sm', 'xs', 'md'].includes(currentResolution) ? (
-                                <div className="ranges-row">
-                                    <div className='item-range'>
-                                        <CustomizedSlider
-                                            defaultValue={50}
-                                            value={stateLineSpacing}
-                                            label="Line Spacing"
-                                            textLeft="50%"
-                                            textRight="150%"
-                                            onChange={handleLineSpacing}
-                                        />
-                                    </div>
-                                    <div className='item-range'>
-                                        <CustomizedSlider
-                                            defaultValue={50}
-                                            value={stateFontSize}
-                                            label="Text size"
-                                            textLeft="12 pt"
-                                            textRight="48 pt"
-                                            onChange={handleFontSize}
-                                        />
-                                    </div>
-                                </div>
-                            ) : null
-                        }
-                        <div className="btns-tem">
-                            {
-                                ['sm', 'xs', 'md'].includes(currentResolution) ? (
-                                    <div className={`font-settings-wrap`}>
-                                        <div className="font-settings" onClick={toggleTextSettings}>
-                                            {
-                                                showSettings ?
-                                                    (
-                                                        <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
-                                                    ) :
-                                                    (
-                                                        <SvgImage image={'text'} width={'18px'} height={'16px'} color={'#838799'} />
-                                                    )
-                                            }
+                                    ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                        <div className="ranges-row">
+                                            <div className='item-range'>
+                                                <CustomizedSlider
+                                                    defaultValue={50}
+                                                    value={stateLineSpacing}
+                                                    label="Line Spacing"
+                                                    textLeft="50%"
+                                                    textRight="150%"
+                                                    onChange={handleLineSpacing}
+                                                />
+                                            </div>
+                                            <div className='item-range'>
+                                                <CustomizedSlider
+                                                    defaultValue={50}
+                                                    value={stateFontSize}
+                                                    label="Text size"
+                                                    textLeft="12 pt"
+                                                    textRight="48 pt"
+                                                    onChange={handleFontSize}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                ) : null
+                                    ) : null
+                                }
 
-                            }
-                            <ButtonIcon
-                                isButton={true}
-                                icon={downloadIcon}
-                                label="Download PDF"
-                                className="btn--blue"
-                            // onHandle={handleGeneratePdf}
-                            />
-                            {
-                                ['sm', 'xs', 'md'].includes(currentResolution) ? (
-                                    <div className="color-it color-select color-it_select-mob" onClick={() => setShowColorMod(prev => !prev)}>
-                                        <Icon svg={iconPlusColor} />
+                                <div className={`colors-t-wrapper ${showColorMob ? "colors-t-wrapper__open" : ""}`}>
+                                    <div className="colors-t">
+                                        {
+                                            isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
+                                            (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
+                                                <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
+                                            ))
+                                        }
+                                        {
+                                            isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) && ((isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors)?.length == 1) && (
+                                                <SelectColor />
+                                            )
+                                        }
                                     </div>
-                                ) : (
-                                    <div className="menu-show-tem ab-menu menus-card">
-                                        <CButton
-                                            className='resume-footer__button'
-                                            color="secondary"
-                                            variant="outline"
-                                        >
-                                            <Icon svg={dotsIcon} classNames={['icon-20']} />
-                                        </CButton>
-                                        <MenuButton />
-                                    </div>
-                                )
-                            }
-                        </div>
-                    </div>
+                                </div>
+                                {
+                                    !['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                        <div className="ranges-row">
+                                            <div className='item-range'>
+                                                <CustomizedSlider
+                                                    defaultValue={50}
+                                                    value={stateLineSpacing}
+                                                    label="Line Spacing"
+                                                    textLeft="50%"
+                                                    textRight="150%"
+                                                    onChange={handleLineSpacing}
+                                                />
+                                            </div>
+                                            <div className='item-range'>
+                                                <CustomizedSlider
+                                                    defaultValue={50}
+                                                    value={stateFontSize}
+                                                    label="Text size"
+                                                    textLeft="12 pt"
+                                                    textRight="48 pt"
+                                                    onChange={handleFontSize}
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : null
+                                }
+                                <div className="btns-tem">
+                                    {
+                                        ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                            <div className={`font-settings-wrap`}>
+                                                <div className="font-settings" onClick={toggleTextSettings}>
+                                                    {
+                                                        showSettings ?
+                                                            (
+                                                                <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
+                                                            ) :
+                                                            (
+                                                                <SvgImage image={'text'} width={'18px'} height={'16px'} color={'#838799'} />
+                                                            )
+                                                    }
+                                                </div>
+                                            </div>
+                                        ) : null
+
+                                    }
+                                    <ButtonIcon
+                                        isButton={true}
+                                        icon={downloadIcon}
+                                        label="Download PDF"
+                                        className="btn--blue"
+                                    // onHandle={handleGeneratePdf}
+                                    />
+                                    {
+                                        ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                            <div className="color-it color-select color-it_select-mob" onClick={() => setShowColorMod(prev => !prev)}>
+                                                <Icon svg={iconPlusColor} />
+                                            </div>
+                                        ) : (
+                                            <div className="menu-show-tem ab-menu menus-card">
+                                                <CButton
+                                                    className='resume-footer__button'
+                                                    color="secondary"
+                                                    variant="outline"
+                                                >
+                                                    <Icon svg={dotsIcon} classNames={['icon-20']} />
+                                                </CButton>
+                                                <MenuButton />
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

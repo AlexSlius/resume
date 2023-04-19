@@ -7,7 +7,7 @@ export const LoadWr = ({
     let classLoad = isLoad ? style.load_bg : '';
 
     return (
-        <div className={`${style.wr} ${classLoad}`}>
+        <div className={`${style.wr} ${classLoad} load-ages`}>
         {children}
     </div>
     )

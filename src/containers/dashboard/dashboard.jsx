@@ -8,14 +8,20 @@ import { TitlePage } from "../../components/titlePage";
 import { CardResume } from "../../components/cardResume";
 import { LoadBlock } from "../../components/loadBlock";
 import { Header } from "../../components/header";
+import { CardNew } from "../../components/cardNew";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
 import { ROUTES, ROUTES_COVER } from "../../constants/routes";
+import config from "../../config/config.json";
+
+import { isLoader } from "../../helpers/loadings"
+import { copyToClipboard } from "../../helpers/bufer";
 
 import {
     fetchGetResumesList,
-    fetchPostUpdateResumes
+    fetchPostUpdateResumes,
+    postShareResume
 } from "../../controllers/resumes";
 
 import {
@@ -26,12 +32,11 @@ import {
 import {
     cleanSliseNew
 } from "../../slices/contact";
+import { addItemNotification } from "../../slices/notifications";
 import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
-import { isLoader } from "../../helpers/loadings"
-
 import style from "./Style.module.scss";
-import { CardNew } from "../../components/cardNew";
+
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -100,6 +105,26 @@ const Dashboard = () => {
         dispatch(fetchPostUpdateResumes({ id, data: { cv_name: stateName } }));
     }
 
+    const handleShareResume = async (id) => {
+        let res = await dispatch(postShareResume({ id }));
+
+        if (res?.payload?.status == 'shared') {
+            copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${id}?key=${res.payload.key}`, async () => {
+                await dispatch(addItemNotification({ text: "link copied" }));
+            });
+        }
+    }
+
+    const handleShareCover = async (id) => {
+        // let res = await dispatch(postShareResume({ id }));
+
+        // if (res?.payload?.status == 'shared') {
+        //     copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${id}/${res.payload.key}`, async () => {
+        //         await dispatch(addItemNotification({ text: "link copied" }));
+        //     });
+        // }
+    }
+
     React.useEffect(() => {
         if (type == "resume") {
             dispatch(fetchGetResumesList());
@@ -165,6 +190,7 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handlekeyUp={handlekeyUp}
                                                 handleBlur={handleBlur}
+                                                handleShare={() => handleShareResume(item.id)}
                                             />
                                         ))
                                     }
@@ -205,6 +231,7 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handlekeyUp={handlekeyUpCover}
                                                 handleBlur={handleBlurCover}
+                                                handleShare={() => handleShareCover(item.id)}
                                             />
                                         ))
                                     }

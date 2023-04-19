@@ -15,3 +15,8 @@ export const fetchPostUpdateResumes = createAsyncThunk('resumes/fetchPostUpdateR
     return response;
 });
 
+export const postShareResume = createAsyncThunk('resumes/postShareResume', async ({ id }, thunkAPI) => {
+    const response = await api.resumes.postShare(id, { status: "share" });
+    return response;
+});
+

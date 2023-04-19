@@ -38,13 +38,13 @@ const MyApp = ({ Component, ...rest }) => {
 
   useEffect(() => {
     setLoading(false);
-  //   router.events.on("routeChangeStart", () => {
-  //     setLoading(true);
-  //   });
+    //   router.events.on("routeChangeStart", () => {
+    //     setLoading(true);
+    //   });
 
-  //   router.events.on("routeChangeComplete", () => {
-  //     setLoading(false);
-  //   });
+    //   router.events.on("routeChangeComplete", () => {
+    //     setLoading(false);
+    //   });
   }, []);
 
   return (

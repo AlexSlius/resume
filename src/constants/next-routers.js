@@ -74,4 +74,5 @@ export const routersPages = {
     'termsOfUse': 'terms-of-use',
     'privacyPolicy': 'privacy-policy',
     'templates': 'templates',
+    'shareResume': 'share-resume',
 }
