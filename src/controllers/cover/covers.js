@@ -14,3 +14,8 @@ export const fetchPostUpdateCover = createAsyncThunk('resumes/fetchPostUpdateCov
     return response;
 });
 
+// postShareResume
+export const postShareCover = createAsyncThunk('resumes/postShareCover', async ({ id }, thunkAPI) => {
+    const response = await api.covers.postShare(id, { status: "share" });
+    return response;
+});

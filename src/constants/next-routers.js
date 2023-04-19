@@ -75,4 +75,5 @@ export const routersPages = {
     'privacyPolicy': 'privacy-policy',
     'templates': 'templates',
     'shareResume': 'share-resume',
+    'shareCover': 'share-cover',
 }

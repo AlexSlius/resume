@@ -7,4 +7,7 @@ export default class ClientsAPI extends Base {
     fetchPostUpdateCover(id, data, type = "formData") {
         return this.apiClient.post(`cover_letter/update/name/${id}`, data, type);
     }
+    postShare(id, data, type = "formData") {
+        return this.apiClient.post(`cv/${id}/share/`, data, type);
+    }
 }

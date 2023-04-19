@@ -17,6 +17,6 @@ export default class ClientsAPI extends Base {
         return this.apiClient.get(`share/${cvId}/template`);
     }
     getResumeDataShare(cvId, key) {
-        return this.apiClient.get(`share/${cvId}/${key}`);
+        return this.apiClient.get(`share/cv/${cvId}/${key}`);
     }
 }

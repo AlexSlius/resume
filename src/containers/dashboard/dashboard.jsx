@@ -26,7 +26,8 @@ import {
 
 import {
     fetchGetCoversList,
-    fetchPostUpdateCover
+    fetchPostUpdateCover,
+    postShareCover
 } from "../../controllers/cover/covers";
 
 import {
@@ -116,13 +117,13 @@ const Dashboard = () => {
     }
 
     const handleShareCover = async (id) => {
-        // let res = await dispatch(postShareResume({ id }));
+        let res = await dispatch(postShareCover({ id }));
 
-        // if (res?.payload?.status == 'shared') {
-        //     copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${id}/${res.payload.key}`, async () => {
-        //         await dispatch(addItemNotification({ text: "link copied" }));
-        //     });
-        // }
+        if (res?.payload?.status == 'shared') {
+            copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${id}/${res.payload.key}`, async () => {
+                await dispatch(addItemNotification({ text: "link copied" }));
+            });
+        }
     }
 
     React.useEffect(() => {

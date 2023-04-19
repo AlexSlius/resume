@@ -1,5 +1,5 @@
 import ShareResume from "../../../src/containers/shareResume";
-import { withRedirectPublickPage } from "../../../src/middleware/redirectPublick";
+import { withPublicRoute } from "../../../src/middleware/publicRouter";
 
 const CoverSharePage = () => {
     return (
@@ -7,6 +7,6 @@ const CoverSharePage = () => {
     )
 }
 
-export const getServerSideProps = withRedirectPublickPage({});
+export const getServerSideProps = withPublicRoute({});
 
 export default CoverSharePage;

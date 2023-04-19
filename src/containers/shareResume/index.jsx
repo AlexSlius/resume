@@ -9,6 +9,14 @@ import {
     getResumeShareTemplateActive
 } from "../../controllers/resumeData";
 
+import {
+    getCoverShareTemplateActive
+} from "../../controllers/cover/coverData";
+
+import {
+    getCoverDataShare
+} from "../../controllers/cover/personalize";
+
 
 const ShareResume = ({
     isCover = true,
@@ -19,10 +27,13 @@ const ShareResume = ({
 
     useEffect(() => {
         if (!isCover) {
+            // get resume
             dispatch(getResumeDataShare({ idCv, key }));
             dispatch(getResumeShareTemplateActive({ idCv }));
         } else {
             // get cover
+            dispatch(getCoverDataShare({ idCv, key }));
+            dispatch(getCoverShareTemplateActive({ idCv }));
         }
     }, []);
 

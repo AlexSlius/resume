@@ -93,3 +93,8 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
 
     return response;
 });
+
+export const getCoverDataShare = createAsyncThunk('resumeData/getCoverDataShare', async ({ idCv, key }) => {
+    const response = await api.personalize.getCoverDataShare(idCv, key);
+    return response;
+});

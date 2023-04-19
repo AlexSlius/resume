@@ -32,3 +32,8 @@ export const getCoverDataActive = createAsyncThunk('resumeData/getCoverDataActiv
     const response = await api.coverData.getCoverDataActive(idCv);
     return response;
 });
+
+export const getCoverShareTemplateActive = createAsyncThunk('resumeData/getCoverShareTemplateActive', async ({ idCv }) => {
+    const response = await api.coverData.getCoverShareTemplateActive(idCv);
+    return response;
+});

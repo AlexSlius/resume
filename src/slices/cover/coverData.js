@@ -6,6 +6,7 @@ import { statusLoaded, statusLoader } from '../../constants/statuses';
 import {
     getCoverTemplates,
     getCoverDataActive,
+    getCoverShareTemplateActive,
 } from "../../controllers/cover/coverData";
 
 const initialState = {
@@ -42,6 +43,14 @@ export const slice = createSlice({
                 data: { ...state.data, ...action.payload.coverData.data },
                 resumeActive: { ...state.resumeActive, ...action.payload.coverData.resumeActive },
             }
+        },
+        // getCoverShareTemplateActive
+        [getCoverShareTemplateActive.pending]: (state) => {
+            state.statusResumeActive = statusLoader;
+        },
+        [getCoverShareTemplateActive.fulfilled]: (state, action) => {
+            state.statusResumeActive = statusLoaded;
+            state.resumeActive = action.payload;
         },
         // get resume active
         [getCoverDataActive.pending]: (state) => {
