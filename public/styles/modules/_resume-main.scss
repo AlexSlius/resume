@@ -148,11 +148,12 @@
       .cv-body {
          width: 100% !important;
          max-width: 624px !important;
+         margin-left: auto;
+         margin-right: auto;
       }
    }
 
    transform-origin: 0px 0px;
-   // transform: scale(1);
 }
 
 .resume-footer {

@@ -92,8 +92,6 @@ const ResumeMain = ({
       }
    }, []);
 
-
-
    return (
       <div className={`resume-main`} ref={refDivResumeMain}>
          {/* resume-main_scroll */}
@@ -102,11 +100,12 @@ const ResumeMain = ({
                !isCover && (
                   <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
                      <TemplatesSelect
-                        isResume={true}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
                         reportTemplateRef={reportTemplateRef}
+                        statusResumeActive={dataOther?.statusResumeActive}
+                        status={dataOther?.status}
                      />
                   </div>
                )
@@ -116,7 +115,6 @@ const ResumeMain = ({
                isCover && (
                   <div className="resume-main_scale resume-main_scale_cover">
                      <TemplatesSelectCover
-                        isResume={true}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                         resumeData={dataOther}
