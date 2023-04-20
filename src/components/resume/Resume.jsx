@@ -1,6 +1,5 @@
 import { CCol } from '@coreui/react';
 import React from "react";
-import { useRouter } from 'next/router';
 import { useSelector } from "react-redux"
 
 import ResumeHead from './resumeHead/ResumeHead'
@@ -13,7 +12,6 @@ import backIcon from "/public/images/icons/back.svg?sprite"
 const Resume = ({
    isCover = false,
 }) => {
-   const router = useRouter();
    const reportTemplateRef = React.useRef(null);
    const [pagesPag, setPagesPag] = React.useState(1);
    const [openMenu, setOpenMenu] = React.useState(false);
@@ -43,10 +41,6 @@ const Resume = ({
    const onPrev = () => {
       setPagePagCurrent(prev => prev - 1);
    }
-
-   React.useEffect(() => {
-      setPagePagCurrent(1);
-   }, [resumeData.resumeActive]);
 
    React.useEffect(() => {
       if (!isCover) {
@@ -97,9 +91,9 @@ const Resume = ({
 
                star();
 
-               setTimeout(() => {
-                  star();
-               }, 1000);
+               // setTimeout(() => {
+               //    star();
+               // }, 1000);
             }
          }
       }

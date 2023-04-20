@@ -22,7 +22,7 @@ const ResumeMain = ({
    const refDivResumeMain = useRef();
    const dispatch = useDispatch();
    const router = useRouter();
-   const { idCv, type, slug } = router.query;
+   const { idCv } = router.query;
    const isNewResume = (idCv == "new");
 
    const {
@@ -94,7 +94,6 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`} ref={refDivResumeMain}>
-         {/* resume-main_scroll */}
          <div className="scroll-style ">
             {
                !isCover && (

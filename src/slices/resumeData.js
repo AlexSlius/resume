@@ -66,7 +66,6 @@ export const slice = createSlice({
         },
         // get data
         [fetchGetResumeData.pending]: (state) => {
-            state.data = {};
             state.status = statusLoader;
         },
         [fetchGetResumeData.fulfilled]: (state, action) => {
