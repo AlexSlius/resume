@@ -120,7 +120,7 @@ const Dashboard = () => {
         let res = await dispatch(postShareCover({ id }));
 
         if (res?.payload?.status == 'shared') {
-            copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${id}/${res.payload.key}`, async () => {
+            copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${id}?key=${res.payload.key}`, async () => {
                 await dispatch(addItemNotification({ text: "link copied" }));
             });
         }

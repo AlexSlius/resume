@@ -45,7 +45,7 @@ export const CardResume = ({
     return (
         <div className={`${style.card}`}>
             <div className={`${style.card__head}`}>
-                <img src={image} alt="picture resume" />
+                <img src={image} alt="picture resume" onClick={handleEdit} />
                 <div className={`${style.card__navigation}`}>
                     <div>
                         <button className="btn-download">

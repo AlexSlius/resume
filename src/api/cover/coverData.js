@@ -12,6 +12,6 @@ export default class ClientsAPI extends Base {
     }
 
     getCoverShareTemplateActive(cvId) {
-        return this.apiClient.get(`api/cover_letter/${cvId}/template`);
+        return this.apiClient.get(`share/cover_letter/${cvId}/template`);
     }
 }

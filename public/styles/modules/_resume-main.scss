@@ -16,6 +16,7 @@
    flex: 1 1 auto;
    // padding: 24px 0;
    height: calc(100vh - 160px);
+   overflow: hidden;
 
    &_scroll {
       max-height: 100%;
@@ -140,12 +141,18 @@
 
 .resume-main_scale {
    pointer-events: none;
+
    &>div {
       min-width: 624px;
+
+      .cv-body {
+         width: 100% !important;
+         max-width: 624px !important;
+      }
    }
 
    transform-origin: 0px 0px;
-   transform: scale(1);
+   // transform: scale(1);
 }
 
 .resume-footer {
@@ -187,6 +194,7 @@
 
       &.show {
          overflow: visible;
+
          .ranges-row {
             transform: translateY(0);
          }
@@ -316,9 +324,9 @@
       max-width: 560px;
    }
 
-   .resume-main_scale {
-      transform: scale(0.77);
-   }
+   // .resume-main_scale {
+   //    transform: scale(0.77);
+   // }
 }
 
 .sidebar-nav .nav-link {
@@ -337,9 +345,9 @@
       max-width: 460px;
    }
 
-   .resume-main_scale {
-      transform: scale(0.645);
-   }
+   // .resume-main_scale {
+   //    transform: scale(0.645);
+   // }
 
    .sidebar-nav .nav-link {
       white-space: pre-wrap;
@@ -433,10 +441,12 @@
          border: 1px solid #dadce3;
       }
    }
+
    .resume-main_scroll {
       max-height: fit-content;
    }
-   .resume-main_scale > div,
+
+   .resume-main_scale>div,
    .sv_001 .cv-body {
       min-width: 515px;
    }

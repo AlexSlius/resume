@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from 'next/router'
 
@@ -12,11 +12,14 @@ import {
 import {
    getCoverDataActive,
 } from "../../../controllers/cover/coverData";
+import { useScaleResumeMain } from "../../../hooks/custom-hooks";
+
 
 const ResumeMain = ({
    reportTemplateRef,
    isCover,
 }) => {
+   const refDivResumeMain = useRef();
    const dispatch = useDispatch();
    const router = useRouter();
    const { idCv, type, slug } = router.query;
@@ -89,13 +92,15 @@ const ResumeMain = ({
       }
    }, []);
 
+
+
    return (
-      <div className={`resume-main`}>
+      <div className={`resume-main`} ref={refDivResumeMain}>
          {/* resume-main_scroll */}
          <div className="scroll-style ">
             {
                !isCover && (
-                  <div className="resume-main_scale">
+                  <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
                      <TemplatesSelect
                         isResume={true}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}

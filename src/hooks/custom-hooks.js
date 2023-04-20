@@ -62,3 +62,58 @@ export const usePosition = () => {
 
   return { ...position, error };
 }
+
+export const useScaleResumePageShare = (constWidth = 628) => {
+  const [scaleSize, setScaleSize] = useState(1);
+
+  useEffect(() => {
+    function handleResize() {
+      if ((window.innerWidth + 32) < 630) {
+        setScaleSize(((window.innerWidth * 100) / constWidth) / 100);
+      } else {
+        setScaleSize(1);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return scaleSize;
+}
+
+export const useScaleResumeMain = ({
+  refDivResumeMain,
+  constWidth = 624,
+}) => {
+  const [scaleSize, setScaleSize] = useState(1);
+
+  useEffect(() => {
+    function handleResize() {
+      let wid = refDivResumeMain?.current?.offsetWidth;
+
+      console.log('wid: ', wid);
+
+      if (wid) {
+        if (wid >= 640) {
+          setScaleSize(1);
+        } else {
+          setScaleSize(((wid * 100) / constWidth) / 100);
+        }
+      } else {
+        setScaleSize(1);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return scaleSize;
+}

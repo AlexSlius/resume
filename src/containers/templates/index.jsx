@@ -26,11 +26,6 @@ import { updateActiveCoverNew } from "../../slices/cover/coverData";
 
 import { routersPages } from "../../constants/next-routers";
 
-import downloadIcon from '/public/images/icons/download-white.svg?sprite'
-import dotsIcon from '/public/images/icons/dots.svg?sprite'
-import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
-import iconDotMenuH from "/public/images/icons/dot-menu-h.svg?sprite";
-
 import {
     fetchGetResumeData,
     getResumeActive,
@@ -44,6 +39,12 @@ import {
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
 import { MenuButton } from '../../components/menuButton';
+import { useScaleResumePageShare } from '../../hooks/custom-hooks';
+
+import downloadIcon from '/public/images/icons/download-white.svg?sprite'
+import dotsIcon from '/public/images/icons/dots.svg?sprite'
+import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
+import iconDotMenuH from "/public/images/icons/dot-menu-h.svg?sprite";
 
 const Templates = ({
     isCover = false,
@@ -343,7 +344,7 @@ const Templates = ({
     }, []);
 
     return (
-        <div className={`page-templates ${isPageView ? "page-view-share" : ""}`}>
+        <div className={`page-templates ${isPageView ? "page-view-share" : "page-template"}`}>
             <div className="page-templates__row">
                 {
                     !isPageView && (
@@ -452,7 +453,7 @@ const Templates = ({
 
                     <div className="ptr-c scroll-style">
                         <div className="ptr-c__content">
-                            <div className="body-template-resume">
+                            <div className="body-template-resume" style={{ transform: `scale(${useScaleResumePageShare()})` }}>
                                 {
                                     !isCover && (
                                         <TemplatesSelect

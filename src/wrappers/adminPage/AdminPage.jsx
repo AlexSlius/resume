@@ -51,8 +51,10 @@ const AdminPage = ({ children, isCover = false }) => {
                   {children}
                </CCol>
                {
-                  !isMenuOpen ? 
-                     (<Resume isCover={isCover} />) : null
+                  !['sm', 'xs', 'md'].includes(currentResolution) && (
+                     !isMenuOpen ?
+                        (<Resume isCover={isCover} />) : null
+                  )
                }
             </CRow>
          </CContainer>

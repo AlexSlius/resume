@@ -14,6 +14,6 @@ export default class ClientsAPI extends Base {
         return this.apiClient.post(`cover_letter/update/${id}`, data, type);
     }
     getCoverDataShare(cvId, key) {
-        return this.apiClient.get(`cover_letter/get/${cvId}/`);
+        return this.apiClient.get(`share/cover/${cvId}/${key}`);
     }
 }
