@@ -300,7 +300,7 @@ export const ResumeCv001 = ({
                               <h1 className="career-links-head font-size-2 line-height-2 additional-color-1-text">Links</h1>
                               {
                                 social_links.map((itemSocial, index) => (
-                                  <a className="career-links-link" key={index} href={itemSocial.link}>
+                                  <a className="career-links-link" key={index} >
                                     <img src={itemSocial.icon} alt={itemSocial.name} />
                                   </a>
                                 ))

@@ -372,7 +372,7 @@ export const ResumeCv003 = ({
                           <div className="links-wrapper font-size-state-adaptation">
                             {
                               social_links.map((item, index) => (
-                                <a key={index} className="main-color-1-text font-size-1 line-height-1" href={item.link}>{item.name}</a>
+                                <a key={index} className="main-color-1-text font-size-1 line-height-1">{item.name}</a>
                               ))
                             }
                           </div>

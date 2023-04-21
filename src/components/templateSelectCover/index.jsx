@@ -14,6 +14,7 @@ import { CoverCv007 } from '../../resumeTemplatesCover/007-CV';
 import { CoverCv008 } from '../../resumeTemplatesCover/008-CV';
 import { CoverCv009 } from '../../resumeTemplatesCover/009-CV';
 import { CoverCv010 } from '../../resumeTemplatesCover/010-CV';
+import { CoverCv011 } from '../../resumeTemplatesCover/011-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelectCover = ({
@@ -137,6 +138,17 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "010-CV" && (
                     <CoverCv010
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "011-CV" && (
+                    <CoverCv011
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

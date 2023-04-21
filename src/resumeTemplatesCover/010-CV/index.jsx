@@ -30,7 +30,7 @@ export const CoverCv010 = ({
                     <div className="cv-body-content additional-color-4-background additional-color-2-text">
                         <div className="column-left">
                             <h1 className="cv-name font-size-5 line-height-6">{firstName}{` `} {lastName}</h1>
-                            <h2 className="cv-prophecy font-size-3 line-height-4 main-color-4-text">W E B D E S I G N E R</h2>
+                            {/* <h2 className="cv-prophecy font-size-3 line-height-4 main-color-4-text">W E B D E S I G N E R</h2> */}
                             <div className="letter-block">
                                 <h3 className="letter-heading font-size-4 line-height-4-1">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
                                 {

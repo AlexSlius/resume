@@ -433,7 +433,7 @@ export const ResumeCv004 = ({
                                 <div className="social-wrapper">
                                   {
                                     social_links.map((item, index) => (
-                                      <a key={index} className="main-color-1-text font-size-1 line-height-1 font-weight-500" href={item.link}>{item.name}</a>
+                                      <a key={index} className="main-color-1-text font-size-1 line-height-1 font-weight-500">{item.name}</a>
                                     ))
                                   }
                                 </div>

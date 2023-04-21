@@ -521,7 +521,7 @@ export const ResumeCv010 = ({
                   )
                 }
                 {
-                  isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
+                  isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact[0]?.email || contact[0]?.phone || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
                     <div className="details-block block-block">
                       <h3 className="heading-type-1 font-size-3 line-height-4 main-color-4-text">Details</h3>
                       {
