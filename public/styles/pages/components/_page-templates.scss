@@ -126,6 +126,7 @@
 .ptr-c {
     max-height: calc(100vh - 170px);
     max-height: calc(100vh - 170px);
+    
     overflow-y: auto;
 
     &__content {
@@ -522,6 +523,12 @@
     .body-template-resume {
         transform-origin: 0px 0px;
         min-width: 618px;
+    }
+
+    .ptr-c {
+        @media(min-width: 1024px) {
+            overflow: hidden;
+        }
     }
 }
 
