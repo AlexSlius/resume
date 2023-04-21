@@ -126,11 +126,11 @@ export const CoverLatter = () => {
                                 </Link>
                                 <div className="user-icons">
                                     <div>
-                                        <img src="/images/page/user-icon.png" alt="img" />
-                                        <img src="/images/page/user-icon2.png" alt="img" />
-                                        <img src="/images/page/user-icon3.png" alt="img" />
-                                        <img src="/images/page/user-icon4.png" alt="img" />
-                                        <img src="/images/page/user-icon5.png" alt="img" />
+                                        <div><img src="/images/page/user-icon.png" alt="img" /></div>
+                                        <div><img src="/images/page/user-icon2.png" alt="img" /></div>
+                                        <div><img src="/images/page/user-icon3.png" alt="img" /></div>
+                                        <div><img src="/images/page/user-icon4.png" alt="img" /></div>
+                                        <div><img src="/images/page/user-icon5.png" alt="img" /></div>
                                     </div>
                                     <p>
                                         243 users created

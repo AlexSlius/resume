@@ -24,7 +24,7 @@ const Estimation = ({
 
 export const ResumeCv001 = ({
   data,
-  idCv,
+  stateClasses,
   stateLineSpacing,
   stateFontSize,
   templateClass,
@@ -50,7 +50,7 @@ export const ResumeCv001 = ({
     hide_experience_level
   } = data;
 
-  React.useEffect(() => {
+  useEffect(() => {
     switch (stateLineSpacing) {
       case 0: {
         setClassFontLineSpacing(1);
@@ -68,7 +68,7 @@ export const ResumeCv001 = ({
 
   }, [stateLineSpacing]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     switch (stateFontSize) {
       case 0: {
         setClassFontSize(1);
@@ -85,7 +85,7 @@ export const ResumeCv001 = ({
     }
   }, [stateFontSize]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (typeof window != "undefined") {
       var current_page_number = 1;
       var font_size_class = '';
@@ -248,16 +248,9 @@ export const ResumeCv001 = ({
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" class={`cv-chapter-section font-size-scheme-${classFontSize} line-height-scheme-${classFontLineSpacing} color-scheme-1`} data-chapter="cv">
-        <div id="cv-body-hidden-container"
-          className={`line-height-scheme-${classFontLineSpacing}
-                font-size-scheme-${classFontSize}
-                ${!!templateClass ? templateClass : ""}
-                cv-body
-                color-scheme-1
-                `}>
+      <div id="cv-chapter-section-cv" className={`${templateClass} ${stateClasses} cv-chapter-section font-size-scheme-${classFontSize} line-height-scheme-${classFontLineSpacing} color-scheme-1`} data-chapter="cv">
+        <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content">
-            {/* contact */}
             <div className="cv-body-area area-1 additional-color-3-background">
               <div className="top-block columns-wrapper">
                 <div className="column-left">
@@ -610,7 +603,7 @@ export const ResumeCv001 = ({
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

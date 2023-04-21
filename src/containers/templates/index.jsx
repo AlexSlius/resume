@@ -41,6 +41,8 @@ import {
 import { MenuButton } from '../../components/menuButton';
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 
+import { statusLoaded, statusLoader } from '../../constants/statuses';
+
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
 import iconPlusColor from "/public/images/icons/plus-color.svg?sprite";
@@ -251,7 +253,28 @@ const Templates = ({
             }
             start();
         }
-    }, [fetching]);
+    }, [fetching, dataOther.data, dataOther.resumeActive]);
+
+    useEffect(() => {
+        if (!isPageView) {
+            if (typeof window != "undefined") {
+                if (!!reportTemplateRef.current) {
+                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+
+                    devPages.forEach(element => {
+                        element.classList.add("none");
+                    });
+
+                    let currentPage = devPages[pagePagCurrent - 1];
+
+                    if (!!currentPage) {
+                        currentPage.classList.remove("none");
+                        currentPage.classList.add("active");
+                    }
+                }
+            }
+        }
+    }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
 
     useEffect(() => {
         if (!isPageView) {
@@ -298,36 +321,24 @@ const Templates = ({
     useEffect(() => {
         if (!isPageView) {
             if (typeof window != "undefined") {
-                if (!!reportTemplateRef.current) {
-                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-                    setPagesPag(!!devPages.length ? devPages.length : 1);
-                } else {
-                    setPagesPag(1);
+                function start() {
+                    if (!!reportTemplateRef.current) {
+                        let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+
+                        setPagesPag(!!devPages.length ? devPages.length : 1);
+                    } else {
+                        setPagesPag(1);
+                    }
                 }
+
+                start();
+
+                setTimeout(() => {
+                    start();
+                }, 1000);
             }
         }
     }, [dataOther?.data, dataOther.resumeActive]);
-
-    useEffect(() => {
-        if (!isPageView) {
-            if (typeof window != "undefined") {
-                if (!!reportTemplateRef.current) {
-                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-
-                    devPages.forEach(element => {
-                        element.classList.add("none");
-                    });
-
-                    let currentPage = devPages[pagePagCurrent - 1];
-
-                    if (!!currentPage) {
-                        currentPage.classList.remove("none");
-                        currentPage.classList.add("active");
-                    }
-                }
-            }
-        }
-    }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
 
     useEffect(() => {
         if (!isPageView) {

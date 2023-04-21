@@ -17,6 +17,9 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetResumesTemplates: true });
+export const getServerSideProps = withPublicRoute({
+  isGetResumesTemplates: true,
+  isPageHome: true
+});
 
 export default Home;

@@ -43,7 +43,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
-    width: 380px;
+    width: 440px;
 
     &__top {
         display: flex;
@@ -141,7 +141,7 @@
     margin-bottom: 0;
     padding: 0;
     text-align: center;
-    font-size: 9px;
+    font-size: 14px;
     color: #838799;
 }
 
@@ -162,18 +162,21 @@
 
 .submenu__item-bot_t {
     color: #01153A;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
 }
 
 .submenu__item-bot_text {
     margin-top: 5px;
     color: #838799;
-    font-size: 9px;
+    font-size: 14px;
 }
 
 .submenu__item-bot_link {
     margin-top: 14px;
+    &.link-a {
+        font-size: 12px;
+    }
 }
 
 .nav {
@@ -260,7 +263,7 @@
 
 .submenu__r {
     a {
-        font-size: 12px !important;
+        font-size: 14px !important;
     }
 }
 

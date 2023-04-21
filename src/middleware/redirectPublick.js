@@ -24,11 +24,11 @@ export const withRedirectPublickPage = () => {
                         redirect: { destination: `/${routersPages['dashboard']}`, permanent: false },
                     }
                 }
-            } 
+            }
 
             return { props: {} };
         } catch (error) {
-            console.log("withPrivateRoute: ", error)
+            console.log("withRedirectRoute: ", error)
             return { props: {} };
         }
     });

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from 'next/router'
 
@@ -24,6 +24,8 @@ const ResumeMain = ({
    const router = useRouter();
    const { idCv } = router.query;
    const isNewResume = (idCv == "new");
+   const [stateFontSize, setStateFontSize] = useState(50);
+   const [stateLineSpacing, setStateLIneSpacig] = useState(50);
 
    const {
       contacts: {
@@ -82,7 +84,13 @@ const ResumeMain = ({
       coverGenerateDate: null,
    };
 
-   React.useEffect(() => {
+   useEffect(() => {
+      const activeResume = dataOther?.resumeActive;
+      setStateLIneSpacig(activeResume?.template_line_spacing ? +activeResume?.template_line_spacing : 50);
+      setStateFontSize(activeResume?.template_text_size ? +activeResume?.template_text_size : 50);
+   }, [dataOther]);
+
+   useEffect(() => {
       if (idCv != "new") {
          if (!isCover) {
             dispatch(getResumeActive({ idCv }));
@@ -99,12 +107,14 @@ const ResumeMain = ({
                !isCover && (
                   <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
                      <TemplatesSelect
-                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
-                        reportTemplateRef={reportTemplateRef}
-                        statusResumeActive={dataOther?.statusResumeActive}
+                        stateLineSpacing={stateLineSpacing}
+                        stateFontSize={stateFontSize}
                         status={dataOther?.status}
+                        statusResumeActive={dataOther?.statusResumeActive}
+                        reportTemplateRef={reportTemplateRef}
+                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                      />
                   </div>
                )
@@ -118,6 +128,8 @@ const ResumeMain = ({
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                         resumeData={dataOther}
                         reportTemplateRef={reportTemplateRef}
+                        status={dataOther?.status}
+                        statusResumeActive={dataOther?.statusResumeActive}
                      />
                   </div>
                )

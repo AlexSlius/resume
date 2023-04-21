@@ -41,9 +41,9 @@ export const HomePage = () => {
     const [cuNext, setCuNext] = useState(0);
 
     const {
-        auth: {
-            autorizate: {
-                isAthorized,
+        pages: {
+            home: {
+                usersCreated,
             }
         },
         theme: {
@@ -121,16 +121,22 @@ export const HomePage = () => {
                                     Create My Resume
                                 </Link>
                                 <div className="user-icons">
-                                    <div>
-                                        <img src="/images/page/user-icon.png" alt="img" />
-                                        <img src="/images/page/user-icon2.png" alt="img" />
-                                        <img src="/images/page/user-icon3.png" alt="img" />
-                                        <img src="/images/page/user-icon4.png" alt="img" />
-                                        <img src="/images/page/user-icon5.png" alt="img" />
-                                    </div>
+                                    {
+                                        isArray(usersCreated?.users) && (
+                                            <div>
+                                                {
+                                                    usersCreated.users.map((itemUser, index) => (
+                                                        <div key={index} >
+                                                            <img src={itemUser} alt={`users ${index}`} />
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        )
+                                    }
                                     <p>
-                                        243 users created
-                                        resumes today
+                                        {`${usersCreated?.count || "243"} users created
+                                        resumes today`}
                                     </p>
                                 </div>
                             </div>

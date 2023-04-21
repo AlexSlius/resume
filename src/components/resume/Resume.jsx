@@ -45,12 +45,20 @@ const Resume = ({
    React.useEffect(() => {
       if (!isCover) {
          if (typeof window != "undefined") {
-            if (!!reportTemplateRef.current) {
-               let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-               setPagesPag(!!devPages.length ? devPages.length : 1);
-            } else {
-               setPagesPag(1);
+            function start() {
+               if (!!reportTemplateRef.current) {
+                  let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                  setPagesPag(!!devPages.length ? devPages.length : 1);
+               } else {
+                  setPagesPag(1);
+               }
             }
+
+            start();
+
+            setTimeout(() => {
+               start();
+            }, 1000);
          }
       }
 
@@ -93,7 +101,7 @@ const Resume = ({
 
                // setTimeout(() => {
                //    star();
-               // }, 1000);
+               // }, 5000);
             }
          }
       }

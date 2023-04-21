@@ -8,12 +8,14 @@ import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
 import { getResumesTemplates } from "../controllers/resumeData";
 import { getCoverTemplates } from "../controllers/cover/coverData";
 import { getCoverLetterById } from "../controllers/cover/personalize";
+import { getAllPageHome } from "../controllers/pages/pagesHome";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
     isGetResumesTemplates = false,
     isGetCoverTemplates = false,
     isGetFormCover = false,
+    isPageHome = false
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -34,15 +36,22 @@ export const withPublicRoute = ({
                 }
             }
 
-            if (!!isGetResumesTemplates)
+            if (!!isGetResumesTemplates) {
                 await store.dispatch(getResumesTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+            }
 
-            if (!!isGetCoverTemplates)
+            if (!!isGetCoverTemplates) {
                 await store.dispatch(getCoverTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+            }
+
+            if (!!isPageHome) {
+                await store.dispatch(getAllPageHome({ dispatch: store.dispatch }));
+            }
+
 
             return { props: {} };
         } catch (error) {
-            console.log("withPrivateRoute: ", error)
+            console.log("withPublicRoute: ", error)
             return { props: {} };
         }
     });

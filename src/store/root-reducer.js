@@ -23,6 +23,7 @@ import { reducer as menuAsideResume } from "../slices/menuAsideResume";
 import { reducer as notificationData } from "../slices/notifications";
 import { reducer as careers } from "../slices/careers";
 import { reducer as theme } from "../slices/theme";
+import { reducer as pages } from "../slices/pages";
 
 // cover
 import { reducer as coverDataForm } from "../slices/cover/coverDataForm";
@@ -56,5 +57,6 @@ export const combinedReducers = combineReducers({
   coverDataForm,
   covers,
   coverData,
+  pages,
 })
 

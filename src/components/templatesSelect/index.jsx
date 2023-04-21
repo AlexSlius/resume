@@ -41,6 +41,7 @@ export const TemplatesSelect = ({
                         templateClass={resumeData?.resumeActive?.template_class}
                         stateLineSpacing={stateLineSpacing}
                         stateFontSize={stateFontSize}
+                        stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
                     />
