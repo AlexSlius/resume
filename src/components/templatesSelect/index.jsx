@@ -14,6 +14,7 @@ import { ResumeCv008 } from '../../resumeTemplates/008-CV';
 import { ResumeCv009 } from '../../resumeTemplates/009-CV';
 import { ResumeCv010 } from '../../resumeTemplates/010-CV';
 import { ResumeCv011 } from '../../resumeTemplates/011-CV';
+import { ResumeCv016 } from '../../resumeTemplates/016-CV';
 
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
@@ -151,6 +152,17 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "011-CV" && (
                     <ResumeCv011
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+{
+                resumeActive == "016-CV" && (
+                    <ResumeCv016
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

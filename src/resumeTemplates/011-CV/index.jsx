@@ -247,11 +247,14 @@ export const ResumeCv011 = ({
                               <path fillRule="evenodd" clipRule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
                             </svg>
                           </div>
-                          <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">
-                            5th Avenue Street
-                            New York City, 384846
-                            United States
-                          </div>
+                          {
+                            (!!contact[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
+                              <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
+                                {!!contact[0]?.address && (`${contact[0]?.address},`)}
+                                {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
+                              </p>
+                            )
+                          }
                         </div>
                         {
                           !!contact[0]?.phone && (

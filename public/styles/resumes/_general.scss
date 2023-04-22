@@ -24,6 +24,12 @@
   }
 }
 
+.cv-body {
+  a {
+    pointer-events: none !important;
+  }
+}
+
 .cv-body.cv-body-visible.none {
   display: none !important;
 }

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { LoadWr } from "../loadWr";
 import { isLoader } from "../../helpers/loadings";
+import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 import { CoverCv001 } from '../../resumeTemplatesCover/001-CV';
 import { CoverCv002 } from '../../resumeTemplatesCover/002-CV';
@@ -15,7 +16,8 @@ import { CoverCv008 } from '../../resumeTemplatesCover/008-CV';
 import { CoverCv009 } from '../../resumeTemplatesCover/009-CV';
 import { CoverCv010 } from '../../resumeTemplatesCover/010-CV';
 import { CoverCv011 } from '../../resumeTemplatesCover/011-CV';
-import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
+import { CoverCv016 } from '../../resumeTemplatesCover/016-CV';
+
 
 export const TemplatesSelectCover = ({
     status = "",
@@ -149,6 +151,17 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "011-CV" && (
                     <CoverCv011
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "016-CV" && (
+                    <CoverCv016
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

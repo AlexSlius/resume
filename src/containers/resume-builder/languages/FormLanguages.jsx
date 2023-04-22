@@ -123,10 +123,10 @@ const FormLanguages = ({
                            <div className="items-level">
                               <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 1 })} checked={!!(item.level == 1)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="A1" />
                               <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 2 })} checked={!!(item.level == 2)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="A2" />
-                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 3 })} checked={!!(item.level == 3)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B2" />
-                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 4 })} checked={!!(item.level == 4)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B3" />
-                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 5 })} checked={!!(item.level == 5)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B4" />
-                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 6 })} checked={!!(item.level == 6)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B5" />
+                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 3 })} checked={!!(item.level == 3)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B1" />
+                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 4 })} checked={!!(item.level == 4)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="B2" />
+                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 5 })} checked={!!(item.level == 5)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="C1" />
+                              <CFormCheck onChange={() => handleSaveSelect({ index: index, name: 'level', value: 6 })} checked={!!(item.level == 6)} button={{ color: 'secondary' }} type="radio" id={uuid()} name={`level${index}`} autoComplete="off" label="C2" />
                            </div>
                         </CCol>
                      </CRow>
