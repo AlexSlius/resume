@@ -24,7 +24,7 @@ export const ResumeCv011 = ({
     languages,
     hide_experience_level
   } = data;
-  let classPhoto = (isArray(contact) && contact[0]?.picture) ? "has-photo" : "";
+  let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
 
   return (
     <div className="sv_011" ref={reportTemplateRef}>
@@ -43,15 +43,15 @@ export const ResumeCv011 = ({
                 }
                 <div className="personal-info">
                   {
-                    isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                    isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                       <h1 className="cv-name font-size-6 line-height-6 font-weight-400 additional-color-2-text">
                         {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                       </h1>
                     )
                   }
                   {
-                    isArray(contact) && contact[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-3 line-height-3 font-weight-400 additional-color-3-text">{contact[0]?.jobTitle.toUpperCase()}</h2>
+                    isArray(contact) && contact?.[0]?.jobTitle && (
+                      <h2 className="cv-prophecy font-size-3 line-height-3 font-weight-400 additional-color-3-text">{contact?.[0]?.jobTitle.toUpperCase()}</h2>
                     )
                   }
                   <div className="personal-additional-info">
@@ -76,7 +76,7 @@ export const ResumeCv011 = ({
                         <div className="info-item">
                           <p className="info-item-name font-size-2 line-height-2 font-weight-400 additional-color-3-text">D A T E / P L A C E O F B I R T H</p>
                           {!!contact?.[0]?.dateOfBirth && (
-                            <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</p>
+                            <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</p>
                           )}
                           {
                             !!contact?.[0]?.placeOfBirth && (
@@ -236,7 +236,7 @@ export const ResumeCv011 = ({
             </div>
             <div className="column-right">
               {
-                isArray(contact) && (!!contact[0]?.email || contact[0]?.phone || (isArray(social_links) && !!social_links.length)) && (
+                isArray(contact) && (!!contact?.[0]?.email || contact?.[0]?.phone || (isArray(social_links) && !!social_links.length)) && (
                   <div className="contacts-information-block block-block">
                     <div className="left-block additional-color-2-background"></div>
                     <div className="right-block">
@@ -248,28 +248,28 @@ export const ResumeCv011 = ({
                             </svg>
                           </div>
                           {
-                            (!!contact[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
+                            (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
                               <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
-                                {!!contact[0]?.address && (`${contact[0]?.address},`)}
+                                {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
                                 {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
                               </p>
                             )
                           }
                         </div>
                         {
-                          !!contact[0]?.phone && (
+                          !!contact?.[0]?.phone && (
                             <div className="block-item">
                               <div className="left-side">
                                 <svg className="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M6.25081 6.74873C8.35247 8.8504 8.83456 6.41832 10.1725 7.75623C11.4616 9.0454 12.2037 9.3054 10.5679 10.9412C10.3621 11.1037 9.06206 13.0862 4.48498 8.51457C-0.0921061 3.93748 1.89039 2.63748 2.05289 2.43165C3.69414 0.790401 3.94873 1.5379 5.23789 2.82707C6.58123 4.16498 4.14914 4.64707 6.25081 6.74873Z" fill="white" />
                                 </svg>
                               </div>
-                              <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">{contact[0]?.phone}</div>
+                              <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">{contact?.[0]?.phone}</div>
                             </div>
                           )
                         }
                         {
-                          !!contact[0]?.email && (
+                          !!contact?.[0]?.email && (
                             <div className="block-item">
                               <div className="left-side">
                                 <svg className="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +277,7 @@ export const ResumeCv011 = ({
                                 </svg>
                               </div>
                               <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">
-                                {contact[0]?.email}
+                                {contact?.[0]?.email}
                               </div>
                             </div>
                           )

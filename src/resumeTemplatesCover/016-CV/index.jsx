@@ -55,7 +55,7 @@ export const CoverCv016 = ({
                                                         <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{state}</p>
                                                     )
                                                 }
-                                                <p class="font-size-1 line-height-2 main-color-2-text font-weight-300">
+                                                <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
                                                     {`${!!city && (`${city}, `)} ${!!zipCode && (`${zipCode}, `)} ${!!country && (`${country}`)}`}
                                                 </p>
                                                 {!!phone && (<p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{phone}</p>)}

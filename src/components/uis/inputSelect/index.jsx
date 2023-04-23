@@ -274,7 +274,7 @@ export const InputSelect = ({
             </div>
             {
                 isModal && (
-                    <div ref={refWr} className={`${style.wr}`}>
+                    <div ref={refWr} className={`${style.wr} wrs`}>
                         {
                             showList && (
                                 ((!!data?.length || !!isLoad) || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (

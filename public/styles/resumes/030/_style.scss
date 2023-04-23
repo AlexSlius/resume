@@ -1,0 +1,741 @@
+/* Fonts */
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Poppins/Poppins-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('./fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
+.sv_030 {
+  font-family: 'Poppins', sans-serif;
+
+  $main_color_1: #E2E2E2;
+  $main_color_2: #F0F0F0;
+  $main_color_3: #989898;
+  $main_color_4: #000000;
+
+  $color_set_1_additional_color_1: #000000;
+  $color_set_2_additional_color_1: #AA7777;
+  $color_set_3_additional_color_1: #AA9377;
+  $color_set_4_additional_color_1: #7E8D70;
+  $color_set_5_additional_color_1: #548C8C;
+  $color_set_6_additional_color_1: #64668A;
+  $color_set_7_additional_color_1: #87608D;
+
+  * {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 700;
+  }
+
+
+  .font-weight-300 {
+    font-weight: 300;
+  }
+
+  .font-weight-400 {
+    font-weight: 400;
+  }
+
+  .font-weight-500 {
+    font-weight: 500;
+  }
+
+  .font-weight-600 {
+    font-weight: 600;
+  }
+
+  .font-weight-700 {
+    font-weight: 700;
+  }
+
+  .font-weight-900 {
+    font-weight: 900;
+  }
+
+  .cv-prophecy {
+    text-align: center;
+  }
+
+  .cv-name {
+    text-align: center;
+    font-family: 'PlayfairDisplay', sans-serif;
+  }
+
+  svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .item-value-container {
+    .item-value {}
+
+    .item-value-point {}
+
+    .empty-gap {}
+  }
+
+  .cv-prophecy {
+    text-transform: uppercase;
+  }
+
+  .block-heading {
+    margin-bottom: 6px;
+  }
+
+  .photo-block {
+    img {
+      display: block;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+  }
+
+  .heading-type-1 {
+    margin-bottom: 6px !important;
+  }
+
+  .cv-body {
+    min-width: 595px;
+    background-color: #fff;
+    min-height: 764px;
+    max-height: 764px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+
+    .ellipse-line {
+      position: absolute;
+      width: 556.85px;
+      height: 803.6px;
+      top: -676px;
+      left: 19.57px;
+      border: 0.960091px solid #FFFFFF;
+      border-radius: 50%;
+    }
+
+    .cv-body-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      height: 100%;
+      position: relative;
+      z-index: 10;
+      border: 1px solid #fff;
+
+      .top-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: stretch;
+      }
+
+      .middle-area {
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0px 20px 0px 24px;
+
+        .column-left {
+          width: 124px;
+          margin: 0px 40.18px 0px 0px;
+        }
+
+        .column-right {
+          width: 365px;
+        }
+      }
+    }
+
+    &.cv-body-1 {
+      .cv-body-content {
+        .top-area {
+          .cv-name {
+            margin-top: 21.48px !important;
+            margin-bottom: 5px !important;
+          }
+
+          .cv-prophecy {
+            margin-top: 5px;
+            margin-bottom: 16.51px !important;
+          }
+        }
+      }
+    }
+
+    &.cv-body-2 {
+      .cv-body-content {
+        .top-area {
+          .cv-name {
+            margin-top: 75px !important;
+            margin-bottom: 56px !important;
+          }
+        }
+
+        .middle-area {
+          flex: 1;
+          flex-direction: column;
+          margin: 0px 112px 0px 123px;
+          padding: 0px;
+
+          .letter-block {
+            margin-top: 15px;
+
+            .letter-heading {
+              font-family: 'PlayfairDisplay', sans-serif;
+              margin-bottom: 15px!important;
+            }
+          }
+        }
+
+        .bottom-area {
+          .addresses-block {
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            margin: 0px 121px 45px 121px;
+
+            .block-to {
+              margin: 0px 50px 0px 0px;
+
+            }
+
+            .block-from {}
+
+            .heading-type-1 {
+              margin-bottom: 6px;
+            }
+
+            p {
+              margin-top: 5px;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  /* Blocks styling */
+  .block-block {
+    .block-heading {
+      font-family: 'PlayfairDisplay', sans-serif;
+      margin-bottom: 6px !important;
+    }
+  }
+
+  .details-block {
+    margin-top: 10px;
+
+    .contacts-block {}
+
+    .profile-info-list {
+      margin-top: 10px;
+
+      .info-list-item {
+        margin-top: 5px;
+
+        &:first-child {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+
+  .links-block {
+    margin-top: 10px;
+
+    .social {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33.04px;
+        height: 27.36px;
+        border-radius: 13.44px;
+        border: 1px solid $main_color_3;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .skills-block {
+    margin-top: 10px;
+
+    .estimation-container {}
+  }
+
+  .languages-block {
+    margin-top: 10px;
+  }
+
+  .hobbies-block {
+    margin-top: 10px;
+  }
+
+  .references-block {
+    margin-top: 10px;
+  }
+
+  .certificates-block {
+    margin-top: 10px;
+  }
+
+  .profile-block {}
+
+  .employment-history-block {
+    margin-top: 10px;
+  }
+
+  .education-block {
+    margin-top: 10px;
+  }
+
+  .courses-block {
+    margin-top: 10px;
+  }
+
+  .extra-curricular-activities-block {
+    margin-top: 10px;
+  }
+
+  .internships-block {
+    margin-top: 10px;
+  }
+
+  /* Control panel */
+  #control-panel {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000;
+
+    .control-panel-item-block {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 5px 10px;
+
+      .control-panel-heading {
+        font-size: 11px;
+        margin: 0px 0px 0px 0px;
+      }
+
+      .control-panel-item-input-list {
+        &.radio-input-list {
+          .input-list-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            margin: 3px 0px;
+
+            .radio-input {
+              display: block;
+              border-radius: 50%;
+              border: 2px solid #d6d0d0;
+              width: 7px;
+              height: 7px;
+              background-color: transparent;
+              margin-right: 5px;
+              pointer-events: none;
+            }
+
+            .radio-input-label {
+              font-size: 10px;
+              pointer-events: none;
+            }
+
+            &.active {
+              .radio-input {
+                background-color: #d6d0d0;
+              }
+            }
+          }
+
+          &.color-list {
+            .input-list-item {
+              .radio-input-label {
+                flex: 1;
+                height: 15px;
+                border-radius: 3px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+
+                .color-set-color {
+                  display: block;
+                  border-radius: 50%;
+                  width: 15px;
+                  height: 15px;
+                  border: 0.5px solid #d4d4d4;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-block {
+      display: none;
+    }
+
+    &.has-photo {
+      .photo-block {
+        display: flex;
+      }
+    }
+  }
+
+  /* Font size scheme */
+  .font-size-scheme-state-small {
+    .font-size-1 {
+      font-size: 8px;
+    }
+
+    .font-size-2 {
+      font-size: 10px;
+    }
+
+    .font-size-3 {
+      font-size: 12px;
+    }
+
+    .font-size-4 {
+      font-size: 18px;
+    }
+
+    .font-size-5 {
+      font-size: 40px;
+    }
+  }
+
+  .font-size-scheme-state-medium {
+    .font-size-1 {
+      font-size: 10px;
+    }
+
+    .font-size-2 {
+      font-size: 12px;
+    }
+
+    .font-size-3 {
+      font-size: 14px;
+    }
+
+    .font-size-4 {
+      font-size: 20px;
+    }
+
+    .font-size-5 {
+      font-size: 42px;
+    }
+  }
+
+  .font-size-scheme-state-big {
+    .font-size-1 {
+      font-size: 12px;
+    }
+
+    .font-size-2 {
+      font-size: 14px;
+    }
+
+    .font-size-3 {
+      font-size: 16px;
+    }
+
+    .font-size-4 {
+      font-size: 22px;
+    }
+
+    .font-size-5 {
+      font-size: 44px;
+    }
+  }
+
+  /* Line height scheme */
+  .line-height-scheme-state-small {
+    .line-height-1 {
+      line-height: 11.2px;
+    }
+
+    .line-height-2 {
+      line-height: 12px;
+    }
+
+    .line-height-3 {
+      line-height: 12.8px;
+    }
+
+    .line-height-4 {
+      line-height: 13.44px;
+    }
+
+    .line-height-5 {
+      line-height: 14px;
+    }
+
+    .line-height-6 {
+      line-height: 15px;
+    }
+
+    .line-height-7 {
+      line-height: 16px;
+    }
+
+    .line-height-8 {
+      line-height: 23.99px;
+    }
+
+    .line-height-9 {
+      line-height: 40px;
+    }
+  }
+
+  .line-height-scheme-state-medium {
+    .line-height-1 {
+      line-height: 13.2px;
+    }
+
+    .line-height-2 {
+      line-height: 14px;
+    }
+
+    .line-height-3 {
+      line-height: 14.8px;
+    }
+
+    .line-height-4 {
+      line-height: 15.44px;
+    }
+
+    .line-height-5 {
+      line-height: 16px;
+    }
+
+    .line-height-6 {
+      line-height: 17px;
+    }
+
+    .line-height-7 {
+      line-height: 18px;
+    }
+
+    .line-height-8 {
+      line-height: 25.99px;
+    }
+
+    .line-height-9 {
+      line-height: 42px;
+    }
+  }
+
+  .line-height-scheme-state-big {
+    .line-height-1 {
+      line-height: 15.2px;
+    }
+
+    .line-height-2 {
+      line-height: 16px;
+    }
+
+    .line-height-3 {
+      line-height: 16.8px;
+    }
+
+    .line-height-4 {
+      line-height: 17.44px;
+    }
+
+    .line-height-5 {
+      line-height: 18px;
+    }
+
+    .line-height-6 {
+      line-height: 19px;
+    }
+
+    .line-height-7 {
+      line-height: 20px;
+    }
+
+    .line-height-8 {
+      line-height: 27.99px;
+    }
+
+    .line-height-9 {
+      line-height: 44px;
+    }
+  }
+
+  /* Color scheme */
+  .color-scheme-state-color-set-1 {
+    .main-color-2-background {
+      background-color: $main_color_2;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_1_additional_color_1;
+    }
+  }
+
+  /* Custom class for custom color and font-size or line-height */
+  /* ReactJS scripts shoud change CUSTOM_FONT_SIZE, CUSTOM_LINE_HEIGHT and CUSTOM_COLOR to any values
+AND change appropriate container classes to font-size-scheme-state-custom, line-height-scheme-state-custom, color-scheme-state-color-set-custom */
+  .font-size-scheme-state-custom {
+    .font-size-1 {
+      /* font-size: CUSTOM_FONT_SIZE; */
+    }
+
+    .font-size-2 {
+      /* font-size: CUSTOM_FONT_SIZE; */
+    }
+
+    .font-size-3 {
+      /* font-size: CUSTOM_FONT_SIZE; */
+    }
+
+    .font-size-4 {
+      /* font-size: CUSTOM_FONT_SIZE; */
+    }
+
+    .font-size-5 {
+      /* font-size: CUSTOM_FONT_SIZE; */
+    }
+  }
+
+  /* Line height scheme */
+  .line-height-scheme-state-custom {
+    .line-height-1 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+
+    .line-height-2 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+
+    .line-height-3 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+
+    .line-height-4 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+
+    .line-height-5 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+
+    .line-height-6 {
+      /* line-height: CUSTOM_LINE_HEIGHT; */
+    }
+  }
+
+
+  .color-scheme-state-color-set-custom {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-1-background {
+      background-color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-2-border {
+      border-color: $main_color_2;
+    }
+
+    .additional-color-1-text {
+      /* color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-1-border {
+      /* border-color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-1-background {
+      /* background-color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-1-svg-path {
+      path {
+        /* stroke: CUSTOM_COLOR; */
+        fill: transparent;
+      }
+    }
+
+    .additional-color-1-svg {
+      path {
+        /* fill: CUSTOM_COLOR; */
+      }
+    }
+
+    .additional-color-2-text {
+      /* color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-2-border {
+      /* border-color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-2-background {
+      /* background-color: CUSTOM_COLOR; */
+    }
+
+    .additional-color-2-svg-path {
+      path {
+        /* stroke: CUSTOM_COLOR; */
+        fill: transparent;
+      }
+    }
+
+    .additional-color-2-svg {
+      path {
+        /* fill: CUSTOM_COLOR; */
+      }
+    }
+  }
+}

@@ -54,7 +54,8 @@ export const DatePicker = ({
                 const cordinate = e.target.getBoundingClientRect();
                 const windowInnerHeight = window.innerHeight;
 
-                if ((windowInnerHeight - cordinate.bottom) > useRefWrContainer.current.offsetHeight) {
+                //useRefWrContainer.current.offsetHeight
+                if ((windowInnerHeight - cordinate.bottom) > 220) {
                     setClases(prev => {
                         refCurentClass.current = `${style.open}`;
                         return `${style.open}`;

@@ -171,8 +171,11 @@
 
 .mob_select {
     position: relative;
+    overflow: hidden;
 
     &.open {
+        overflow: inherit;
+
         .contoll {
             input {
                 padding-top: 1.625rem;

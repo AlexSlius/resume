@@ -47,7 +47,7 @@ export const ResumeCv016 = ({
                 <div className="name-and-prophecy-wrapper">
                   {
                     isContactArray && contact[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-5 line-height-7 main-color-2-text font-weight-300">{contact[0]?.jobTitle.toUpperCase()}</h2>
+                      <h2 className="cv-prophecy font-size-5 line-height-7 main-color-2-text font-weight-300">{contact[0]?.jobTitle}</h2>
                     )
                   }
                   {
