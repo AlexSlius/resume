@@ -255,17 +255,17 @@ export const ResumeCv001 = ({
               <div className="top-block columns-wrapper">
                 <div className="column-left">
                   {
-                    isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                    isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                       <h1 className="cv-heading additional-color-1-text heading-type-1 font-size-3 line-height-3">
-                        {`${contact[0]?.firstName} ${contact[0]?.lastName}`}
+                        {`${contact?.[0]?.firstName} ${contact?.[0]?.lastName}`}
                       </h1>
                     )
                   }
                   <div className="personal-info-block">
                     <div className="profile-info">
                       {
-                        isArray(contact) && contact[0]?.picture && (
-                          <img className="cv-photo active" src={contact[0]?.picture} />
+                        isArray(contact) && contact?.[0]?.picture && (
+                          <img className="cv-photo active" src={contact?.[0]?.picture} />
                         )
                       }
                       {
@@ -282,17 +282,17 @@ export const ResumeCv001 = ({
                 <div className="column-right">
                   {
                     isArray(contact) && (
-                      <h1 className="cv-heading heading-type-2 additional-color-1-text font-weight-300 font-size-3 line-height-3">{contact[0]?.jobTitle}</h1>
+                      <h1 className="cv-heading heading-type-2 additional-color-1-text font-weight-300 font-size-3 line-height-3">{contact?.[0]?.jobTitle}</h1>
                     )
                   }
                   {
-                    isArray(contact) && (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.phone || !!contact[0]?.address || !!contact[0]?.email || (isArray(social_links) && !!social_links.length)) && (
+                    isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email || (isArray(social_links) && !!social_links.length)) && (
                       <div className="cv-career-block additional-color-2-border">
                         <div className="career-details">
                           <p className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Details</p>
-                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact[0]?.country && (`${contact[0]?.country} `)} <br />  {`${contact[0]?.address}`}, <br /> {!!contact[0]?.city && (`${contact[0]?.city}`)} {contact[0]?.zipCode}</p>
-                          {!!contact[0]?.phone && <p className="career-phone main-color-1-text font-size-1 line-height-1">{contact[0]?.phone}</p>}
-                          {!!contact[0]?.email && <p className="career-email main-color-1-text font-size-1 line-height-1">{contact[0]?.email}</p>}
+                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact?.[0]?.country && (`${contact?.[0]?.country} `)} <br />  {`${contact?.[0]?.address}`}, <br /> {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
+                          {!!contact?.[0]?.phone && <p className="career-phone main-color-1-text font-size-1 line-height-1">{contact?.[0]?.phone}</p>}
+                          {!!contact?.[0]?.email && <p className="career-email main-color-1-text font-size-1 line-height-1">{contact?.[0]?.email}</p>}
                         </div>
                         {
                           isArray(social_links) && social_links.length && (
@@ -314,37 +314,37 @@ export const ResumeCv001 = ({
                 </div>
               </div>
               {
-                isArray(contact) && (!!contact[0]?.dateOfBirth || !!contact[0]?.placeOfBirth || !!contact[0]?.nationality || !!contact[0]?.driverLicense) && (
+                isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
                   <div className="profile-secondary-info">
                     {
-                      !!contact[0]?.dateOfBirth && (
+                      !!contact?.[0]?.dateOfBirth && (
                         <div className="profile-secondary-info-item">
                           <span className="name additional-color-1-text font-weight-300 font-size-1 line-height-1">Birth Date</span>
-                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                         </div>
                       )
                     }
                     {
-                      !!contact[0]?.placeOfBirth && (
+                      !!contact?.[0]?.placeOfBirth && (
                         <div className="profile-secondary-info-item">
                           <span className="name additional-color-1-text font-weight-300 font-size-1 line-height-1">Place of Birth</span>
-                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact[0]?.placeOfBirth}</span>
+                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
                         </div>
                       )
                     }
                     {
-                      !!contact[0]?.nationality && (
+                      !!contact?.[0]?.nationality && (
                         <div className="profile-secondary-info-item">
                           <span className="name additional-color-1-text font-weight-300 font-size-1 line-height-1">Nationality</span>
-                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact[0]?.nationality}</span>
+                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
                         </div>
                       )
                     }
                     {
-                      !!contact[0]?.driverLicense && (
+                      !!contact?.[0]?.driverLicense && (
                         <div className="profile-secondary-info-item">
                           <span className="name additional-color-1-text font-weight-300 font-size-1 line-height-1">Driving Licence</span>
-                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact[0]?.driverLicense}</span>
+                          <span className="value additional-color-1-text font-weight-400 font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
                         </div>
                       )
                     }

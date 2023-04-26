@@ -3,10 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from 'next/router';
 import { isArray } from 'lodash';
-
 import Carousel from 'react-material-ui-carousel'
-import { SvgImage } from "../../components/svgImage";
 
+import { SvgImage } from "../../components/svgImage";
 import { TemplatesSelect } from '../../components/templatesSelect';
 import { TemplatesSelectCover } from '../../components/templateSelectCover';
 import Icon from "../../components/Icon";
@@ -15,16 +14,17 @@ import TemplateHead from "../../components/templateHead/TemplateHead";
 import { ButtonBack } from "../../components/uis/buttonBack"
 import { Buttonhelp } from "../../components/uis/buttonHelp"
 import CustomizedSlider from '../../components/uis/range';
-
-import {
-    getCoverLetterById
-} from "../../controllers/cover/personalize";
+import { MenuButton } from '../../components/menuButton';
 import { SelectColor } from '../../components/selectColor';
 
-import { updateActiveResumeNew } from "../../slices/resumeData";
-import { updateActiveCoverNew } from "../../slices/cover/coverData";
-
-import { routersPages } from "../../constants/next-routers";
+import {
+    updateActiveResumeNew,
+    updateActiveResume
+} from "../../slices/resumeData";
+import {
+    updateActiveCoverNew,
+    updateActiveCover
+} from "../../slices/cover/coverData";
 
 import {
     fetchGetResumeData,
@@ -32,16 +32,18 @@ import {
     setUpdateResumeActive,
     getResumesTemplates
 } from "../../controllers/resumeData";
-
 import {
     getCoverDataActive,
     setUpdateCoverDataActive,
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
-import { MenuButton } from '../../components/menuButton';
+import {
+    getCoverLetterById
+} from "../../controllers/cover/personalize";
+
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 
-import { statusLoaded, statusLoader } from '../../constants/statuses';
+import { routersPages } from "../../constants/next-routers";
 
 import downloadIcon from '/public/images/icons/download-white.svg?sprite'
 import dotsIcon from '/public/images/icons/dots.svg?sprite'
@@ -56,8 +58,6 @@ const Templates = ({
     const refWr = useRef(undefined);
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(false);
-    const [stateLineSpacing, setStateLIneSpacig] = useState(50);
-    const [stateFontSize, setStateFontSize] = useState(50);
 
     const [pagesPag, setPagesPag] = useState(1);
     const [pagePagCurrent, setPagePagCurrent] = useState(1);
@@ -66,7 +66,7 @@ const Templates = ({
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const { idCv, type = "new", slug = "001-CV" } = router.query;
+    const { idCv } = router.query;
     const reportTemplateRef = useRef(null);
     const isNewResume = (idCv == "new");
 
@@ -134,79 +134,89 @@ const Templates = ({
 
     // update resume
     const handleResume = (item) => {
+        let colorClass = "";
+
+        if (item?.colors?.length > 0) {
+            colorClass = item.colors[0].class;
+        }
+
         if (!isCover) {
-            if (idCv != "new") {
-                dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id }, isGet: true }));
+            if (!isNewResume) {
+                dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: item.id, template_class: colorClass }, isGet: true }));
             } else {
-                dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id, colors: item.colors }))
+                dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id, colors: item.colors, template_class: colorClass }))
             }
         } else {
-            if (idCv != "new") {
-                dispatch(setUpdateCoverDataActive({ idCv, data: { cover_template_id: item.id }, isGet: true }));
+            if (!isNewResume) {
+                dispatch(setUpdateCoverDataActive({ idCv, data: { cover_template_id: item.id, template_class: colorClass }, isGet: true }));
             } else {
-                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id, colors: item.colors }))
+                dispatch(updateActiveCoverNew({ slug: item.slug, id: item.id, colors: item.colors, template_class: colorClass }))
             }
         }
     }
 
-    const handleLineSpacing = (e) => {
-        setStateLIneSpacig(e.target.value);
+    const handleUpdateColor = (dataResume, value) => {
+        if (!isCover) {
+            if (!isNewResume) {
+                dispatch(updateActiveResume({ template_class: value?.class || "" }));
+            } else {
+                dispatch(updateActiveResumeNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
+            }
+        } else {
+            if (!isNewResume) {
+                dispatch(updateActiveCover({ template_class: value?.class || "" }));
+            } else {
+                dispatch(updateActiveCoverNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
+            }
+        }
     }
 
-    const handleFontSize = (e) => {
-        setStateFontSize(e.target.value);
+    const handleFont = (e, name) => {
+        if (!isCover) {
+            if (!isNewResume) {
+                dispatch(updateActiveResume({ [name]: e.target.value }));
+            } else {
+                dispatch(updateActiveResumeNew({ [name]: e.target.value }))
+            }
+        } else {
+            if (!isNewResume) {
+                dispatch(updateActiveCover({ [name]: e.target.value }));
+            } else {
+                dispatch(updateActiveCoverNew({ [name]: e.target.value }))
+            }
+        }
     }
 
-    const handleUpdateServer = async (index) => {
+    const handleUpdateServer = async () => {
+        const { template, ...obj } = dataOther.resumeActive;
         if (refIdTimeout.current) {
             clearTimeout(refIdTimeout.current);
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            if (idCv != "new") {
-                const isResumeActive = dataOther?.resumeActive?.template_id;
+            if (!isNewResume) {
                 if (!isCover) {
                     dispatch(setUpdateResumeActive({
                         idCv, data: {
-                            cv_template_id: isResumeActive,
-                            template_line_spacing: stateLineSpacing,
-                            template_text_size: stateFontSize,
+                            ...obj
                         }, isGet: false
                     }));
                 } else {
                     dispatch(setUpdateCoverDataActive({
                         idCv, data: {
-                            cover_template_id: isResumeActive,
-                            template_line_spacing: stateLineSpacing,
-                            template_text_size: stateFontSize,
+                            ...obj
                         }, isGet: false
                     }));
                 }
             }
 
             clearTimeout(refIdTimeout.current);
-        }, 1000);
+        }, 10);
     }
 
     const handleScroll = async (e) => {
         if (e.target.scrollHeight - (e.target.offsetHeight + e.target.scrollTop) < 100) {
             setFetching(true);
-        }
-    }
-
-    const handleUpdateColor = (dataResume, value) => {
-        if (!isCover) {
-            if (idCv != "new") {
-                dispatch(setUpdateResumeActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
-            } else {
-                dispatch(updateActiveResumeNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
-            }
-        } else {
-            if (idCv != "new") {
-                dispatch(setUpdateCoverDataActive({ idCv, data: { cv_template_id: dataResume.template_id, template_class: value?.class || "" }, isGet: true }));
-            } else {
-                dispatch(updateActiveCoverNew({ slug: dataResume.slug, id: dataResume.template_id, template_class: value?.class || "" }))
-            }
         }
     }
 
@@ -223,9 +233,15 @@ const Templates = ({
     }
 
     const toggleTextSettings = () => {
-        console.log('click');
         setShowSettings(!showSettings);
     }
+
+    useEffect(() => {
+        if (dataOther?.resumeActive?.template_id) {
+            handleUpdateServer();
+        }
+
+    }, [dataOther?.resumeActive]);
 
     useEffect(() => {
         if (!isPageView) {
@@ -278,42 +294,6 @@ const Templates = ({
 
     useEffect(() => {
         if (!isPageView) {
-            if (idCv != "new") {
-                handleUpdateServer();
-            }
-        }
-    }, [stateLineSpacing, stateFontSize]);
-
-    useEffect(() => {
-        const activeResume = dataOther?.resumeActive;
-        setStateLIneSpacig(activeResume?.template_line_spacing ? +activeResume?.template_line_spacing : 50);
-        setStateFontSize(activeResume?.template_text_size ? +activeResume?.template_text_size : 50);
-    }, [dataOther]);
-
-    useEffect(() => {
-        if (!isPageView) {
-            if (idCv != "new") {
-                if (!isCover) {
-                    // get resume
-                    dispatch(fetchGetResumeData({ idCv }));
-                    dispatch(getResumeActive({ idCv }));
-                } else {
-                    // get cover 
-                    dispatch(getCoverLetterById(idCv));
-                    dispatch(getCoverDataActive({ idCv }));
-                }
-            }
-
-            !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
-
-            return () => {
-                !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
-            }
-        }
-    }, []);
-
-    useEffect(() => {
-        if (!isPageView) {
             setPagePagCurrent(1);
         }
     }, [dataOther.resumeActive]);
@@ -350,6 +330,24 @@ const Templates = ({
                 if (isNewResume) {
                     dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
                 }
+            }
+
+            if (!isNewResume) {
+                if (!isCover) {
+                    // get resume
+                    dispatch(fetchGetResumeData({ idCv }));
+                    dispatch(getResumeActive({ idCv }));
+                } else {
+                    // get cover 
+                    dispatch(getCoverLetterById(idCv));
+                    dispatch(getCoverDataActive({ idCv }));
+                }
+            }
+
+            !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+
+            return () => {
+                !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
             }
         }
     }, []);
@@ -469,8 +467,8 @@ const Templates = ({
                                     !isCover && (
                                         <TemplatesSelect
                                             status={dataOther?.status}
-                                            stateLineSpacing={stateLineSpacing}
-                                            stateFontSize={stateFontSize}
+                                            stateLineSpacing={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
+                                            stateFontSize={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                             reportTemplateRef={reportTemplateRef}
 
                                             resumeData={dataOther}
@@ -485,8 +483,8 @@ const Templates = ({
                                     isCover && (
                                         <TemplatesSelectCover
                                             status={dataOther?.status}
-                                            stateLineSpacing={stateLineSpacing}
-                                            stateFontSize={stateFontSize}
+                                            stateLineSpacing={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
+                                            stateFontSize={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                             reportTemplateRef={reportTemplateRef}
 
                                             resumeData={dataOther}
@@ -509,21 +507,21 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={stateLineSpacing}
+                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
                                                     label="Line Spacing"
                                                     textLeft="50%"
                                                     textRight="150%"
-                                                    onChange={handleLineSpacing}
+                                                    onChange={(e) => handleFont(e, "template_line_spacing")}
                                                 />
                                             </div>
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={stateFontSize}
+                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                                     label="Text size"
                                                     textLeft="12 pt"
                                                     textRight="48 pt"
-                                                    onChange={handleFontSize}
+                                                    onChange={(e) => handleFont(e, "template_text_size")}
                                                 />
                                             </div>
                                         </div>
@@ -535,7 +533,7 @@ const Templates = ({
                                         {
                                             isArray(isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors) &&
                                             (isNewResume ? dataOther?.resumeActiveNew?.colors : dataOther?.resumeActive?.template?.colors).map((item, index) => (
-                                                <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${(dataOther?.resumeActive.template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
+                                                <div onClick={() => handleUpdateColor(isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive, item)} className={`color-it ${((isNewResume ? dataOther?.resumeActiveNew : dataOther?.resumeActive).template_class == item.class) ? "active" : ""}`} key={index} style={{ background: item.color }}></div>
                                             ))
                                         }
                                         {
@@ -551,21 +549,21 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={stateLineSpacing}
+                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
                                                     label="Line Spacing"
                                                     textLeft="50%"
                                                     textRight="150%"
-                                                    onChange={handleLineSpacing}
+                                                    onChange={(e) => handleFont(e, "template_line_spacing")}
                                                 />
                                             </div>
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={stateFontSize}
+                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                                     label="Text size"
                                                     textLeft="12 pt"
                                                     textRight="48 pt"
-                                                    onChange={handleFontSize}
+                                                    onChange={(e) => handleFont(e, "template_text_size")}
                                                 />
                                             </div>
                                         </div>
@@ -594,6 +592,7 @@ const Templates = ({
                                         isButton={true}
                                         icon={downloadIcon}
                                         label="Download PDF"
+                                        disabled={!isAthorized || isNewResume}
                                         className="btn--blue"
                                     // onHandle={handleGeneratePdf}
                                     />
@@ -603,7 +602,7 @@ const Templates = ({
                                                 <Icon svg={iconPlusColor} />
                                             </div>
                                         ) : (
-                                            <div className="menu-show-tem ab-menu menus-card">
+                                            <div className={`menu-show-tem ab-menu menus-card ${(!isAthorized || isNewResume) ? "disabled" : ""}`}>
                                                 <CButton
                                                     className='resume-footer__button'
                                                     color="secondary"

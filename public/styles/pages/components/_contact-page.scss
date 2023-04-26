@@ -101,6 +101,13 @@
     }
 }
 
+.form-btn {
+    &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
 .contact-page__bottom {
     margin-top: 45px;
     font-weight: 350;

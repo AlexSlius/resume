@@ -51,10 +51,12 @@ export const slice = createSlice({
     },
     // get list skills all
     [fetchGetCvHobie.pending]: (state) => {
+      state.status = statusLoader;
       state.statusList = statusLoader;
     },
     [fetchGetCvHobie.fulfilled]: (state, action) => {
       state.statusList = statusLoaded;
+      state.status = statusLoaded;
       state.hobiesObj = action.payload;
     },
   }

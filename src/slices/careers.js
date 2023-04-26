@@ -7,6 +7,7 @@ import { statusLoaded, statusLoader } from '../constants/statuses';
 import {
     fetchGetCvCarreers,
     fetchDeleteAll,
+    fetchUpdateServer
 } from "../controllers/careers";
 
 const initialState = {
@@ -39,6 +40,12 @@ export const slice = createSlice({
                 ...state,
                 data: objData,
             }
+        },
+        [fetchUpdateServer.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [fetchUpdateServer.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
         },
         // clean all
         [fetchDeleteAll.pending]: (state) => {

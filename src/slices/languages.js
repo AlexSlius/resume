@@ -7,6 +7,7 @@ import {
   fetchGetCvLanguages,
   fetchPostAddCvOneLanguages,
   fetchDeleteLanguages,
+  fetchUpdateLanguages,
 } from "../controllers/languages";
 
 const initialState = {
@@ -43,6 +44,12 @@ export const slice = createSlice({
         ...state,
         languageObj: objData,
       }
+    },
+    [fetchUpdateLanguages.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateLanguages.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
     },
     // delete 
     [fetchDeleteLanguages.pending]: (state) => {

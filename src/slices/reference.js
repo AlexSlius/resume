@@ -7,6 +7,7 @@ import {
   fetchPostAddCvOneReferences,
   fetchDeleteReferences,
   fetchDeleteAll,
+  fetchUpdateReferences
 } from '../controllers/references';
 
 const initialState = {
@@ -66,11 +67,17 @@ export const slice = createSlice({
     },
     // app
     [fetchPostAddCvOneReferences.pending]: (state) => {
-      state.statusNew = statusLoader;
+      state.status = statusLoader;
     },
     [fetchPostAddCvOneReferences.fulfilled]: (state, action) => {
       state.objNew = initialState.objNew;
-      state.statusNew = statusLoaded;
+      state.status = statusLoaded;
+    },
+    [fetchUpdateReferences.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateReferences.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
     },
     // get
     [fetchGetCvReferences.pending]: (state) => {

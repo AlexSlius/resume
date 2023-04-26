@@ -46,12 +46,12 @@ export const ResumeCv016 = ({
               <div className="column-right">
                 <div className="name-and-prophecy-wrapper">
                   {
-                    isContactArray && contact[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-5 line-height-7 main-color-2-text font-weight-300">{contact[0]?.jobTitle}</h2>
+                    isContactArray && contact?.[0]?.jobTitle && (
+                      <h2 className="cv-prophecy font-size-5 line-height-7 main-color-2-text font-weight-300">{contact?.[0]?.jobTitle}</h2>
                     )
                   }
                   {
-                    isContactArray && (contact[0]?.firstName || contact[0]?.lastName) && (
+                    isContactArray && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                       <h1 className="cv-name font-size-6 line-height-8 main-color-2-text font-weight-400">
                         {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                       </h1>
@@ -63,7 +63,7 @@ export const ResumeCv016 = ({
             <div className="middle-area">
               <div className="column-left">
                 {
-                  (!!contact[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country || !!contact[0]?.phone || !!contact[0]?.email) && (
+                  (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country || !!contact?.[0]?.phone || !!contact?.[0]?.email) && (
                     <div className="details-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-1 font-size-4 line-height-6 main-color-2-text font-weight-300">details</h3>
@@ -72,21 +72,21 @@ export const ResumeCv016 = ({
                       <div className="underheading-line"></div>
                       <div className="grayline"></div>
                       {
-                        (!!contact[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
+                        (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
                           <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
-                            {!!contact[0]?.address && (`${contact[0]?.address},`)}
+                            {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
                             {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
                           </p>
                         )
                       }
                       {
-                        !!contact[0]?.phone && (
-                          <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{contact[0]?.phone}</p>
+                        !!contact?.[0]?.phone && (
+                          <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{contact?.[0]?.phone}</p>
                         )
                       }
                       {
-                        !!contact[0]?.email && (
-                          <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{contact[0]?.email}</p>
+                        !!contact?.[0]?.email && (
+                          <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{contact?.[0]?.email}</p>
                         )
                       }
                     </div>
@@ -117,7 +117,7 @@ export const ResumeCv016 = ({
                             <p className="item-name font-size-1 line-height-2 main-color-3-text font-weight-300">data/place of birth:</p>
                             {
                               !!contact?.[0]?.dateOfBirth && (
-                                <p className="item-value font-size-1 line-height-2 main-color-2-text font-weight-300">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</p>
+                                <p className="item-value font-size-1 line-height-2 main-color-2-text font-weight-300">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</p>
                               )
                             }
                             {

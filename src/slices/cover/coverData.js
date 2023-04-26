@@ -33,6 +33,9 @@ export const slice = createSlice({
     reducers: {
         updateActiveCoverNew(state, action) {
             state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
+        },
+        updateActiveCover(state, action) {
+            state.resumeActive = { ...state.resumeActive, ...action.payload };
         }
     },
     extraReducers: {
@@ -72,7 +75,8 @@ export const slice = createSlice({
 });
 
 export const {
-    updateActiveCoverNew
+    updateActiveCoverNew,
+    updateActiveCover
 } = slice.actions;
 
 export const { reducer } = slice;

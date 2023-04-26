@@ -241,22 +241,22 @@ export const ResumeCv002 = ({
           <div className="cv-body-content">
             <div className="cv-body-area area-1">
               {
-                isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName || contact[0]?.picture || contact[0]?.jobTitle) && (
+                isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName || contact?.[0]?.picture || contact?.[0]?.jobTitle) && (
                   <div className="personal-info-block">
                     {
-                      contact[0]?.picture && (
-                        <img className="cv-photo" src={contact[0].picture} />
+                      contact?.[0]?.picture && (
+                        <img className="cv-photo" src={contact?.[0].picture} />
                       )
                     }
                     <div className="cv-headings-wrap">
                       {
-                        (contact[0]?.firstName || contact[0]?.lastName) && (
-                          <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">{`${contact[0]?.firstName} ${contact[0]?.lastName}`}</h1>
+                        (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
+                          <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">{`${contact?.[0]?.firstName} ${contact?.[0]?.lastName}`}</h1>
                         )
                       }
                       {
-                        contact[0]?.jobTitle && (
-                          <h1 className="cv-heading cv-prophecy additional-color-1-text font-weight-400 font-size-3 line-height-3">{contact[0]?.jobTitle}</h1>
+                        contact?.[0]?.jobTitle && (
+                          <h1 className="cv-heading cv-prophecy additional-color-1-text font-weight-400 font-size-3 line-height-3">{contact?.[0]?.jobTitle}</h1>
                         )
                       }
                     </div>
@@ -264,37 +264,37 @@ export const ResumeCv002 = ({
                 )
               }
               {
-                isArray(contact) && (!!contact[0]?.dateOfBirth || !!contact[0]?.placeOfBirth || !!contact[0]?.nationality || !!contact[0]?.driverLicense) && (
+                isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
                   <div className="profile-secondary-info additional-color-2-border">
                     {
-                      !!contact[0]?.dateOfBirth && (
+                      !!contact?.[0]?.dateOfBirth && (
                         <>
                           <span className="name main-color-3-text font-size-1 line-height-1">Birth Date</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                          <span className="value main-color-1-text font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                         </>
                       )
                     }
                     {
-                      !!contact[0]?.placeOfBirth && (
+                      !!contact?.[0]?.placeOfBirth && (
                         <>
                           <span className="name main-color-3-text font-size-1 line-height-1">Place of Birth</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact[0]?.placeOfBirth}</span>
+                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
                         </>
                       )
                     }
                     {
-                      !!contact[0]?.nationality && (
+                      !!contact?.[0]?.nationality && (
                         <>
                           <span className="name main-color-3-text font-size-1 line-height-1">Nationality</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact[0]?.nationality}</span>
+                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
                         </>
                       )
                     }
                     {
-                      !!contact[0]?.driverLicense && (
+                      !!contact?.[0]?.driverLicense && (
                         <>
                           <span className="name main-color-3-text font-size-1 line-height-1">Driving Licence</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact[0]?.driverLicense}</span>
+                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
                         </>
                       )
                     }
@@ -622,31 +622,31 @@ export const ResumeCv002 = ({
             <div className="cv-body-area bottom-area area-3 additional-color-1-border">
 
               {
-                isArray(contact) && (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.phone || !!contact[0]?.address || !!contact[0]?.email) && (
+                isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email) && (
                   <div className="column-left wrappable-wrapper">
                     <div className="career-details-block block-block wrappable-block">
                       <p className="cv-heading heading-type-3 font-weight-700 font-size-1 line-height-1 additional-color-1-text">Details</p>
                       {
-                        !!contact[0]?.phone && (
+                        !!contact?.[0]?.phone && (
                           <p className="career-phone font-size-1 line-height-1">
                             <span className="contact-item-name additional-color-1-text">Phone:</span>
-                            <span className="contact-item-value main-color-1-text">{contact[0]?.phone}</span>
+                            <span className="contact-item-value main-color-1-text">{contact?.[0]?.phone}</span>
                           </p>
                         )
                       }
                       {
-                        !!contact[0]?.email && (
+                        !!contact?.[0]?.email && (
                           <p className="career-phone font-size-1 line-height-1">
                             <span className="contact-item-name additional-color-1-text">Email:</span>
-                            <span className="contact-item-value main-color-1-text">{contact[0]?.email}</span>
+                            <span className="contact-item-value main-color-1-text">{contact?.[0]?.email}</span>
                           </p>
                         )
                       }
                       {
-                        (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.address || !!contact[0]?.zipCode) && (
+                        (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
                           <p className="career-phone font-size-1 line-height-1">
                             <span className="contact-item-name additional-color-1-text">Address:</span>
-                            <span className="contact-item-value main-color-1-text">{`${!!contact[0]?.country ? (`${contact[0]?.country},`) : ''} ${!!contact[0]?.address ? (`${contact[0]?.address},`) : ''} ${!!contact[0]?.city ? (`${contact[0]?.city},`) : ''} ${!!contact[0]?.zipCode ? contact[0]?.zipCode : ""}`}</span>
+                            <span className="contact-item-value main-color-1-text">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
                           </p>
                         )
                       }

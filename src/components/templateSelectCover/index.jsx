@@ -19,7 +19,7 @@ import { CoverCv011 } from '../../resumeTemplatesCover/011-CV';
 import { CoverCv016 } from '../../resumeTemplatesCover/016-CV';
 import { CoverCv030 } from '../../resumeTemplatesCover/030-CV';
 import { CoverCv031 } from '../../resumeTemplatesCover/031-CV';
-
+import { CoverCv032 } from '../../resumeTemplatesCover/032-CV';
 
 export const TemplatesSelectCover = ({
     status = "",
@@ -31,7 +31,7 @@ export const TemplatesSelectCover = ({
     statusResumeActive,
     reportTemplateRef,
 }) => {
-    const stateClasses = `${sizeLineSpacing(stateLineSpacing)} ${sizeFont(stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
+    const stateClasses = `${sizeLineSpacing(+stateLineSpacing)} ${sizeFont(+stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
     const router = useRouter();
     const idCv = router.query.idCv;
 
@@ -186,6 +186,17 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "031-CV" && (
                     <CoverCv031
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "032-CV" && (
+                    <CoverCv032
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

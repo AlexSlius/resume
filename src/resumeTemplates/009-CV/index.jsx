@@ -49,7 +49,7 @@ export const ResumeCv009 = ({
               </div>
               <div className="column-right">
                 {
-                  isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                  isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                     <h1 className="cv-name main-color-2-text font-weight-400 font-size-8 line-height-9-1">
                       {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                     </h1>
@@ -57,8 +57,8 @@ export const ResumeCv009 = ({
                 }
                 <div className="white-line main-color-2-border"></div>
                 {
-                  isArray(contact) && contact[0]?.jobTitle && (
-                    <h2 className="cv-prophecy main-color-2-text font-size-7 line-height-8-1">{contact[0]?.jobTitle}</h2>
+                  isArray(contact) && contact?.[0]?.jobTitle && (
+                    <h2 className="cv-prophecy main-color-2-text font-size-7 line-height-8-1">{contact?.[0]?.jobTitle}</h2>
                   )
                 }
                 {
@@ -116,7 +116,7 @@ export const ResumeCv009 = ({
                           (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth) && (
                             <div className="details-block-item">
                               <p className="block-item-name main-color-1-text font-weight-700 font-size-1 line-height-1">DATE / PLACE OF BIRTH</p>
-                              <p className="block-item-value main-color-2-text font-weight-500 font-size-1 line-height-1">{!!contact?.[0]?.dateOfBirth && moment(contact[0].dateOfBirth).format("DD-MM-yy")} {contact?.[0]?.placeOfBirth || ""}</p>
+                              <p className="block-item-value main-color-2-text font-weight-500 font-size-1 line-height-1">{!!contact?.[0]?.dateOfBirth && moment(contact?.[0].dateOfBirth).format("DD-MM-yy")} {contact?.[0]?.placeOfBirth || ""}</p>
                             </div>
                           )
                         }
@@ -127,7 +127,7 @@ export const ResumeCv009 = ({
                   {
                     (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.email || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
                       <div className="additional-details-block">
-                        <p className="main-color-2-text font-weight-500 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact[0]?.zipCode : ""} ${contact[0]?.phone || ""} ${contact[0]?.email || ""}`}</p>
+                        <p className="main-color-2-text font-weight-500 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""} ${contact?.[0]?.phone || ""} ${contact?.[0]?.email || ""}`}</p>
                       </div>
                     )
                   }

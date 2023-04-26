@@ -664,6 +664,10 @@ button {
 
 .menus-card {
     position: relative;
+
+    &.disabled {
+        pointer-events: none;
+    }
 }
 
 .bnt-menus {
@@ -1618,6 +1622,9 @@ button {
     }
 }
 
+.form-control {
+    box-shadow: none !important;
+}
 
 @media (max-width: 1559px) {
     .r-gap-30 {

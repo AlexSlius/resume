@@ -8,6 +8,14 @@
   // align-items: flex-start;
   min-height: calc(100vh - 180px);
   background: #fff;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 700;
+  }
 }
 
 .desrip-content {

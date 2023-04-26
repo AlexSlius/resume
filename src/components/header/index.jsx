@@ -97,7 +97,9 @@ export const Header = () => {
                             <div className={`mobile-menu${isMenuShow ? ' show' : ''}`}>
                                 <div>
                                     <header>
-                                        <img className="mobile-logo" loading="lazy" src="/images/page/logo.svg" alt="logo" />
+                                        <Link href="/" className="logo">
+                                            <img className="mobile-logo" loading="lazy" src="/images/page/logo.svg" alt="logo" />
+                                        </Link>
                                         <div className="close-menu" onClick={toggleMenu}>
                                             <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
                                         </div>

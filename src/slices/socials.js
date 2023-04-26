@@ -54,9 +54,11 @@ export const slice = createSlice({
     // get list skills all
     [fetchGetAllLinks.pending]: (state) => {
       state.statusList = statusLoader;
+      state.status = statusLoader;
     },
     [fetchGetAllLinks.fulfilled]: (state, action) => {
       state.statusList = statusLoaded;
+      state.status = statusLoaded;
       state.socialObj = action.payload;
     },
   }

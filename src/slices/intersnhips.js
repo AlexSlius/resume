@@ -7,6 +7,7 @@ import {
   fetchPostAddCvOneInternships,
   fetchDeleteInternships,
   fetchDeleteAll,
+  fetchUpdateInternships,
 } from '../controllers/interships';
 
 const initialState = {
@@ -86,6 +87,12 @@ export const slice = createSlice({
     [fetchGetCvInternships.fulfilled]: (state, action) => {
       state.status = statusLoaded;
       state.interhipObj = action.payload;
+    },
+    [fetchUpdateInternships.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateInternships.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
     },
   }
 });

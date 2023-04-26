@@ -7,6 +7,7 @@ import {
   fetchPostAddCvOneEducation,
   fetchDeleteEducation,
   fetchDeleteAll,
+  fetchUpdateEducation
 } from '../controllers/educations';
 
 const initialState = {
@@ -55,6 +56,12 @@ export const slice = createSlice({
         ...state,
         educationObj: objData,
       }
+    },
+    [fetchUpdateEducation.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateEducation.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
     },
     // delete all
     [fetchDeleteAll.pending]: (state) => {

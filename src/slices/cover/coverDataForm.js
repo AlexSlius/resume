@@ -4,7 +4,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 import {
     getCoverLetterById,
     getCoverGenerateDate,
-    getCoverDataShare
+    getCoverDataShare,
+    updateCoverLetterById
 } from "../../controllers/cover/personalize";
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
@@ -133,11 +134,19 @@ export const slice = createSlice({
         },
         // get cover ketter generate
         [getCoverGenerateDate.pending]: (state) => {
+            state.status = statusLoader;
             state.statusCoverGenerate = statusLoader;
         },
         [getCoverGenerateDate.fulfilled]: (state, action) => {
             state.statusCoverGenerate = statusLoaded;
+            state.status = statusLoaded;
             state.coverGenerateDate = action.payload.cover_letter;
+        },
+        [updateCoverLetterById.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [updateCoverLetterById.fulfilled]: (state, action) => {
+            state.status = statusLoaded;
         },
     }
 });

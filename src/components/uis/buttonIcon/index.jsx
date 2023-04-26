@@ -8,11 +8,13 @@ export const ButtonIcon = ({
     label,
     className = "",
     isButton = false,
-    onHandle = () => { }
+    onHandle = () => { },
+    disabled,
 }) => {
     return (
         isButton ? (
             <button
+                disabled={disabled}
                 className={`${className} form-btn btns minp`}
                 onClick={onHandle}
             >

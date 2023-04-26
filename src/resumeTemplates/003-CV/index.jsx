@@ -233,33 +233,33 @@ export const ResumeCv003 = ({
             <div className="cv-body-area area-1">
               <div className="columns-wrapper additional-color-2-background">
                 {
-                  isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName || contact[0]?.picture || contact[0]?.jobTitle) && (
+                  isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName || contact?.[0]?.picture || contact?.[0]?.jobTitle) && (
                     <div className="column-left">
                       <div className="personal-info-block">
                         {
-                          contact[0]?.picture && (
+                          contact?.[0]?.picture && (
                             <div id="photo-block" className="photo-block active">
-                              <img className="cv-photo" src={contact[0].picture} />
+                              <img className="cv-photo" src={contact?.[0].picture} />
                             </div>
                           )
                         }
                         {
-                          (contact[0]?.firstName || contact[0]?.lastName || contact[0]?.jobTitle) && (
+                          (contact?.[0]?.firstName || contact?.[0]?.lastName || contact?.[0]?.jobTitle) && (
                             <div className="cv-headings-wrap">
                               {
-                                (!!contact[0]?.firstName || !!contact[0]?.lastName) && (
+                                (!!contact?.[0]?.firstName || !!contact?.[0]?.lastName) && (
                                   <h1 className="cv-heading cv-name main-color-1-text heading-type-1 font-size-3 line-height-3">
                                     {
-                                      !!contact[0]?.firstName && (
+                                      !!contact?.[0]?.firstName && (
                                         <>
-                                          <span className="name-line-1 font-weight-400">{contact[0]?.firstName}</span><br />
+                                          <span className="name-line-1 font-weight-400">{contact?.[0]?.firstName}</span><br />
                                         </>
                                       )
                                     }
                                     {
-                                      !!contact[0]?.lastName && (
+                                      !!contact?.[0]?.lastName && (
                                         <>
-                                          <span className="name-line-2 font-weight-600">{contact[0]?.lastName}</span>
+                                          <span className="name-line-2 font-weight-600">{contact?.[0]?.lastName}</span>
                                         </>
                                       )
                                     }
@@ -267,8 +267,8 @@ export const ResumeCv003 = ({
                                 )
                               }
                               {
-                                !!contact[0]?.jobTitle && (
-                                  <h1 className="cv-heading cv-speciality font-weight-400 heading-type-2 main-color-1-text font-size-2 line-height-2">{contact[0]?.jobTitle}</h1>
+                                !!contact?.[0]?.jobTitle && (
+                                  <h1 className="cv-heading cv-speciality font-weight-400 heading-type-2 main-color-1-text font-size-2 line-height-2">{contact?.[0]?.jobTitle}</h1>
                                 )
                               }
                             </div>
@@ -279,37 +279,37 @@ export const ResumeCv003 = ({
                   )
                 }
                 {
-                  isArray(contact) && (!!contact[0]?.dateOfBirth || !!contact[0]?.placeOfBirth || !!contact[0]?.nationality || !!contact[0]?.driverLicense) && (
+                  isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
                     <div className="profile-secondary-info wrappable-block main-color-1-border">
                       {
-                        !!contact[0]?.dateOfBirth && (
+                        !!contact?.[0]?.dateOfBirth && (
                           <div className="profile-item">
                             <span className="name main-color-1-text font-weight-300 font-size-1 line-height-1">Birth Date</span>
-                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                           </div>
                         )
                       }
                       {
-                        !!contact[0]?.placeOfBirth && (
+                        !!contact?.[0]?.placeOfBirth && (
                           <div className="profile-item">
                             <span className="name main-color-1-text font-weight-300 font-size-1 line-height-1">Place of Birth</span>
-                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact[0]?.placeOfBirth}</span>
+                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
                           </div>
                         )
                       }
                       {
-                        !!contact[0]?.nationality && (
+                        !!contact?.[0]?.nationality && (
                           <div className="profile-item">
                             <span className="name main-color-1-text font-weight-300 font-size-1 line-height-1">Nationality</span>
-                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact[0]?.nationality}</span>
+                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
                           </div>
                         )
                       }
                       {
-                        !!contact[0]?.driverLicense && (
+                        !!contact?.[0]?.driverLicense && (
                           <div className="profile-item">
                             <span className="name main-color-1-text font-weight-300 font-size-1 line-height-1">Driving Licence</span>
-                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact[0]?.driverLicense}</span>
+                            <span className="value main-color-1-text font-weight-700 font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
                           </div>
                         )
                       }
@@ -331,35 +331,35 @@ export const ResumeCv003 = ({
                 )
               }
               {
-                isArray(contact) && (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.phone || !!contact[0]?.address || !!contact[0]?.email) && (
+                isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email) && (
                   <div className="details-block block-block wrappable-block main-color-1-border">
                     {
-                      !!contact[0]?.phone && (
+                      !!contact?.[0]?.phone && (
                         <div className="details-block-item career-phone main-color-1-text font-size-1 line-height-1">
                           <svg className="additional-color-1-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.94 8.66671C12.7933 8.66671 12.64 8.62004 12.4933 8.58671C12.1966 8.52035 11.9047 8.43347 11.62 8.32671C11.3107 8.21419 10.9708 8.22004 10.6655 8.34311C10.3603 8.46619 10.1114 8.6978 9.96666 8.99337L9.81999 9.30004C9.17254 8.93284 8.57441 8.48481 8.03999 7.96671C7.52189 7.43229 7.07386 6.83416 6.70666 6.18671L7.01333 6.04671C7.3089 5.90199 7.54051 5.65306 7.66359 5.34784C7.78666 5.04261 7.79251 4.70265 7.67999 4.39337C7.57412 4.10606 7.48726 3.81209 7.41999 3.51337C7.38666 3.36671 7.35999 3.21337 7.33999 3.06671C7.25904 2.59712 7.01308 2.17187 6.64641 1.86753C6.27974 1.5632 5.81646 1.39978 5.33999 1.40671H3.33333C3.05149 1.40634 2.77276 1.46554 2.5154 1.58043C2.25805 1.69532 2.02788 1.86331 1.83999 2.07337C1.64821 2.28914 1.5054 2.54387 1.42139 2.82006C1.33739 3.09626 1.31417 3.38736 1.35333 3.67337C1.71572 6.44813 2.98347 9.02581 4.95999 11.0067C6.94089 12.9832 9.51857 14.251 12.2933 14.6134C12.3799 14.62 12.4668 14.62 12.5533 14.6134C13.0449 14.6141 13.5196 14.4337 13.8867 14.1067C14.0967 13.9188 14.2647 13.6887 14.3796 13.4313C14.4945 13.1739 14.5537 12.8952 14.5533 12.6134V10.6134C14.5497 10.1527 14.3872 9.70745 14.0933 9.35277C13.7993 8.99809 13.392 8.75575 12.94 8.66671ZM13.2667 12.6667C13.2664 12.7597 13.2468 12.8517 13.2089 12.9367C13.171 13.0216 13.1157 13.0977 13.0467 13.16C12.9736 13.2266 12.8866 13.2761 12.7921 13.3049C12.6975 13.3337 12.5978 13.3412 12.5 13.3267C10.0122 13.0018 7.70016 11.868 5.91999 10.1C4.13831 8.31835 2.99468 5.99829 2.66666 3.50004C2.65218 3.40226 2.65962 3.30249 2.68844 3.20794C2.71727 3.11339 2.76676 3.02644 2.83333 2.95337C2.89641 2.88348 2.97358 2.82773 3.05976 2.78981C3.14594 2.75189 3.23917 2.73266 3.33333 2.73337H5.33333C5.48743 2.72961 5.63808 2.77936 5.75964 2.87417C5.88119 2.96898 5.96613 3.10299 5.99999 3.25337C5.99999 3.43337 6.05999 3.62004 6.09999 3.80004C6.17704 4.14928 6.27954 4.49242 6.40666 4.82671L5.47333 5.26671C5.3129 5.34035 5.18823 5.47461 5.12666 5.64004C5.05998 5.80235 5.05998 5.9844 5.12666 6.14671C6.08613 8.20188 7.73816 9.85391 9.79333 10.8134C9.95563 10.8801 10.1377 10.8801 10.3 10.8134C10.4654 10.7518 10.5997 10.6271 10.6733 10.4667L11.0933 9.53337C11.4373 9.65879 11.7891 9.76124 12.1467 9.84004C12.32 9.88004 12.5067 9.91337 12.6867 9.94004C12.837 9.97391 12.9711 10.0588 13.0659 10.1804C13.1607 10.3019 13.2104 10.4526 13.2067 10.6067L13.2667 12.6667ZM9.33333 1.33337C9.17999 1.33337 9.01999 1.33337 8.86666 1.33337C8.68985 1.3484 8.52625 1.43305 8.41185 1.56871C8.29745 1.70436 8.24163 1.8799 8.25666 2.05671C8.27169 2.23352 8.35634 2.39712 8.49199 2.51151C8.62764 2.62591 8.80318 2.68174 8.97999 2.66671H9.33333C10.3942 2.66671 11.4116 3.08813 12.1618 3.83828C12.9119 4.58843 13.3333 5.60584 13.3333 6.66671C13.3333 6.78671 13.3333 6.90004 13.3333 7.02004C13.3185 7.19591 13.3741 7.37047 13.4878 7.50544C13.6016 7.64041 13.7642 7.72478 13.94 7.74004H13.9933C14.1602 7.74072 14.3213 7.67877 14.4447 7.56645C14.5682 7.45412 14.645 7.29959 14.66 7.13337C14.66 6.98004 14.66 6.82004 14.66 6.66671C14.66 5.25337 14.099 3.89783 13.1003 2.89783C12.1015 1.89782 10.7467 1.33514 9.33333 1.33337ZM10.6667 6.66671C10.6667 6.84352 10.7369 7.01309 10.8619 7.13811C10.9869 7.26314 11.1565 7.33337 11.3333 7.33337C11.5101 7.33337 11.6797 7.26314 11.8047 7.13811C11.9298 7.01309 12 6.84352 12 6.66671C12 5.95946 11.719 5.28119 11.2189 4.78109C10.7188 4.28099 10.0406 4.00004 9.33333 4.00004C9.15652 4.00004 8.98695 4.07028 8.86192 4.1953C8.7369 4.32033 8.66666 4.4899 8.66666 4.66671C8.66666 4.84352 8.7369 5.01309 8.86192 5.13811C8.98695 5.26314 9.15652 5.33337 9.33333 5.33337C9.68695 5.33337 10.0261 5.47385 10.2761 5.7239C10.5262 5.97395 10.6667 6.31309 10.6667 6.66671Z" fill="#A0A0A0" />
                           </svg>
-                          <span>{contact[0]?.phone}</span>
+                          <span>{contact?.[0]?.phone}</span>
                         </div>
                       )
                     }
                     {
-                      !!contact[0]?.email && (
+                      !!contact?.[0]?.email && (
                         <div className="details-block-item career-email main-color-1-text font-size-1 line-height-1">
                           <svg className="additional-color-1-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.6667 2.66663H3.33337C2.80294 2.66663 2.29423 2.87734 1.91916 3.25241C1.54409 3.62749 1.33337 4.13619 1.33337 4.66663V11.3333C1.33337 11.8637 1.54409 12.3724 1.91916 12.7475C2.29423 13.1226 2.80294 13.3333 3.33337 13.3333H12.6667C13.1971 13.3333 13.7058 13.1226 14.0809 12.7475C14.456 12.3724 14.6667 11.8637 14.6667 11.3333V4.66663C14.6667 4.13619 14.456 3.62749 14.0809 3.25241C13.7058 2.87734 13.1971 2.66663 12.6667 2.66663ZM3.33337 3.99996H12.6667C12.8435 3.99996 13.0131 4.0702 13.1381 4.19522C13.2631 4.32025 13.3334 4.48981 13.3334 4.66663L8.00004 7.91996L2.66671 4.66663C2.66671 4.48981 2.73695 4.32025 2.86197 4.19522C2.98699 4.0702 3.15656 3.99996 3.33337 3.99996ZM13.3334 11.3333C13.3334 11.5101 13.2631 11.6797 13.1381 11.8047C13.0131 11.9297 12.8435 12 12.6667 12H3.33337C3.15656 12 2.98699 11.9297 2.86197 11.8047C2.73695 11.6797 2.66671 11.5101 2.66671 11.3333V6.18663L7.65337 9.23329C7.75472 9.29181 7.86968 9.32261 7.98671 9.32261C8.10373 9.32261 8.21869 9.29181 8.32004 9.23329L13.3334 6.18663V11.3333Z" fill="#A0A0A0" />
                           </svg>
-                          <span>{contact[0]?.email}</span>
+                          <span>{contact?.[0]?.email}</span>
                         </div>
                       )
                     }
                     {
-                      (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.address || !!contact[0]?.zipCode) && (
+                      (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
                         <div className="details-block-item career-address main-color-1-text font-size-1 line-height-1">
                           <svg className="additional-color-1-svg" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.24996 2.98669C8.25539 1.92582 6.90648 1.32983 5.49996 1.32983C4.09343 1.32983 2.74452 1.92582 1.74996 2.98669C0.755394 4.04755 0.196655 5.4864 0.196655 6.98669C0.196655 8.48698 0.755394 9.92582 1.74996 10.9867L5.04371 14.5067C5.10181 14.5692 5.17093 14.6188 5.2471 14.6526C5.32326 14.6865 5.40495 14.7039 5.48746 14.7039C5.56996 14.7039 5.65165 14.6865 5.72782 14.6526C5.80398 14.6188 5.8731 14.5692 5.93121 14.5067L9.24996 10.9534C10.2404 9.8969 10.7968 8.46406 10.7968 6.97002C10.7968 5.47599 10.2404 4.04314 9.24996 2.98669ZM8.35621 10L5.49996 13.06L2.64371 10C2.07942 9.39757 1.69525 8.63019 1.53977 7.79488C1.38428 6.95958 1.46445 6.09385 1.77015 5.30714C2.07584 4.52043 2.59334 3.84805 3.25723 3.37501C3.92111 2.90196 4.70157 2.64948 5.49996 2.64948C6.29834 2.64948 7.0788 2.90196 7.74269 3.37501C8.40657 3.84805 8.92407 4.52043 9.22976 5.30714C9.53546 6.09385 9.61563 6.95958 9.46015 7.79488C9.30466 8.63019 8.92049 9.39757 8.35621 10ZM3.62496 4.94002C3.1204 5.47987 2.83708 6.21107 2.83708 6.97336C2.83708 7.73564 3.1204 8.46684 3.62496 9.00669C3.99981 9.40721 4.4772 9.68074 4.99724 9.79296C5.51728 9.90517 6.0568 9.85108 6.54813 9.63746C7.03945 9.42384 7.46069 9.06021 7.75901 8.59219C8.05732 8.12417 8.21941 7.5726 8.22496 7.00669C8.22777 6.62882 8.15953 6.25419 8.02427 5.90495C7.88901 5.5557 7.68947 5.23893 7.43746 4.97336C7.18975 4.70307 6.89438 4.48771 6.56835 4.33967C6.24231 4.19162 5.89204 4.11381 5.53771 4.11071C5.18337 4.10761 4.83196 4.17929 4.50369 4.32161C4.17542 4.46394 3.87678 4.67411 3.62496 4.94002ZM6.55621 8.06002C6.31936 8.31652 6.00634 8.47729 5.67066 8.51486C5.33498 8.55242 4.9975 8.46445 4.7159 8.26597C4.4343 8.0675 4.22608 7.77085 4.12684 7.42674C4.02759 7.08264 4.04349 6.71245 4.1718 6.37946C4.30012 6.04647 4.53289 5.77137 4.83032 5.60118C5.12775 5.43099 5.47136 5.37629 5.80242 5.44643C6.13347 5.51657 6.4314 5.70719 6.64527 5.98571C6.85915 6.26422 6.97568 6.61334 6.97496 6.97336C6.96586 7.38487 6.80401 7.77571 6.52496 8.06002H6.55621Z" fill="#A0A0A0" />
                           </svg>
-                          <span className="font-size-state-adaptation">{`${!!contact[0]?.country ? (`${contact[0]?.country},`) : ''} ${!!contact[0]?.address ? (`${contact[0]?.address},`) : ''} ${!!contact[0]?.city ? (`${contact[0]?.city},`) : ''} ${!!contact[0]?.zipCode ? contact[0]?.zipCode : ""}`}</span>
+                          <span className="font-size-state-adaptation">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
                         </div>
                       )
                     }

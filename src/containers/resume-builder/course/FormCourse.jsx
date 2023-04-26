@@ -138,7 +138,8 @@ const FormCourse = ({
             isArray(courseObj) && (courseObj.length > 0) && (
                <CRow>
                   <CCol>
-                     <LoadWr isLoad={isLoader(status)}>
+                     {/* isLoad={isLoader(status)} */}
+                     <LoadWr>
                         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                            <Droppable droppableId="droppable">
                               {

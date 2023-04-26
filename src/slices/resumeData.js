@@ -36,6 +36,9 @@ export const slice = createSlice({
     reducers: {
         updateActiveResumeNew(state, action) {
             state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
+        },
+        updateActiveResume(state, action) {
+            state.resumeActive = { ...state.resumeActive, ...action.payload };
         }
     },
     extraReducers: {
@@ -91,7 +94,8 @@ export const slice = createSlice({
 });
 
 export const {
-    updateActiveResumeNew
+    updateActiveResumeNew,
+    updateActiveResume
 } = slice.actions;
 
 export const { reducer } = slice;

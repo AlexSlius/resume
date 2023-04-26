@@ -213,7 +213,8 @@ const FormContact = ({
    }, [idCountry]);
 
    return (
-      <LoadWr isLoad={isLoader(status)}>
+      // isLoad={isLoader(status)}
+      <LoadWr >
          <CForm onSubmit={handleSubmit(formSubmit)} className="rowse r-gap-30">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>

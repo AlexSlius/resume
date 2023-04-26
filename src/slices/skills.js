@@ -75,10 +75,12 @@ export const slice = createSlice({
     },
     // get list skills all
     [fetchGetSkillslistAll.pending]: (state) => {
+      state.status = statusLoader;
       state.statusListSkillsAll = statusLoader;
     },
     [fetchGetSkillslistAll.fulfilled]: (state, action) => {
       state.statusListSkillsAll = statusLoaded;
+      state.status = statusLoaded;
       state.skillsObj.skillsListAll = action.payload;
     },
     // get starts skils

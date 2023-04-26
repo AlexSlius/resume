@@ -98,7 +98,8 @@ const FormLanguages = ({
 
    return (
       <>
-         <LoadWr isLoad={isLoader(status)}>
+         {/* isLoad={isLoader(status)} */}
+         <LoadWr>
             {
                isArray(languageObj) && languageObj.map((item, index) => (
                   <div className="rows-lan mt-4" key={index}>

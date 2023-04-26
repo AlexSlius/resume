@@ -7,6 +7,7 @@ import {
   fetchPostAddCvOneActivitys,
   fetchDeleteActivitys,
   fetchDeleteAll,
+  fetchUpdateActivitys
 } from '../controllers/activitys';
 
 const initialState = {
@@ -56,6 +57,12 @@ export const slice = createSlice({
         ...state,
         activityObj: objData,
       }
+    },
+    [fetchUpdateActivitys.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateActivitys.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
     },
     // delete all
     [fetchDeleteAll.pending]: (state) => {

@@ -4,7 +4,8 @@ import { HYDRATE } from 'next-redux-wrapper';
 import {
   contactSetNew,
   getBasicContact,
-  contactAddNew
+  contactAddNew,
+  fetchUpdateContact
 } from "../controllers/contacts";
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
@@ -103,6 +104,12 @@ export const slice = createSlice({
     },
     [contactAddNew.fulfilled]: (state) => {
       state.statusNew = statusLoaded;
+    },
+    [fetchUpdateContact.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateContact.fulfilled]: (state) => {
+      state.status = statusLoaded;
     }
   }
 });

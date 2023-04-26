@@ -17,6 +17,7 @@ import { ResumeCv011 } from '../../resumeTemplates/011-CV';
 import { ResumeCv016 } from '../../resumeTemplates/016-CV';
 import { ResumeCv030 } from '../../resumeTemplates/030-CV';
 import { ResumeCv031 } from '../../resumeTemplates/031-CV';
+import { ResumeCv032 } from '../../resumeTemplates/032-CV';
 
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
@@ -30,7 +31,7 @@ export const TemplatesSelect = ({
     statusResumeActive,
     reportTemplateRef,
 }) => {
-    const stateClasses = `${sizeLineSpacing(stateLineSpacing)} ${sizeFont(stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
+    const stateClasses = `${sizeLineSpacing(+stateLineSpacing)} ${sizeFont(+stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
     const router = useRouter();
     const idCv = router.query.idCv;
 
@@ -184,9 +185,20 @@ export const TemplatesSelect = ({
                 )
             }
 
-{
+            {
                 resumeActive == "031-CV" && (
                     <ResumeCv031
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "032-CV" && (
+                    <ResumeCv032
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

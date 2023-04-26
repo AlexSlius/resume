@@ -25,7 +25,7 @@ export const ResumeCv006 = ({
     hide_experience_level
   } = data;
 
-  let classPhoto = (isArray(contact) && contact[0]?.picture) ? "has-photo" : "";
+  let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
 
   // React.useEffect(() => {
   //   if (typeof window != 'undefined') {
@@ -236,15 +236,15 @@ export const ResumeCv006 = ({
                 }
                 <div className="profile-info">
                   {
-                    isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                    isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                       <h1 className="cv-name font-weight-700 font-size-3 line-height-4">
                         {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                       </h1>
                     )
                   }
                   {
-                    isArray(contact) && contact[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-2 line-height-2">{contact[0]?.jobTitle}</h2>
+                    isArray(contact) && contact?.[0]?.jobTitle && (
+                      <h2 className="cv-prophecy font-size-2 line-height-2">{contact?.[0]?.jobTitle}</h2>
                     )
                   }
                   {
@@ -253,13 +253,13 @@ export const ResumeCv006 = ({
                     )
                   }
                   {
-                    isArray(contact) && (!!contact[0]?.dateOfBirth || !!contact[0]?.placeOfBirth || !!contact[0]?.nationality || !!contact[0]?.driverLicense) && (
+                    isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
                       <div className="profile-additional-info">
                         {
-                          !!contact[0]?.dateOfBirth && (
+                          !!contact?.[0]?.dateOfBirth && (
                             <p className="profile-info-item">
                               <span className="item-name font-weight-300 font-size-1 line-height-1">Birth Date</span>
-                              <span className="item-value font-size-1 line-height-1">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                              <span className="item-value font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                             </p>
                           )
                         }
@@ -267,7 +267,7 @@ export const ResumeCv006 = ({
                           !!contact?.[0]?.placeOfBirth && (
                             <p className="profile-info-item">
                               <span className="item-name font-weight-300 font-size-1 line-height-1">Place of Birth</span>
-                              <span className="item-value font-size-1 line-height-1">{contact[0]?.placeOfBirth}</span>
+                              <span className="item-value font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
                             </p>
                           )
                         }
@@ -283,7 +283,7 @@ export const ResumeCv006 = ({
                           !!contact?.[0]?.driverLicense && (
                             <p className="profile-info-item">
                               <span className="item-name font-weight-300 font-size-1 line-height-1">Driving Licence</span>
-                              <span className="item-value font-size-1 line-height-1">{contact[0]?.driverLicense}</span>
+                              <span className="item-value font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
                             </p>
                           )
                         }
@@ -499,7 +499,7 @@ export const ResumeCv006 = ({
                         {
                           languages.map((item, index) => (
                             <div className="language-list-item" key={index}>
-                              <p className="font-weight-600 font-size-1 line-height-1">English</p>
+                              <p className="font-weight-600 font-size-1 line-height-1">{item.language}</p>
                               <p className="language-skill-estimation-wrapper">
                                 <span className="estimation-value additional-color-1-background" style={{ width: `${(item.level * 100) / 6}%` }}></span>
                               </p>
@@ -575,7 +575,7 @@ export const ResumeCv006 = ({
               </div>
             </div>
             {
-              isArray(contact) && (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.phone || !!contact[0]?.address || !!contact[0]?.email || (isArray(social_links) && !!social_links.length)) && (
+              isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email || (isArray(social_links) && !!social_links.length)) && (
                 <div className="cv-body-area bottom-area">
                   <div className="bottom-block additional-color-1-background">
                     {
@@ -599,12 +599,12 @@ export const ResumeCv006 = ({
                       )
                     }
                     {
-                      (!!contact[0]?.country || !!contact[0]?.city || !!contact[0]?.address || !!contact[0]?.zipCode) && (
+                      (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
                         <div className="footer-block">
                           <svg className="main-color-2-svg" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.24996 2.98644C8.25539 1.92558 6.90648 1.32959 5.49996 1.32959C4.09343 1.32959 2.74452 1.92558 1.74996 2.98644C0.755394 4.04731 0.196655 5.48615 0.196655 6.98644C0.196655 8.48674 0.755394 9.92558 1.74996 10.9864L5.04371 14.5064C5.10181 14.5689 5.17093 14.6185 5.2471 14.6524C5.32326 14.6862 5.40495 14.7036 5.48746 14.7036C5.56996 14.7036 5.65165 14.6862 5.72782 14.6524C5.80398 14.6185 5.8731 14.5689 5.93121 14.5064L9.24996 10.9531C10.2404 9.89666 10.7968 8.46381 10.7968 6.96978C10.7968 5.47574 10.2404 4.0429 9.24996 2.98644ZM8.35621 9.99978L5.49996 13.0598L2.64371 9.99978C2.07942 9.39732 1.69525 8.62994 1.53977 7.79464C1.38428 6.95933 1.46445 6.09361 1.77015 5.3069C2.07584 4.52019 2.59334 3.84781 3.25723 3.37476C3.92111 2.90171 4.70157 2.64923 5.49996 2.64923C6.29834 2.64923 7.0788 2.90171 7.74269 3.37476C8.40657 3.84781 8.92407 4.52019 9.22976 5.3069C9.53546 6.09361 9.61563 6.95933 9.46015 7.79464C9.30466 8.62994 8.92049 9.39732 8.35621 9.99978ZM3.62496 4.93978C3.1204 5.47963 2.83708 6.21082 2.83708 6.97311C2.83708 7.7354 3.1204 8.4666 3.62496 9.00644C3.99981 9.40697 4.4772 9.6805 4.99724 9.79271C5.51728 9.90493 6.0568 9.85083 6.54813 9.63721C7.03945 9.42359 7.46069 9.05996 7.75901 8.59194C8.05732 8.12392 8.21941 7.57236 8.22496 7.00644C8.22777 6.62858 8.15953 6.25395 8.02427 5.9047C7.88901 5.55546 7.68947 5.23868 7.43746 4.97311C7.18975 4.70283 6.89438 4.48747 6.56835 4.33942C6.24231 4.19137 5.89204 4.11356 5.53771 4.11046C5.18337 4.10737 4.83196 4.17904 4.50369 4.32137C4.17542 4.4637 3.87678 4.67386 3.62496 4.93978ZM6.55621 8.05978C6.31936 8.31627 6.00634 8.47705 5.67066 8.51461C5.33498 8.55218 4.9975 8.4642 4.7159 8.26573C4.4343 8.06725 4.22608 7.77061 4.12684 7.4265C4.02759 7.08239 4.04349 6.7122 4.1718 6.37921C4.30012 6.04623 4.53289 5.77112 4.83032 5.60093C5.12775 5.43075 5.47136 5.37605 5.80242 5.44619C6.13347 5.51633 6.4314 5.70695 6.64527 5.98547C6.85915 6.26398 6.97568 6.61309 6.97496 6.97311C6.96586 7.38462 6.80401 7.77546 6.52496 8.05978H6.55621Z" fill="white" />
                           </svg>
-                          <span className="main-color-2-text font-weight-500 font-size-1 line-height-1">{`${!!contact[0]?.country ? (`${contact[0]?.country},`) : ''} ${!!contact[0]?.address ? (`${contact[0]?.address},`) : ''} ${!!contact[0]?.city ? (`${contact[0]?.city},`) : ''} ${!!contact[0]?.zipCode ? contact[0]?.zipCode : ""}`}</span>
+                          <span className="main-color-2-text font-weight-500 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
                         </div>
                       )
                     }

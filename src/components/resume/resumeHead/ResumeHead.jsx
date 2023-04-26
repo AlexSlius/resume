@@ -13,6 +13,7 @@ const ResumeHead = ({
    lengthPages,
    onNext = () => { },
    onPrev = () => { },
+   isLoad = false,
 }) => {
    let isNext = lengthPages == 1 ? false : currentPage == lengthPages ? false : true;
    let isPrev = lengthPages == 1 ? false : currentPage == 1 ? false : true;
@@ -20,7 +21,9 @@ const ResumeHead = ({
    return (
       <div className={`${style.resume_head}`}>
          <div className={`${style.resume_head__status}`}>
-            <Icon svg={savedIcon} classNames={[style.icon]} />
+            <div className={`${style.resume_head__status_icon}`}>
+               <Icon svg={savedIcon} classNames={[style.icon, isLoad ? style.icon_load : ""]} />
+            </div>
             Saved
          </div>
 

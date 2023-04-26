@@ -56,7 +56,7 @@ export const ResumeCv008 = ({
             <div className="cv-body-area top-area">
               <div className="left-side">
                 {
-                  isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                  isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                     <h2 className="cv-name font-size-6 line-height-9 main-color-2-text">
                       {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                     </h2>
@@ -64,8 +64,8 @@ export const ResumeCv008 = ({
                 }
                 <span className="white-line main-color-2-border"></span>
                 {
-                  isArray(contact) && contact[0]?.jobTitle && (
-                    <h1 className="cv-prophecy font-size-7 line-height-10 main-color-2-text">{contact[0]?.jobTitle}</h1>
+                  isArray(contact) && contact?.[0]?.jobTitle && (
+                    <h1 className="cv-prophecy font-size-7 line-height-10 main-color-2-text">{contact?.[0]?.jobTitle}</h1>
                   )
                 }
                 {
@@ -73,9 +73,9 @@ export const ResumeCv008 = ({
                     <p className="font-size-1 line-height-1 main-color-2-text">
                       {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
                       {!!contact?.[0]?.city && (`${contact?.[0]?.city},`)}
-                      {!!contact?.[0]?.zipCode && (<>{`${contact[0]?.zipCode},`}<br /></>)}
+                      {!!contact?.[0]?.zipCode && (<>{`${contact?.[0]?.zipCode},`}<br /></>)}
                       {!!contact?.[0]?.country && (`${contact?.[0]?.country},`)}
-                      {!!contact?.[0]?.phone && (<>{`${contact[0].phone},`}<br /></>)}
+                      {!!contact?.[0]?.phone && (<>{`${contact?.[0].phone},`}<br /></>)}
                       {!!contact?.[0]?.email && (`${contact?.[0]?.email}`)}
                     </p>
                   )
@@ -160,7 +160,7 @@ export const ResumeCv008 = ({
                         (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth) && (
                           <div className="date-place-of-birth-block">
                             <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-0-1 main-color-2-text">DATE / PLACE OF BIRTH</h3>
-                            <p className="font-weight-700 font-size-2 line-height-0-1 additional-color-1-text">{!!contact?.[0]?.dateOfBirth && moment(contact[0].dateOfBirth).format("DD-MM-yy")} {contact?.[0]?.placeOfBirth || ""}</p>
+                            <p className="font-weight-700 font-size-2 line-height-0-1 additional-color-1-text">{!!contact?.[0]?.dateOfBirth && moment(contact?.[0].dateOfBirth).format("DD-MM-yy")} {contact?.[0]?.placeOfBirth || ""}</p>
                           </div>
                         )
                       }

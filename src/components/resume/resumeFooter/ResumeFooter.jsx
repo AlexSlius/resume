@@ -15,6 +15,7 @@ import { MenuButton } from '../../menuButton';
 const ResumeFooter = ({ isCover }) => {
    const router = useRouter();
    const { idCv, type = "new", slug = "001-CV" } = router.query;
+   const isNewResume = (idCv == "new");
 
    const {
       auth: {
@@ -51,14 +52,14 @@ const ResumeFooter = ({ isCover }) => {
                   <CButton
                      className='resume-footer__button'
                      color="secondary" variant="outline"
-                     disabled={!isAthorized}
+                     disabled={!isAthorized || isNewResume}
                   >
                      <Icon svg={downloadIcon} classNames={['icon-20']} />
                      Download PDF
                   </CButton>
                )
             }
-            <div className="menu-show-tem ab-menu menus-card" >
+            <div className={`menu-show-tem ab-menu menus-card ${(!isAthorized || isNewResume) ? "disabled" : ""}`}>
                <CButton
                   className='resume-footer__button'
                   color="secondary"
@@ -67,7 +68,11 @@ const ResumeFooter = ({ isCover }) => {
                >
                   <Icon svg={dotsIcon} classNames={['icon-20']} />
                </CButton>
-               <MenuButton isEdit={true} />
+               {
+                  isAthorized && (
+                     <MenuButton isEdit={true} />
+                  )
+               }
             </div>
          </div>
       </div>

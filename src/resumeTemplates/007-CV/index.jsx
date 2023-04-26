@@ -59,7 +59,7 @@ export const ResumeCv007 = ({
                         !!contact?.[0]?.dateOfBirth && (
                           <p className="info-1-item font-size-1 line-height-1">
                             <span className="item-name">Birth Date</span>
-                            <span className="item-value">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                            <span className="item-value">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                           </p>
                         )
                       }
@@ -67,7 +67,7 @@ export const ResumeCv007 = ({
                         !!contact?.[0]?.placeOfBirth && (
                           <p className="info-1-item font-size-1 line-height-1">
                             <span className="item-name">Place of Birth</span>
-                            <span className="item-value">{contact[0]?.placeOfBirth}</span>
+                            <span className="item-value">{contact?.[0]?.placeOfBirth}</span>
                           </p>
                         )
                       }
@@ -83,7 +83,7 @@ export const ResumeCv007 = ({
                         !!contact?.[0]?.driverLicense && (
                           <p className="info-1-item font-size-1 line-height-1">
                             <span className="item-name">Driving Licence</span>
-                            <span className="item-value">{contact[0]?.driverLicense}</span>
+                            <span className="item-value">{contact?.[0]?.driverLicense}</span>
                           </p>
                         )
                       }
@@ -94,13 +94,13 @@ export const ResumeCv007 = ({
                 {
                   (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.email || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
                     <div className="info-2">
-                      <p className="font-weight-700 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact[0]?.zipCode : ""}`}</p>
+                      <p className="font-weight-700 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</p>
                       {
-                        !!contact?.[0]?.phone && (<p className="font-weight-700 font-size-1 line-height-1">{contact[0]?.phone}</p>)
+                        !!contact?.[0]?.phone && (<p className="font-weight-700 font-size-1 line-height-1">{contact?.[0]?.phone}</p>)
                       }
                       {
                         !!contact?.[0]?.email && (
-                          <p className="font-weight-700 font-size-1 line-height-1">{contact[0]?.email}</p>
+                          <p className="font-weight-700 font-size-1 line-height-1">{contact?.[0]?.email}</p>
                         )
                       }
                     </div>
@@ -226,12 +226,12 @@ export const ResumeCv007 = ({
             </div>
             <div className="column-right">
               {
-                isArray(contact) && contact[0]?.jobTitle && (
-                  <h2 className="cv-prophecy main-color-2-text font-size-4 line-height-5 main-color-1-background">{contact[0]?.jobTitle}</h2>
+                isArray(contact) && contact?.[0]?.jobTitle && (
+                  <h2 className="cv-prophecy main-color-2-text font-size-4 line-height-5 main-color-1-background">{contact?.[0]?.jobTitle}</h2>
                 )
               }
               {
-                isArray(contact) && (contact[0]?.firstName || contact[0]?.lastName) && (
+                isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
                   <h1 className="cv-name font-size-5 line-height-6">
                     {!!contact?.[0]?.firstName && (<><span className="text-line-1 font-weight-300">{contact?.[0]?.firstName}</span>&nbsp;</>)}
                     {!!contact?.[0]?.lastName && (<span className="text-line-2 font-weight-900">{contact?.[0]?.lastName}</span>)}

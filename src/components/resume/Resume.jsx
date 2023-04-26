@@ -8,6 +8,7 @@ import ResumeFooter from './resumeFooter/ResumeFooter'
 import Icon from "../Icon";
 
 import backIcon from "/public/images/icons/back.svg?sprite"
+import { isHelperLoad } from '../../helpers/isHelperAllLoad';
 
 const Resume = ({
    isCover = false,
@@ -18,6 +19,8 @@ const Resume = ({
    const [pagePagCurrent, setPagePagCurrent] = React.useState(0);
 
    const {
+      coverDataForm,
+      coverData,
       resumeData,
       contacts,
       employment,
@@ -33,6 +36,26 @@ const Resume = ({
       certificaties,
       careers,
    } = useSelector((state) => state);
+
+   const isLoadAll = isHelperLoad({
+      arr: [resumeData,
+         coverDataForm,
+         coverData,
+         contacts,
+         employment,
+         educations,
+         skills,
+         socials,
+         hobies,
+         interships,
+         courses,
+         activitys,
+         languages,
+         references,
+         certificaties,
+         careers,
+      ]
+   });
 
    const onNext = () => {
       setPagePagCurrent(prev => prev + 1);
@@ -138,6 +161,7 @@ const Resume = ({
                lengthPages={pagesPag}
                onNext={onNext}
                onPrev={onPrev}
+               isLoad={isLoadAll}
             />
             <ResumeMain
                reportTemplateRef={reportTemplateRef}

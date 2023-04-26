@@ -7,6 +7,7 @@ import {
   fetchPostAddCvOneCertificates,
   fetchGetCvCertificates,
   fetchDeleteAll,
+  fetchUpdateCertificates,
 } from "../controllers/certificaties";
 
 const initialState = {
@@ -62,6 +63,12 @@ export const slice = createSlice({
       state.status = statusLoaded;
       state.certificatiesObj = action.payload;
     },
+    [fetchUpdateCertificates.pending]: (state) => {
+      state.status = statusLoader;
+    },
+    [fetchUpdateCertificates.fulfilled]: (state, action) => {
+      state.status = statusLoaded;
+    }
   }
 });
 

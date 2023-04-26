@@ -91,9 +91,11 @@ export const slice = createSlice({
     // update
     [fetchUpdateEmployment.pending]: (state) => {
       state.statusUpdate = statusLoader;
+      state.status = statusLoader;
     },
     [fetchUpdateEmployment.fulfilled]: (state, action) => {
       state.statusUpdate = statusLoaded;
+      state.status = statusLoaded;
     },
   }
 });
