@@ -466,11 +466,11 @@ const Templates = ({
                                 {
                                     !isCover && (
                                         <TemplatesSelect
+                                            isNewResume={isNewResume}
                                             status={dataOther?.status}
                                             stateLineSpacing={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
                                             stateFontSize={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                             reportTemplateRef={reportTemplateRef}
-
                                             resumeData={dataOther}
                                             data={isNewResume ? dataResumeTemplate : dataOther?.data}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
@@ -486,7 +486,7 @@ const Templates = ({
                                             stateLineSpacing={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
                                             stateFontSize={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
                                             reportTemplateRef={reportTemplateRef}
-
+                                            isNewResume={isNewResume}
                                             resumeData={dataOther}
                                             data={isNewResume ? dataCoverLetterTemplate : { ...coverDataForm.coverDataObj, coverGenerateDate: coverDataForm.coverGenerateDate }}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}

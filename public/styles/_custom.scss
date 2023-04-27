@@ -98,6 +98,22 @@ input.form-control {
     font-size: 18px;
     line-height: 21px;
     color: #838799;
+
+    svg {
+        fill: #838799;
+        stroke: #838799;
+    }
+
+    &:hover {
+        background: transparent !important;
+        border-color: #3679FD;
+        color: #3679FD;
+
+        svg {
+            fill: #3679FD;
+            stroke: #3679FD;
+        }
+    }
 }
 
 .btn-skip {
@@ -718,6 +734,10 @@ button {
     transition: 0.2s;
     cursor: pointer;
 
+    &.red {
+        color: #F63B3B;
+    }
+
     svg {
         width: 20px;
         height: 20px;
@@ -727,9 +747,16 @@ button {
     &:hover {
         background: #ffebeb !important;
     }
+
 }
 
 .menus-card {
+    &_li {
+        &:not(:first-child) {
+            border-top: 1px solid #F6F8FA;
+        }
+    }
+
     &:hover {
         .menus-card_wr {
             top: 100%;
@@ -1599,10 +1626,10 @@ button {
             pointer-events: all;
         }
 
-        button {
-            color: var(--cui-btn-hover-color);
-            background-color: var(--cui-btn-hover-bg);
-        }
+        // button {
+        //     color: var(--cui-btn-hover-color);
+        //     background-color: var(--cui-btn-hover-bg);
+        // }
     }
 
     &.pt_h-menu {

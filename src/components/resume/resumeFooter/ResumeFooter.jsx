@@ -7,9 +7,9 @@ import Icon from "../../../components/Icon"
 
 import { routersPages } from "../../../constants/next-routers";
 
-import templateIcon from '/public/images/icons/select.svg?sprite'
+import templateIcon from '/public/images/icons/selectFillNone.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
-import dotsIcon from '/public/images/icons/dots.svg?sprite'
+import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
 import { MenuButton } from '../../menuButton';
 
 const ResumeFooter = ({ isCover }) => {

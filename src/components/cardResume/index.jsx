@@ -6,6 +6,7 @@ import iconDownload from "/public/images/icons/icon_download_file.svg?sprite"
 import iconMoreHorizontal from "/public/images/icons/more_horizontal.svg?sprite"
 import iconEdit from "/public/images/icons/icon-edite.svg?sprite"
 import iconShare from "/public/images/icons/icon_share.svg?sprite"
+import iconDeleteRed from "/public/images/icons/delete_red.svg?sprite"
 
 export const CardResume = ({
     label,
@@ -16,6 +17,7 @@ export const CardResume = ({
     handlekeyUp = () => { },
     handleBlur = () => { },
     handleShare = () => { },
+    handleDelete = () => { },
 }) => {
     const refIdTimeout = useRef(undefined);
     const [stateName, setStateName] = useState(label);
@@ -70,6 +72,12 @@ export const CardResume = ({
                                             <button className="item-btn-m" onClick={handleShare}>
                                                 <Icon svg={iconShare} />
                                                 <span>Share a link</span>
+                                            </button>
+                                        </li>
+                                        <li className="menus-card_li">
+                                            <button className="item-btn-m red" onClick={handleDelete}>
+                                                <Icon svg={iconDeleteRed} />
+                                                <span>Delete</span>
                                             </button>
                                         </li>
                                     </ul>

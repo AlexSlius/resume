@@ -22,6 +22,7 @@ import { ResumeCv032 } from '../../resumeTemplates/032-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
+    isNewResume,
     status = "",
     stateLineSpacing = 50,
     stateFontSize = 50,
@@ -31,12 +32,17 @@ export const TemplatesSelect = ({
     statusResumeActive,
     reportTemplateRef,
 }) => {
-    const stateClasses = `${sizeLineSpacing(+stateLineSpacing)} ${sizeFont(+stateFontSize)} ${!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : ""}`;
+    const stateClasses = `
+    ${sizeLineSpacing(+stateLineSpacing)} 
+    ${sizeFont(+stateFontSize)} 
+    ${isNewResume ?
+            (!!resumeData?.resumeActiveNew?.template_class ? resumeData.resumeActiveNew.template_class : "") :
+            (!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : "")}`;
     const router = useRouter();
     const idCv = router.query.idCv;
 
     let statusLoad = statusResumeActive || status;
-
+    
     return (
         <LoadWr isLoad={isLoader(statusLoad)}>
             {
