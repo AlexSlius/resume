@@ -28,8 +28,8 @@ const ShareResume = ({
     useEffect(() => {
         if (!isCover) {
             // get resume
-            dispatch(getResumeDataShare({ idCv, key }));
-            dispatch(getResumeShareTemplateActive({ idCv }));
+            // dispatch(getResumeDataShare({ idCv, key }));
+            // dispatch(getResumeShareTemplateActive({ idCv }));
         } else {
             // get cover
             dispatch(getCoverDataShare({ idCv, key }));

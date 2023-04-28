@@ -5,8 +5,16 @@ import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
-import { getResumesTemplates } from "../controllers/resumeData";
-import { getCoverTemplates } from "../controllers/cover/coverData";
+import {
+    getResumesTemplates,
+    getResumeDataShare,
+    getResumeShareTemplateActive
+} from "../controllers/resumeData";
+import {
+    getCoverTemplates,
+    getCoverDataShare,
+    getCoverShareTemplateActive
+} from "../controllers/cover/coverData";
 import { getCoverLetterById } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 
@@ -15,7 +23,9 @@ export const withPublicRoute = ({
     isGetResumesTemplates = false,
     isGetCoverTemplates = false,
     isGetFormCover = false,
-    isPageHome = false
+    isPageHome = false,
+    isGetShareResume = false,
+    isGetShareCover = false
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -48,7 +58,15 @@ export const withPublicRoute = ({
                 await store.dispatch(getAllPageHome({ dispatch: store.dispatch }));
             }
 
+            if (!!isGetShareResume) {
+                await store.dispatch(getResumeDataShare({ idCv: ctx?.query?.idCv, key: ctx?.query?.key }));
+                await store.dispatch(getResumeShareTemplateActive({ idCv: ctx?.query?.idCv }));
+            }
 
+            if (!!isGetShareCover) {
+                await store.dispatch(getCoverDataShare({ idCv: ctx?.query?.idCv, key: ctx?.query?.key }));
+                await store.dispatch(getCoverShareTemplateActive({ idCv: ctx?.query?.idCv }));
+            }
             return { props: {} };
         } catch (error) {
             console.log("withPublicRoute: ", error)

@@ -7,6 +7,6 @@ const ResumeSharePage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({});
+export const getServerSideProps = withPublicRoute({ isGetShareResume: true });
 
 export default ResumeSharePage;

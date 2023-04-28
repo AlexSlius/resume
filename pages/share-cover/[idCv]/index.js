@@ -7,6 +7,6 @@ const CoverSharePage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({});
+export const getServerSideProps = withPublicRoute({isGetShareCover: true});
 
 export default CoverSharePage;
