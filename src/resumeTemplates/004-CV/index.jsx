@@ -367,7 +367,7 @@ export const ResumeCv004 = ({
                           {
                             !!contact?.[0]?.placeOfBirth && (
                               <div className="details-item">
-                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Birth Date</span>
+                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Place of Birth</span>
                                 <span className="details-item-value main-color-1-text font-weight-500 font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
                               </div>
                             )
@@ -375,7 +375,7 @@ export const ResumeCv004 = ({
                           {
                             !!contact?.[0]?.nationality && (
                               <div className="details-item">
-                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Birth Date</span>
+                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Nationality</span>
                                 <span className="details-item-value main-color-1-text font-weight-500 font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
                               </div>
                             )
@@ -383,7 +383,7 @@ export const ResumeCv004 = ({
                           {
                             !!contact?.[0]?.driverLicense && (
                               <div className="details-item">
-                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Birth Date</span>
+                                <span className="details-item-name main-color-1-text font-weight-300 font-size-1 line-height-1">Driving Licence</span>
                                 <span className="details-item-value main-color-1-text font-weight-500 font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
                               </div>
                             )
