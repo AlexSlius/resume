@@ -37,7 +37,7 @@ export const HomePage = () => {
     const refIdInterval = useRef(undefined);
     const isStart = useRef(true);
     const [stateCurrentTab, setStateCurrentTab] = useState(0);
-    const [currentPage, setCurrentPage] = useState(2);
+    const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState();
     const [cuNext, setCuNext] = useState(0);
 

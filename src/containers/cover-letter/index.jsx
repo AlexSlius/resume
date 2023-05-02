@@ -36,7 +36,7 @@ export const CoverLatter = () => {
     const refIdInterval = React.useRef(undefined);
     const isStart = React.useRef(true);
     const [stateCurrentTab, setStateCurrentTab] = React.useState(0);
-    const [currentPage, setCurrentPage] = React.useState(2);
+    const [currentPage, setCurrentPage] = React.useState(1);
     const [fetching, setFetching] = React.useState();
     const [cuNext, setCuNext] = React.useState(0);
 
@@ -317,7 +317,6 @@ export const CoverLatter = () => {
                             spaceBetween={30}
                             slidesPerView={3}
                             loopedSlides={4}
-                            loop={true}
                             speed={1000}
                             pagination={{
                                 clickable: true
