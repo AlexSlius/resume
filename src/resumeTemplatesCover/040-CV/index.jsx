@@ -55,7 +55,7 @@ export const CoverCv040 = ({
                                                 {!!phone && (<p className="font-size-2 line-height-2 font-weight-400">{phone}</p>)}
                                                 {!!email && (<p className="font-size-2 line-height-2 font-weight-400">{email}</p>)}
                                                 <p className="font-size-2 line-height-2 font-weight-400">
-                                                    {`${!!city && (`${city}, `)} ${!!zipCode && (`${zipCode}, `)} ${!!country && (`${country}`)}`}
+                                                    {`${!!city ? (`${city}, `) : ""} ${!!zipCode ? (`${zipCode}, `) : ""} ${!!country ? (`${country}`) : ""}`}
                                                 </p>
                                             </div>
                                         )

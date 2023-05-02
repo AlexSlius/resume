@@ -5,5 +5,8 @@ export default class ClientsAPI extends Base {
     ApiFetchGetUsersCreatedHome() {
         return this.apiClient.get(`home/user_photos`);
     }
+    ApifetchGetUsersCreatedCoverLetter() {
+        return this.apiClient.get(`home/cover/user_photos`);
+    }
 }
 

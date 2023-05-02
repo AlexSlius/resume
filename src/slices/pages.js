@@ -6,12 +6,22 @@ import {
     fetchGetUsersCreatedHome,
 } from '../controllers/pages/pagesHome';
 
+import {
+    fetchGetUsersCreatedCoverLetter
+} from '../controllers/pages/pagesCoverLetters';
+
 const initialState = {
     home: {
         usersCreated: {
             users: null,
             count: null
-        }
+        },
+    },
+    coverLetter: {
+        usersCreated: {
+            users: null,
+            count: null
+        },
     },
     status: statusLoaded,
 };
@@ -23,7 +33,7 @@ export const slice = createSlice({
         [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                home: action.payload.pages.home,
+                ...action.payload.pages,
             }
         },
         // fetchGetUsersCreatedHome
@@ -32,6 +42,14 @@ export const slice = createSlice({
         },
         [fetchGetUsersCreatedHome.fulfilled]: (state, action) => {
             state.home.usersCreated = action.payload;
+            state.status = statusLoaded;
+        },
+        // fetchGetUsersCreatedCoverLetter
+        [fetchGetUsersCreatedCoverLetter.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [fetchGetUsersCreatedCoverLetter.fulfilled]: (state, action) => {
+            state.coverLetter.usersCreated = action.payload;
             state.status = statusLoaded;
         },
     }

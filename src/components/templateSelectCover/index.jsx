@@ -21,6 +21,7 @@ import { CoverCv030 } from '../../resumeTemplatesCover/030-CV';
 import { CoverCv031 } from '../../resumeTemplatesCover/031-CV';
 import { CoverCv032 } from '../../resumeTemplatesCover/032-CV';
 import { CoverCv040 } from '../../resumeTemplatesCover/040-CV';
+import { CoverCv041 } from '../../resumeTemplatesCover/041-CV';
 
 export const TemplatesSelectCover = ({
     isNewResume,
@@ -213,6 +214,17 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "040-CV" && (
                     <CoverCv040
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "041-CV" && (
+                    <CoverCv041
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

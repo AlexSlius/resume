@@ -8,7 +8,7 @@ export const fetchGetUsersCreatedHome = createAsyncThunk('pagesHome/fetchGetUser
     return response;
 });
 
-export const getAllPageHome = createAsyncThunk('pagesHome/getAllPageHome', async ({ dispatch }, thunkAPI) => {
+export const getAllPageHome = createAsyncThunk('pagesHome/getAllPageHome', async (_, thunkAPI) => {
     await thunkAPI.dispatch(fetchGetUsersCreatedHome());
     return {};
 });

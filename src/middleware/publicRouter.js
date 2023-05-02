@@ -17,6 +17,8 @@ import {
 } from "../controllers/cover/coverData";
 import { getCoverLetterById } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
+import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
+
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -25,7 +27,8 @@ export const withPublicRoute = ({
     isGetFormCover = false,
     isPageHome = false,
     isGetShareResume = false,
-    isGetShareCover = false
+    isGetShareCover = false,
+    isPageCoverLetter = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -56,6 +59,10 @@ export const withPublicRoute = ({
 
             if (!!isPageHome) {
                 await store.dispatch(getAllPageHome({ dispatch: store.dispatch }));
+            }
+
+            if (!!isPageCoverLetter) {
+                await store.dispatch(getAllPageCoverLetter({ dispatch: store.dispatch }));
             }
 
             if (!!isGetShareResume) {

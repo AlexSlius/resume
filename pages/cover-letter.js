@@ -18,6 +18,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetCoverTemplates: true });
+export const getServerSideProps = withPublicRoute({ isGetCoverTemplates: true, isPageCoverLetter: true });
 
 export default Home;

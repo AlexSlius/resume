@@ -11,6 +11,7 @@ import { Partners } from "../../components/partners";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
+import { UsersCreated } from "../../components/usersCreated";
 
 const arr = [
     {
@@ -120,25 +121,7 @@ export const HomePage = () => {
                                 <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
                                     Create My Resume
                                 </Link>
-                                <div className="user-icons">
-                                    {
-                                        isArray(usersCreated?.users) && (
-                                            <div>
-                                                {
-                                                    usersCreated.users.map((itemUser, index) => (
-                                                        <div key={index} >
-                                                            <img src={itemUser} alt={`users ${index}`} />
-                                                        </div>
-                                                    ))
-                                                }
-                                            </div>
-                                        )
-                                    }
-                                    <p>
-                                        {`${usersCreated?.count || "243"} users created
-                                        resumes today`}
-                                    </p>
-                                </div>
+                                <UsersCreated data={usersCreated} />
                             </div>
                         </div>
                         <div className="promo-img">

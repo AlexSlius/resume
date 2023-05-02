@@ -17,6 +17,7 @@ import { ImageSprite } from "../../components/imageSprite";
 import { PromoNumbers } from '../../components/promoNumbers';
 import { AdvantagesItem } from '../../components/advantagesItem';
 import { SureItem } from '../../components/sureItem';
+import { UsersCreated } from "../../components/usersCreated";
 
 // Constants
 import { routersPages } from "../../constants/next-routers";
@@ -48,6 +49,11 @@ export const CoverLatter = () => {
         auth: {
             autorizate: {
                 isAthorized,
+            }
+        },
+        pages: {
+            coverLetter: {
+                usersCreated,
             }
         },
         theme: {
@@ -124,19 +130,7 @@ export const CoverLatter = () => {
                                 <Link href={`${routersPages['coverLetterNew']}`} className="promo-offer__btn btns btn--blue">
                                     Create Cover Letter
                                 </Link>
-                                <div className="user-icons">
-                                    <div>
-                                        <div><img src="/images/page/user-icon.png" alt="img" /></div>
-                                        <div><img src="/images/page/user-icon2.png" alt="img" /></div>
-                                        <div><img src="/images/page/user-icon3.png" alt="img" /></div>
-                                        <div><img src="/images/page/user-icon4.png" alt="img" /></div>
-                                        <div><img src="/images/page/user-icon5.png" alt="img" /></div>
-                                    </div>
-                                    <p>
-                                        243 users created
-                                        cover letter today
-                                    </p>
-                                </div>
+                                <UsersCreated data={usersCreated} />
                             </div>
                         </div>
                         <div className="promo-img">

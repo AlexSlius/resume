@@ -47,7 +47,7 @@ export const ResumeCv040 = ({
                 <div className="personal-info-block block-block additional-color-1-border">
                   <div className="contacts-block">
                     {
-                      (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
+                      (!!contact?.[0]?.address || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
                         <p className="font-size-2 line-height-2 font-weight-400">
                           {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
                           {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
