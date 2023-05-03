@@ -26,7 +26,7 @@ export const CoverCv004 = ({
     return (
         <div className="sv_004 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
-                <div id="cv-body-2 " data-chapter="resume" data-page="1" class={`${stateClasses} cv-body cv-body_height cv-body-2 cv-body---resume page-2`}>
+                <div id="cv-body-2 " data-chapter="resume" data-page="1" className={`${stateClasses} cv-body cv-body_height cv-body-2 cv-body---resume page-2`}>
                     <div className="cv-body-content">
                         <div className="name-block toggle-photo-state toggle-photo-state-active">
                             <h1 className="additional-color-1-text font-size-4 line-height-4 font-family-arsenal">{firstName}{` `} {lastName}</h1>

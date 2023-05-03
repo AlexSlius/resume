@@ -20,7 +20,9 @@ export const logout = async (dispatch) => {
     await localStorageRemove('session_id');
     await sessionStorageRemove("typeResume");
     await dispatch(setLogout());
-    await Router.push('/');
+    setTimeout(() => {
+        Router.push('/');
+    }, 0);
 }
 
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {

@@ -4,49 +4,9 @@ import { isCheckDescriptionByDataCover } from "../../utils/isChecjDescriptionByD
 export const CoverCv001 = ({
     data,
     idCv,
-    stateLineSpacing,
-    stateFontSize,
-    templateClass,
+    stateClasses,
     reportTemplateRef,
 }) => {
-    const [classFontSize, setClassFontSize] = useState(1);
-    const [classFontLineSpacing, setClassFontLineSpacing] = useState(1);
-
-    React.useEffect(() => {
-        switch (stateLineSpacing) {
-            case 0: {
-                setClassFontLineSpacing(1);
-                break;
-            }
-            case 50: {
-                setClassFontLineSpacing(2);
-                break;
-            }
-            case 100: {
-                setClassFontLineSpacing(3);
-                break;
-            }
-        }
-
-    }, [stateLineSpacing]);
-
-    React.useEffect(() => {
-        switch (stateFontSize) {
-            case 0: {
-                setClassFontSize(1);
-                break;
-            }
-            case 50: {
-                setClassFontSize(2);
-                break;
-            }
-            case 100: {
-                setClassFontSize(3);
-                break;
-            }
-        }
-    }, [stateFontSize]);
-
     const {
         firstName,
         lastName,
@@ -64,17 +24,8 @@ export const CoverCv001 = ({
 
     return (
         <div className="sv_001 template-wrapper" ref={reportTemplateRef}>
-            <div id="cv-chapter-section-resume" className="cv-chapter-section" data-chapter="resume">
-                <div id="cv-body-2" data-chapter="resume" data-page="1" className={`
-                    cv-body 
-                    cv-body-2 
-                    cv-body_height
-                    cv-body---resume 
-                    page-2
-                    color-scheme-1
-                    font-size-scheme-${classFontSize}
-                    line-height-scheme-${classFontLineSpacing}
-                `}>
+            <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
+                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume page-2 font-size-scheme-1 line-height-scheme-1">
                     <div className="cv-body-content">
                         {
                             (!!firstName || !!lastName) && (

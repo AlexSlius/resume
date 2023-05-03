@@ -24,15 +24,10 @@ const Estimation = ({
 
 export const ResumeCv001 = ({
   data,
+  idCv,
   stateClasses,
-  stateLineSpacing,
-  stateFontSize,
-  templateClass,
   reportTemplateRef,
 }) => {
-  const [classFontSize, setClassFontSize] = useState(1);
-  const [classFontLineSpacing, setClassFontLineSpacing] = useState(1);
-
   const {
     contact,
     social_links,
@@ -51,48 +46,15 @@ export const ResumeCv001 = ({
   } = data;
 
   useEffect(() => {
-    switch (stateLineSpacing) {
-      case 0: {
-        setClassFontLineSpacing(1);
-        break;
-      }
-      case 50: {
-        setClassFontLineSpacing(2);
-        break;
-      }
-      case 100: {
-        setClassFontLineSpacing(3);
-        break;
-      }
-    }
-
-  }, [stateLineSpacing]);
-
-  useEffect(() => {
-    switch (stateFontSize) {
-      case 0: {
-        setClassFontSize(1);
-        break;
-      }
-      case 50: {
-        setClassFontSize(2);
-        break;
-      }
-      case 100: {
-        setClassFontSize(3);
-        break;
-      }
-    }
-  }, [stateFontSize]);
-
-  useEffect(() => {
     if (typeof window != "undefined") {
-      var current_page_number = 1;
       var font_size_class = '';
       var line_height_class = '';
       var color_class = '';
+      var current_page_number = 1;
 
-      async function rebuildingPages() {
+      function rebuildingPages() {
+        $('.cv-body.cv-body-visible').remove();
+
         var header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
         var footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
         var employment_history_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .employment-history-block').clone();
@@ -105,35 +67,34 @@ export const ResumeCv001 = ({
         var certificates_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .certificates-block').clone();
         var hobbies_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .hobbies-block').clone();
 
-        await getPageContainer().append(header_block);
-
+        getPageContainer().append(header_block);
         getPageColumnLeft();
         getPageColumnRight();
 
         current_page_number = 1;
 
-        await getPageColumnLeft().append(employment_history_block);
+        getPageColumnLeft().append(employment_history_block);
         if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
           employment_history_block.remove();
           current_page_number++;
           getPageColumnLeft().append(employment_history_block);
         }
 
-        await getPageColumnLeft().append(extra_curricular_activities_block);
+        getPageColumnLeft().append(extra_curricular_activities_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           extra_curricular_activities_block.remove();
           current_page_number++;
           getPageColumnLeft().append(extra_curricular_activities_block);
         }
 
-        await getPageColumnLeft().append(internships_block);
+        getPageColumnLeft().append(internships_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           internships_block.remove();
           current_page_number++;
           getPageColumnLeft().append(internships_block);
         }
 
-        await getPageColumnLeft().append(references_block);
+        getPageColumnLeft().append(references_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           references_block.remove();
           current_page_number++;
@@ -142,35 +103,35 @@ export const ResumeCv001 = ({
 
         current_page_number = 1;
 
-        await getPageColumnRight().append(education_block);
+        getPageColumnRight().append(education_block);
         if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
           education_block.remove();
           current_page_number++;
           getPageColumnRight().append(education_block);
         }
 
-        await getPageColumnRight().append(courses_block);
+        getPageColumnRight().append(courses_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           courses_block.remove();
           current_page_number++;
           getPageColumnRight().append(courses_block);
         }
 
-        await getPageColumnRight().append(certificates_block);
+        getPageColumnRight().append(certificates_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           certificates_block.remove();
           current_page_number++;
           getPageColumnRight().append(certificates_block);
         }
 
-        await getPageColumnRight().append(hobbies_block);
+        getPageColumnRight().append(hobbies_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           hobbies_block.remove();
           current_page_number++;
           getPageColumnRight().append(hobbies_block);
         }
 
-        await getPageContainer().append(footer_block);
+        getPageContainer().append(footer_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           footer_block.remove();
           current_page_number++;
@@ -182,14 +143,16 @@ export const ResumeCv001 = ({
         }
       }
 
-      rebuildingPages();
-
       function getPageArea2() {
         var area_2 = getPageContainer().find('.cv-body-area.area-2');
 
+        console.log("Test ares2: ", area_2);
+
         if (area_2.length > 0) {
+          console.log("Area2: true");
           return area_2;
         } else {
+          console.log("Area2: false");
           area_2 = $('<div class="cv-body-area area-2"></div>');
           getPageContainer().append(area_2);
           return $(area_2);
@@ -199,8 +162,10 @@ export const ResumeCv001 = ({
       function getPageColumnLeft() {
         var column_left = getPageArea2().find('.column-left');
         if (column_left.length > 0) {
+          console.log("Column left: true");
           return column_left;
         } else {
+          console.log("Column left: false");
           column_left = $('<div class="column-left"></div>');
           getPageArea2().append(column_left);
 
@@ -215,8 +180,10 @@ export const ResumeCv001 = ({
       function getPageColumnRight() {
         var column_right = getPageArea2().find('.column-right');
         if (column_right.length > 0) {
+          console.log("Column right: true");
           return column_right;
         } else {
+          console.log("Column right: false");
           column_right = $('<div class="column-right"></div>');
           getPageArea2().append(column_right);
           return $(column_right);
@@ -226,8 +193,10 @@ export const ResumeCv001 = ({
       function getPageContainer() {
         var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
         if (page.length > 0) {
+          console.log("Page exists: ", page);
           return page.find('.cv-body-content');
         } else {
+          console.log("Page NOT exists");
           return createNewPage(current_page_number);
         }
       }
@@ -243,12 +212,23 @@ export const ResumeCv001 = ({
         }
         return page_element_container;
       }
+
+      function checkPageHeight(page_number) {
+        var page_element = $('.cv-body.cv-body-visible.page-' + page_number);
+        if (page_element.height() < page_element.find('.cv-body-container').height()) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      rebuildingPages();
     }
   }, [data]);
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${templateClass} ${stateClasses} cv-chapter-section font-size-scheme-${classFontSize} line-height-scheme-${classFontLineSpacing} color-scheme-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content">
             <div className="cv-body-area area-1 additional-color-3-background">

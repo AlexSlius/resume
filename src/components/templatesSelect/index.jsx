@@ -51,9 +51,6 @@ export const TemplatesSelect = ({
                 resumeActive == "001-CV" && (
                     <ResumeCv001
                         reportTemplateRef={reportTemplateRef}
-                        templateClass={resumeData?.resumeActive?.template_class}
-                        stateLineSpacing={stateLineSpacing}
-                        stateFontSize={stateFontSize}
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
