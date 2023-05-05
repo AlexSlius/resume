@@ -192,7 +192,7 @@ const FormContact = ({
                   <div className="mb-30px">
                      <Input
                         id="textFNAM"
-                        label="First Name"
+                        // label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
                         onChange={(e) => handlerSetDateState('firstName', e.target.value)}
@@ -203,7 +203,7 @@ const FormContact = ({
                   <div>
                      <Input
                         id="textFNAM"
-                        label="Last Name"
+                        // label="Last Name"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
                         onChange={(e) => handlerSetDateState('lastName', e.target.value)}
