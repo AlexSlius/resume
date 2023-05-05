@@ -197,7 +197,7 @@ const FormContact = ({
                         valid={contObj.firstName?.length > 0}
                         onChange={(e) => handlerSetDateState('firstName', e.target.value)}
                         name="FNAM"
-                        autocomplete="given-name"
+                        autoComplete="given-name"
                      />
                   </div>
                   <div>
@@ -208,7 +208,7 @@ const FormContact = ({
                         valid={contObj.lastName?.length > 0}
                         onChange={(e) => handlerSetDateState('lastName', e.target.value)}
                         name="FLAST"
-                        autocomplete="family-name"
+                        autoComplete="family-name"
                      />
                   </div>
                </CCol>
