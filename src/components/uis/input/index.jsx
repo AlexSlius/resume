@@ -37,7 +37,7 @@ const Input = ({
    }
 
    const onFocusHa = (e) => {
-      e.target.removeAttribute('readonly');
+      // e.target.removeAttribute('readonly');
       onFocus(e);
    }
 
