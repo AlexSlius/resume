@@ -36,6 +36,11 @@ const Input = ({
       }
    }
 
+   const onFocusHa = (e) => {
+      e.target.removeAttribute('readonly');
+      onFocus(e);
+   }
+
    return (
       <>
          <div className={classDelete}>
@@ -43,7 +48,7 @@ const Input = ({
                id={id}
                onChange={isNumber ? handleUpdatePhone : onChange}
                onBlur={onBlur}
-               onFocus={onFocus}
+               onFocus={onFocusHa}
                value={value}
                className={classNames}
                defaultValue={defaultValue}
@@ -55,6 +60,7 @@ const Input = ({
                name={name}
                disabled={disabled}
                autoComplete={autoComplete}
+               readOnly={true}
                {...obj}
             />
             {

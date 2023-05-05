@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from "react"
-import { CForm, CCol, CRow } from "@coreui/react"
+import { CCol, CRow } from "@coreui/react"
 import classnames from 'classnames';
 
 import { DatePicker } from "../../../components/uis/datePicker"
@@ -186,13 +186,13 @@ const FormContact = ({
    return (
       // isLoad={isLoader(status)}
       <LoadWr >
-         <CForm className="rowse r-gap-30">
+         <div className="rowse r-gap-30">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-30px">
                      <Input
                         id="textFNAM"
-                        // label="First Name"
+                        label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
                         onChange={(e) => handlerSetDateState('firstName', e.target.value)}
@@ -203,7 +203,7 @@ const FormContact = ({
                   <div>
                      <Input
                         id="textFNAM"
-                        // label="Last Name"
+                        label="Last Name"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
                         onChange={(e) => handlerSetDateState('lastName', e.target.value)}
@@ -363,7 +363,7 @@ const FormContact = ({
                   isNew={idCv == "new" && isAthorized}
                />
             </CCol>
-         </CForm>
+         </div>
       </LoadWr>
    )
 }
