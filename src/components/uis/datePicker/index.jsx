@@ -95,7 +95,6 @@ export const DatePicker = ({
                 <Input
                     name={name}
                     label={floatingLabel}
-                    autoComplete="on"
                     value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                     // value={selected ? selected : ""}
                     // onChange={(e) => { onChange(e.target.value); console.log(e.target.value) }}

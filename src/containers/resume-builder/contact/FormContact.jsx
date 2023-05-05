@@ -1,7 +1,6 @@
 
 import { useEffect, useState, useRef } from "react"
 import { CForm, CCol, CRow } from "@coreui/react"
-import { useForm } from "react-hook-form"
 import classnames from 'classnames';
 
 import { DatePicker } from "../../../components/uis/datePicker"
@@ -19,7 +18,6 @@ import {
 import {
    updatePictureContact,
    updateItemFieldContact,
-   cleanSliseNew
 } from "../../../slices/contact"
 import {
    fetchGetCountrys,
@@ -72,16 +70,6 @@ const FormContact = ({
    } = storeDate;
 
    let contObj = (isNewResume ? contactObjNew : contactObj);
-
-   const {
-      register,
-      handleSubmit,
-      formState: { errors, isValid },
-      watch,
-      control
-   } = useForm({
-      mode: "onBlur",
-   });
 
    const handleFileSelect = async (e) => {
       if (e !== null) {
@@ -179,25 +167,8 @@ const FormContact = ({
       return re?.payload?.id;
    }
 
-   // Callback version of watch.  It's your responsibility to unsubscribe when done.
-   useEffect(() => {
-      const subscription = watch((value, { name, type }) => {
-         let values = value[name] || '';
-
-         if (['firstName', 'lastName', 'placeOfBirth'].includes(name)) {
-            values = capitalize(value[name]);
-         }
-
-         dispatch(updateItemFieldContact({ name, value: values }));
-         updateContactServer();
-      });
-
-      return () => subscription.unsubscribe();
-   }, [watch]);
-
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
-      // dispatch(cleanSliseNew());
       if (idCv == "new") {
          sessionStorageRemove('picture');
       }
@@ -215,7 +186,7 @@ const FormContact = ({
    return (
       // isLoad={isLoader(status)}
       <LoadWr >
-         <CForm onSubmit={handleSubmit(formSubmit)} className="rowse r-gap-30">
+         <CForm className="rowse r-gap-30">
             <CRow className={style.firstRow}>
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-30px">
@@ -223,31 +194,17 @@ const FormContact = ({
                         label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
-                        autoComplete="on"
-                        obj={
-                           register("firstName", {
-                              required: true,
-                              minLength: {
-                                 value: 2
-                              }
-                           })
-                        }
+                        onChange={(e) => handlerSetDateState('firstName', e.target.value)}
+                        name="FNAM"
                      />
                   </div>
                   <div>
                      <Input
                         label="Last Name"
-                        autoComplete="on"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
-                        obj={
-                           register("lastName", {
-                              required: true,
-                              minLength: {
-                                 value: 2
-                              }
-                           })
-                        }
+                        onChange={(e) => handlerSetDateState('lastName', e.target.value)}
+                        name="FLAST"
                      />
                   </div>
                </CCol>
@@ -260,26 +217,20 @@ const FormContact = ({
                   <Input
                      label="E-mail"
                      value={contObj.email}
-                     invalid={errors?.email}
-                     autoComplete="on"
-                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
-                     obj={
-                        register("email", {
-                           pattern: {
-                              value: /\S+@\S+\.\S+/,
-                           },
-                        })
-                     }
+                     invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
+                     valid={(contObj.email.length > 0) && /\S+@\S+\.\S+/.test(contObj.email)}
+                     onChange={(e) => handlerSetDateState('email', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
                   <Input
                      label="Phone"
-                     autoComplete="on"
                      value={contObj.phone}
                      valid={contObj.phone?.length > 6}
-                     type="number"
-                     onChange={(e) => handleSaveSelect({ name: "phone", value: e.target.value })}
+                     type="text"
+                     isNumber={true}
+                     isPhone={true}
+                     onChange={(value) => handlerSetDateState('phone', value)}
                   />
                </CCol>
                <CCol xs={6}>
@@ -308,6 +259,7 @@ const FormContact = ({
                      isIconArrow={true}
                      isFlag={true}
                      isValidIn={true}
+                     name="CNTY"
                      validIn={contObj.country?.length > 3}
                   />
                </CCol>
@@ -320,6 +272,8 @@ const FormContact = ({
                      handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
                      handleServerRequest={handleServerRequestCity}
                      isOutDataObj={false}
+                     name="CITYE"
+                     autoComplete="shipping locality"
                      isRequire={true}
                      isValidIn={true}
                      validIn={contObj.city?.length > 3}
@@ -331,31 +285,16 @@ const FormContact = ({
                   <Input
                      label="Adress"
                      value={contObj.address}
-                     autoComplete="on"
                      valid={contObj.address?.length > 10}
-                     obj={
-                        register("address", {
-                           minLength: {
-                              value: 2
-                           }
-                        })
-                     }
+                     onChange={(e) => handlerSetDateState('address', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
                   <Input
                      label="Zip Code"
                      value={contObj.zipCode}
-                     autoComplete="on"
-                     type="number"
                      valid={contObj.zipCode?.length > 0}
-                     obj={
-                        register("zipCode", {
-                           minLength: {
-                              value: 2
-                           }
-                        })
-                     }
+                     onChange={(e) => handlerSetDateState('zipCode', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
@@ -392,22 +331,16 @@ const FormContact = ({
                      label="Place of birth"
                      value={contObj.placeOfBirth}
                      valid={contObj.placeOfBirth?.length > 0}
-                     obj={
-                        register("placeOfBirth", {
-                           minLength: {
-                              value: 2
-                           }
-                        })
-                     }
+                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
                   <DatePicker
                      floatingLabel="Date of birth"
                      selected={contObj.dateOfBirth}
-                     onChange={(date) => handlerSetDateState('dateOfBirth', date)}
                      formatInput='MMM, DD, YYYY'
                      formatData='M, d, Y'
+                     onChange={(date) => handlerSetDateState('dateOfBirth', date)}
                   />
                </CCol>
             </CRow>}
@@ -424,7 +357,6 @@ const FormContact = ({
                   isAthorized={isAthorized}
                   isFirstStep={true}
                   isNew={idCv == "new" && isAthorized}
-               // disabledNext={!contObj.firstName || !contObj.lastName}
                />
             </CCol>
          </CForm>

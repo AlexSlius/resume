@@ -5,6 +5,17 @@
     position: absolute;
     right: -35px;
     top: -10px;
+    width: 53px;
+    height: 50px;
+  }
+
+  @media (max-width: 1399px) {
+    svg {
+      right: -25px;
+      top: -6px;
+      width: 43px;
+      height: 40px;
+    }
   }
 
   @media screen and (max-width: 768px) {

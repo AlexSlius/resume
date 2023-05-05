@@ -121,7 +121,6 @@ const FormPersonalize = ({
                             <Input
                                 label="First Name"
                                 value={coverDataObj?.firstName}
-                                autoComplete="on"
                                 valid={coverDataObj?.firstName?.length > 0}
                                 onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
                             />
@@ -129,7 +128,6 @@ const FormPersonalize = ({
                         <CCol xs={12} md={6}>
                             <Input
                                 label="Last Name"
-                                autoComplete="on"
                                 value={coverDataObj.lastName}
                                 valid={coverDataObj?.lastName?.length > 0}
                                 onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
@@ -179,7 +177,6 @@ const FormPersonalize = ({
                                 value={coverDataObj.zipCode}
                                 valid={coverDataObj?.zipCode?.length > 2}
                                 onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
-                                type="number"
                             />
                         </CCol>
                     </CRow>
@@ -196,9 +193,9 @@ const FormPersonalize = ({
                         <CCol xs={12} md={6}>
                             <Input
                                 label="Phone"
-                                autoComplete="on"
+                                isNumber={true}
+                                isPhone={true}
                                 value={coverDataObj.phone}
-                                type="number"
                                 valid={coverDataObj?.phone?.length > 6}
                                 onChange={(e) => handleUpdateItemField({ name: "phone", value: e.target.value })}
                             />

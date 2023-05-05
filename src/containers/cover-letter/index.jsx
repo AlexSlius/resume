@@ -9,7 +9,6 @@ import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Components
-import { SvgImage } from "../../components/svgImage";
 import { MainTitle } from "../../components/mainTitle";
 import { Partners } from "../../components/partners";
 import { AccordionComponent } from "../../components/accordion";
@@ -28,7 +27,6 @@ import promoNumbersData from './data/promo-numbers.json';
 import advantagesData from './data/advantages.json';
 import sureData from './data/sure.json';
 import faqData from './data/faq.json';
-
 
 
 export const CoverLatter = () => {
@@ -118,11 +116,8 @@ export const CoverLatter = () => {
                     <div className="promo__wrapper">
                         <div className="promo-offer">
                             <p className="top-text">ONLINE COVER LETTER BUILDER</p>
-
                             <MainTitle firstText={'Build Your'} secondText={'Cover'} thirdText={'Letter'} fourthText={'Online'} />
-
-                            <p className="bottom-text arrow-left">
-                                <SvgImage image={'line-icon'} width={'36px'} height={'144px'} color={'#FFAD61'} />
+                            <p className="bottom-text left-arrow">
                                 Our professional Cover Letter Builder has helped thousands
                                 of job seekers land more interviews and get hired faster.
                             </p>
@@ -134,7 +129,7 @@ export const CoverLatter = () => {
                             </div>
                         </div>
                         <div className="promo-img">
-                            <ImageSprite iconName={'lettersMain'} width={'765px'} height={'525px'} />
+                            <img src="/images/page/promo-cover-img.svg" alt="img" />
                         </div>
                     </div>
                     <div className="promo-num">

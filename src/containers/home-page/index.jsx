@@ -5,13 +5,18 @@ import { Navigation, Pagination } from 'swiper';
 import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
 
-import { routersPages } from "../../constants/next-routers";
 import { AccordionComponent } from "../../components/accordion"
 import { Partners } from "../../components/partners";
+import { MainTitle } from "../../components/mainTitle";
+import { UsersCreated } from "../../components/usersCreated";
+import { PromoNumbers } from '../../components/promoNumbers';
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
-import { UsersCreated } from "../../components/usersCreated";
+import { routersPages } from "../../constants/next-routers";
+
+import promoNumbersData from './data/promo-numbers.json';
+
 
 const arr = [
     {
@@ -52,6 +57,8 @@ export const HomePage = () => {
         },
         resumeData,
     } = useSelector((state) => state);
+
+    const promoNumbers = promoNumbersData.data;
 
     const handleClickTab = (tabIndex) => {
         setStateCurrentTab(tabIndex);
@@ -109,10 +116,7 @@ export const HomePage = () => {
                     <div className="promo__wrapper">
                         <div className="promo-offer">
                             <p className="top-text">ONLINE RESUME BUILDER</p>
-                            <h1 className="h1">
-                                The Best <span className="icon-right-top">Online</span><br />
-                                Resume <span className="cursor"><span className="border"></span>Builder</span>
-                            </h1>
+                            <MainTitle firstText={'The Best'} secondText={'Online'} thirdText={'Resume'} fourthText={'Builder'} />
                             <p className="bottom-text left-arrow">
                                 Our professional Resume Builder has helped thousands
                                 of job seekers land more interviews and get hired faster.
@@ -129,21 +133,15 @@ export const HomePage = () => {
                         </div>
                     </div>
                     <div className="promo-num">
-                        <div className="promo-num-item">
-                            <h2>4,9</h2>
-                            <img src="/images/page/stars.svg" alt="img" />
-                            <p>3,656 ratings</p>
-                        </div>
-                        <div className="promo-num-item">
-                            <h2>75 <span>%</span></h2>
-                            <p>higher chance <br />
-                                of getting hired</p>
-                        </div>
-                        <div className="promo-num-item">
-                            <h2>24</h2>
-                            <p>days is needed on <br />
-                                average to get a job</p>
-                        </div>
+                        {
+                            promoNumbers ?
+                                (
+                                    promoNumbers.map(({ count, firstText, secondText, image, percent }, index) => (
+                                        <PromoNumbers key={`promoNumber-${index}`} count={count} firstText={firstText} secondText={secondText} image={image} percent={percent} />
+                                    ))
+                                ) :
+                                null
+                        }
                     </div>
                 </div>
             </section>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Icon from "../../Icon";
 
 import style from "./Style.module.scss"
@@ -9,9 +10,9 @@ export const Buttonhelp = ({ href = "#", isBlack = [false] }) => {
     let classe = isBlack ? style.black : '';
 
     return (
-        <a href={href} className={`${style.btn_need} ${classe}`}>
+        <Link href={href} className={`${style.btn_need} ${classe}`} target="_blank">
             <Icon svg={isBlack ? helpIconBlack : helpIcon} classNames={[style.btn_need_icon]} />
             Need help?
-        </a>
+        </Link>
     )
 }

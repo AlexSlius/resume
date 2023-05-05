@@ -48,13 +48,6 @@ export const Cookies = () => {
                     </div>
                     <div className="cookies-c__r">
                         <ButtonIcon
-                            icon={iconDecine}
-                            label="Decline"
-                            className="btn--grey"
-                            isButton={true}
-                            onHandle={handleDecline}
-                        />
-                        <ButtonIcon
                             icon={iconOk}
                             label="Allow cookies"
                             className="btn--blue"

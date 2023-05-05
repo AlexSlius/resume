@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useSelector } from 'react-redux'
 
@@ -6,39 +7,45 @@ import { InputPage } from "../../components/uis/input-page";
 
 import { routersPages } from "../../constants/next-routers"
 
-const arr = [
-    {
-        title: "Can I change my plan?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-    {
-        title: "Do I get full access with the trial?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-    {
-        title: "What about money back?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-    {
-        title: "What is a resume builder?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-    {
-        title: "What should a resume include?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-    {
-        title: "Should I include a cover letter with my resume?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
-    },
-];
+// data
+import dataListFags from "./data/list-fags.json";
+import { searchFag } from "../../helpers/searchFag";
+
 
 export const FaqsPage = () => {
+    const [textSearch, setTextSearch] = useState("");
+    const [arrList, setArrList] = useState(dataListFags.slice(1, 6));
+
     const {
         theme: {
             currentResolution
         }
     } = useSelector((state) => state);
+
+    const handleKeyUpa = (e) => {
+        e.preventDefault();
+
+        if (e.code == "Enter") {
+            updateListByText();
+        }
+    }
+
+    const handleChange = (e) => {
+        let value = e.target.value;
+        setTextSearch(value);
+
+        if (value.length == 0) {
+            updateListByText();
+        }
+    }
+
+    const handleSubmit = () => {
+        updateListByText();
+    }
+
+    const updateListByText = () => {
+        setArrList(searchFag(textSearch, dataListFags));
+    }
 
     return (
         <section className="faq-page">
@@ -52,9 +59,14 @@ export const FaqsPage = () => {
                             Do you have any questions? Please have a look at our frequently asked questions.
                             If you cannot find the answer you need, please contact us.
                         </p>
-                        <form action="page" className="form">
-                            <InputPage placeholder="Search by keyword..." />
-                            <button className="form-btn btns btn--blue btn--search btn-search-fag" type="button">
+                        <div className="form">
+                            <InputPage
+                                placeholder="Search by keyword..."
+                                value={textSearch}
+                                onChange={handleChange}
+                                handleKeyUpa={handleKeyUpa}
+                            />
+                            <button className="form-btn btns btn--blue btn--search btn-search-fag" type="button" onClick={handleSubmit}>
                                 <img loading="lazy" src="/images/page/search-icon.svg" alt="img" />
                                 {
                                     currentResolution !== "xs" && (
@@ -62,9 +74,9 @@ export const FaqsPage = () => {
                                     )
                                 }
                             </button>
-                        </form>
+                        </div>
                         <div className="faq-page__wrapper">
-                            <AccordionComponent arr={arr} />
+                            <AccordionComponent arr={arrList} />
                         </div>
                         <div className="faq-page__bottom">
                             Didn't find what you're looking for?

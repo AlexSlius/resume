@@ -95,8 +95,6 @@ export const useScaleResumeMain = ({
     function handleResize() {
       let wid = refDivResumeMain?.current?.offsetWidth;
 
-      console.log('wid: ', wid);
-
       if (wid) {
         if (wid >= 640) {
           setScaleSize(1);

@@ -146,13 +146,9 @@ export const ResumeCv001 = ({
       function getPageArea2() {
         var area_2 = getPageContainer().find('.cv-body-area.area-2');
 
-        console.log("Test ares2: ", area_2);
-
         if (area_2.length > 0) {
-          console.log("Area2: true");
           return area_2;
         } else {
-          console.log("Area2: false");
           area_2 = $('<div class="cv-body-area area-2"></div>');
           getPageContainer().append(area_2);
           return $(area_2);
@@ -162,10 +158,8 @@ export const ResumeCv001 = ({
       function getPageColumnLeft() {
         var column_left = getPageArea2().find('.column-left');
         if (column_left.length > 0) {
-          console.log("Column left: true");
           return column_left;
         } else {
-          console.log("Column left: false");
           column_left = $('<div class="column-left"></div>');
           getPageArea2().append(column_left);
 
@@ -180,10 +174,8 @@ export const ResumeCv001 = ({
       function getPageColumnRight() {
         var column_right = getPageArea2().find('.column-right');
         if (column_right.length > 0) {
-          console.log("Column right: true");
           return column_right;
         } else {
-          console.log("Column right: false");
           column_right = $('<div class="column-right"></div>');
           getPageArea2().append(column_right);
           return $(column_right);
@@ -193,10 +185,8 @@ export const ResumeCv001 = ({
       function getPageContainer() {
         var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
         if (page.length > 0) {
-          console.log("Page exists: ", page);
           return page.find('.cv-body-content');
         } else {
-          console.log("Page NOT exists");
           return createNewPage(current_page_number);
         }
       }
@@ -270,12 +260,12 @@ export const ResumeCv001 = ({
                       <div className="cv-career-block additional-color-2-border">
                         <div className="career-details">
                           <p className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Details</p>
-                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact?.[0]?.country && (`${contact?.[0]?.country} `)} <br />  {`${contact?.[0]?.address}`}, <br /> {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
+                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact?.[0]?.country ? (<>{`${contact?.[0]?.country} `}<br /></>) : ""}   {`${!!contact?.[0]?.address ? (<>{`${contact?.[0]?.address}, `}<br /></>) : ""}`}  {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
                           {!!contact?.[0]?.phone && <p className="career-phone main-color-1-text font-size-1 line-height-1">{contact?.[0]?.phone}</p>}
                           {!!contact?.[0]?.email && <p className="career-email main-color-1-text font-size-1 line-height-1">{contact?.[0]?.email}</p>}
                         </div>
                         {
-                          isArray(social_links) && social_links.length && (
+                          isArray(social_links) && !!social_links.length && (
                             <div className="career-links">
                               <h1 className="career-links-head font-size-2 line-height-2 additional-color-1-text">Links</h1>
                               {

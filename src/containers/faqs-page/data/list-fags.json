@@ -1,0 +1,32 @@
+[
+    {
+        "id": 0,
+        "title": "Can I change my plan?",
+        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    },
+    {
+        "id": 1,
+        "title": "Do I get full access with the trial?",
+        "text": "<p>Yes, you can upgrade,  downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    },
+    {
+        "id": 2,
+        "title": "What about money back?",
+        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    },
+    {
+        "id": 3,
+        "title": "What is a resume builder?",
+        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    },
+    {
+        "id": 4,
+        "title": "What should a resume include?",
+        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    },
+    {
+        "id": 5,
+        "title": "Should I include a cover letter with my resume?",
+        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+    }
+]

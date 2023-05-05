@@ -29,6 +29,10 @@
         margin: 0;
     }
 
+    section.promo {
+        margin-top: 30px;
+    }
+
     @media screen and (max-width: 768px) {
         gap: 40px;
 
@@ -163,7 +167,7 @@
 
 
 .promo-offer__bottom {
-    margin-top: 54px;
+    // margin-top: 54px;
     display: flex;
     align-items: center;
     gap: 45px;

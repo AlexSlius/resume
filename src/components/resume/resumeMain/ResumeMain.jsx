@@ -107,6 +107,7 @@ const ResumeMain = ({
                !isCover && (
                   <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
                      <TemplatesSelect
+                     isNewResume={isNewResume}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
                         stateLineSpacing={stateLineSpacing}
@@ -124,6 +125,7 @@ const ResumeMain = ({
                isCover && (
                   <div className="resume-main_scale resume-main_scale_cover">
                      <TemplatesSelectCover
+                     isNewResume={isNewResume}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                         resumeData={dataOther}

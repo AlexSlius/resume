@@ -3,6 +3,7 @@ export const InputPage = ({
     type = "text",
     value,
     onChange = () => { },
+    handleKeyUpa = () => { },
 }) => {
     return (
         <div className="form-input">
@@ -11,6 +12,7 @@ export const InputPage = ({
                 type={type}
                 value={value}
                 onChange={onChange}
+                onKeyUp={handleKeyUpa}
                 autoComplete="off"
             />
         </div>

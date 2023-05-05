@@ -226,9 +226,9 @@ const FormReference = ({
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      label="Phone"
-                                                                     autoComplete="on"
                                                                      value={item.phone}
-                                                                     type="number"
+                                                                     isNumber={true}
+                                                                     isPhone={true}
                                                                      onChange={(e) => handleSaveSelect({ index, name: "phone", value: e.target.value })}
                                                                      valid={item.phone?.length > 6}
                                                                   />
@@ -291,9 +291,9 @@ const FormReference = ({
                   <CCol xs={6}>
                      <Input
                         label="Phone"
-                        autoComplete="on"
                         value={objNew.phone}
-                        type="number"
+                        isNumber={true}
+                        isPhone={true}
                         onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value })}
                         valid={objNew.phone?.length > 6}
                      />
