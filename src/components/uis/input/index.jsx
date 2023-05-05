@@ -37,7 +37,9 @@ const Input = ({
    }
 
    const onFocusHa = (e) => {
-      // e.target.removeAttribute('readonly');
+      setTimeout(() => {
+         e.target.removeAttribute('readonly');
+      }, 200);
       onFocus(e);
    }
 
