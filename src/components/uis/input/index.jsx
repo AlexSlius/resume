@@ -13,7 +13,7 @@ const Input = ({
    value,
    defaultValue,
    label = null,
-   placeholder = undefined,
+   placeholder = '',
    type = "text",
    className = "",
    invalid = false,
