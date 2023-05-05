@@ -40,6 +40,7 @@ const Input = ({
       <>
          <div className={classDelete}>
             <CFormInput
+               id={id}
                onChange={isNumber ? handleUpdatePhone : onChange}
                onBlur={onBlur}
                onFocus={onFocus}

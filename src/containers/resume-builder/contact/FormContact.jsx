@@ -191,20 +191,24 @@ const FormContact = ({
                <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
                   <div className="mb-30px">
                      <Input
+                        id="textFNAM"
                         label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
                         onChange={(e) => handlerSetDateState('firstName', e.target.value)}
                         name="FNAM"
+                        autocomplete="given-name"
                      />
                   </div>
                   <div>
                      <Input
+                        id="textFNAM"
                         label="Last Name"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
                         onChange={(e) => handlerSetDateState('lastName', e.target.value)}
                         name="FLAST"
+                        autocomplete="family-name"
                      />
                   </div>
                </CCol>
