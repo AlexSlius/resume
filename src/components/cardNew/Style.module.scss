@@ -12,6 +12,7 @@
         padding: 1px;
         cursor: pointer;
         transition: 0.3s;
+        position: relative;
 
         &>div {
             display: flex;
@@ -33,6 +34,31 @@
 
         &:hover {
             border-color: #3679FD;
+        }
+
+        &.load {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: inherit;
+                filter: blur(10px);
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+                height: 20px;
+                background: url("/../images/icons/preloader-blue.svg?sprite") center/contain no-repeat;
+            }
         }
     }
 

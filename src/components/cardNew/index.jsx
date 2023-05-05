@@ -7,12 +7,13 @@ export const CardNew = ({
     titleNwe = "",
     text = "",
     currentResolution,
+    isLoad = false,
     hangleAddNew = () => { },
 }) => {
     return (
         <div className={`${style.card_new}`}>
             <div
-                className={`${style.card_new__head}`}
+                className={`${style.card_new__head} ${!!isLoad ? style.load : ''}`}
                 onClick={hangleAddNew}
             >
                 <div>

@@ -125,7 +125,7 @@ const Settings = () => {
                                     </div>
                                 </CCol>
                             </CRow>
-                            <CRow className="pb-4 bt bb">
+                            {/* <CRow className="pb-4 bt bb">
                                 <CCol xl={6} className="pt-4">
                                     <div className={`${style.item_s}`}>
                                         <div className={`${style.item_s_left}`}>
@@ -148,7 +148,7 @@ const Settings = () => {
                                         </div>
                                     </div>
                                 </CCol>
-                            </CRow >
+                            </CRow > */}
                             <CRow className="mb-4 pb-4 align-items-center bb">
                                 <CCol xl={6} className="pt-4">
                                     <div className={`${style.item_par}`}>

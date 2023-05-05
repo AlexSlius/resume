@@ -10,7 +10,7 @@ import { addItemNotification } from "../../slices/notifications";
 import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
 
-export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async (_, thunkAPI) => {
+export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false }, thunkAPI) => {
     const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
 
     const newObj = camelToSnake({
@@ -27,7 +27,11 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async (_, thunk
     const response = await api.personalize.addCover(newObj);
 
     if (response?.status == "added") {
-        await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
+        if (isDashboard) {
+            await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[0].link}`);
+        } else {
+            await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
+        }
     }
 
     if (isError(response)) {

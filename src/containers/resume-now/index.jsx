@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 import { AccordionComponent } from "../../components/accordion";
 import { Header } from "../../components/header";
 
+import { routersPages } from "../../constants/next-routers";
+
 import style from "./Style.module.scss"
 
 const arr = [
@@ -134,7 +136,7 @@ const ResumeNow = () => {
                     </div>
                     <div className={`${style.m_t_f}`}>
                         <h2 className={`${style.title}`}>Frequently Asked Questions</h2>
-                        <p className={`${style.sub_title}`}>Didn't find what you're looking for? — <Link href="/">Use our FAQ</Link></p>
+                        <p className={`${style.sub_title}`}>Didn't find what you're looking for? — <Link href={`/${routersPages['faqs']}`} target="_blank">Use our FAQ</Link></p>
                     </div>
                     <div className={`${style.wr_accar}`}>
                         <AccordionComponent arr={arr} />

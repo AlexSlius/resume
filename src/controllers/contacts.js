@@ -10,7 +10,7 @@ import { addItemNotification } from "../slices/notifications";
 import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact"
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume }, thunkAPI) => {
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState()
     const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, pictureFile)
 
@@ -19,7 +19,12 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     if (isRespondServerSuccesss(response)) {
         // thunkAPI.dispatch(cleanSliseNew());
         thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
-        await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
+
+        if (isDashboard) {
+            await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[0].link}`);
+        } else {
+            await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
+        }
     }
 
     if (isError(response)) {

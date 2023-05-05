@@ -25,7 +25,7 @@ const SideBar = ({
          {children}
 
          <div className={`${style.nav_help}`}>
-            <Link href={`/${routersPages['contactUs']}`} className={`${style.nav_help_link}`}>
+            <Link href={`/${routersPages['contactUs']}`} target="_blank" className={`${style.nav_help_link}`}>
                <Icon svg={helpIcon} classNames={[style.nav_icon, 'nav-icon']} />
                Need help?
             </Link>

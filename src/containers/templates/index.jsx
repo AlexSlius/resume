@@ -1,7 +1,7 @@
 import { CButton } from '@coreui/react'
 import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { isArray } from 'lodash';
 import Carousel from 'react-material-ui-carousel'
 
@@ -40,8 +40,10 @@ import {
 import {
     getCoverLetterById
 } from "../../controllers/cover/personalize";
-
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
+import { sessionStorageGet } from '../../helpers/localStorage';
+import { contactSetNew, contactAddNew } from '../../controllers/contacts';
+import { coverAddNew, coverSetNew } from "../../controllers/cover/personalize";
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -234,6 +236,35 @@ const Templates = ({
 
     const toggleTextSettings = () => {
         setShowSettings(!showSettings);
+    }
+
+    const handleDownload = () => {
+        if (!isCover) {
+            if (isNewResume) {
+                if (!isAthorized) {
+                    let pictureFile = sessionStorageGet('picture');
+                    dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
+                } else {
+                    let pictureFile = sessionStorageGet('picture');
+                    dispatch(contactAddNew({ pictureFile, isNewResume }));
+                }
+            } else {
+                // autoraizovan
+                Router.push(`/${routersPages['resumeNow']}`);
+            }
+        } else {
+            // cover
+            if (isNewResume) {
+                if (!isAthorized) {
+                    dispatch(coverSetNew({ isNewCover: true }));
+                } else {
+                    dispatch(coverAddNew());
+                }
+            } else {
+                // autoraizovan
+                Router.push(`/${routersPages['resumeNow']}`);
+            }
+        }
     }
 
     useEffect(() => {
@@ -596,9 +627,8 @@ const Templates = ({
                                         isButton={true}
                                         icon={downloadIcon}
                                         label="Download PDF"
-                                        disabled={!isAthorized || isNewResume}
                                         className="btn--blue"
-                                    // onHandle={handleGeneratePdf}
+                                        onHandle={handleDownload}
                                     />
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (

@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isArray } from "lodash";
 
@@ -29,6 +29,8 @@ import {
     fetchPostUpdateCover,
     postShareCover
 } from "../../controllers/cover/covers";
+import { contactAddNew } from "../../controllers/contacts";
+import { coverAddNew } from "../../controllers/cover/personalize";
 
 import {
     cleanSliseNew
@@ -42,6 +44,8 @@ import style from "./Style.module.scss";
 const Dashboard = () => {
     const dispatch = useDispatch();
     const router = useRouter();
+    const [loadNewCard, setLoadNewCard] = useState();
+
     const {
         resumers,
         covers,
@@ -69,13 +73,20 @@ const Dashboard = () => {
         await Router.push(`${routersPages['coverLetter']}/${data.id}/${ROUTES_COVER['']}`);
     }
 
+    // new add resume
     const hangleAddNewResume = async () => {
-        await cleanResumeSlices(dispatch);
-        await Router.push(`${routersPages['resumeBuilderNew']}`);
+        // await cleanResumeSlices(dispatch);
+        // await Router.push(`${routersPages['resumeBuilderNew']}`);
+        await setLoadNewCard(true);
+        let res = await dispatch(contactAddNew({ isNewResume: true, isDashboard: true }));
+        await setLoadNewCard(false);
     }
 
     const hangleAddNewCover = async () => {
-        await Router.push(`${routersPages['coverLetterNew']}`);
+        // await Router.push(`${routersPages['coverLetterNew']}`);
+        await setLoadNewCard(true);
+        let res = await dispatch(coverAddNew({ isDashboard: true }));
+        await setLoadNewCard(false);
     }
 
     const handlekeyUp = (e, stateName, id) => {
@@ -202,6 +213,7 @@ const Dashboard = () => {
                                                 text="Create a tailored resume for each job application. Double your chances of getting hired!"
                                                 hangleAddNew={hangleAddNewResume}
                                                 currentResolution={currentResolution}
+                                                isLoad={loadNewCard}
                                             />
                                         )
                                     }
@@ -243,6 +255,7 @@ const Dashboard = () => {
                                                 text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
                                                 currentResolution={currentResolution}
                                                 hangleAddNew={hangleAddNewCover}
+                                                isLoad={loadNewCard}
                                             />
                                         )
                                     }
