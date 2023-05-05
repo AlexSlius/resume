@@ -39,8 +39,13 @@ const Input = ({
    const onFocusHa = (e) => {
       setTimeout(() => {
          e.target.removeAttribute('readonly');
-      }, 200);
+      }, 100);
       onFocus(e);
+   }
+
+   const handleBlur = (e) => {
+      e.target.setAttribute('readonly', true);
+      onBlur(e);
    }
 
    return (
@@ -49,7 +54,7 @@ const Input = ({
             <CFormInput
                id={id}
                onChange={isNumber ? handleUpdatePhone : onChange}
-               onBlur={onBlur}
+               onBlur={handleBlur}
                onFocus={onFocusHa}
                value={value}
                className={classNames}
