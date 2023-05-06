@@ -238,7 +238,7 @@ const Templates = ({
         setShowSettings(!showSettings);
     }
 
-    const handleDownload = () => {
+    const handleChanbdegAutOrPlan = (funCalb = () => { }) => {
         if (!isCover) {
             if (isNewResume) {
                 if (!isAthorized) {
@@ -251,6 +251,8 @@ const Templates = ({
             } else {
                 // autoraizovan
                 Router.push(`/${routersPages['resumeNow']}`);
+                // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
+                funCalb();
             }
         } else {
             // cover
@@ -263,6 +265,8 @@ const Templates = ({
             } else {
                 // autoraizovan
                 Router.push(`/${routersPages['resumeNow']}`);
+                // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
+                funCalb();
             }
         }
     }
@@ -628,7 +632,7 @@ const Templates = ({
                                         icon={downloadIcon}
                                         label="Download PDF"
                                         className="btn--blue"
-                                        onHandle={handleDownload}
+                                        onHandle={handleChanbdegAutOrPlan}
                                     />
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (
@@ -636,7 +640,7 @@ const Templates = ({
                                                 <Icon svg={iconPlusColor} />
                                             </div>
                                         ) : (
-                                            <div className={`menu-show-tem ab-menu menus-card ${(!isAthorized || isNewResume) ? "disabled" : ""}`}>
+                                            <div className={`menu-show-tem ab-menu menus-card`}>
                                                 <CButton
                                                     className='resume-footer__button'
                                                     color="secondary"
@@ -644,7 +648,7 @@ const Templates = ({
                                                 >
                                                     <Icon svg={dotsIcon} classNames={['icon-20']} />
                                                 </CButton>
-                                                <MenuButton />
+                                                <MenuButton isNew={isNewResume} handleChanbdegAutOrPlan={handleChanbdegAutOrPlan} />
                                             </div>
                                         )
                                     }

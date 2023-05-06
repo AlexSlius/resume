@@ -24,6 +24,7 @@ export const DatePicker = ({
     let useRefContainer = React.useRef(undefined);
     let useRefWrContainer = React.useRef(undefined);
     const refCurentClass = React.useRef(undefined);
+    const refBtn = React.useRef(undefined);
     const [isHiden, setIsHiden] = React.useState(true);
 
     const [clases, setClases] = React.useState(style.none);
@@ -33,9 +34,13 @@ export const DatePicker = ({
             if (!!useRefData.current) {
                 $(useRefData.current).Zebra_DatePicker({
                     view: 'years',
+                    show_icon: false,
                     format: formatData,
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer.current),
+                    // onChange: function (data) {
+                    //     console.log("data: ", data);
+                    // },
                     onSelect: function (data) {
                         onChange(moment(data).format(formatInput));
 
@@ -80,18 +85,21 @@ export const DatePicker = ({
             }
 
             !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
-            !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus)
+            !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus);
+            !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
 
             return () => {
                 !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
                 !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus);
+                !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
             }
         }
     }, [selected]);
 
     return (
-        <div className={`${style.wt_cal}`} ref={refSelect}>
+        <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
             <div className={`${style.wt_cal_in} ${style.btn_clean}`}>
+                <i className={style.wt_cal_in_icon_cal} ref={refBtn}></i>
                 <Input
                     name={name}
                     label={floatingLabel}

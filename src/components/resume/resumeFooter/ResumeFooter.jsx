@@ -37,7 +37,7 @@ const ResumeFooter = ({ isCover }) => {
       }
    }
 
-   const handleDownload = () => {
+   const handleChanbdegAutOrPlan = (funCalb = () => { }) => {
       if (!isCover) {
          if (isNewResume) {
             if (!isAthorized) {
@@ -50,6 +50,8 @@ const ResumeFooter = ({ isCover }) => {
          } else {
             // autoraizovan
             Router.push(`/${routersPages['resumeNow']}`);
+            // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
+            funCalb();
          }
       } else {
          // cover
@@ -62,6 +64,8 @@ const ResumeFooter = ({ isCover }) => {
          } else {
             // autoraizovan
             Router.push(`/${routersPages['resumeNow']}`);
+            // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
+            funCalb();
          }
       }
    }
@@ -83,24 +87,23 @@ const ResumeFooter = ({ isCover }) => {
             <CButton
                className='resume-footer__button'
                color="secondary" variant="outline"
-               onClick={handleDownload}
+               onClick={() => handleDownload()}
             >
                <Icon svg={downloadIcon} classNames={['icon-20']} />
                Download PDF
             </CButton>
-            <div className={`menu-show-tem ab-menu menus-card ${(!isAthorized || isNewResume) ? "disabled" : ""}`}>
+
+            <div className={`menu-show-tem ab-menu menus-card}`}>
                <CButton
                   className='resume-footer__button'
                   color="secondary"
                   variant="outline"
-
-                  disabled={!isAthorized}
                >
                   <Icon svg={dotsIcon} classNames={['icon-20']} />
                </CButton>
                {
                   isAthorized && (
-                     <MenuButton isEdit={true} />
+                     <MenuButton isEdit={true} handleChanbdegAutOrPlan={handleChanbdegAutOrPlan} />
                   )
                }
             </div>

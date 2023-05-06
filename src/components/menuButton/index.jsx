@@ -17,6 +17,8 @@ import iconShare from "/public/images/icons/icon_share.svg?sprite"
 
 export const MenuButton = ({
     isEdit = false,
+    isNew = false,
+    handleChanbdegAutOrPlan = () => { },
 }) => {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -25,9 +27,9 @@ export const MenuButton = ({
 
     const handleShare = () => {
         if (isResume) {
-            handleShareResume();
+            handleChanbdegAutOrPlan(handleShareResume);
         } else {
-            handleShareCover();
+            handleChanbdegAutOrPlan(handleShareCover);
         }
     }
 
@@ -56,7 +58,7 @@ export const MenuButton = ({
             <div className="menus-card_cont">
                 <ul className="menus-card_ul">
                     {
-                        !isEdit && (
+                        !isEdit && !isNew && (
                             <li className="menus-card_li">
                                 {/* onClick={handleEdit} */}
                                 <Link href={`/${routersPages[isResume ? "resumeBuilder" : "coverLetter"]}/${idCv}/${isResume ? ROUTES[''] : ROUTES_COVER['']}`} className="item-btn-m" >

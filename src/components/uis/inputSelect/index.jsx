@@ -51,7 +51,7 @@ export const InputSelect = ({
     isValidIn = false,
     validIn = false,
     isUpperCase = false,
-    autoComplete="off"
+    autoComplete = "off"
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -61,10 +61,12 @@ export const InputSelect = ({
     const refCurentClass = React.useRef(undefined)
     const refIdActiveItem = React.useRef(false)
     const refIdTimeout = React.useRef(undefined)
+    const refMoreThanOne = React.useRef(false);
     const [showList, setShowlist] = React.useState(false)
     const [className, setClassName] = React.useState('')
     const [imgSrc, setImgSrc] = React.useState(null);
     const [isNoneReuq, setIsNoneReuq] = React.useState(false);
+
     // const classBgLoad = isBackgraundLoad ? style.load_bg : ''
     const classBgLoad = '';
     let classDelete = isDelete ? 'btn_delete' : '';
@@ -290,14 +292,16 @@ export const InputSelect = ({
                                                     <>
                                                         {
                                                             isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
-                                                                <li className={`${style.list__li} ${style.list__li_first}`}>
-                                                                    <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
-                                                                    <div className={`${style.rig}`}>
-                                                                        <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
-                                                                            <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
-                                                                        </button>
-                                                                    </div>
-                                                                </li>
+                                                                !refMoreThanOne.current && (
+                                                                    <li className={`${style.list__li} ${style.list__li_first}`}>
+                                                                        <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
+                                                                        <div className={`${style.rig}`}>
+                                                                            <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
+                                                                                <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
+                                                                            </button>
+                                                                        </div>
+                                                                    </li>
+                                                                )
                                                             )
                                                         }
                                                         {
@@ -321,18 +325,30 @@ export const InputSelect = ({
                                                                             textOutItem = (textOutItem === 0);
 
                                                                             if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
+                                                                                if (!!refMoreThanOne.current) {
+                                                                                    refMoreThanOne.current = false;
+                                                                                }
                                                                                 return;
                                                                             } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
                                                                                 textLast = item[keyName];
+                                                                                if (!refMoreThanOne.current) {
+                                                                                    refMoreThanOne.current = true;
+                                                                                }
                                                                             } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
                                                                                 textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
                                                                                 textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
+                                                                                if (!refMoreThanOne.current) {
+                                                                                    refMoreThanOne.current = true;
+                                                                                }
                                                                             }
                                                                         } else {
                                                                             textLast = item[keyName];
+                                                                            if (!refMoreThanOne.current) {
+                                                                                refMoreThanOne.current = true;
+                                                                            }
                                                                         }
-                                                                        // capitalizeAll
 
+                                                                        // capitalizeAll
                                                                         return (
                                                                             <li key={index} className={`${style.list__li}`}>
                                                                                 <button

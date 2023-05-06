@@ -387,13 +387,14 @@ input[type="number"]:focus {
 
 .t-wr-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     z-index: 4;
     display: flex;
     align-items: center;
     color: #838799;
-    background: transparent;
+    background: #fff;
+    padding: 5px;
     outline: none;
     border: none;
     font-weight: 350;
@@ -1314,8 +1315,7 @@ button {
             transition: 0.3s;
             cursor: pointer;
 
-            &:hover,
-            &.dp_selected {
+            &:hover {
                 background: #3679FD;
                 color: #fff;
             }
@@ -1350,10 +1350,10 @@ button {
                 }
             }
 
-            &.dp_selected {
-                background: #3679FD;
-                color: #fff;
-            }
+            // &.dp_selected {
+            //     background: #3679FD;
+            //     color: #fff;
+            // }
         }
 
         .dp_disabled {
@@ -1372,6 +1372,32 @@ button {
         display: none !important;
     }
 }
+
+.selected_data {
+    .Zebra_DatePicker {
+
+        .dp_yearpicker,
+        .dp_monthpicker {
+            td {
+                &.dp_selected {
+                    background: #3679FD;
+                    color: #fff;
+                }
+            }
+        }
+
+        .dp_daypicker {
+            td {
+                &.dp_selected {
+                    background: #3679FD;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+
 
 .form_wrap {
     .r-gap-30 {
@@ -1653,8 +1679,9 @@ button {
     box-shadow: none !important;
 }
 
-.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
-    opacity: 0!important;
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+    opacity: 0 !important;
 }
 
 @media (max-width: 1559px) {

@@ -105,7 +105,7 @@ export const ResumeCv008 = ({
                   <div className="left-side">
                     {
                       social_links.map((item, index) => (
-                        <a className="font-size-2 line-height-2 main-color-2-text"  key={index}>
+                        <a className="font-size-2 line-height-2 main-color-2-text" key={index}>
                           <span className="circled font-size-1-1 line-height-5 main-color-2-text main-color-2-border main-color-3-background">{item.name.substr(1, 2)}</span>
                           {item.name}
                         </a>
@@ -168,7 +168,7 @@ export const ResumeCv008 = ({
                         !!contact?.[0]?.driverLicense && (
                           <div className="driving-licence-block">
                             <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-0-1 main-color-2-text">DRIVING LICENSE</h3>
-                            <p className="font-weight-700 font-size-2 line-height-0-1 additional-color-1-text">{contact?.[0]?.driverLicense}</p>
+                            <p className="font-weight-700 font-size-2 line-height-0-1 additional-color-1-text">{contact[0].driverLicense}</p>
                           </div>
                         )
                       }
