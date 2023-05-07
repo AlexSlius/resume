@@ -56,23 +56,20 @@
   // .skill-estimation {}
 
   #cv-body-hidden-container {
-    // height: auto;
-    // max-height: none;
-    // position: absolute;
-    // z-index: -1;
-    // opacity: 0;
-    // pointer-events: none;
-    // display: none;
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .cv-body {
-    // width: 595px;
-    // height: 764px;
-    // max-height: 764px;
+    min-width: 595px;
     min-height: 764px;
+    max-height: 764px;
     background-color: #fff;
     box-sizing: border-box;
-    // margin: 0px 25px 25px;
     display: flex;
     flex-direction: column;
     overflow: hidden;

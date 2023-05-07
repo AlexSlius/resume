@@ -27,198 +27,196 @@ export const ResumeCv006 = ({
 
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
 
-  // React.useEffect(() => {
-  //   if (typeof window != 'undefined') {
-  //     let current_page_number = 1;
-  //     let max_page_number = 1;
+  React.useEffect(() => {
+    if (typeof window != 'undefined') {
+      var current_page_number = 1;
+      var max_page_number = 1;
 
-  //     function rebuildingPages() {
-  //       current_page_number = 1;
-  //       max_page_number = 1;
-  //       $('.cv-body.cv-body-visible').remove();
+      function rebuildingPages() {
+        current_page_number = 1;
+        max_page_number = 1;
 
-  //       // let header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
-  //       let footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
-  //       let photo_block = $('#cv-body-hidden-container .photo-block').clone();
-  //       let profile_block = $('#cv-body-hidden-container .profile-block').clone();
-  //       let employment_history_block = $('#cv-body-hidden-container .employment-history-block').clone();
-  //       let extra_curricular_activities_block = $('#cv-body-hidden-container .extra-curricular-activities-block').clone();
-  //       let internships_block = $('#cv-body-hidden-container .internships-block').clone();
-  //       let references_block = $('#cv-body-hidden-container .references-block').clone();
-  //       let details_block = $('#cv-body-hidden-container .details-block').clone();
-  //       let education_block = $('#cv-body-hidden-container .education-block').clone();
-  //       let courses_block = $('#cv-body-hidden-container .courses-block').clone();
-  //       let certificates_block = $('#cv-body-hidden-container .certificates-block').clone();
-  //       let hobbies_block = $('#cv-body-hidden-container .hobbies-block').clone();
-  //       let skills_block = $('#cv-body-hidden-container .skills-block').clone();
-  //       let languages_block = $('#cv-body-hidden-container .languages-block').clone();
-  //       let bottom_block = $('#cv-body-hidden-container .bottom-block').clone();
+        $('.cv-body.cv-body-visible').remove();
 
-  //       getPageArea1().append(profile_block);
+        // var header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
+        var footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
+        var photo_block = $('#cv-body-hidden-container .photo-block').clone();
+        var profile_block = $('#cv-body-hidden-container .profile-block').clone();
+        var employment_history_block = $('#cv-body-hidden-container .employment-history-block').clone();
+        var extra_curricular_activities_block = $('#cv-body-hidden-container .extra-curricular-activities-block').clone();
+        var internships_block = $('#cv-body-hidden-container .internships-block').clone();
+        var references_block = $('#cv-body-hidden-container .references-block').clone();
+        var details_block = $('#cv-body-hidden-container .details-block').clone();
+        var education_block = $('#cv-body-hidden-container .education-block').clone();
+        var courses_block = $('#cv-body-hidden-container .courses-block').clone();
+        var certificates_block = $('#cv-body-hidden-container .certificates-block').clone();
+        var hobbies_block = $('#cv-body-hidden-container .hobbies-block').clone();
+        var skills_block = $('#cv-body-hidden-container .skills-block').clone();
+        var languages_block = $('#cv-body-hidden-container .languages-block').clone();
+        var bottom_block = $('#cv-body-hidden-container .bottom-block').clone();
 
-  //       // Column left
-  //       current_page_number = 1;
-  //       getPageColumnLeft().append(employment_history_block);
-  //       console.log("Test heights!!!: ", getPageContainer().height(), getPageContainer().parent().height());
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         employment_history_block.remove();
-  //         current_page_number++;
-  //         getPageColumnLeft().append(employment_history_block);
-  //       }
+        getPageArea1().append(profile_block);
 
-  //       getPageColumnLeft().append(education_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         education_block.remove();
-  //         current_page_number++;
-  //         getPageColumnLeft().append(education_block);
-  //       }
+        // Column left
+        current_page_number = 1;
+        getPageColumnLeft().append(employment_history_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          employment_history_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(employment_history_block);
+        }
 
-  //       getPageColumnLeft().append(courses_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         courses_block.remove();
-  //         current_page_number++;
-  //         getPageColumnLeft().append(courses_block);
-  //       }
+        getPageColumnLeft().append(education_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          education_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(education_block);
+        }
 
-  //       getPageColumnLeft().append(extra_curricular_activities_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         extra_curricular_activities_block.remove();
-  //         current_page_number++;
-  //         getPageColumnLeft().append(extra_curricular_activities_block);
-  //       }
+        getPageColumnLeft().append(courses_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          courses_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(courses_block);
+        }
 
-  //       getPageColumnLeft().append(internships_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         internships_block.remove();
-  //         current_page_number++;
-  //         getPageColumnLeft().append(internships_block);
-  //       }
+        getPageColumnLeft().append(extra_curricular_activities_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          extra_curricular_activities_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(extra_curricular_activities_block);
+        }
 
-  //       //
-  //       getPageColumnLeft().append(references_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         references_block.remove();
-  //         current_page_number++;
-  //         getPageColumnRight().append(references_block);
-  //       }
+        getPageColumnLeft().append(internships_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          internships_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(internships_block);
+        }
 
-  //       if (max_page_number < current_page_number) {
-  //         max_page_number = current_page_number;
-  //       }
+        //
+        getPageColumnLeft().append(references_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          references_block.remove();
+          current_page_number++;
+          getPageColumnRight().append(references_block);
+        }
 
-  //       // Right block
-  //       current_page_number = 1;
-  //       getPageColumnRight().append(languages_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         languages_block.remove();
-  //         current_page_number++;
-  //         getPageColumnRight().append(languages_block);
-  //       }
+        if (max_page_number < current_page_number) {
+          max_page_number = current_page_number;
+        }
 
-  //       getPageColumnRight().append(skills_block);
-  //       if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
-  //         skills_block.remove();
-  //         current_page_number++;
-  //         getPageColumnRight().append(skills_block);
-  //       }
+        // Right block
+        current_page_number = 1;
+        getPageColumnRight().append(languages_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          languages_block.remove();
+          current_page_number++;
+          getPageColumnRight().append(languages_block);
+        }
 
-  //       getPageColumnRight().append(certificates_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         certificates_block.remove();
-  //         current_page_number++;
-  //         getPageColumnRight().append(certificates_block);
-  //       }
+        getPageColumnRight().append(skills_block);
+        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
+          skills_block.remove();
+          current_page_number++;
+          getPageColumnRight().append(skills_block);
+        }
 
-  //       getPageColumnRight().append(hobbies_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         hobbies_block.remove();
-  //         current_page_number++;
-  //         getPageColumnRight().append(hobbies_block);
-  //       }
+        getPageColumnRight().append(certificates_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          certificates_block.remove();
+          current_page_number++;
+          getPageColumnRight().append(certificates_block);
+        }
 
-  //       if (max_page_number < current_page_number) {
-  //         max_page_number = current_page_number;
-  //       }
+        getPageColumnRight().append(hobbies_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          hobbies_block.remove();
+          current_page_number++;
+          getPageColumnRight().append(hobbies_block);
+        }
 
-  //       console.log("Current:Max: ", current_page_number, max_page_number);
+        if (max_page_number < current_page_number) {
+          max_page_number = current_page_number;
+        }
 
-  //       current_page_number = max_page_number;
+        current_page_number = max_page_number;
 
-  //       // Bottom block
-  //       getPageArea3().append(bottom_block);
-  //       if (getPageContainer().height() > getPageContainer().parent().height()) {
-  //         bottom_block.remove();
-  //         current_page_number++;
-  //         getPageArea3().append(bottom_block);
-  //       }
-  //     }
+        // Bottom block
+        getPageArea3().append(bottom_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          bottom_block.remove();
+          current_page_number++;
+          getPageArea3().append(bottom_block);
+        }
+      }
 
-  //     rebuildingPages();
+      function getPageArea1() {
+        return getPageContainer().find('.cv-body-area.top-area');
+      }
 
-  //     function getPageArea1() {
-  //       return getPageContainer().find('.cv-body-area.top-area');
-  //     }
+      function getPageArea2() {
+        return getPageContainer().find('.cv-body-area.middle-area');
+      }
 
-  //     function getPageArea2() {
-  //       return getPageContainer().find('.cv-body-area.middle-area');
-  //     }
+      function getPageArea3() {
+        return getPageContainer().find('.cv-body-area.bottom-area');
+      }
 
-  //     function getPageArea3() {
-  //       return getPageContainer().find('.cv-body-area.bottom-area');
-  //     }
+      function getPageColumnLeft() {
+        return getPageArea2().find('.column-1');
+      }
 
-  //     function getPageColumnLeft() {
-  //       return getPageArea2().find('.column-1');
-  //     }
+      function getPageColumnRight() {
+        return getPageArea2().find('.column-2');
+      }
 
-  //     function getPageColumnRight() {
-  //       return getPageArea2().find('.column-2');
-  //     }
+      function getPageContainer() {
+        var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+        if (page.length > 0) {
+          return page.find('.cv-body-content');
+        } else {
+          return createNewPage(current_page_number);
+        }
+      }
 
-  //     function getPageContainer() {
-  //       let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
-  //       if (page.length > 0) {
-  //         return page.find('.cv-body-content');
-  //       } else {
-  //         return createNewPage(current_page_number);
-  //       }
-  //     }
+      function createNewPage(page_number) {
+        var page_element = $('<div class="cv-body cv-body-visible cv-body-1 page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
+        page_element.attr('data-chapter', 'cv');
+        page_element.attr('data-page', page_number);
+        var page_element_container = $('<div class="cv-body-content"></div>');
+        page_element.append(page_element_container);
 
-  //     function createNewPage(page_number) {
-  //       let page_element = $('<div className="cv-body cv-body-visible cv-body-1 page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
-  //       page_element.attr('data-chapter', 'cv');
-  //       page_element.attr('data-page', page_number);
-  //       let page_element_container = $('<div className="cv-body-content"></div>');
-  //       page_element.append(page_element_container);
+        if (current_page_number == 1) {
+          var top_area = $('#cv-body-hidden-container .top-area').clone();
+          top_area.children().remove();
+          page_element_container.append(top_area);
+        }
 
-  //       if (current_page_number == 1) {
-  //         let top_area = $('#cv-body-hidden-container .top-area').clone();
-  //         top_area.children().remove();
-  //         page_element_container.append(top_area);
-  //       }
+        var middle_area = $('#cv-body-hidden-container .middle-area').clone();
+        middle_area.children().remove();
+        var column_left = $('#cv-body-hidden-container .middle-area .column-1').clone();
+        column_left.children().remove();
+        middle_area.append(column_left);
+        var column_right = $('#cv-body-hidden-container .middle-area .column-2').clone();
+        column_right.children().remove();
+        middle_area.append(column_right);
+        page_element_container.append(middle_area);
 
-  //       let middle_area = $('#cv-body-hidden-container .middle-area').clone();
-  //       middle_area.children().remove();
-  //       let column_left = $('#cv-body-hidden-container .middle-area .column-1').clone();
-  //       column_left.children().remove();
-  //       middle_area.append(column_left);
-  //       let column_right = $('#cv-body-hidden-container .middle-area .column-2').clone();
-  //       column_right.children().remove();
-  //       middle_area.append(column_right);
-  //       page_element_container.append(middle_area);
+        var bottom_area = $('#cv-body-hidden-container .bottom-area').clone();
+        bottom_area.children().remove();
+        page_element_container.append(bottom_area);
 
-  //       let bottom_area = $('#cv-body-hidden-container .bottom-area').clone();
-  //       bottom_area.children().remove();
-  //       page_element_container.append(bottom_area);
+        if ($('#cv-chapter-section-cv').find(page_element)) {
+          $('#cv-chapter-section-cv').append(page_element);
+        }
 
-  //       if ($('#cv-chapter-section-cv').find(page_element)) {
-  //         $('#cv-chapter-section-cv').append(page_element);
-  //       }
+        return page_element_container;
+      }
 
-  //       return page_element_container;
-  //     }
-  //   }
-  // }, [data]);
+      rebuildingPages();
+    }
+  }, [data]);
 
   return (
     <div className="sv_006" ref={reportTemplateRef}>

@@ -2,6 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 
+export const getUniversity = createAsyncThunk('fetch/getUniversity', async (params) => {
+    const response = await api.dependencies.getUniversity({ "query": params || '', limit: 40 });
+    return response;
+});
+
 export const getDegree = createAsyncThunk('fetch/getDegree', async (params) => {
     const response = await api.dependencies.getDegree({ "query": params || '', limit: 40 });
     return response;
@@ -115,7 +120,15 @@ export const fetchGetListObjectiveById = createAsyncThunk('fetch/fetchGetListObj
 })
 
 export const fetchGetListLanguages = createAsyncThunk('fetch/fetchGetListLanguages', async (value) => {
-    const response = await api.dependencies.getLanguages({ query: value, limit: `40` });
+    let params = {
+        limit: `40`
+    };
+
+    if (!!value) {
+        params.query = value;
+    }
+
+    const response = await api.dependencies.getLanguages(params);
     return response;
 })
 

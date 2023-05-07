@@ -27,6 +27,7 @@ import {
     getUniversityByName,
     getDescribes,
     getDegree,
+    getUniversity,
 } from "../controllers/dependencies";
 
 const initialState = {
@@ -111,6 +112,10 @@ const initialState = {
     degree: {
         list: [],
         status: statusLoaded,
+    },
+    university: {
+        list: [],
+        status: statusLoaded,
     }
 };
 
@@ -125,6 +130,14 @@ export const sliceDepenndecies = createSlice({
                 ...state,
                 ...action.payload.dependencies,
             }
+        },
+        // getUniversity
+        [getUniversity.pending]: (state) => {
+            state.university.status = statusLoader;
+        },
+        [getUniversity.fulfilled]: (state, action) => {
+            state.university.status = statusLoaded;
+            state.university.list = action.payload;
         },
         // ggetDegree
         [getDegree.pending]: (state) => {

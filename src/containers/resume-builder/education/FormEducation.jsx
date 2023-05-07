@@ -28,7 +28,8 @@ import {
 } from "../../../slices/education";
 import {
    getStudysList,
-   getDegree
+   getDegree,
+   getUniversity
 } from "../../../controllers/dependencies";
 
 import {
@@ -54,7 +55,8 @@ const FormEducation = ({
       },
       dependencies: {
          studys,
-         degree
+         degree,
+         university,
       },
       auth: {
          autorizate: {
@@ -154,12 +156,17 @@ const FormEducation = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
-   const getSearchListDegree = (text) => {
+   const getSearchListDegree = (text = '') => {
       dispatch(getDegree(text));
+   }
+
+   const getSearchListUnivercitu = (text = '') => {
+      dispatch(getUniversity(text));
    }
 
    React.useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
+      getSearchListDegree();
    }, []);
 
    return (
@@ -209,8 +216,9 @@ const FormEducation = ({
                                                                   label="Facility"
                                                                   valueState={item?.facility || ""}
                                                                   handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "facility" })}
+                                                                  handleServerRequest={() => getSearchListUnivercitu(item?.facility)}
                                                                   isOutDataObj={false}
-                                                                  isModal={false}
+                                                                  data={university.list}
                                                                   isValidIn={true}
                                                                   validIn={item.facility?.length > 2}
                                                                />
@@ -295,8 +303,9 @@ const FormEducation = ({
                         label="Facility"
                         valueState={objNew?.facility || ""}
                         handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "facility" }, data)}
+                        data={university.list}
+                        handleServerRequest={() => getSearchListUnivercitu(objNew?.facility)}
                         isOutDataObj={false}
-                        isModal={false}
                         isValidIn={true}
                         validIn={objNew?.facility?.length > 2}
                      />

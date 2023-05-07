@@ -78,7 +78,7 @@ const FormLanguages = ({
       dispatch(updateItemLanguageFiledNew({ name, value }));
    }
 
-   const handleServerRequestLanguagesList = async (text) => {
+   const handleServerRequestLanguagesList = async (text = '') => {
       await dispatch(fetchGetListLanguages(text));
    }
 
@@ -88,6 +88,7 @@ const FormLanguages = ({
 
    useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
+      handleServerRequestLanguagesList();
    }, []);
 
    useEffect(() => {
