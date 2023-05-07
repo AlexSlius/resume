@@ -626,10 +626,15 @@
                     flex-direction: row;
                     align-items: flex-start;
                     justify-content: stretch;
-                    width: 93px;
-                    height: 93px;
-                    margin-right: 23px;
                     position: relative;
+
+                    .profile-info_wr-img {
+                      width: 93px;
+                      min-width: 93px;
+                      height: 93px;
+                      position: relative;
+                      margin-right: 23px;
+                    }
 
                     .cv-photo {
                       width: 100%;

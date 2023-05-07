@@ -235,7 +235,9 @@ export const ResumeCv001 = ({
                     <div className="profile-info">
                       {
                         isArray(contact) && contact?.[0]?.picture && (
+                          <div className="profile-info_wr-img">
                           <img className="cv-photo active" src={contact?.[0]?.picture} />
+                          </div>
                         )
                       }
                       {
