@@ -25,7 +25,7 @@ const DATA_NAMES = [
 
 export const isCheckDescriptionByDataCover = (data) => {
     for (let i = 0; i < DATA_NAMES.length; i++) {
-        if (!!data[DATA_NAMES[i]].length > 0) {
+        if (!!data[DATA_NAMES[i]]?.length > 0) {
             return true;
         }
     }
