@@ -89,6 +89,7 @@ const Settings = () => {
                                             name="firstName"
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
                                             valid={objForm?.firstName?.length > 2}
+                                            readOnly={false}
                                         />
                                     </div>
                                 </CCol>
@@ -101,6 +102,7 @@ const Settings = () => {
                                             value={objForm?.lastName}
                                             valid={objForm?.lastName?.length > 2}
                                             onChange={(e) => updateSettingField({ name: e.target.name, value: e.target.value })}
+                                            readOnly={false}
                                         />
                                     </div>
                                 </CCol>
@@ -113,6 +115,7 @@ const Settings = () => {
                                             name="username"
                                             valid={/\S+@\S+\.\S+/.test(objForm.username)}
                                             disabled={true}
+                                            readOnly={false}
                                         />
                                     </div>
                                 </CCol>

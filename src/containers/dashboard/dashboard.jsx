@@ -17,6 +17,7 @@ import config from "../../config/config.json";
 
 import { isLoader } from "../../helpers/loadings"
 import { copyToClipboard } from "../../helpers/bufer";
+import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
 import {
     fetchGetResumesList,
@@ -31,12 +32,7 @@ import {
 } from "../../controllers/cover/covers";
 import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
-
-import {
-    cleanSliseNew
-} from "../../slices/contact";
 import { addItemNotification } from "../../slices/notifications";
-import { cleanResumeSlices } from "../../slices/cleanAllResumeSlices";
 
 import style from "./Style.module.scss";
 
@@ -75,15 +71,12 @@ const Dashboard = () => {
 
     // new add resume
     const hangleAddNewResume = async () => {
-        // await cleanResumeSlices(dispatch);
-        // await Router.push(`${routersPages['resumeBuilderNew']}`);
         await setLoadNewCard(true);
         let res = await dispatch(contactAddNew({ isNewResume: true, isDashboard: true }));
         await setLoadNewCard(false);
     }
 
     const hangleAddNewCover = async () => {
-        // await Router.push(`${routersPages['coverLetterNew']}`);
         await setLoadNewCard(true);
         let res = await dispatch(coverAddNew({ isDashboard: true }));
         await setLoadNewCard(false);
@@ -117,6 +110,7 @@ const Dashboard = () => {
         dispatch(fetchPostUpdateResumes({ id, data: { cv_name: stateName } }));
     }
 
+    // handle Share resume
     const handleShareResume = async (id) => {
         let res = await dispatch(postShareResume({ id }));
 
@@ -127,6 +121,24 @@ const Dashboard = () => {
         }
     }
 
+    // download handle
+    const handleDownloadResume = (id) => {
+
+    }
+
+    const chanbdegAutOrPlanResume = (id, isDown = false) => {
+        handleChanbdegAutOrPlan({
+            funCalb: () => { isDown ? handleDownloadResume(id) : handleShareResume(id) },
+            isCover: false,
+            isNewResume: false,
+            isAthorized: true,
+            dispatch,
+            Router,
+            query: router.query,
+        });
+    }
+
+    // handleShare cover
     const handleShareCover = async (id) => {
         let res = await dispatch(postShareCover({ id }));
 
@@ -135,6 +147,23 @@ const Dashboard = () => {
                 await dispatch(addItemNotification({ text: "link copied" }));
             });
         }
+    }
+
+    // download handle
+    const handleDownloadCover = (id) => {
+
+    }
+
+    const chanbdegAutOrPlanCover = (id, isDown = false) => {
+        handleChanbdegAutOrPlan({
+            funCalb: () => { isDown ? handleDownloadCover(id) : handleShareCover(id) },
+            isCover: true,
+            isNewResume: false,
+            isAthorized: true,
+            dispatch,
+            Router,
+            query: router.query,
+        });
     }
 
     React.useEffect(() => {
@@ -147,10 +176,6 @@ const Dashboard = () => {
         }
 
     }, [router.query.tab]);
-
-    React.useEffect(() => {
-        dispatch(cleanSliseNew());
-    }, []);
 
     return (
         <>
@@ -202,7 +227,8 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handlekeyUp={handlekeyUp}
                                                 handleBlur={handleBlur}
-                                                handleShare={() => handleShareResume(item.id)}
+                                                handleShare={() => chanbdegAutOrPlanResume(item.id)}
+                                                handleDewnload={() => chanbdegAutOrPlanResume(item.id, true)}
                                             />
                                         ))
                                     }
@@ -244,7 +270,8 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handlekeyUp={handlekeyUpCover}
                                                 handleBlur={handleBlurCover}
-                                                handleShare={() => handleShareCover(item.id)}
+                                                handleShare={() => chanbdegAutOrPlanCover(item.id)}
+                                                handleDewnload={() => chanbdegAutOrPlanCover(item.id, true)}
                                             />
                                         ))
                                     }

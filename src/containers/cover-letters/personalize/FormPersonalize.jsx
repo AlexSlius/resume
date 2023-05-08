@@ -36,7 +36,7 @@ const FormPersonalize = ({
     const {
         coverDataForm: {
             coverDataObj,
-            status
+            coverDataObjNew,
         },
         dependencies: {
             coutrys,
@@ -49,6 +49,8 @@ const FormPersonalize = ({
         },
     } = storeDate;
     const isNew = (idCv == "new");
+
+    let contObj = (isNew ? coverDataObjNew : coverDataObj);
 
     const handleUpdateItemField = ({ name, value }, data = null) => {
         if (!!data) {
@@ -73,7 +75,7 @@ const FormPersonalize = ({
         if (!!!idCountry)
             return false;
 
-        await dispatch(fetchGetCities({ id: idCountry, params: coverDataObj.city }));
+        await dispatch(fetchGetCities({ id: idCountry, params: contObj.city }));
     }
 
     const newBasicNoAutorizstion = async () => {
@@ -100,8 +102,8 @@ const FormPersonalize = ({
     }
 
     React.useEffect(() => {
-        setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: coverDataObj.country }));
-    }, [coutrys.list, coverDataObj?.country]);
+        setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contObj.country }));
+    }, [coutrys.list, contObj?.country]);
 
     React.useEffect(() => {
         dispatch(fetchGetCountrys());
@@ -120,17 +122,19 @@ const FormPersonalize = ({
                         <CCol xs={12} md={6}>
                             <Input
                                 label="First Name"
-                                value={coverDataObj?.firstName}
-                                valid={coverDataObj?.firstName?.length > 0}
+                                value={contObj?.firstName}
+                                valid={contObj?.firstName?.length > 0}
                                 onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
+                                readOnly={false}
                             />
                         </CCol>
                         <CCol xs={12} md={6}>
                             <Input
                                 label="Last Name"
-                                value={coverDataObj.lastName}
-                                valid={coverDataObj?.lastName?.length > 0}
+                                value={contObj.lastName}
+                                valid={contObj?.lastName?.length > 0}
                                 onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
+                                readOnly={false}
                             />
                         </CCol>
                     </CRow>
@@ -138,44 +142,44 @@ const FormPersonalize = ({
                         <CCol xs={12} md={6}>
                             <InputSelect
                                 label="Country"
-                                valueState={coverDataObj.country || ''}
+                                valueState={contObj.country || ''}
                                 data={coutrys.list}
                                 handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "country" }, data)}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                                 isFlag={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.country?.length > 2}
+                                validIn={contObj.country?.length > 2}
                             />
                         </CCol>
                         <CCol xs={12} md={6}>
                             <InputSelect
                                 label="City"
-                                valueState={coverDataObj.city || ''}
+                                valueState={contObj.city || ''}
                                 data={cities.list}
                                 handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "city" }, data)}
                                 handleServerRequest={handleServerRequestCity}
                                 isOutDataObj={false}
                                 isRequire={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.city?.length > 2}
+                                validIn={contObj.city?.length > 2}
                             />
                         </CCol>
                     </CRow>
                     <CRow>
                         <CCol xs={12} md={6}>
                             <Input
-                                label="State"
-                                value={coverDataObj.state}
-                                valid={coverDataObj?.state?.length > 3}
+                                label="Address"
+                                value={contObj.state}
+                                valid={contObj?.state?.length > 3}
                                 onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
                             />
                         </CCol>
                         <CCol xs={12} md={6}>
                             <Input
                                 label="Zip Code"
-                                value={coverDataObj.zipCode}
-                                valid={coverDataObj?.zipCode?.length > 2}
+                                value={contObj.zipCode}
+                                valid={contObj?.zipCode?.length > 2}
                                 onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
                             />
                         </CCol>
@@ -184,10 +188,11 @@ const FormPersonalize = ({
                         <CCol xs={12} md={6}>
                             <Input
                                 label="E-mail"
-                                value={coverDataObj.email}
-                                invalid={(coverDataObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(coverDataObj.email))}
-                                valid={/\S+@\S+\.\S+/.test(coverDataObj.email)}
+                                value={contObj.email}
+                                invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
+                                valid={/\S+@\S+\.\S+/.test(contObj.email)}
                                 onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
+                                readOnly={false}
                             />
                         </CCol>
                         <CCol xs={12} md={6}>
@@ -195,9 +200,9 @@ const FormPersonalize = ({
                                 label="Phone"
                                 isNumber={true}
                                 isPhone={true}
-                                value={coverDataObj.phone}
-                                valid={coverDataObj?.phone?.length > 6}
-                                onChange={(e) => handleUpdateItemField({ name: "phone", value: e.target.value })}
+                                value={contObj.phone}
+                                valid={contObj?.phone?.length > 6}
+                                onChange={(value) => handleUpdateItemField({ name: "phone", value })}
                             />
                         </CCol>
                     </CRow>

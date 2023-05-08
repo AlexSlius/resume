@@ -98,6 +98,9 @@ export const slice = createSlice({
             state.coverDataObj[name] = value;
             state.coverDataObjNew[name] = value;
         },
+        cleanCoverNewForm(state, action) {
+            state.coverDataObjNew = initialState.coverDataObjNew;
+        },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {

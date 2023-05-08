@@ -20,6 +20,7 @@ export const InputSelect = ({
     handleAddNew = () => { },
     handleServerRequest = () => { },
     onDelete = () => { },
+    handleClickActiveItem = () => { },
     label = undefined,
     placeholder = undefined,
     isLoad = false,
@@ -51,7 +52,11 @@ export const InputSelect = ({
     isValidIn = false,
     validIn = false,
     isUpperCase = false,
-    autoComplete = "off"
+    autoComplete = "off",
+    isShowUpClick = true,
+    isActiveItem = false,
+    activeArr = [],
+    keyActiveEl = 'id',
 }) => {
     const refSelect = React.useRef(undefined);
     const reIn = React.useRef(undefined)
@@ -90,7 +95,7 @@ export const InputSelect = ({
         }
     }
 
-    const handleOnClickSelect = (data) => {
+    const handleOnClickSelect = (data, classActive = false) => {
         refIdActiveItem.current = data?.id;
 
         if (isFlag) {
@@ -98,14 +103,21 @@ export const InputSelect = ({
         }
 
         let prop = new Promise(async (resolve, reject) => {
-            setClassName('');
+            if (isShowUpClick)
+                setClassName('');
             resolve(true);
         });
 
         prop.then(
             function (result) {
                 let out = !!isOutDataObj ? data : data[keyText];
-                handleSaveSelect({ name, value: out, isClisk: true }, data);
+
+                if (classActive) {
+                    handleClickActiveItem(data);
+                } else {
+                    handleSaveSelect({ name, value: out, isClisk: true }, data);
+                }
+
                 handleChallenge(data);
             },
             function (error) { }
@@ -312,8 +324,16 @@ export const InputSelect = ({
                                                                         let textFirst = '';
                                                                         let textLast = '';
 
-                                                                        if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
-                                                                            activeClassItem = style.active;
+                                                                        if (isActiveItem) {
+                                                                            if (isArray(activeArr)) {
+                                                                                if (!!activeArr.find(el => el[keyActiveEl] == item.id)) {
+                                                                                    activeClassItem = style.active;
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
+                                                                                activeClassItem = style.active;
+                                                                            }
                                                                         }
 
                                                                         if (isSearch && !isBackgraundLoad && !isLoad) {
@@ -354,7 +374,7 @@ export const InputSelect = ({
                                                                                 <button
                                                                                     className={`${style.button} ${activeClassItem} ${isCap ? style.cap : ''}`}
                                                                                     type="button"
-                                                                                    onClick={() => handleOnClickSelect(item)}
+                                                                                    onClick={() => handleOnClickSelect(item, !!activeClassItem)}
                                                                                 >
                                                                                     {(!!isFlag && !!item[keyIcon]?.length) && <img src={item[keyIcon]} />}
                                                                                     {!!textFirst && <span>{isUpperCase ? textFirst.toUpperCase() : textFirst}</span>}{isUpperCase ? textLast.toUpperCase() : textLast}

@@ -14,6 +14,8 @@ import {
     localStorageGet
 } from '../helpers/localStorage';
 import { setUpdateResumeActive } from './resumeData';
+import { cleanSliseNew } from "../slices/contact";
+import { cleanCoverNewForm } from "../slices/cover/coverDataForm";
 
 export const logout = async (dispatch) => {
     await cookieDestroy({ key: 'token' });
@@ -62,6 +64,9 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({
         } else {
             Router.push(`/${routersPages['dashboard']}`);
         }
+
+        thunkAPI.dispatch(cleanSliseNew());
+        thunkAPI.dispatch(cleanCoverNewForm());
     } else {
         if (response?.errors == "session_empty") {
             Router.push(`${routersPages['resumeBuilderNew']}`);

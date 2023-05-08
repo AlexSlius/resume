@@ -8,13 +8,10 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import ModifyItems from './ModifyItems';
 import { InputSelect } from "../../../components/uis/inputSelect"
-import InputSearch from "../../../components/uis/inputSearch";
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { LoadWr } from "../../../components/loadWr";
-import { LoadBlock } from "../../../components/loadBlock";
 import { ActiveItemSkillsAndStarts } from "./ActiveItemSkillsAndStarts";
 
-import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
@@ -61,26 +58,34 @@ const FormSkill = ({
 
    const isDataPage = (isArray(skillsObj?.skillsListAll) && (skillsObj.skillsListAll.length > 0));
 
-   const updateitemFiled = ({ name, value, isClisk }) => {
-      dispatch(updateItemSkillsFiled({ name, value }));
+   const updateitemFiled = ({ name, value, isClisk, update }, data) => {
+      if (!isClisk) {
+         dispatch(updateItemSkillsFiled({ name, value }));
+      }
+
+      if (isClisk && update) {
+         dispatch(updateItemSkillsFiled({ name, value }));
+      }
 
       if (isClisk) {
-         switch (name) {
-            case "selectd_work": {
-               dispatch(getSkillsPositionStartOne({ data: { "query": value || '', limit: 15 } }));
-               break;
+         if (update) {
+            switch (name) {
+               case "selectd_work": {
+                  dispatch(getSkillsPositionStartOne({ data: { "query": value || '', limit: 15 } }));
+                  break;
+               }
             }
+         } else {
+            handleAddItemSkillOne(data.id, data.name);
          }
       }
    }
 
    const handleGetSkillsPos = async () => {
-      updateitemFiled({ name: "searchSkils", value: '' });
       await dispatch(getJopsTitle(skillsObj?.selectd_work || ""));
    }
 
    const randomSearchSkills = async () => {
-      updateitemFiled({ name: "selectd_work", value: '' });
       await dispatch(fetchGetSkillslistSearch(skillsObj?.searchSkils));
    }
 
@@ -101,6 +106,15 @@ const FormSkill = ({
       if (isArray(skillsObj.skillsListAll)) {
          let result = skillsObj.skillsListAll.find((el) => id == el.skillId)
          handleDeleteItemSkill(result.id);
+      }
+   }
+
+   const handleClickActiveItem = (data) => {
+      if (isArray(skillsObj?.skillsListAll)) {
+         let { id } = skillsObj.skillsListAll.find(el => el.skillId == data.id);
+
+         if (id)
+            handleDeleteItemSkill(id);
       }
    }
 
@@ -140,7 +154,7 @@ const FormSkill = ({
                         label="Selected work"
                         valueState={skillsObj?.selectd_work || ""}
                         data={jopsTitle?.list || []}
-                        handleSaveSelect={(obj) => updateitemFiled({ ...obj, name: "selectd_work" })}
+                        handleSaveSelect={(obj) => updateitemFiled({ ...obj, name: "selectd_work", update: true })}
                         handleServerRequest={handleGetSkillsPos}
                         isOutDataObj={false}
                         isIconArrow={true}
@@ -148,28 +162,30 @@ const FormSkill = ({
                      />
                   </CCol>
                   <CCol className="mb-4" xs={12}>
-                     <InputSearch
+                     <InputSelect
                         label="Search skill"
-                        value={skillsObj?.searchSkils}
-                        onChange={(e) => updateitemFiled({ name: "searchSkils", value: e.target.value })}
+                        valueState={skillsObj?.searchSkils}
+                        data={skillsObj?.searchSkillsList || []}
+                        handleSaveSelect={(obj, data) => updateitemFiled({ ...obj, name: "searchSkils", update: false }, data)}
                         handleServerRequest={randomSearchSkills}
+                        handleClickActiveItem={handleClickActiveItem}
+                        isOutDataObj={false}
+                        isIconArrow={true}
+                        isRequire={true}
+                        isShowUpClick={false}
+                        isActiveItem={true}
+                        activeArr={skillsObj?.skillsListAll}
+                        isAddDiv={false}
+                        keyActiveEl='skillId'
                      />
                   </CCol>
                   <CCol xs={12}>
-                     {
-                        isLoader(statusIsListSkills) ? (
-                           <LoadBlock />
-                        ) : (
-                           <>
-                              <ModifyItems
-                                 arr={skillsObj?.skillsList}
-                                 arrActive={skillsObj?.skillsListAll}
-                                 handleClick={handleAddItemSkillOne}
-                                 handleClickDelete={handleClickDeleteItem}
-                              />
-                           </>
-                        )
-                     }
+                     <ModifyItems
+                        arr={skillsObj?.skillsList}
+                        arrActive={skillsObj?.skillsListAll}
+                        handleClick={handleAddItemSkillOne}
+                        handleClickDelete={handleClickDeleteItem}
+                     />
                   </CCol>
                </CRow>
             </CCol >

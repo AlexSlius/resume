@@ -18,6 +18,7 @@ export const CardResume = ({
     handleBlur = () => { },
     handleShare = () => { },
     handleDelete = () => { },
+    handleDewnload = () => { },
 }) => {
     const refIdTimeout = useRef(undefined);
     const [stateName, setStateName] = useState(label);
@@ -50,7 +51,7 @@ export const CardResume = ({
                 <img src={image} alt="picture resume" onClick={handleEdit} />
                 <div className={`${style.card__navigation}`}>
                     <div>
-                        <button className="btn-download">
+                        <button className="btn-download" onClick={handleDewnload}>
                             <Icon svg={iconDownload} />
                         </button>
                     </div>

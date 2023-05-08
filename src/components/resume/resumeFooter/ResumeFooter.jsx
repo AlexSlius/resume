@@ -13,6 +13,7 @@ import { routersPages } from "../../../constants/next-routers";
 import templateIcon from '/public/images/icons/selectFillNone.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
+import { handleChanbdegAutOrPlan } from '../../../utils/downShare';
 
 
 const ResumeFooter = ({ isCover }) => {
@@ -37,37 +38,16 @@ const ResumeFooter = ({ isCover }) => {
       }
    }
 
-   const handleChanbdegAutOrPlan = (funCalb = () => { }) => {
-      if (!isCover) {
-         if (isNewResume) {
-            if (!isAthorized) {
-               let pictureFile = sessionStorageGet('picture');
-               dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
-            } else {
-               let pictureFile = sessionStorageGet('picture');
-               dispatch(contactAddNew({ pictureFile, isNewResume }));
-            }
-         } else {
-            // autoraizovan
-            Router.push(`/${routersPages['resumeNow']}`);
-            // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            funCalb();
-         }
-      } else {
-         // cover
-         if (isNewResume) {
-            if (!isAthorized) {
-               dispatch(coverSetNew({ isNewCover: true }));
-            } else {
-               dispatch(coverAddNew());
-            }
-         } else {
-            // autoraizovan
-            Router.push(`/${routersPages['resumeNow']}`);
-            // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            funCalb();
-         }
-      }
+   const chanbdegAutOrPlan = (funCalb = () => { }) => {
+      handleChanbdegAutOrPlan({
+         funCalb,
+         isCover,
+         isNewResume: false,
+         isAthorized,
+         dispatch,
+         Router,
+         query: router.query,
+      });
    }
 
    return (
@@ -103,7 +83,7 @@ const ResumeFooter = ({ isCover }) => {
                </CButton>
                {
                   isAthorized && (
-                     <MenuButton isEdit={true} handleChanbdegAutOrPlan={handleChanbdegAutOrPlan} />
+                     <MenuButton isEdit={true} handleChanbdegAutOrPlan={chanbdegAutOrPlan} />
                   )
                }
             </div>

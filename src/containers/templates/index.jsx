@@ -44,6 +44,7 @@ import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 import { sessionStorageGet } from '../../helpers/localStorage';
 import { contactSetNew, contactAddNew } from '../../controllers/contacts';
 import { coverAddNew, coverSetNew } from "../../controllers/cover/personalize";
+import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -238,37 +239,17 @@ const Templates = ({
         setShowSettings(!showSettings);
     }
 
-    const handleChanbdegAutOrPlan = (funCalb = () => { }) => {
-        if (!isCover) {
-            if (isNewResume) {
-                if (!isAthorized) {
-                    let pictureFile = sessionStorageGet('picture');
-                    dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
-                } else {
-                    let pictureFile = sessionStorageGet('picture');
-                    dispatch(contactAddNew({ pictureFile, isNewResume }));
-                }
-            } else {
-                // autoraizovan
-                Router.push(`/${routersPages['resumeNow']}`);
-                // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-                funCalb();
-            }
-        } else {
-            // cover
-            if (isNewResume) {
-                if (!isAthorized) {
-                    dispatch(coverSetNew({ isNewCover: true }));
-                } else {
-                    dispatch(coverAddNew());
-                }
-            } else {
-                // autoraizovan
-                Router.push(`/${routersPages['resumeNow']}`);
-                // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-                funCalb();
-            }
-        }
+
+    const chanbdegAutOrPlan = (funCalb = () => { }) => {
+        handleChanbdegAutOrPlan({
+            funCalb,
+            isCover,
+            isNewResume,
+            isAthorized,
+            dispatch,
+            Router,
+            query: router.query,
+        });
     }
 
     useEffect(() => {
@@ -632,7 +613,7 @@ const Templates = ({
                                         icon={downloadIcon}
                                         label="Download PDF"
                                         className="btn--blue"
-                                        onHandle={handleChanbdegAutOrPlan}
+                                        onHandle={chanbdegAutOrPlan}
                                     />
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (
@@ -648,7 +629,7 @@ const Templates = ({
                                                 >
                                                     <Icon svg={dotsIcon} classNames={['icon-20']} />
                                                 </CButton>
-                                                <MenuButton isNew={isNewResume} handleChanbdegAutOrPlan={handleChanbdegAutOrPlan} />
+                                                <MenuButton isNew={isNewResume} handleChanbdegAutOrPlan={chanbdegAutOrPlan} />
                                             </div>
                                         )
                                     }

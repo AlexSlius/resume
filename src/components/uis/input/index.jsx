@@ -26,6 +26,7 @@ const Input = ({
    disabled = false,
    textError = "",
    autoComplete = "off",
+   readOnly = true,
 }) => {
    let classDelete = isDelete ? 'btn_delete' : '';
    let classNames = `${className} ${(!!value?.length > 0 || !!defaultValue?.length > 0) ? "text" : ""}`;
@@ -37,14 +38,20 @@ const Input = ({
    }
 
    const onFocusHa = (e) => {
-      setTimeout(() => {
-         e.target.removeAttribute('readonly');
-      }, 100);
+      if (readOnly) {
+         setTimeout(() => {
+            e.target.removeAttribute('readonly');
+         }, 100);
+      }
+
       onFocus(e);
    }
 
    const handleBlur = (e) => {
-      e.target.setAttribute('readonly', true);
+      if (readOnly) {
+         e.target.setAttribute('readonly', true);
+      }
+
       onBlur(e);
    }
 
@@ -67,7 +74,7 @@ const Input = ({
                name={name}
                disabled={disabled}
                autoComplete={autoComplete}
-               readOnly={true}
+               readOnly={readOnly}
                {...obj}
             />
             {

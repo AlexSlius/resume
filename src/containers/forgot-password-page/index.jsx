@@ -65,6 +65,7 @@ export const ForgotPasswordPage = () => {
                                     invalid={errors?.email}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                                     value={watch("email")}
+                                    readOnly={false}
                                     obj={
                                         register("email", {
                                             required: true,

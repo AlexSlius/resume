@@ -73,6 +73,7 @@ export const LoginPage = () => {
                                     label="E-mail"
                                     invalid={errors?.email}
                                     value={watch("email")}
+                                    readOnly={false}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                                     obj={
                                         register("email", {

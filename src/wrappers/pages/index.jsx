@@ -7,9 +7,9 @@ import { useDispatch } from "react-redux";
 
 export const WrapperPage = ({ children }) => {
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(cleanSliseNew());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(cleanSliseNew());
+    // }, []);
 
     return <div className="page">
         <Header />

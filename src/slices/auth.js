@@ -8,7 +8,7 @@ import {
     fetchAuthResetPassword,
     fetchAuthCodeResetPassword,
     fetchAuthNewPassword
-} from '../controllers/auth'
+} from '../controllers/auth';
 
 const initialState = {
     autorizate: {

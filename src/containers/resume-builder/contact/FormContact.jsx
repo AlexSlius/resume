@@ -34,7 +34,6 @@ import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
-import { capitalize } from "../../../helpers/strings"
 
 const FormContact = ({
    dispatch,
@@ -198,6 +197,7 @@ const FormContact = ({
                         onChange={(e) => handlerSetDateState('firstName', e.target.value)}
                         name="FNAM"
                         autoComplete="given-name"
+                        readOnly={false}
                      />
                   </div>
                   <div>
@@ -209,6 +209,7 @@ const FormContact = ({
                         onChange={(e) => handlerSetDateState('lastName', e.target.value)}
                         name="FLAST"
                         autoComplete="family-name"
+                        readOnly={false}
                      />
                   </div>
                </CCol>
@@ -224,6 +225,7 @@ const FormContact = ({
                      invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
                      valid={(contObj.email.length > 0) && /\S+@\S+\.\S+/.test(contObj.email)}
                      onChange={(e) => handlerSetDateState('email', e.target.value)}
+                     readOnly={false}
                   />
                </CCol>
                <CCol xs={6}>

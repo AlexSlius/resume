@@ -221,6 +221,7 @@ const FormReference = ({
                                                                      invalid={(item.email.length > 0) && !(/\S+@\S+\.\S+/.test(item.email))}
                                                                      valid={/\S+@\S+\.\S+/.test(item.email)}
                                                                      onChange={(e) => handleSaveSelect({ index, name: "email", value: e.target.value })}
+                                                                     readOnly={false}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
@@ -229,7 +230,7 @@ const FormReference = ({
                                                                      value={item.phone}
                                                                      isNumber={true}
                                                                      isPhone={true}
-                                                                     onChange={(e) => handleSaveSelect({ index, name: "phone", value: e.target.value })}
+                                                                     onChange={(value) => handleSaveSelect({ index, name: "phone", value })}
                                                                      valid={item.phone?.length > 6}
                                                                   />
                                                                </CCol>
@@ -286,6 +287,7 @@ const FormReference = ({
                         invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
                         valid={/\S+@\S+\.\S+/.test(objNew.email)}
                         onChange={(e) => handleSaveSelectNew({ name: "email", value: e.target.value })}
+                        readOnly={false}
                      />
                   </CCol>
                   <CCol xs={6}>

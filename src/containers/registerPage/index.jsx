@@ -83,6 +83,7 @@ export const RegisterPage = () => {
                                     value={watch("email")}
                                     valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
                                     textError={textError == "user_exist" ? "A user with this email is already registered" : ""}
+                                    readOnly={false}
                                     obj={
                                         register("email", {
                                             required: true,

@@ -17,6 +17,7 @@ const initialState = {
     id: "",
     selectd_work: "",
     searchSkils: "",
+    searchSkillsList: [],
     skillsList: [],
     skillsListAll: [],
     hideExperienceLevel: false,
@@ -99,12 +100,9 @@ export const slice = createSlice({
       state.statusIsListSkills = statusLoaded;
       state.skillsObj.skillsList = action.payload;
     },
-    [fetchGetSkillslistSearch.pending]: (state) => {
-      state.statusIsListSkills = statusLoader;
-    },
+    // fetchGetSkillslistSearch
     [fetchGetSkillslistSearch.fulfilled]: (state, action) => {
-      state.statusIsListSkills = statusLoaded;
-      state.skillsObj.skillsList = action.payload;
+      state.skillsObj.searchSkillsList = action.payload;
     }
   }
 });
