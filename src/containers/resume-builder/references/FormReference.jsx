@@ -14,9 +14,10 @@ import AddButton from "../../../components/uis/addButton/AddButton";
 import { ButtonSteps } from "../../../components/buttonSteps"
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 
-import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
+import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
+
 
 import {
    updateItemFieldReference,
@@ -39,6 +40,13 @@ import {
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
+let keysFiled = [
+   'fullName',
+   'company',
+   'phone',
+   'email'
+];
+
 const FormReference = ({
    dispatch,
    storeDate,
@@ -51,7 +59,6 @@ const FormReference = ({
       references: {
          referencesObj,
          objNew,
-         status,
       },
       auth: {
          autorizate: {
@@ -60,7 +67,9 @@ const FormReference = ({
       },
    } = storeDate;
    const refIdTimeout = useRef(undefined);
+   const refData = useRef(referencesObj);
    const [selected, setSelected] = useState(null);
+   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
 
    const isDataPage = (isArray(referencesObj) && (referencesObj.length > 0)) || isObjDatas(objNew);
 
@@ -115,9 +124,28 @@ const FormReference = ({
       dispatch(fetchDeleteReferences({ idCv, id }));
    }
 
+   const handleDeleteLastEmpty = () => {
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    const handleAddOne = async () => {
-      let re = await dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
-      setSelected(re?.payload?.id);
+      let isAddNew = isAddForm({
+         data: referencesObj,
+         dependence: keysFiled,
+         setState: setLastFormIsEmpty
+      });
+
+      if (isAddNew) {
+         let re = await dispatch(fetchPostAddCvOneReferences({ idCv, position: newPosition(referencesObj) }));
+         setSelected(re?.payload?.id);
+      }
    }
 
    const automateNew = async (index) => {
@@ -146,7 +174,15 @@ const FormReference = ({
 
    useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
+
+   useEffect(() => {
+      refData.current = referencesObj;
+   }, [referencesObj]);
 
    return (
       <>
@@ -189,7 +225,7 @@ const FormReference = ({
                                                          ]}
                                                       >
                                                          <CForm>
-                                                            <CRow className="mobile-rows row g-30 r-gap-30">
+                                                            <CRow className={`mobile-rows row g-30 r-gap-30 ${isFocusForm({ last: (referencesObj.length - 1) == index, isFocus: lastFormIsEmpty, setState: setSelected, id: item.id })}`}>
                                                                <CCol xs={6}>
                                                                   <Input
                                                                      id={item.id}

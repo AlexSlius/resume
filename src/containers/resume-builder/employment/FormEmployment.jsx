@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CCol, CRow } from "@coreui/react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 import dynamic from 'next/dynamic'
@@ -9,7 +9,6 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
-import { LoadWr } from "../../../components/loadWr";
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
@@ -32,9 +31,9 @@ import {
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
-import { isLoader } from "../../../helpers/loadings"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { cardData } from "../../../utils";
+import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
   fetchPostAddCvOneEmployment,
@@ -45,16 +44,28 @@ import {
 } from "../../../controllers/employments";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
+
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
   ssr: false
-})
+});
+
+const keysFiled = [
+  'title',
+  'company',
+  'periodFrom',
+  'periodTo',
+  'country',
+  'assignment',
+  'city',
+];
 
 const FormEmployment = ({
   dispatch,
   storeDate,
   idCv
 }) => {
-  const refIdTimeout = React.useRef(undefined);
+  const refIdTimeout = useRef(undefined);
+
   const {
     dependencies: {
       jopsTitle,
@@ -75,8 +86,10 @@ const FormEmployment = ({
     },
   } = storeDate;
   const [selected, setSelected] = useState(null);
-
+  const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
+  const refData = useRef(employmentObj);
   const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
+
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -151,12 +164,31 @@ const FormEmployment = ({
   }
 
   const handleAddone = async () => {
-    let re = await dispatch(fetchPostAddCvOneEmployment({ idCv, position: newPosition(employmentObj) }));
-    setSelected(re?.payload?.id);
+    let isAddNew = isAddForm({
+      data: employmentObj,
+      dependence: keysFiled,
+      setState: setLastFormIsEmpty
+    });
+
+    if (isAddNew) {
+      let re = await dispatch(fetchPostAddCvOneEmployment({ idCv, position: newPosition(employmentObj) }));
+      setSelected(re?.payload?.id);
+    }
   }
 
   const handleDeleteOne = (id) => {
     dispatch(fetchDeleteEmployment({ idCv, id }));
+  }
+
+  const handleDeleteLastEmpty = () => {
+    let resObj = lastFormDelete({
+      data: refData.current,
+      dependence: keysFiled,
+    });
+
+    if (resObj?.id) {
+      handleDeleteOne(resObj.id);
+    }
   }
 
   const handleAddNewJobTitle = async (text, isNewForm = false) => {
@@ -216,7 +248,15 @@ const FormEmployment = ({
   useEffect(() => {
     dispatch(fetchGetCountrys());
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
+
+    return () => {
+      handleDeleteLastEmpty();
+    }
   }, []);
+
+  useEffect(() => {
+    refData.current = employmentObj;
+  }, [employmentObj]);
 
   return (
     <>
@@ -257,7 +297,7 @@ const FormEmployment = ({
                                     item.city
                                   ]}
                                 >
-                                  <CRow className="mobile-rows g-30 r-gap-30">
+                                  <CRow className={`mobile-rows ${isFocusForm({ last: (employmentObj.length - 1) == index, isFocus: lastFormIsEmpty, setState: setSelected, id: item.id })} g-30 r-gap-30`}>
                                     <CCol xs={6}>
                                       <InputSelect
                                         label="Job Title"

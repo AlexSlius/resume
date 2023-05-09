@@ -32,7 +32,7 @@ export const Progress = ({
         <div className={style.wr_prosess}>
             <div className={style.prosess_head}>
                 <div className={style.prosess_head_left}>
-                    <span className={style.prosess_head_interest}>{interest}%</span>
+                    <span className={style.prosess_head_interest}>{Math.round(interest)}%</span>
                     {!!label && <span className={style.prosess_head_label}>{label}</span>}
                 </div>
                 <div className={style.prosess_head_right}>

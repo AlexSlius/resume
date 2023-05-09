@@ -3,7 +3,7 @@ import {
    CRow,
 } from "@coreui/react";
 import { isArray } from "lodash";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import Textarea from "../../../components/uis/textarea/TextArea";
@@ -11,13 +11,12 @@ import AddButton from "../../../components/uis/addButton/AddButton";
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 import { DatePicker } from "../../../components/uis/datePicker";
 import { InputSelect } from "../../../components/uis/inputSelect"
-import { LoadWr } from "../../../components/loadWr"
 import { ButtonSteps } from "../../../components/buttonSteps"
-import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { cardData } from "../../../utils";
+import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
    updateItemFieldActivity,
@@ -42,12 +41,22 @@ import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections
 
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
+const keysFiled = [
+   'title',
+   'employer',
+   'dateFrom',
+   'dateTo',
+   'country',
+   'city',
+   'description'
+];
+
 const FormActivity = ({
    dispatch,
    storeDate,
    idCv
 }) => {
-   const refIdTimeout = React.useRef(undefined);
+   const refIdTimeout = useRef(undefined);
 
    const {
       dependencies: {
@@ -58,7 +67,6 @@ const FormActivity = ({
       activitys: {
          activityObj,
          objNew,
-         status
       },
       auth: {
          autorizate: {
@@ -66,7 +74,9 @@ const FormActivity = ({
          }
       },
    } = storeDate;
-   const [selected, setSelected] = React.useState(null);
+   const [selected, setSelected] = useState(null);
+   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
+   const refData = useRef(activityObj);
 
    const isDataPage = (isArray(activityObj) && (activityObj.length > 0)) || isObjDatas(objNew);
 
@@ -112,9 +122,28 @@ const FormActivity = ({
       dispatch(fetchDeleteActivitys({ idCv, id }));
    }
 
+   const handleDeleteLastEmpty = () => {
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    const handleAddOne = async () => {
-      let re = await dispatch(fetchPostAddCvOneActivitys({ idCv, position: newPosition(activityObj) }));
-      setSelected(re?.payload?.id);
+      let isAddNew = isAddForm({
+         data: activityObj,
+         dependence: keysFiled,
+         setState: setLastFormIsEmpty
+      });
+
+      if (isAddNew) {
+         let re = await dispatch(fetchPostAddCvOneActivitys({ idCv, position: newPosition(activityObj) }));
+         setSelected(re?.payload?.id);
+      }
    }
 
    const automateNew = async (index) => {
@@ -164,10 +193,18 @@ const FormActivity = ({
       return re?.payload?.id;
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
+
+   useEffect(() => {
+      refData.current = activityObj;
+   }, [activityObj]);
 
    return (
       <>
@@ -208,7 +245,7 @@ const FormActivity = ({
                                                          item.employer
                                                       ]}
                                                    >
-                                                      <CRow className="row g-30 r-gap-30 mobile-rows">
+                                                      <CRow className={`row g-30 r-gap-30 mobile-rows ${isFocusForm({ last: (activityObj.length - 1) == index, isFocus: lastFormIsEmpty, setState: setSelected, id: item.id })}`}>
                                                          <CCol xs={6}>
                                                             <InputSelect
                                                                label="Function Title"

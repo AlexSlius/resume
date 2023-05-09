@@ -1,9 +1,6 @@
-import {
-   CCol,
-   CRow,
-} from "@coreui/react";
+import { CCol, CRow, } from "@coreui/react";
 import { isArray } from "lodash";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import Textarea from "../../../components/uis/textarea/TextArea"
@@ -16,9 +13,9 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 
 import { cardData } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
-import { isLoader } from "../../../helpers/loadings"
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isObjDatas } from '../../../helpers/datasPage';
+import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
    updateItemFieldEducation,
@@ -41,12 +38,23 @@ import {
 } from "../../../controllers/educations";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 
+const keysFiled = [
+   'facility',
+   'degree',
+   'dateFrom',
+   'dateTo',
+   'study',
+   'awards',
+   'description',
+];
+
 const FormEducation = ({
    dispatch,
    storeDate,
    idCv
 }) => {
-   const refIdTimeout = React.useRef(undefined);
+   const refIdTimeout = useRef(undefined);
+
    const {
       educations: {
          educationObj,
@@ -64,7 +72,9 @@ const FormEducation = ({
          }
       },
    } = storeDate;
-   const [selected, setSelected] = React.useState(null);
+   const [selected, setSelected] = useState(null);
+   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
+   const refData = useRef(educationObj);
 
    const isDataPage = (isArray(educationObj) && (educationObj.length > 0)) || isObjDatas(objNew);
 
@@ -112,12 +122,31 @@ const FormEducation = ({
    }
 
    const handleAddOne = async () => {
-      let re = await dispatch(fetchPostAddCvOneEducation({ idCv, position: newPosition(educationObj) }));
-      setSelected(re?.payload?.id);
+      let isAddNew = isAddForm({
+         data: educationObj,
+         dependence: keysFiled,
+         setState: setLastFormIsEmpty
+      });
+
+      if (isAddNew) {
+         let re = await dispatch(fetchPostAddCvOneEducation({ idCv, position: newPosition(educationObj) }));
+         setSelected(re?.payload?.id);
+      }
    }
 
    const handleDeleteOne = (id) => {
       dispatch(fetchDeleteEducation({ idCv, id }));
+   }
+
+   const handleDeleteLastEmpty = () => {
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
    }
 
    // new
@@ -164,10 +193,18 @@ const FormEducation = ({
       dispatch(getUniversity(text));
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
       getSearchListDegree();
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
+
+   useEffect(() => {
+      refData.current = educationObj;
+   }, [educationObj]);
 
    return (
       <>
@@ -210,7 +247,7 @@ const FormEducation = ({
                                                             item.study
                                                          ]}
                                                       >
-                                                         <CRow className="mobile-rows row g-30 r-gap-30">
+                                                         <CRow className={`mobile-rows row g-30 r-gap-30 ${isFocusForm({ last: (educationObj.length - 1) == index, isFocus: lastFormIsEmpty, setState: setSelected, id: item.id })}`}>
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Facility"

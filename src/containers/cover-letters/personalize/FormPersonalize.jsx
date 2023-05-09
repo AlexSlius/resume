@@ -102,7 +102,7 @@ const FormPersonalize = ({
     }
 
     React.useEffect(() => {
-        setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contObj.country }));
+        setIdCountry(getIdOfNameCountrys({ objArr: coutrys?.list, nameCountry: contObj?.country }));
     }, [coutrys.list, contObj?.country]);
 
     React.useEffect(() => {

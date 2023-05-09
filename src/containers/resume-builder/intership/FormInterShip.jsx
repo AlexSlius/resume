@@ -4,7 +4,7 @@ import {
    CRow
 } from "@coreui/react";
 import { isArray } from "lodash";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import Textarea from "../../../components/uis/textarea/TextArea";
@@ -14,11 +14,11 @@ import { DatePicker } from "../../../components/uis/datePicker";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { LoadWr } from "../../../components/loadWr"
-import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { cardData } from "../../../utils";
+import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
    updateItemFieldIntership,
@@ -46,12 +46,22 @@ import {
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 
+let keysFiled = [
+   'jobTitle',
+   'employer',
+   'dateFrom',
+   'dateTo',
+   'country',
+   'city',
+   'description',
+];
+
 const FormInterShip = ({
    dispatch,
    storeDate,
    idCv
 }) => {
-   const refIdTimeout = React.useRef(undefined);
+   const refIdTimeout = useRef(undefined);
 
    const {
       dependencies: {
@@ -71,7 +81,9 @@ const FormInterShip = ({
          }
       },
    } = storeDate;
-   const [selected, setSelected] = React.useState(null);
+   const [selected, setSelected] = useState(null);
+   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
+   const refData = useRef(interhipObj);
 
    const isDataPage = (isArray(interhipObj) && (interhipObj.length > 0)) || isObjDatas(objNew);
 
@@ -131,9 +143,28 @@ const FormInterShip = ({
       dispatch(fetchDeleteInternships({ idCv, id }));
    }
 
+   const handleDeleteLastEmpty = () => {
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    const handleAddOne = async () => {
-      let re = await dispatch(fetchPostAddCvOneInternships({ idCv, position: newPosition(interhipObj) }));
-      setSelected(re?.payload?.id);
+      let isAddNew = isAddForm({
+         data: interhipObj,
+         dependence: keysFiled,
+         setState: setLastFormIsEmpty
+      });
+
+      if (isAddNew) {
+         let re = await dispatch(fetchPostAddCvOneInternships({ idCv, position: newPosition(interhipObj) }));
+         setSelected(re?.payload?.id);
+      }
    }
 
    const handleServerRequest = async (value, nameCountry) => {
@@ -184,10 +215,18 @@ const FormInterShip = ({
       return re?.payload?.id;
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
+
+   useEffect(() => {
+      refData.current = interhipObj;
+   }, [interhipObj]);
 
    return (
       <>
@@ -229,7 +268,7 @@ const FormInterShip = ({
                                                             item?.employer
                                                          ]}
                                                       >
-                                                         <CRow className="mobile-rows row g-30 r-gap-30">
+                                                         <CRow className={`mobile-rows row g-30 r-gap-30 ${isFocusForm({ last: (interhipObj.length - 1) == index, isFocus: lastFormIsEmpty, setState: setSelected, id: item.id })}`}>
                                                             <CCol xs={6}>
                                                                <InputSelect
                                                                   label="Job Title"

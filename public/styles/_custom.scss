@@ -1779,3 +1779,11 @@ button {
         }
     }
 }
+
+.focus-from {
+
+    .form-control,
+    .DraftEditor-root {
+        border-color: #1856d3!important;
+    }
+}
