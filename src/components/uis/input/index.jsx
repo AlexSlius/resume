@@ -45,7 +45,9 @@ const Input = ({
          }, 100);
       }
 
-      e.target.focus();
+      setTimeout(() => {
+         e.target.focus();
+      }, 200);
 
       onFocus(e);
    }
