@@ -1,3 +1,5 @@
+@import "./pages/fonts";
+
 @font-face {
    font-family: "gt_font";
    src: url("../fonts/gteestiprodisplay_regular-webfont.woff2") format("woff2"),
@@ -20,4 +22,9 @@
       url("../fonts/gteestiprodisplay_light-webfont.woff") format("woff");
    font-weight: 350;
    font-style: normal;
+}
+
+
+body {
+   font-family: "GTEestiProDisplay", sans-serif;
 }

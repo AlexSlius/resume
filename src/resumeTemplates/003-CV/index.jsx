@@ -223,6 +223,7 @@ export const ResumeCv003 = ({
         }
       }
     }
+
   }, [data]);
 
   return (

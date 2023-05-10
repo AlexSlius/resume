@@ -27,6 +27,203 @@ export const ResumeCv016 = ({
   } = data;
   const isContactArray = isArray(contact);
 
+  React.useEffect(() => {
+    if (typeof window != 'undefined') {
+      let current_page_number = 1;
+
+      function rebuildingPages() {
+        $('.cv-body.cv-body-visible').remove();
+
+        let photo_block = $('#cv-body-hidden-container .cv-body-content .photo-wrapper').clone();
+        let name_and_prophecy_block = $('#cv-body-hidden-container .cv-body-content .name-and-prophecy-wrapper').clone();
+        let details_block = $('#cv-body-hidden-container .cv-body-content .details-block').clone();
+        let additional_details_block = $('#cv-body-hidden-container .cv-body-content .additional-details-block').clone();
+        let links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
+        let skills_block = $('#cv-body-hidden-container .cv-body-content .skills-block').clone();
+        let hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
+        let languages_block = $('#cv-body-hidden-container .cv-body-content .lanugages-block').clone();
+        let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+        let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
+        let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
+        let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
+        let courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
+        let certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
+        let extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
+        let internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
+
+        current_page_number = 1;
+
+        getContentContainer1().append(photo_block);
+        if (checkHeight()) {
+          photo_block.remove();
+          current_page_number++;
+          getContentContainer2().append(photo_block);
+        }
+
+        getContentContainer2().append(name_and_prophecy_block);
+        if (checkHeight()) {
+          name_and_prophecy_block.remove();
+          current_page_number++;
+          getContentContainer2().append(name_and_prophecy_block);
+        }
+
+        current_page_number = 1;
+
+        getContentContainer3().append(details_block);
+        if (checkHeight()) {
+          details_block.remove();
+          current_page_number++;
+          getContentContainer2().append(details_block);
+        }
+
+        getContentContainer3().append(additional_details_block);
+        if (checkHeight()) {
+          additional_details_block.remove();
+          current_page_number++;
+          getContentContainer2().append(additional_details_block);
+        }
+
+        getContentContainer3().append(links_block);
+        if (checkHeight()) {
+          links_block.remove();
+          current_page_number++;
+          getContentContainer2().append(links_block);
+        }
+
+        getContentContainer3().append(skills_block);
+        if (checkHeight()) {
+          skills_block.remove();
+          current_page_number++;
+          getContentContainer2().append(skills_block);
+        }
+
+        getContentContainer3().append(hobbies_block);
+        if (checkHeight()) {
+          hobbies_block.remove();
+          current_page_number++;
+          getContentContainer2().append(hobbies_block);
+        }
+
+        getContentContainer3().append(languages_block);
+        if (checkHeight()) {
+          languages_block.remove();
+          current_page_number++;
+          getContentContainer2().append(languages_block);
+        }
+
+        getContentContainer3().append(references_block);
+        if (checkHeight()) {
+          references_block.remove();
+          current_page_number++;
+          getContentContainer2().append(references_block);
+        }
+
+        current_page_number = 1;
+
+        getContentContainer4().append(profile_block);
+        if (checkHeight()) {
+          profile_block.remove();
+          current_page_number++;
+          getContentContainer2().append(profile_block);
+        }
+
+        getContentContainer4().append(employment_history_block);
+        if (checkHeight()) {
+          employment_history_block.remove();
+          current_page_number++;
+          getContentContainer2().append(employment_history_block);
+        }
+
+        getContentContainer4().append(education_block);
+        if (checkHeight()) {
+          education_block.remove();
+          current_page_number++;
+          getContentContainer2().append(education_block);
+        }
+
+        getContentContainer4().append(courses_block);
+        if (checkHeight()) {
+          courses_block.remove();
+          current_page_number++;
+          getContentContainer2().append(courses_block);
+        }
+
+        getContentContainer4().append(certificates_block);
+        if (checkHeight()) {
+          certificates_block.remove();
+          current_page_number++;
+          getContentContainer2().append(certificates_block);
+        }
+
+        getContentContainer4().append(extra_curricular_activities_block);
+        if (checkHeight()) {
+          extra_curricular_activities_block.remove();
+          current_page_number++;
+          getContentContainer2().append(extra_curricular_activities_block);
+        }
+
+        getContentContainer4().append(internships_block);
+        if (checkHeight()) {
+          internships_block.remove();
+          current_page_number++;
+          getContentContainer2().append(internships_block);
+        }
+      }
+
+      function checkHeight() {
+        return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
+      }
+
+      function getContentContainer1() {
+        return getPageContainer().find('.top-area .column-left');
+      }
+
+      function getContentContainer2() {
+        return getPageContainer().find('.top-area .column-right');
+      }
+
+      function getContentContainer3() {
+        return getPageContainer().find('.middle-area .column-left');
+      }
+
+      function getContentContainer4() {
+        return getPageContainer().find('.middle-area .column-right');
+      }
+
+      function getPageContainer() {
+        let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+        if (page.length > 0) {
+          return page.find('.cv-body-content');
+        } else {
+          return createNewPage(current_page_number);
+        }
+      }
+
+      function createNewPage(page_number) {
+        let page_element = $('#cv-body-hidden-container').clone();
+        page_element.attr('id', '');
+        page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);
+        page_element.children().remove();
+
+        let page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
+
+        page_element_container.find('.top-area .column-left').children().remove();
+        page_element_container.find('.top-area .column-right').children().remove();
+        page_element_container.find('.middle-area .column-left').children().remove();
+        page_element_container.find('.middle-area .column-right').children().remove();
+        page_element.append(page_element_container);
+
+        if ($('#cv-chapter-section-cv').find(page_element)) {
+          $('#cv-chapter-section-cv').append(page_element);
+        }
+
+        return page_element_container;
+      }
+
+      rebuildingPages();
+    }
+  }, [data]);
+
   return (
     <div className="sv_016" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="cv">
