@@ -41,8 +41,11 @@ const Input = ({
       if (readOnly) {
          setTimeout(() => {
             e.target.removeAttribute('readonly');
+            e.target.focus();
          }, 100);
       }
+
+      e.target.focus();
 
       onFocus(e);
    }
@@ -55,6 +58,10 @@ const Input = ({
       onBlur(e);
    }
 
+   const functionHandleClick = (e) => {
+      e.target.focus();
+   }
+
    return (
       <>
          <div className={classDelete}>
@@ -63,6 +70,7 @@ const Input = ({
                onChange={isNumber ? handleUpdatePhone : onChange}
                onBlur={handleBlur}
                onFocus={onFocusHa}
+               onClick={functionHandleClick}
                value={value}
                className={classNames}
                defaultValue={defaultValue}

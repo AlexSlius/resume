@@ -248,7 +248,7 @@ export const ResumeCv004 = ({
         }
       }
     }
-  }, [data]);
+  }, [data, stateClasses]);
 
   return (
     <div className="sv_004" ref={reportTemplateRef}>

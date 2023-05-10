@@ -214,7 +214,7 @@ export const ResumeCv001 = ({
 
       rebuildingPages();
     }
-  }, [data]);
+  }, [data, stateClasses]);
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>

@@ -158,10 +158,8 @@ export const ResumeCv011 = ({
       function getPageContainer() {
         let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
         if (page.length > 0) {
-          console.log("Page exists: ", page);
           return page.find('.cv-body-content');
         } else {
-          console.log("Page NOT exists");
           return createNewPage(current_page_number);
         }
       }
@@ -193,7 +191,7 @@ export const ResumeCv011 = ({
 
       rebuildingPages();
     }
-  }, [data]);
+  }, [data, stateClasses]);
 
   return (
     <div className="sv_011" ref={reportTemplateRef}>
