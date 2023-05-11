@@ -347,6 +347,7 @@ const FormContact = ({
                      formatInput='MMM, DD, YYYY'
                      formatData='M, d, Y'
                      onChange={(date) => handlerSetDateState('dateOfBirth', date)}
+                     isMindata={false}
                   />
                </CCol>
             </CRow>}

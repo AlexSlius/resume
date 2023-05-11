@@ -16,7 +16,8 @@ export const DatePicker = ({
     placeholderText,
     name,
     formatInput = 'MMM, YYYY',
-    formatData = 'M, Y'
+    formatData = 'M, Y',
+    isMindata = true,
 }) => {
     const refSelect = React.useRef(undefined);
     let useRefData = React.useRef(undefined);
@@ -32,22 +33,20 @@ export const DatePicker = ({
     useEffect(() => {
         if (typeof window != 'undefined') {
 
-            console.log("!!selected: ", selected);
-            console.log("new Date: ", new Date(selected));
-            console.log("rrrr: ", new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"));
+            // console.log("!!selected: ", selected);
+            // console.log("new Date: ", new Date(selected));
+            // console.log("rrrr: ", new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"));
 
             if (!!useRefData?.current && !!useRefContainer?.current) {
                 $(useRefData?.current).Zebra_DatePicker({
                     view: 'years',
                     show_icon: false,
                     format: formatData,
-                    start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
+                    // start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
-                        console.log("params-data: ", data.replace(",", ", 01,"));
-                        console.log("dat: ", new Date(data.replace(",", ", 01,")));
-                        console.log("mmm: ", moment(data.replace(",", ", 01,")).format(formatInput))
-                        onChange(moment(data.replace(",", ", 01,")).format(formatInput));
+                        console.log("mmm: ", moment(isMindata ? data.replace(",", ", 01,") : data).format(formatInput))
+                        onChange(moment(isMindata ? data.replace(",", ", 01,") : data).format(formatInput));
 
                         useRefData?.current.blur();
                         useRefDataNewIn?.current.blur();
@@ -108,7 +107,7 @@ export const DatePicker = ({
                 <Input
                     name={name}
                     label={floatingLabel}
-                    value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                    // value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                     obj={{ ref: useRefDataNewIn }}
                     valid={selected?.length > 0}
                     isClean={true}
