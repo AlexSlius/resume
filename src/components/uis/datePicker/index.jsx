@@ -16,7 +16,7 @@ export const DatePicker = ({
     placeholderText,
     name,
     formatInput = 'MMM, YYYY',
-    formatData = 'M, Y'
+    formatData = 'M, d, Y'
 }) => {
     const refSelect = React.useRef(undefined);
     let useRefData = React.useRef(undefined);
@@ -36,7 +36,7 @@ export const DatePicker = ({
                     view: 'years',
                     show_icon: false,
                     format: formatData,
-                    // start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
+                    start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
                         onChange(moment(data).format(formatInput));
