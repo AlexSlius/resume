@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { addNewF, updateF } from '../helpers/dataController';
 
 // all list
 export const fetchGetCvActivitys = createAsyncThunk('education/fetchGetCvActivitys', async ({ idCv }, thunkAPI) => {
@@ -17,7 +18,7 @@ export const fetchPostUpdatePositionActivitys = createAsyncThunk('countrus/fetch
 export const fetchPostAddCvOneActivitys = createAsyncThunk('education/fetchPostAddCvOneActivitys', async ({ idCv, position }, thunkAPI) => {
     const { activitys: { objNew } } = thunkAPI.getState();
 
-    const response = await api.activitys.addActivitysItem(idCv, { ...objNew, position });
+    const response = await api.activitys.addActivitysItem(idCv, { ...addNewF(objNew), position });
     await thunkAPI.dispatch(fetchGetCvActivitys({ idCv }));
     return response;
 });
@@ -36,12 +37,9 @@ export const fetchDeleteAll = createAsyncThunk('activitys/fetchDeleteAll', async
 
 export const fetchUpdateActivitys = createAsyncThunk('countrus/fetchUpdateActivitys', async ({ index }, thunkAPI) => {
     const { activitys: { activityObj } } = thunkAPI.getState();
-    let { id, dateFrom, dateTo, ...obj } = activityObj[index];
+    let { id, ...obj } = activityObj[index];
 
-    obj.period_from = dateFrom?.date || "";
-    obj.period_to = dateTo?.date || "";
-
-    const response = await api.activitys.updateActivitysItem(id, obj);
+    const response = await api.activitys.updateActivitysItem(id, updateF(obj, true));
     return response;
 });
 

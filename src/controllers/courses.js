@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
+import { addNewF, updateF } from '../helpers/dataController';
 
 // all list
 export const fetchGetCvCourses = createAsyncThunk('education/fetchGetCvCourses', async ({ idCv }, thunkAPI) => {
@@ -18,7 +18,7 @@ export const fetchPostUpdatePositionCourses = createAsyncThunk('countrus/fetchPo
 export const fetchPostAddCvOneCourses = createAsyncThunk('education/fetchPostAddCvOneCourses', async ({ idCv, position }, thunkAPI) => {
     const { courses: { objNew } } = thunkAPI.getState();
 
-    const response = await api.courses.addCoursesItem(idCv, { ...objNew, position });
+    const response = await api.courses.addCoursesItem(idCv, { ...addNewF(objNew), position });
     await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
     return response;
 });
@@ -37,12 +37,9 @@ export const fetchDeleteAll = createAsyncThunk('courses/fetchDeleteAll', async (
 
 export const fetchUpdateCourses = createAsyncThunk('countrus/fetchUpdateCourses', async ({ index }, thunkAPI) => {
     const { courses: { courseObj } } = thunkAPI.getState();
-    let { id, dateFrom, dateTo, ...obj } = courseObj[index];
+    let { id, ...obj } = courseObj[index];
 
-    obj.period_from = dateFrom?.date || "";
-    obj.period_to = dateTo?.date || "";
-
-    const response = await api.courses.updateCoursesItem(id, obj);
+    const response = await api.courses.updateCoursesItem(id, updateF(obj, true));
     return response;
 });
 

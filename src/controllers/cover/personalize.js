@@ -9,6 +9,7 @@ import { addItemNotification } from "../../slices/notifications";
 // import { setUpdateResumeActive } from '../resumeData';
 import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
+import moment from 'moment';
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false }, thunkAPI) => {
     const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
@@ -86,6 +87,9 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
     const { coverDataForm: { coverDataObj } } = thunkAPI.getState();
 
     const newObj = camelToSnake(doNotTransmitEmptyData(coverDataObj));
+
+    newObj.graduate_date = newObj?.graduate_date ? moment(new Date(newObj.graduate_date)) : "";
+    newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
 
     const response = await api.personalize.updateCoverLetterById(idCv, newObj);
 

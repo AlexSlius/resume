@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { addNewF, updateF } from '../helpers/dataController';
 
 // all list
 export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmployments', async ({ idCv }, thunkAPI) => {
@@ -10,7 +11,8 @@ export const fetchGetCvEmployments = createAsyncThunk('employment/fetchGetCvEmpl
 
 export const fetchPostAddCvOneEmployment = createAsyncThunk('employment/fetchPostAddCvOneEmployment', async ({ idCv, position }, thunkAPI) => {
     const { employment: { objNew } } = thunkAPI.getState();
-    const response = await api.employments.addEmploymentItem(idCv, { ...objNew, position: position });
+
+    const response = await api.employments.addEmploymentItem(idCv, { ...addNewF(objNew), position: position });
     await thunkAPI.dispatch(fetchGetCvEmployments({ idCv }));
     return response;
 });
@@ -35,12 +37,9 @@ export const fetchDeleteCleanAllEmployment = createAsyncThunk('countrus/fetchDel
 
 export const fetchUpdateEmployment = createAsyncThunk('employment/fetchUpdateEmployment', async ({ index }, thunkAPI) => {
     const { employment: { employmentObj } } = thunkAPI.getState();
-    let { id, periodFrom, periodTo, ...obj } = employmentObj[index];
+    let { id, ...obj } = employmentObj[index];
 
-    obj.period_from = periodFrom?.date || "";
-    obj.period_to = periodTo?.date || "";
-
-    const response = await api.employments.updateEmploymentItem(id, obj);
+    const response = await api.employments.updateEmploymentItem(id, updateF(obj));
     return response;
 });
 

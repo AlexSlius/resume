@@ -67,9 +67,9 @@ export const StepThree = ({
                                 <CRow>
                                     <CCol xs={6}>
                                         <DatePicker
+                                            floatingLabel="Date"
                                             selected={coverDataObj.expectedYearOfGraduation}
                                             onChange={(date) => handleUpdateField({ name: 'expectedYearOfGraduation', value: date })}
-                                            placeholderText="Date"
                                             name="expectedYearOfGraduation"
                                         />
                                     </CCol>

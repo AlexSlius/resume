@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { addNewF, updateF } from '../helpers/dataController';
 
 // all list
 export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducations', async ({ idCv }, thunkAPI) => {
@@ -17,7 +18,7 @@ export const fetchPostUpdatePositionEducations = createAsyncThunk('countrus/fetc
 export const fetchPostAddCvOneEducation = createAsyncThunk('education/fetchPostAddCvOneEducation', async ({ idCv, position }, thunkAPI) => {
     const { educations: { objNew } } = thunkAPI.getState();
 
-    const response = await api.educations.addEducationItem(idCv, { ...objNew, position });
+    const response = await api.educations.addEducationItem(idCv, { ...addNewF(objNew), position });
     await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
     return response;
 });
@@ -36,12 +37,9 @@ export const fetchDeleteAll = createAsyncThunk('education/fetchDeleteAll', async
 
 export const fetchUpdateEducation = createAsyncThunk('countrus/fetchUpdateEducation', async ({ index }, thunkAPI) => {
     const { educations: { educationObj } } = thunkAPI.getState();
-    let { id, dateFrom, dateTo, ...obj } = educationObj[index];
+    let { id, ...obj } = educationObj[index];
 
-    obj.period_from = dateFrom?.date || "";
-    obj.period_to = dateTo?.date || "";
-
-    const response = await api.educations.updateEducationItem(id, obj);
+    const response = await api.educations.updateEducationItem(id, updateF(obj, true));
     return response;
 });
 

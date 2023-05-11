@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
+import { addNewF, updateF } from '../helpers/dataController';
 
 // all list
 export const fetchGetCvInternships = createAsyncThunk('interhip/fetchGetCvInternships', async ({ idCv }, thunkAPI) => {
@@ -18,7 +18,7 @@ export const fetchPostUpdatePositionInternships = createAsyncThunk('countrus/fet
 export const fetchPostAddCvOneInternships = createAsyncThunk('interhip/fetchPostAddCvOneInternships', async ({ idCv, position }, thunkAPI) => {
     const { interships: { objNew } } = thunkAPI.getState();
 
-    const response = await api.internships.addInternshipsItem(idCv, { ...objNew, position });
+    const response = await api.internships.addInternshipsItem(idCv, { ...addNewF(objNew), position });
     await thunkAPI.dispatch(fetchGetCvInternships({ idCv }));
     return response;
 });
@@ -37,13 +37,11 @@ export const fetchDeleteAll = createAsyncThunk('interhip/fetchDeleteAll', async 
 
 export const fetchUpdateInternships = createAsyncThunk('interhip/fetchUpdateInternships', async ({ index }, thunkAPI) => {
     const { interships: { interhipObj } } = thunkAPI.getState();
-    let { id, dateFrom, dateTo, jobTitle, ...obj } = interhipObj[index];
+    let { id, jobTitle, ...obj } = interhipObj[index];
 
-    obj.period_from = dateFrom?.date || "";
-    obj.period_to = dateTo?.date || "";
     obj.job_title = jobTitle;
 
-    const response = await api.internships.updateInternshipsItem(id, obj);
+    const response = await api.internships.updateInternshipsItem(id, updateF(obj, true));
     return response;
 });
 
