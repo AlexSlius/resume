@@ -38,24 +38,24 @@ const Input = ({
    }
 
    const onFocusHa = (e) => {
-      if (readOnly) {
-         setTimeout(() => {
-            e.target.removeAttribute('readonly');
-            e.target.focus();
-         }, 100);
-      }
+      // if (readOnly) {
+      //    setTimeout(() => {
+      //       e.target.removeAttribute('readonly');
+      //       e.target.focus();
+      //    }, 100);
+      // }
 
-      setTimeout(() => {
-         e.target.focus();
-      }, 200);
+      // setTimeout(() => {
+      //    e.target.focus();
+      // }, 200);
 
       onFocus(e);
    }
 
    const handleBlur = (e) => {
-      if (readOnly) {
-         e.target.setAttribute('readonly', true);
-      }
+      // if (readOnly) {
+      //    e.target.setAttribute('readonly', true);
+      // }
 
       onBlur(e);
    }
@@ -84,7 +84,7 @@ const Input = ({
                name={name}
                disabled={disabled}
                autoComplete={autoComplete}
-               readOnly={readOnly}
+               // readOnly={readOnly}
                {...obj}
             />
             {
