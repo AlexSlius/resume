@@ -88,12 +88,12 @@ export const DatePicker = ({
             }
 
             !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
-            !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus);
+            !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('click', handleFocus);
             !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
 
             return () => {
                 !!document?.body && document.body.addEventListener('mousedown', handleClickClose);
-                !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('focus', handleFocus);
+                !!useRefDataNewIn.current && useRefDataNewIn.current.addEventListener('click', handleFocus);
                 !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
             }
         }
@@ -103,14 +103,17 @@ export const DatePicker = ({
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
             <div className={`${style.wt_cal_in} ${style.btn_clean}`}>
                 <i className={style.wt_cal_in_icon_cal} ref={refBtn}></i>
-                <Input
-                    name={name}
-                    label={floatingLabel}
-                    value={selected ? moment(new Date(selected)).format(formatInput) : ""}
-                    obj={{ ref: useRefDataNewIn }}
-                    valid={selected?.length > 0}
-                    isClean={true}
-                />
+                <div ref={useRefDataNewIn}>
+                    <Input
+                        name={name}
+                        label={floatingLabel}
+                        value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                        // obj={{ ref: useRefDataNewIn }}
+                        valid={selected?.length > 0}
+                        isClean={true}
+                        disabled={true}
+                    />
+                </div>
                 {
                     (selected?.length > 0) && (
                         <button type="button" className={style.clean} onClick={() => onChange("")}>
