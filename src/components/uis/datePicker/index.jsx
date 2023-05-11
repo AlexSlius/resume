@@ -41,7 +41,8 @@ export const DatePicker = ({
                     // start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
-                        onChange(moment(isMindata ? data.replace(",", ", 01,") : data).format(formatInput));
+                        // onChange(moment(isMindata ? data.replace(",", ", 01,") : data).format(formatInput));
+                        onChange(isMindata ? data.replace(",", ", 01,") : data);
 
                         useRefData?.current.blur();
                         useRefDataNewIn?.current.blur();
