@@ -44,10 +44,10 @@ export const DatePicker = ({
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
-                        console.log("params-data: ", data);
-                        console.log("dat: ", new Date(data));
-                        console.log("mmm: ", moment(new Date(data)).format(formatInput))
-                        onChange(moment(new Date(data)).format(formatInput));
+                        console.log("params-data: ", data.replace(",", ", 01,"));
+                        console.log("dat: ", new Date(data.replace(",", ", 01,")));
+                        console.log("mmm: ", moment(data.replace(",", ", 01,")).format(formatInput))
+                        onChange(moment(data.replace(",", ", 01,")).format(formatInput));
 
                         useRefData?.current.blur();
                         useRefDataNewIn?.current.blur();
@@ -99,9 +99,7 @@ export const DatePicker = ({
                 !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
             }
         }
-    }, []);
-
-    // selected
+    }, [selected]);
 
     return (
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
@@ -110,7 +108,7 @@ export const DatePicker = ({
                 <Input
                     name={name}
                     label={floatingLabel}
-                    // value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                    value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                     obj={{ ref: useRefDataNewIn }}
                     valid={selected?.length > 0}
                     isClean={true}
