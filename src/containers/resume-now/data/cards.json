@@ -1,0 +1,43 @@
+[
+    {
+        "name": "LOW PRICE",
+        "color": "#838799",
+        "price": "399.00",
+        "day": "Forever",
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "Cancel any time",
+            "7-day money-back guarantee*"
+        ]
+    },
+    {
+        "name": "Best sale",
+        "color": "#838799",
+        "price": "1.95",
+        "day": "7-Day trial subscription",
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "After 7 days, auto-renews to $19.95",
+            "Billed every 4 weeks",
+            "Cancel any time",
+            "7-day money-back guarantee*"
+        ]
+    },
+    {
+        "name": "profit",
+        "color": "#6DC26C",
+        "price": "69.95",
+        "day": "12 months",
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "Cancel any time",
+            "7-day money-back guarantee*"
+        ]
+    }
+]
