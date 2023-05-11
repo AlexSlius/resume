@@ -91,7 +91,9 @@ export const DatePicker = ({
                 !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
             }
         }
-    }, [selected]);
+    }, []);
+
+    // selected
 
     return (
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
