@@ -32,7 +32,7 @@ export const DatePicker = ({
     useEffect(() => {
         if (typeof window != 'undefined') {
 
-            consoe.log("!!selected: ", selected);
+            console.log("!!selected: ", selected);
             console.log("new Date: ", new Date(selected));
             console.log("rrrr: ", new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"));
 
