@@ -42,7 +42,7 @@ export const DatePicker = ({
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
-                        consoel.log("mmm: ", moment(new Date(data)).format(formatInput))
+                        console.log("mmm: ", moment(new Date(data)).format(formatInput))
                         onChange(moment(new Date(data)).format(formatInput));
 
                         useRefData?.current.blur();
