@@ -32,6 +32,8 @@ export const DatePicker = ({
     useEffect(() => {
         if (typeof window != 'undefined') {
 
+            comsoe.log("!!selected: ", selected);
+            console.log("new Date: ", new Date(selected));
             console.log("rrrr: ", new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"));
 
             if (!!useRefData?.current && !!useRefContainer?.current) {
@@ -42,6 +44,8 @@ export const DatePicker = ({
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
+                        console.log("params-data: ", data);
+                        console.log("dat: ", new Date(data));
                         console.log("mmm: ", moment(new Date(data)).format(formatInput))
                         onChange(moment(new Date(data)).format(formatInput));
 
