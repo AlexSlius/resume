@@ -1,5 +1,6 @@
 import { CFormInput } from "@coreui/react"
 import React from "react"
+import { useSelector } from "react-redux";
 
 import Icon from "../../../components/Icon"
 import deleteIcon from "/public/images/icons/delete.svg??sprite";
@@ -28,6 +29,13 @@ const Input = ({
    autoComplete = "off",
    readOnly = true,
 }) => {
+   const {
+      theme: {
+         currentResolution
+      }
+   } = useSelector(state => state);
+
+   let isMob = ['md', 'sm', 'xs'].includes(currentResolution);
    let classDelete = isDelete ? 'btn_delete' : '';
    let classNames = `${className} ${(!!value?.length > 0 || !!defaultValue?.length > 0) ? "text" : ""}`;
 
@@ -38,30 +46,22 @@ const Input = ({
    }
 
    const onFocusHa = (e) => {
-      // if (readOnly) {
-      //    setTimeout(() => {
-      //       e.target.removeAttribute('readonly');
-      //       e.target.focus();
-      //    }, 100);
-      // }
-
-      // setTimeout(() => {
-      //    e.target.focus();
-      // }, 200);
+      if (readOnly && !isMob) {
+         setTimeout(() => {
+            e.target.removeAttribute('readonly');
+            e.target.focus();
+         }, 100);
+      }
 
       onFocus(e);
    }
 
    const handleBlur = (e) => {
-      // if (readOnly) {
-      //    e.target.setAttribute('readonly', true);
-      // }
+      if (readOnly && !isMob) {
+         e.target.setAttribute('readonly', true);
+      }
 
       onBlur(e);
-   }
-
-   const functionHandleClick = (e) => {
-      e.target.focus();
    }
 
    return (
@@ -72,7 +72,6 @@ const Input = ({
                onChange={isNumber ? handleUpdatePhone : onChange}
                onBlur={handleBlur}
                onFocus={onFocusHa}
-               onClick={functionHandleClick}
                value={value}
                className={classNames}
                defaultValue={defaultValue}
@@ -84,7 +83,7 @@ const Input = ({
                name={name}
                disabled={disabled}
                autoComplete={autoComplete}
-               // readOnly={readOnly}
+               readOnly={isMob ? false : readOnly}
                {...obj}
             />
             {
