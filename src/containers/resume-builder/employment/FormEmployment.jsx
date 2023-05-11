@@ -114,9 +114,6 @@ const FormEmployment = ({
   }
 
   const handlerSetDateState = async (index, name, date) => {
-
-    console.log("handlerSetDateState: ", index, name, date);
-
     await dispatch(updateItemFieldEmploymentDate({ index, name, value: date }))
     await handleUpdateServer(index);
   }
@@ -235,8 +232,6 @@ const FormEmployment = ({
   }
 
   const handlerSetDateStateNew = (name, date) => {
-    console.log("handlerSetDateStateNew: ", name, date);
-
     dispatch(updateItemFieldEmploymentNew({ name, value: date }));
     automateNew();
   }
