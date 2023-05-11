@@ -90,11 +90,6 @@ const FormEmployment = ({
   const refData = useRef(employmentObj);
   const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
 
-  const [datas, setDatas] = useState(null);
-
-  console.log("datas: ", datas);
-
-
   const onDragEnd = (result) => {
     if (!result.destination) {
       return;
@@ -338,20 +333,18 @@ const FormEmployment = ({
                                       <CRow className='dates-wrap'>
                                         <CCol xs={6} className='date-block'>
                                           <DatePicker
-                                            // selected={item?.periodFrom?.date}
-                                            selected={datas}
-                                            onChange={(date) => setDatas(date)}
-                                            // onChange={(date) => handlerSetDateState(index, 'periodFrom', date)}
+                                            selected={item?.periodFrom?.date}
+                                            onChange={(date) => handlerSetDateState(index, 'periodFrom', date)}
                                             floatingLabel="From"
                                           />
                                         </CCol>
-                                        {/* <CCol xs={6} className='date-block'>
+                                        <CCol xs={6} className='date-block'>
                                           <DatePicker
                                             selected={item?.periodTo?.date}
                                             onChange={(date) => handlerSetDateState(index, 'periodTo', date)}
                                             floatingLabel="To"
                                           />
-                                        </CCol> */}
+                                        </CCol>
                                       </CRow>
                                     </CCol>
                                     <CCol xs={3}>
