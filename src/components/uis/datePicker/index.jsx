@@ -31,27 +31,24 @@ export const DatePicker = ({
 
     useEffect(() => {
         if (typeof window != 'undefined') {
-            if (!!useRefData.current) {
-                $(useRefData.current).Zebra_DatePicker({
+            if (!!useRefData?.current && !!useRefContainer?.current) {
+                $(useRefData?.current).Zebra_DatePicker({
                     view: 'years',
                     show_icon: false,
                     format: formatData,
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
-                    always_visible: $(useRefContainer.current),
-                    // onChange: function (data) {
-                    //     console.log("data: ", data);
-                    // },
-                    onSelect: function (data) {
-                        onChange(moment(data).format(formatInput));
+                    always_visible: $(useRefContainer?.current),
+                    // onSelect: function (data) {
+                    //     onChange(moment(data).format(formatInput));
 
-                        useRefData.current.blur();
-                        useRefDataNewIn.current.blur();
+                    //     useRefData?.current.blur();
+                    //     useRefDataNewIn?.current.blur();
 
-                        setClases(prev => {
-                            refCurentClass.current = `${style.none}'`;
-                            return `${style.none}`;
-                        });
-                    }
+                    //     setClases(prev => {
+                    //         refCurentClass.current = `${style.none}'`;
+                    //         return `${style.none}`;
+                    //     });
+                    // }
                 });
             }
 
