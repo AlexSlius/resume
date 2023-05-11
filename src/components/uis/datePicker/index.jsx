@@ -31,6 +31,9 @@ export const DatePicker = ({
 
     useEffect(() => {
         if (typeof window != 'undefined') {
+
+            console.log("rrrr: ", new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"));
+
             if (!!useRefData?.current && !!useRefContainer?.current) {
                 $(useRefData?.current).Zebra_DatePicker({
                     view: 'years',
@@ -39,6 +42,7 @@ export const DatePicker = ({
                     start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                     always_visible: $(useRefContainer?.current),
                     onSelect: function (data) {
+                        consoel.log("mmm: ", moment(new Date(data)).format(formatInput))
                         onChange(moment(new Date(data)).format(formatInput));
 
                         useRefData?.current.blur();
@@ -102,7 +106,7 @@ export const DatePicker = ({
                 <Input
                     name={name}
                     label={floatingLabel}
-                    value={selected ? moment(new Date(selected)).format(formatInput) : ""}
+                    // value={selected ? moment(new Date(selected)).format(formatInput) : ""}
                     obj={{ ref: useRefDataNewIn }}
                     valid={selected?.length > 0}
                     isClean={true}
