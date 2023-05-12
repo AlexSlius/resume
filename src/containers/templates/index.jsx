@@ -41,9 +41,6 @@ import {
     getCoverLetterById
 } from "../../controllers/cover/personalize";
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
-import { sessionStorageGet } from '../../helpers/localStorage';
-import { contactSetNew, contactAddNew } from '../../controllers/contacts';
-import { coverAddNew, coverSetNew } from "../../controllers/cover/personalize";
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
 import { routersPages } from "../../constants/next-routers";
@@ -527,7 +524,7 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
+                                                    value={isNewResume ? (+dataOther?.resumeActiveNew?.template_line_spacing || 0) : (+dataOther?.resumeActive?.template_line_spacing || 0)}
                                                     label="Line Spacing"
                                                     textLeft="50%"
                                                     textRight="150%"
@@ -537,7 +534,7 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
+                                                    value={isNewResume ? +dataOther?.resumeActiveNew?.template_text_size : +dataOther?.resumeActive?.template_text_size}
                                                     label="Text size"
                                                     textLeft="12 pt"
                                                     textRight="48 pt"
@@ -569,7 +566,7 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing}
+                                                    value={isNewResume ? (+dataOther?.resumeActiveNew?.template_line_spacing || 0) : (+dataOther?.resumeActive?.template_line_spacing || 0)}
                                                     label="Line Spacing"
                                                     textLeft="50%"
                                                     textRight="150%"
@@ -579,7 +576,7 @@ const Templates = ({
                                             <div className='item-range'>
                                                 <CustomizedSlider
                                                     defaultValue={50}
-                                                    value={isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size}
+                                                    value={isNewResume ? (+dataOther?.resumeActiveNew?.template_text_size || 0) : (+dataOther?.resumeActive?.template_text_size || 0)}
                                                     label="Text size"
                                                     textLeft="12 pt"
                                                     textRight="48 pt"

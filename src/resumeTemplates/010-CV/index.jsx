@@ -28,27 +28,29 @@ export const ResumeCv010 = ({
 
   React.useEffect(() => {
     if (typeof window != 'undefined') {
-      let current_page_number = 1;
+      var current_page_number = 1;
 
       function rebuildingPages() {
         $('.cv-body.cv-body-visible').remove();
 
-        let top_block = $('#cv-body-hidden-container .cv-body-content .top-block').clone();
-        let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
-        let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
-        let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
-        let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
-        let courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
-        let extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
-        let internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
+        console.log(22222);
 
-        let photo_block = $('#cv-body-hidden-container .cv-body-content .photo-block').clone();
-        let details_block = $('#cv-body-hidden-container .cv-body-content .details-block').clone();
-        let links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
-        let skills_block = $('#cv-body-hidden-container .cv-body-content .skills-block').clone();
-        let certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
-        let hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
-        let languages_block = $('#cv-body-hidden-container .cv-body-content .languages-block').clone();
+        var top_block = $('#cv-body-hidden-container .cv-body-content .top-block').clone();
+        var profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
+        var references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+        var employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
+        var education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
+        var courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
+        var extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
+        var internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
+
+        var photo_block = $('#cv-body-hidden-container .cv-body-content .photo-block').clone();
+        var details_block = $('#cv-body-hidden-container .cv-body-content .details-block').clone();
+        var links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
+        var skills_block = $('#cv-body-hidden-container .cv-body-content .skills-block').clone();
+        var certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
+        var hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
+        var languages_block = $('#cv-body-hidden-container .cv-body-content .languages-block').clone();
 
         current_page_number = 1;
         getContentContainer1().append(top_block);
@@ -167,7 +169,7 @@ export const ResumeCv010 = ({
       }
 
       function getPageContainer() {
-        let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+        var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
         if (page.length > 0) {
           return page.find('.cv-body-content');
         } else {
@@ -176,20 +178,21 @@ export const ResumeCv010 = ({
       }
 
       function createNewPage(page_number) {
-        let page_element = $('#cv-body-hidden-container').clone();
+        var page_element = $('#cv-body-hidden-container').clone();
+
         page_element.attr('id', '');
         page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);
         page_element.children().remove();
 
-        let page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
+        var page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
         page_element_container.children().remove();
         page_element.append(page_element_container);
 
-        let column_left = $('#cv-body-hidden-container .cv-body-content .column-left').clone();
+        var column_left = $('#cv-body-hidden-container .cv-body-content .column-left').clone();
         column_left.children().remove();
         page_element_container.append(column_left);
 
-        let column_right = $('#cv-body-hidden-container .cv-body-content .column-right').clone();
+        var column_right = $('#cv-body-hidden-container .cv-body-content .column-right').clone();
         column_right.find('.information-block').children().remove();
         page_element_container.append(column_right);
 
@@ -200,7 +203,9 @@ export const ResumeCv010 = ({
         return page_element_container;
       }
 
-      rebuildingPages();
+      $(document).ready(function () {
+        rebuildingPages();
+      });
     }
   }, [data, stateClasses]);
 
