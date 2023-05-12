@@ -7,9 +7,11 @@ import HeadMainContent from "../../../components/headMainContent/HeadMainContent
 import { Progress } from "../../../components/progress";
 
 import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
-import { StepsName } from "../../../constants/cover";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
+import { backRoter } from "../../../helpers/experienceRouterBack";
+
+import { StepsName } from "../../../constants/cover";
 
 const arrStep = {
     undefined: {
@@ -83,6 +85,7 @@ const Contact = () => {
     const states = useSelector((state) => state);
     const router = useRouter();
     const { step, idCv } = router.query;
+    let routerStetBack = backRoter(StepsName, step, idCv);
 
     React.useEffect(() => {
         dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'experience' }));
@@ -92,6 +95,7 @@ const Contact = () => {
         <>
             <HeadMainContent
                 isRows={false}
+                link={routerStetBack}
             />
             <Progress
                 label="Information completed"

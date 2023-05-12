@@ -17,6 +17,7 @@ import iconModResume from "/public/images/icons/icon_mob_menu-resume.svg?sprite"
 import iconModCover from "/public/images/icons/icon_mob_menu-cover.svg?sprite";
 import iconModContact from "/public/images/icons/icon_mob_menu-contact.svg?sprite";
 import iconModFaq from "/public/images/icons/icon_mob_menu-faq.svg?sprite";
+import iconNeedHelp from "/public/images/icons/iocn-need-help.svg?sprite"
 
 
 export const Menu = ({ pageName }) => {
@@ -167,6 +168,9 @@ export const Menu = ({ pageName }) => {
                                     </li>
                                     <li><Link className="nav-link" href={`${routersPages['contactUs']}`}>{isMob && <Icon svg={iconModContact} />}Contact Us</Link></li>
                                     <li><Link className="nav-link" href={`${routersPages['faqs']}`}>{isMob && <Icon svg={iconModFaq} />}FAQ</Link></li>
+                                    {
+                                        isMob && (<li><Link className="nav-link" href={`${routersPages['contactUs']}`}><Icon svg={iconNeedHelp} />Need help?</Link></li>)
+                                    }
                                 </ul>
                             </nav>
                         )

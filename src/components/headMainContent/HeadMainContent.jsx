@@ -3,12 +3,12 @@ import { ButtonBack } from "../uis/buttonBack"
 import style from "./HeadMainContent.module.scss"
 
 const HeadMainContent = (props) => {
-   const { title, description, children, isRows = true } = props;
+   const { title, description, children, isRows = true, link = '' } = props;
 
    return (
       <>
          <div className={`${style.main_content__back}`}>
-            <ButtonBack />
+            <ButtonBack link={link} />
          </div>
          {
             title && (

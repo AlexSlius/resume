@@ -193,3 +193,20 @@
    visibility: hidden;
    pointer-events: none;
 }
+
+.resume_head__title {
+   font-size: 20px;
+   color: #01153A;
+   font-weight: 400;
+   line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+   .resume_head {
+      padding-bottom: 16px;
+   }
+
+   .resume_head__pagination {
+      flex: 0 0 auto;
+   }
+}

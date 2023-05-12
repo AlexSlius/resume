@@ -12,7 +12,7 @@
 }
 
 .resume-main {
-   border-radius: 12px;
+   // border-radius: 12px;
    flex: 1 1 auto;
    // padding: 24px 0;
    height: calc(100vh - 160px);
@@ -385,13 +385,15 @@
 
    .col.resume {
       position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100%;
+      top: 50px;
+      right: -150%;
+      height: calc(100% - 50px);
       z-index: 200;
       background: #f6f8fa;
       border-left: 1px solid #dadce3;
       transition: 0.4s;
+      max-width: 100%;
+      flex: 1 1 100%;
 
       &.open {
          right: 0;

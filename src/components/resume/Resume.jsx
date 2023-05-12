@@ -12,6 +12,7 @@ import { isHelperLoad } from '../../helpers/isHelperAllLoad';
 
 const Resume = ({
    isCover = false,
+   currentResolution
 }) => {
    const reportTemplateRef = React.useRef(null);
    const [pagesPag, setPagesPag] = React.useState(1);
@@ -35,6 +36,9 @@ const Resume = ({
       references,
       certificaties,
       careers,
+      theme: {
+         isOpenPreviesMobTemplate
+      }
    } = useSelector((state) => state);
 
    const isLoadAll = isHelperLoad({
@@ -148,26 +152,24 @@ const Resume = ({
 
    return (
       <>
-         <button className='resume-btn show-result resume-btn_fix' onClick={() => setOpenMenu(true)}>
-            <Icon svg={backIcon} />
-         </button>
-         <div className={`mob-opas-menu ${openMenu ? "open" : ""}`} onClick={() => setOpenMenu(false)}></div>
-         <CCol className={`resume ${openMenu ? "open" : ""}`}>
-            <button className='resume-btn hide-result' onClick={() => setOpenMenu(false)}>
-               <Icon svg={backIcon} />
-            </button>
+         <CCol className={`resume ${isOpenPreviesMobTemplate ? "open" : ""}`}>
             <ResumeHead
                currentPage={pagePagCurrent}
                lengthPages={pagesPag}
                onNext={onNext}
                onPrev={onPrev}
                isLoad={isLoadAll}
+               currentResolution={currentResolution}
             />
             <ResumeMain
                reportTemplateRef={reportTemplateRef}
                isCover={isCover}
+               currentResolution={currentResolution}
             />
-            <ResumeFooter isCover={isCover} />
+            <ResumeFooter
+               isCover={isCover}
+               currentResolution={currentResolution}
+            />
          </CCol>
       </>
    )

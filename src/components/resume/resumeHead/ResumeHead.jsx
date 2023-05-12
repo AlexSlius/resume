@@ -14,18 +14,25 @@ const ResumeHead = ({
    onNext = () => { },
    onPrev = () => { },
    isLoad = false,
+   currentResolution,
 }) => {
    let isNext = lengthPages == 1 ? false : currentPage == lengthPages ? false : true;
    let isPrev = lengthPages == 1 ? false : currentPage == 1 ? false : true;
 
    return (
       <div className={`${style.resume_head}`}>
-         <div className={`${style.resume_head__status}`}>
-            <div className={`${style.resume_head__status_icon}`}>
-               <Icon svg={savedIcon} classNames={[style.icon, isLoad ? style.icon_load : ""]} />
-            </div>
-            Saved
-         </div>
+         {
+            !['sm', 'xs', 'md'].includes(currentResolution) ? (
+               <div className={`${style.resume_head__status}`}>
+                  <div className={`${style.resume_head__status_icon}`}>
+                     <Icon svg={savedIcon} classNames={[style.icon, isLoad ? style.icon_load : ""]} />
+                  </div>
+                  Saved
+               </div>
+            ) : (
+               <div className={style.resume_head__title}>Preview</div>
+            )
+         }
 
          <div className={`${style.resume_head__pagination}`}>
             <button className={`${style.resume_head__pagination_button} ${!isPrev ? style.non : ""}`} onClick={onPrev}>
@@ -36,7 +43,11 @@ const ResumeHead = ({
                <Icon svg={arrowRightIcon} classNames={[style.icon]} />
             </button>
          </div>
-         <HeadUser />
+         {
+            !['sm', 'xs', 'md'].includes(currentResolution) && (
+               <HeadUser />
+            )
+         }
       </div>
    )
 }

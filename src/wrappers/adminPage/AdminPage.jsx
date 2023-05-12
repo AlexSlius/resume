@@ -50,12 +50,7 @@ const AdminPage = ({ children, isCover = false }) => {
                <CCol className={`${style.main_content} main-content`}>
                   {children}
                </CCol>
-               {
-                  !['sm', 'xs', 'md'].includes(currentResolution) && (
-                     !isMenuOpen ?
-                        (<Resume isCover={isCover} />) : null
-                  )
-               }
+               <Resume isCover={isCover} currentResolution={currentResolution} />
             </CRow>
          </CContainer>
       </>

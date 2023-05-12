@@ -24,7 +24,7 @@ export const logout = async (dispatch) => {
     await dispatch(setLogout());
     setTimeout(() => {
         Router.push('/');
-    }, 0);
+    }, 500);
 }
 
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {

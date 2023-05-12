@@ -853,26 +853,6 @@ export const ResumeCv010 = ({
                 }
                 {
                   isArray(languages) && !!languages.length && (
-                    <div className="languages-block">
-                      <h3 className="heading-type-1 main-color-2-text font-weight-500 font-size-6 line-height-8">Languages</h3>
-                      <div className="languages-list">
-                        {
-                          languages.map((item, index) => (
-                            <div className="languages-list-item" key={index}>
-                              <p className="main-color-1-text font-weight-500 font-size-1-1 line-height-3">{item.language}</p>
-                              <div className="language-estimation-wrapper">
-                                <div className="language-estimation main-color-2-background" style={{ width: `${(+item.level * 100) / 5}%` }}></div>
-                              </div>
-                            </div>
-                          ))
-                        }
-                      </div>
-                    </div>
-                  )
-                }
-
-                {
-                  isArray(languages) && !!languages.length && (
                     <div className="languages-block block-block">
                       <h3 className="heading-type-1 font-size-3 line-height-4 main-color-4-text">Languages</h3>
                       <div className="languages-list">

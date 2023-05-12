@@ -1,4 +1,5 @@
 export const StepsName = {
+    "empty": "empty",
     "graduated": "graduated",
     "nameCollege": "name_college",
     "pointAverage": "point_average",

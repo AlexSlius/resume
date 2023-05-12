@@ -16,11 +16,11 @@ import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
 import { handleChanbdegAutOrPlan } from '../../../utils/downShare';
 
 
-const ResumeFooter = ({ isCover }) => {
+const ResumeFooter = ({ isCover, currentResolution }) => {
    const router = useRouter();
    const dispatch = useDispatch();
    const { idCv } = router.query;
-   const isNewResume = (idCv == "new");
+   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
    const {
       auth: {
@@ -60,7 +60,9 @@ const ResumeFooter = ({ isCover }) => {
                onClick={handleRouter}
             >
                <Icon svg={templateIcon} classNames={['icon-20']} />
-               Select template
+               {
+                  isMob ? ("Template") : ("Select template")
+               }
             </CButton>
          </div>
          <div className="resume-footer__right d-flex ">
@@ -70,7 +72,9 @@ const ResumeFooter = ({ isCover }) => {
                onClick={() => handleDownload()}
             >
                <Icon svg={downloadIcon} classNames={['icon-20']} />
-               Download PDF
+               {
+                  isMob ? ("PDF") : ("Download PDF")
+               }
             </CButton>
 
             <div className={`menu-show-tem ab-menu menus-card}`}>

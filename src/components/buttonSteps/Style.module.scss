@@ -11,8 +11,17 @@
 @media screen and (max-width: 768px) {
     .buttonWrapper {
         display: flex;
-        flex-direction: column;
         gap: 20px;
+    }
+
+    .row {
+        margin: 0;
+
+        &>div {
+            margin: 0;
+            min-width: 220px;
+            width: 50%;
+        }
     }
 }
 

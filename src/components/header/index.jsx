@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 
-import { updateMenuStatus } from "../../slices/theme";
+import { updateMenuStatus, updatePreviewsMobTemplateStatus } from "../../slices/theme";
 
 // Components
 import { Menu } from "../menu";
@@ -11,13 +13,18 @@ import { routersPages } from "../../constants/next-routers";
 import HeadUser from "../headUser/HeadUser";
 import UserMenu from "../userMenu";
 import { ButtonBack } from "../uis/buttonBack"
+import { backRoter } from "../../helpers/experienceRouterBack";
 import { logout } from '../../controllers/auth'
 
+import { StepsName } from "../../constants/cover";
+
 import iconBurger from "/public/images/icons/menu-burger.svg?sprite";
-import { useEffect, useState } from "react";
+import iconEye from "/public/images/icons/icon_eye.svg?sprite";
 
 export const Header = () => {
+    const router = useRouter();
     const dispatch = useDispatch();
+    const { step, idCv } = router.query;
     const [isMenuShow, setIsMenuShow] = useState(false);
     const [pageName, setPageName] = useState('');
     const {
@@ -30,10 +37,13 @@ export const Header = () => {
             currentResolution
         }
     } = useSelector((state) => state);
-
     const toggleMenu = () => {
         setIsMenuShow(!isMenuShow);
     }
+    const routerStetBack = backRoter(StepsName, step, idCv);
+    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
+    const isResume = (router.asPath.includes(routersPages['resumeBuilder']) || router.asPath.includes(routersPages['resumeBuilderNew']));
+    const isCover = (router.asPath.includes(routersPages['coverLetter']) || router.asPath.includes(routersPages['coverLetterNew']));
 
     useEffect(() => {
         dispatch(updateMenuStatus(isMenuShow));
@@ -47,15 +57,22 @@ export const Header = () => {
         <header className="header-r">
             <div className="containers">
                 {
-                    ['md', 'sm', 'xs'].includes(currentResolution) ? (
+                    isMob ? (
                         <div className="head-mob">
                             <div className="head-mob__back">
-                                <ButtonBack text="" />
+                                <ButtonBack text="" link={router.asPath.includes('experience') ? routerStetBack : ""} />
                             </div>
                             <Link href="/" className="logo">
                                 <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
                             </Link>
                             <div className="wr-burger">
+                                {
+                                    (isResume || isCover) && (
+                                        <button className="btn-burger_eye" onClick={() => { dispatch(updatePreviewsMobTemplateStatus()) }}>
+                                            <Icon svg={iconEye} />
+                                        </button>
+                                    )
+                                }
                                 <button className="btn-burger" onClick={toggleMenu}>
                                     <Icon svg={iconBurger} />
                                 </button>
@@ -90,7 +107,7 @@ export const Header = () => {
                 }
             </div>
             {
-                ['md', 'sm', 'xs'].includes(currentResolution) ?
+                isMob ?
                     (
                         <>
                             <div className={`overlay${isMenuShow ? ' show' : ''}`} onClick={toggleMenu}></div>

@@ -6,6 +6,7 @@ const initialState = {
     currentResolution: null,
     status: statusLoaded,
     isMenuOpen: false,
+    isOpenPreviesMobTemplate: false,
 };
 
 export const slice = createSlice({
@@ -18,6 +19,9 @@ export const slice = createSlice({
         updateMenuStatus(state, action) {
             state.isMenuOpen = action.payload;
         },
+        updatePreviewsMobTemplateStatus(state, action) {
+            state.isOpenPreviesMobTemplate = !state.isOpenPreviesMobTemplate;
+        },
     },
     extraReducers: {}
 });
@@ -25,6 +29,7 @@ export const slice = createSlice({
 export const {
     updateResolution,
     updateMenuStatus,
+    updatePreviewsMobTemplateStatus,
 } = slice.actions;
 
 export const { reducer } = slice;

@@ -99,7 +99,7 @@ export const useScaleResumeMain = ({
         if (wid >= 640) {
           setScaleSize(1);
         } else {
-          setScaleSize(((wid * 100) / constWidth) / 100);
+          setScaleSize((((wid * 100) / constWidth) / 100) + 0.1);
         }
       } else {
         setScaleSize(1);
