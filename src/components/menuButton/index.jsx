@@ -60,7 +60,6 @@ export const MenuButton = ({
                     {
                         !isEdit && !isNew && (
                             <li className="menus-card_li">
-                                {/* onClick={handleEdit} */}
                                 <Link href={`/${routersPages[isResume ? "resumeBuilder" : "coverLetter"]}/${idCv}/${isResume ? ROUTES[''] : ROUTES_COVER['']}`} className="item-btn-m" >
                                     <Icon svg={iconEdit} />
                                     <span>Edit</span>

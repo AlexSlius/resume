@@ -1,6 +1,6 @@
 import ContainerPageResumeNow from "../../src/containers/resume-now"
 import DashboardWrapper from "../../src/wrappers/dashboard"
-import { withPrivateRoute } from "../../src/middleware/privateRouter"
+import { withPublicRoute } from "../../src/middleware/publicRouter"
 
 const ResumeNowPage = () => {
     return (
@@ -10,6 +10,6 @@ const ResumeNowPage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute({});
+export const getServerSideProps = withPublicRoute({ isStrite: true });
 
 export default ResumeNowPage;

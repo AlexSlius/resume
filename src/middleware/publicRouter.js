@@ -18,7 +18,7 @@ import {
 import { getCoverLetterById } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
-
+import { striteGetPlans } from "../controllers/strite";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -29,6 +29,7 @@ export const withPublicRoute = ({
     isGetShareResume = false,
     isGetShareCover = false,
     isPageCoverLetter = false,
+    isStrite = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -73,6 +74,10 @@ export const withPublicRoute = ({
             if (!!isGetShareCover) {
                 await store.dispatch(getCoverDataShare({ idCv: ctx?.query?.idCv, key: ctx?.query?.key }));
                 await store.dispatch(getCoverShareTemplateActive({ idCv: ctx?.query?.idCv }));
+            }
+
+            if (!!isStrite) {
+                await store.dispatch(striteGetPlans());
             }
             return { props: {} };
         } catch (error) {

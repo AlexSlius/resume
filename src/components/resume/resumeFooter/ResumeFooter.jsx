@@ -16,10 +16,14 @@ import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
 import { handleChanbdegAutOrPlan } from '../../../utils/downShare';
 
 
-const ResumeFooter = ({ isCover, currentResolution }) => {
+const ResumeFooter = ({
+   isCover,
+   currentResolution,
+}) => {
    const router = useRouter();
    const dispatch = useDispatch();
    const { idCv } = router.query;
+   const isNewResume = (idCv == "new");
    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
    const {
@@ -38,11 +42,15 @@ const ResumeFooter = ({ isCover, currentResolution }) => {
       }
    }
 
+   const handleDownload = () => {
+      console.log("down");
+   }
+
    const chanbdegAutOrPlan = (funCalb = () => { }) => {
       handleChanbdegAutOrPlan({
          funCalb,
          isCover,
-         isNewResume: false,
+         isNewResume,
          isAthorized,
          dispatch,
          Router,
@@ -69,7 +77,7 @@ const ResumeFooter = ({ isCover, currentResolution }) => {
             <CButton
                className='resume-footer__button'
                color="secondary" variant="outline"
-               onClick={() => handleDownload()}
+               onClick={() => chanbdegAutOrPlan(handleDownload)}
             >
                <Icon svg={downloadIcon} classNames={['icon-20']} />
                {
@@ -85,11 +93,7 @@ const ResumeFooter = ({ isCover, currentResolution }) => {
                >
                   <Icon svg={dotsIcon} classNames={['icon-20']} />
                </CButton>
-               {
-                  isAthorized && (
-                     <MenuButton isEdit={true} handleChanbdegAutOrPlan={chanbdegAutOrPlan} />
-                  )
-               }
+               <MenuButton isEdit={true} handleChanbdegAutOrPlan={chanbdegAutOrPlan} />
             </div>
          </div>
       </div>

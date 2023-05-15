@@ -6,10 +6,13 @@ import { Header } from "../../components/header";
 
 import { routersPages } from "../../constants/next-routers";
 
+import { striteCheckout } from "../../strite/checkout";
+
 import style from "./Style.module.scss"
 
 import arrFaqs from "./data/faqs.json";
 import arrCard from "./data/cards.json";
+
 
 const ResumeNow = () => {
     const {
@@ -17,6 +20,17 @@ const ResumeNow = () => {
             currentResolution
         }
     } = useSelector((state) => state);
+
+    const handleSub = (price) => {
+        striteCheckout({
+            lineItems: [
+                {
+                    price: price,
+                    quantity: 1
+                }
+            ]
+        });
+    }
 
     return (
         <>
@@ -55,7 +69,7 @@ const ResumeNow = () => {
                                     </div>
                                 </div>
                                 <div className={style.car_bot}>
-                                    <button className={`bnt-now ${style.bnt_now}`}><span>Upgrade Now</span></button>
+                                    <button className={`bnt-now ${style.bnt_now}`} type="button" onClick={() => handleSub("price_1N6d6aDuRixVdUqYV6DifK3B")}><span>Upgrade Now</span></button>
                                 </div>
                             </div>
                         ))
