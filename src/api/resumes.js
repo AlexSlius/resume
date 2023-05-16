@@ -10,4 +10,7 @@ export default class ClientsAPI extends Base {
     postShare(id, data, type = "formData") {
         return this.apiClient.post(`cv/${id}/share/`, data, type);
     }
+    deleteResume(id) {
+        return this.apiClient.delete(`cv/${id}/remove/`);
+    }
 }

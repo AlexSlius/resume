@@ -10,4 +10,7 @@ export default class ClientsAPI extends Base {
     postShare(id, data, type = "formData") {
         return this.apiClient.post(`cover/${id}/share/`, data, type);
     }
+    deleteCover(id) {
+        return this.apiClient.delete(`cover_letter/${id}/remove/`);
+    }
 }

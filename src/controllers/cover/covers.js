@@ -19,3 +19,9 @@ export const postShareCover = createAsyncThunk('resumes/postShareCover', async (
     const response = await api.covers.postShare(id, { status: "share" });
     return response;
 });
+
+export const deleteCover = createAsyncThunk('resumes/deleteCover', async ({ id }, thunkAPI) => {
+    const response = await api.covers.deleteCover(id);
+    await thunkAPI.dispatch(fetchGetCoversList());
+    return response;
+});

@@ -20,3 +20,9 @@ export const postShareResume = createAsyncThunk('resumes/postShareResume', async
     return response;
 });
 
+export const deleteResume = createAsyncThunk('resumes/deleteResume', async ({ id }, thunkAPI) => {
+    const response = await api.resumes.deleteResume(id);
+    await thunkAPI.dispatch(fetchGetResumesList());
+    return response;
+});
+

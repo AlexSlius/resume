@@ -32,9 +32,6 @@ export const ResumeCv010 = ({
 
       function rebuildingPages() {
         $('.cv-body.cv-body-visible').remove();
-
-        console.log(22222);
-
         var top_block = $('#cv-body-hidden-container .cv-body-content .top-block').clone();
         var profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
         var references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
@@ -173,12 +170,15 @@ export const ResumeCv010 = ({
         if (page.length > 0) {
           return page.find('.cv-body-content');
         } else {
+          console.log("current_page_number1111: ", current_page_number);
           return createNewPage(current_page_number);
         }
       }
 
       function createNewPage(page_number) {
         var page_element = $('#cv-body-hidden-container').clone();
+
+        console.log("current_page_number: ", current_page_number);
 
         page_element.attr('id', '');
         page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);

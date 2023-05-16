@@ -20,12 +20,14 @@ import { copyToClipboard } from "../../helpers/bufer";
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
 import {
+    deleteResume,
     fetchGetResumesList,
     fetchPostUpdateResumes,
     postShareResume
 } from "../../controllers/resumes";
 
 import {
+    deleteCover,
     fetchGetCoversList,
     fetchPostUpdateCover,
     postShareCover
@@ -35,7 +37,6 @@ import { coverAddNew } from "../../controllers/cover/personalize";
 import { addItemNotification } from "../../slices/notifications";
 
 import style from "./Style.module.scss";
-
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -166,6 +167,14 @@ const Dashboard = () => {
         });
     }
 
+    const handleDeleteResume = (id) => {
+        dispatch(deleteResume({ id }));
+    }
+
+    const handleDeleteCover = (id) => {
+        dispatch(deleteCover({ id }));
+    }
+
     React.useEffect(() => {
         if (type == "resume") {
             dispatch(fetchGetResumesList());
@@ -227,6 +236,7 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handlekeyUp={handlekeyUp}
                                                 handleBlur={handleBlur}
+                                                handleDelete={() => handleDeleteResume(item.id)}
                                                 handleShare={() => chanbdegAutOrPlanResume(item.id)}
                                                 handleDewnload={() => chanbdegAutOrPlanResume(item.id, true)}
                                             />
@@ -270,6 +280,7 @@ const Dashboard = () => {
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handlekeyUp={handlekeyUpCover}
                                                 handleBlur={handleBlurCover}
+                                                handleDelete={() => handleDeleteCover(item.id)}
                                                 handleShare={() => chanbdegAutOrPlanCover(item.id)}
                                                 handleDewnload={() => chanbdegAutOrPlanCover(item.id, true)}
                                             />
