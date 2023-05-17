@@ -133,10 +133,10 @@
 
     .cv-body-content {
       display: flex;
+      flex: 1;
       flex-direction: column;
       align-items: stretch;
       justify-content: stretch;
-      height: 100%;
       position: relative;
       z-index: 10;
 

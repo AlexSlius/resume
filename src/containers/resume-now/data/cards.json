@@ -2,8 +2,9 @@
     {
         "name": "LOW PRICE",
         "color": "#838799",
-        "price": "399.00",
+        "price": 399,
         "day": "Forever",
+        "isСurrency": true,
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -15,7 +16,8 @@
     {
         "name": "Best sale",
         "color": "#838799",
-        "price": "1.95",
+        "price": "Free",
+        "isСurrency": false,
         "day": "7-Day trial subscription",
         "list": [
             "Unlimited PDF Downloads",
@@ -30,8 +32,9 @@
     {
         "name": "profit",
         "color": "#6DC26C",
-        "price": "69.95",
+        "price": 69,
         "day": "12 months",
+        "isСurrency": true,
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",

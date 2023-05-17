@@ -10,6 +10,7 @@ export const ModalWrapper = ({
     children,
     visible = false,
     onClose = () => { },
+    maxWidth = 360,
 }) => {
     const onKeydown = ({ key }) => {
         switch (key) {
@@ -31,7 +32,7 @@ export const ModalWrapper = ({
             <div className={`${style.hystmodal} ${visible ? style.open : ""}`}>
                 <div className={`${style.hystmodal__wrap}`}>
                     <div className={`${style.hystmodal__bg_clos}`} onClick={onClose}></div>
-                    <div className={`${style.hystmodal__window}`}>
+                    <div className={`${style.hystmodal__window}`} style={{ maxWidth: maxWidth }}>
                         <button data-hystclose className={`${style.hystmodal__close}`} onClick={onClose}>
                             <Icon svg={iconX} />
                         </button>

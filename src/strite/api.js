@@ -8,7 +8,8 @@ export const striteApiGetPlans = async () => {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
+                // ${config.STRITE_PRIVATE_KEY}
+                "Authorization": `Bearer sk_test_51MyvEUEBJR7rLeB2ZmuGNbMwtbBRH43RuE2YIoSkvoGN494JFNtPeBl6n1AibQGEtrnA6Bg2xWOLOaBZzmqDizGD00uBqI72WB`
             }
         })
 
@@ -18,25 +19,23 @@ export const striteApiGetPlans = async () => {
     }
 }
 
-
 export const stritePaymentIntents = async (data) => {
-    // try {
-    //     let details;
+    try {
+        let res = await fetch(`${config.STRITE_API_URL}v1/payment_intents`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": `Bearer sk_test_51MyvEUEBJR7rLeB2ZmuGNbMwtbBRH43RuE2YIoSkvoGN494JFNtPeBl6n1AibQGEtrnA6Bg2xWOLOaBZzmqDizGD00uBqI72WB`
+            },
+            body: new URLSearchParams({
+                'payment_method': data?.id,
+                'amount': data?.amount,
+                'currency': 'usd'
+            })
+        })
 
-    //     if (data.id) {
-    //         const intent = await stripe.paymentIntents.create(
-    //             payment_method: data.id,
-    //             amount: 1099,
-    //             currency: 'usd',
-    //             automatic_payment_methods: { enabled: true },
-    //             { expand: ['payment_method'] }
-    //         );
-    //         details = summarizePaymentMethod(intent.payment_method);
-    //     }
-    //     // Send the response to the client
-    //     response.send(generateResponse(details));
-    // } catch (e) {
-    //     // Display error on client
-    //     return response.send({ error: e.message });
-    // }
+        return await res.json();
+    } catch (error) {
+        console.log("Error get products", error);
+    }
 }

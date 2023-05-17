@@ -8,14 +8,12 @@ export async function striteCheckout({ lineItems }) {
 	const getStripe = () => {
 		if (!stripePromise) {
 			// config.STRITE_PUBLICK_KEY
-			stripePromise = loadStripe("pk_test_51N6cDhDuRixVdUqYgrHMQ28th2SzNwEvvYwN2XhIaGUA6RxCvkYVxYYUvWZlfuO5FKWyuaJgllPRLlebVo7QKDNE00rzzooGTR");
+			stripePromise = loadStripe("pk_test_51MyvEUEBJR7rLeB2X2JOP0Xwa1zVFBzMSGxQEfWPGQzNrsDAKqvHpsCmG74pXLmdPwWfJ5HGDuMV1Ce88BCS5dDd00CYS3Bhbm");
 		}
 		return stripePromise
 	}
 
 	const stripe = await getStripe();
-
-	console.log("stripe: ", stripe);
 
 	await stripe.redirectToCheckout({
 		mode: 'payment',

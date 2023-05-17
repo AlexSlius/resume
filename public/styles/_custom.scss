@@ -903,6 +903,10 @@ button {
         color: #fff;
 
     }
+
+    &:disabled {
+        pointer-events: none;
+    }
 }
 
 .list-check {
@@ -1784,6 +1788,53 @@ button {
 
     .form-control,
     .DraftEditor-root {
-        border-color: #1856d3!important;
+        border-color: #1856d3 !important;
+    }
+}
+
+.style-modal-payment {
+    margin-top: 20px;
+}
+
+.wr-bot-payme {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.error-div-payme {
+    margin-top: 14px;
+    color: #F63B3B;
+}
+
+.wr-form-payments {
+    position: relative;
+
+    &.load {
+        pointer-events: none;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            z-index: 100;
+        }
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            z-index: 2000;
+            background: url('/images/icons/preloader-blue.svg') center/contain no-repeat;
+        }
     }
 }
