@@ -1826,15 +1826,24 @@ button {
             z-index: 100;
         }
 
-        &::after {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            z-index: 2000;
-            background: url('/images/icons/preloader-blue.svg') center/contain no-repeat;
-        }
+        // &::after {
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     transform: translate(-50%, -50%);
+        //     width: 24px;
+        //     height: 24px;
+        //     z-index: 2000;
+        //     background: url('/images/icons/preloader-blue.svg') center/contain no-repeat;
+        // }
+    }
+
+    input {
+        border: 1px solid #dadce3 !important;
+        border-radius: 10px !important;
+        height: 54px !important;
+        font-weight: 350 !important;
+        padding: 0.375rem 0.75rem !important;
+        transition: 0.2s !important;
     }
 }

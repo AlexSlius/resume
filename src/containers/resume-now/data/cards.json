@@ -2,7 +2,9 @@
     {
         "name": "LOW PRICE",
         "color": "#838799",
-        "price": 399,
+        "price": 399.99,
+        "priceTitle": 399.99,
+        "isOne": true,
         "day": "Forever",
         "isСurrency": true,
         "list": [
@@ -18,7 +20,10 @@
         "color": "#838799",
         "price": "Free",
         "isСurrency": false,
+        "isOne": false,
+        "priceTitle": 19.95,
         "day": "7-Day trial subscription",
+        "plan": "price_1N83jlEBJR7rLeB2ItJAEx4h",
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -32,9 +37,12 @@
     {
         "name": "profit",
         "color": "#6DC26C",
-        "price": 69,
+        "price": 69.95,
         "day": "12 months",
         "isСurrency": true,
+        "isOne": false,
+        "priceTitle": 69.95,
+        "plan": "price_1N8OgEEBJR7rLeB21Cip5bzC",
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",

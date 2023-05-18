@@ -1,8 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { striteApiGetPlans } from '../strite/api';
 
-export const striteGetPlans = createAsyncThunk('strite/striteGetPlans', async () => {
+import {
+    striteApiGetProductById,
+    striteApiGetPlans
+} from '../strite/api';
+
+export const striteGetProductById = createAsyncThunk('strite/striteGetProducts', async (_, thunkAPI) => {
+    const response = await striteApiGetProductById();
+
+    if (response?.id) {
+        await thunkAPI.dispatch(striteGetPlans({ product: response.id }));
+    }
+
+    return response || null;
+});
+
+export const striteGetPlans = createAsyncThunk('strite/striteGetPlans', async ({ product }) => {
     const response = await striteApiGetPlans();
-    return response?.data || null;
+
+    if (response?.data) {
+        return response.data.filter(el => el.product == product);
+    }
 });
 

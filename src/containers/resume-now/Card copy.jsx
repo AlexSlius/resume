@@ -5,10 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 import { ModalPayments } from '../../components/modals/modalPayments';
 
-
-import config from "../../config/config.json";
-
-const stripePromise = loadStripe(config.STRITE_PUBLICK_KEY);
+const stripePromise = loadStripe('pk_test_51MyvEUEBJR7rLeB2X2JOP0Xwa1zVFBzMSGxQEfWPGQzNrsDAKqvHpsCmG74pXLmdPwWfJ5HGDuMV1Ce88BCS5dDd00CYS3Bhbm');
 
 import style from "./Style.module.scss";
 
@@ -24,24 +21,39 @@ export const Card = ({ itemCard, index }) => {
         setOpenModal(false);
     }
 
+    const options = {
+        // 'payment' | 'setup' | 'subscription'
+        mode: 'payment',
+        amount: !!itemCard.isСurrency ? itemCard.price : 1,
+        currency: 'usd',
+        paymentMethodCreation: 'manual',
+        // Fully customizable with appearance API.
+        appearance: {/*...*/ },
+    };
+
     return (
         <>
-            <ModalPayments
-                visible={openModal}
-                onClose={handleCloseModal}
-            >
-                <div>
-                    <div style={{ textAlign: "center", paddingBottom: "20px", fontSize: 24 }}><b>{itemCard.isСurrency ? <span>$</span> : ""}{itemCard.price}</b></div>
-                    <Elements
-                        stripe={stripePromise}
+            {
+                !!itemCard.isСurrency && (
+                    <ModalPayments
+                        visible={openModal}
+                        onClose={handleCloseModal}
                     >
-                        <CheckoutForm
-                            itemCard={itemCard}
-                            handleCloseModal={handleCloseModal}
-                        />
-                    </Elements>
-                </div>
-            </ModalPayments>
+                        <div>
+                            <div style={{ textAlign: "center", paddingBottom: "20px", fontSize: 24 }}><b>${itemCard.price}</b></div>
+                            <Elements
+                                stripe={stripePromise}
+                                options={options}
+                            >
+                                <CheckoutForm
+                                    amount={itemCard.price}
+                                    handleCloseModal={handleCloseModal}
+                                />
+                            </Elements>
+                        </div>
+                    </ModalPayments>
+                )
+            }
 
             <div className={`${style.card} ${(index == 1) ? style.active : ""}`} key={index}>
                 <div>
@@ -67,7 +79,7 @@ export const Card = ({ itemCard, index }) => {
                 <div className={style.car_bot}>
                     <button
                         className={`bnt-now ${style.bnt_now}`}
-                        // disabled={index == 1}
+                        disabled={index == 1}
                         type="button"
                         onClick={handleOpenModal}
                     >

@@ -18,7 +18,7 @@ import {
 import { getCoverLetterById } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
-import { striteGetPlans } from "../controllers/strite";
+import { striteGetProductById } from "../controllers/strite";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -76,9 +76,9 @@ export const withPublicRoute = ({
                 await store.dispatch(getCoverShareTemplateActive({ idCv: ctx?.query?.idCv }));
             }
 
-            if (!!isStrite) {
-                await store.dispatch(striteGetPlans());
-            }
+            // if (!!isStrite) {
+            //     await store.dispatch(striteGetProductById());
+            // }
             return { props: {} };
         } catch (error) {
             console.log("withPublicRoute: ", error)

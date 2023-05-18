@@ -265,7 +265,7 @@
    .text-blckse {
      ul {
        li {
-         list-style: disc!important;
+         list-style: disc !important;
        }
      }
    }
@@ -541,6 +541,15 @@
      }
    }
 
+   #cv-body-hidden-container {
+     height: auto;
+     max-height: none;
+     position: absolute;
+     z-index: -1;
+     opacity: 0;
+     pointer-events: none;
+   }
+
    .cv-body {
      min-width: 595px;
      min-height: 764px;
@@ -560,7 +569,6 @@
        flex-direction: column;
        align-items: stretch;
        justify-content: stretch;
-       height: 100%;
        position: relative;
        z-index: 10;
 

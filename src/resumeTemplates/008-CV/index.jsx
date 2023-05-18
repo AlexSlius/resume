@@ -45,6 +45,241 @@ export const ResumeCv008 = ({
     hide_experience_level
   } = data;
 
+  React.useEffect(() => {
+    if (typeof window != 'undefined') {
+      let current_page_number = 1;
+
+      function rebuildingPages() {
+        $('.cv-body.cv-body-visible').remove();
+
+        let main_info_block = $('#cv-body-hidden-container .cv-body-content .main-info-block').clone();
+        let address_contacts_block = $('#cv-body-hidden-container .cv-body-content .address-contacts-block').clone();
+        let photo_block = $('#cv-body-hidden-container .cv-body-content .photo-wrapper').clone();
+        let profile_info_block = $('#cv-body-hidden-container .cv-body-content .profile-info-block').clone();
+        let links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
+        let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+
+        let date_place_of_birth_block = $('#cv-body-hidden-container .cv-body-content .date-place-of-birth-block').clone();
+        let driving_licence_block = $('#cv-body-hidden-container .cv-body-content .driving-licence-block').clone();
+        let nationality_block = $('#cv-body-hidden-container .cv-body-content .nationality-block').clone();
+        let languages_block = $('#cv-body-hidden-container .cv-body-content .languages-block').clone();
+        let hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
+        let skills_block = $('#cv-body-hidden-container .cv-body-content .skills-block').clone();
+        let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
+        let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
+        let courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
+        let extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
+        let internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
+        let certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
+
+        current_page_number = 1;
+
+        getContentContainer1().append(main_info_block);
+        if (checkHeight()) {
+          main_info_block.remove();
+          current_page_number++;
+          getContentContainer1().append(main_info_block);
+        }
+
+        getContentContainer1().append(address_contacts_block);
+        if (checkHeight()) {
+          address_contacts_block.remove();
+          current_page_number++;
+          getContentContainer1().append(address_contacts_block);
+        }
+        //
+        getContentContainer2().append(photo_block);
+        if (checkHeight()) {
+          photo_block.remove();
+          current_page_number++;
+          getContentContainer2().append(photo_block);
+        }
+
+        getContentContainer2().append(profile_info_block);
+        if (checkHeight()) {
+          profile_info_block.remove();
+          current_page_number++;
+          getContentContainer2().append(profile_info_block);
+        }
+        //
+
+        getContentContainer3().append(links_block);
+        if (checkHeight()) {
+          links_block.remove();
+          current_page_number++;
+          getContentContainer3().append(links_block);
+        }
+        //
+        getContentContainer4().append(references_block);
+        if (checkHeight()) {
+          references_block.remove();
+          current_page_number++;
+          getContentContainer4().append(references_block);
+        }
+        //
+
+        getContentContainer5().append(date_place_of_birth_block);
+        if (checkHeight()) {
+          date_place_of_birth_block.remove();
+          current_page_number++;
+          getContentContainer5().append(date_place_of_birth_block);
+        }
+
+        getContentContainer5().append(driving_licence_block);
+        if (checkHeight()) {
+          driving_licence_block.remove();
+          current_page_number++;
+          getContentContainer5().append(driving_licence_block);
+        }
+
+        getContentContainer5().append(nationality_block);
+        if (checkHeight()) {
+          nationality_block.remove();
+          current_page_number++;
+          getContentContainer5().append(nationality_block);
+        }
+
+        getContentContainer5().append(languages_block);
+        if (checkHeight()) {
+          languages_block.remove();
+          current_page_number++;
+          getContentContainer5().append(languages_block);
+        }
+
+        getContentContainer5().append(hobbies_block);
+        if (checkHeight()) {
+          hobbies_block.remove();
+          current_page_number++;
+          getContentContainer5().append(hobbies_block);
+        }
+
+        getContentContainer5().append(skills_block);
+        if (checkHeight()) {
+          skills_block.remove();
+          current_page_number++;
+          getContentContainer5().append(skills_block);
+        }
+
+        //
+        current_page_number = 1;
+
+        getContentContainer6().append(employment_history_block);
+        if (checkHeight()) {
+          employment_history_block.remove();
+          current_page_number++;
+          getContentContainer6().append(employment_history_block);
+        }
+
+        getContentContainer6().append(education_block);
+        if (checkHeight()) {
+          education_block.remove();
+          current_page_number++;
+          getContentContainer6().append(education_block);
+        }
+
+        getContentContainer6().append(courses_block);
+        if (checkHeight()) {
+          courses_block.remove();
+          current_page_number++;
+          getContentContainer6().append(courses_block);
+        }
+
+        getContentContainer6().append(extra_curricular_activities_block);
+        if (checkHeight()) {
+          extra_curricular_activities_block.remove();
+          current_page_number++;
+          getContentContainer6().append(extra_curricular_activities_block);
+        }
+
+        getContentContainer6().append(internships_block);
+        if (checkHeight()) {
+          internships_block.remove();
+          current_page_number++;
+          getContentContainer6().append(internships_block);
+        }
+
+        getContentContainer6().append(certificates_block);
+        if (checkHeight()) {
+          certificates_block.remove();
+          current_page_number++;
+          getContentContainer6().append(certificates_block);
+        }
+
+      }
+
+      function checkHeight() {
+        return getPageContainer().outerHeight() > getPageContainer().parent().outerHeight();
+      }
+
+      function getContentContainer1() {
+        return getPageContainer().find('.top-area .left-side');
+      }
+
+      function getContentContainer2() {
+        return getPageContainer().find('.top-area .right-side');
+      }
+
+      function getContentContainer3() {
+        return getPageContainer().find('.middle-area .left-side');
+      }
+
+      function getContentContainer4() {
+        return getPageContainer().find('.middle-area .right-side');
+      }
+
+      function getContentContainer5() {
+        return getPageContainer().find('.bottom-area .column-1');
+      }
+
+      function getContentContainer6() {
+        return getPageContainer().find('.bottom-area .column-2');
+      }
+
+      function getPageContainer() {
+        let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+        if (page.length > 0) {
+          return page.find('.cv-body-content');
+        } else {
+          return createNewPage(current_page_number);
+        }
+      }
+
+      function createNewPage(page_number) {
+        let page_element = $('#cv-body-hidden-container').clone();
+        page_element.attr('id', '');
+        page_element.addClass(['cv-body-visible', 'page-' + current_page_number]);
+        //page_element.children().remove();
+        let page_element_container = page_element.find('.cv-body-content');
+
+        //let page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
+        // page_element_container.find('.middle-area .column-left').children().remove();
+        page_element_container.find('.top-area .left-side').children().remove();
+        page_element_container.find('.top-area .right-side').children().remove();
+        page_element_container.find('.middle-area .left-side').children().remove();
+        page_element_container.find('.middle-area .right-side').children().remove();
+        page_element_container.find('.bottom-area .column-1').children().remove();
+        page_element_container.find('.bottom-area .column-2').children().remove();
+
+
+        if (current_page_number > 1) {
+          page_element_container.find('.top-area .center-block').remove();
+        }
+
+        page_element.append(page_element_container);
+
+        if ($('#cv-chapter-section-cv').find(page_element)) {
+          $('#cv-chapter-section-cv').append(page_element);
+        }
+
+        return page_element_container;
+      }
+
+      $(document).ready(function () {
+        rebuildingPages();
+      });
+    }
+  }, [data, stateClasses]);
+
   return (
     <div className="sv_008" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-2`} data-chapter="cv">
