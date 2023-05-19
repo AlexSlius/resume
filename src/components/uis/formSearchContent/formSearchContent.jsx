@@ -10,6 +10,7 @@ import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
 import iconSearch from "/public/images/icons/search-grey.svg?sprite"
 import iconLeftText from '/public/images/icons/icon-t-left.svg?sprite'
 import iconOkText from '/public/images/icons/icon-ok-text.svg?sprite'
+import iconEmpty from "/public/images/icons/icon-empty-list.svg?sprite"
 
 export const FormSearchContent = ({
     isLoad = false,
@@ -60,15 +61,16 @@ export const FormSearchContent = ({
                     />
                     <Icon svg={iconSearch} />
                 </div>
-                <div className='modal-text__content'>
+                <div className='modal-text__content modal-text__content_mod'>
                     {
                         !!textSearch.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{textSearch}</span></div>
                     }
-                    <ul className='scroll-style'>
-                        {
-                            !isLoad ? (
-                                isArray(data) ? (
-                                    !!data.length ? (
+
+                    {
+                        !isLoad ? (
+                            (isArray(data) && !!(data.length > 0)) ? (
+                                <ul className='scroll-style'>
+                                    {
                                         data.map((item, index) => {
                                             let isStatus = valueText.includes(item?.[keys]);
 
@@ -81,19 +83,20 @@ export const FormSearchContent = ({
                                                 </li>
                                             )
                                         })
-                                    ) : (
-                                        <li className={`empty-text`}>{labelEmpty}</li>
-                                    )
-                                ) : (
-                                    <li className={`empty-text`}>{labelEmpty}</li>
-                                )
+                                    }
+                                </ul>
                             ) : (
-                                <li className='li-load'>
-                                    <Icon svg={iconPreloader} />
-                                </li>
+                                <div className={`empty-text empty-text__mod`}>
+                                    <div><Icon svg={iconEmpty} /></div>
+                                    <div>{labelEmpty}</div>
+                                </div>
                             )
-                        }
-                    </ul>
+                        ) : (
+                            <div className='li-load'>
+                                <Icon svg={iconPreloader} />
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

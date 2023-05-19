@@ -3,7 +3,7 @@ import {
     CRow,
     CButton
 } from "@coreui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { TitlePage } from "../../components/titlePage";
@@ -13,11 +13,11 @@ import { ButtonDeleteItem } from "../../components/uis/buttonDelete";
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn";
 import { LoadBlock } from "../../components/loadBlock";
 import { Header } from "../../components/header";
+import { ModalDelete } from "../../components/modals/modalDelete";
 
 import {
     fetchUserDeleteProfile,
     fetchUserUpdateServer,
-    fetchUserGetProfile
 } from "../../controllers/users";
 import { isLoader } from "../../helpers/loadings"
 import { logout } from "../../controllers/auth";
@@ -39,16 +39,21 @@ const Settings = () => {
             currentResolution
         }
     } = useSelector(state => state);
+    const [showModaldelete, setShowModalDelete] = useState(false);
 
     const handleDeleteProfile = async () => {
-        let result = confirm("Confirm profile deletion?");
+        setShowModalDelete(true);
+    }
 
-        if (result) {
-            let res = await dispatch(fetchUserDeleteProfile());
+    const handleCLoseModalDelete = () => {
+        setShowModalDelete(false);
+    }
 
-            if (isDelete(res?.payload))
-                await logout(dispatch);
-        }
+    const onHanleBtnDelete = async () => {
+        let res = await dispatch(fetchUserDeleteProfile());
+
+        if (isDelete(res?.payload))
+            await logout(dispatch);
     }
 
     const updateSettingField = async ({ name, value }) => {
@@ -59,10 +64,6 @@ const Settings = () => {
         });
     }
 
-    React.useEffect(() => {
-        dispatch(fetchUserGetProfile());
-    }, []);
-
     return (
         <>
             {
@@ -70,6 +71,7 @@ const Settings = () => {
                     <Header />
                 )
             }
+
             <div className={`${style.wr_settings} ${style.wr_pa}`}>
                 <div className={style.wr_title}>
                     <TitlePage titleText="Account Settings" />
@@ -204,6 +206,14 @@ const Settings = () => {
                     )
                 }
             </div >
+
+            <ModalDelete
+                visible={!!showModaldelete}
+                title="Delete Account"
+                desc="Are you sure you want to delete this account?"
+                onClose={handleCLoseModalDelete}
+                onHanleBtnDelete={onHanleBtnDelete}
+            />
         </>
     )
 }

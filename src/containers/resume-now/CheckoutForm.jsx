@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useStripe, CardElement, useElements, PaymentElement } from '@stripe/react-stripe-js';
+import { useDispatch, useSelector } from 'react-redux';
+import { useStripe, CardElement, useElements } from '@stripe/react-stripe-js';
 import { striteCreateSubscription, stritePaymentIntents } from '../../strite/api';
 
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn";
 
-import { addItemNotification } from "../../slices/notifications";
+// import { addItemNotification } from "../../slices/notifications";
 
 export default function CheckoutForm({
     handleCloseModal = () => { },
+    updateError = () => { },
     itemCard,
 }) {
     const stripe = useStripe();
     const elements = useElements();
     const dispatch = useDispatch();
+    const {
+        users: {
+            objForm
+        }
+    } = useSelector(state => state);
 
     const [errorMessage, setErrorMessage] = useState();
     const [loading, setLoading] = useState(false);
 
     const handleError = (error) => {
         setLoading(false);
-        setErrorMessage(error.message);
+        updateError({
+            isShow: true,
+            status: "error",
+            title: "Payment error",
+            discription: error?.message || "",
+        });
+        setErrorMessage(error?.message);
     }
 
     const handleSubmit = async (event) => {
@@ -45,8 +57,8 @@ export default function CheckoutForm({
 
         let data = {
             paymentMethod: paymentMethod.id,
-            name: "Alex",
-            email: "dog27.98@gmail.com",
+            name: objForm.username,
+            email: objForm.username,
         }
 
         if (!!itemCard?.isOne) {
@@ -61,13 +73,19 @@ export default function CheckoutForm({
 
                     if (error) {
                         setLoading(false);
-                        setErrorMessage(error.message);
+                        handleError(error);
                     } else {
                         setLoading(false);
                         handleCloseModal();
-                        dispatch(addItemNotification({ text: "The payment was successful" }));
+                        // dispatch(addItemNotification({ text: "" }));
+                        updateError({
+                            isShow: true,
+                            title: "Payment success",
+                            discription: "The payment was successful",
+                        });
                     }
                 } catch (error) {
+                    handleError({ message: error });
                     console.log("error confirmPayment: ", error)
                 }
             }
@@ -81,7 +99,12 @@ export default function CheckoutForm({
                 if (resSub?.id) {
                     setLoading(false);
                     handleCloseModal();
-                    dispatch(addItemNotification({ text: "The subscription is completed" }));
+                    updateError({
+                        isShow: true,
+                        title: "Payment success",
+                        discription: "The payment was successful",
+                    });
+                    // dispatch(addItemNotification({ text: "The subscription is completed" }));
                 }
             } catch (error) {
                 setLoading(false);
@@ -89,10 +112,31 @@ export default function CheckoutForm({
         }
     };
 
+    const cardStyle = {
+        style: {
+            base: {
+                color: "#32325d",
+                fontFamily: 'sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "16px",
+                padding: "5px",
+                "::placeholder": {
+                    color: "#32325d"
+                }
+            },
+            invalid: {
+                fontFamily: 'sans-serif',
+                color: "#fa755a",
+                iconColor: "#fa755a"
+            }
+        },
+        hidePostalCode: true,
+    };
+
     return (
         <form>
             <div className={`wr-form-payments ${loading ? "load" : ""}`}>
-                <CardElement />
+                <CardElement id="card-element" options={cardStyle} />
             </div>
             {errorMessage && <div className='error-div-payme'>{errorMessage}</div>}
             <div className='wr-bot-payme'>

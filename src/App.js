@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { fetchUserGetAvatar } from "./controllers/users";
+import { fetchUserGetAvatar, fetchUserGetProfile } from "./controllers/users";
 import { useWindowSize } from "./hooks/custom-hooks";
 import { setAliasScreenResolution } from "./helpers/theme-helpers";
 
@@ -28,6 +28,7 @@ const App = ({
     useEffect(() => {
         if (autorizate?.isAthorized) {
             store.dispatch(fetchUserGetAvatar());
+            store.dispatch(fetchUserGetProfile());
         }
     }, []);
 

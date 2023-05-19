@@ -157,7 +157,6 @@ export const sliceDepenndecies = createSlice({
         },
         // getUniversityByName
         [getUniversityByName.pending]: (state) => {
-            state.university.list = [];
             state.university.status = statusLoader;
         },
         [getUniversityByName.fulfilled]: (state, action) => {
@@ -166,7 +165,6 @@ export const sliceDepenndecies = createSlice({
         },
         // fetchGetSkillslistSearchRandom
         [fetchGetSkillslistSearchRandom.pending]: (state) => {
-            state.skills.list = [];
             state.skills.status = statusLoader;
         },
         [fetchGetSkillslistSearchRandom.fulfilled]: (state, action) => {
@@ -175,7 +173,6 @@ export const sliceDepenndecies = createSlice({
         },
         // getSkillsStartOneJobTitle
         [getSkillsStartOneJobTitle.pending]: (state) => {
-            state.skills.list = [];
             state.skills.status = statusLoader;
         },
         [getSkillsStartOneJobTitle.fulfilled]: (state, action) => {
@@ -184,7 +181,6 @@ export const sliceDepenndecies = createSlice({
         },
         // fetchGetFieldOfStudy
         [fetchGetFieldOfStudy.pending]: (state) => {
-            state.fieldOfStudy.list = [];
             state.fieldOfStudy.status = statusLoader;
         },
         [fetchGetFieldOfStudy.fulfilled]: (state, action) => {
@@ -193,7 +189,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get Certificates
         [fetchGetListCertificates.pending]: (state) => {
-            state.certificaties.list = [];
             state.certificaties.status = statusLoader;
         },
         [fetchGetListCertificates.fulfilled]: (state, action) => {
@@ -202,7 +197,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get languages
         [fetchGetListLanguages.pending]: (state) => {
-            state.language.list = [];
             state.language.status = statusLoader;
         },
         [fetchGetListLanguages.fulfilled]: (state, action) => {
@@ -211,7 +205,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get careers objective
         [fetchGetListObjective.pending]: (state) => {
-            state.objective.list = [];
             state.objective.status = statusLoader;
         },
         [fetchGetListObjective.fulfilled]: (state, action) => {
@@ -219,7 +212,6 @@ export const sliceDepenndecies = createSlice({
             state.objective.list = action.payload;
         },
         [fetchGetListObjectiveById.pending]: (state) => {
-            state.objective.list = [];
             state.objective.status = statusLoader;
         },
         [fetchGetListObjectiveById.fulfilled]: (state, action) => {
@@ -228,7 +220,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get hobies 
         [fetchGetHobies.pending]: (state) => {
-            state.hobies.list = [];
             state.hobies.status = statusLoader;
         },
         [fetchGetHobies.fulfilled]: (state, action) => {
@@ -237,7 +228,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get socials 
         [fetchGetSocials.pending]: (state) => {
-            state.socials.list = [];
             state.socials.status = statusLoader;
         },
         [fetchGetSocials.fulfilled]: (state, action) => {
@@ -246,7 +236,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get skills position
         [fetchGetSkillsList.pending]: (state) => {
-            state.skillsPositions.list = [];
             state.skillsPositions.status = statusLoader;
         },
         [fetchGetSkillsList.fulfilled]: (state, action) => {
@@ -255,7 +244,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get all companu
         [getStudysList.pending]: (state) => {
-            state.studys.list = [];
             state.studys.status = statusLoader;
         },
         [getStudysList.fulfilled]: (state, action) => {
@@ -264,7 +252,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get all companu
         [getEmploymentsList.pending]: (state) => {
-            state.employers.list = [];
             state.employers.status = statusLoader;
         },
         [getEmploymentsList.fulfilled]: (state, action) => {
@@ -273,7 +260,6 @@ export const sliceDepenndecies = createSlice({
         },
         // get all companu
         [getCompanyList.pending]: (state) => {
-            state.companys.list = [];
             state.companys.status = statusLoader;
         },
         [getCompanyList.fulfilled]: (state, action) => {
@@ -289,7 +275,6 @@ export const sliceDepenndecies = createSlice({
         },
         //get all coutrys
         [fetchGetCountrys.pending]: (state) => {
-            state.coutrys.list = [];
             state.coutrys.status = statusLoader;
         },
         [fetchGetCountrys.fulfilled]: (state, action) => {
@@ -297,12 +282,10 @@ export const sliceDepenndecies = createSlice({
             state.coutrys.list = action.payload;
         },
         [fetchGetCountrys.rejected]: (state) => {
-            state.coutrys.list = [];
             state.coutrys.status = statusError;
         },
         //get all cities
         [fetchGetCities.pending]: (state) => {
-            state.cities.list = [];
             state.cities.status = statusLoader;
         },
         [fetchGetCities.fulfilled]: (state, action) => {
@@ -310,12 +293,10 @@ export const sliceDepenndecies = createSlice({
             state.cities.list = action.payload;
         },
         [fetchGetCities.rejected]: (state) => {
-            state.cities.list = [];
             state.cities.status = statusError;
         },
         //get all zipsCodes
         [fetchGetZipCodes.pending]: (state) => {
-            state.zipsCodes.list = [];
             state.zipsCodes.status = statusLoader;
         },
         [fetchGetZipCodes.fulfilled]: (state, action) => {
@@ -323,12 +304,10 @@ export const sliceDepenndecies = createSlice({
             state.zipsCodes.list = action.payload;
         },
         [fetchGetZipCodes.rejected]: (state) => {
-            state.zipsCodes.list = [];
             state.zipsCodes.status = statusError;
         },
         //get all drivers
         [fetchGetDrivers.pending]: (state) => {
-            state.drivers.list = [];
             state.drivers.status = statusLoader;
         },
         [fetchGetDrivers.fulfilled]: (state, action) => {
@@ -336,12 +315,10 @@ export const sliceDepenndecies = createSlice({
             state.drivers.list = action.payload;
         },
         [fetchGetDrivers.rejected]: (state) => {
-            state.drivers.list = [];
             state.drivers.status = statusError;
         },
         //get all nationality
         [fetchGetNationality.pending]: (state) => {
-            state.nationality.list = [];
             state.nationality.status = statusLoader;
         },
         [fetchGetNationality.fulfilled]: (state, action) => {
@@ -349,12 +326,10 @@ export const sliceDepenndecies = createSlice({
             state.nationality.list = action.payload;
         },
         [fetchGetNationality.rejected]: (state) => {
-            state.nationality.list = [];
             state.nationality.status = statusError;
         },
         // get all jops title
         [getJopsTitle.pending]: (state) => {
-            state.jopsTitle.list = [];
             state.jopsTitle.status = statusLoader;
         },
         [getJopsTitle.fulfilled]: (state, action) => {

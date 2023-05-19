@@ -13,7 +13,8 @@ import { CardNew } from "../../components/cardNew";
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
 import { ROUTES, ROUTES_COVER } from "../../constants/routes";
-import config from "../../config/config.json";
+import { ModalDelete } from "../../components/modals/modalDelete";
+
 
 import { isLoader } from "../../helpers/loadings"
 import { copyToClipboard } from "../../helpers/bufer";
@@ -38,10 +39,13 @@ import { addItemNotification } from "../../slices/notifications";
 
 import style from "./Style.module.scss";
 
+import config from "../../config/config.json";
+
 const Dashboard = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [loadNewCard, setLoadNewCard] = useState();
+    const [deleteModal, setDeleteModal] = useState({ id: null, isResume: true });
 
     const {
         resumers,
@@ -51,7 +55,6 @@ const Dashboard = () => {
         }
     } = useSelector(state => state);
     let type = "resume";
-    let idCv = router.query.idCv;
 
     switch (router.query.tab) {
         case tabsDashboardPage['resumes'].link:
@@ -168,11 +171,25 @@ const Dashboard = () => {
     }
 
     const handleDeleteResume = (id) => {
-        dispatch(deleteResume({ id }));
+        setDeleteModal({ id: id, isResume: true })
     }
 
     const handleDeleteCover = (id) => {
-        dispatch(deleteCover({ id }));
+        setDeleteModal({ id: id, isResume: false })
+    }
+
+    const handleCLoseModalDelete = () => {
+        setDeleteModal({ id: null, isResume: true });
+    }
+
+    const onHanleBtnDelete = () => {
+        if (deleteModal.isResume) {
+            dispatch(deleteResume({ id: deleteModal.id }));
+        } else {
+            dispatch(deleteCover({ id: deleteModal.id }));
+        }
+
+        handleCLoseModalDelete();
     }
 
     React.useEffect(() => {
@@ -303,6 +320,15 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
+
+            <ModalDelete
+                visible={!!deleteModal?.id}
+                title="Delete resume"
+                desc="Are you sure you want to delete
+                this project?"
+                onClose={handleCLoseModalDelete}
+                onHanleBtnDelete={onHanleBtnDelete}
+            />
         </>
     )
 }

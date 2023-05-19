@@ -30,7 +30,6 @@ export const striteApiGetPlans = async (idProduct) => {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
-                // ${config.STRITE_PRIVATE_KEY}
                 "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
             }
         })
@@ -100,6 +99,3 @@ export const stritePaymentIntents = async (data) => {
         console.log("Error get products", error);
     }
 }
-
-
-

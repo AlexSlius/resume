@@ -117,6 +117,15 @@
         width: 26px;
         height: 26px;
     }
+
+    &_mod {
+        background: transparent;
+
+        svg {
+            width: inherit;
+            height: inherit;
+        }
+    }
 }
 
 .title {
@@ -129,7 +138,7 @@
 
 .desc {
     color: #546C97;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     font-weight: 350;
     margin-top: 11px;
@@ -140,4 +149,18 @@
     display: flex;
     align-items: center;
     margin-top: 29px;
+}
+
+.wr_btn_two {
+    display: grid;
+    margin-top: 29px;
+    gap: 15px;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+
+    button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 }

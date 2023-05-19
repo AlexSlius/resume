@@ -8,12 +8,18 @@ import { ModalPayments } from '../../components/modals/modalPayments';
 
 import config from "../../config/config.json";
 
-const stripePromise = loadStripe(config.STRITE_PUBLICK_KEY);
+const stripePromise = loadStripe(config.STRITE_PUBLICK_KEY, {
+    locale: 'en'
+});
 
 import style from "./Style.module.scss";
 
 
-export const Card = ({ itemCard, index }) => {
+export const Card = ({
+    itemCard,
+    index,
+    updateError = () => { },
+}) => {
     const [openModal, setOpenModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -38,6 +44,7 @@ export const Card = ({ itemCard, index }) => {
                         <CheckoutForm
                             itemCard={itemCard}
                             handleCloseModal={handleCloseModal}
+                            updateError={updateError}
                         />
                     </Elements>
                 </div>
