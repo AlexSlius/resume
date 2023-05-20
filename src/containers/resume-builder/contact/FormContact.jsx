@@ -18,6 +18,7 @@ import {
 import {
    updatePictureContact,
    updateItemFieldContact,
+   updateFieldEmailForRegister
 } from "../../../slices/contact"
 import {
    fetchGetCountrys,
@@ -34,6 +35,7 @@ import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { ModalEmail } from "../../../components/modals/modalEmail";
 
 const FormContact = ({
    dispatch,
@@ -44,6 +46,8 @@ const FormContact = ({
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
    const [pictureFile, setPictureFile] = useState(undefined);
+   const [showModalEmail, setShowModalEmail] = useState(false);
+   const [emailForRegister, setEmailForRegister] = useState('');
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
    const isNewResume = (idCv == "new");
@@ -52,7 +56,7 @@ const FormContact = ({
       contacts: {
          contactObj,
          contactObjNew,
-         status,
+         emailRegister,
       },
       dependencies: {
          coutrys,
@@ -69,6 +73,7 @@ const FormContact = ({
    } = storeDate;
 
    let contObj = (isNewResume ? contactObjNew : contactObj);
+   let isForEmail = (emailRegister?.length > 0);
 
    const handleFileSelect = async (e) => {
       if (e !== null) {
@@ -166,12 +171,27 @@ const FormContact = ({
       return re?.payload?.id;
    }
 
+   const handleCloseModalEmail = () => {
+      setShowModalEmail(false);
+   }
+
+   const onHanleBtnSaveEmail = () => {
+      dispatch(updateFieldEmailForRegister(emailForRegister));
+      handleCloseModalEmail();
+   }
+
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
       if (idCv == "new") {
          sessionStorageRemove('picture');
       }
    }, []);
+
+   useEffect(() => {
+      if (!!showModalEmail) {
+         setEmailForRegister(emailRegister);
+      }
+   }, [showModalEmail]);
 
    useEffect(() => {
       setIdCountry(getIdOfNameCountrys({ objArr: coutrys.list, nameCountry: contObj.country }));
@@ -183,191 +203,216 @@ const FormContact = ({
    }, [idCountry]);
 
    return (
-      // isLoad={isLoader(status)}
-      <LoadWr >
-         <div className="rowse r-gap-30">
-            <CRow className={style.firstRow}>
-               <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
-                  <div className="mb-30px">
+      <>
+         <LoadWr >
+            <div className="rowse r-gap-30">
+               <CRow className={style.firstRow}>
+                  <CCol xs={6} className={classnames(style.rowWidth, "gap-3")}>
+                     <div className="mb-30px">
+                        <Input
+                           id="textFNAM"
+                           label="First Name"
+                           value={contObj.firstName}
+                           valid={contObj.firstName?.length > 0}
+                           onChange={(e) => handlerSetDateState('firstName', e.target.value)}
+                           name="FNAM"
+                           autoComplete="given-name"
+                           readOnly={false}
+                        />
+                     </div>
+                     <div>
+                        <Input
+                           id="textFNAM"
+                           label="Last Name"
+                           value={contObj.lastName}
+                           valid={contObj.lastName?.length > 0}
+                           onChange={(e) => handlerSetDateState('lastName', e.target.value)}
+                           name="FLAST"
+                           autoComplete="family-name"
+                           readOnly={false}
+                        />
+                     </div>
+                  </CCol>
+                  <CCol xs={6} className={classnames(style.rowWidth, style.imageBlock)}>
+                     <PhotoAdd handleFileSelect={handleFileSelect} value={contObj?.picture} />
+                  </CCol>
+               </CRow>
+               <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
+                  <CCol xs={6}>
+                     <div className="rel">
+                        <Input
+                           label="E-mail"
+                           value={contObj.email}
+                           invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
+                           valid={(contObj.email.length > 0) && /\S+@\S+\.\S+/.test(contObj.email)}
+                           onChange={(e) => handlerSetDateState('email', e.target.value)}
+                           readOnly={false}
+                        />
+                        <div className="for-regist">
+                           <div className="for-regist__l">
+                              <span>{isForEmail ? "For registration" : "Will be used for registration"} </span>
+                              {isForEmail && <span className="for-regist__t">{emailForRegister}</span>}
+                           </div>
+                           <div className="for-regist__r">
+                              {
+                                 isForEmail ? (
+                                    <button className="for-regist__btn dele" onClick={() => dispatch(updateFieldEmailForRegister(''))}>Delete</button>
+                                 ) : (
+                                    <button className="for-regist__btn" onClick={() => setShowModalEmail(true)}>I want another</button>
+                                 )
+                              }
+                           </div>
+                        </div>
+                     </div>
+                  </CCol>
+                  <CCol xs={6}>
                      <Input
-                        id="textFNAM"
-                        label="First Name"
-                        value={contObj.firstName}
-                        valid={contObj.firstName?.length > 0}
-                        onChange={(e) => handlerSetDateState('firstName', e.target.value)}
-                        name="FNAM"
-                        autoComplete="given-name"
-                        readOnly={false}
+                        label="Phone"
+                        value={contObj.phone}
+                        valid={contObj.phone?.length > 6}
+                        type="text"
+                        isNumber={true}
+                        isPhone={true}
+                        onChange={(value) => handlerSetDateState('phone', value)}
                      />
-                  </div>
-                  <div>
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Job Title"
+                        valueState={contObj.jobTitle || ""}
+                        data={jopsTitle?.list || []}
+                        isAddDiv={true}
+                        handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'jobTitle', value }, data)}
+                        handleServerRequest={handleServerRequestGetJopsTitle}
+                        handleAddNew={handleAddNewJobTitle}
+                        isOutDataObj={false}
+                        isRequire={true}
+                        isCap={true}
+                        isValidIn={true}
+                        validIn={contObj.jobTitle?.length > 2}
+                     />
+                  </CCol>
+                  <CCol xs={3}>
+                     <InputSelect
+                        label="Country"
+                        valueState={contObj.country || ''}
+                        data={coutrys.list}
+                        handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'country', value }, data)}
+                        isOutDataObj={false}
+                        isIconArrow={true}
+                        isFlag={true}
+                        isValidIn={true}
+                        name="CNTY"
+                        validIn={contObj.country?.length > 3}
+                     />
+                  </CCol>
+                  <CCol xs={3}>
+                     <InputSelect
+                        label="City"
+                        valueState={contObj.city || ''}
+                        data={cities.list}
+                        isBackgraundLoad={isLoader(cities?.status)}
+                        handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
+                        handleServerRequest={handleServerRequestCity}
+                        isOutDataObj={false}
+                        name="CITYE"
+                        autoComplete="shipping locality"
+                        isRequire={true}
+                        isValidIn={true}
+                        validIn={contObj.city?.length > 3}
+                     />
+                  </CCol>
+               </CRow>
+               {visibleAllInputs && <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
+                  <CCol xs={6}>
                      <Input
-                        id="textFNAM"
-                        label="Last Name"
-                        value={contObj.lastName}
-                        valid={contObj.lastName?.length > 0}
-                        onChange={(e) => handlerSetDateState('lastName', e.target.value)}
-                        name="FLAST"
-                        autoComplete="family-name"
-                        readOnly={false}
+                        label="Adress"
+                        value={contObj.address}
+                        valid={contObj.address?.length > 10}
+                        onChange={(e) => handlerSetDateState('address', e.target.value)}
                      />
-                  </div>
+                  </CCol>
+                  <CCol xs={6}>
+                     <Input
+                        label="Zip Code"
+                        value={contObj.zipCode}
+                        valid={contObj.zipCode?.length > 0}
+                        onChange={(e) => handlerSetDateState('zipCode', e.target.value)}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Driver license"
+                        valueState={contObj.driverLicense || ''}
+                        data={drivers?.list || []}
+                        isBackgraundLoad={isLoader(drivers?.status)}
+                        handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'driverLicense', value }, data)}
+                        keyName="category"
+                        keyText="category"
+                        isOutDataObj={false}
+                        isValidIn={true}
+                        validIn={contObj.driverLicense?.length > 3}
+                        isUpperCase={true}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <InputSelect
+                        label="Nationality"
+                        valueState={contObj.nationality || ''}
+                        data={nationality?.list || []}
+                        isBackgraundLoad={isLoader(nationality?.status)}
+                        handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'nationality', value }, data)}
+                        handleServerRequest={handleServerRequestNationaly}
+                        isOutDataObj={false}
+                        isRequire={true}
+                        isValidIn={true}
+                        validIn={contObj.nationality?.length > 3}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <Input
+                        label="Place of birth"
+                        value={contObj.placeOfBirth}
+                        valid={contObj.placeOfBirth?.length > 0}
+                        onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value)}
+                     />
+                  </CCol>
+                  <CCol xs={6}>
+                     <DatePicker
+                        floatingLabel="Date of birth"
+                        selected={contObj.dateOfBirth}
+                        formatInput='MMM, DD, YYYY'
+                        formatData='M, d, Y'
+                        onChange={(date) => handlerSetDateState('dateOfBirth', date)}
+                        isMindata={false}
+                     />
+                  </CCol>
+               </CRow>}
+               <CCol xs={12} className={style.formText}>
+                  <button type="button" onClick={() => setVisibleAllInputs(prev => !prev)} className={`${classButton}`}>
+                     {textInButton}
+                     <Icon svg={reactComponent} classNames={[style.icon_bnt]} />
+                  </button>
                </CCol>
-               <CCol xs={6} className={classnames(style.rowWidth, style.imageBlock)}>
-                  <PhotoAdd handleFileSelect={handleFileSelect} value={contObj?.picture} />
-               </CCol>
-            </CRow>
-            <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
-               <CCol xs={6}>
-                  <Input
-                     label="E-mail"
-                     value={contObj.email}
-                     invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
-                     valid={(contObj.email.length > 0) && /\S+@\S+\.\S+/.test(contObj.email)}
-                     onChange={(e) => handlerSetDateState('email', e.target.value)}
-                     readOnly={false}
+               <CCol className={style.buttonWrap}>
+                  <ButtonSteps
+                     onHandleBtnNext={formSubmit}
+                     onHandleNew={onHandleNewAuthorization}
+                     isAthorized={isAthorized}
+                     isFirstStep={true}
+                     isNew={idCv == "new" && isAthorized}
                   />
                </CCol>
-               <CCol xs={6}>
-                  <Input
-                     label="Phone"
-                     value={contObj.phone}
-                     valid={contObj.phone?.length > 6}
-                     type="text"
-                     isNumber={true}
-                     isPhone={true}
-                     onChange={(value) => handlerSetDateState('phone', value)}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <InputSelect
-                     label="Job Title"
-                     valueState={contObj.jobTitle || ""}
-                     data={jopsTitle?.list || []}
-                     isAddDiv={true}
-                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'jobTitle', value }, data)}
-                     handleServerRequest={handleServerRequestGetJopsTitle}
-                     handleAddNew={handleAddNewJobTitle}
-                     isOutDataObj={false}
-                     isRequire={true}
-                     isCap={true}
-                     isValidIn={true}
-                     validIn={contObj.jobTitle?.length > 2}
-                  />
-               </CCol>
-               <CCol xs={3}>
-                  <InputSelect
-                     label="Country"
-                     valueState={contObj.country || ''}
-                     data={coutrys.list}
-                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'country', value }, data)}
-                     isOutDataObj={false}
-                     isIconArrow={true}
-                     isFlag={true}
-                     isValidIn={true}
-                     name="CNTY"
-                     validIn={contObj.country?.length > 3}
-                  />
-               </CCol>
-               <CCol xs={3}>
-                  <InputSelect
-                     label="City"
-                     valueState={contObj.city || ''}
-                     data={cities.list}
-                     isBackgraundLoad={isLoader(cities?.status)}
-                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
-                     handleServerRequest={handleServerRequestCity}
-                     isOutDataObj={false}
-                     name="CITYE"
-                     autoComplete="shipping locality"
-                     isRequire={true}
-                     isValidIn={true}
-                     validIn={contObj.city?.length > 3}
-                  />
-               </CCol>
-            </CRow>
-            {visibleAllInputs && <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
-               <CCol xs={6}>
-                  <Input
-                     label="Adress"
-                     value={contObj.address}
-                     valid={contObj.address?.length > 10}
-                     onChange={(e) => handlerSetDateState('address', e.target.value)}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <Input
-                     label="Zip Code"
-                     value={contObj.zipCode}
-                     valid={contObj.zipCode?.length > 0}
-                     onChange={(e) => handlerSetDateState('zipCode', e.target.value)}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <InputSelect
-                     label="Driver license"
-                     valueState={contObj.driverLicense || ''}
-                     data={drivers?.list || []}
-                     isBackgraundLoad={isLoader(drivers?.status)}
-                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'driverLicense', value }, data)}
-                     keyName="category"
-                     keyText="category"
-                     isOutDataObj={false}
-                     isValidIn={true}
-                     validIn={contObj.driverLicense?.length > 3}
-                     isUpperCase={true}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <InputSelect
-                     label="Nationality"
-                     valueState={contObj.nationality || ''}
-                     data={nationality?.list || []}
-                     isBackgraundLoad={isLoader(nationality?.status)}
-                     handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'nationality', value }, data)}
-                     handleServerRequest={handleServerRequestNationaly}
-                     isOutDataObj={false}
-                     isRequire={true}
-                     isValidIn={true}
-                     validIn={contObj.nationality?.length > 3}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <Input
-                     label="Place of birth"
-                     value={contObj.placeOfBirth}
-                     valid={contObj.placeOfBirth?.length > 0}
-                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value)}
-                  />
-               </CCol>
-               <CCol xs={6}>
-                  <DatePicker
-                     floatingLabel="Date of birth"
-                     selected={contObj.dateOfBirth}
-                     formatInput='MMM, DD, YYYY'
-                     formatData='M, d, Y'
-                     onChange={(date) => handlerSetDateState('dateOfBirth', date)}
-                     isMindata={false}
-                  />
-               </CCol>
-            </CRow>}
-            <CCol xs={12} className={style.formText}>
-               <button type="button" onClick={() => setVisibleAllInputs(prev => !prev)} className={`${classButton}`}>
-                  {textInButton}
-                  <Icon svg={reactComponent} classNames={[style.icon_bnt]} />
-               </button>
-            </CCol>
-            <CCol className={style.buttonWrap}>
-               <ButtonSteps
-                  onHandleBtnNext={formSubmit}
-                  onHandleNew={onHandleNewAuthorization}
-                  isAthorized={isAthorized}
-                  isFirstStep={true}
-                  isNew={idCv == "new" && isAthorized}
-               />
-            </CCol>
-         </div>
-      </LoadWr>
+            </div>
+         </LoadWr>
+         <ModalEmail
+            visible={showModalEmail}
+            onClose={handleCloseModalEmail}
+            data={emailForRegister}
+            setState={setEmailForRegister}
+            onHanleBtn={onHanleBtnSaveEmail}
+         />
+      </>
    )
 }
 

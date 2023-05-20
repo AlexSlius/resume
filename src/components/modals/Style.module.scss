@@ -149,6 +149,17 @@
     display: flex;
     align-items: center;
     margin-top: 29px;
+    &_100 {
+        width: 100%;
+        button {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+    &_mt_16 {
+        margin-top: 16px;
+    }
 }
 
 .wr_btn_two {
@@ -163,4 +174,9 @@
         justify-content: center;
         width: 100%;
     }
+}
+
+.in_in {
+    margin-top: 20px;
+    width: 100%;
 }

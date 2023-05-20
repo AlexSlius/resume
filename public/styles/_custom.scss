@@ -666,7 +666,6 @@ input[type="number"]:focus {
     }
 }
 
-
 .rows-lan {
     display: flex;
     align-items: center;
@@ -1449,7 +1448,7 @@ button {
 .rowse.r-gap-30 {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 30px;
 }
 
 .block-rotate {
@@ -1884,5 +1883,83 @@ button {
         //     z-index: 2000;
         //     background: url('/images/icons/preloader-blue.svg') center/contain no-repeat;
         // }
+    }
+}
+
+.rel {
+    position: relative;
+}
+
+.for-regist {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 4px);
+    font-size: 14px;
+    color: #546C97;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &__t {
+        color: #01153A;
+        display: block;
+        max-width: 165px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 8px;
+    }
+
+    &__l {
+        display: flex;
+    }
+
+    &__r {
+        padding-left: 10px;
+    }
+
+    &__btn {
+        color: #01153A;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 350;
+        font-size: 14px;
+        position: relative;
+        transition: 0.2s;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #01153A;
+            bottom: 2px;
+            transition: 0.2s;
+        }
+
+        &:hover {
+            color: #3679FD;
+
+            &::before {
+                background: #3679FD;
+            }
+        }
+
+        &.dele {
+            color: #FF3030;
+
+            &::before {
+                background: #FF3030;
+            }
+
+            &:hover {
+                color: #01153A;
+
+                &::before {
+                    background: #01153A;
+                }
+            }
+        }
     }
 }

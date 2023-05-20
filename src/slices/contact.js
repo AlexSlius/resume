@@ -46,6 +46,7 @@ const initialState = {
     dateOfBirth: null,
     jobTitleId: null,
   },
+  emailRegister: '',
   status: statusLoaded,
   statusNew: statusLoaded,
 };
@@ -68,6 +69,9 @@ export const slice = createSlice({
     },
     cleanSliseNew(state, action) {
       state.contactObjNew = initialState.contactObjNew;
+    },
+    updateFieldEmailForRegister(state, action) {
+      state.emailRegister = action.payload;
     },
   },
   extraReducers: {
@@ -119,6 +123,7 @@ export const {
   updatePictureContact,
   cleanSlise,
   cleanSliseNew,
+  updateFieldEmailForRegister,
 } = slice.actions;
 
 export const { reducer } = slice;
