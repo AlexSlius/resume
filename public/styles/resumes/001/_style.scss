@@ -549,7 +549,8 @@
       }
     }
 
-    #cv-body-hidden-container {
+    #cv-body-hidden-container,
+    #cv-body-2 {
       height: auto;
       max-height: none;
       position: absolute;
@@ -798,6 +799,10 @@
           &.area-3 {
             .column-left {
               flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: stretch;
+              justify-content: stretch;
 
               .skills-block {
                 .skills-estimation-block {
@@ -851,6 +856,12 @@
           padding: 50px 50px 20px 50px;
 
           .cv-letter {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: stretch;
+
             .cv-letter-heading {
               margin-bottom: 23px;
             }

@@ -34,10 +34,13 @@ export const TemplatesSelectCover = ({
     statusResumeActive,
     reportTemplateRef,
 }) => {
-    const stateClasses = `${sizeLineSpacing(+stateLineSpacing)} ${sizeFont(+stateFontSize)} 
+
+    const stateClasses = `
+    ${sizeLineSpacing(+stateLineSpacing)} 
+    ${sizeFont(+stateFontSize)} 
     ${isNewResume ?
-            (!!resumeData?.resumeActiveNew?.template_class ? resumeData.resumeActiveNew.template_class : "")
-            : (!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : "")}`;
+            (!!resumeData?.resumeActiveNew?.template_class ? resumeData.resumeActiveNew.template_class : "") :
+            (!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : "")}`;
     const router = useRouter();
     const idCv = router.query.idCv;
 

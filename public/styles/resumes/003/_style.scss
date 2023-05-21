@@ -154,7 +154,12 @@
     }
   }
 
-  #cv-body-hidden-container {
+  .cv-body-2 .cv-body-content .cv-body-area.area-1 {
+    padding: 50px 50px 38px;
+}
+
+  #cv-body-hidden-container,
+  #cv-body-2 {
     height: 0;
     max-height: 0;
     min-height: 0;
@@ -249,7 +254,6 @@
         &.area-1 {
           flex-direction: column;
           display: flex;
-          padding: 0px;
 
           .columns-wrapper {
             display: flex;

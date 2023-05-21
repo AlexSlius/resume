@@ -203,15 +203,6 @@ export const ResumeCv001 = ({
         return page_element_container;
       }
 
-      function checkPageHeight(page_number) {
-        var page_element = $('.cv-body.cv-body-visible.page-' + page_number);
-        if (page_element.height() < page_element.find('.cv-body-container').height()) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-
       rebuildingPages();
     }
   }, [data, stateClasses]);

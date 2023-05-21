@@ -70,25 +70,23 @@ const Resume = ({
    }
 
    React.useEffect(() => {
-      if (!isCover) {
-         if (typeof window != "undefined") {
-            function start() {
-               if (!!reportTemplateRef.current) {
-                  let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
-                  setPagesPag(!!devPages.length ? devPages.length : 1);
-               } else {
-                  setPagesPag(1);
-               }
+      if (typeof window != "undefined") {
+         function start() {
+            if (!!reportTemplateRef.current) {
+               let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+
+               setPagesPag(!!devPages.length ? devPages.length : 1);
+            } else {
+               setPagesPag(1);
             }
-
-            start();
-
-            setTimeout(() => {
-               start();
-            }, 1000);
          }
-      }
 
+         start();
+
+         setTimeout(() => {
+            start();
+         }, 1000);
+      }
    }, [resumeData?.data, resumeData.resumeActive, contacts,
       employment,
       educations,
@@ -104,32 +102,30 @@ const Resume = ({
       careers]);
 
    React.useEffect(() => {
-      if (!isCover) {
-         if (typeof window != "undefined") {
-            if (!!reportTemplateRef.current) {
-               function star() {
-                  let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
+      if (typeof window != "undefined") {
+         if (!!reportTemplateRef.current) {
+            function star() {
+               let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
 
-                  if (devPages) {
-                     devPages.forEach(element => {
-                        element.classList.add("none");
-                     });
+               if (devPages) {
+                  devPages.forEach(element => {
+                     element.classList.add("none");
+                  });
 
-                     let currentPage = devPages[pagePagCurrent - 1];
+                  let currentPage = devPages[pagePagCurrent - 1];
 
-                     if (!!currentPage) {
-                        currentPage.classList.remove("none");
-                        currentPage.classList.add("active");
-                     }
+                  if (!!currentPage) {
+                     currentPage.classList.remove("none");
+                     currentPage.classList.add("active");
                   }
                }
-
-               star();
-
-               // setTimeout(() => {
-               //    star();
-               // }, 5000);
             }
+
+            star();
+
+            // setTimeout(() => {
+            //    star();
+            // }, 5000);
          }
       }
    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive, resumeData.resumeActive, contacts,
