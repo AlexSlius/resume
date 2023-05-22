@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router';
 
@@ -7,11 +7,11 @@ import HeadMainContent from "../../../components/headMainContent/HeadMainContent
 import { Progress } from "../../../components/progress";
 
 import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
+import { lastPositionCover } from "../../../controllers/cover/covers";
+import { backRoter } from "../../../helpers/experienceRouterBack";
+import { StepsName } from "../../../constants/cover";
 
 import employmentIcon from '/public/images/icons/employment.svg?sprite';
-import { backRoter } from "../../../helpers/experienceRouterBack";
-
-import { StepsName } from "../../../constants/cover";
 
 const arrStep = {
     undefined: {
@@ -87,9 +87,13 @@ const Contact = () => {
     const { step, idCv } = router.query;
     let routerStetBack = backRoter(StepsName, step, idCv);
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'experience' }));
     }, []);
+
+    useEffect(() => {
+        dispatch(lastPositionCover({ id: idCv, namePosition: step || undefined }));
+    }, [step]);
 
     return (
         <>

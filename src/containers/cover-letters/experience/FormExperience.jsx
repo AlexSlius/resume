@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React from "react";
+import React, {useEffect} from "react";
 
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
@@ -23,6 +23,7 @@ import { routersPages } from "../../../constants/next-routers";
 import { ROUTES_COVER } from "../../../constants/routes";
 import { updateCoverLetterById } from "../../../controllers/cover/personalize";
 import { StepsName } from "../../../constants/cover";
+
 
 const FormExperience = ({
     dispatch,
@@ -87,11 +88,11 @@ const FormExperience = ({
             clearTimeout(refIdTimeout.current);
         }, 300);
     }
-
+ 
     return (
         <div>
             {
-                (step === undefined) && (
+                (step == undefined || step == "undefined") && (
                     <StepOne
                         handleUpdateField={handleUpdateField}
                         handleClicQuery={handleClicQuery}

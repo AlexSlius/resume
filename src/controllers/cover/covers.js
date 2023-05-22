@@ -25,3 +25,9 @@ export const deleteCover = createAsyncThunk('resumes/deleteCover', async ({ id }
     await thunkAPI.dispatch(fetchGetCoversList());
     return response;
 });
+
+export const lastPositionCover = createAsyncThunk('resumes/lastPositionCover', async ({ id, namePosition }) => {
+    const response = await api.covers.lastPosition(id, { position: namePosition });
+    return response;
+});
+

@@ -46,6 +46,7 @@ const initialState = {
         applyingCompanyJobTitle: "",
         applyingCompanyTitle: "",
         applyingCompanyContact: "",
+        lastPosition: "undefined",
     },
     coverGenerateDate: null,
     coverDataObjNew: {

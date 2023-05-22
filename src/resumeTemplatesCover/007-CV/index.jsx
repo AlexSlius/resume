@@ -85,7 +85,7 @@ export const CoverCv007 = ({
 
     return (
         <div className="sv_007 template-wrapper" ref={reportTemplateRef}>
-            <div id="cv-chapter-section-resume" class={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
+            <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
                 <div className="cv-body cv-body-2">
                     <div className="cv-body-content">
                         <div className="column-left">

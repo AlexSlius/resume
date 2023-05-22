@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     deleteCover(id) {
         return this.apiClient.delete(`cover_letter/${id}/remove/`);
     }
+    lastPosition(id, data, type = "formData") {
+        return this.apiClient.post(`cover_letter/${id}/last_position`, data, type);
+    }
 }

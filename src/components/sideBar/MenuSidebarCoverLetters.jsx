@@ -41,6 +41,11 @@ const MenuSidebarCoverLetters = () => {
                 isAthorized
             }
         },
+        coverDataForm: {
+            coverDataObj: {
+                lastPosition
+            }
+        }
     } = useSelector(state => state);
     const idCv = router.query.idCv;
     const isNewResume = (idCv == "new");
@@ -73,6 +78,7 @@ const MenuSidebarCoverLetters = () => {
                 {
                     menuAsideResume.coverLetters.list.map((obj, index) => {
                         let activeClassActives = "";
+                        let linkQuery = '';
 
                         if (obj?.key) {
                             if (obj?.status == false)
@@ -87,9 +93,14 @@ const MenuSidebarCoverLetters = () => {
                             activeClassActives = style.link_current;
                         }
 
+                        if (obj?.key == 'experience' && !isNewResume) {
+                            linkQuery = `?step=${lastPosition}`
+                            activeClassActives = style.link_current;
+                        }
+
                         return (
                             <CNavItem key={index}>
-                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}`} activeClassName={style.active}>
+                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}>
                                     <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={handleClick}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
