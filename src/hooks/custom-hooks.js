@@ -88,18 +88,25 @@ export const useScaleResumePageShare = (constWidth = 628) => {
 export const useScaleResumeMain = ({
   refDivResumeMain,
   constWidth = 624,
+  currentResolution = [],
 }) => {
   const [scaleSize, setScaleSize] = useState(1);
+  const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
   useEffect(() => {
     function handleResize() {
       let wid = refDivResumeMain?.current?.offsetWidth;
 
+      if (!isMob)
+        wid -= 20;
+
       if (wid) {
+        let w = (((wid * 100) / constWidth) / 100);
+        isMob && (w += 0.14);
         if (wid >= 640) {
           setScaleSize(1);
         } else {
-          setScaleSize((((wid * 100) / constWidth) / 100) + 0.1);
+          setScaleSize(w);
         }
       } else {
         setScaleSize(1);
@@ -111,7 +118,7 @@ export const useScaleResumeMain = ({
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [currentResolution]);
 
   return scaleSize;
 }

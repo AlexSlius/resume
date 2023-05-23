@@ -24,6 +24,7 @@ import { ResumeCv041 } from '../../resumeTemplates/041-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
+    scale = 1,
     isNewResume,
     status = "",
     stateLineSpacing = 50,
@@ -46,7 +47,7 @@ export const TemplatesSelect = ({
     let statusLoad = statusResumeActive || status;
 
     return (
-        <LoadWr isLoad={isLoader(statusLoad)}>
+        <LoadWr isLoad={isLoader(statusLoad)} style={{ transform: scale }} classes='resume_transform'>
             {
                 resumeActive == "001-CV" && (
                     <ResumeCv001

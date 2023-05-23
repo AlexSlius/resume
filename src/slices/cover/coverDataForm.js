@@ -85,6 +85,8 @@ const initialState = {
         applyingCompanyTitle: "",
         applyingCompanyContact: "",
     },
+    emailRegister: '',
+    isErrorEmail: false,
     status: statusLoaded,
     statusNew: statusLoaded,
     statusCoverGenerate: statusLoaded,
@@ -102,6 +104,17 @@ export const slice = createSlice({
         cleanCoverNewForm(state, action) {
             state.coverDataObjNew = initialState.coverDataObjNew;
         },
+        updateFieldEmailForRegister(state, action) {
+            state.emailRegister = action.payload;
+        },
+        updateIsErrorEmail(state, action) {
+            if ((state.emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(state.emailRegister) || (state.coverDataObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(state.coverDataObjNew.email)) {
+                state.isErrorEmail = false;
+
+            } else {
+                state.isErrorEmail = true;
+            }
+        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
@@ -156,7 +169,9 @@ export const slice = createSlice({
 });
 
 export const {
-    updateItemField
+    updateItemField,
+    updateFieldEmailForRegister,
+    updateIsErrorEmail
 } = slice.actions;
 
 export const { reducer } = slice;

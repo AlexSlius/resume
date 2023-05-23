@@ -153,10 +153,6 @@ export const ResumeCv007 = ({
         return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
       }
 
-      function getContentArea1() {
-        return getPageColumnLeft();
-      }
-
       function getContentArea2() {
         return getPageColumnRight().find('.information-area-0');
       }

@@ -47,6 +47,9 @@ const ResumeMain = ({
       resumeData,
       coverDataForm,
       coverData,
+      theme: {
+         currentResolution
+      }
    } = useSelector((state) => state);
 
    const dataOther = isCover ? coverData : resumeData;
@@ -105,8 +108,9 @@ const ResumeMain = ({
          <div className="scroll-style ">
             {
                !isCover && (
-                  <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
+                  <div className="resume-main_scale">
                      <TemplatesSelect
+                        scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
@@ -125,6 +129,7 @@ const ResumeMain = ({
                isCover && (
                   <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
                      <TemplatesSelectCover
+                        scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}

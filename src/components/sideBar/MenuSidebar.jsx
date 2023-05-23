@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 import { addAllSection } from "../../slices/menuAsideResume";
 
+import {
+    updateIsErrorEmail
+} from "../../slices/contact"
+
 // Components
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
@@ -53,7 +57,8 @@ const MenuSideBar = () => {
             if (isAthorized) {
                 dispatch(contactAddNew({ pictureFile, isNewResume }));
             } else {
-                setShowModalNoAccess(true);
+                dispatch(updateIsErrorEmail());
+                // setShowModalNoAccess(true);
             }
         }
     }

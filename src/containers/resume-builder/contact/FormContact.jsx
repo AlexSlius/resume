@@ -9,6 +9,7 @@ import Icon from "../../../components/Icon";
 import { PhotoAdd } from "../../../components/uis/photoAdd"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr";
+import { ForRegistr } from "../../../components/forRegistr";
 
 import {
    contactSetNew,
@@ -18,7 +19,8 @@ import {
 import {
    updatePictureContact,
    updateItemFieldContact,
-   updateFieldEmailForRegister
+   updateFieldEmailForRegister,
+   updateIsErrorEmail
 } from "../../../slices/contact"
 import {
    fetchGetCountrys,
@@ -57,6 +59,7 @@ const FormContact = ({
          contactObj,
          contactObjNew,
          emailRegister,
+         isErrorEmail,
       },
       dependencies: {
          coutrys,
@@ -141,7 +144,9 @@ const FormContact = ({
 
    const formSubmit = async () => {
       if (!isAthorized) {
-         await dispatch(contactSetNew({ pictureFile, isNewResume }));
+         dispatch(updateIsErrorEmail());
+         // это для старой версии авторизации если не зареган
+         // await dispatch(contactSetNew({ pictureFile, isNewResume }));
       }
    }
 
@@ -175,8 +180,9 @@ const FormContact = ({
       setShowModalEmail(false);
    }
 
-   const onHanleBtnSaveEmail = () => {
-      dispatch(updateFieldEmailForRegister(emailForRegister));
+   const onHanleBtnSaveEmail = async () => {
+      await dispatch(updateFieldEmailForRegister(emailForRegister));
+      await dispatch(updateIsErrorEmail());
       handleCloseModalEmail();
    }
 
@@ -248,21 +254,17 @@ const FormContact = ({
                            onChange={(e) => handlerSetDateState('email', e.target.value)}
                            readOnly={false}
                         />
-                        <div className="for-regist">
-                           <div className="for-regist__l">
-                              <span>{isForEmail ? "For registration" : "Will be used for registration"} </span>
-                              {isForEmail && <span className="for-regist__t">{emailForRegister}</span>}
-                           </div>
-                           <div className="for-regist__r">
-                              {
-                                 isForEmail ? (
-                                    <button className="for-regist__btn dele" onClick={() => dispatch(updateFieldEmailForRegister(''))}>Delete</button>
-                                 ) : (
-                                    <button className="for-regist__btn" onClick={() => setShowModalEmail(true)}>I want another</button>
-                                 )
-                              }
-                           </div>
-                        </div>
+                        {
+                           isNewResume && (
+                              <ForRegistr
+                                 isError={isErrorEmail}
+                                 isForEmail={isForEmail}
+                                 emailForRegister={emailForRegister}
+                                 setShowModalEmail={() => setShowModalEmail(true)}
+                                 updateFieldEmailForRegister={() => dispatch(updateFieldEmailForRegister(''))}
+                              />
+                           )
+                        }
                      </div>
                   </CCol>
                   <CCol xs={6}>

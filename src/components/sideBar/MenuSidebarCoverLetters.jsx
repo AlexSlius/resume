@@ -9,12 +9,13 @@ import { useRouter } from 'next/router'
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
 
-import { contactSetNew, contactAddNew } from "../../controllers/contacts";
-import { coverSetNew, coverAddNew } from "../../controllers/cover/personalize";
 import { addAllSection } from "../../slices/menuAsideResume";
 import { ModalNoAccess } from "../modals/modalNoAccess";
 
 import { getCategoryViewedStatusCover } from "../../controllers/addSections";
+import { contactSetNew, contactAddNew } from "../../controllers/contacts";
+import { coverSetNew, coverAddNew } from "../../controllers/cover/personalize";
+import { updateIsErrorEmail } from "../../slices/cover/coverDataForm";
 
 import {
     routerLinksAsideMenuIcon,
@@ -57,7 +58,8 @@ const MenuSidebarCoverLetters = () => {
             if (isAthorized) {
                 dispatch(coverAddNew({}));
             } else {
-                setShowModalNoAccess(true);
+                dispatch(updateIsErrorEmail());
+                // setShowModalNoAccess(true);
             }
         }
     }

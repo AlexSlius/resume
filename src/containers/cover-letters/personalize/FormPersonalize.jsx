@@ -1,5 +1,5 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Router from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
@@ -9,9 +9,12 @@ import { InputSelect } from "../../../components/uis/inputSelect";
 import { routersPages } from "../../../constants/next-routers";
 import { ROUTES } from "../../../constants/routes";
 import { BtnContinue } from "../component/btnContinue";
+import { ModalEmail } from "../../../components/modals/modalEmail";
 
 import {
-    updateItemField
+    updateItemField,
+    updateFieldEmailForRegister,
+    updateIsErrorEmail
 } from "../../../slices/cover/coverDataForm";
 
 import {
@@ -25,18 +28,23 @@ import {
 } from "../../../controllers/cover/personalize";
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { ForRegistr } from "../../../components/forRegistr";
 
 const FormPersonalize = ({
     dispatch,
     storeDate,
     idCv,
 }) => {
-    const refIdTimeout = React.useRef(undefined);
-    const [idCountry, setIdCountry] = React.useState(undefined);
+    const refIdTimeout = useRef(undefined);
+    const [idCountry, setIdCountry] = useState(undefined);
+    const [showModalEmail, setShowModalEmail] = useState(false);
+    const [emailForRegister, setEmailForRegister] = useState('');
     const {
         coverDataForm: {
             coverDataObj,
             coverDataObjNew,
+            emailRegister,
+            isErrorEmail,
         },
         dependencies: {
             coutrys,
@@ -51,6 +59,7 @@ const FormPersonalize = ({
     const isNew = (idCv == "new");
 
     let contObj = (isNew ? coverDataObjNew : coverDataObj);
+    let isForEmail = (emailRegister?.length > 0);
 
     const handleUpdateItemField = ({ name, value }, data = null) => {
         if (!!data) {
@@ -79,7 +88,8 @@ const FormPersonalize = ({
     }
 
     const newBasicNoAutorizstion = async () => {
-        await dispatch(coverSetNew({ isNewCover: true }));
+        await dispatch(updateIsErrorEmail());
+        // await dispatch(coverSetNew({ isNewCover: true }));
     }
 
     const addNewCoverAutorization = async () => {
@@ -101,118 +111,157 @@ const FormPersonalize = ({
         }, 300);
     }
 
-    React.useEffect(() => {
+    const handleCloseModalEmail = () => {
+        setShowModalEmail(false);
+    }
+
+    const onHanleBtnSaveEmail = async () => {
+        await dispatch(updateFieldEmailForRegister(emailForRegister));
+        await dispatch(updateIsErrorEmail());
+        handleCloseModalEmail();
+    }
+
+    useEffect(() => {
+        if (!!showModalEmail) {
+            setEmailForRegister(emailRegister);
+        }
+    }, [showModalEmail]);
+
+    useEffect(() => {
         setIdCountry(getIdOfNameCountrys({ objArr: coutrys?.list, nameCountry: contObj?.country }));
     }, [coutrys.list, contObj?.country]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(fetchGetCountrys());
     }, []);
 
     return (
-        <div className="personalize-form">
-            <StepContent
-                icon="/images/cover/seo.svg"
-                title="Your cover letter is almost ready"
-                label="Personalize your cover letter"
-            />
-            <div className="wr-form-cover">
-                <CForm className="wr-gab-30 form-margins">
-                    <CRow>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="First Name"
-                                value={contObj?.firstName}
-                                valid={contObj?.firstName?.length > 0}
-                                onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
-                                readOnly={false}
-                            />
-                        </CCol>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="Last Name"
-                                value={contObj.lastName}
-                                valid={contObj?.lastName?.length > 0}
-                                onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
-                                readOnly={false}
-                            />
-                        </CCol>
-                    </CRow>
-                    <CRow>
-                        <CCol xs={12} md={6}>
-                            <InputSelect
-                                label="Country"
-                                valueState={contObj.country || ''}
-                                data={coutrys.list}
-                                handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "country" }, data)}
-                                isOutDataObj={false}
-                                isIconArrow={true}
-                                isFlag={true}
-                                isValidIn={true}
-                                validIn={contObj.country?.length > 2}
-                            />
-                        </CCol>
-                        <CCol xs={12} md={6}>
-                            <InputSelect
-                                label="City"
-                                valueState={contObj.city || ''}
-                                data={cities.list}
-                                handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "city" }, data)}
-                                handleServerRequest={handleServerRequestCity}
-                                isOutDataObj={false}
-                                isRequire={true}
-                                isValidIn={true}
-                                validIn={contObj.city?.length > 2}
-                            />
-                        </CCol>
-                    </CRow>
-                    <CRow>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="Address"
-                                value={contObj.state}
-                                valid={contObj?.state?.length > 3}
-                                onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
-                            />
-                        </CCol>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="Zip Code"
-                                value={contObj.zipCode}
-                                valid={contObj?.zipCode?.length > 2}
-                                onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
-                            />
-                        </CCol>
-                    </CRow>
-                    <CRow>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="E-mail"
-                                value={contObj.email}
-                                invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
-                                valid={/\S+@\S+\.\S+/.test(contObj.email)}
-                                onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
-                                readOnly={false}
-                            />
-                        </CCol>
-                        <CCol xs={12} md={6}>
-                            <Input
-                                label="Phone"
-                                isNumber={true}
-                                isPhone={true}
-                                value={contObj.phone}
-                                valid={contObj?.phone?.length > 6}
-                                onChange={(value) => handleUpdateItemField({ name: "phone", value })}
-                            />
-                        </CCol>
-                    </CRow>
-                </CForm>
-                <BtnContinue
-                    onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
-                    isButton={true}
+        <>
+            <div className="personalize-form">
+                <StepContent
+                    icon="/images/cover/seo.svg"
+                    title="Your cover letter is almost ready"
+                    label="Personalize your cover letter"
                 />
+                <div className="wr-form-cover">
+                    <CForm className="wr-gab-30 form-margins">
+                        <CRow>
+                            <CCol xs={12} md={6}>
+                                <Input
+                                    label="First Name"
+                                    value={contObj?.firstName}
+                                    valid={contObj?.firstName?.length > 0}
+                                    onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
+                                    readOnly={false}
+                                />
+                            </CCol>
+                            <CCol xs={12} md={6}>
+                                <Input
+                                    label="Last Name"
+                                    value={contObj.lastName}
+                                    valid={contObj?.lastName?.length > 0}
+                                    onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
+                                    readOnly={false}
+                                />
+                            </CCol>
+                        </CRow>
+                        <CRow>
+                            <CCol xs={12} md={6}>
+                                <InputSelect
+                                    label="Country"
+                                    valueState={contObj.country || ''}
+                                    data={coutrys.list}
+                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "country" }, data)}
+                                    isOutDataObj={false}
+                                    isIconArrow={true}
+                                    isFlag={true}
+                                    isValidIn={true}
+                                    validIn={contObj.country?.length > 2}
+                                />
+                            </CCol>
+                            <CCol xs={12} md={6}>
+                                <InputSelect
+                                    label="City"
+                                    valueState={contObj.city || ''}
+                                    data={cities.list}
+                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "city" }, data)}
+                                    handleServerRequest={handleServerRequestCity}
+                                    isOutDataObj={false}
+                                    isRequire={true}
+                                    isValidIn={true}
+                                    validIn={contObj.city?.length > 2}
+                                />
+                            </CCol>
+                        </CRow>
+                        <CRow>
+                            <CCol xs={12} md={6}>
+                                <Input
+                                    label="Address"
+                                    value={contObj.state}
+                                    valid={contObj?.state?.length > 3}
+                                    onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
+                                />
+                            </CCol>
+                            <CCol xs={12} md={6}>
+                                <Input
+                                    label="Zip Code"
+                                    value={contObj.zipCode}
+                                    valid={contObj?.zipCode?.length > 2}
+                                    onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
+                                />
+                            </CCol>
+                        </CRow>
+                        <CRow>
+                            <CCol xs={12} md={6}>
+                                <div className="rel">
+                                    <Input
+                                        label="E-mail"
+                                        value={contObj.email}
+                                        invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
+                                        valid={/\S+@\S+\.\S+/.test(contObj.email)}
+                                        onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
+                                        readOnly={false}
+                                    />
+                                    {
+                                        isNew && (
+                                            <ForRegistr
+                                                isError={isErrorEmail}
+                                                isForEmail={isForEmail}
+                                                emailForRegister={emailForRegister}
+                                                setShowModalEmail={() => setShowModalEmail(true)}
+                                                updateFieldEmailForRegister={() => dispatch(updateFieldEmailForRegister(''))}
+                                            />
+                                        )
+                                    }
+                                </div>
+                            </CCol>
+                            <CCol xs={12} md={6}>
+                                <Input
+                                    label="Phone"
+                                    isNumber={true}
+                                    isPhone={true}
+                                    value={contObj.phone}
+                                    valid={contObj?.phone?.length > 6}
+                                    onChange={(value) => handleUpdateItemField({ name: "phone", value })}
+                                />
+                            </CCol>
+                        </CRow>
+                    </CForm>
+                    <br />
+                    <BtnContinue
+                        onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
+                        isButton={true}
+                    />
+                </div>
             </div>
-        </div>
+            <ModalEmail
+                visible={showModalEmail}
+                onClose={handleCloseModalEmail}
+                data={emailForRegister}
+                setState={setEmailForRegister}
+                onHanleBtn={onHanleBtnSaveEmail}
+            />
+        </>
     )
 }
 

@@ -127,21 +127,21 @@ export const Menu = ({ pageName }) => {
                                                             <div className="submenu__item-title">Creative</div>
                                                             <p className="submenu__item-text">A bold, original feel perfect for artistic fields and contemporary companies</p>
                                                         </Link>
-                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Creative`} className="submenu__item-c">
+                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Professional`} className="submenu__item-c">
                                                             <div className="submenu__item-icon">
                                                                 <Icon svg={iconProfesional} />
                                                             </div>
                                                             <div className="submenu__item-title">Professional</div>
                                                             <p className="submenu__item-text">Job-winning templates to showcase professionalism and expertise</p>
                                                         </Link>
-                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Creative`} className="submenu__item-c">
+                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Simple`} className="submenu__item-c">
                                                             <div className="submenu__item-icon">
                                                                 <Icon svg={iconSimple} />
                                                             </div>
                                                             <div className="submenu__item-title">Simple</div>
                                                             <p className="submenu__item-text">Clean, timeless templates with a classic balanced structure. A perfect basic canvas</p>
                                                         </Link>
-                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Creative`} className="submenu__item-c">
+                                                        <Link href={`${routersPages['pageCoverLeterTemplates']}?category=Modern`} className="submenu__item-c">
                                                             <div className="submenu__item-icon">
                                                                 <Icon svg={iconModern} />
                                                             </div>

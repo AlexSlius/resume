@@ -521,13 +521,13 @@
 
 .page-template {
     .body-template-resume {
-        transform-origin: 0px 0px;
+        transform-origin: 50% 0px;
         min-width: 618px;
     }
 
     .ptr-c {
         @media(min-width: 1024px) {
-            overflow: hidden;
+            overflow: auto;
         }
     }
 }

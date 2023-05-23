@@ -47,6 +47,7 @@ const initialState = {
     jobTitleId: null,
   },
   emailRegister: '',
+  isErrorEmail: false,
   status: statusLoaded,
   statusNew: statusLoaded,
 };
@@ -73,6 +74,14 @@ export const slice = createSlice({
     updateFieldEmailForRegister(state, action) {
       state.emailRegister = action.payload;
     },
+    updateIsErrorEmail(state, action) {
+      if ((state.emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(state.emailRegister) || (state.contactObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(state.contactObjNew.email)) {
+        state.isErrorEmail = false;
+
+      } else {
+        state.isErrorEmail = true;
+      }
+    }
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -124,6 +133,7 @@ export const {
   cleanSlise,
   cleanSliseNew,
   updateFieldEmailForRegister,
+  updateIsErrorEmail,
 } = slice.actions;
 
 export const { reducer } = slice;
