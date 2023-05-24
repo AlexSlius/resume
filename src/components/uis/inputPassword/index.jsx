@@ -25,7 +25,7 @@ export const InputPassword = (props) => {
                 className={`${style.in_password} ${classNames}`}
                 invalid={props.invalid || false}
                 valid={props.valid || false}
-                {...props?.obj}
+                onChange={props.onChange}
             />
             <button type="button" onClick={() => setShowPassword(prev => !prev)} className={`${style.btn_eye} ${classBtnEye}`}>
                 <Icon svg={iconEye} />

@@ -9,6 +9,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
 import { LoadWr } from "../../../components/loadWr"
 import Input from "../../../components/uis/input"
+import { InputEmail } from "../../../components/uis/inputEmail";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import AddButton from "../../../components/uis/addButton/AddButton";
 import { ButtonSteps } from "../../../components/buttonSteps"
@@ -39,6 +40,7 @@ import {
 } from '../../../controllers/dependencies';
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
+
 
 let keysFiled = [
    'fullName',
@@ -251,13 +253,10 @@ const FormReference = ({
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
-                                                                  <Input
-                                                                     label="E-mail*"
+                                                                  <InputEmail
+                                                                     label="E-mail"
                                                                      value={item.email}
-                                                                     invalid={(item.email.length > 0) && !(/\S+@\S+\.\S+/.test(item.email))}
-                                                                     valid={/\S+@\S+\.\S+/.test(item.email)}
-                                                                     onChange={(e) => handleSaveSelect({ index, name: "email", value: e.target.value })}
-                                                                     readOnly={false}
+                                                                     onChange={(val) => handleSaveSelect({ index, name: "email", value: val })}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
@@ -317,13 +316,10 @@ const FormReference = ({
                      />
                   </CCol>
                   <CCol xs={6}>
-                     <Input
-                        label="E-mail*"
+                     <InputEmail
+                        label="E-mail"
                         value={objNew.email}
-                        invalid={(objNew.email.length > 0) && !(/\S+@\S+\.\S+/.test(objNew.email))}
-                        valid={/\S+@\S+\.\S+/.test(objNew.email)}
-                        onChange={(e) => handleSaveSelectNew({ name: "email", value: e.target.value })}
-                        readOnly={false}
+                        onChange={(val) => handleSaveSelectNew({ name: "email", value: val })}
                      />
                   </CCol>
                   <CCol xs={6}>

@@ -1,12 +1,12 @@
-import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import React from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { isArray, isString } from "lodash";
+import { isArray } from "lodash";
 
 import { ButtonIcon } from "../../components/uis/buttonIcon";
-import Icon from "../../components/Icon";
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
+import { ItemCardResum } from "../../components/itemCardResum";
+import { ResumeTabs } from "../../components/resumeTabs";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { isLoader } from "../../helpers/loadings"
@@ -14,37 +14,23 @@ import { isLoader } from "../../helpers/loadings"
 import iconAddNew from "/public/images/icons/icon-add-new-white.svg?sprite";
 import iconUploadMore from "/public/images/icons/upload-more.svg?sprite";
 
-import iconAll from "/public/images/icons/icon-btn-all.svg?sprite";
-import iconCreative from "/public/images/icons/icon-creative.svg?sprite";
-import iconSimple from "/public/images/icons/icon-simple.svg?sprite";
-import iconProfessional from "/public/images/icons/icon-professional.svg?sprite";
-import iconModern from "/public/images/icons/icon-modern.svg?sprite";
-
 import { routersPages } from "../../constants/next-routers";
 import { getResumesTemplates } from "../../controllers/resumeData";
 
+
 export const JobWinningPage = () => {
-    const [currentPage, setCurrentPage] = React.useState(2);
+    const [currentPage, setCurrentPage] = useState(2);
     const dispatch = useDispatch();
     const router = useRouter();
     const category = router.query.category;
 
     const handleCategory = (nameCategory) => {
         Router.push({
-            // pathname: `${router.route}`,
             query: { category: nameCategory },
         });
     }
 
     const {
-        auth: {
-            autorizate: {
-                isAthorized,
-            }
-        },
-        theme: {
-            currentResolution
-        },
         resumeData,
     } = useSelector((state) => state);
 
@@ -72,73 +58,20 @@ export const JobWinningPage = () => {
                 </div>
 
                 <div className="wr-resumes">
-                    <div className="resumes-tabs">
-                        <div className="resumes-tab">
-                            <button type="button" className={`resumes-tab-btn ${(category === undefined || category === "all") ? 'active' : ''}`} onClick={() => handleCategory("all")}>
-                                <Icon svg={iconAll} />
-                                <span>All templates</span>
-                            </button>
-                        </div>
-                        <div className="resumes-tab">
-                            <button type="button" className={`resumes-tab-btn ${category === 'Creative' ? 'active' : ''}`} onClick={() => handleCategory('Creative')}>
-                                <Icon svg={iconCreative} />
-                                <span>Creative</span>
-                            </button>
-                        </div>
-                        <div className="resumes-tab">
-                            <button type="button" className={`resumes-tab-btn ${category === 'Simple' ? 'active' : ''}`} onClick={() => handleCategory('Simple')}>
-                                <Icon svg={iconSimple} />
-                                <span>Simple</span>
-                            </button>
-                        </div>
-                        <div className="resumes-tab">
-                            <button type="button" className={`resumes-tab-btn ${category === 'Professional' ? 'active' : ''}`} onClick={() => handleCategory('Professional')}>
-                                <Icon svg={iconProfessional} />
-                                <span>Professional</span>
-                            </button>
-                        </div>
-                        <div className="resumes-tab">
-                            <button type="button" className={`resumes-tab-btn ${category === 'Modern' ? 'active' : ''}`} onClick={() => handleCategory('Modern')}>
-                                <Icon svg={iconModern} />
-                                <span>Modern</span>
-                            </button>
-                        </div>
-                    </div>
-
+                    <ResumeTabs
+                        category={category}
+                        handleCategory={handleCategory}
+                    />
                     <div className="items-resumes">
                         {
-                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => {
-                                return (
-                                    <div className="item-card-resum" key={index}>
-                                        <div className="item-card-resum__head " onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`}>
-                                                <img loading="lazy" src={item.image} />
-                                            </Link>
-                                        </div>
-                                        <div className="item-card-resum__bot">
-                                            <div className="item-card-resum__tt" onClick={() => dispatch(updateActiveResumeNew({ slug: item.slug, id: item.id }))}>
-                                                <Link href={`/${routersPages['resumeBuilderNew']}`} className="item-card-resum__titl">{item.name}</Link>
-                                                {
-                                                    (isArray(item?.types) && item.types.length > 0) && (
-                                                        <div className="item-card-resum__types">
-                                                            {
-                                                                item.types.map((itemType, index) => (
-                                                                    <div key={index} className="item-type type-ptf" style={{ background: itemType.background }}>{itemType.name}</div>
-                                                                ))
-                                                            }
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-                                            {
-                                                !!item?.description && (
-                                                    <p className="item-card-resum__desk">{item?.description}</p>
-                                                )
-                                            }
-                                        </div>
-                                    </div>
-                                )
-                            })
+                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
+                                <ItemCardResum
+                                    item={item}
+                                    keyRouter="resumeBuilderNew"
+                                    key={index}
+                                    updateActiveResumeNew={(val) => dispatch(updateActiveResumeNew(val))}
+                                />
+                            ))
                         }
                     </div>
                 </div>

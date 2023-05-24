@@ -96,7 +96,8 @@ const MenuSidebarCoverLetters = () => {
                         }
 
                         if (obj?.key == 'experience' && !isNewResume) {
-                            linkQuery = `?step=${lastPosition}`
+
+                            linkQuery = `?step=${lastPosition || undefined}`
                             activeClassActives = style.link_current;
                         }
 

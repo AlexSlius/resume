@@ -5,65 +5,53 @@ import {
     CButton
 } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux"
-import { useForm } from "react-hook-form"
 import Link from "next/link"
-import React from "react";
+import { useEffect, useState } from "react";
 
 import { FormHead } from "../../components/formHead"
 import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { InputPassword } from "../../components/uis/inputPassword"
-import Input from "../../components/uis/input"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
+import { InputEmail } from "../../components/uis/inputEmail";
 
 import { fetchAuthRegister } from "../../controllers/auth"
-import { isLoader } from "../../helpers/loadings"
-import { localStorageGet, sessionStorageGet } from "../../helpers/localStorage"
 import { cleanError } from "../../slices/auth";
+
+import { isLoader } from "../../helpers/loadings"
+import { validEmail } from "../../helpers/validEmail";
+import { localStorageGet, sessionStorageGet } from "../../helpers/localStorage"
 
 import { routersPages } from "../../constants/next-routers"
 
+
 export const RegisterPage = () => {
     const dispatch = useDispatch();
-    const { status, textError } = useSelector(prev => prev.auth.register)
+    const { status, textError } = useSelector(prev => prev.auth.register);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors, isValid },
-        watch,
-    } = useForm({
-        mode: "onBlur",
-        defaultValues: {
-            email: '',
-            password: '',
-            repeatPassword: '',
-        }
-    });
+    const onSubmit = (e) => {
+        e.preventDefault();
 
-    const onSubmit = (data) => {
         let session_empty = localStorageGet('session_id');
         let typeResume = sessionStorageGet('typeResume');
-        
+
         dispatch(fetchAuthRegister({
             data: {
-                email: data.email,
-                password: data.password,
+                email: email,
+                password: password,
                 session_id: session_empty,
-
             },
             typeResume
         }));
     }
 
-    React.useEffect(() => {
-        const subscription = watch((value, { name, type }) => {
-            if (textError) {
-                dispatch(cleanError('register'))
-            }
-        });
-
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    useEffect(() => {
+        if (textError) {
+            dispatch(cleanError('register'))
+        }
+    }, []);
 
     return (
         <AuthorizationWrapper>
@@ -72,26 +60,15 @@ export const RegisterPage = () => {
                 <div className={`form_wrap form_wrap_mt`}>
                     <CForm
                         className="r-gap-30"
-                        onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={onSubmit}
                     >
                         <CRow className="g-30 r-gap-30">
                             <CCol>
-                                <Input
+                                <InputEmail
                                     label="E-mail"
-                                    placeholder="E-mail"
-                                    invalid={errors?.email}
-                                    value={watch("email")}
-                                    valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
+                                    value={email}
+                                    onChange={(val) => setEmail(val)}
                                     textError={textError == "user_exist" ? "A user with this email is already registered" : ""}
-                                    readOnly={false}
-                                    obj={
-                                        register("email", {
-                                            required: true,
-                                            pattern: {
-                                                value: /\S+@\S+\.\S+/,
-                                            },
-                                        })
-                                    }
                                 />
                             </CCol>
                         </CRow >
@@ -99,18 +76,9 @@ export const RegisterPage = () => {
                             <CCol>
                                 <InputPassword
                                     label="Password"
-                                    placeholder="Password"
-                                    value={watch("password")}
-                                    invalid={!!errors?.password}
-                                    valid={!errors?.password && watch("password").length > 0}
-                                    obj={
-                                        register("password", {
-                                            required: true,
-                                            minLength: {
-                                                value: 1
-                                            }
-                                        })
-                                    }
+                                    value={password}
+                                    valid={password.length > 3}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </CCol>
                         </CRow >
@@ -118,19 +86,10 @@ export const RegisterPage = () => {
                             <CCol>
                                 <InputPassword
                                     label="Repeat password"
-                                    placeholder="Repeat password"
-                                    invalid={!!errors?.repeatPassword}
-                                    value={watch("repeatPassword")}
-                                    valid={!errors?.repeatPassword && (watch("password").length > 0) && (watch("password") == watch("repeatPassword"))}
-                                    obj={
-                                        register("repeatPassword", {
-                                            required: true,
-                                            minLength: {
-                                                value: 1
-                                            },
-                                            validate: (input) => (watch("password").length > 0) && (input == watch("password")) ? true : false
-                                        })
-                                    }
+                                    invalid={(repeatPassword.length > 3) && (password != repeatPassword)}
+                                    value={repeatPassword}
+                                    valid={(repeatPassword.length > 3) && (password == repeatPassword)}
+                                    onChange={(e) => setRepeatPassword(e.target.value)}
                                 />
                             </CCol>
                         </CRow>
@@ -141,7 +100,7 @@ export const RegisterPage = () => {
                                         className={`btn_form`}
                                         type="submit"
                                         color="blue"
-                                        disabled={!isValid}
+                                        disabled={!(validEmail(email) && (repeatPassword.length > 3) && (password == repeatPassword))}
                                     >Register</CButton>
                                 </LoadChildrenBtn>
                             </CCol>

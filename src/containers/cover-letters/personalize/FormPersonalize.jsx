@@ -4,6 +4,7 @@ import Router from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
 import Input from "../../../components/uis/input";
+import { InputEmail } from "../../../components/uis/inputEmail";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
 import { routersPages } from "../../../constants/next-routers";
@@ -29,6 +30,7 @@ import {
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { ForRegistr } from "../../../components/forRegistr";
+
 
 const FormPersonalize = ({
     dispatch,
@@ -214,13 +216,10 @@ const FormPersonalize = ({
                         <CRow>
                             <CCol xs={12} md={6}>
                                 <div className="rel">
-                                    <Input
+                                    <InputEmail
                                         label="E-mail"
                                         value={contObj.email}
-                                        invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
-                                        valid={/\S+@\S+\.\S+/.test(contObj.email)}
-                                        onChange={(e) => handleUpdateItemField({ name: "email", value: e.target.value })}
-                                        readOnly={false}
+                                        onChange={(val) => handleUpdateItemField({ name: "email", value: val })}
                                     />
                                     {
                                         isNew && (

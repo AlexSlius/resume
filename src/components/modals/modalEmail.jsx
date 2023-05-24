@@ -1,10 +1,11 @@
 import Icon from "../Icon"
 import { ModalWrapper } from "./wrapperModal"
 import { ButtonIcon } from "../uis/buttonIcon";
-import Input from "../uis/input";
+import { InputEmail } from "../uis/inputEmail";
 
 import style from "./Style.module.scss";
 import iconBlueCheck from "/public/images/icons/icon-blue-chekc.svg?sprite";
+
 
 export const ModalEmail = ({
     visible,
@@ -27,13 +28,10 @@ export const ModalEmail = ({
                 </div>
                 <div className={`${style.title}`}>E-mail for registration</div>
                 <div className={`${style.in_in}`}>
-                    <Input
+                    <InputEmail
                         label="E-mail"
                         value={data}
-                        invalid={isError}
-                        valid={(data.length > 0) && /\S+@\S+\.\S+/.test(data)}
-                        onChange={(e) => setState(e.target.value)}
-                        readOnly={false}
+                        onChange={(val) => setState(val)}
                     />
                 </div>
                 <div className={`${style.wr_btn} ${style.wr_btn_100} ${style.wr_btn_mt_16}`}>

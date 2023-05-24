@@ -10,6 +10,8 @@ import { PhotoAdd } from "../../../components/uis/photoAdd"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr";
 import { ForRegistr } from "../../../components/forRegistr";
+import { ModalEmail } from "../../../components/modals/modalEmail";
+import { InputEmail } from "../../../components/uis/inputEmail";
 
 import {
    contactSetNew,
@@ -37,7 +39,6 @@ import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
-import { ModalEmail } from "../../../components/modals/modalEmail";
 
 const FormContact = ({
    dispatch,
@@ -246,13 +247,10 @@ const FormContact = ({
                <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
                   <CCol xs={6}>
                      <div className="rel">
-                        <Input
+                        <InputEmail
                            label="E-mail"
                            value={contObj.email}
-                           invalid={(contObj.email.length > 0) && !(/\S+@\S+\.\S+/.test(contObj.email))}
-                           valid={(contObj.email.length > 0) && /\S+@\S+\.\S+/.test(contObj.email)}
-                           onChange={(e) => handlerSetDateState('email', e.target.value)}
-                           readOnly={false}
+                           onChange={(val) => handlerSetDateState('email', val)}
                         />
                         {
                            isNewResume && (

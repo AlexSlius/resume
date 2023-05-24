@@ -5,55 +5,47 @@ import {
     CButton
 } from "@coreui/react"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
-import React from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { FormHead } from "../../components/formHead"
 import { AuthorizationWrapper } from "../../wrappers/autorization"
 import { Checked } from "../../components/uis/checked"
 import { InputPassword } from "../../components/uis/inputPassword"
-import Input from "../../components/uis/input"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
+import { InputEmail } from "../../components/uis/inputEmail"
+
+import { fetchAuthLogin } from "../../controllers/auth"
+import { localStorageSet, localStorageGet } from "../../helpers/localStorage"
+import { isLoader } from "../../helpers/loadings"
+import { validEmail } from "../../helpers/validEmail";
 
 import { routersPages } from "../../constants/next-routers"
-import { localStorageSet, localStorageGet } from "../../helpers/localStorage"
-import { fetchAuthLogin } from "../../controllers/auth"
-import { isLoader } from "../../helpers/loadings"
+
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
     const { status } = useSelector(prev => prev.auth.login)
-    const [isSaveDataAuth, setIsSaveDataAuth] = React.useState(true);
+    const [isSaveDataAuth, setIsSaveDataAuth] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors, isValid },
-        watch,
-    } = useForm({
-        mode: "onBlur",
-        defaultValues: {
-            email: '',
-            password: '',
-        }
-    });
+    const onSubmit = (e) => {
+        e.preventDefault();
 
-    const onSubmit = (data) => {
         if (isSaveDataAuth)
-            localStorageSet('authData', data, true);
+            localStorageSet('authData', { email, password }, true);
 
-        dispatch(fetchAuthLogin({ username: data.email, password: data.password }));
+        dispatch(fetchAuthLogin({ username: email, password: password }));
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         (async () => {
             let dataStorageAuth = localStorageGet('authData', true);
 
             if (dataStorageAuth) {
-                setValue('email', dataStorageAuth.email);
-                setValue('password', dataStorageAuth.password);
+                setEmail(dataStorageAuth.email);
+                setPassword(dataStorageAuth.password);
             }
         })();
     }, []);
@@ -64,25 +56,15 @@ export const LoginPage = () => {
                 <FormHead title="Welcome back! ✌️" subTitle="Please enter your details." />
                 <div className={`form_wrap form_wrap_mt`}>
                     <CForm
-                        onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={onSubmit}
                         className="r-gap-30"
                     >
                         <CRow className="g-30 r-gap-30">
                             <CCol>
-                                <Input
+                                <InputEmail
                                     label="E-mail"
-                                    invalid={errors?.email}
-                                    value={watch("email")}
-                                    readOnly={false}
-                                    valid={!errors?.email && /\S+@\S+\.\S+/.test(watch("email"))}
-                                    obj={
-                                        register("email", {
-                                            required: true,
-                                            pattern: {
-                                                value: /\S+@\S+\.\S+/,
-                                            },
-                                        })
-                                    }
+                                    value={email}
+                                    onChange={(val) => setEmail(val)}
                                 />
                             </CCol>
                         </CRow >
@@ -90,17 +72,9 @@ export const LoginPage = () => {
                             <CCol>
                                 <InputPassword
                                     label="Password"
-                                    invalid={errors?.password}
-                                    valid={!errors?.password && watch("password").length > 0}
-                                    value={watch("password")}
-                                    obj={
-                                        register("password", {
-                                            required: true,
-                                            minLength: {
-                                                value: 1
-                                            }
-                                        })
-                                    }
+                                    valid={password.length > 3}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </CCol>
                         </CRow>
@@ -129,7 +103,7 @@ export const LoginPage = () => {
                                         className={`btn_form`}
                                         type="submit"
                                         color="blue"
-                                        disabled={!(!!watch("password").length && !!watch("email").length)}
+                                        disabled={!(password.length && !!validEmail(email))}
                                     >Sign in</CButton>
                                 </LoadChildrenBtn>
                             </CCol>
