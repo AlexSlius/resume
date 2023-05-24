@@ -343,6 +343,7 @@ const FormEmployment = ({
                                             selected={item?.periodTo?.date}
                                             onChange={(date) => handlerSetDateState(index, 'periodTo', date)}
                                             floatingLabel="To"
+                                            prevData={item?.periodFrom?.date || undefined}
                                           />
                                         </CCol>
                                       </CRow>
@@ -453,6 +454,7 @@ const FormEmployment = ({
                     selected={objNew?.period_to}
                     onChange={(date) => handlerSetDateStateNew('period_to', date)}
                     floatingLabel="To"
+                    prevData={objNew?.period_from || undefined}
                   />
                 </CCol>
               </CRow>

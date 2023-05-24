@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 import classnames from 'classnames';
 
@@ -13,22 +13,22 @@ export const DatePicker = ({
     onChange,
     selected,
     floatingLabel,
-    placeholderText,
     name,
     formatInput = 'MMM, YYYY',
     formatData = 'M, Y',
     isMindata = true,
+    prevData = undefined,
 }) => {
-    const refSelect = React.useRef(undefined);
-    let useRefData = React.useRef(undefined);
-    let useRefDataNewIn = React.useRef(undefined);
-    let useRefContainer = React.useRef(undefined);
-    let useRefWrContainer = React.useRef(undefined);
-    const refCurentClass = React.useRef(undefined);
-    const refBtn = React.useRef(undefined);
-    const [isHiden, setIsHiden] = React.useState(true);
-
-    const [clases, setClases] = React.useState(style.none);
+    let refSelect = useRef(undefined);
+    let useRefData = useRef(undefined);
+    let useRefDataNewIn = useRef(undefined);
+    let useRefContainer = useRef(undefined);
+    let useRefWrContainer = useRef(undefined);
+    let refCurentClass = useRef(undefined);
+    let refBtn = useRef(undefined);
+    let [isHiden, setIsHiden] = useState(true);
+    let [clases, setClases] = useState(style.none);
+    let prevD = (prevData?.length > 4) ? [false, moment(new Date(prevData)).add(1, 'months').format('MMM, YYYY')] : false;
 
     useEffect(() => {
         if (typeof window != 'undefined') {
@@ -41,6 +41,7 @@ export const DatePicker = ({
                         format: formatData,
                         start_date: new Date(!!selected ? selected : "1994-08-01T00:00:00+03:00"),
                         always_visible: $(useRefContainer?.current),
+                        direction: prevD,
                         onSelect: function (data) {
                             onChange(isMindata ? data.replace(",", ", 01,") : data);
 
@@ -97,7 +98,7 @@ export const DatePicker = ({
                 !!refBtn.current && refBtn.current.addEventListener('click', handleFocus);
             }
         }
-    }, [selected]);
+    }, [selected, prevD]);
 
     return (
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>

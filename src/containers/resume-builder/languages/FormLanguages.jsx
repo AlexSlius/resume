@@ -68,6 +68,7 @@ const FormLanguages = ({
 
    const handleAddOne = () => {
       dispatch(fetchPostAddCvOneLanguages({ idCv }));
+      handleServerRequestLanguagesList();
    }
 
    const handDeleteitem = (id) => {
@@ -88,7 +89,7 @@ const FormLanguages = ({
 
    useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
-      handleServerRequestLanguagesList();
+      handleServerRequestLanguagesList('');
    }, []);
 
    useEffect(() => {

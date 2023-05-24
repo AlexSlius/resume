@@ -310,9 +310,10 @@ const FormInterShip = ({
                                                                   </CCol>
                                                                   <CCol xs={6} className='date-block'>
                                                                      <DatePicker
-                                                                        selected={item?.dateTo?.date}
+                                                                        selected={item?.dateFrom?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                         floatingLabel="To"
+                                                                        prevData={objNew?.period_from || undefined}
                                                                      />
                                                                   </CCol>
                                                                </CRow>
@@ -417,6 +418,7 @@ const FormInterShip = ({
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
                               floatingLabel="To"
+                              prevData={objNew.period_from || undefined}
                            />
                         </CCol>
                      </CRow>

@@ -1,6 +1,6 @@
 import { CFormInput } from "@coreui/react"
 import { isArray, isString } from "lodash";
-import React from "react"
+import { useRef, useEffect, useState } from "react"
 
 import Input from "../input";
 
@@ -58,19 +58,19 @@ export const InputSelect = ({
     activeArr = [],
     keyActiveEl = 'id',
 }) => {
-    const refSelect = React.useRef(undefined);
-    const reIn = React.useRef(undefined)
-    const reWrClick = React.useRef(undefined)
-    const refWr = React.useRef(undefined)
-    const isOneStart = React.useRef(false)
-    const refCurentClass = React.useRef(undefined)
-    const refIdActiveItem = React.useRef(false)
-    const refIdTimeout = React.useRef(undefined)
-    const refMoreThanOne = React.useRef(false);
-    const [showList, setShowlist] = React.useState(false)
-    const [className, setClassName] = React.useState('')
-    const [imgSrc, setImgSrc] = React.useState(null);
-    const [isNoneReuq, setIsNoneReuq] = React.useState(false);
+    const refSelect = useRef(undefined);
+    const reIn = useRef(undefined)
+    const reWrClick = useRef(undefined)
+    const refWr = useRef(undefined)
+    const isOneStart = useRef(false)
+    const refCurentClass = useRef(undefined)
+    const refIdActiveItem = useRef(false)
+    const refIdTimeout = useRef(undefined)
+    const refMoreThanOne = useRef(false);
+    const [showList, setShowlist] = useState(false)
+    const [className, setClassName] = useState('')
+    const [imgSrc, setImgSrc] = useState(null);
+    const [isNoneReuq, setIsNoneReuq] = useState(false);
 
     // const classBgLoad = isBackgraundLoad ? style.load_bg : ''
     const classBgLoad = '';
@@ -105,6 +105,8 @@ export const InputSelect = ({
         let prop = new Promise(async (resolve, reject) => {
             if (isShowUpClick)
                 setClassName('');
+
+            setIsNoneReuq(false);
             resolve(true);
         });
 
@@ -132,7 +134,7 @@ export const InputSelect = ({
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isModal) {
             const handleClick = (e) => {
                 const cordinate = e.target.getBoundingClientRect();
@@ -189,7 +191,7 @@ export const InputSelect = ({
         }
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isModal) {
             if (className.includes(style.open)) {
                 handleOpenChangle();
@@ -197,7 +199,7 @@ export const InputSelect = ({
         }
     }, [className]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isFlag) {
             if (isArray(data)) {
                 for (let i = 0; i < data.length; i++) {
@@ -210,7 +212,7 @@ export const InputSelect = ({
         }
     }, [(!!isOutDataObj ? valueState[keyText] : valueState), data])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isOneStart.current) {
             if (isModal) {
                 if (!isFirstList && (isArray(data) && data?.length > 0)) {

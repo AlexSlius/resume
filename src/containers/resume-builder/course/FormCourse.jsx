@@ -244,6 +244,7 @@ const FormCourse = ({
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                         floatingLabel="To"
+                                                                        prevData={item?.dateFrom?.date || undefined}
                                                                      />
                                                                   </CCol>
                                                                </CRow>
@@ -308,6 +309,7 @@ const FormCourse = ({
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
                               floatingLabel="To"
+                              prevData={objNew.period_to || undefined}
                            />
                         </CCol>
                      </CRow>

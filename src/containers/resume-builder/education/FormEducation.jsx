@@ -287,6 +287,7 @@ const FormEducation = ({
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                         floatingLabel="To"
+                                                                        prevData={item?.dateFrom?.date || undefined}
                                                                      />
                                                                   </CCol>
                                                                </CRow>
@@ -374,6 +375,7 @@ const FormEducation = ({
                               selected={objNew?.period_to}
                               onChange={(date) => handleSetDateStateDataNew('period_to', date)}
                               floatingLabel="To"
+                              prevData={objNew?.period_from || undefined}
                            />
                         </CCol>
                      </CRow>

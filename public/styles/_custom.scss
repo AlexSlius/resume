@@ -1405,6 +1405,11 @@ button {
     .dp_footer {
         display: none !important;
     }
+
+    .dp_disabled {
+        opacity: 0.4!important;
+        pointer-events: none!important;
+    }
 }
 
 .selected_data {

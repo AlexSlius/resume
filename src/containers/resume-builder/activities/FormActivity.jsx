@@ -286,6 +286,7 @@ const FormActivity = ({
                                                                      selected={item?.dateTo?.date}
                                                                      onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
                                                                      floatingLabel="To"
+                                                                     prevData={item?.dateFrom?.date || undefined}
                                                                   />
                                                                </CCol>
                                                             </CRow>
@@ -387,6 +388,7 @@ const FormActivity = ({
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
                               floatingLabel="To"
+                              prevData={objNew.period_from || undefined}
                            />
                         </CCol>
                      </CRow>

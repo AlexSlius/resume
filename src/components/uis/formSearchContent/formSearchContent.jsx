@@ -17,7 +17,7 @@ export const FormSearchContent = ({
     valueText = "",
     keys = "value",
     data,
-    labelEmpty = "empty list",
+    labelEmpty = "Empty list",
     nTimeMs = 500,
     handleServerRequest = () => { },
     handleUpdateText = () => { },
