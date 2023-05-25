@@ -1,4 +1,4 @@
-import { isArray } from "lodash"
+import { isArray, isObject } from "lodash"
 
 export const changeForm = ({
     arrForms = [],
@@ -28,4 +28,19 @@ export const changeForm = ({
     }
 
     return { newArr, last: newArr[newArr.length - 1] };
+}
+
+export const isObjEmptyForm = (objForm, arrkeys = []) => {
+    let status = false;
+
+    if (!isObject(objForm) && !isArray(arrkeys))
+        return status;
+
+    for (let i = 0; i < arrkeys.length; i++) {
+        if (objForm[arrkeys[i]]?.length > 0)
+            status = true;
+        break;
+    }
+
+    return status;
 }

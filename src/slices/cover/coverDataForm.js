@@ -9,6 +9,7 @@ import {
 } from "../../controllers/cover/personalize";
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
+import { cleanStartPersonFields } from "../../constants/formPerson";
 
 const initialState = {
     coverDataObj: {
@@ -114,6 +115,12 @@ export const slice = createSlice({
             } else {
                 state.isErrorEmail = true;
             }
+        },
+        cleanFormPersonalize(state, action) {
+            state.coverDataObj = { ...state.coverDataObj, ...cleanStartPersonFields };
+        },
+        cleanFormPersonalizeNew(state, action) {
+            state.coverDataObjNew = { ...state.coverDataObjNew, ...cleanStartPersonFields };
         }
     },
     extraReducers: {
@@ -171,7 +178,9 @@ export const slice = createSlice({
 export const {
     updateItemField,
     updateFieldEmailForRegister,
-    updateIsErrorEmail
+    updateIsErrorEmail,
+    cleanFormPersonalize,
+    cleanFormPersonalizeNew
 } = slice.actions;
 
 export const { reducer } = slice;

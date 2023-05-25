@@ -1,8 +1,6 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import { useState, useEffect, useRef } from "react";
 import { isArray } from 'lodash';
 import { CFormInput } from "@coreui/react";
-import { convertToHTML } from "draft-convert";
 
 import Icon from "../../Icon"
 
@@ -19,43 +17,42 @@ export const FormSearchContent = ({
     data,
     labelEmpty = "Empty list",
     nTimeMs = 500,
+    isExternalDate = false,
+    externalValue = "",
+    externalCollback = () => { },
     handleServerRequest = () => { },
     handleUpdateText = () => { },
 }) => {
-    const refIdTimeout = React.useRef(null);
-    const [textSearch, setTextSearch] = React.useState('');
+    const refIdTimeout = useRef(null);
+    const [textSearch, setTextSearch] = useState('');
+    let val = isExternalDate ? externalValue : textSearch;
 
-    const {
-        theme: {
-            currentResolution
-        }
-    } = useSelector((state) => state);
 
     const handleOnClickAddTextList = (value) => {
         handleUpdateText(value);
     }
 
-    React.useEffect(() => {
-        if (textSearch.length > 0) {
+    useEffect(() => {
+        if (val.length > 0) {
 
             if (refIdTimeout.current) {
                 clearTimeout(refIdTimeout.current);
             }
 
             refIdTimeout.current = setTimeout(async () => {
-                await handleServerRequest(textSearch);
+                await handleServerRequest(val);
                 clearTimeout(refIdTimeout.current);
             }, nTimeMs);
         }
-    }, [textSearch]);
+    }, [textSearch, externalValue]);
 
     return (
         <div className={`modal-text search-text-content`}>
             <div className='modal-text__main'>
                 <div className='modal-text__head'>
                     <CFormInput
-                        onChange={(e) => setTextSearch(e.target.value)}
-                        value={textSearch}
+                        onChange={(e) => isExternalDate ? externalCollback(e.target.value) : setTextSearch(e.target.value)}
+                        value={val}
                         type="text"
                         placeholder="Filter phrases by keyword"
                     />
@@ -63,7 +60,7 @@ export const FormSearchContent = ({
                 </div>
                 <div className='modal-text__content modal-text__content_mod'>
                     {
-                        !!textSearch.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{textSearch}</span></div>
+                        !!val.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{val}</span></div>
                     }
 
                     {

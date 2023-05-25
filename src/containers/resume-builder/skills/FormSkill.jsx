@@ -2,7 +2,7 @@ import {
    CCol,
    CRow,
 } from "@coreui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
@@ -34,6 +34,7 @@ import {
    getSkillsPositionStartOne
 } from "../../../controllers/skills";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import { jobTitleFromEmployment } from "../../../helpers/jopTitleFormEmployment";
 
 const FormSkill = ({
    dispatch,
@@ -43,7 +44,9 @@ const FormSkill = ({
    const {
       skills: {
          skillsObj,
-         statusIsListSkills,
+      },
+      employment: {
+         employmentObj
       },
       dependencies: {
          jopsTitle,
@@ -58,7 +61,7 @@ const FormSkill = ({
 
    const isDataPage = (isArray(skillsObj?.skillsListAll) && (skillsObj.skillsListAll.length > 0));
 
-   const updateitemFiled = ({ name, value, isClisk, update }, data) => {
+   const updateitemFiled = ({ name, value, isClisk = false, update }, data) => {
       if (!isClisk) {
          dispatch(updateItemSkillsFiled({ name, value }));
       }
@@ -139,10 +142,32 @@ const FormSkill = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
-   React.useEffect(() => {
-      dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
+   useEffect(() => {
+      // job title from contact
+      if (!!(contacts.contactObj?.jobTitle?.length > 0)) {
+         dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
+         updateitemFiled({ name: "selectd_work", value: "" });
+      }
+
+      if (!(contacts.contactObj?.jobTitle?.length > 0)) {
+         let jobTitleFormEmployment = jobTitleFromEmployment(employmentObj);
+
+         // job title from employment
+         if (!!(jobTitleFormEmployment?.title?.length > 0)) {
+            dispatch(getSkillsPositionStartOne({ data: { "query": jobTitleFormEmployment.title || '', limit: 15 } }));
+            updateitemFiled({ name: "selectd_work", value: "" });
+         }
+
+         if (!(jobTitleFormEmployment?.title?.length > 0)) {
+            // job title from field job title
+            if (!!(skillsObj?.selectd_work?.length > 0)) {
+               dispatch(getSkillsPositionStartOne({ data: { "query": skillsObj?.selectd_work || '', limit: 15 } }));
+            }
+         }
+      }
+
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'skills' }));
-   }, []);
+   }, [employmentObj]);
 
    return (
       <>
@@ -151,7 +176,7 @@ const FormSkill = ({
                <CRow>
                   <CCol className="mb-4" xs={12}>
                      <InputSelect
-                        label="Selected work"
+                        label="Job title"
                         valueState={skillsObj?.selectd_work || ""}
                         data={jopsTitle?.list || []}
                         handleSaveSelect={(obj) => updateitemFiled({ ...obj, name: "selectd_work", update: true })}

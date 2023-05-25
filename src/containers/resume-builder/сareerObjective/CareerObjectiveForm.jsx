@@ -1,12 +1,11 @@
 import { CCol, CRow } from "@coreui/react";
 import dynamic from 'next/dynamic';
-import React from "react";
+import { useRef, useState, useEffect } from "react";
 import uuid from "react-uuid";
 
 import { FormSearchContent } from "../../../components/uis/formSearchContent/formSearchContent";
 import { ButtonSteps } from "../../../components/buttonSteps"
 
-import { isLoader } from "../../../helpers/loadings"
 import { fetchGetListObjective, fetchGetListObjectiveById } from "../../../controllers/dependencies";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import {
@@ -16,8 +15,11 @@ import {
 } from "../../../controllers/careers";
 import {
     updateCareer,
-    addCareer
+    addCareer,
+    updateFieldSearchJobTitle
 } from "../../../slices/careers";
+import { jobTitleFromEmployment } from "../../../helpers/jopTitleFormEmployment";
+
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
     ssr: false
@@ -28,12 +30,15 @@ const FormSocials = ({
     states,
     idCv,
 }) => {
-    const refIdTimeout = React.useRef(undefined);
-    const [update, setUpdate] = React.useState(null);
+    const refIdTimeout = useRef(undefined);
+    const [update, setUpdate] = useState(null);
 
     const {
         dependencies: {
             objective
+        },
+        employment: {
+            employmentObj
         },
         auth: {
             autorizate: {
@@ -42,6 +47,7 @@ const FormSocials = ({
         },
         careers: {
             data,
+            searchJobTitle,
             isData
         },
         contacts: {
@@ -85,10 +91,26 @@ const FormSocials = ({
         }, 1000);
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'careerObjective' }));
-        if (!!contactObj?.jobTitleId) {
+
+        if (!!(+contactObj?.jobTitleId > 0)) {
             dispatch(fetchGetListObjectiveById(contactObj.jobTitleId));
+            dispatch(updateFieldSearchJobTitle(''))
+        }
+
+        if (!(+contactObj?.jobTitleId > 0)) {
+            let jobTitleFormEmployment = jobTitleFromEmployment(employmentObj);
+
+            if (!!jobTitleFormEmployment?.idJobTitle) {
+                dispatch(fetchGetListObjectiveById(jobTitleFormEmployment?.idJobTitle));
+                dispatch(updateFieldSearchJobTitle(''))
+            }
+
+            if (!jobTitleFormEmployment?.idJobTitle) {
+                if (searchJobTitle?.length > 0)
+                    handleServerRequestObjective(searchJobTitle);
+            }
         }
     }, []);
 
@@ -113,6 +135,9 @@ const FormSocials = ({
                             handleServerRequest={handleServerRequestObjective}
                             handleUpdateText={handleAddText}
                             setUpdate={setUpdate}
+                            isExternalDate={true}
+                            externalValue={searchJobTitle}
+                            externalCollback={(value) => dispatch(updateFieldSearchJobTitle(value))}
                         />
                     </div>
                 </CCol>

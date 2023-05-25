@@ -199,6 +199,7 @@ const FormExperience = ({
                         StepsName={StepsName}
                         coverDataObj={coverDataObj}
                         dispatch={dispatch}
+                        describes={describes}
                     />
                 )
             }

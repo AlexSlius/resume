@@ -12,6 +12,7 @@ import { LoadWr } from "../../../components/loadWr";
 import { ForRegistr } from "../../../components/forRegistr";
 import { ModalEmail } from "../../../components/modals/modalEmail";
 import { InputEmail } from "../../../components/uis/inputEmail";
+import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
    contactSetNew,
@@ -22,7 +23,9 @@ import {
    updatePictureContact,
    updateItemFieldContact,
    updateFieldEmailForRegister,
-   updateIsErrorEmail
+   updateIsErrorEmail,
+   cleanSliseNew,
+   cleanSlise
 } from "../../../slices/contact"
 import {
    fetchGetCountrys,
@@ -34,11 +37,12 @@ import {
 } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 import { sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
+import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { isObjEmptyForm } from "../../../helpers/changeForm";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
-import { ButtonSteps } from "../../../components/buttonSteps"
-import { getIdOfNameCountrys } from "../../../helpers/countrys"
+
 
 const FormContact = ({
    dispatch,
@@ -78,6 +82,22 @@ const FormContact = ({
 
    let contObj = (isNewResume ? contactObjNew : contactObj);
    let isForEmail = (emailRegister?.length > 0);
+   let isEmptyForm = isObjEmptyForm(contObj, [
+      "firstName",
+      "lastName",
+      "job_title",
+      "picture",
+      "email",
+      "phone",
+      "country",
+      "nationality",
+      "city",
+      "address",
+      "zipCode",
+      "driverLicense",
+      "placeOfBirth",
+      "dateOfBirth",
+   ]);
 
    const handleFileSelect = async (e) => {
       if (e !== null) {
@@ -185,6 +205,18 @@ const FormContact = ({
       await dispatch(updateFieldEmailForRegister(emailForRegister));
       await dispatch(updateIsErrorEmail());
       handleCloseModalEmail();
+   }
+
+   const cleanAll = async () => {
+      setPictureFile(undefined);
+
+      if (isNewResume) {
+         await dispatch(cleanSliseNew());
+         return;
+      }
+
+      await dispatch(cleanSlise());
+      await dispatch(fetchUpdateContact({ idCv, dataImage: undefined }));
    }
 
    useEffect(() => {
@@ -399,8 +431,9 @@ const FormContact = ({
                      onHandleBtnNext={formSubmit}
                      onHandleNew={onHandleNewAuthorization}
                      isAthorized={isAthorized}
-                     isFirstStep={true}
-                     isNew={idCv == "new" && isAthorized}
+                     isNew={isNewResume && isAthorized}
+                     onClean={cleanAll}
+                     disableDelete={!isEmptyForm}
                   />
                </CCol>
             </div>

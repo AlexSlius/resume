@@ -1,4 +1,5 @@
 import { CForm, CCol, CRow } from "@coreui/react"
+
 import React, { useRef, useState, useEffect } from "react";
 import Router from "next/router";
 
@@ -15,7 +16,9 @@ import { ModalEmail } from "../../../components/modals/modalEmail";
 import {
     updateItemField,
     updateFieldEmailForRegister,
-    updateIsErrorEmail
+    updateIsErrorEmail,
+    cleanFormPersonalize,
+    cleanFormPersonalizeNew
 } from "../../../slices/cover/coverDataForm";
 
 import {
@@ -30,6 +33,10 @@ import {
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { ForRegistr } from "../../../components/forRegistr";
+import { BtnGreyTypeTwo } from "../../../components/uis/btnGreyTypeTwo";
+import { isObjEmptyForm } from "../../../helpers/changeForm";
+
+import { fieldsFormPerson } from "../../../constants/formPerson";
 
 
 const FormPersonalize = ({
@@ -62,6 +69,7 @@ const FormPersonalize = ({
 
     let contObj = (isNew ? coverDataObjNew : coverDataObj);
     let isForEmail = (emailRegister?.length > 0);
+    let isEmptyForm = isObjEmptyForm(contObj, fieldsFormPerson);
 
     const handleUpdateItemField = ({ name, value }, data = null) => {
         if (!!data) {
@@ -121,6 +129,16 @@ const FormPersonalize = ({
         await dispatch(updateFieldEmailForRegister(emailForRegister));
         await dispatch(updateIsErrorEmail());
         handleCloseModalEmail();
+    }
+
+    const onClean = async () => {
+        if (isNew) {
+            await dispatch(cleanFormPersonalizeNew());
+            return;
+        }
+
+        await dispatch(cleanFormPersonalize());
+        await dispatch((updateCoverLetterById({ idCv, isClean: true })));
     }
 
     useEffect(() => {
@@ -246,11 +264,17 @@ const FormPersonalize = ({
                             </CCol>
                         </CRow>
                     </CForm>
-                    <br />
-                    <BtnContinue
-                        onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
-                        isButton={true}
-                    />
+                    <div className="bts-flex">
+                        <BtnGreyTypeTwo
+                            label="Delete All"
+                            disabled={!isEmptyForm}
+                            onClick={onClean}
+                        />
+                        <BtnContinue
+                            onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
+                            isButton={true}
+                        />
+                    </div>
                 </div>
             </div>
             <ModalEmail

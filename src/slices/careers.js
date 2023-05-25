@@ -12,6 +12,7 @@ import {
 
 const initialState = {
     data: "",
+    searchJobTitle: "",
     isData: false,
     status: statusLoaded,
 };
@@ -30,6 +31,9 @@ export const slice = createSlice({
                 state.data = action.payload;
             }
         },
+        updateFieldSearchJobTitle(state, action) {
+            state.searchJobTitle = action.payload;
+        }
     },
     extraReducers: {
         // career_objective
@@ -73,7 +77,8 @@ export const slice = createSlice({
 
 export const {
     updateCareer,
-    addCareer
+    addCareer,
+    updateFieldSearchJobTitle
 } = slice.actions;
 
 export const { reducer } = slice;

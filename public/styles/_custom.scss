@@ -1407,8 +1407,8 @@ button {
     }
 
     .dp_disabled {
-        opacity: 0.4!important;
-        pointer-events: none!important;
+        opacity: 0.4 !important;
+        pointer-events: none !important;
     }
 }
 
@@ -1835,6 +1835,63 @@ button {
         height: 48px;
         border: 1px solid #dadce3;
         border-radius: 12px;
+    }
+}
+
+.btn-grend-type-two {
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    transition: 0.4s !important;
+    font-size: 16px;
+
+    background: #fff !important;
+    border: 1px solid #DADCE3 !important;
+    color: #838799 !important;
+
+    &:hover {
+        color: #3679FD !important;
+        border-color: #3679FD !important;
+    }
+
+    &.btn-min-grey {
+        padding: 13px 18px 14px 13px;
+    }
+
+    &.btn-sta-w {
+        min-width: 128px;
+    }
+
+    &:disabled {
+        background: #F6F8FA !important;
+        color: #C4C7D0;
+        border-color: #F6F8FA !important;
+        opacity: 1 !important;
+        border: 1px solid #DADCE3 !important;
+    }
+}
+
+.bts-flex {
+    display: flex;
+    gap: 30px;
+    margin-top: 36px;
+
+    .wr-btn-cover {
+        margin-top: 0;
+    }
+
+    @media (max-width: 520px) {
+        & > div,
+        & > button {
+            width: 50%;
+        }
+
+        & > div {
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     }
 }
 

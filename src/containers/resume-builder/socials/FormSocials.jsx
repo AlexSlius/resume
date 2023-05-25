@@ -54,6 +54,7 @@ const FormSocials = ({
       if (isClisk) {
          dispatch(fetchAddItemLink({ idCv, data: { name: value, link: "" } }));
          dispatch(updateItemSocialFiledNew({ name: 'name', value: '' }));
+         handleGetSocial();
       }
    }
 
@@ -123,7 +124,7 @@ const FormSocials = ({
                      <CCol xs={6} className="mb-4">
                         <Input
                            id={item.id}
-                           placeholder="link"
+                           placeholder="Link"
                            value={item.link}
                            name="link"
                            isDelete={true}
