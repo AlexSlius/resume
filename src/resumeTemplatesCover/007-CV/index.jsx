@@ -28,6 +28,8 @@ export const CoverCv007 = ({
             // Reccomendation letter
             let letter_current_page_number = 1;
 
+            $('.cv-body-visible').remove();
+
             function rebuildingPages2() {
                 let cv_letter_heading = $('#cv-body-2 .column-right .letter-wrapper .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .column-right .letter-wrapper .cv-letter-text').clone();
@@ -122,22 +124,22 @@ export const CoverCv007 = ({
                         <div className="column-right">
                             <h1 className="cv-name font-size-5 line-height-6">
                                 {
-                                    !!firstName.length && (
+                                    !!firstName?.length && (
                                         <span className="text-line-1 font-weight-300">{firstName}&nbsp;</span>
                                     )
                                 }
                                 {
-                                    !!lastName.length && (
+                                    !!lastName?.length && (
                                         <span className="text-line-2 font-weight-900">{` ${firstName}`}</span>
                                     )
                                 }
                             </h1>
                             <div className="letter-wrapper additional-color-2-background">
                                 <div className="black-line main-color-1-background"></div>
-                                <h2 className="cv-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                <h2 className="cv-heading  cv-letter-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
                                 {
                                     !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
-                                        <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
+                                        <p className="font-size-1 cv-letter-text line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
                                     )
                                 }
                             </div>

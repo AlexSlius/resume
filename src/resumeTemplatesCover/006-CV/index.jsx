@@ -28,6 +28,8 @@ export const CoverCv006 = ({
             // Reccomendation letter
             let letter_current_page_number = 1;
 
+            $('.cv-body-visible').remove();
+
             function rebuildingPages2() {
                 let cv_letter_heading = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text').clone();

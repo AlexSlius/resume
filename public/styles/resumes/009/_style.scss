@@ -47,21 +47,6 @@
     font-weight: 900;
   }
 
-  /*
-#cv-body-hidden-container {
-  height: auto;
-  max-height: none;
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-  pointer-events: none;
-}
-*/
-
-  // .cv-chapter-section {
-  //   margin: 20px;
-  // }
-
   .cv-prophecy {
     font-family: 'Dela Gothic One', sans-serif;
   }
@@ -83,17 +68,25 @@
     }
   }
 
+  #cv-body-hidden-container,
+  #cv-body-2 {
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .cv-body {
-    width: 100%;
-    // width: 595px;
-    // height: 764px;
+    min-width: 595px;
     min-height: 764px;
-    // max-height: 764px;
+    height: 764px;
+    max-height: 764px;
     background-color: #fff;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    // margin: 0px 25px 25px;
 
     .cv-body-content {
       display: flex;
@@ -103,6 +96,7 @@
       min-height: inherit;
       position: relative;
       z-index: 10;
+      width: 100%;
 
       .cv-body-area {
         display: flex;
@@ -348,6 +342,7 @@
 
               .certificates-block {
                 padding-bottom: 60px;
+
                 .heading-type-1 {
                   width: 100%;
                   text-align: center;
@@ -422,6 +417,12 @@
             }
 
           }
+        }
+
+        &.bottom-gap-area {
+          position: relative;
+          min-height: 145px;
+          height: 145px !important;
         }
 
         &.bottom-area {

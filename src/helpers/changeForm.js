@@ -37,9 +37,10 @@ export const isObjEmptyForm = (objForm, arrkeys = []) => {
         return status;
 
     for (let i = 0; i < arrkeys.length; i++) {
-        if (objForm[arrkeys[i]]?.length > 0)
+        if (objForm[arrkeys[i]]?.length > 0) {
             status = true;
-        break;
+            break;
+        }
     }
 
     return status;

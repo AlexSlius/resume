@@ -162,21 +162,25 @@
     }
   }
 
+  #cv-body-hidden-container,
+  #cv-body-2 {
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .cv-body {
-    // width: 595px;
-    width: 100%;
+    min-width: 595px;
     min-height: 764px;
-    /*
-  height: 764px;
-  max-height: 764px;
-  */
-    // min-height: 764px;
+    height: 764px;
+    max-height: 764px;
     background-color: #fff;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    // margin: 0px 25px 25px;
-
 
     .lefter {
       writing-mode: vertical-lr;

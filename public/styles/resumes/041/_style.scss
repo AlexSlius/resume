@@ -617,7 +617,8 @@
     }
   }
 
-  #cv-body-hidden-container {
+  #cv-body-hidden-container,
+  #cv-body-2 {
     height: auto;
     max-height: none;
     position: absolute;
@@ -676,6 +677,7 @@
       .bottom-area {
         height: 30px;
         margin-top: 20px;
+        min-height: 30px;
       }
     }
 

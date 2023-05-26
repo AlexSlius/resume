@@ -27,6 +27,8 @@ export const CoverCv004 = ({
         if (typeof window != "undefined") {
             let letter_current_page_number = 1;
 
+             $('.cv-body-visible').remove();
+
             // Reccomendation letter
             function rebuildingPages2() {
                 let cv_letter_heading = $('#cv-body-2 .columns-wrapper .column-1 .letter-block .cv-letter-heading').clone();

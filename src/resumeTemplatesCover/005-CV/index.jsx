@@ -28,6 +28,8 @@ export const CoverCv005 = ({
             // Reccomendation letter
             let letter_current_page_number = 1;
 
+            $('.cv-body-visible').remove();
+
             function rebuildingPages2() {
                 let cv_letter_heading = $('#cv-body-2 .cv-body-area.middle-area .cv-letter .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter .cv-letter-text').clone();
@@ -90,12 +92,12 @@ export const CoverCv005 = ({
                         <div className="cv-body-area top-area">
                             <h1 className="cv-name">
                                 {
-                                    !!firstName.length && (
+                                    !!firstName?.length && (
                                         <span className="text-line-1 font-weight-400 font-size-5 line-height-5">{firstName}</span>
                                     )
                                 }
                                 {
-                                    !!lastName.length && (
+                                    !!lastName?.length && (
                                         <span className="text-line-2 font-weight-700 font-size-4 line-height-4">{firstName}</span>
                                     )
                                 }

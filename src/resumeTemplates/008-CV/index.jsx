@@ -248,11 +248,8 @@ export const ResumeCv008 = ({
         let page_element = $('#cv-body-hidden-container').clone();
         page_element.attr('id', '');
         page_element.addClass(['cv-body-visible', 'page-' + current_page_number]);
-        //page_element.children().remove();
         let page_element_container = page_element.find('.cv-body-content');
 
-        //let page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
-        // page_element_container.find('.middle-area .column-left').children().remove();
         page_element_container.find('.top-area .left-side').children().remove();
         page_element_container.find('.top-area .right-side').children().remove();
         page_element_container.find('.middle-area .left-side').children().remove();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { isCheckDescriptionByDataCover } from "../../utils/isChecjDescriptionByData";
 
@@ -23,9 +23,71 @@ export const CoverCv011 = ({
         applyingCompanyContact,
     } = data;
 
+    useEffect(() => {
+        if (typeof window != "undefined") {
+            // Reccomendation letter
+            let letter_current_page_number = 1;
+
+            $('.cv-body-visible').remove();
+
+            function rebuildingPages2() {
+                let cv_letter_heading = $('#cv-body-2 .column-left .letter-block .cv-letter-heading').clone();
+                let cv_letter_text = $('#cv-body-2 .column-left .letter-block .cv-letter-text').clone();
+
+                getCvLetterContainer().append(cv_letter_heading);
+
+                let original_cv_letter_text = $('#cv-body-2 .column-left .letter-block .cv-letter-text');
+                getCvLetterContainer().append(cv_letter_text);
+
+                let text1 = getCvLetterContainer().find('.cv-letter-text');
+
+                if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+                    do {
+                        text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    }
+                    while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+
+                    letter_current_page_number++;
+                    getCvLetterContainer().append(original_cv_letter_text.clone());
+                    let text2 = getCvLetterContainer().find('.cv-letter-text');
+                    text2.html(text2.html().substring(text1.html().length));
+                }
+            }
+
+            function getCvLetterContainer() {
+                return getPageContainer2().find('.column-left .letter-block');
+            }
+
+            function getPageContainer2() {
+                let page = $('#cv-chapter-section-resume').find('.cv-body.cv-body-visible.page-' + letter_current_page_number);
+                if (page.length > 0) {
+                    return page.find('.cv-body-content');
+                } else {
+                    return createNewPage2();
+                }
+            }
+
+            function createNewPage2() {
+                let page_element = $('#cv-body-2').clone();
+                page_element.attr('id', '');
+                page_element.addClass(['cv-body-visible', 'page-' + letter_current_page_number]);
+                let page_element_container = page_element.find('.cv-body-content');
+
+                page_element_container.find('.column-left .letter-block .cv-letter-heading').remove();
+                page_element_container.find('.column-left .letter-block .cv-letter-text').remove();
+
+                $('#cv-chapter-section-resume').append(page_element);
+
+                return page_element_container;
+            }
+
+            rebuildingPages2();
+        }
+    }, [data, stateClasses]);
+
     return (
         <div className="sv_011 template-wrapper" ref={reportTemplateRef}>
-            <div id="cv-chapter-section-resume" class={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
+            <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" class="cv-body cv-body-2 cv-body---resume page-2 font-size-scheme-1 line-height-scheme-1">
                     <div class="cv-body-content">
                         <div class="column-left">
@@ -33,10 +95,10 @@ export const CoverCv011 = ({
                                 <h1 className="cv-name font-size-5 line-height-6">{firstName}{` `} {lastName}</h1>
                             </div>
                             <div class="letter-block">
-                                <h2 className="block-heading letter-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                <h2 className="block-heading letter-heading cv-letter-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
                                 {
                                     !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
-                                        <p className="letter-text font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
+                                        <p className="letter-text  cv-letter-text font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
                                     )
                                 }
                             </div>
@@ -58,7 +120,7 @@ export const CoverCv011 = ({
                                                     <div class="block-item">
                                                         <div class="left-side">
                                                             <svg class="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fillRule="evenodd" clip-rule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
+                                                                <path fillRule="evenodd" clipRule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
                                                             </svg>
                                                         </div>
                                                         <div class="right-side">

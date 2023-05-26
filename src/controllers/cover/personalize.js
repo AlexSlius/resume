@@ -88,10 +88,10 @@ export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate
 export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterById', async ({ idCv, isClean = false }, thunkAPI) => {
     const { coverDataForm: { coverDataObj } } = thunkAPI.getState();
 
-    const newObj = camelToSnake({ ...coverDataObj, ...(isClean ? cleanStartPersonFields : {}) });
-    
+    // const newObj = camelToSnake({ ...coverDataObj, ...(isClean ? cleanStartPersonFields : {}) });
+
     // функция doNotTransmitEmptyData не возвращает пустые поля
-    // const newObj = camelToSnake({ ...doNotTransmitEmptyData(coverDataObj), ...(isClean ? cleanStartPersonFields : {}) });
+    const newObj = camelToSnake({ ...doNotTransmitEmptyData(coverDataObj), ...(isClean ? cleanStartPersonFields : {}) });
 
     newObj.graduate_date = newObj?.graduate_date ? moment(new Date(newObj.graduate_date)) : "";
     newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
