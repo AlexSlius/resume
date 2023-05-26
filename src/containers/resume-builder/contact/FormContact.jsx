@@ -285,7 +285,7 @@ const FormContact = ({
                            onChange={(val) => handlerSetDateState('email', val)}
                         />
                         {
-                           isNewResume && (
+                           isNewResume && !isAthorized && (
                               <ForRegistr
                                  isError={isErrorEmail}
                                  isForEmail={isForEmail}

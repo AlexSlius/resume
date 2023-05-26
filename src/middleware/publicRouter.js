@@ -18,7 +18,7 @@ import {
 import { getCoverLetterById } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
-import { striteGetProductById } from "../controllers/strite";
+// import { striteGetProductById } from "../controllers/strite";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,

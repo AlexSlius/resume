@@ -240,7 +240,7 @@ const FormPersonalize = ({
                                         onChange={(val) => handleUpdateItemField({ name: "email", value: val })}
                                     />
                                     {
-                                        isNew && (
+                                        isNew && !isAthorized && (
                                             <ForRegistr
                                                 isError={isErrorEmail}
                                                 isForEmail={isForEmail}
