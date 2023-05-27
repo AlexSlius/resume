@@ -227,18 +227,18 @@ export const InputSelect = ({
                     refIdTimeout.current = setTimeout(async () => {
                         if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState.length) {
                             handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
-                            if (isRequire) {
-                                setIsNoneReuq(false);
-                            }
+                            // if (isRequire) {
+                            //     setIsNoneReuq(false);
+                            // }
                         }
                         clearTimeout(refIdTimeout.current);
                     }, nTimeMs);
                 }
             }
 
-            if (isRequire) {
-                setIsNoneReuq(true);
-            }
+            // if (isRequire) {
+            //     setIsNoneReuq(true);
+            // }
         } else {
             isOneStart.current = true;
         }
@@ -296,7 +296,8 @@ export const InputSelect = ({
                             showList && (
                                 ((!!data?.length || !!isLoad) || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (
                                     <div className={`${style.wr__list} `}>
-                                        <ul className={`${style.list} scroll-style ${isNoneReuq ? style.none : ""}`}>
+                                        {/*  ${isNoneReuq ? style.none : ""} */}
+                                        <ul className={`${style.list} scroll-style`}>
                                             {
                                                 isLoad ? (
                                                     <li className={`${style.list__li_load}`}>

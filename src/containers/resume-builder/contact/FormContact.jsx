@@ -37,8 +37,9 @@ import {
 } from "../../../controllers/dependencies"
 import { isLoader } from "../../../helpers/loadings"
 import { sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
-import { getIdOfNameCountrys } from "../../../helpers/countrys"
+import { getIdOfNameCountrys } from "../../../helpers/countrys";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
+import { focusFiedlInput } from "../../../helpers/fiedlFocus";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
@@ -50,6 +51,13 @@ const FormContact = ({
    idCv
 }) => {
    const refIdTimeout = useRef(undefined);
+
+   const refCountry = useRef(undefined);
+   const refCity = useRef(undefined);
+   const refAddress = useRef(undefined);
+   const refNationality = useRef(undefined);
+   const refPleaceOfBirth = useRef(undefined);
+
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
    const [pictureFile, setPictureFile] = useState(undefined);
@@ -134,11 +142,26 @@ const FormContact = ({
                await dispatch(updateItemFieldContact({ name: "city", value: "" }));
                await dispatch(updateItemFieldContact({ name: "driverLicense", value: "" }));
             }
+            focusFiedlInput(refCity, contObj.city);
          }
+
+         if (name == "city") {
+            focusFiedlInput(refAddress, contObj.address);
+         }
+
+         if (name == "driverLicense") {
+            focusFiedlInput(refNationality, contObj.nationality);
+         }
+
+         if (name == "nationality") {
+            focusFiedlInput(refPleaceOfBirth, contObj.placeOfBirth);
+         }
+
          await dispatch(updateItemFieldContact({ name, value }));
 
          if (name == 'jobTitle') {
             await dispatch(updateItemFieldContact({ name: "jobTitleId", value: data.id }));
+            focusFiedlInput(refCountry, contObj.country);
          }
       } else {
          await dispatch(updateItemFieldContact({ name, value }));
@@ -324,7 +347,7 @@ const FormContact = ({
                         validIn={contObj.jobTitle?.length > 2}
                      />
                   </CCol>
-                  <CCol xs={3}>
+                  <CCol xs={3} ref={refCountry}>
                      <InputSelect
                         label="Country"
                         valueState={contObj.country || ''}
@@ -334,21 +357,21 @@ const FormContact = ({
                         isIconArrow={true}
                         isFlag={true}
                         isValidIn={true}
+                        isCap={true}
                         name="CNTY"
                         validIn={contObj.country?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={3}>
+                  <CCol xs={3} ref={refCity}>
                      <InputSelect
                         label="City"
                         valueState={contObj.city || ''}
                         data={cities.list}
-                        isBackgraundLoad={isLoader(cities?.status)}
                         handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'city', value }, data)}
                         handleServerRequest={handleServerRequestCity}
                         isOutDataObj={false}
                         name="CITYE"
-                        autoComplete="shipping locality"
+                        isCap={true}
                         isRequire={true}
                         isValidIn={true}
                         validIn={contObj.city?.length > 3}
@@ -356,7 +379,7 @@ const FormContact = ({
                   </CCol>
                </CRow>
                {visibleAllInputs && <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
-                  <CCol xs={6}>
+                  <CCol xs={6} ref={refAddress}>
                      <Input
                         label="Adress"
                         value={contObj.address}
@@ -387,7 +410,7 @@ const FormContact = ({
                         isUpperCase={true}
                      />
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} ref={refNationality}>
                      <InputSelect
                         label="Nationality"
                         valueState={contObj.nationality || ''}
@@ -398,10 +421,11 @@ const FormContact = ({
                         isOutDataObj={false}
                         isRequire={true}
                         isValidIn={true}
+                        isCap={true}
                         validIn={contObj.nationality?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} ref={refPleaceOfBirth}>
                      <Input
                         label="Place of birth"
                         value={contObj.placeOfBirth}
