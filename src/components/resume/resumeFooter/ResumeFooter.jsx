@@ -55,6 +55,7 @@ const ResumeFooter = ({
          dispatch,
          Router,
          query: router.query,
+         isClickBtn: true,
       });
    }
 

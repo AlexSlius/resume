@@ -5,7 +5,8 @@ import {
   contactSetNew,
   getBasicContact,
   contactAddNew,
-  fetchUpdateContact
+  fetchUpdateContact,
+  updateIsErrorEmail
 } from "../controllers/contacts";
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
@@ -74,14 +75,6 @@ export const slice = createSlice({
     updateFieldEmailForRegister(state, action) {
       state.emailRegister = action.payload;
     },
-    updateIsErrorEmail(state, action) {
-      if ((state.emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(state.emailRegister) || (state.contactObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(state.contactObjNew.email)) {
-        state.isErrorEmail = false;
-
-      } else {
-        state.isErrorEmail = true;
-      }
-    }
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -123,7 +116,10 @@ export const slice = createSlice({
     },
     [fetchUpdateContact.fulfilled]: (state) => {
       state.status = statusLoaded;
-    }
+    },
+    [updateIsErrorEmail.fulfilled]: (state, action) => {
+      state.isErrorEmail = action.payload.status;
+    },
   }
 });
 
@@ -133,7 +129,6 @@ export const {
   cleanSlise,
   cleanSliseNew,
   updateFieldEmailForRegister,
-  updateIsErrorEmail,
 } = slice.actions;
 
 export const { reducer } = slice;

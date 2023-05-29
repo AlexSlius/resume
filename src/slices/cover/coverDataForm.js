@@ -5,7 +5,8 @@ import {
     getCoverLetterById,
     getCoverGenerateDate,
     getCoverDataShare,
-    updateCoverLetterById
+    updateCoverLetterById,
+    updateIsErrorEmail
 } from "../../controllers/cover/personalize";
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
@@ -108,14 +109,6 @@ export const slice = createSlice({
         updateFieldEmailForRegister(state, action) {
             state.emailRegister = action.payload;
         },
-        updateIsErrorEmail(state, action) {
-            if ((state.emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(state.emailRegister) || (state.coverDataObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(state.coverDataObjNew.email)) {
-                state.isErrorEmail = false;
-
-            } else {
-                state.isErrorEmail = true;
-            }
-        },
         cleanFormPersonalize(state, action) {
             state.coverDataObj = { ...state.coverDataObj, ...cleanStartPersonFields };
         },
@@ -172,13 +165,15 @@ export const slice = createSlice({
         [updateCoverLetterById.fulfilled]: (state, action) => {
             state.status = statusLoaded;
         },
+        [updateIsErrorEmail.fulfilled]: (state, action) => {
+            state.isErrorEmail = action.payload.status;
+        },
     }
 });
 
 export const {
     updateItemField,
     updateFieldEmailForRegister,
-    updateIsErrorEmail,
     cleanFormPersonalize,
     cleanFormPersonalizeNew
 } = slice.actions;

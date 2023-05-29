@@ -4,21 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 import { addAllSection } from "../../slices/menuAsideResume";
 
-import {
-    updateIsErrorEmail
-} from "../../slices/contact"
-
 // Components
 import Icon from "../Icon"
 import ActiveLink from "../Active-link"
-import { ModalNoAccess } from "../modals/modalNoAccess";
-
 // Controllers
-import { contactSetNew, contactAddNew } from "../../controllers/contacts"
+import { contactAddNew } from "../../controllers/contacts"
 
 // Helpers
 import { sessionStorageGet } from "../../helpers/localStorage";
-import { sectionIndexAndAll } from "../../helpers/sections";
+import { sendCodeResume } from "../../utils/sendCode";
 
 // Constants
 import { routerLinksAsideMenuIcon, keysIcons } from "../../constants/next-routers"
@@ -29,8 +23,6 @@ import style from './SideBar.module.scss'
 
 
 const MenuSideBar = () => {
-    const [showModalNoAccess, setShowModalNoAccess] = useState();
-
     const router = useRouter();
     const dispatch = useDispatch();
     const {
@@ -48,7 +40,7 @@ const MenuSideBar = () => {
     const idCv = router.query.idCv;
     const isNewResume = (idCv == "new");
 
-    const handleClick = (e) => {
+    const handleClick = async (e, link) => {
         if (idCv == "new") {
             e.preventDefault();
 
@@ -57,15 +49,13 @@ const MenuSideBar = () => {
             if (isAthorized) {
                 dispatch(contactAddNew({ pictureFile, isNewResume }));
             } else {
-                dispatch(updateIsErrorEmail());
-                // setShowModalNoAccess(true);
+                sendCodeResume({
+                    dispatch,
+                    pictureFile,
+                    link
+                });
             }
         }
-    }
-
-    const onHanleBtnRegister = () => {
-        let pictureFile = sessionStorageGet('picture');
-        dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: router.query.type || null }));
     }
 
     useEffect(() => {
@@ -127,7 +117,7 @@ const MenuSideBar = () => {
                         return (
                             <CNavItem key={index}>
                                 <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}`} activeClassName={style.active}>
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={handleClick}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, obj.link)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>
@@ -141,7 +131,7 @@ const MenuSideBar = () => {
                 {
                     <CNavItem>
                         <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
-                            <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={handleClick}>
+                            <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, '/add_section')}>
                                 <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
                                 Advanced
                             </a>
@@ -149,14 +139,6 @@ const MenuSideBar = () => {
                     </CNavItem>
                 }
             </CSidebarNav>
-
-            <ModalNoAccess
-                title="No access!"
-                desc="In order to access this tab you must be registered in the system"
-                visible={showModalNoAccess}
-                onClose={() => setShowModalNoAccess(false)}
-                onHanleBtn={onHanleBtnRegister}
-            />
         </>
     )
 }

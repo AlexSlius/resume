@@ -10,20 +10,22 @@ import { addItemNotification } from "../slices/notifications";
 import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact"
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false }, thunkAPI) => {
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState()
     const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, pictureFile)
 
     const response = await api.contact.setAddResume(newObj);
 
-    if (isRespondServerSuccesss(response)) {
-        // thunkAPI.dispatch(cleanSliseNew());
-        thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
+    if (isRedirect) {
+        if (isRespondServerSuccesss(response)) {
+            // thunkAPI.dispatch(cleanSliseNew());
+            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
 
-        if (isDashboard) {
-            await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[0].link}`);
-        } else {
-            await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
+            if (isDashboard) {
+                await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[0].link}`);
+            } else {
+                await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
+            }
         }
     }
 
@@ -34,19 +36,21 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     return response;
 })
 
-export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume }, thunkAPI) => {
+export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume, isRedirect = true }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
     const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, dataImage)
 
     const response = await api.contact.setBaseInfo(newObj);
 
-    if (isSuccessNewContact(response)) {
-        localStorageSet("session_id", response.session_id);
-        localStorageSet("is_page", "resume");
-        // thunkAPI.dispatch(cleanSliseNew());
+    if (isRedirect) {
+        if (isSuccessNewContact(response)) {
+            localStorageSet("session_id", response.session_id);
+            localStorageSet("is_page", "resume");
+            // thunkAPI.dispatch(cleanSliseNew());
 
-        sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)
-        Router.push(`/${routersPages['register']}`);
+            sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)
+            Router.push(`/${routersPages['register']}`);
+        }
     }
 
     if (isError(response)) {
@@ -72,4 +76,18 @@ export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', a
     }
 
     return response;
+});
+
+export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmail', async (_, thunkAPI) => {
+    const { contacts: { emailRegister, contactObjNew } } = thunkAPI.getState()
+
+    if ((emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(emailRegister)) {
+        return { status: false, email: emailRegister };
+    }
+
+    if ((contactObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(contactObjNew.email)) {
+        return { status: false, email: contactObjNew.email };
+    }
+
+    return { status: true }
 });

@@ -6,7 +6,10 @@ import { cookieDestroy, cookieSet } from '../helpers/nookies';
 import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
 import { routersPages } from '../constants/next-routers';
-import { setLogout } from '../slices/auth';
+import { setIsAuth, setLogout } from '../slices/auth';
+import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
+import { contactAddNew, contactSetNew } from "../controllers/contacts";
+import { coverSetNew } from "../controllers/cover/personalize";
 import {
     sessionStorageGet,
     localStorageRemove,
@@ -16,6 +19,7 @@ import {
 import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact";
 import { cleanCoverNewForm } from "../slices/cover/coverDataForm";
+import { addItemNotification } from "../slices/notifications";
 
 export const logout = async (dispatch) => {
     await cookieDestroy({ key: 'token' });
@@ -104,3 +108,95 @@ export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', asy
 
     return response;
 })
+
+// automation registr
+
+export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode', async ({ data, isResume, pictureFile = null, linkRedirect = undefined }, thunkAPI) => {
+    const { menuAsideResume } = thunkAPI.getState();
+    let resSession = undefined;
+
+    if (isResume) {
+        // resume
+        resSession = await thunkAPI.dispatch(contactSetNew({
+            isNewResume: true,
+            dataImage: pictureFile,
+            isRedirect: false,
+        }));
+    }
+
+    if (!isResume) {
+        // cover
+        resSession = await thunkAPI.dispatch(coverSetNew({
+            isRedirect: false,
+        }));
+    }
+
+    if (!resSession?.payload?.session_id)
+        return {};
+
+    const response = await api.auth.autorizeSendCodeByEmail({ ...data, session_id: resSession?.payload?.session_id });
+
+    // если есть токен то сразу же авторизация
+    if (response?.token?.length > 0) {
+        await cookieSet({ key: 'token', data: response.token });
+        await thunkAPI.dispatch(setIsAuth(true));
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(addItemNotification({ text: response.status }));
+    }
+
+    // resume
+    if (isResume && !!response?.id) {
+        Router.push(`/${routersPages['resumeBuilder']}/${response.id}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.list[0].link}`);
+    }
+
+    // cover
+    if (!isResume && !!response?.id) {
+        Router.push(`/${routersPages['coverLetter']}/${response.id}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.coverLetters.list[0].link}`);
+    }
+
+    return { id: response?.id };
+
+    // if (response?.code) {
+    //     let resAuthCode = await thunkAPI.dispatch(autorizeAuthCode({
+    //         data: {
+    //             email: data.email,
+    //             code: response.code,
+    //         },
+    //         isResume,
+    //         pictureFile,
+    //         linkRedirect
+    //     }));
+
+    //     return resAuthCode;
+    // }
+})
+
+export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async ({ data, isResume, pictureFile, linkRedirect }, thunkAPI) => {
+    const { menuAsideResume } = thunkAPI.getState();
+    const response = await api.auth.autorizeAuth(data);
+
+    if (response?.token) {
+        await cookieSet({ key: 'token', data: response.token });
+        await thunkAPI.dispatch(setIsAuth(true));
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
+
+        // resume
+        if (isResume) {
+            let responesResumeCreat = await thunkAPI.dispatch(contactAddNew({ pictureFile, isNewResume: true, isRedirect: false }));
+
+            if (!!responesResumeCreat.payload?.id) {
+                Router.push(`/${routersPages['resumeBuilder']}/${responesResumeCreat.payload.id}${linkRedirect || menuAsideResume.list[0].link}`);
+                return { id: responesResumeCreat.payload.id };
+            }
+        }
+        // cover
+        // if (!isResume) {
+        //     let  await thunkAPI.dispatch(contactAddNew({ pictureFile, isNewResume: true, isRedirect: false }));
+        //  }
+    }
+
+    return {};
+})
+

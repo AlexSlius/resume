@@ -2,9 +2,10 @@ import { routersPages } from "../constants/next-routers";
 import { contactSetNew, contactAddNew } from "../controllers/contacts";
 import { coverSetNew, coverAddNew } from "../controllers/cover/personalize";
 import { sessionStorageGet } from "../helpers/localStorage";
+import { sendCodeResume } from "./sendCode";
 
 
-export const handleChanbdegAutOrPlan = ({
+export const handleChanbdegAutOrPlan = async ({
     isCover,
     isNewResume,
     isAthorized,
@@ -12,12 +13,25 @@ export const handleChanbdegAutOrPlan = ({
     Router,
     query,
     funCalb = () => { },
+    link = undefined,
+    isClickBtn = false,
 }) => {
     if (!isCover) {
+        // resume
         if (isNewResume) {
             if (!isAthorized) {
                 let pictureFile = sessionStorageGet('picture');
-                dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: query.type || null }));
+                // dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: query.type || null }));
+
+                let isSend = await sendCodeResume({
+                    dispatch,
+                    pictureFile,
+                    link,
+                });
+
+                if (isClickBtn && !!isSend?.id) {
+                    await Router.push(`/${routersPages['resumeNow']}`);
+                }
             } else {
                 let pictureFile = sessionStorageGet('picture');
                 dispatch(contactAddNew({ pictureFile, isNewResume }));
@@ -32,7 +46,18 @@ export const handleChanbdegAutOrPlan = ({
         // cover
         if (isNewResume) {
             if (!isAthorized) {
-                dispatch(coverSetNew({ isNewCover: true }));
+                // dispatch(coverSetNew({ isNewCover: true }));
+
+                let isSend = await sendCodeResume({
+                    dispatch,
+                    link,
+                    isResume: false
+
+                });
+
+                if (isClickBtn && !!isSend?.id) {
+                    Router.push(`/${routersPages['resumeNow']}`);
+                }
             } else {
                 dispatch(coverAddNew());
             }

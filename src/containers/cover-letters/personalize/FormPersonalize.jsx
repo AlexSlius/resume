@@ -16,7 +16,6 @@ import { ModalEmail } from "../../../components/modals/modalEmail";
 import {
     updateItemField,
     updateFieldEmailForRegister,
-    updateIsErrorEmail,
     cleanFormPersonalize,
     cleanFormPersonalizeNew
 } from "../../../slices/cover/coverDataForm";
@@ -28,6 +27,7 @@ import {
 import {
     coverAddNew,
     coverSetNew,
+    updateIsErrorEmail,
     updateCoverLetterById,
 } from "../../../controllers/cover/personalize";
 
@@ -35,6 +35,7 @@ import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { ForRegistr } from "../../../components/forRegistr";
 import { BtnGreyTypeTwo } from "../../../components/uis/btnGreyTypeTwo";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
+import { sendCodeResume } from "../../../utils/sendCode";
 
 import { fieldsFormPerson } from "../../../constants/formPerson";
 
@@ -64,6 +65,7 @@ const FormPersonalize = ({
                 isAthorized
             }
         },
+        menuAsideResume
     } = storeDate;
     const isNew = (idCv == "new");
 
@@ -97,8 +99,14 @@ const FormPersonalize = ({
         await dispatch(fetchGetCities({ id: idCountry, params: contObj.city }));
     }
 
-    const newBasicNoAutorizstion = async () => {
-        await dispatch(updateIsErrorEmail());
+    const newBasicNoAutorizstion = async (link = undefined) => {
+        sendCodeResume({
+            dispatch,
+            link,
+            isResume: false,
+        });
+        // это для старой версии авторизации если не зареган
+        // await dispatch(contactSetNew({ pictureFile, isNewResume }));
         // await dispatch(coverSetNew({ isNewCover: true }));
     }
 
@@ -271,7 +279,7 @@ const FormPersonalize = ({
                             onClick={onClean}
                         />
                         <BtnContinue
-                            onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion() }}
+                            onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
                             isButton={true}
                         />
                     </div>

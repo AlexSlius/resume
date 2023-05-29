@@ -44,7 +44,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
     return {};
 });
 
-export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewCover = false }, thunkAPI) => {
+export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedirect = true }, thunkAPI) => {
     const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
 
     const newObj = camelToSnake({
@@ -60,19 +60,21 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isNewC
 
     const response = await api.personalize.createNewCoverBasic(newObj);
 
-    if (isSuccessNewContact(response)) {
-        localStorageSet("session_id", response.session_id);
-        localStorageSet("is_page", "cover");
+    if (isRedirect) {
+        if (isSuccessNewContact(response)) {
+            localStorageSet("session_id", response.session_id);
+            localStorageSet("is_page", "cover");
 
-        sessionStorageSet("routet_page_next", `${coverLetters.list[1].link}`)
-        Router.push(`/${routersPages['register']}`);
+            sessionStorageSet("routet_page_next", `${coverLetters.list[1].link}`)
+            Router.push(`/${routersPages['register']}`);
+        }
+
+        if (isError(response)) {
+            await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        }
     }
 
-    if (isError(response)) {
-        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
-    }
-
-    return {};
+    return response;
 });
 
 export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
@@ -110,4 +112,19 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
 export const getCoverDataShare = createAsyncThunk('resumeData/getCoverDataShare', async ({ idCv, key }) => {
     const response = await api.personalize.getCoverDataShare(idCv, key);
     return response;
+});
+
+
+export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmailCover', async (_, thunkAPI) => {
+    const { coverDataForm: { emailRegister, coverDataObjNew } } = thunkAPI.getState()
+
+    if ((emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(emailRegister)) {
+        return { status: false, email: emailRegister };
+    }
+
+    if ((coverDataObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(coverDataObjNew.email)) {
+        return { status: false, email: coverDataObjNew.email };
+    }
+
+    return { status: true }
 });

@@ -18,12 +18,12 @@ import {
    contactSetNew,
    fetchUpdateContact,
    contactAddNew,
+   updateIsErrorEmail,
 } from "../../../controllers/contacts"
 import {
    updatePictureContact,
    updateItemFieldContact,
    updateFieldEmailForRegister,
-   updateIsErrorEmail,
    cleanSliseNew,
    cleanSlise
 } from "../../../slices/contact"
@@ -35,11 +35,13 @@ import {
    getJopsTitle,
    addJopsTitle
 } from "../../../controllers/dependencies"
+
 import { isLoader } from "../../../helpers/loadings"
 import { sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
 import { getIdOfNameCountrys } from "../../../helpers/countrys";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
 import { focusFiedlInput } from "../../../helpers/fiedlFocus";
+import { sendCodeResume } from "../../../utils/sendCode";
 
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
@@ -86,6 +88,7 @@ const FormContact = ({
             isAthorized
          }
       },
+      menuAsideResume,
    } = storeDate;
 
    let contObj = (isNewResume ? contactObjNew : contactObj);
@@ -186,9 +189,13 @@ const FormContact = ({
       await dispatch(fetchGetCities({ id: idCountry, params: contObj.city }));
    }
 
-   const formSubmit = async () => {
+   const formSubmit = async (link = undefined) => {
       if (!isAthorized) {
-         dispatch(updateIsErrorEmail());
+         sendCodeResume({
+            dispatch,
+            pictureFile,
+            link
+         });
          // это для старой версии авторизации если не зареган
          // await dispatch(contactSetNew({ pictureFile, isNewResume }));
       }
@@ -452,7 +459,7 @@ const FormContact = ({
                </CCol>
                <CCol className={style.buttonWrap}>
                   <ButtonSteps
-                     onHandleBtnNext={formSubmit}
+                     onHandleBtnNext={() => formSubmit(menuAsideResume.list[1].link)}
                      onHandleNew={onHandleNewAuthorization}
                      isAthorized={isAthorized}
                      isNew={isNewResume && isAthorized}
