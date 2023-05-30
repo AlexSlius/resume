@@ -4,9 +4,9 @@ import {
     CRow,
     CButton
 } from "@coreui/react"
+import { useDispatch } from "react-redux"
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 
 import { FormHead } from "../../components/formHead"
 import { AuthorizationWrapper } from "../../wrappers/autorization"
@@ -15,9 +15,8 @@ import { InputPassword } from "../../components/uis/inputPassword"
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 import { InputEmail } from "../../components/uis/inputEmail"
 
-import { fetchAuthLogin } from "../../controllers/auth"
+import { loginFormCode } from "../../controllers/auth"
 import { localStorageSet, localStorageGet } from "../../helpers/localStorage"
-import { isLoader } from "../../helpers/loadings"
 import { validEmail } from "../../helpers/validEmail";
 
 import { routersPages } from "../../constants/next-routers"
@@ -25,10 +24,10 @@ import { routersPages } from "../../constants/next-routers"
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
-    const { status } = useSelector(prev => prev.auth.login)
     const [isSaveDataAuth, setIsSaveDataAuth] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [states, setStates] = useState({ load: false, text: "" });
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +35,7 @@ export const LoginPage = () => {
         if (isSaveDataAuth)
             localStorageSet('authData', { email, password }, true);
 
-        dispatch(fetchAuthLogin({ username: email, password: password }));
+        dispatch(loginFormCode({ data: { email, code: password }, setState: setStates }));
     }
 
     useEffect(() => {
@@ -71,10 +70,11 @@ export const LoginPage = () => {
                         <CRow className="g-30 r-gap-30">
                             <CCol>
                                 <InputPassword
-                                    label="Password"
-                                    valid={password.length > 3}
+                                    label="Code"
+                                    valid={!(password.length < 6)}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    textError={states.text}
                                 />
                             </CCol>
                         </CRow>
@@ -90,20 +90,17 @@ export const LoginPage = () => {
                                             defaultChecked={true}
                                         />
                                     </div>
-                                    <div className="row-remove-aut__link">
-                                        <Link href={routersPages['forgot']} className="link-form-auth">Forgot password?</Link>
-                                    </div>
                                 </div>
                             </CCol>
                         </CRow>
                         <CRow>
                             <CCol>
-                                <LoadChildrenBtn isLoad={isLoader(status)}>
+                                <LoadChildrenBtn isLoad={states.load}>
                                     <CButton
                                         className={`btn_form`}
                                         type="submit"
                                         color="blue"
-                                        disabled={!(password.length && !!validEmail(email))}
+                                        disabled={!(!(password.length < 6) && !!validEmail(email))}
                                     >Sign in</CButton>
                                 </LoadChildrenBtn>
                             </CCol>

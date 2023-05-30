@@ -10,12 +10,7 @@ import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
 import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
 import { contactSetNew } from "../controllers/contacts";
 import { coverSetNew } from "../controllers/cover/personalize";
-import {
-    sessionStorageGet,
-    localStorageRemove,
-    sessionStorageRemove,
-    localStorageGet
-} from '../helpers/localStorage';
+import { sessionStorageGet, localStorageRemove, sessionStorageRemove, localStorageGet } from '../helpers/localStorage';
 import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact";
 import { cleanCoverNewForm } from "../slices/cover/coverDataForm";
@@ -31,6 +26,7 @@ export const logout = async (dispatch) => {
     }, 500);
 }
 
+// не используется
 export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {
     sessionStorageRemove("typeResume");
 
@@ -44,7 +40,7 @@ export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) =
     return response;
 })
 
-// typeResume пока не использую
+// typeResume пока не использую // не используется
 export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({ data, typeResume }, thunkAPI) => {
     const { menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState();
     const response = await api.auth.register(data);
@@ -80,6 +76,7 @@ export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({
     return response;
 })
 
+// не используется
 export const fetchAuthResetPassword = createAsyncThunk('fetch/AuthResetPassword', async (data) => {
     const response = await api.auth.resetPassword(data);
     const isStatus = isRespondServerSuccesss(response);
@@ -90,6 +87,7 @@ export const fetchAuthResetPassword = createAsyncThunk('fetch/AuthResetPassword'
     return response;
 })
 
+// не используется
 export const fetchAuthCodeResetPassword = createAsyncThunk('fetch/AuthCodeResetPassword', async (data) => {
     const response = await api.auth.changeCodePassword(data);
     const isStatus = isRespondServerSuccesss(response);
@@ -100,6 +98,7 @@ export const fetchAuthCodeResetPassword = createAsyncThunk('fetch/AuthCodeResetP
     return response;
 })
 
+// не используется
 export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', async (data) => {
     const response = await api.auth.newPassword(data);
 
@@ -110,6 +109,48 @@ export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', asy
 })
 
 // automation registr
+export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', async ({ data, setState }, thunkAPI) => {
+    setState(prev => ({ ...prev, load: true }));
+    const response = await api.auth.autorizeSendCodeByEmail({ ...data });
+
+    if (response?.token?.length > 0) {
+        Router.push(`/${routersPages['dashboard']}`);
+        cookieSet({ key: 'token', data: response.token });
+        return {};
+    }
+
+    if (!response?.token?.length > 0) {
+        setState({
+            load: false, text: `A user with this email already exists. ${response?.status || ""}`
+        });
+        return {};
+    }
+
+    setState(prev => ({ ...prev, load: false }));
+    return {};
+});
+
+export const loginFormCode = createAsyncThunk('fetch/loginFormCode', async ({ data, setState }, thunkAPI) => {
+    setState(prev => ({ ...prev, load: true }));
+
+    const response = await api.auth.autorizeAuth({ ...data });
+
+    if (response?.token?.length > 0) {
+        Router.push(`/${routersPages['dashboard']}`);
+        cookieSet({ key: 'token', data: response.token });
+        setState(prev => ({ ...prev, text: '' }));
+        return {};
+    }
+
+    if (!response?.token?.length > 0) {
+        setState({ load: false, text: response?.status || "" });
+        return {};
+    }
+
+    setState(prev => ({ ...prev, load: false }));
+    return {};
+});
+
 export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode', async ({
     data,
     isResume,

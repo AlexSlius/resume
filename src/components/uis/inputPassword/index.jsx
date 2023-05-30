@@ -15,21 +15,28 @@ export const InputPassword = (props) => {
     let typeField = showPassword ? 'text' : 'password'
 
     return (
-        <div className={`${style.row}`}>
-            <CFormInput
-                autoComplete="off"
-                value={props.value}
-                type={typeField}
-                floatingLabel={props.label}
-                placeholder={props.placeholder}
-                className={`${style.in_password} ${classNames}`}
-                invalid={props.invalid || false}
-                valid={props.valid || false}
-                onChange={props.onChange}
-            />
-            <button type="button" onClick={() => setShowPassword(prev => !prev)} className={`${style.btn_eye} ${classBtnEye}`}>
-                <Icon svg={iconEye} />
-            </button>
-        </div>
+        <>
+            <div className={`${style.row}`}>
+                <CFormInput
+                    autoComplete="off"
+                    value={props.value}
+                    type={typeField}
+                    floatingLabel={props.label}
+                    placeholder={props.placeholder}
+                    className={`${style.in_password} ${classNames}`}
+                    invalid={props.invalid || false}
+                    valid={props.valid || false}
+                    onChange={props.onChange}
+                />
+                <button type="button" onClick={() => setShowPassword(prev => !prev)} className={`${style.btn_eye} ${classBtnEye}`}>
+                    <Icon svg={iconEye} />
+                </button>
+            </div>
+            {
+                !!props?.textError && (
+                    <div className="error-text-in">{props.textError}</div>
+                )
+            }
+        </>
     )
 }
