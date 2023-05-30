@@ -175,7 +175,8 @@ export const {
     updateItemField,
     updateFieldEmailForRegister,
     cleanFormPersonalize,
-    cleanFormPersonalizeNew
+    cleanFormPersonalizeNew,
+    cleanCoverNewForm
 } = slice.actions;
 
 export const { reducer } = slice;
