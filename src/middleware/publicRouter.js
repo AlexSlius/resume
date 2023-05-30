@@ -12,10 +12,9 @@ import {
 } from "../controllers/resumeData";
 import {
     getCoverTemplates,
-    getCoverDataShare,
     getCoverShareTemplateActive
 } from "../controllers/cover/coverData";
-import { getCoverLetterById } from "../controllers/cover/personalize";
+import { getCoverLetterById, getCoverDataShare } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
 // import { striteGetProductById } from "../controllers/strite";
