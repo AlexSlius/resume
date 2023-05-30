@@ -89,10 +89,7 @@ const MenuSideBar = () => {
 
         dispatch(addAllSection([...menuAsideResume.listStart, ...newArrAdd]));
     }, [list]);
-
-    useEffect(() => {
-        setShowModalNoAccess(false);
-    }, [])
+ 
 
     return (
         <>

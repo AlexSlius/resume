@@ -149,6 +149,9 @@
     display: flex;
     align-items: center;
     margin-top: 29px;
+    & > div {
+        width: 100%;
+    }
     &_100 {
         width: 100%;
         button {

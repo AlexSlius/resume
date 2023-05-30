@@ -7,6 +7,7 @@ export const sendCodeResume = async ({
     pictureFile,
     link = undefined,
     isResume = true,
+    isClickBtn = false,
     funCalb = () => { },
 }) => {
     let res = undefined;
@@ -22,7 +23,7 @@ export const sendCodeResume = async ({
     if (res?.payload?.email) {
         let { email } = res?.payload;
 
-        let resAuth = await dispatch(fetcAutorizeSendCode({ data: { email }, isResume: isResume, pictureFile, linkRedirect: link }));
+        let resAuth = await dispatch(fetcAutorizeSendCode({ data: { email }, isResume: isResume, pictureFile, linkRedirect: link, isClickBtn }));
 
         if (resAuth.payload?.id) {
             let obj = { id: resAuth.payload?.id };

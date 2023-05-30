@@ -6,9 +6,9 @@ import { cookieDestroy, cookieSet } from '../helpers/nookies';
 import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
 import { routersPages } from '../constants/next-routers';
-import { setIsAuth, setLogout } from '../slices/auth';
+import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
 import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
-import { contactAddNew, contactSetNew } from "../controllers/contacts";
+import { contactSetNew } from "../controllers/contacts";
 import { coverSetNew } from "../controllers/cover/personalize";
 import {
     sessionStorageGet,
@@ -110,9 +110,13 @@ export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', asy
 })
 
 // automation registr
-
-export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode', async ({ data, isResume, pictureFile = null, linkRedirect = undefined }, thunkAPI) => {
-    const { menuAsideResume } = thunkAPI.getState();
+export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode', async ({
+    data,
+    isResume,
+    pictureFile = null,
+    linkRedirect = undefined,
+    isClickBtn = false
+}, thunkAPI) => {
     let resSession = undefined;
 
     if (isResume) {
@@ -136,6 +140,66 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 
     const response = await api.auth.autorizeSendCodeByEmail({ ...data, session_id: resSession?.payload?.session_id });
 
+    if (response?.token?.length > 0) {
+        // если сразу есть токен
+        let reseAut = await thunkAPI.dispatch(responseAuthAutorizate({
+            isClickBtn,
+            linkRedirect,
+            isResume,
+            response
+        }));
+
+        return { id: reseAut?.payload.id };
+    }
+
+    if (response?.code) {
+        // это если существующий пользователь то приходит код 
+        // вызывать модалку дла ввода кода
+        thunkAPI.dispatch(updateFieldsModalAuth({
+            show: true,
+            isClickBtn: isClickBtn,
+            linkRedirect: linkRedirect,
+            isResume: isResume,
+            email: data.email,
+        }));
+
+        return { id: undefined };
+    }
+
+    return {};
+})
+
+export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async (_, thunkAPI) => {
+    const { auth: { authModalObj: { code, email, isClickBtn, linkRedirect, isResume } } } = thunkAPI.getState();
+    const response = await api.auth.autorizeAuth({ code, email });
+
+    if (response?.status != "autorized") {
+        thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));
+        return { status: false };
+    }
+
+    if (response?.token?.length > 0) {
+        let reseAut = await thunkAPI.dispatch(responseAuthAutorizate({
+            isClickBtn,
+            linkRedirect,
+            isResume,
+            response
+        }));
+
+        return { id: reseAut?.payload.id, status: true };
+    }
+
+    return { status: false };
+})
+
+export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutorizate', async ({
+    response,
+    isClickBtn,
+    linkRedirect,
+    isResume
+}, thunkAPI) => {
+    const { menuAsideResume } = thunkAPI.getState();
+
     // если есть токен то сразу же авторизация
     if (response?.token?.length > 0) {
         await cookieSet({ key: 'token', data: response.token });
@@ -155,48 +219,9 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
         Router.push(`/${routersPages['coverLetter']}/${response.id}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.coverLetters.list[0].link}`);
     }
 
-    return { id: response?.id };
-
-    // if (response?.code) {
-    //     let resAuthCode = await thunkAPI.dispatch(autorizeAuthCode({
-    //         data: {
-    //             email: data.email,
-    //             code: response.code,
-    //         },
-    //         isResume,
-    //         pictureFile,
-    //         linkRedirect
-    //     }));
-
-    //     return resAuthCode;
-    // }
-})
-
-export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async ({ data, isResume, pictureFile, linkRedirect }, thunkAPI) => {
-    const { menuAsideResume } = thunkAPI.getState();
-    const response = await api.auth.autorizeAuth(data);
-
-    if (response?.token) {
-        await cookieSet({ key: 'token', data: response.token });
-        await thunkAPI.dispatch(setIsAuth(true));
-        await thunkAPI.dispatch(fetchUserGetAvatar());
-        await thunkAPI.dispatch(fetchUserGetProfile());
-
-        // resume
-        if (isResume) {
-            let responesResumeCreat = await thunkAPI.dispatch(contactAddNew({ pictureFile, isNewResume: true, isRedirect: false }));
-
-            if (!!responesResumeCreat.payload?.id) {
-                Router.push(`/${routersPages['resumeBuilder']}/${responesResumeCreat.payload.id}${linkRedirect || menuAsideResume.list[0].link}`);
-                return { id: responesResumeCreat.payload.id };
-            }
-        }
-        // cover
-        // if (!isResume) {
-        //     let  await thunkAPI.dispatch(contactAddNew({ pictureFile, isNewResume: true, isRedirect: false }));
-        //  }
+    if (!!isClickBtn && !!response?.id) {
+        Router.push(`/${routersPages['resumeNow']}`);
     }
 
-    return {};
+    return { id: response?.id };
 })
-

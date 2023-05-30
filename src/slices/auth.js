@@ -30,6 +30,14 @@ const initialState = {
     newPassword: {
         status: statusLoaded,
     },
+    authModalObj: {
+        code: '',
+        show: false,
+        isClickBtn: false,
+        linkRedirect: '',
+        isResume: true,
+        email: '',
+    }
 };
 
 const sliceAuth = createSlice({
@@ -44,6 +52,12 @@ const sliceAuth = createSlice({
         },
         cleanError(state, action) {
             state[action.payload]['textError'] = '';
+        },
+        updateFieldsModalAuth(state, action) {
+            state.authModalObj = { ...state.authModalObj, ...action.payload }
+        },
+        cleanFieldsModalAuth(state, action) {
+            state.authModalObj = initialState.authModalObj;
         }
     },
     extraReducers: {
@@ -98,7 +112,9 @@ const sliceAuth = createSlice({
 export const {
     setIsAuth,
     setLogout,
-    cleanError
+    cleanError,
+    updateFieldsModalAuth,
+    cleanFieldsModalAuth
 } = sliceAuth.actions;
 
 export const { reducer } = sliceAuth;

@@ -1,6 +1,6 @@
 import { routersPages } from "../constants/next-routers";
-import { contactSetNew, contactAddNew } from "../controllers/contacts";
-import { coverSetNew, coverAddNew } from "../controllers/cover/personalize";
+import { contactAddNew } from "../controllers/contacts";
+import { coverAddNew } from "../controllers/cover/personalize";
 import { sessionStorageGet } from "../helpers/localStorage";
 import { sendCodeResume } from "./sendCode";
 
@@ -21,17 +21,12 @@ export const handleChanbdegAutOrPlan = async ({
         if (isNewResume) {
             if (!isAthorized) {
                 let pictureFile = sessionStorageGet('picture');
-                // dispatch(contactSetNew({ pictureFile: pictureFile || null, isNewResume, typeResume: query.type || null }));
-
-                let isSend = await sendCodeResume({
+                await sendCodeResume({
                     dispatch,
                     pictureFile,
                     link,
+                    isClickBtn,
                 });
-
-                if (isClickBtn && !!isSend?.id) {
-                    await Router.push(`/${routersPages['resumeNow']}`);
-                }
             } else {
                 let pictureFile = sessionStorageGet('picture');
                 dispatch(contactAddNew({ pictureFile, isNewResume }));
@@ -46,18 +41,12 @@ export const handleChanbdegAutOrPlan = async ({
         // cover
         if (isNewResume) {
             if (!isAthorized) {
-                // dispatch(coverSetNew({ isNewCover: true }));
-
-                let isSend = await sendCodeResume({
+                await sendCodeResume({
                     dispatch,
                     link,
-                    isResume: false
-
+                    isResume: false,
+                    isClickBtn
                 });
-
-                if (isClickBtn && !!isSend?.id) {
-                    Router.push(`/${routersPages['resumeNow']}`);
-                }
             } else {
                 dispatch(coverAddNew());
             }
