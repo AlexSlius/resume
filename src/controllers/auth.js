@@ -202,6 +202,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             linkRedirect: linkRedirect,
             isResume: isResume,
             email: data.email,
+            id_session: resSession?.payload?.session_id
         }));
 
         return { id: undefined };
@@ -211,8 +212,8 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 })
 
 export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async (_, thunkAPI) => {
-    const { auth: { authModalObj: { code, email, isClickBtn, linkRedirect, isResume } } } = thunkAPI.getState();
-    const response = await api.auth.autorizeAuth({ code, email });
+    const { auth: { authModalObj: { code, email, isClickBtn, linkRedirect, isResume, id_session } } } = thunkAPI.getState();
+    const response = await api.auth.autorizeAuth({ code, email, id_session });
 
     if (response?.status != "autorized") {
         thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));

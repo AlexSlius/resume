@@ -30,6 +30,7 @@ const initialState = {
         linkRedirect: '',
         isResume: true,
         email: '',
+        id_session: '',
     }
 };
 

@@ -43,7 +43,7 @@ export const DatePicker = ({
                         always_visible: $(useRefContainer?.current),
                         direction: prevD,
                         onSelect: function (data) {
-                            onChange(isMindata ? data.replace(",", ", 01,") : data);
+                            onChange((isMindata ? data.replace(",", ", 01,") : data), true);
 
                             useRefData?.current.blur();
                             useRefDataNewIn?.current.blur();
@@ -104,7 +104,7 @@ export const DatePicker = ({
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
             <div className={`${style.wt_cal_in} ${style.btn_clean}`}>
                 <i className={style.wt_cal_in_icon_cal} ref={refBtn}></i>
-                <div ref={useRefDataNewIn}>
+                <div ref={useRefDataNewIn} className='wr-input'>
                     <Input
                         name={name}
                         label={floatingLabel}

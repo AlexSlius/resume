@@ -32,6 +32,7 @@ import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isObjDatas } from '../../../helpers/datasPage';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
@@ -107,14 +108,21 @@ const FormEmployment = ({
     dispatch(updatePosition(updateArr));
   }
 
-  const handleSaveSelect = async ({ index, name, value }, data) => {
+  const handleSaveSelect = async ({ index, name, value }, data, classnextFocus = null) => {
     await dispatch(updateItemFieldEmployment({ index, name, value }));
     await handleUpdateServer(index);
+
+    if (!!data) {
+      focusFieldInputClassName(classnextFocus);
+    }
   }
 
-  const handlerSetDateState = async (index, name, date) => {
+  const handlerSetDateState = async (index, name, date, statusClick, classnextFocus) => {
     await dispatch(updateItemFieldEmploymentDate({ index, name, value: date }))
     await handleUpdateServer(index);
+
+    if (!!statusClick)
+      focusFieldInputClassName(classnextFocus);
   }
 
   const handleServerRequestGetJopsTitle = async (text) => {
@@ -222,17 +230,21 @@ const FormEmployment = ({
     }, 500);
   }
 
-  const handleSaveSelectNew = ({ name, value }, data) => {
+  const handleSaveSelectNew = ({ name, value }, data, classnextFocus) => {
     dispatch(updateItemFieldEmploymentNew({ name, value }));
 
     if (data) {
       automateNew()
+      focusFieldInputClassName(classnextFocus);
     }
   }
 
-  const handlerSetDateStateNew = (name, date) => {
+  const handlerSetDateStateNew = (name, date, statusClick = false, classnextFocus) => {
     dispatch(updateItemFieldEmploymentNew({ name, value: date }));
     automateNew();
+
+    if (!!statusClick)
+      focusFieldInputClassName(classnextFocus);
   }
 
   const handleServeDispatchContentNew = async (textContent) => {
@@ -303,7 +315,7 @@ const FormEmployment = ({
                                         valueState={item.title || ""}
                                         data={jopsTitle?.list || []}
                                         isAddDiv={true}
-                                        handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "title" })}
+                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "title" }, data, `company_n${index}`)}
                                         handleServerRequest={handleServerRequestGetJopsTitle}
                                         handleAddNew={handleAddNewJobTitle}
                                         isOutDataObj={false}
@@ -313,13 +325,13 @@ const FormEmployment = ({
                                         isCap={true}
                                       />
                                     </CCol>
-                                    <CCol xs={6}>
+                                    <CCol xs={6} className={`company_n${index}`}>
                                       <InputSelect
                                         label="Company / Organization Name"
                                         valueState={item.company}
                                         data={companys?.list || []}
                                         isAddDiv={true}
-                                        handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "company" })}
+                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "company" }, data, `periodFrom_data_n${index}`)}
                                         handleServerRequest={handleServerRequestCompanyList}
                                         handleAddNew={handleAddNewCompany}
                                         isOutDataObj={false}
@@ -331,29 +343,29 @@ const FormEmployment = ({
                                     </CCol>
                                     <CCol xs={6}>
                                       <CRow className='dates-wrap'>
-                                        <CCol xs={6} className='date-block'>
+                                        <CCol xs={6} className={`date-block periodFrom_data_n${index}`}>
                                           <DatePicker
                                             selected={item?.periodFrom?.date}
-                                            onChange={(date) => handlerSetDateState(index, 'periodFrom', date)}
+                                            onChange={(date, statusClick) => handlerSetDateState(index, 'periodFrom', date, statusClick, `periodTo_data_n${index}`)}
                                             floatingLabel="From"
                                           />
                                         </CCol>
-                                        <CCol xs={6} className='date-block'>
+                                        <CCol xs={6} className={`date-block periodTo_data_n${index}`}>
                                           <DatePicker
                                             selected={item?.periodTo?.date}
-                                            onChange={(date) => handlerSetDateState(index, 'periodTo', date)}
+                                            onChange={(date, statusClick) => handlerSetDateState(index, 'periodTo', date, statusClick, `country_n${index}`)}
                                             floatingLabel="To"
                                             prevData={item?.periodFrom?.date || undefined}
                                           />
                                         </CCol>
                                       </CRow>
                                     </CCol>
-                                    <CCol xs={3}>
+                                    <CCol xs={3} className={`country_n${index}`}>
                                       <InputSelect
                                         label="Country"
                                         valueState={item.country || ""}
                                         data={coutrys.list}
-                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "country" }, data)}
+                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "country" }, data, `city_n${index}`)}
                                         isOutDataObj={false}
                                         isIconArrow={true}
                                         isFlag={true}
@@ -361,12 +373,12 @@ const FormEmployment = ({
                                         validIn={item.country?.length > 3}
                                       />
                                     </CCol>
-                                    <CCol xs={3}>
+                                    <CCol xs={3} className={`city_n${index}`}>
                                       <InputSelect
                                         label="City"
                                         valueState={item.city || ""}
                                         data={cities.list}
-                                        handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "city" })}
+                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "city" }, data)}
                                         handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                         isOutDataObj={false}
                                         isValidIn={true}
@@ -407,14 +419,14 @@ const FormEmployment = ({
 
       {
         isArray(employmentObj) && (employmentObj.length == 0) && (
-          <CRow className="g-30 r-gap-30 mb-4 mobile-rows">
+          <CRow className="g-30 r-gap-30 mb-4 mobile-rows form_new">
             <CCol xs={6}>
               <InputSelect
                 label="Job Title"
                 valueState={objNew.title || ""}
                 data={jopsTitle?.list || []}
                 isAddDiv={true}
-                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "title" }, data)}
+                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "title" }, data, `company_new`)}
                 handleServerRequest={handleServerRequestGetJopsTitle}
                 handleAddNew={(value) => handleAddNewJobTitle(value, true)}
                 isOutDataObj={false}
@@ -424,13 +436,13 @@ const FormEmployment = ({
                 validIn={objNew.title?.length > 3}
               />
             </CCol>
-            <CCol xs={6}>
+            <CCol xs={6} className='company_new'>
               <InputSelect
                 label="Company / Organization Name"
                 valueState={objNew.company}
                 data={companys?.list || []}
                 isAddDiv={true}
-                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "company" }, data)}
+                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "company" }, data, 'from_data_new')}
                 handleServerRequest={handleServerRequestCompanyList}
                 handleAddNew={(value) => handleAddNewCompany(value, true)}
                 isOutDataObj={false}
@@ -442,29 +454,29 @@ const FormEmployment = ({
             </CCol>
             <CCol xs={6}>
               <CRow className='dates-wrap'>
-                <CCol xs={6} className='date-block'>
+                <CCol xs={6} className='date-block from_data_new'>
                   <DatePicker
                     selected={objNew?.period_from}
-                    onChange={(date) => handlerSetDateStateNew('period_from', date)}
+                    onChange={(date, statusClick) => handlerSetDateStateNew('period_from', date, statusClick, 'to_data_new')}
                     floatingLabel="From"
                   />
                 </CCol>
-                <CCol xs={6} className='date-block'>
+                <CCol xs={6} className='date-block to_data_new'>
                   <DatePicker
                     selected={objNew?.period_to}
-                    onChange={(date) => handlerSetDateStateNew('period_to', date)}
+                    onChange={(date, statusClick) => handlerSetDateStateNew('period_to', date, statusClick, 'country_new')}
                     floatingLabel="To"
                     prevData={objNew?.period_from || undefined}
                   />
                 </CCol>
               </CRow>
             </CCol>
-            <CCol xs={3}>
+            <CCol xs={3} className='country_new'>
               <InputSelect
                 label="Country"
                 valueState={objNew.country || ""}
                 data={coutrys.list}
-                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "country" }, data)}
+                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "country" }, data, 'city_new')}
                 isOutDataObj={false}
                 isIconArrow={true}
                 isFlag={true}
@@ -472,7 +484,7 @@ const FormEmployment = ({
                 validIn={objNew.country?.length > 3}
               />
             </CCol>
-            <CCol xs={3}>
+            <CCol xs={3} className='city_new'>
               <InputSelect
                 label="City"
                 valueState={objNew.city || ""}

@@ -227,7 +227,7 @@ export const ResumeCv001 = ({
                       {
                         isArray(contact) && contact?.[0]?.picture && (
                           <div className="profile-info_wr-img">
-                          <img className="cv-photo active" src={contact?.[0]?.picture} />
+                            <img className="cv-photo active" src={contact?.[0]?.picture} />
                           </div>
                         )
                       }
@@ -253,7 +253,7 @@ export const ResumeCv001 = ({
                       <div className="cv-career-block additional-color-2-border">
                         <div className="career-details">
                           <p className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">Details</p>
-                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact?.[0]?.country ? (<>{`${contact?.[0]?.country} `}<br /></>) : ""}   {`${!!contact?.[0]?.address ? (<>{`${contact?.[0]?.address}, `}<br /></>) : ""}`}  {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
+                          <p className="career-address main-color-1-text font-size-1 line-height-1">{!!contact?.[0]?.country ? (<>{`${contact?.[0]?.country} `}<br /></>) : ""}   {!!contact?.[0]?.address ? (<>{`${contact?.[0]?.address}, `}<br /></>) : ""}  {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
                           {!!contact?.[0]?.phone && <p className="career-phone main-color-1-text font-size-1 line-height-1">{contact?.[0]?.phone}</p>}
                           {!!contact?.[0]?.email && <p className="career-email main-color-1-text font-size-1 line-height-1">{contact?.[0]?.email}</p>}
                         </div>

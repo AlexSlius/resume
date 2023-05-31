@@ -15,6 +15,7 @@ import { cardData } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isObjDatas } from '../../../helpers/datasPage';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
@@ -107,14 +108,21 @@ const FormEducation = ({
       }, 1000);
    }
 
-   const handleSaveSelect = async ({ index, name, value }) => {
+   const handleSaveSelect = async ({ index, name, value }, data, classnextFocus) => {
       await dispatch(updateItemFieldEducation({ index, name, value }));
       await handleUpdateServer(index);
+
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
+      }
    }
 
-   const handleSetDateStateData = async (index, name, date) => {
+   const handleSetDateStateData = async (index, name, date, statusClick = false, classnextFocus) => {
       await dispatch(updateItemFieldEducationDate({ index, name, value: date }));
       await handleUpdateServer(index);
+
+      if (!!statusClick)
+         focusFieldInputClassName(classnextFocus);
    }
 
    const getSearchListStudys = async (textParams) => {
@@ -161,9 +169,13 @@ const FormEducation = ({
       }, 500);
    }
 
-   const handleSaveSelectNew = ({ name, value }) => {
+   const handleSaveSelectNew = ({ name, value }, data, classnextFocus) => {
       dispatch(updateItemFieldEducationNew({ name, value }));
       automateNew();
+
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
+      }
    }
 
    const handleSaveSelectStydyNew = ({ name, value }, data) => {
@@ -175,9 +187,12 @@ const FormEducation = ({
    }
 
 
-   const handleSetDateStateDataNew = (name, date) => {
+   const handleSetDateStateDataNew = (name, date, statusClick = false, classnextFocus) => {
       dispatch(updateItemFieldEducationNew({ name, value: date }));
       automateNew();
+
+      if (!!statusClick)
+         focusFieldInputClassName(classnextFocus);
    }
    // end new
 
@@ -252,7 +267,7 @@ const FormEducation = ({
                                                                <InputSelect
                                                                   label="Facility"
                                                                   valueState={item?.facility || ""}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "facility" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "facility" }, data, `degre_n${index}`)}
                                                                   handleServerRequest={() => getSearchListUnivercitu(item?.facility)}
                                                                   isOutDataObj={false}
                                                                   data={university.list}
@@ -260,11 +275,11 @@ const FormEducation = ({
                                                                   validIn={item.facility?.length > 2}
                                                                />
                                                             </CCol>
-                                                            <CCol xs={6}>
+                                                            <CCol xs={6} className={`degre_n${index}`}>
                                                                <InputSelect
                                                                   label="Degree"
                                                                   valueState={item?.degree || ""}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "degree" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "degree" }, data, `periodFrom_data_n${index}`)}
                                                                   handleServerRequest={() => getSearchListDegree(item?.degree)}
                                                                   data={degree.list}
                                                                   isOutDataObj={false}
@@ -275,29 +290,29 @@ const FormEducation = ({
                                                             </CCol>
                                                             <CCol xs={6}>
                                                                <CRow className='dates-wrap'>
-                                                                  <CCol xs={6} className='date-block'>
+                                                                  <CCol xs={6} className={`date-block periodFrom_data_n${index}`}>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
+                                                                        onChange={(date, statusClick) => handleSetDateStateData(index, 'dateFrom', date, statusClick, `periodTo_data_n${index}`)}
                                                                         floatingLabel="From"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6} className='date-block'>
+                                                                  <CCol xs={6} className={`date-block periodTo_data_n${index}`}>
                                                                      <DatePicker
                                                                         selected={item?.dateTo?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
+                                                                        onChange={(date, statusClick) => handleSetDateStateData(index, 'dateTo', date, statusClick, `stude_n${index}`)}
                                                                         floatingLabel="To"
                                                                         prevData={item?.dateFrom?.date || undefined}
                                                                      />
                                                                   </CCol>
                                                                </CRow>
                                                             </CCol>
-                                                            <CCol xs={6}>
+                                                            <CCol xs={6} className={`stude_n${index}`}>
                                                                <InputSelect
                                                                   label="Field of study"
                                                                   valueState={item.study || ""}
                                                                   data={studys.list}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "study" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "study" }, data)}
                                                                   handleServerRequest={() => getSearchListStudys(item.study)}
                                                                   isOutDataObj={false}
                                                                   isRequire={true}
@@ -340,7 +355,7 @@ const FormEducation = ({
                      <InputSelect
                         label="Facility"
                         valueState={objNew?.facility || ""}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "facility" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "facility" }, dat, "degre_new")}
                         data={university.list}
                         handleServerRequest={() => getSearchListUnivercitu(objNew?.facility)}
                         isOutDataObj={false}
@@ -348,11 +363,11 @@ const FormEducation = ({
                         validIn={objNew?.facility?.length > 2}
                      />
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} className="degre_new">
                      <InputSelect
                         label="Degree"
                         valueState={objNew?.degree || ""}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "degree" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "degree" }, data, "from_data_new")}
                         handleServerRequest={() => getSearchListDegree(objNew?.degree)}
                         data={degree.list}
                         isOutDataObj={false}
@@ -363,24 +378,24 @@ const FormEducation = ({
                   </CCol>
                   <CCol xs={6}>
                      <CRow>
-                        <CCol xs={6}>
+                        <CCol xs={6} className='from_data_new'>
                            <DatePicker
                               selected={objNew?.period_from}
-                              onChange={(date) => handleSetDateStateDataNew('period_from', date)}
+                              onChange={(date, statusClick) => handleSetDateStateDataNew('period_from', date, statusClick, "to_data_new")}
                               floatingLabel="From"
                            />
                         </CCol>
-                        <CCol xs={6}>
+                        <CCol xs={6} className='to_data_new'>
                            <DatePicker
                               selected={objNew?.period_to}
-                              onChange={(date) => handleSetDateStateDataNew('period_to', date)}
+                              onChange={(date, statusClick) => handleSetDateStateDataNew('period_to', date, statusClick, "study_new")}
                               floatingLabel="To"
                               prevData={objNew?.period_from || undefined}
                            />
                         </CCol>
                      </CRow>
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} className="study_new">
                      <InputSelect
                         label="Field of study"
                         valueState={objNew.study || ""}
