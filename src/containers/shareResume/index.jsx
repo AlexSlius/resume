@@ -9,6 +9,8 @@ const ShareResume = ({
 }) => {
     let isPdf = ctx?.router.state?.query?.download == 'pdf';
 
+    console.log("ctxpage: ", ctx);
+
     return (
         <div className={`page-share ${isPdf ? "pdf" : ""}`}>
             <div className="page-share__container">
