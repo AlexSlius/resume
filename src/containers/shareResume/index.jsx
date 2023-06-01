@@ -11,7 +11,8 @@ const ShareResume = ({
 
     console.log("ctxpage: ", ctx);
 
-    console.log("ctx?.router: ", ctx?.router.state);
+    console.log("ctx?.router: ", ctx?.router.state?.query);
+    console.log("ctx?.router.state?.query?.download: ", ctx?.router.state?.query?.download);
 
     return (
         <div className={`page-share ${isPdf ? "pdf" : ""}`}>
