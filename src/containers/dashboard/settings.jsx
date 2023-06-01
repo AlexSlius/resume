@@ -154,7 +154,7 @@ const Settings = () => {
                                     </div>
                                 </CCol>
                             </CRow > */}
-                            <CRow className="mb-4 pb-4 align-items-center bb">
+                            {/* <CRow className="mb-4 pb-4 align-items-center bb">
                                 <CCol xl={6} className="pt-4">
                                     <div className={`${style.item_par}`}>
                                         <div>Updates and Offers</div>
@@ -191,7 +191,7 @@ const Settings = () => {
                                         handleOnChange={(value) => updateSettingField({ name: 'ResumeAndJobNotification', value })}
                                     />
                                 </CCol>
-                            </CRow>
+                            </CRow> */}
                             <CRow>
                                 <CCol xl={12}>
                                     <div className={`${style.info_text}`}>Once you delete your account, it cannot be undone. This is permanent.</div>

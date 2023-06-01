@@ -1,8 +1,4 @@
-import {
-   CCol,
-   CRow,
-   CForm
-} from "@coreui/react";
+import { CCol, CRow, CForm } from "@coreui/react";
 import { useEffect, useState, useRef } from 'react';
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
@@ -17,8 +13,8 @@ import DraggedItem from "../../../other/draggedItem/DraggedItem";
 
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
-
 
 import {
    updateItemFieldReference,
@@ -104,13 +100,21 @@ const FormReference = ({
       }, 1000);
    }
 
-   const handleSaveSelect = async ({ index, name, value }) => {
+   const handleSaveSelect = async ({ index, name, value }, data, classnextFocus) => {
       await dispatch(updateItemFieldReference({ index, name, value }));
       await handleUpdateServer(index);
+
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
+      }
    }
 
-   const handleSaveSelectNew = async ({ name, value }) => {
+   const handleSaveSelectNew = async ({ name, value }, data, classnextFocus) => {
       await dispatch(updateItemFieldReferenceNew({ name, value }));
+
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
+      }
 
       automateNew();
    }
@@ -118,8 +122,10 @@ const FormReference = ({
    const handleSaveSelectNewCompany = async ({ name, value }, data) => {
       await dispatch(updateItemFieldReferenceNew({ name, value }));
 
-      if (!!data)
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
          automateNew();
+      }
    }
 
    const handleDeleteOne = (id) => {
@@ -243,7 +249,7 @@ const FormReference = ({
                                                                      valueState={item.company}
                                                                      data={companys?.list || []}
                                                                      isAddDiv={true}
-                                                                     handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "company" })}
+                                                                     handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "company" }, data, `email_n${index}`)}
                                                                      handleServerRequest={handleServerRequestCompanyList}
                                                                      handleAddNew={handleAddNewCompany}
                                                                      isOutDataObj={false}
@@ -252,7 +258,7 @@ const FormReference = ({
                                                                      validIn={item.company?.length > 3}
                                                                   />
                                                                </CCol>
-                                                               <CCol xs={6}>
+                                                               <CCol xs={6} className={`email_n${index}`}>
                                                                   <InputEmail
                                                                      label="E-mail"
                                                                      value={item.email}
@@ -306,7 +312,7 @@ const FormReference = ({
                         valueState={objNew.company}
                         data={companys?.list || []}
                         isAddDiv={true}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNewCompany({ ...obj, name: "company" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewCompany({ ...obj, name: "company" }, data, "email_New")}
                         handleServerRequest={handleServerRequestCompanyList}
                         handleAddNew={handleAddNewCompany}
                         isOutDataObj={false}
@@ -315,7 +321,7 @@ const FormReference = ({
                         validIn={objNew.company?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} className="email_New">
                      <InputEmail
                         label="E-mail"
                         value={objNew.email}

@@ -13,6 +13,7 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import { LoadWr } from "../../../components/loadWr"
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
@@ -99,17 +100,27 @@ const FormCourse = ({
    const handleSaveSelect = async ({ index, name, value }) => {
       await dispatch(updateItemFieldCourse({ index, name, value }));
       await handleUpdateServer(index);
+
+
    }
 
-   const handleSaveSelectNew = async ({ name, value }) => {
+   const handleSaveSelectNew = async ({ name, value }, statusClick, classnextFocus) => {
       await dispatch(updateItemFieldCourseNew({ name, value }));
+
+      if (statusClick) {
+         focusFieldInputClassName(classnextFocus);
+      }
 
       automateNew();
    }
 
-   const handleSetDateStateData = async (index, name, date) => {
+   const handleSetDateStateData = async (index, name, date, statusClick, classnextFocus) => {
       await dispatch(updateItemFieldCourseDate({ index, name, value: date }));
       await handleUpdateServer(index);
+
+      if (!!statusClick) {
+         focusFieldInputClassName(classnextFocus);
+      }
    }
 
    const handleDeleteOne = (id) => {
@@ -235,11 +246,11 @@ const FormCourse = ({
                                                                   <CCol xs={6} className='date-block'>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
+                                                                        onChange={(date, statusClick) => handleSetDateStateData(index, 'dateFrom', date, statusClick, `dataTo_n${index}`)}
                                                                         floatingLabel="From"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6} className='date-block'>
+                                                                  <CCol xs={6} className={`date-block dataTo_n${index}`}>
                                                                      <DatePicker
                                                                         selected={item?.dateTo?.date}
                                                                         onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
@@ -300,11 +311,11 @@ const FormCourse = ({
                         <CCol xs={6} className='date-block'>
                            <DatePicker
                               selected={objNew.period_from}
-                              onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
+                              onChange={(date, statusClick) => handleSaveSelectNew({ name: 'period_from', value: date }, statusClick, "dataTo_new")}
                               floatingLabel="From"
                            />
                         </CCol>
-                        <CCol xs={6} className='date-block'>
+                        <CCol xs={6} className='date-block dataTo_new'>
                            <DatePicker
                               selected={objNew.period_to}
                               onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}

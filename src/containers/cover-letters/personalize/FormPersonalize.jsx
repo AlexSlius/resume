@@ -36,6 +36,7 @@ import { ForRegistr } from "../../../components/forRegistr";
 import { BtnGreyTypeTwo } from "../../../components/uis/btnGreyTypeTwo";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
 import { sendCodeResume } from "../../../utils/sendCode";
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { fieldsFormPerson } from "../../../constants/formPerson";
 
@@ -73,7 +74,7 @@ const FormPersonalize = ({
     let isForEmail = (emailRegister?.length > 0);
     let isEmptyForm = isObjEmptyForm(contObj, fieldsFormPerson);
 
-    const handleUpdateItemField = ({ name, value }, data = null) => {
+    const handleUpdateItemField = ({ name, value }, data = null, classnextFocus) => {
         if (!!data) {
             if (name == "country") {
                 if (data?.id) {
@@ -81,6 +82,7 @@ const FormPersonalize = ({
                     dispatch(updateItemField({ name: "city", value: "" }));
                 }
             }
+            focusFieldInputClassName(classnextFocus);
 
             dispatch(updateItemField({ name, value }));
         } else {
@@ -199,7 +201,7 @@ const FormPersonalize = ({
                                     label="Country"
                                     valueState={contObj.country || ''}
                                     data={coutrys.list}
-                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "country" }, data)}
+                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "country" }, data, 'city_field')}
                                     isOutDataObj={false}
                                     isIconArrow={true}
                                     isFlag={true}
@@ -207,12 +209,12 @@ const FormPersonalize = ({
                                     validIn={contObj.country?.length > 2}
                                 />
                             </CCol>
-                            <CCol xs={12} md={6}>
+                            <CCol xs={12} md={6} className="city_field">
                                 <InputSelect
                                     label="City"
                                     valueState={contObj.city || ''}
                                     data={cities.list}
-                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "city" }, data)}
+                                    handleSaveSelect={(obj, data) => handleUpdateItemField({ ...obj, name: "city" }, data, "address_field")}
                                     handleServerRequest={handleServerRequestCity}
                                     isOutDataObj={false}
                                     isRequire={true}
@@ -222,7 +224,7 @@ const FormPersonalize = ({
                             </CCol>
                         </CRow>
                         <CRow>
-                            <CCol xs={12} md={6}>
+                            <CCol xs={12} md={6} className="address_field">
                                 <Input
                                     label="Address"
                                     value={contObj.state}

@@ -68,6 +68,7 @@ const ResumeMain = ({
       languages: languages.languageObj,
       reference: references.referencesObj,
       certificates: certificaties.certificatiesObj,
+      hide_experience_level: skills?.skillsObj?.hideExperienceLevel
    };
 
    let dataCoverLetterTemplate = {

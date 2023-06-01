@@ -378,14 +378,14 @@ const FormEmployment = ({
                                         label="City"
                                         valueState={item.city || ""}
                                         data={cities.list}
-                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "city" }, data)}
+                                        handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "city" }, data, `draf_n${index}`)}
                                         handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                         isOutDataObj={false}
                                         isValidIn={true}
                                         validIn={item.city?.length > 3}
                                       />
                                     </CCol>
-                                    <CCol xs={12}>
+                                    <CCol xs={12} className={`draf_n${index}`}>
                                       {
                                         (typeof window !== undefined) && (
                                           <TextEditor
@@ -489,7 +489,7 @@ const FormEmployment = ({
                 label="City"
                 valueState={objNew.city || ""}
                 data={cities.list}
-                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "city" }, data)}
+                handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "city" }, data, 'draf_new')}
                 handleServerRequest={(value) => handleServerRequestCity(value, objNew.country)}
                 isRequire={true}
                 isOutDataObj={false}
@@ -497,7 +497,7 @@ const FormEmployment = ({
                 validIn={objNew.city?.length > 3}
               />
             </CCol>
-            <CCol xs={12}>
+            <CCol xs={12} className='draf_new'>
               {
                 (typeof window !== undefined) && (
                   <TextEditor

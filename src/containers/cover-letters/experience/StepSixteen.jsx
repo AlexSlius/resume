@@ -1,5 +1,5 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
@@ -12,10 +12,9 @@ import {
     getCompanyList,
     addCompany
 } from "../../../controllers/dependencies"
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
-import {
-    routersPages
-} from "../../../constants/next-routers";
+import { routersPages } from "../../../constants/next-routers";
 
 import dataTitle from "./data/selects.json";
 
@@ -29,8 +28,11 @@ export const StepSixteen = ({
     companysList,
     idCv
 }) => {
-    const handleUpdateFiled = ({ name, value }) => {
+    const handleUpdateFiled = ({ name, value }, data, classnextFocus) => {
         handleUpdateField({ name, value });
+
+        if (!!data)
+            focusFieldInputClassName(classnextFocus);
     }
 
     const handleRequestJobTitle = async (text) => {
@@ -71,7 +73,7 @@ export const StepSixteen = ({
                                 data={companysList || []}
                                 isAddDiv={true}
                                 name="applyingCompanyName"
-                                handleSaveSelect={handleUpdateFiled}
+                                handleSaveSelect={(obj, data) => handleUpdateFiled(obj, data, "job_title")}
                                 handleServerRequest={handleRequestNameCompany}
                                 handleAddNew={(value) => handleAddNewCompany(value, true)}
                                 isOutDataObj={false}
@@ -81,14 +83,14 @@ export const StepSixteen = ({
                                 validIn={coverDataObj.applyingCompanyName?.length > 4}
                             />
                         </CCol>
-                        <CCol xs={12} md={6}>
+                        <CCol xs={12} md={6} className="job_title">
                             <InputSelect
                                 label="Job Title"
                                 valueState={coverDataObj.applyingCompanyJobTitle || ''}
                                 data={jopsTitleList || []}
                                 isAddDiv={true}
                                 name="applyingCompanyJobTitle"
-                                handleSaveSelect={handleUpdateFiled}
+                                handleSaveSelect={(obj, data) => handleUpdateFiled(obj, data, "title_company")}
                                 handleServerRequest={handleRequestJobTitle}
                                 handleAddNew={handleAddNewJobTitle}
                                 isOutDataObj={false}
@@ -99,14 +101,14 @@ export const StepSixteen = ({
                             />
                         </CCol>
                     </CRow>
-                    <CRow className="mobile-rows two-items">
+                    <CRow className="mobile-rows two-items title_company">
                         <CCol xs={2}>
                             <InputSelect
                                 label={"Title"}
                                 valueState={coverDataObj.applyingCompanyTitle || ''}
                                 data={dataTitle}
                                 name="applyingCompanyTitle"
-                                handleSaveSelect={handleUpdateFiled}
+                                handleSaveSelect={(obj, data) => handleUpdateFiled(obj, data, "name_comp")}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                                 isValidIn={true}
@@ -114,7 +116,7 @@ export const StepSixteen = ({
                                 isSearch={false}
                             />
                         </CCol>
-                        <CCol xs={4}>
+                        <CCol xs={4} className="name_comp">
                             <Input
                                 label="Name of Company Contact"
                                 value={coverDataObj.applyingCompanyContact}

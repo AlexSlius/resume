@@ -312,7 +312,7 @@ const FormEducation = ({
                                                                   label="Field of study"
                                                                   valueState={item.study || ""}
                                                                   data={studys.list}
-                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "study" }, data)}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "study" }, data, `area_n${index}`)}
                                                                   handleServerRequest={() => getSearchListStudys(item.study)}
                                                                   isOutDataObj={false}
                                                                   isRequire={true}
@@ -321,7 +321,7 @@ const FormEducation = ({
                                                                   validIn={item.study?.length > 2}
                                                                />
                                                             </CCol>
-                                                            <CCol xs={12}>
+                                                            <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
                                                                   onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
@@ -400,7 +400,7 @@ const FormEducation = ({
                         label="Field of study"
                         valueState={objNew.study || ""}
                         data={studys.list}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "study" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "study" }, data, "area_new")}
                         handleServerRequest={() => getSearchListStudys(objNew.study)}
                         isOutDataObj={false}
                         isRequire={true}
@@ -409,7 +409,7 @@ const FormEducation = ({
                         validIn={objNew.study?.length > 2}
                      />
                   </CCol>
-                  <CCol xs={12}>
+                  <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
                         onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}

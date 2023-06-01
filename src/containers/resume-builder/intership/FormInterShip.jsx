@@ -3,7 +3,7 @@ import {
    CCol,
    CRow
 } from "@coreui/react";
-import { isArray } from "lodash";
+import { isArray, isObject } from "lodash";
 import React, { useRef, useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
@@ -19,6 +19,7 @@ import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import {
    updateItemFieldIntership,
@@ -116,13 +117,21 @@ const FormInterShip = ({
       }, 1000);
    }
 
-   const handleSaveSelect = async ({ index, name, value }) => {
+   const handleSaveSelect = async ({ index, name, value }, data, classnextFocus) => {
       await dispatch(updateItemFieldIntership({ index, name, value }));
       await handleUpdateServer(index);
+
+      if (!!data) {
+         focusFieldInputClassName(classnextFocus);
+      }
    }
 
-   const handleSaveSelectNew = async ({ name, value }) => {
+   const handleSaveSelectNew = async ({ name, value }, data, classnextFocus) => {
       await dispatch(updateItemFieldIntershipNew({ name, value }));
+
+      if (isObject(data) || data === true) {
+         focusFieldInputClassName(classnextFocus);
+      }
 
       automateNew();
    }
@@ -134,9 +143,12 @@ const FormInterShip = ({
          automateNew();
    }
 
-   const handleSetDateStateData = async (index, name, date) => {
+   const handleSetDateStateData = async (index, name, date, statusClick, classnextFocus) => {
       await dispatch(updateItemFieldIntershipDate({ index, name, value: date }));
       await handleUpdateServer(index);
+
+      if (!!statusClick)
+         focusFieldInputClassName(classnextFocus);
    }
 
    const handleDeleteOne = (id) => {
@@ -275,7 +287,7 @@ const FormInterShip = ({
                                                                   valueState={item?.jobTitle || ""}
                                                                   data={jopsTitle?.list || []}
                                                                   isAddDiv={true}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "jobTitle" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "jobTitle" }, data, `emp_n${index}`)}
                                                                   handleServerRequest={handleServerRequestGetJopsTitle}
                                                                   handleAddNew={handleAddNewJobTitle}
                                                                   isOutDataObj={false}
@@ -285,12 +297,12 @@ const FormInterShip = ({
                                                                   validIn={item?.jobTitle?.length > 3}
                                                                />
                                                             </CCol>
-                                                            <CCol xs={6}>
+                                                            <CCol xs={6} className={`emp_n${index}`}>
                                                                <InputSelect
                                                                   label="Employer"
                                                                   data={companys?.list || []}
                                                                   valueState={item?.employer || ""}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "employer" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "employer" }, data, `data_from_n${index}`)}
                                                                   handleServerRequest={handleServerRequestCompanyList}
                                                                   handleAddNew={handleAddNewCompany}
                                                                   isOutDataObj={false}
@@ -301,29 +313,29 @@ const FormInterShip = ({
                                                             </CCol>
                                                             <CCol xs={6}>
                                                                <CRow className='dates-wrap'>
-                                                                  <CCol xs={6} className='date-block'>
+                                                                  <CCol xs={6} className={`date-block data_from_n${index}`}>
                                                                      <DatePicker
                                                                         selected={item?.dateFrom?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateFrom', date)}
+                                                                        onChange={(date, statusClick) => handleSetDateStateData(index, 'dateFrom', date, statusClick, `data_to_n${index}`)}
                                                                         floatingLabel="From"
                                                                      />
                                                                   </CCol>
-                                                                  <CCol xs={6} className='date-block'>
+                                                                  <CCol xs={6} className={`date-block data_to_n${index}`}>
                                                                      <DatePicker
-                                                                        selected={item?.dateFrom?.date}
-                                                                        onChange={(date) => handleSetDateStateData(index, 'dateTo', date)}
+                                                                        selected={item?.dateTo?.date}
+                                                                        onChange={(date, statusClick) => handleSetDateStateData(index, 'dateTo', date, statusClick, `country_n${index}`)}
                                                                         floatingLabel="To"
-                                                                        prevData={objNew?.period_from || undefined}
+                                                                        prevData={item?.dateFrom?.date || undefined}
                                                                      />
                                                                   </CCol>
                                                                </CRow>
                                                             </CCol>
-                                                            <CCol xs={3}>
+                                                            <CCol xs={3} className={`country_n${index}`}>
                                                                <InputSelect
                                                                   label="Country"
                                                                   valueState={item.country || ""}
                                                                   data={coutrys.list}
-                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "country" }, data)}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "country" }, data, `city_n${index}`)}
                                                                   isOutDataObj={false}
                                                                   isIconArrow={true}
                                                                   isFlag={true}
@@ -331,19 +343,19 @@ const FormInterShip = ({
                                                                   validIn={item.country?.length > 3}
                                                                />
                                                             </CCol>
-                                                            <CCol xs={3}>
+                                                            <CCol xs={3} className={`city_n${index}`}>
                                                                <InputSelect
                                                                   label="City"
                                                                   valueState={item.city || ""}
                                                                   data={cities.list}
-                                                                  handleSaveSelect={(obj) => handleSaveSelect({ index, ...obj, name: "city" })}
+                                                                  handleSaveSelect={(obj, data) => handleSaveSelect({ index, ...obj, name: "city" }, data, `area_n${index}`)}
                                                                   handleServerRequest={(value) => handleServerRequest(value, item.country)}
                                                                   isOutDataObj={false}
                                                                   isValidIn={true}
                                                                   validIn={item.city?.length > 3}
                                                                />
                                                             </CCol>
-                                                            <CCol xs={12}>
+                                                            <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
                                                                   onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
@@ -380,7 +392,7 @@ const FormInterShip = ({
                         valueState={objNew.job_title || ""}
                         data={jopsTitle?.list || []}
                         isAddDiv={true}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "job_title" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "job_title" }, data, "emp_new")}
                         handleServerRequest={handleServerRequestGetJopsTitle}
                         handleAddNew={(value) => handleAddNewJobTitle(value, true)}
                         isOutDataObj={false}
@@ -390,14 +402,14 @@ const FormInterShip = ({
                         validIn={objNew.job_title?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={6}>
+                  <CCol xs={6} className="emp_new">
                      <InputSelect
                         label="Employer"
                         data={companys?.list || []}
                         valueState={objNew.employer || ""}
                         handleServerRequest={handleServerRequestCompanyList}
                         handleAddNew={(value) => handleAddNewCompany(value, true)}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "employer" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "employer" }, data, "data_from_new")}
                         isAddDiv={true}
                         isOutDataObj={false}
                         isValidIn={true}
@@ -406,29 +418,29 @@ const FormInterShip = ({
                   </CCol>
                   <CCol xs={6}>
                      <CRow className='dates-wrap'>
-                        <CCol xs={6} className='date-block'>
+                        <CCol xs={6} className='date-block data_from_new'>
                            <DatePicker
                               selected={objNew.period_from}
-                              onChange={(date) => handleSaveSelectNew({ name: 'period_from', value: date })}
+                              onChange={(date, statusClick) => handleSaveSelectNew({ name: 'period_from', value: date }, statusClick, "data_to_new")}
                               floatingLabel="From"
                            />
                         </CCol>
-                        <CCol xs={6} className='date-block'>
+                        <CCol xs={6} className='date-block data_to_new'>
                            <DatePicker
                               selected={objNew.period_to}
-                              onChange={(date) => handleSaveSelectNew({ name: 'period_to', value: date })}
+                              onChange={(date, statusClick) => handleSaveSelectNew({ name: 'period_to', value: date }, statusClick, "country_new")}
                               floatingLabel="To"
                               prevData={objNew.period_from || undefined}
                            />
                         </CCol>
                      </CRow>
                   </CCol>
-                  <CCol xs={3}>
+                  <CCol xs={3} className="country_new">
                      <InputSelect
                         label="Country"
                         valueState={objNew.country || ""}
                         data={coutrys.list}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "country" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "country" }, data, "city_new")}
                         isOutDataObj={false}
                         isIconArrow={true}
                         isFlag={true}
@@ -436,12 +448,12 @@ const FormInterShip = ({
                         validIn={objNew.country?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={3}>
+                  <CCol xs={3} className="city_new">
                      <InputSelect
                         label="City"
                         valueState={objNew.city || ""}
                         data={cities.list}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "city" }, data)}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNewSelect({ ...obj, name: "city" }, data, "area_new")}
                         handleServerRequest={(value) => handleServerRequest(value, objNew.country)}
                         isOutDataObj={false}
                         isRequire={true}
@@ -449,7 +461,7 @@ const FormInterShip = ({
                         validIn={objNew.city?.length > 3}
                      />
                   </CCol>
-                  <CCol xs={12}>
+                  <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
                         onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}

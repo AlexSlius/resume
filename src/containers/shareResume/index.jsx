@@ -1,6 +1,3 @@
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-
 import Templates from "../templates";
 
 const ShareResume = ({
