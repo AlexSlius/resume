@@ -7,7 +7,7 @@ const ShareResume = ({
     isCover = true,
     ctx
 }) => {
-    let isPdf = ctx.router.state.query?.download == 'pdf';
+    let isPdf = ctx?.router.state?.query?.download == 'pdf';
 
     return (
         <div className={`page-share ${isPdf ? "pdf" : ""}`}>
