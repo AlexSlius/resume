@@ -78,6 +78,7 @@ export const withPublicRoute = ({
             // if (!!isStrite) {
             //     await store.dispatch(striteGetProductById());
             // }
+
             return { props: {} };
         } catch (error) {
             console.log("withPublicRoute: ", error)

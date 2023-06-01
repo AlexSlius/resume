@@ -1,9 +1,9 @@
 import ShareResume from "../../../src/containers/shareResume";
 import { withPublicRoute } from "../../../src/middleware/publicRouter";
 
-const ResumeSharePage = () => {
+const ResumeSharePage = (ctx) => {
     return (
-        <ShareResume isCover={false} />
+        <ShareResume isCover={false} ctx={ctx} />
     )
 }
 

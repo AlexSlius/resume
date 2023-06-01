@@ -126,7 +126,7 @@
 .ptr-c {
     max-height: calc(100vh - 170px);
     max-height: calc(100vh - 170px);
-    
+
     overflow-y: auto;
 
     &__content {
@@ -218,6 +218,24 @@
 
 .body-template-resume {
     transform-origin: 0px 0px;
+}
+
+
+.page-share {
+    &.pdf {
+        .page-templates__right {
+            padding: 0!important;
+        }
+        .ptr-c__content {
+            max-width: 100% !important;
+
+            .cv-body.cv-body-visible {
+                &.page-1 {
+                    margin-top: 0 !important;
+                }
+            }
+        }
+    }
 }
 
 @media(max-width: 1700px) {
@@ -508,9 +526,9 @@
 
             .cv-body {
                 display: flex !important;
-                min-height: 840px!important;
-                max-height: 840px!important;
-                height: 840px!important;
+                min-height: 840px !important;
+                max-height: 840px !important;
+                height: 840px !important;
                 margin-top: 25px;
                 // min-width: 595px;\
                 min-width: 100%;

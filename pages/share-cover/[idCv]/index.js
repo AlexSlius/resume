@@ -1,12 +1,12 @@
 import ShareResume from "../../../src/containers/shareResume";
 import { withPublicRoute } from "../../../src/middleware/publicRouter";
 
-const CoverSharePage = () => {
+const CoverSharePage = (ctx) => {
     return (
-        <ShareResume isCover={true} />
+        <ShareResume isCover={true} ctx={ctx} />
     )
 }
 
-export const getServerSideProps = withPublicRoute({isGetShareCover: true});
+export const getServerSideProps = withPublicRoute({ isGetShareCover: true });
 
 export default CoverSharePage;
