@@ -16,6 +16,8 @@ const ShareResume = ({
 
     console.log("isPdf: ", isPdf);
 
+    console.log("${isPdf ?: ", `${isPdf ? "pdf" : ""}`);
+
     return (
         <div className={`page-share ${isPdf ? "pdf" : ""}`}>
             <div className="page-share__container">
