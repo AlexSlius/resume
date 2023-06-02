@@ -11,6 +11,7 @@ import Notifications from "../src/components/notifications";
 import { Cookies } from "../src/components/cookies";
 
 import { wrapper } from '../src/store'
+import { downloadPagePdf } from "../src/utils/isdownPdf";
 
 // Styles
 import 'swiper/css';
@@ -19,7 +20,6 @@ import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
-import { downloadPagePdf } from "../src/utils/isdownPdf";
 
 
 const MyApp = ({ Component, ...rest }) => {
