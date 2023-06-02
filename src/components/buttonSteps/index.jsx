@@ -10,6 +10,7 @@ import { isAllActive, nextofLink, prevOfLink } from "../../helpers/routers";
 import { routersPages } from "../../constants/next-routers";
 
 import style from "./Style.module.scss";
+import { ComponentHigherLoadBtn } from "../componentHigherLoadBtn";
 
 export const ButtonSteps = ({
     loadBtnNext = false,
@@ -73,9 +74,9 @@ export const ButtonSteps = ({
                 {
                     isFinish ? (
                         <div>
-                            <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
+                            <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
                                 <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
-                            </LoadChildrenBtn>
+                            </ComponentHigherLoadBtn>
                         </div>
                     ) : (
                         <>
@@ -96,19 +97,19 @@ export const ButtonSteps = ({
                             {
                                 !(isAll && isLastStep) ? (
                                     <div>
-                                        <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
+                                        <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
                                             <CButton
                                                 type="button"
                                                 className={`${style.btn} ${style.btn_next}`}
                                                 onClick={clickNext}
                                                 disabled={disabledNext}
                                             >{textBtnNext}</CButton>
-                                        </LoadChildrenBtn>
+                                        </ComponentHigherLoadBtn>
                                     </div>
                                 ) : (
-                                    <LoadChildrenBtn isLoad={isLoader(loadBtnNext)}>
+                                    <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
                                         <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
-                                    </LoadChildrenBtn>
+                                    </ComponentHigherLoadBtn>
                                 )
                             }
                         </>

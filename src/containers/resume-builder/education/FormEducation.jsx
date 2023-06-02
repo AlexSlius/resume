@@ -355,7 +355,7 @@ const FormEducation = ({
                      <InputSelect
                         label="Facility"
                         valueState={objNew?.facility || ""}
-                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "facility" }, dat, "degre_new")}
+                        handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "facility" }, data, "degre_new")}
                         data={university.list}
                         handleServerRequest={() => getSearchListUnivercitu(objNew?.facility)}
                         isOutDataObj={false}

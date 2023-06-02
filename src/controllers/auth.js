@@ -216,7 +216,7 @@ export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async
     const response = await api.auth.autorizeAuth({ code, email, id_session });
 
     if (response?.status != "autorized") {
-        thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));
+       thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));
         return { status: false };
     }
 
@@ -248,7 +248,7 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
         await thunkAPI.dispatch(setIsAuth(true));
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
-        await thunkAPI.dispatch(addItemNotification({ text: response.status }));
+        // await thunkAPI.dispatch(addItemNotification({ text: response.status }));
     }
 
     // resume

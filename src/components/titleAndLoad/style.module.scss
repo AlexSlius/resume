@@ -1,0 +1,22 @@
+.wr_title {
+    display: flex;
+    text-align: center;
+    position: relative;
+}
+
+@media(max-width: 992px) {
+    .wr_title {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+        h2 {
+            padding-right: 0;
+        }
+
+        &>div {
+            position: absolute;
+            right: 0;
+        }
+    }
+}

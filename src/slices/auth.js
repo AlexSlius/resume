@@ -31,7 +31,8 @@ const initialState = {
         isResume: true,
         email: '',
         id_session: '',
-    }
+    },
+    settingsUser: {}
 };
 
 const sliceAuth = createSlice({

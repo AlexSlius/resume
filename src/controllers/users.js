@@ -19,17 +19,22 @@ export const fetchUserDeleteProfile = createAsyncThunk('users/fetchUserDeletePro
 });
 
 export const fetchUserUpdateServer = createAsyncThunk('users/fetchUserUpdateServer', async (_, thunkAPI) => {
-    const { users: { objForm } } = thunkAPI.getState();
+    const { users: { objForm, objFormSettings } } = thunkAPI.getState();
 
     let newObj = {
-        email: objForm.username || "",
-        firstName: objForm.firstName || "",
-        lastName: objForm.lastName || "",
+        email: objFormSettings.email || "",
+        firstName: objFormSettings.firstName || "",
+        lastName: objFormSettings.lastName || "",
         updatesAndOffersNotification: objForm.UpdatesAndOffersNotification ? 1 : 0,
         resumeAnalyticsNotification: objForm.ResumeAnalyticsNotification ? 1 : 0,
         resumeAndJobNotification: objForm.ResumeAndJobNotification ? 1 : 0,
     }
 
     const response = await api.users.updateUserProgile(camelToSnake(newObj));
+    return response;
+});
+
+export const getUserDataSettings = createAsyncThunk('users/getUserDataSettings', async (_, thunkAPI) => {
+    const response = await api.users.getUserDataSettings();
     return response;
 });

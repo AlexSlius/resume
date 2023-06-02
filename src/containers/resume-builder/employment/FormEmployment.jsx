@@ -369,6 +369,7 @@ const FormEmployment = ({
                                         isOutDataObj={false}
                                         isIconArrow={true}
                                         isFlag={true}
+                                        isCap={true}
                                         isValidIn={true}
                                         validIn={item.country?.length > 3}
                                       />
@@ -382,6 +383,7 @@ const FormEmployment = ({
                                         handleServerRequest={(value) => handleServerRequestCity(value, item.country)}
                                         isOutDataObj={false}
                                         isValidIn={true}
+                                        isCap={true}
                                         validIn={item.city?.length > 3}
                                       />
                                     </CCol>
@@ -480,6 +482,7 @@ const FormEmployment = ({
                 isOutDataObj={false}
                 isIconArrow={true}
                 isFlag={true}
+                isCap={true}
                 isValidIn={true}
                 validIn={objNew.country?.length > 3}
               />
@@ -494,6 +497,7 @@ const FormEmployment = ({
                 isRequire={true}
                 isOutDataObj={false}
                 isValidIn={true}
+                isCap={true}
                 validIn={objNew.city?.length > 3}
               />
             </CCol>

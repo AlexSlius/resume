@@ -1,3 +1,4 @@
+import { ComponentHigherLoadBtn } from "../../../components/componentHigherLoadBtn";
 import { ButtonIcon } from "../../../components/uis/buttonIcon";
 
 import iconBtnNext from "/public/images/icons/icon-bnt-next.svg?sprite";
@@ -10,14 +11,16 @@ export const BtnContinue = ({
 }) => {
     return (
         <div className="wr-btn-cover">
-            <ButtonIcon
-                icon={iconBtnNext}
-                label={label}
-                isButton={isButton}
-                className="btn--blue btn-style-min"
-                href={href}
-                onHandle={onHanleBtn}
-            />
+            <ComponentHigherLoadBtn>
+                <ButtonIcon
+                    icon={iconBtnNext}
+                    label={label}
+                    isButton={isButton}
+                    className="btn--blue btn-style-min"
+                    href={href}
+                    onHandle={onHanleBtn}
+                />
+            </ComponentHigherLoadBtn>
         </div>
     )
 }

@@ -45,7 +45,7 @@ export const InputSelect = ({
     isSearch = true,
     firstChildUpCase = true,
     isRequire = false,
-    isCap = false,
+    isCap = true,
     onBlur = () => { },
     isDelete = false,
     id = null,

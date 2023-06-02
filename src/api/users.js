@@ -11,6 +11,9 @@ export default class ClientsAPI extends Base {
         return this.apiClient.post(`api/user/update`, data, type);
     }
     getUserProgile() {
-        return this.apiClient.get(`api/user/get`,);
+        return this.apiClient.get(`api/user/get`);
+    }
+    getUserDataSettings() {
+        return this.apiClient.get(`api/user/fl_name`);
     }
 }

@@ -4,18 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { isArray } from "lodash";
 
 import { Tabs } from "../../components/tabs/Tabs";
-import { TitlePage } from "../../components/titlePage";
 import { CardResume } from "../../components/cardResume";
-import { LoadBlock } from "../../components/loadBlock";
 import { Header } from "../../components/header";
 import { CardNew } from "../../components/cardNew";
-
-import { tabsDashboardPage } from "../../constants/dashboardsTabs";
-import { routersPages } from "../../constants/next-routers";
-import { ROUTES, ROUTES_COVER } from "../../constants/routes";
 import { ModalDelete } from "../../components/modals/modalDelete";
-
-
+import { TitleAndLoad } from "../../components/titleAndLoad";
 import { isLoader } from "../../helpers/loadings"
 import { copyToClipboard } from "../../helpers/bufer";
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
@@ -26,7 +19,6 @@ import {
     fetchPostUpdateResumes,
     postShareResume
 } from "../../controllers/resumes";
-
 import {
     deleteCover,
     fetchGetCoversList,
@@ -37,9 +29,14 @@ import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
 import { addItemNotification } from "../../slices/notifications";
 
+import { tabsDashboardPage } from "../../constants/dashboardsTabs";
+import { routersPages } from "../../constants/next-routers";
+import { ROUTES, ROUTES_COVER } from "../../constants/routes";
+
 import style from "./Style.module.scss";
 
 import config from "../../config/config.json";
+
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -211,14 +208,7 @@ const Dashboard = () => {
                 )
             }
             <div className={style.wr_pa}>
-                <div className={style.wr_title}>
-                    <TitlePage titleText="Dashboard" />
-                    {
-                        (isLoader(covers?.status) || isLoader(resumers?.status)) && (
-                            <LoadBlock isMin={true} />
-                        )
-                    }
-                </div>
+                <TitleAndLoad title="Dashboard" isLoad={(isLoader(covers?.status) || isLoader(resumers?.status))} />
                 <div className={`${style.wt_tabs}`}>
                     <div className={style.wr_tabs}>
                         <Tabs

@@ -12,6 +12,7 @@ import { routersPages } from "../../../constants/next-routers";
 import { ROUTES } from "../../../constants/routes";
 import { BtnContinue } from "../component/btnContinue";
 import { ModalEmail } from "../../../components/modals/modalEmail";
+import { ComponentHigherLoadBtn } from "../../../components/componentHigherLoadBtn";
 
 import {
     updateItemField,
@@ -280,10 +281,12 @@ const FormPersonalize = ({
                             disabled={!isEmptyForm}
                             onClick={onClean}
                         />
-                        <BtnContinue
-                            onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
-                            isButton={true}
-                        />
+                        <ComponentHigherLoadBtn>
+                            <BtnContinue
+                                onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
+                                isButton={true}
+                            />
+                        </ComponentHigherLoadBtn>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux"
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 
 import App from "../src/App";
 
 // Components
-import { PreloaderPage } from "../src/components/preloaderPage";
+// import { PreloaderPage } from "../src/components/preloaderPage";
 import Notifications from "../src/components/notifications";
 import { Cookies } from "../src/components/cookies";
 
@@ -19,34 +19,30 @@ import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
+import { downloadPagePdf } from "../src/utils/isdownPdf";
 
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
-  // const {
-  //   resumeData: {
-  //     resumeActive
-  //   }
-  // } = store.getState();
-  const [loading, setLoading] = useState();
-
-  const router = useRouter();
+  const isPdf = downloadPagePdf(rest);
+  // const [loading, setLoading] = useState();
+  // const router = useRouter();
 
   if (typeof window != "undefined") {
     window.$ = window.jQuery = require('jquery');
     require('zebra_datepicker');
   }
 
-  useEffect(() => {
-    setLoading(false);
-    //   router.events.on("routeChangeStart", () => {
-    //     setLoading(true);
-    //   });
+  // useEffect(() => {
+  //   setLoading(false);
+  //   router.events.on("routeChangeStart", () => {
+  //     setLoading(true);
+  //   });
 
-    //   router.events.on("routeChangeComplete", () => {
-    //     setLoading(false);
-    //   });
-  }, []);
+  //   router.events.on("routeChangeComplete", () => {
+  //     setLoading(false);
+  //   });
+  // }, []);
 
   return (
     <Provider store={store}>
@@ -59,13 +55,19 @@ const MyApp = ({ Component, ...rest }) => {
         <Component
           {...props}
         />
-        <Notifications />
         {
+          !isPdf && (
+            <>
+              {/* {
           loading && (
             <PreloaderPage />
           )
+        } */}
+              <Notifications />
+              <Cookies />
+            </>
+          )
         }
-        <Cookies />
       </App>
     </Provider>
   )
