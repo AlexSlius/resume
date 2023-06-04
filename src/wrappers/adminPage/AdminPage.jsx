@@ -4,7 +4,8 @@ import {
    CCol
 } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/router'
 
 import SideBar from "../../components/sideBar/SideBar";
 import MenuSideBar from "../../components/sideBar/MenuSidebar";
@@ -15,20 +16,24 @@ import { ModalCodeAuth } from "../../components/modals/modalCodeAuth";
 
 import { updateFieldsModalAuth, cleanFieldsModalAuth } from '../../slices/auth';
 import { autorizeAuthCode } from "../../controllers/auth";
+import { getScreenResume } from "../../controllers/resumes";
+import { getScreenCover } from "../../controllers/cover/covers";
+
+import { routersPages } from "../../constants/next-routers";
 
 import style from "./AdminPage.module.scss"
-
 
 const AdminPage = ({ children, isCover = false }) => {
    const [loadCode, setLoadCode] = useState(false);
    const dispatch = useDispatch();
+   const router = useRouter();
 
    const {
       theme: {
          currentResolution,
       },
       auth: {
-         authModalObj
+         authModalObj,
       }
    } = useSelector((state) => state);
 
@@ -55,6 +60,24 @@ const AdminPage = ({ children, isCover = false }) => {
          setLoadCode(false);
       }
    }
+
+   useEffect(() => {
+      return () => {
+         let idR = router?.query?.idCv;
+         let shareKey = router?.query?.shareKey;
+         let path = router?.asPath;
+
+         if (idR != "new") {
+            if (!!path.includes(routersPages['resumeBuilder'])) {
+               dispatch(getScreenResume({ id: idR, shareKey }));
+            }
+
+            if (!!path.includes(routersPages['coverLetter'])) {
+               dispatch(getScreenCover({ id: idR, shareKey }));
+            }
+         }
+      }
+   }, []);
 
    return (
       <>

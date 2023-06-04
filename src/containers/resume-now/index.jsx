@@ -20,6 +20,9 @@ const ResumeNow = () => {
     const {
         theme: {
             currentResolution
+        },
+        users: {
+            objForm
         }
     } = useSelector((state) => state);
     const [errorModal, setErrorModal] = useState(obj);
@@ -54,7 +57,6 @@ const ResumeNow = () => {
                             discription={errorModal.discription}
                         />
                     )
-
                 }
 
                 <div className={`${style.items_grid}`}>
@@ -65,6 +67,7 @@ const ResumeNow = () => {
                                 itemCard={itemCard}
                                 index={index}
                                 updateError={updateError}
+                                objForm={objForm}
                             />
                         ))
                     }

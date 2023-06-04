@@ -7,6 +7,8 @@
         "isOne": true,
         "day": "Forever",
         "isСurrency": true,
+        "isAll": true,
+        "trial": true,
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -23,7 +25,9 @@
         "isOne": false,
         "priceTitle": 19.95,
         "day": "7-Day trial subscription",
+        "isAll": false,
         "plan": "price_1N83jlEBJR7rLeB2ItJAEx4h",
+        "trial": true,
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -42,6 +46,8 @@
         "isСurrency": true,
         "isOne": false,
         "priceTitle": 69.95,
+        "isAll": false,
+        "trial": true,
         "plan": "price_1N8OgEEBJR7rLeB21Cip5bzC",
         "list": [
             "Unlimited PDF Downloads",

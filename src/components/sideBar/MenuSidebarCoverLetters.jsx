@@ -41,6 +41,8 @@ const MenuSidebarCoverLetters = () => {
         }
     } = useSelector(state => state);
     const idCv = router.query.idCv;
+    const shareKey = router.query?.shareKey;
+    let dopQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`;
     const isNewResume = (idCv == "new");
 
     const handleClick = (e, link) => {
@@ -94,8 +96,8 @@ const MenuSidebarCoverLetters = () => {
 
                         return (
                             <CNavItem key={index}>
-                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}>
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, linkQuery)}>
+                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}${dopQuery}`} activeClassName={style.active}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${linkQuery}${dopQuery}`)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>

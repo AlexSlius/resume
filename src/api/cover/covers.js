@@ -16,4 +16,7 @@ export default class ClientsAPI extends Base {
     lastPosition(id, data, type = "formData") {
         return this.apiClient.post(`cover_letter/${id}/last_position`, data, type);
     }
+    screenCover(id, key) {
+        return this.apiClient.get(`share/cover_screen/${id}/${key}`);
+    }
 }

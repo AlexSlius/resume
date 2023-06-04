@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../../apiSingleton";
+import { downloadA } from '../../utils/downloadA';
 
 // all list
 export const fetchGetCoversList = createAsyncThunk('resumes/fetchGetCoversList', async () => {
@@ -20,6 +21,17 @@ export const postShareCover = createAsyncThunk('resumes/postShareCover', async (
     return response;
 });
 
+export const downloadLetterPdf = createAsyncThunk('resume/getDownloadLetter', async ({ id, shareKey }, thunkAPI) => {
+    if (shareKey?.length > 0) {
+        downloadA(`share/cover_pdf/${id}/${shareKey}`);
+    } else {
+        let res = await thunkAPI.dispatch(postShareCover({ id }));
+
+        if (res?.payload?.key?.length > 0)
+            await downloadA(`share/cover_pdf/${id}/${res?.payload?.key}`);
+    }
+});
+
 export const deleteCover = createAsyncThunk('resumes/deleteCover', async ({ id }, thunkAPI) => {
     const response = await api.covers.deleteCover(id);
     await thunkAPI.dispatch(fetchGetCoversList());
@@ -31,3 +43,16 @@ export const lastPositionCover = createAsyncThunk('resumes/lastPositionCover', a
     return response;
 });
 
+export const getScreenCover = createAsyncThunk('resumes/getScreenCover', async ({ id, shareKey }, thunkAPI) => {
+    if (shareKey?.length > 0) {
+        const response = await api.covers.screenCover(id, shareKey);
+    }
+
+    if (!(shareKey?.length > 0)) {
+        let res = await thunkAPI.dispatch(postShareCover({ id }));
+
+        if (res.payload?.key?.length > 0) {
+            const response = await api.covers.screenCover(id, res.payload?.key);
+        }
+    }
+});

@@ -5,6 +5,7 @@ import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
+import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
 import {
     getResumesTemplates,
     getResumeDataShare,
@@ -37,7 +38,13 @@ export const withPublicRoute = ({
             if (!!cookis?.token) {
                 api.apiClient.setToken(cookis.token);
                 const serverRespons = await api.auth.isAuthorization({ 'token': cookis.token });
-                store.dispatch(setIsAuth(isExist(serverRespons)));
+                const isEx = isExist(serverRespons);
+                await store.dispatch(setIsAuth(isEx));
+
+                if (!!isEx) {
+                    await store.dispatch(fetchUserGetAvatar());
+                    await store.dispatch(fetchUserGetProfile());
+                }
             }
 
             if (ctx?.query?.idCv != "new") {

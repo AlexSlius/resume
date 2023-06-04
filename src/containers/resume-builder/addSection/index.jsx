@@ -35,9 +35,6 @@ import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import socialIcon from '/public/images/icons/social.svg?sprite'
 import hobbiesIcon from '/public/images/icons/hobies.svg?sprite'
 
-
-
-
 const AddSection = () => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -53,7 +50,8 @@ const AddSection = () => {
         },
         menuAsideResume
     } = useSelector((state) => state);
-    const idCv = router.query.idCv
+    const idCv = router.query.idCv;
+    const shareKey = router.query?.shareKey;
 
     const handleAddItemSection = async (name) => {
         const { index } = sectionIndexAndAll(list);
@@ -70,7 +68,7 @@ const AddSection = () => {
             // dispatch(addItemSection({ value: itemObj }));
 
             if (itemObj) {
-                Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}`);
+                Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
             }
         }
     }

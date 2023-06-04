@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 import { ModalPayments } from '../../components/modals/modalPayments';
 
-
+// import { isActiveSubscribe } from "../../strite/subscribe";
 import config from "../../config/config.json";
 
 const stripePromise = loadStripe(config.STRITE_PUBLICK_KEY, {
@@ -19,8 +19,10 @@ export const Card = ({
     itemCard,
     index,
     updateError = () => { },
+    objForm,
 }) => {
     const [openModal, setOpenModal] = useState(false);
+    // let isSubscribe = isActiveSubscribe(objForm);
 
     const handleOpenModal = () => {
         setOpenModal(true);
@@ -32,6 +34,8 @@ export const Card = ({
 
     return (
         <>
+            {/* {
+                !isSubscribe && ( */}
             <ModalPayments
                 visible={openModal}
                 onClose={handleCloseModal}
@@ -45,10 +49,13 @@ export const Card = ({
                             itemCard={itemCard}
                             handleCloseModal={handleCloseModal}
                             updateError={updateError}
+                            objForm={objForm}
                         />
                     </Elements>
                 </div>
             </ModalPayments>
+            {/* )
+            } */}
 
             <div className={`${style.card} ${(index == 1) ? style.active : ""}`} key={index}>
                 <div>
@@ -74,7 +81,7 @@ export const Card = ({
                 <div className={style.car_bot}>
                     <button
                         className={`bnt-now ${style.bnt_now}`}
-                        // disabled={index == 1}
+                        // disabled={isSubscribe}
                         type="button"
                         onClick={handleOpenModal}
                     >

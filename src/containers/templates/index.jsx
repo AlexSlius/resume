@@ -17,6 +17,8 @@ import CustomizedSlider from '../../components/uis/range';
 import { MenuButton } from '../../components/menuButton';
 import { SelectColor } from '../../components/selectColor';
 
+import { downloadPdf } from "../../controllers/resumes";
+import { downloadLetterPdf } from "../../controllers/cover/covers";
 import {
     updateActiveResumeNew,
     updateActiveResume
@@ -234,6 +236,16 @@ const Templates = ({
 
     const toggleTextSettings = () => {
         setShowSettings(!showSettings);
+    }
+
+    const handleDownload = () => {
+        if (!isCover) {
+            dispatch(downloadPdf({ id: idCv }));
+        }
+
+        if (isCover) {
+            dispatch(downloadLetterPdf({ id: idCv }));
+        }
     }
 
 
@@ -610,7 +622,7 @@ const Templates = ({
                                         icon={downloadIcon}
                                         label="Download PDF"
                                         className="btn--blue"
-                                        onHandle={chanbdegAutOrPlan}
+                                        onHandle={() => chanbdegAutOrPlan(handleDownload)}
                                     />
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (

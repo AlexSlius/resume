@@ -1,0 +1,1 @@
+export const descriptionLowPrice = 'low_price';

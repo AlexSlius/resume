@@ -17,13 +17,15 @@ import {
     deleteResume,
     fetchGetResumesList,
     fetchPostUpdateResumes,
-    postShareResume
+    postShareResume,
+    downloadPdf
 } from "../../controllers/resumes";
 import {
     deleteCover,
     fetchGetCoversList,
     fetchPostUpdateCover,
-    postShareCover
+    postShareCover,
+    downloadLetterPdf
 } from "../../controllers/cover/covers";
 import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
@@ -36,7 +38,6 @@ import { ROUTES, ROUTES_COVER } from "../../constants/routes";
 import style from "./Style.module.scss";
 
 import config from "../../config/config.json";
-
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -63,11 +64,11 @@ const Dashboard = () => {
     }
 
     const handleOnUpdateResume = async (data) => {
-        await Router.push(`${routersPages['resumeBuilder']}/${data.id}/${ROUTES['']}`);
+        await Router.push(`${routersPages['resumeBuilder']}/${data.id}/${ROUTES['']}?shareKey=${data.shareKey}`);
     }
 
     const handleOnUpdateCover = async (data) => {
-        await Router.push(`${routersPages['coverLetter']}/${data.id}/${ROUTES_COVER['']}`);
+        await Router.push(`${routersPages['coverLetter']}/${data.id}/${ROUTES_COVER['']}?shareKey=${data.shareKey}`);
     }
 
     // new add resume
@@ -123,13 +124,13 @@ const Dashboard = () => {
     }
 
     // download handle
-    const handleDownloadResume = (id) => {
-
+    const handleDownloadResume = (id, shareKey) => {
+        dispatch(downloadPdf({ id, shareKey }));
     }
 
-    const chanbdegAutOrPlanResume = (id, isDown = false) => {
+    const chanbdegAutOrPlanResume = (id, isDown = false, shareKey) => {
         handleChanbdegAutOrPlan({
-            funCalb: () => { isDown ? handleDownloadResume(id) : handleShareResume(id) },
+            funCalb: () => { isDown ? handleDownloadResume(id, shareKey) : handleShareResume(id) },
             isCover: false,
             isNewResume: false,
             isAthorized: true,
@@ -151,13 +152,13 @@ const Dashboard = () => {
     }
 
     // download handle
-    const handleDownloadCover = (id) => {
-
+    const handleDownloadCover = (id, shareKey) => {
+        dispatch(downloadLetterPdf({ id, shareKey }));
     }
 
-    const chanbdegAutOrPlanCover = (id, isDown = false) => {
+    const chanbdegAutOrPlanCover = (id, isDown = false, shareKey) => {
         handleChanbdegAutOrPlan({
-            funCalb: () => { isDown ? handleDownloadCover(id) : handleShareCover(id) },
+            funCalb: () => { isDown ? handleDownloadCover(id, shareKey) : handleShareCover(id) },
             isCover: true,
             isNewResume: false,
             isAthorized: true,
@@ -237,15 +238,15 @@ const Dashboard = () => {
                                             <CardResume
                                                 key={item.id}
                                                 id={item.id}
-                                                image="/images/other/img_resume.png"
+                                                image={!!item?.screenUrl ? item?.screenUrl : "/images/other/img_resume.png"}
                                                 label={item.cvName}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handlekeyUp={handlekeyUp}
                                                 handleBlur={handleBlur}
                                                 handleDelete={() => handleDeleteResume(item.id)}
-                                                handleShare={() => chanbdegAutOrPlanResume(item.id)}
-                                                handleDewnload={() => chanbdegAutOrPlanResume(item.id, true)}
+                                                handleShare={() => chanbdegAutOrPlanResume(item.id, false)}
+                                                handleDewnload={() => chanbdegAutOrPlanResume(item.id, true, item.shareKey)}
                                             />
                                         ))
                                     }
@@ -281,15 +282,15 @@ const Dashboard = () => {
                                             <CardResume
                                                 key={item.id}
                                                 id={item.id}
-                                                image="/images/cover/dash-cover.png"
+                                                image={!!item?.screenUrl ? item?.screenUrl : "/images/cover/dash-cover.png"}
                                                 label={item.coverName}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handlekeyUp={handlekeyUpCover}
                                                 handleBlur={handleBlurCover}
                                                 handleDelete={() => handleDeleteCover(item.id)}
-                                                handleShare={() => chanbdegAutOrPlanCover(item.id)}
-                                                handleDewnload={() => chanbdegAutOrPlanCover(item.id, true)}
+                                                handleShare={() => chanbdegAutOrPlanCover(item.id, false)}
+                                                handleDewnload={() => chanbdegAutOrPlanCover(item.id, true, item.shareKey)}
                                             />
                                         ))
                                     }

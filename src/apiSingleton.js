@@ -1,9 +1,9 @@
 import apiFactory from './api';
-import { API_URL } from './config';
+import config from './config/config.json';
 
 const api = apiFactory({
-    apiUrl  : API_URL,
-    onError : error => console.log('Connection error: ', error)
+    apiUrl: config.API_URL,
+    onError: error => console.log('Connection error: ', error)
 });
 
 export default api;

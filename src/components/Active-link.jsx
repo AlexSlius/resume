@@ -4,12 +4,10 @@ import React, { Children } from "react";
 
 const ActiveLink = ({ router, children, ...props }) => {
   const child = Children.only(children);
-
   let className = child.props.className || "";
-
   props.href = props.href.replace(/\/$/, "");
 
-  if (router.asPath.split('?')[0] == props.href) {
+  if (router.asPath.split('?')[0] == props.href.split('?')[0]) {
     className = `${className} ${props.activeClassName}`.trim();
   }
 

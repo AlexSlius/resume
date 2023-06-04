@@ -5,9 +5,8 @@ import { useRouter } from 'next/router'
 
 import Icon from "../../../components/Icon"
 import { MenuButton } from '../../menuButton';
-import { sessionStorageGet } from '../../../helpers/localStorage';
-import { contactSetNew, contactAddNew } from '../../../controllers/contacts';
-import { coverAddNew, coverSetNew } from "../../../controllers/cover/personalize";
+import { downloadPdf } from "../../../controllers/resumes";
+import { downloadLetterPdf } from "../../../controllers/cover/covers";
 import { routersPages } from "../../../constants/next-routers";
 
 import templateIcon from '/public/images/icons/selectFillNone.svg?sprite'
@@ -22,7 +21,7 @@ const ResumeFooter = ({
 }) => {
    const router = useRouter();
    const dispatch = useDispatch();
-   const { idCv } = router.query;
+   const { idCv, shareKey } = router.query;
    const isNewResume = (idCv == "new");
    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
@@ -43,7 +42,13 @@ const ResumeFooter = ({
    }
 
    const handleDownload = () => {
-      console.log("down");
+      if (!isCover) {
+         dispatch(downloadPdf({ id: idCv, shareKey: shareKey }));
+      }
+
+      if (isCover) {
+         dispatch(downloadLetterPdf({ id: idCv, shareKey: shareKey }));
+      }
    }
 
    const chanbdegAutOrPlan = (funCalb = () => { }) => {

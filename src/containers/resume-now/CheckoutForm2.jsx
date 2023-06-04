@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useStripe, CardElement, useElements } from '@stripe/react-stripe-js';
+import { striteCreateSubscription, stritePaymentIntents } from '../../strite/api';
+
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn";
 
-import { striteCreateSubscription, stritePaymentIntents } from '../../strite/api';
-import { fetchUserGetProfile } from '../../controllers/users';
+// import { addItemNotification } from "../../slices/notifications";
 
 export default function CheckoutForm({
     handleCloseModal = () => { },
     updateError = () => { },
     itemCard,
-    objForm
 }) {
     const stripe = useStripe();
     const elements = useElements();
     const dispatch = useDispatch();
+    const {
+        users: {
+            objForm
+        }
+    } = useSelector(state => state);
 
     const [errorMessage, setErrorMessage] = useState();
     const [loading, setLoading] = useState(false);
@@ -50,12 +55,14 @@ export default function CheckoutForm({
             return;
         }
 
+        let data = {
+            paymentMethod: paymentMethod.id,
+            name: objForm.username,
+            email: objForm.username,
+        }
+
         if (!!itemCard?.isOne) {
-            let resa = await stritePaymentIntents({
-                idPm: paymentMethod.id,
-                stripeUserId: objForm.stripeUserId,
-                amount: itemCard.price * 100
-            });
+            let resa = await stritePaymentIntents({ ...paymentMethod, dataAcc: data, amount: itemCard.price * 100 });
 
             if (resa?.client_secret) {
                 try {
@@ -70,12 +77,12 @@ export default function CheckoutForm({
                     } else {
                         setLoading(false);
                         handleCloseModal();
+                        // dispatch(addItemNotification({ text: "" }));
                         updateError({
                             isShow: true,
                             title: "Payment success",
                             discription: "The payment was successful",
                         });
-                        dispatch(fetchUserGetProfile());
                     }
                 } catch (error) {
                     handleError({ message: error });
@@ -85,9 +92,8 @@ export default function CheckoutForm({
         } else {
             try {
                 let resSub = await striteCreateSubscription({
-                    // idPm: paymentMethod.id,
+                    ...data,
                     priceId: itemCard.plan,
-                    stripeUserId: objForm.stripeUserId
                 });
 
                 if (resSub?.id) {
@@ -98,7 +104,7 @@ export default function CheckoutForm({
                         title: "Payment success",
                         discription: "The payment was successful",
                     });
-                    dispatch(fetchUserGetProfile());
+                    // dispatch(addItemNotification({ text: "The subscription is completed" }));
                 }
             } catch (error) {
                 setLoading(false);

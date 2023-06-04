@@ -39,6 +39,7 @@ export const ButtonSteps = ({
 
     const isAll = isAllActive(list);
     const idCv = router.query.idCv;
+    const shareKey = router.query?.shareKey;
 
     const clickNext = () => {
         if (isNew) {
@@ -50,7 +51,7 @@ export const ButtonSteps = ({
                 let linkNext = nextofLink(list, pathName);
 
                 if (!!linkNext)
-                    Router.push(`/${routersPages['resumeBuilder']}/${idCv}${linkNext}`);
+                    Router.push(`/${routersPages['resumeBuilder']}/${idCv}${linkNext}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
             } else {
                 onHandleBtnNext();
             }

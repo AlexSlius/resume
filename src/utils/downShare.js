@@ -33,9 +33,9 @@ export const handleChanbdegAutOrPlan = async ({
             }
         } else {
             // autoraizovan
-            Router.push(`/${routersPages['resumeNow']}`);
+            // Router.push(`/${routersPages['resumeNow']}`);
             // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            // funCalb();
+            funCalb();
         }
     } else {
         // cover
@@ -52,9 +52,9 @@ export const handleChanbdegAutOrPlan = async ({
             }
         } else {
             // autoraizovan
-            Router.push(`/${routersPages['resumeNow']}`);
+            // Router.push(`/${routersPages['resumeNow']}`);
             // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            // funCalb();
+            funCalb();
         }
     }
 }

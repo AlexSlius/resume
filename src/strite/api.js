@@ -1,6 +1,7 @@
 import fetch from "isomorphic-unfetch";
 
 import config from "../config/config.json";
+import { descriptionLowPrice } from "../constants/stripte";
 
 import Stripe from 'stripe'
 
@@ -42,23 +43,14 @@ export const striteApiGetPlans = async (idProduct) => {
 
 export const striteCreateSubscription = async (data) => {
     try {
-        const customer = await stripe.customers.create({
-            name: data.name,
-            email: data.email,
-            payment_method: data.paymentMethod,
-            invoice_settings: {
-                default_payment_method: data.paymentMethod,
-            },
-        });
-
         const priceId = data.priceId;
 
         const subscription = await stripe.subscriptions.create({
-            customer: customer.id,
+            customer: data.stripeUserId,
             items: [{ price: priceId }],
-            payment_settings: {
-                payment_method_types: ['card'],
-            },
+            payment_behavior: 'default_incomplete',
+            payment_settings: { save_default_payment_method: 'on_subscription' },
+            expand: ['latest_invoice.payment_intent'],
         });
 
         return subscription;
@@ -69,17 +61,6 @@ export const striteCreateSubscription = async (data) => {
 
 export const stritePaymentIntents = async (data) => {
     try {
-        let { name, email, paymentMethod } = data.dataAcc;
-
-        const customer = await stripe.customers.create({
-            name: name,
-            email: email,
-            payment_method: paymentMethod,
-            invoice_settings: {
-                default_payment_method: paymentMethod,
-            },
-        });
-
         let res = await fetch(`${config.STRITE_API_URL}v1/payment_intents`, {
             method: "post",
             headers: {
@@ -87,10 +68,11 @@ export const stritePaymentIntents = async (data) => {
                 "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
             },
             body: new URLSearchParams({
-                'payment_method': data?.id,
+                'payment_method': data?.idPm,
                 'amount': data?.amount,
                 'currency': 'usd',
-                'customer': customer.id,
+                'customer': data.stripeUserId,
+                'description': descriptionLowPrice,
             })
         })
 

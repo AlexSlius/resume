@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 import { camelToSnake } from '../helpers/caseConverters';
+import { isActiveSubscribe } from '../strite/subscribe';
 
 export const fetchUserGetAvatar = createAsyncThunk('users/fetchUserGetAvatar', async () => {
     const response = await api.users.getUserAvatar();
@@ -10,7 +11,9 @@ export const fetchUserGetAvatar = createAsyncThunk('users/fetchUserGetAvatar', a
 
 export const fetchUserGetProfile = createAsyncThunk('users/fetchUserGetProfile', async () => {
     const response = await api.users.getUserProgile();
-    return response;
+    let isSubscribe = isActiveSubscribe(response);
+
+    return { user: response, isSubscribe };
 });
 
 export const fetchUserDeleteProfile = createAsyncThunk('users/fetchUserDeleteProfile', async (_, thunkAPI) => {

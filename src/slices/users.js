@@ -25,6 +25,7 @@ const initialState = {
         firstName: "",
         lastName: "",
     },
+    isSubscribe: false,
     avatar: null,
     status: statusLoaded,
     statusAvatar: statusLoaded,
@@ -71,7 +72,8 @@ export const slice = createSlice({
             state.status = statusLoader;
         },
         [fetchUserGetProfile.fulfilled]: (state, action) => {
-            state.objForm = action.payload;
+            state.objForm = action.payload.user;
+            state.isSubscribe = action.payload.isSubscribe;
             state.status = statusLoaded;
         },
         //get settings

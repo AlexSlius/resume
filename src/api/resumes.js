@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     deleteResume(id) {
         return this.apiClient.delete(`cv/${id}/remove/`);
     }
+    screenResume(id, key) {
+        return this.apiClient.get(`share/cv_screen/${id}/${key}`);
+    }
 }
