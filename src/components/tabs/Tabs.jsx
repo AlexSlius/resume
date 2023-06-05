@@ -14,8 +14,9 @@ export const Tabs = ({
     const handleOnClick = (dTab) => {
         Router.push({
             pathname: `${router.route}`,
-            query: { tab: dTab.link },
+            query: { tab: dTab.link,  },
         })
+        
     }
 
     return (

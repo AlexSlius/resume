@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 import { StepOne } from "./StepOne";
 import { StepTwo } from "./StepTwo";
@@ -56,7 +56,7 @@ const FormExperience = ({
         },
     } = storeDate;
 
-    const { step } = router.query;
+    const { step, shareKey } = router.query;
 
     const handleUpdateField = async ({ name, value, step = null }) => {
         await dispatch(updateItemField({ name, value }));
@@ -74,7 +74,7 @@ const FormExperience = ({
     const handleClicQuery = async (queryStep) => {
         await Router.push({
             pathname: `/${routersPages['coverLetter']}/${idCv}/${ROUTES_COVER['experience']}`,
-            query: { step: queryStep },
+            query: { step: queryStep, ...((shareKey?.length > 0) ? { shareKey: shareKey } : {}) },
         });
     }
 
@@ -88,7 +88,7 @@ const FormExperience = ({
             clearTimeout(refIdTimeout.current);
         }, 300);
     }
- 
+
     return (
         <div>
             {

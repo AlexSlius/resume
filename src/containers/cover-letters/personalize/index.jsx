@@ -29,6 +29,7 @@ const Contact = () => {
     const states = useSelector((state) => state);
     const router = useRouter();
     const idCv = router.query.idCv;
+    const shareKey = router.query?.shareKey;
 
     const {
         coverDataForm: {
@@ -57,6 +58,7 @@ const Contact = () => {
                 dispatch={dispatch}
                 storeDate={states}
                 idCv={idCv}
+                shareKey={shareKey}
             />
         </>
     )

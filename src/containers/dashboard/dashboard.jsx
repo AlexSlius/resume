@@ -203,6 +203,16 @@ const Dashboard = () => {
         if (type == "cover") {
             dispatch(fetchGetCoversList());
         }
+
+        setTimeout(() => {
+            if (type == "resume") {
+                dispatch(fetchGetResumesList());
+            }
+
+            if (type == "cover") {
+                dispatch(fetchGetCoversList());
+            }
+        }, 2000);
     }, [router.query.tab]);
 
     return (

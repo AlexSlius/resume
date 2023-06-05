@@ -46,12 +46,12 @@ export const slice = createSlice({
         },
     },
     extraReducers: {
-        [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                ...action.payload.users,
-            }
-        },
+        // [HYDRATE]: (state, action) => {
+        //     return {
+        //         ...state,
+        //         ...action.payload.users,
+        //     }
+        // },
         // get avatar
         [fetchUserGetAvatar.pending]: (state, action) => {
             state.statusAvatar = statusLoader;

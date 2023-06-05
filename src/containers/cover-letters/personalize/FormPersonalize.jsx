@@ -46,6 +46,7 @@ const FormPersonalize = ({
     dispatch,
     storeDate,
     idCv,
+    shareKey,
 }) => {
     const refIdTimeout = useRef(undefined);
     const [idCountry, setIdCountry] = useState(undefined);
@@ -54,6 +55,9 @@ const FormPersonalize = ({
     const {
         coverDataForm: {
             coverDataObj,
+            coverDataObj: {
+                lastPosition
+            },
             coverDataObjNew,
             emailRegister,
             isErrorEmail,
@@ -117,7 +121,7 @@ const FormPersonalize = ({
         if (isNew) {
             await dispatch(coverAddNew());
         } else {
-            Router.push(`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}`);
+            Router.push(`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}?step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
         }
     }
 
