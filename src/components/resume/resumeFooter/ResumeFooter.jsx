@@ -31,6 +31,9 @@ const ResumeFooter = ({
             isAthorized,
          }
       },
+      users: {
+         isSubscribe
+      }
    } = useSelector((state) => state);
 
    const handleRouter = () => {
@@ -61,6 +64,7 @@ const ResumeFooter = ({
          Router,
          query: router.query,
          isClickBtn: true,
+         isSubscribe,
       });
    }
 

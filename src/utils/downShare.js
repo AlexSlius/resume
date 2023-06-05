@@ -15,6 +15,7 @@ export const handleChanbdegAutOrPlan = async ({
     funCalb = () => { },
     link = undefined,
     isClickBtn = false,
+    isSubscribe = false,
 }) => {
     if (!isCover) {
         // resume
@@ -33,9 +34,15 @@ export const handleChanbdegAutOrPlan = async ({
             }
         } else {
             // autoraizovan
-            // Router.push(`/${routersPages['resumeNow']}`);
             // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            funCalb();
+
+            if (isSubscribe) {
+                funCalb();
+            }
+
+            if (!isSubscribe) {
+                Router.push(`/${routersPages['resumeNow']}`);
+            }
         }
     } else {
         // cover
@@ -52,9 +59,14 @@ export const handleChanbdegAutOrPlan = async ({
             }
         } else {
             // autoraizovan
-            // Router.push(`/${routersPages['resumeNow']}`);
             // здесь делать проверку подписку если подписка есть то выполняется функция funCalb
-            funCalb();
+            if (isSubscribe) {
+                funCalb();
+            }
+
+            if (!isSubscribe) {
+                Router.push(`/${routersPages['resumeNow']}`);
+            }
         }
     }
 }

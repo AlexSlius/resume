@@ -84,7 +84,7 @@ export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', a
 
 export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
-    return response;
+    return response || null;
 });
 
 export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterById', async ({ idCv, isClean = false }, thunkAPI) => {
@@ -111,6 +111,7 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
 
 export const getCoverDataShare = createAsyncThunk('resumeData/getCoverDataShare', async ({ idCv, key }) => {
     const response = await api.personalize.getCoverDataShare(idCv, key);
+
     return response;
 });
 

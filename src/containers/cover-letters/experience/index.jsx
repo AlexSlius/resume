@@ -103,7 +103,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={arrStep[step].value * 6.25}
+                interest={(arrStep[step]?.value || 1) * 6.25}
                 icon={employmentIcon}
             />
             <FormExperience

@@ -50,6 +50,9 @@ const Dashboard = () => {
         covers,
         theme: {
             currentResolution
+        },
+        users: {
+            isSubscribe
         }
     } = useSelector(state => state);
     let type = "resume";
@@ -137,6 +140,7 @@ const Dashboard = () => {
             dispatch,
             Router,
             query: router.query,
+            isSubscribe
         });
     }
 
@@ -165,6 +169,7 @@ const Dashboard = () => {
             dispatch,
             Router,
             query: router.query,
+            isSubscribe
         });
     }
 
@@ -198,7 +203,6 @@ const Dashboard = () => {
         if (type == "cover") {
             dispatch(fetchGetCoversList());
         }
-
     }, [router.query.tab]);
 
     return (

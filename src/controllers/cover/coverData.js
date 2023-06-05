@@ -30,10 +30,10 @@ export const setUpdateCoverDataActive = createAsyncThunk('resumeData/setUpdateCo
 
 export const getCoverDataActive = createAsyncThunk('resumeData/getCoverDataActive', async ({ idCv }) => {
     const response = await api.coverData.getCoverDataActive(idCv);
-    return response;
+    return response || null;
 });
 
 export const getCoverShareTemplateActive = createAsyncThunk('resumeData/getCoverShareTemplateActive', async ({ idCv }) => {
     const response = await api.coverData.getCoverShareTemplateActive(idCv);
-    return response;
+    return response || null;
 });

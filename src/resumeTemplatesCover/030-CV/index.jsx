@@ -102,7 +102,7 @@ export const CoverCv030 = ({
                                 <h3 className="letter-heading font-size-4 cv-letter-heading line-height-8">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
                                 {
                                     !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
-                                        <p className="letter-text cv-letter-text font-size-1 line-height-3" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
+                                        <div className="letter-text cv-letter-text font-size-1 line-height-3" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                     )
                                 }
                             </div>

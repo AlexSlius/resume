@@ -27,7 +27,7 @@ export const CoverCv004 = ({
         if (typeof window != "undefined") {
             let letter_current_page_number = 1;
 
-             $('.cv-body-visible').remove();
+            $('.cv-body-visible').remove();
 
             // Reccomendation letter
             function rebuildingPages2() {
@@ -98,7 +98,7 @@ export const CoverCv004 = ({
                                     <h3 className="first-line cv-letter-heading additional-color-1-text font-size-3 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
                                     {
                                         !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
-                                            <p className="cv-letter-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></p>
+                                            <div className="cv-letter-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                         )
                                     }
                                 </div>

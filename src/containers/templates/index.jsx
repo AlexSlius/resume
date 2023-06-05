@@ -81,6 +81,9 @@ const Templates = ({
         theme: {
             currentResolution
         },
+        users: {
+            isSubscribe
+        },
         resumeData,
         coverData,
         coverDataForm,
@@ -258,6 +261,7 @@ const Templates = ({
             dispatch,
             Router,
             query: router.query,
+            isSubscribe
         });
     }
 
@@ -517,7 +521,7 @@ const Templates = ({
                                             reportTemplateRef={reportTemplateRef}
                                             isNewResume={isNewResume}
                                             resumeData={dataOther}
-                                            data={isNewResume ? dataCoverLetterTemplate : { ...coverDataForm.coverDataObj, coverGenerateDate: coverDataForm.coverGenerateDate }}
+                                            data={isNewResume ? dataCoverLetterTemplate : { ...(coverDataForm?.coverDataObj ? coverDataForm.coverDataObj : {}), coverGenerateDate: coverDataForm.coverGenerateDate }}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
                                         />

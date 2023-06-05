@@ -20,7 +20,6 @@ import { routersPages } from "../../constants/next-routers";
 
 import style from './SideBar.module.scss'
 
-
 const MenuSidebarCoverLetters = () => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -42,7 +41,6 @@ const MenuSidebarCoverLetters = () => {
     } = useSelector(state => state);
     const idCv = router.query.idCv;
     const shareKey = router.query?.shareKey;
-    let dopQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`;
     const isNewResume = (idCv == "new");
 
     const handleClick = (e, link) => {
@@ -88,16 +86,17 @@ const MenuSidebarCoverLetters = () => {
                             activeClassActives = style.link_current;
                         }
 
-                        if (obj?.key == 'experience' && !isNewResume) {
-
-                            linkQuery = `?step=${lastPosition || undefined}`
+                        if (obj?.key == 'experience' && !isNewResume && !!(lastPosition?.length > 0)) {
+                            linkQuery = `?step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
                             activeClassActives = style.link_current;
+                        } else {
+                            linkQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`
                         }
 
                         return (
                             <CNavItem key={index}>
-                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}${dopQuery}`} activeClassName={style.active}>
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${linkQuery}${dopQuery}`)}>
+                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${linkQuery}`)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>

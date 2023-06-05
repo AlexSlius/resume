@@ -129,19 +129,19 @@ export const slice = createSlice({
         },
         // getCoverDataShare show
         [getCoverDataShare.pending]: (state) => {
-            state.coverDataObj = initialState.coverDataObj;
-            state.coverGenerateDate = initialState.coverGenerateDate;
+            // state.coverDataObj = initialState.coverDataObj;
+            // state.coverGenerateDate = initialState.coverGenerateDate;
             state.status = statusLoader;
         },
         [getCoverDataShare.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            state.coverDataObj = action.payload.data;
-            state.coverGenerateDate = action.payload.cover_letter;
+            state.coverDataObj = action?.payload.data || initialState.coverDataObj;
+            state.coverGenerateDate = action?.payload?.cover_letter || null;
         },
         // get
         [getCoverLetterById.pending]: (state) => {
-            state.coverDataObj = initialState.coverDataObj;
-            state.coverGenerateDate = initialState.coverGenerateDate;
+            // state.coverDataObj = initialState.coverDataObj;
+            // state.coverGenerateDate = initialState.coverGenerateDate;
             state.status = statusLoader;
         },
         [getCoverLetterById.fulfilled]: (state, action) => {
