@@ -29,29 +29,45 @@ export const CoverCv002 = ({
 
             $('.cv-body-visible').remove();
 
-            // Reccomendation letter
             function rebuildingPages2() {
-                let cv_letter_heading = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter .cv-letter-heading').clone();
+                letter_current_page_number = 1;
+                let cv_letter_heading = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').clone();
 
                 getCvLetterContainer().append(cv_letter_heading);
 
-                let original_cv_letter_text = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text');
-                getCvLetterContainer().append(cv_letter_text);
+                let cv_letter_text_height = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').height();
 
-                let text1 = getCvLetterContainer().find('.cv-letter-text');
-
-                if (getPageContainer2().height() > getPageContainer2().parent().height()) {
-                    do {
-                        text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                let cv_letter_text_lines = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').html().split("\n");
+                let cv_letter_line_height = cv_letter_text_height / cv_letter_text_lines.length;
+                let text_first_part_max_height = getCvLetterContainer().innerHeight() - getCvLetterContainer().find(cv_letter_heading).outerHeight(true);
+                let text_first_part_lines = 0;
+                for (let l = 1; l <= cv_letter_text_lines.length; l++) {
+                    if ((cv_letter_line_height * l) > (text_first_part_max_height - 40)) {
+                        text_first_part_lines = l - 1;
+                        break;
+                    } else {
+                        text_first_part_lines = l;
                     }
-                    while (getPageContainer2().height() > getPageContainer2().parent().height());
-
-                    letter_current_page_number++;
-                    getCvLetterContainer().append(original_cv_letter_text.clone());
-                    let text2 = getCvLetterContainer().find('.cv-letter-text');
-                    text2.html(text2.html().substring(text1.html().length));
                 }
+
+                let cv_letter_text_part_1 = "";
+                let cv_letter_text_part_2 = "";
+                for (let l = 0; l < cv_letter_text_lines.length; l++) {
+
+                    if (l <= text_first_part_lines) {
+                        cv_letter_text_part_1 += cv_letter_text_lines[l];
+                    } else {
+                        cv_letter_text_part_2 += cv_letter_text_lines[l];
+                    }
+                }
+
+                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_1));
+                if (cv_letter_text_part_2) {
+                    letter_current_page_number++;
+                }
+
+                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_2));
             }
 
             function getCvLetterContainer() {
@@ -87,11 +103,11 @@ export const CoverCv002 = ({
     return (
         <div className="sv_002 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
-                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume page-2">
+                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume">
                     <div className="cv-body-content">
                         {
                             (!!firstName || !!lastName) && (
-                                <div className="cv-body-area area-1 ">
+                                <div className="cv-body-area area-1">
                                     <div className="column-left">
                                         <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">
                                             {!!firstName && (firstName)}{` `}
@@ -104,11 +120,11 @@ export const CoverCv002 = ({
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
-                                {
-                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
-                                        <div className="cv-text cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
-                                    )
-                                }
+                                {/* {
+                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && ( */}
+                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                {/* )
+                                } */}
                             </div>
                             <div className="separator"></div>
                             {

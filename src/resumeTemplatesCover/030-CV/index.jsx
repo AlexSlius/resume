@@ -100,11 +100,11 @@ export const CoverCv030 = ({
                             </svg>
                             <div className="letter-block">
                                 <h3 className="letter-heading font-size-4 cv-letter-heading line-height-8">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
-                                {
-                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
+                                {/* {
+                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && ( */}
                                         <div className="letter-text cv-letter-text font-size-1 line-height-3" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
-                                    )
-                                }
+                                    {/* )
+                                } */}
                             </div>
                         </div>
                         <div className="bottom-area">

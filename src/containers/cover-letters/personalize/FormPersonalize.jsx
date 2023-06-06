@@ -119,7 +119,7 @@ const FormPersonalize = ({
 
     const addNewCoverAutorization = async () => {
         if (isNew) {
-            await dispatch(coverAddNew());
+            await dispatch(coverAddNew({}));
         } else {
             Router.push(`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}?step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
         }

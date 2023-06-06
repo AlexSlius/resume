@@ -9,7 +9,7 @@ export const isActiveSubscribe = (objForm) => {
     if (!isArray(arrCard) || !objForm?.id)
         return false;
 
-    if (!(!isArray(objForm?.subscriptions) && objForm?.subscriptions?.length > 0) && !(isArray(objForm?.payments) && objForm?.payments?.length > 0))
+    if (!(isArray(objForm?.subscriptions) && objForm?.subscriptions?.length > 0) && !(isArray(objForm?.payments) && objForm?.payments?.length > 0))
         return false;
 
     for (let i = 0; i < arrCard.length; i++) {
@@ -25,6 +25,8 @@ export const isActiveSubscribe = (objForm) => {
         // проверка подписок
         if (isArray(objForm.subscriptions) && objForm.subscriptions?.length > 0) {
             let isSub = false;
+
+            console.log("22222");
 
             for (let p = 0; p < objForm.subscriptions.length; p++) {
                 let subscription = objForm.subscriptions[p];

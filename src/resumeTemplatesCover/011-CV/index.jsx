@@ -96,11 +96,11 @@ export const CoverCv011 = ({
                             </div>
                             <div class="letter-block">
                                 <h2 className="block-heading letter-heading cv-letter-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
-                                {
-                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && (
+                                {/* {
+                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && ( */}
                                         <div className="letter-text  cv-letter-text font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
-                                    )
-                                }
+                                    {/* )
+                                } */}
                             </div>
                         </div>
                         <div class="column-right">

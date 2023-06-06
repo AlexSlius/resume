@@ -16,6 +16,7 @@ import { cleanSliseNew } from "../slices/contact";
 import { cleanCoverNewForm } from "../slices/cover/coverDataForm";
 import { addItemNotification } from "../slices/notifications";
 
+
 export const logout = async (dispatch) => {
     await cookieDestroy({ key: 'token' });
     await localStorageRemove('session_id');
@@ -116,6 +117,8 @@ export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', 
     if (response?.token?.length > 0) {
         Router.push(`/${routersPages['dashboard']}`);
         cookieSet({ key: 'token', data: response.token });
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
         return {};
     }
 
@@ -139,6 +142,8 @@ export const loginFormCode = createAsyncThunk('fetch/loginFormCode', async ({ da
         Router.push(`/${routersPages['dashboard']}`);
         cookieSet({ key: 'token', data: response.token });
         setState(prev => ({ ...prev, text: '' }));
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
         return {};
     }
 
@@ -190,13 +195,16 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             response
         }));
 
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
+
         return { id: reseAut?.payload.id };
     }
 
     if (response?.code) {
         // это если существующий пользователь то приходит код 
         // вызывать модалку дла ввода кода
-        thunkAPI.dispatch(updateFieldsModalAuth({
+        await thunkAPI.dispatch(updateFieldsModalAuth({
             show: true,
             isClickBtn: isClickBtn,
             linkRedirect: linkRedirect,
@@ -204,6 +212,9 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             email: data.email,
             id_session: resSession?.payload?.session_id
         }));
+
+        await thunkAPI.dispatch(fetchUserGetAvatar());
+        await thunkAPI.dispatch(fetchUserGetProfile());
 
         return { id: undefined };
     }
@@ -216,7 +227,7 @@ export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async
     const response = await api.auth.autorizeAuth({ code, email, id_session });
 
     if (response?.status != "autorized") {
-       thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));
+        thunkAPI.dispatch(addItemNotification({ text: response.status, type: 'err' }));
         return { status: false };
     }
 
