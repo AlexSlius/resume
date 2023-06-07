@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import { isCheckDescriptionByDataCover } from "../../utils/isChecjDescriptionByData";
-
 export const CoverCv007 = ({
     data,
     idCv,
@@ -137,11 +135,7 @@ export const CoverCv007 = ({
                             <div className="letter-wrapper additional-color-2-background">
                                 <div className="black-line main-color-1-background"></div>
                                 <h2 className="cv-heading  cv-letter-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
-                                {/* {
-                                    !!data?.coverGenerateDate && isCheckDescriptionByDataCover(data) && ( */}
-                                        <div className="font-size-1 cv-letter-text line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
-                                    {/* )
-                                } */}
+                                <div className="font-size-1 cv-letter-text line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>
                     </div>
