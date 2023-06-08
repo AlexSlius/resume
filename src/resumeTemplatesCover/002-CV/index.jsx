@@ -1,54 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
-function magic(el) {
-    let textClone = el.text();
-    let widthContent = el.width();
-    let heightContent = el.height();
-    let createDiv = el.append('<span>');
-    let content = textClone.split(' ');
+function textMagic(text, ref) {
+    if (!ref.current || !(text.length > 0))
+        return text;
 
-    console.log("content: ", content);
+    let isAlert = ref.current.querySelector('.alert_line');
 
-    let arrT = [];
+    if (isAlert)
+        isAlert.remove();
 
-    console.log("createDiv: ", createDiv.width());
+    let lines = [];
+    let dW = ref.current.clientWidth;
+    let content = text.split(' ');
+    let div = document.createElement('div');
+    div.className = "alert_line";
+    ref.current.append(div);
 
-    // for (let i = 0; i < content.length; i++) {
-    //     let word = content[i];
+    let diwAlert = ref.current.querySelector('.alert_line');
 
-    //     if() {
+    for (let i = 0; i < content.length; i++) {
+        let item = content[i];
 
-    //     }
-    // }
+        if (diwAlert.clientWidth <= dW) {
+            diwAlert.innerHTML = diwAlert.innerHTML += `${item} `;
+        } else {
+            i -= 2;
+            let tex = diwAlert.innerHTML;
+            let arText = tex.split(' ');
+            let arLeng = arText.length;
+            let textString = arText.splice(0, arLeng - 2).join(' ');
+            lines.push(`<div>${textString}</div>\n`);
+            diwAlert.innerHTML = '';
+        }
+    }
 
+    diwAlert.remove();
 
-    // let tmp = document.createElement('p')
-    // tmp = el.cloneNode(true)
-
-    // tmp.innerHTML = 'foo'
-    // document.body.appendChild(tmp)
-
-    // let content = el.textContent.split(''),
-    //     oneLineHeight = tmp.scrollHeight,
-    //     lines = [],
-    //     i = 0
-
-    // while (i < content.length) {
-    //     let line = tmp.innerHTML = ''
-
-    //     while (i < content.length && tmp.scrollHeight <= oneLineHeight) {
-    //         tmp.innerHTML = line += content[i++]
-    //     }
-
-    //     let lineEndIndex = i === content.length ? i : line.lastIndexOf(' ') + 1
-    //     lines.push(content.splice(0, lineEndIndex).join(''))
-    //     i = 0
-    // }
-
-    // tmp.remove()
-    // el.innerHTML = lines.map(line => '<span>' + line + '</span>').join('')
+    return lines.map(line => line).join(' ');
 }
-
 
 export const CoverCv002 = ({
     data,
@@ -56,6 +45,7 @@ export const CoverCv002 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
+    const refText = useRef();
     const {
         firstName,
         lastName,
@@ -87,44 +77,43 @@ export const CoverCv002 = ({
                 // получает высоту блока текста
                 let cv_letter_text_height = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').height();
                 // получает сам текст и разбивает по переносу строки "абзац"
-                let cv_letter_text_lines = $('#cv-body-2 .cv-body-area.area-2 .column-left #cv-letter-text');
+                let cv_letter_text_lines = $('#cv-body-2 .cv-body-area.area-2 .column-left #cv-letter-text').html().split("\n");
 
-                magic(cv_letter_text_lines);
 
-                // // делит высоту на количество строк
-                // let cv_letter_line_height = cv_letter_text_height / cv_letter_text_lines.length;
+                // делит высоту на количество строк
+                let cv_letter_line_height = cv_letter_text_height / cv_letter_text_lines.length;
 
-                // let text_first_part_max_height = getCvLetterContainer().innerHeight() - getCvLetterContainer().find(cv_letter_heading).outerHeight(true);
+                let text_first_part_max_height = getCvLetterContainer().innerHeight() - getCvLetterContainer().find(cv_letter_heading).outerHeight(true);
 
-                // let text_first_part_lines = 0;
+                let text_first_part_lines = 0;
 
-                // for (let l = 1; l <= cv_letter_text_lines.length; l++) {
-                //     if ((cv_letter_line_height * l) > (text_first_part_max_height - 40)) {
-                //         text_first_part_lines = l - 1;
-                //         break;
-                //     } else {
-                //         text_first_part_lines = l;
-                //     }
-                // }
+                for (let l = 1; l <= cv_letter_text_lines.length; l++) {
+                    if ((cv_letter_line_height * l) > (text_first_part_max_height - 40)) {
+                        text_first_part_lines = l - 1;
+                        break;
+                    } else {
+                        text_first_part_lines = l;
+                    }
+                }
 
-                // let cv_letter_text_part_1 = "";
-                // let cv_letter_text_part_2 = "";
+                let cv_letter_text_part_1 = "";
+                let cv_letter_text_part_2 = "";
 
-                // for (let l = 0; l < cv_letter_text_lines.length; l++) {
+                for (let l = 0; l < cv_letter_text_lines.length; l++) {
 
-                //     if (l <= text_first_part_lines) {
-                //         cv_letter_text_part_1 += cv_letter_text_lines[l];
-                //     } else {
-                //         cv_letter_text_part_2 += cv_letter_text_lines[l];
-                //     }
-                // }
+                    if (l <= text_first_part_lines) {
+                        cv_letter_text_part_1 += cv_letter_text_lines[l];
+                    } else {
+                        cv_letter_text_part_2 += cv_letter_text_lines[l];
+                    }
+                }
 
-                // getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_1));
-                // if (cv_letter_text_part_2) {
-                //     letter_current_page_number++;
-                // }
+                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_1));
+                if (cv_letter_text_part_2) {
+                    letter_current_page_number++;
+                }
 
-                // getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_2));
+                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_2));
             }
 
             function getCvLetterContainer() {
@@ -158,7 +147,7 @@ export const CoverCv002 = ({
 
             rebuildingPages2();
         }
-    }, []); //data, stateClasses
+    }, [data, stateClasses]);
 
     return (
         <div className="sv_002 template-wrapper" ref={reportTemplateRef}>
@@ -180,7 +169,7 @@ export const CoverCv002 = ({
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
-                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" ref={refText} dangerouslySetInnerHTML={{ __html: textMagic(data.coverGenerateDate, refText) }}></div>
                             </div>
                             <div className="separator"></div>
                             {
