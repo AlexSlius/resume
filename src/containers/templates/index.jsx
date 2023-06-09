@@ -17,8 +17,9 @@ import CustomizedSlider from '../../components/uis/range';
 import { MenuButton } from '../../components/menuButton';
 import { SelectColor } from '../../components/selectColor';
 
-import { downloadPdf } from "../../controllers/resumes";
-import { downloadLetterPdf } from "../../controllers/cover/covers";
+import { downloadPdf, getScreenResume } from "../../controllers/resumes";
+import { downloadLetterPdf, getScreenCover } from "../../controllers/cover/covers";
+
 import {
     updateActiveResumeNew,
     updateActiveResume
@@ -251,7 +252,6 @@ const Templates = ({
         }
     }
 
-
     const chanbdegAutOrPlan = (funCalb = () => { }) => {
         handleChanbdegAutOrPlan({
             funCalb,
@@ -304,18 +304,26 @@ const Templates = ({
         if (!isPageView) {
             if (typeof window != "undefined") {
                 if (!!reportTemplateRef.current) {
-                    let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                    function start() {
+                        let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
 
-                    devPages.forEach(element => {
-                        element.classList.add("none");
-                    });
+                        devPages.forEach(element => {
+                            element.classList.add("none");
+                        });
 
-                    let currentPage = devPages[pagePagCurrent - 1];
+                        let currentPage = devPages[pagePagCurrent - 1];
 
-                    if (!!currentPage) {
-                        currentPage.classList.remove("none");
-                        currentPage.classList.add("active");
+                        if (!!currentPage) {
+                            currentPage.classList.remove("none");
+                            currentPage.classList.add("active");
+                        }
                     }
+
+                    start();
+
+                    setTimeout(() => {
+                        start();
+                    }, 1000);
                 }
             }
         }
@@ -381,6 +389,22 @@ const Templates = ({
 
             return () => {
                 !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);
+            }
+        }
+
+        return () => {
+            let idR = router?.query?.idCv;
+            let shareKey = router?.query?.shareKey;
+            let path = router?.asPath;
+
+            if (idR != "new") {
+                if (!!path.includes(routersPages['resumeBuilder'])) {
+                    dispatch(getScreenResume({ id: idR, shareKey }));
+                }
+
+                if (!!path.includes(routersPages['coverLetter'])) {
+                    dispatch(getScreenCover({ id: idR, shareKey }));
+                }
             }
         }
     }, []);

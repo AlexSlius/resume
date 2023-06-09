@@ -212,7 +212,7 @@ const Dashboard = () => {
             if (type == "cover") {
                 dispatch(fetchGetCoversList());
             }
-        }, 2000);
+        }, 1000);
     }, [router.query.tab]);
 
     return (

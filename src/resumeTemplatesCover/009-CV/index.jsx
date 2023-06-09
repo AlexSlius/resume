@@ -110,7 +110,7 @@ export const CoverCv009 = ({
                                 </div>
                             </div>
                         </div>
-                        <div class="cv-body-area bottom-gap-area main-color-3-background"></div>
+                        <div className="cv-body-area bottom-gap-area main-color-3-background"></div>
                         <div className="cv-body-area bottom-area">
                             <div className="bg-image-container">
                                 <Icon svg={imgBg} classNames={["additional-color-2-svg-path"]} />

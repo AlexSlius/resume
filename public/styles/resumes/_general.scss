@@ -118,7 +118,15 @@
   height: 764px !important;
   position: relative !important;
   overflow: hidden !important;
-  box-sizing: border-box!important;
+  box-sizing: border-box !important;
+}
+
+.page-templates__right {
+  .cv-body {
+    min-height: 842px !important;
+    max-height: 842px !important;
+    height: 842px !important;
+  }
 }
 
 .alert_line {

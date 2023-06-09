@@ -40,8 +40,6 @@ export const focusFieldInputClassName = (className = '') => {
 
         let value = el?.value;
 
-        console.log(elWr, el)
-
         if ((value?.length == 0 || value === null || value === undefined)) {
             elWr.click();
         }

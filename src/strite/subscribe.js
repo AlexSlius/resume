@@ -22,6 +22,11 @@ export const isActiveSubscribe = (objForm) => {
             }
         }
 
+        // если unlimited == Y - это полная покупка
+        if (!!objForm?.unlimited == "Y") {
+            return true;
+        }
+
         // проверка подписок
         if (isArray(objForm.subscriptions) && objForm.subscriptions?.length > 0) {
             let isSub = false;

@@ -1,43 +1,4 @@
-import React, { useEffect, useRef } from "react";
-
-function textMagic(text, ref) {
-    if (!ref.current || !(text.length > 0))
-        return text;
-
-    let isAlert = ref.current.querySelector('.alert_line');
-
-    if (isAlert)
-        isAlert.remove();
-
-    let lines = [];
-    let dW = ref.current.clientWidth;
-    let content = text.split(' ');
-    let div = document.createElement('div');
-    div.className = "alert_line";
-    ref.current.append(div);
-
-    let diwAlert = ref.current.querySelector('.alert_line');
-
-    for (let i = 0; i < content.length; i++) {
-        let item = content[i];
-
-        if (diwAlert.clientWidth <= dW) {
-            diwAlert.innerHTML = diwAlert.innerHTML += `${item} `;
-        } else {
-            i -= 2;
-            let tex = diwAlert.innerHTML;
-            let arText = tex.split(' ');
-            let arLeng = arText.length;
-            let textString = arText.splice(0, arLeng - 2).join(' ');
-            lines.push(`<div>${textString}</div>\n`);
-            diwAlert.innerHTML = '';
-        }
-    }
-
-    diwAlert.remove();
-
-    return lines.map(line => line).join(' ');
-}
+import React, { useEffect } from "react";
 
 export const CoverCv002 = ({
     data,
@@ -45,7 +6,6 @@ export const CoverCv002 = ({
     stateClasses,
     reportTemplateRef,
 }) => {
-    const refText = useRef();
     const {
         firstName,
         lastName,
@@ -169,7 +129,7 @@ export const CoverCv002 = ({
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
-                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" ref={refText} dangerouslySetInnerHTML={{ __html: textMagic(data.coverGenerateDate, refText) }}></div>
+                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                             <div className="separator"></div>
                             {
