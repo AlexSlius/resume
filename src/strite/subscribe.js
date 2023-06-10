@@ -9,9 +9,6 @@ export const isActiveSubscribe = (objForm) => {
     if (!isArray(arrCard) || !objForm?.id)
         return false;
 
-    if (!(isArray(objForm?.subscriptions) && objForm?.subscriptions?.length > 0) && !(isArray(objForm?.payments) && objForm?.payments?.length > 0))
-        return false;
-
     for (let i = 0; i < arrCard.length; i++) {
         let dataCard = arrCard[i];
 
