@@ -23,15 +23,13 @@ export const isActiveSubscribe = (objForm) => {
         }
 
         // если unlimited == Y - это полная покупка
-        if (!!objForm?.unlimited == "Y") {
+        if (!!(objForm?.unlimited == "Y")) {
             return true;
         }
 
         // проверка подписок
-        if (isArray(objForm.subscriptions) && objForm.subscriptions?.length > 0) {
+        if (isArray(objForm?.subscriptions) && objForm.subscriptions?.length > 0) {
             let isSub = false;
-
-            console.log("22222");
 
             for (let p = 0; p < objForm.subscriptions.length; p++) {
                 let subscription = objForm.subscriptions[p];
@@ -48,7 +46,7 @@ export const isActiveSubscribe = (objForm) => {
         }
 
         // проверка полной покупкипо полю "description"
-        if (isArray(objForm.payments) && objForm.payments?.length > 0) {
+        if (isArray(objForm?.payments) && objForm.payments?.length > 0) {
             let isPay = false;
 
             for (let p = 0; p < objForm.payments.length; p++) {
