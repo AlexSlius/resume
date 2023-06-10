@@ -37,9 +37,9 @@ export const fetchDeleteCleanAllEmployment = createAsyncThunk('countrus/fetchDel
 
 export const fetchUpdateEmployment = createAsyncThunk('employment/fetchUpdateEmployment', async ({ index }, thunkAPI) => {
     const { employment: { employmentObj } } = thunkAPI.getState();
-    let { id, ...obj } = employmentObj[index];
+    let { id, titleId, ...obj } = employmentObj[index];
 
-    const response = await api.employments.updateEmploymentItem(id, updateF(obj));
+    const response = await api.employments.updateEmploymentItem(id, updateF({ ...obj, title_id: titleId }));
     return response;
 });
 

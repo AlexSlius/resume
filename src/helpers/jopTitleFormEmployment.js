@@ -9,5 +9,5 @@ export const jobTitleFromEmployment = (arr = []) => {
     if (!isObject(obj))
         return undefined;
 
-    return { title: obj.title, idJobTitle: undefined };
+    return { title: obj.title, idJobTitle: obj?.titleId || undefined };
 }

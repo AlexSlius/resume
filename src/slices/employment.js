@@ -19,7 +19,8 @@ const initialState = {
     period_to: "",
     country: "",
     assignment: "",
-    city: ""
+    city: "",
+    title_id: null,
   },
   status: statusLoaded,
   statusUpdate: statusLoaded

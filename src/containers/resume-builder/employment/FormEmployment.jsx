@@ -113,6 +113,9 @@ const FormEmployment = ({
     await handleUpdateServer(index);
 
     if (!!data) {
+      if (name == "title") {
+        await dispatch(updateItemFieldEmployment({ index, name: "titleId", value: data.id }));
+      }
       focusFieldInputClassName(classnextFocus);
     }
   }
@@ -230,12 +233,16 @@ const FormEmployment = ({
     }, 500);
   }
 
-  const handleSaveSelectNew = ({ name, value }, data, classnextFocus) => {
-    dispatch(updateItemFieldEmploymentNew({ name, value }));
+  const handleSaveSelectNew = async ({ name, value }, data, classnextFocus) => {
+    await dispatch(updateItemFieldEmploymentNew({ name, value }));
 
     if (data) {
-      automateNew()
-      focusFieldInputClassName(classnextFocus);
+      if (name == "title") {
+        await dispatch(updateItemFieldEmploymentNew({ name: "title_id", value: data.id }));
+      }
+
+      await automateNew()
+      await focusFieldInputClassName(classnextFocus);
     }
   }
 
