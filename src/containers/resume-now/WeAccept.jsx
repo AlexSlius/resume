@@ -21,8 +21,7 @@ export const WeAccept = () => {
                 </div>
             </div>
             <div className={`${style.sub_title} ${style.t_w}`}>
-                <p>By placing an order you waive your right of withdrawal and agree to immediate delivery of the services and
-                    related digital products. Within 7 days after the first payment, you can claim the money-back guarantee.</p>
+                <p>Upon ordering, you forgo your withdrawal rights and consent to immediate delivery of services and digital products. However, a money-back guarantee can be claimed within the first 14 days post-payment.</p>
             </div>
             <div className={`${style.m_t_f}`}>
                 <h2 className={`${style.title}`}>Frequently Asked Questions</h2>

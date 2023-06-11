@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
+import Head from 'next/head'
 
 import { AccordionComponent } from "../../components/accordion"
 import { Partners } from "../../components/partners";
@@ -17,23 +18,29 @@ import { routersPages } from "../../constants/next-routers";
 
 import promoNumbersData from './data/promo-numbers.json';
 
-
 const arr = [
     {
-        title: "What is a resume builder?",
-        text: "<p>A resume builder is an online tool that allows users to quickly and easily upload their resume or build a brand new one from scratch using templates that offer a variety of options to fit the job requirements. With ResumeHelp’s resume builder you get access to a wide variety of template options with the ability to customize each template to your specific industry.</p>"
+        title: "Why do I need an online resume builder?",
+        text: "<p>An online resume builder is an essential tool for creating professional and compelling resumes. It eliminates the need to start from scratch, thus saving you time and effort. Such a tool guides you in selecting the right format, using suitable language, and avoiding common mistakes. This way, you can focus on tailoring your resume content to match the job requirements. An online resume builder also ensures your skills, experiences, and achievements are presented in the most attractive and readable manner.</p>"
     },
     {
-        title: "What should a resume include?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        title: "What are the standout features of this resume builder?",
+        text: `
+        <p>There are several distinctive features that make this service stand out:</p>
+        <p>Task Recommendations: It provides personalized task recommendations based on your past experiences and the role you're targeting. This feature ensures your resume is tailored and relevant.</p>
+        <p>Skill Suggestions: This service suggests the most suitable skills for your field. This can help you present yourself as an ideal candidate for the role.</p>
+        <p>Career Objectives: It assists you in formulating precise and engaging career objectives that align with your desired role. This can set the tone of your resume.</p>
+        <p>Customizable Templates: A variety of professional templates are available for you to choose from. You can select the one that best matches your taste and the job requirements.</p>
+        <p>Customizability: You can adjust fonts, colors, and the spacing between lines. This allows you to create a unique resume that remains professional yet showcases your personal style.</p>
+        `
     },
     {
-        title: "Are there different types of resumes?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        title: "Can I use it for free?",
+        text: "<p>Yes, you can use this service for free for a limited period. During this trial period, you can access all the features and benefits offered. After the trial period ends, a subscription will be necessary to continue using the services.</p>"
     },
     {
-        title: "Should I include a cover letter with my resume?",
-        text: "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        title: "Can I customize templates to fit my preferences?",
+        text: "<p>Absolutely! The available templates can be fully customized. You can adjust the colors, font sizes, and line spacing to match your personal preferences. This means you can create a resume that is professional and still reflects your individual style.</p>"
     },
 ];
 
@@ -111,15 +118,21 @@ export const HomePage = () => {
 
     return (
         <>
+            <Head>
+                <title>Premium Online Resume Builder | Create Impressive Resumes Now</title>
+                <meta
+                    name="description"
+                    content="Take a step towards your dream job with our free-to-use online resume builder. Craft impressive, professional resumes without the need for registration. Start your job-winning resume journey today."
+                />
+            </Head>
             <section className="promo">
                 <div className="containers">
                     <div className="promo__wrapper">
                         <div className="promo-offer">
-                            <p className="top-text">ONLINE RESUME BUILDER</p>
-                            <MainTitle firstText={'The Best'} secondText={'Online'} thirdText={'Resume'} fourthText={'Builder'} />
+                            <p className="top-text">YOUR DREAM JOB IS NEAR</p>
+                            <MainTitle firstText={'Premium'} secondText={'Online'} thirdText={'Resume'} fourthText={'Builder'} />
                             <p className="bottom-text left-arrow">
-                                Our professional Resume Builder has helped thousands
-                                of job seekers land more interviews and get hired faster.
+                                Our professional Resume Builder has helped thousands of job seekers land more interviews and get hired faster.
                             </p>
                             <div className="promo-offer__bottom">
                                 <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
@@ -145,26 +158,16 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
-
             <div className="offer-sec mt-130">
                 <div className="containers">
                     <div className="offer-sec_flex">
                         <div className="promo-offer">
                             <p className="top-text">SECURE YOUR DREAM JOB</p>
                             <h2 className="h2">
-                                Create your professional story
-                                in minutes. Take advantage
-                                of our
-                                cover letter creator.
+                                Create your professional story in minutes. Take advantage of our cover letter creator.
                             </h2>
                             <p className="bottom-text">
-                                Our cover letter maker allows you to write amazing professional pitches in minutes rather
-                                than
-                                hours. No more
-                                writer’s block, no more searching for the convincing phrases or agonizing over formatting.
-                                Be
-                                persuasive without
-                                effort!
+                                Unlock Your Potential with Our Automated Cover Letter Creator: Designed to craft tailored cover letters within minutes, our cutting-edge tool helps you stand out in any job market. Leverage our unique, game-changing features for your career advancement.
                             </p>
                             <Link href={`${routersPages['coverLetterNew']}`} className="offer-sec__btn btns btn--grey">
                                 <img src="images/page/edit.svg" alt="img" />
@@ -177,7 +180,6 @@ export const HomePage = () => {
                     </div>
                 </div>
             </div>
-
             <section className="tabs mt-130">
                 <img className="sec-bg" loading="lazy" src="/images/page/tabs-bg.png" alt="img" />
                 <div className="containers">
@@ -199,16 +201,14 @@ export const HomePage = () => {
                                 <div className="tabs-content tab-1">
                                     <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
                                     <div>
-                                        <h3 className="h3">Your First Steps</h3>
+                                        <h3 className="h3">Your First Step</h3>
                                         <p className="bottom-text">
-                                            In three simple steps, create the perfect document to impress hiring managers
-                                            and employers. Minimum time, maximum professional quality.
+                                            Discover the Premium Difference with Our Resume Builder. We invite you to experience the superior quality of our services without registration or payment. Step into the future of resume creation, empowering your career journey with confidence and trust.
                                         </p>
                                     </div>
                                 </div>
                             )
                         }
-
                         {
                             stateCurrentTab == 2 && (
                                 <div className="tabs-content  tab-2">
@@ -216,19 +216,12 @@ export const HomePage = () => {
                                     <div>
                                         <h3 className="h3">Achieve Beauty With Ease</h3>
                                         <p className="bottom-text">
-                                            Choose one of our beautiful, professionally designed resume or cover letter formats.
-                                            Add
-                                            your personal info and
-                                            choose and edit the necessary sections. Customize the layout and visuals as much (or
-                                            as
-                                            little) as you want. We
-                                            provide a ton of ready content!
+                                            Opt for our eye-catching, professionally crafted resume or cover letter templates. Simply fill in your details, select and refine the relevant sections, and tweak the design and visuals to your liking. With our pre-written tasks, skills, and career objectives at your disposal, creating a standout resume is just a matter of minutes.
                                         </p>
                                     </div>
                                 </div>
                             )
                         }
-
                         {
                             stateCurrentTab == 3 && (
                                 <div className="tabs-content  tab-3">
@@ -236,13 +229,7 @@ export const HomePage = () => {
                                     <div>
                                         <h3 className="h3">Now It’s Yours!</h3>
                                         <p className="bottom-text">
-                                            Export in one of the available formats. PDF will
-                                            provide you with the best and most consistent visual formatting. Word files allow
-                                            you to
-                                            edit the document
-                                            further or submit the resume to an online application system. You can also share
-                                            your
-                                            career updates online.
+                                            Take advantage of our flexible export options. Choose PDF for optimal and consistent visual formatting, or obtain a unique URL to your resume for easy updates. Our goal is to make your resume sharing and updating process as streamlined as possible.
                                         </p>
                                     </div>
                                 </div>
@@ -254,7 +241,7 @@ export const HomePage = () => {
                             className={`tab ${stateCurrentTab == 1 ? "tab-active" : ''}`}
                             onClick={() => handleClickTab(1)}
                         >
-                            <p>1. Sign Up</p>
+                            <p>1. Easy Start</p>
                             <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
                             <div className="progress">
                                 <span></span>
@@ -283,7 +270,6 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
-
             <section className="advantages mt-130">
                 <div className="containers">
                     <h2 className="h2">
@@ -293,55 +279,52 @@ export const HomePage = () => {
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img.png" alt="img" />
                             <div>
-                                <h4>Easy online resume builder</h4>
-                                <p>Create a resume, cover letter or online profile without leaving your browser.</p>
+                                <h4>Easy, free, premium</h4>
+                                <p>Kickstart your journey with us at no cost, with absolutely no registration required.</p>
                             </div>
                         </div>
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img2.png" alt="img" />
                             <div>
-                                <h4>Automatic spell-checker</h4>
-                                <p>Built-in spell checker corrects grammar. Create a resume without errors.</p>
+                                <h4>Spelling matter</h4>
+                                <p>We safeguard your resume against text errors, enhancing your professional image.</p>
                             </div>
                         </div>
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img3.png" alt="img" />
                             <div>
                                 <h4>Your data is safe</h4>
-                                <p>Your data is kept private and protected by strong 256-bit encryption.</p>
+                                <p>Your data is sacred; we assure it remains unshared.</p>
                             </div>
                         </div>
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img4.png" alt="img" />
                             <div>
-                                <h4>Interview school</h4>
-                                <p>Get feedback, tips, and improve your interviewing skills with our tools</p>
+                                <h4>Premium recommendations</h4>
+                                <p>Choose our role-specific premium recommendations, no writing required.</p>
                             </div>
                         </div>
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img5.png" alt="img" />
                             <div>
                                 <h4>Cover letters</h4>
-                                <p>Our cover letter builder works with the same ease as the resume builder.</p>
+                                <p>Explore our free, perfectly matching resume and cover letter templates.</p>
                             </div>
                         </div>
                         <div className="advantages-item">
                             <img loading="lazy" src="/images/page/features-img6.png" alt="img" />
                             <div>
-                                <h4>Multi-format resume options</h4>
-                                <p>Save your resume in any format, including Microsoft Word and PDF.</p>
+                                <h4>Convenient format options</h4>
+                                <p>Choose PDF or share a direct URL for maximum convenience.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             <section className="document mt-130">
                 <img className="sec-bg" loading="lazy" src="/images/page/document-bg.png" alt="img" />
                 <div className="containers">
-                    <h2 className="text-center h2">
-                        Reference professional resume examples in your industry
-                    </h2>
+                    <h2 className="text-center h2">Select from our top resume templates</h2>
                     <div className="document__wrapper">
                         <Swiper
                             className="document-swiper"
@@ -383,7 +366,7 @@ export const HomePage = () => {
                         </Swiper>
                     </div>
                 </div>
-            </section >
+            </section>
 
             <section className="faq mt-130">
                 <div className="containers">

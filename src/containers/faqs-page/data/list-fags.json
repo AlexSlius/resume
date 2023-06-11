@@ -1,32 +1,117 @@
 [
     {
         "id": 0,
-        "title": "Can I change my plan?",
-        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "How does the online resume and cover letter builder service work?",
+        "text": "<p>The service works by taking the information you provide about your experience, skills, and the role you're applying for, and generating a tailored resume and cover letter. It also provides task recommendations and skill suggestions to include in your resume, making the process more streamlined and efficient.</p>"
     },
     {
         "id": 1,
-        "title": "Do I get full access with the trial?",
-        "text": "<p>Yes, you can upgrade,  downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "What features are included in the service?",
+        "text": "<p>The service includes a resume and cover letter builder, personalized task recommendations, skill suggestions, and customizable templates. All users, regardless of their subscription plan, have full access to these features. Additionally, users can directly use a URL to their resume or cover letter.</p>"
     },
     {
         "id": 2,
-        "title": "What about money back?",
-        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "Can I customize the design and layout of my resume and cover letter?",
+        "text": "<p>Yes, you have the flexibility to customize the design and layout of your resume and cover letter. You can adjust the colors, font sizes, and line spacing according to your personal style and preference.</p>"
     },
     {
         "id": 3,
-        "title": "What is a resume builder?",
-        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "Are there industry-specific templates available for both resume and cover letter?",
+        "text": "<p>The service offers a variety of professional templates for resumes and cover letters. These templates are customizable and can be tailored to suit any industry or job role.</p>"
     },
     {
         "id": 4,
-        "title": "What should a resume include?",
-        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "Can I import my existing resume and cover letter for editing?",
+        "text": "<p>Currently, the service does not support the option to import an existing resume or cover letter for editing. However, the team is working on adding this feature to the service.</p>"
     },
     {
         "id": 5,
-        "title": "Should I include a cover letter with my resume?",
-        "text": "<p>Yes, you can upgrade, downgrade or cancel your plan at any time.</p> <p>Do it yourself in your account or contact us, we are here to help.</p>"
+        "title": "Does the service provide guidance on writing effective resume and cover letter content?",
+        "text": "<p>The service does not provide direct guidance but offers personalized recommendations based on your input, which can significantly aid in building an effective resume and cover letter.</p>"
+    },
+    {
+        "id": 6,
+        "title": "Can I download or print my resume and cover letter in different formats (e.g., PDF, Word)?",
+        "text": "<p>Resulon allows you to download your resume and cover letter in PDF format. This ensures that your formatting remains consistent, regardless of the device or program used to view the document. Furthermore, you also have the option to share a URL directly to your resume and cover letter, providing an easy and quick way for potential employers to access your application materials online.</p>"
+    },
+    {
+        "id": 7,
+        "title": "Is my personal information secure while using the service?",
+        "text": "<p>Maintaining the security of your personal information is a priority for online services like this one. However, for the most accurate information regarding data security practices, please refer to the privacy policy on the Resulon website.</p>"
+    },
+    {
+        "id": 8,
+        "title": "Are there options to share my resume and cover letter directly from the builder to job applications or email?",
+        "text": "<p>Yes, you can directly use a URL to your resume or cover letter, allowing you to share them easily with potential employers or through email.</p>"
+    },
+    {
+        "id": 9,
+        "title": "Is customer support available if I have questions or need assistance?",
+        "text": "<p>Yes, customer support is available for users who need assistance or have questions. You can get in touch with the support team through live chat or by filling out the form on the contact page.</p>"
+    },
+    {
+        "id": 10,
+        "title": "Is there a free version available for the resume and cover letter builder service?",
+        "text": "<p>Yes, Resulon offers a 7-day free trial with unrestricted access to all features, allowing you to explore and experience the full scope of its service.</p>"
+    },
+    {
+        "id": 11,
+        "title": "Can I create multiple resumes and cover letters using the same account?",
+        "text": "<p>Absolutely, you can create an unlimited number of resumes and cover letters using the same account, offering you the flexibility to tailor your applications to different job opportunities.</p>"
+    },
+    {
+        "id": 12,
+        "title": "Are there any limitations on the number of resumes or cover letters I can create?",
+        "text": "<p>No, there are no restrictions on the number of resumes or cover letters you can create with Resulon. This allows you to tailor your applications for different roles or industries as needed.</p>"
+    },
+    {
+        "id": 13,
+        "title": "Can I access and edit my resume and cover letter from any device or computer?",
+        "text": "<p>Yes, Resulon allows you to access and edit your resume and cover letter from any device or computer, giving you the freedom to work on your applications whenever and wherever is convenient for you.</p>"
+    },
+    {
+        "id": 14,
+        "title": "Is the service compatible with applicant tracking systems (ATS) commonly used by employers?",
+        "text": "<p>Yes, Resulon is designed to be compatible with ATS, increasing the chances that your resume and cover letter will be seen and considered by employers.</p>"
+    },
+    {
+        "id": 15,
+        "title": "What sets this online resume and cover letter builder service apart from other similar services in the market?",
+        "text": "<p>Resulon offers several unique features, including personalized task and skill recommendations, compatibility with ATS, unlimited creation of resumes and cover letters, and the ability to customize templates to your preference. The service also generates cover letters based on provided information, and it offers proofreading to help ensure your application materials are error-free.</p>"
+    },
+    {
+        "id": 16,
+        "title": "Can I edit and update my resume and cover letter anytime after creating them?",
+        "text": "<p>Absolutely, you can edit and update your resume and cover letter at any time, allowing you to keep your application materials up to date.</p>"
+    },
+    {
+        "id": 17,
+        "title": "Does the service offer a wide range of font styles, colors, and formatting options?",
+        "text": "<p>Yes, Resulon provides a wide range of customization options, including font styles, colors, and formatting, enabling you to create resumes and cover letters that reflect your personal style while maintaining a professional appearance.</p>"
+    },
+    {
+        "id": 18,
+        "title": "Can I easily duplicate or copy existing resumes and cover letters to create multiple versions?",
+        "text": "<p>Yes, you can easily duplicate or copy your existing resumes and cover letters, allowing you to create different versions tailored to specific roles or industries.</p>"
+    },
+    {
+        "id": 19,
+        "title": "Is there a word count or character limit for the resume and cover letter sections?",
+        "text": "<p>Resulon does not restrict the length of the text in your resume or cover letter, giving you the freedom to include all the necessary information and details.</p>"
+    },
+    {
+        "id": 20,
+        "title": "Does the service provide suggestions or prompts for writing compelling resume and cover letter content?",
+        "text": "<p>Resulon provides personalized task recommendations and skill suggestions for your resume, aiding in the creation of compelling and relevant content.</p>"
+    },
+    {
+        "id": 21,
+        "title": "Can I include hyperlinks or attachments in my resume and cover letter?",
+        "text": "<p>Resulon allows you to include hyperlinks in your resume and cover letter, enabling you to direct potential employers to relevant online content. However, the service currently does not support the inclusion of attachments.</p>"
+    },
+    {
+        "id": 22,
+        "title": "Does the service offer a proofreading feature to check for spelling and grammar errors?",
+        "text": "<p>Yes, Resulon offers a proofreading feature, helping ensure that your resume and cover letter are free of spelling and grammar errors.</p>"
     }
 ]

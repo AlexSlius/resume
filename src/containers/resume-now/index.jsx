@@ -44,9 +44,9 @@ const ResumeNow = () => {
 
             <div className={`${style.wr}`}>
                 <div className={`${style.info_page}`}>
-                    <h2 className={`${style.title}`}>Download Your Attention-Grabbing Resume Now!</h2>
-                    <p className={`${style.sub_title}`}>To download your resume simply sign up for your Premium Membership. As an added bonus,
-                        you’ll gain instant full access to our suite of expertly crafted career services.</p>
+                    <h2 className={`${style.title}`}>Get access to premium Resumes and Cover Letters</h2>
+                    <p className={`${style.sub_title}`}>Unlock your career potential with our Premium Membership! Gain exclusive access to advanced features, personalized templates, and priority support. Elevate your job application today!
+                    </p>
                 </div>
 
                 {

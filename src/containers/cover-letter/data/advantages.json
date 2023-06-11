@@ -4,22 +4,22 @@
       "image": "chat",
       "width": "66px",
       "height": "66px",
-      "title": "Expert recommendations",
-      "text": "Take your pick of our auto-suggested phrases crafted by our team of career experts."
+      "title": "Expert writing",
+      "text": "You will be presented in a way that makes you special for the applied job."
     },
     {
       "image": "conversation",
       "width": "66px",
       "height": "66px",
       "title": "Keyword-optimized",
-      "text": "Target your cover letter to the exact job title to which you’re applying with laser-precise words!"
+      "text": "Effortlessly tailor your cover letter to the specific job role using our laser-focused word selection!"
     },
     {
       "image": "fire",
       "width": "66px",
       "height": "66px",
-      "title": "Complete in minutes",
-      "text": "Don’t miss out on a job because you didn’t know where to begin formatting your document."
+      "title": "Completed in minutes",
+      "text": "It will take you just a couple of minuted and almost no writing to greatly increase your chaces."
     }
   ]
 }
