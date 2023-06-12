@@ -244,6 +244,7 @@ const Dashboard = () => {
                                                 text="Create a tailored resume for each job application. Double your chances of getting hired!"
                                                 hangleAddNew={hangleAddNewResume}
                                                 currentResolution={currentResolution}
+                                                isLoad={loadNewCard}
                                             />
                                         )
                                     }
@@ -288,6 +289,7 @@ const Dashboard = () => {
                                                 text="Create a tailored cover letters for each job application. Double your chances of getting hired!"
                                                 currentResolution={currentResolution}
                                                 hangleAddNew={hangleAddNewCover}
+                                                isLoad={loadNewCard}
                                             />
                                         )
                                     }

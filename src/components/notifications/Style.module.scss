@@ -2,11 +2,11 @@
     position: fixed;
     right: 30px;
     width: 280px;
-    top: 40px;
-    z-index: 120;
+    bottom: 40px;
+    z-index: 400;
 
     @media (max-width: 767px) {
-        top: 100px;
+        bottom: 100px;
     }
 }
 

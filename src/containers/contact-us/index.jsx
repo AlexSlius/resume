@@ -1,18 +1,94 @@
 import Link from "next/link";
 import { useState } from "react";
 import Head from 'next/head'
+import { useDispatch } from "react-redux";
 
 import { InputCheckboxPageBtn } from "../../components/uis/input-checkbox-page-btn";
-import { InputPage } from "../../components/uis/input-page";
-import { TextAreaPage } from "../../components/uis/textarea-page";
+import { InputEmail } from "../../components/uis/inputEmail";
+import Input from "../../components/uis/input"
+import Textarea from "../../components/uis/textarea/TextArea"
+import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
+
+import { validateEmail } from "../../utils/validates";
+import { sendFormContactUs } from "../../controllers/pages/pageContact";
 
 import { routersPages } from "../../constants/next-routers"
+import types from "./data/types.json";
+
 
 export const ContactUsPage = () => {
+    const dispatch = useDispatch();
     const [stat, setStat] = useState(0);
+    const [isLoad, setIsLoad] = useState(false);
+    const [formState, setFormState] = useState({
+        email: '',
+        name: "",
+        description: "",
+    });
+    const [errorFields, setErrorFields] = useState({
+        email: false,
+        name: false,
+    });
 
     const handkeCheck = (check) => {
         setStat(check);
+    }
+
+    const handleUpdateField = (name, value) => {
+        setFormState(prev => ({
+            ...prev,
+            [name]: value,
+        }))
+    }
+
+    const handleCleanError = () => {
+        setErrorFields({
+            email: false,
+            name: false,
+        });
+    }
+
+    const handleClean = () => {
+        setFormState({
+            email: '',
+            name: "",
+            description: "",
+        });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        handleCleanError();
+
+        if (!validateEmail(formState.email)) {
+            setErrorFields(prev => ({
+                ...prev,
+                email: true
+            }))
+        }
+
+        if (formState.name?.length < 1) {
+            setErrorFields(prev => ({
+                ...prev,
+                name: true
+            }))
+        }
+
+        if (!validateEmail(formState.email) || formState.name?.length < 1) {
+            return;
+        }
+
+        let data = {
+            type: types.find(el => (el.id == stat))?.name || types[0]?.name,
+            ...formState,
+        }
+
+        let res = await dispatch(sendFormContactUs({ data, setIsLoad }));
+
+        if (res.payload === true) {
+            handleClean();
+        }
     }
 
     return (
@@ -32,30 +108,50 @@ export const ContactUsPage = () => {
                     <p className="bottom-text">
                         Have comments, questions, or feedback to share? Our team would love to hear from you. Submit a message below.
                     </p>
-                    <form action="page" className="form">
+                    <form action="page" className="form" onSubmit={handleSubmit}>
                         <div className="form__top">
-                            <InputCheckboxPageBtn checked={stat == 0} name="soc" label="Feedback" onChange={() => handkeCheck(0)} />
-                            <InputCheckboxPageBtn checked={stat == 1} name="soc" label="Billing" onChange={() => handkeCheck(1)} />
-                            <InputCheckboxPageBtn checked={stat == 2} name="soc" label="Pricing" onChange={() => handkeCheck(2)} />
-                            <InputCheckboxPageBtn checked={stat == 3} name="soc" label="Page Errors" onChange={() => handkeCheck(3)} />
-                            <InputCheckboxPageBtn checked={stat == 4} name="soc" label="Cancel Subscription" onChange={() => handkeCheck(4)} />
-                            <InputCheckboxPageBtn checked={stat == 5} name="soc" label="Email Subscription" onChange={() => handkeCheck(5)} />
-                            <InputCheckboxPageBtn checked={stat == 6} name="soc" label="Other Questions" onChange={() => handkeCheck(6)} />
+                            {
+                                types.map((item) => (
+                                    <InputCheckboxPageBtn key={item.id} checked={stat == item.id} name="soc" label={item.name} onChange={() => handkeCheck(item.id)} />
+                                ))
+                            }
                         </div>
                         <div className="form__wrapper">
                             <div className="form-input">
-                                <InputPage placeholder="Email" />
+                                <InputEmail
+                                    label="E-mail*"
+                                    value={formState.email}
+                                    onChange={(val) => handleUpdateField('email', val)}
+                                    textError={errorFields.email ? "The mail field is required" : ""}
+                                />
                             </div>
                             <div className="form-input">
-                                <InputPage placeholder="Name" />
+                                <Input
+                                    label="Name*"
+                                    value={formState.name}
+                                    valid={formState?.name?.length > 0}
+                                    onChange={(e) => handleUpdateField('name', e.target.value)}
+                                    name="FNAM"
+                                    readOnly={false}
+                                    textError={errorFields.name ? "The main field is required" : ""}
+                                />
                             </div>
-                            <TextAreaPage placeholder="Question or remark" />
+                            <div className="form-texrarea">
+                                <Textarea
+                                    value={formState.description}
+                                    onChange={(e) => handleUpdateField("description", e.target.value)}
+                                    name="description"
+                                    placeholder={'Question or remark'}
+                                />
+                            </div>
                         </div>
                         <div className="form-btn-center mt-30">
-                            <button className="form-btn btns btn--blue btn--search" type="button">
-                                <img loading="lazy" src="/images/page/send.svg" alt="img" />
-                                <span>Send email</span>
-                            </button>
+                            <LoadChildrenBtn isLoad={isLoad}>
+                                <button className="form-btn btns btn--blue " type="submit">
+                                    <img loading="lazy" src="/images/page/send.svg" alt="img" />
+                                    <span>Send email</span>
+                                </button>
+                            </LoadChildrenBtn>
                         </div>
                     </form>
                     <div className="contact-page__bottom">

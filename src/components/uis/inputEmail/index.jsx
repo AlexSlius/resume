@@ -6,7 +6,7 @@ export const InputEmail = ({
     label = "E-mail",
     value = '',
     onChange = () => { },
-    textError=''
+    textError='',
 }) => {
     const onHandleChangle = (e) => {
         let val = e.target.value;

@@ -27,6 +27,9 @@ const AdminPage = ({
     const {
         theme: {
             currentResolution
+        },
+        users: {
+            isSubscribe
         }
     } = useSelector((state) => state);
 
@@ -59,12 +62,16 @@ const AdminPage = ({
                                                     </div>
                                                 )
                                             }
-                                            <div className={style.wr_updat_now}>
-                                                <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
-                                                    <Icon svg={iconUpdateNow} />
-                                                    <span>Upgrade now</span>
-                                                </Link>
-                                            </div>
+                                            {
+                                                !isSubscribe && (
+                                                    <div className={style.wr_updat_now}>
+                                                        <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
+                                                            <Icon svg={iconUpdateNow} />
+                                                            <span>Upgrade now</span>
+                                                        </Link>
+                                                    </div>
+                                                )
+                                            }
                                             <HeadUser />
                                         </>
                                     )
