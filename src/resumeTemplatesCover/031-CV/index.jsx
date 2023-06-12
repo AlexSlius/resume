@@ -9,16 +9,6 @@ export const CoverCv031 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -99,40 +89,22 @@ export const CoverCv031 = ({
                                     </svg>
                                 </div>
                                 <div className="right-side">
-                                    <h3 className="letter-heading font-size-3 cv-letter-heading line-height-6 font-weight-400 additional-color-1-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
-                                            <div className="letter-text cv-letter-text font-size-1 line-height-2 font-weight-400 main-color-3-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                    {/* <h3 className="letter-heading font-size-3 cv-letter-heading line-height-6 font-weight-400 additional-color-1-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3> */}
+                                    <div className="letter-text cv-letter-text font-size-1 line-height-2 font-weight-400 main-color-3-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                 </div>
 
                             </div>
                         </div>
                         <div className="bottom-area">
                             <div className="addresses-block">
-                                {
-                                    (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                        <div className="to-block">
-                                            <h3 className="block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">To</h3>
-                                            <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">{`${applyingCompanyName} ${applyingCompanyJobTitle}`}</p>
-                                            <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">{`${applyingCompanyTitle} ${applyingCompanyContact}`}</p>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                        <div className="from-block">
-                                            <h3 className="block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">From</h3>
-                                            {
-                                                !!state && (
-                                                    <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">{state}</p>
-                                                )
-                                            }
-                                            {!!phone && (<p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">{phone}</p>)}
-                                            {!!email && (<p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">{email}</p>)}
-                                            <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text">
-                                                {`${!!city && (`${city}, `)} ${!!zipCode && (`${zipCode}, `)} ${!!country && (`${country}`)}`}
-                                            </p>
-                                        </div>
-                                    )
-                                }
+                                <div className="to-block">
+                                    <h3 className="block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">To</h3>
+                                    <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                </div>
+                                <div className="from-block">
+                                    <h3 className="block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">From</h3>
+                                    <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                </div>
                             </div>
                         </div>
                     </div>

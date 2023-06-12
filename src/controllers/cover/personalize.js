@@ -84,6 +84,9 @@ export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', a
 
 export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
+
+    consol.log("getCoverLetterById: ", getCoverLetterById);
+
     return response || null;
 });
 

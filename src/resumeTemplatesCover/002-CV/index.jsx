@@ -9,14 +9,6 @@ export const CoverCv002 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
         applyingCompanyTitle,
         applyingCompanyContact,
     } = data;
@@ -128,57 +120,28 @@ export const CoverCv002 = ({
                         }
                         <div className="cv-body-area area-2">
                             <div className="column-left">
-                                <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                {/* <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                             <div className="separator"></div>
-                            {
-                                (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact || !!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                    <div className="column-right">
-                                        <div className="cv-destination">
-                                            <div className="cv-destination-block block-block additional-color-2-border">
-                                                <div className="destination-details">
-                                                    {
-                                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                            <>
-                                                                <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">TO
-                                                                    <span className="line-after-block-heading additional-color-2-border"></span>
-                                                                </h3>
-                                                                <p className="cv-sender font-size-1 line-height-1 main-color-1-text">
-                                                                    {!!applyingCompanyName && (<>{applyingCompanyName}<br /></>)}
-                                                                    {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}
-                                                                    {!!applyingCompanyTitle && (<> {`Dear ${applyingCompanyTitle}`}<br /></>)}
-                                                                    {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}
-                                                                </p>
-                                                            </>
-                                                        )
-                                                    }
-                                                    {
-                                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                                            <>
-                                                                <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">
-                                                                    FROM
-                                                                    <span className="line-after-block-heading additional-color-2-border"></span>
-                                                                </h3>
-                                                                <p className="cv-destination font-size-1 line-height-1 main-color-1-text">
-                                                                    {!!state && (<>{state}<br /></>)}
-                                                                    {!!city && (<>{city}<br /></>)}
-                                                                    {!!zipCode && (<>{zipCode}<br /></>)}
-                                                                    {!!country && (<>{country}<br /></>)}
-                                                                    {!!phone && (<>{phone}<br /></>)}
-                                                                    {
-                                                                        !!email && (email)
-                                                                    }
-                                                                </p>
-                                                            </>
-                                                        )
-                                                    }
-                                                </div>
-                                            </div>
+                            <div className="column-right">
+                                <div className="cv-destination">
+                                    <div className="cv-destination-block block-block additional-color-2-border">
+                                        <div className="destination-details">
+                                            <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">TO
+                                                <span className="line-after-block-heading additional-color-2-border"></span>
+                                            </h3>
+                                            <p className="cv-sender font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+
+                                            <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">
+                                                FROM
+                                                <span className="line-after-block-heading additional-color-2-border"></span>
+                                            </h3>
+                                            <p className="cv-destination font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                         </div>
                                     </div>
-                                )
-                            }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

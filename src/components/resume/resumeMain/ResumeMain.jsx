@@ -74,6 +74,8 @@ const ResumeMain = ({
    let dataCoverLetterTemplate = {
       ...coverDataForm.coverDataObj,
       coverGenerateDate: coverDataForm.coverGenerateDate,
+      from: coverDataForm.from,
+      to: coverDataForm.to,
    }
 
    let dataCoverLetterTemplateNew = {
@@ -85,7 +87,9 @@ const ResumeMain = ({
       city: coverDataForm.coverDataObjNew.city,
       zipCode: coverDataForm.coverDataObjNew.zipCode,
       state: coverDataForm.coverDataObjNew.state,
-      coverGenerateDate: null,
+      coverGenerateDate: coverDataForm.coverGenerateDate,
+      from: coverDataForm.from,
+      to: coverDataForm.to,
    };
 
    useEffect(() => {

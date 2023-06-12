@@ -9,16 +9,6 @@ export const CoverCv007 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -92,29 +82,10 @@ export const CoverCv007 = ({
                             <div className="cv-destination">
                                 <div className="cv-destination-block">
                                     <div className="destination-details">
-                                        {
-                                            (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                <>
-                                                    <p className="headint-type-3 heading-to font-weight-900 font-size-2 line-height-3">TO</p>
-                                                    <p className="font-size-1 line-height-1"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
-                                                        {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
-                                                    <p className="font-size-1 line-height-1">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
-                                                </>
-                                            )
-                                        }
-                                        {
-                                            (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                                <>
-                                                    <p className="heading-type-3 heading-from font-weight-900 font-size-2 line-height-3">FROM</p>
-                                                    {!!state && (<p className="font-size-1 line-height-1">{state}<br /></p>)}
-                                                    {!!city && (<p className="font-size-1 line-height-1">{city}<br /></p>)}
-                                                    {!!zipCode && (<p className="font-size-1 line-height-1">{zipCode}<br /></p>)}
-                                                    {!!country && (<p className="font-size-1 line-height-1">{country}<br /></p>)}
-                                                    {!!phone && (<p className="font-size-1 line-height-1">{phone}<br /></p>)}
-                                                    {!!email && (<p className="font-size-1 line-height-1">{email}</p>)}
-                                                </>
-                                            )
-                                        }
+                                        <p className="headint-type-3 heading-to font-weight-900 font-size-2 line-height-3">TO</p>
+                                        <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                        <p className="heading-type-3 heading-from font-weight-900 font-size-2 line-height-3">FROM</p>
+                                        <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +105,7 @@ export const CoverCv007 = ({
                             </h1>
                             <div className="letter-wrapper additional-color-2-background">
                                 <div className="black-line main-color-1-background"></div>
-                                <h2 className="cv-heading  cv-letter-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                {/* <h2 className="cv-heading  cv-letter-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div className="font-size-1 cv-letter-text line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>

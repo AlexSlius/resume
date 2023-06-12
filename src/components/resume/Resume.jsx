@@ -75,7 +75,7 @@ const Resume = ({
             if (!!reportTemplateRef.current) {
                let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
 
-               setPagesPag(!!devPages.length ? devPages.length : 1);
+               setPagesPag(!!devPages?.length ? devPages.length : 1);
             } else {
                setPagesPag(1);
             }

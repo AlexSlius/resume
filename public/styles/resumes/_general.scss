@@ -132,3 +132,12 @@
 .alert_line {
   white-space: nowrap;
 }
+
+.line_text {
+  display: inline-block;
+
+  &::before {
+    content: '__________________';
+    letter-spacing: -1px;
+  }
+}

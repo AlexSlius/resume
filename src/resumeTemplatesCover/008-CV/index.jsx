@@ -11,14 +11,6 @@ export const CoverCv008 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
         applyingCompanyTitle,
         applyingCompanyContact,
     } = data;
@@ -102,7 +94,7 @@ export const CoverCv008 = ({
                         <div className="cv-body-area middle-area">
                             <div className="column-left"></div>
                             <div className="column-right">
-                                <h2 className="cv-heading cv-letter-heading font-weight-500 font-size-4 line-height-0 main-color-2-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                {/* <h2 className="cv-heading cv-letter-heading font-weight-500 font-size-4 line-height-0 main-color-2-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div className="cv-text cv-letter-text font-size-1 line-height-1 main-color-2-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>
@@ -111,28 +103,10 @@ export const CoverCv008 = ({
                                 <div className="cv-destination">
                                     <div className="cv-destination-block">
                                         <div className="destination-details">
-                                            {
-                                                (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                    <>
-                                                        <p className="cv-heading to-heading font-weight-700 font-size-2 line-height-0-1 main-color-2-text">TO</p>
-                                                        <p className="cv-sender font-size-1 line-height-1 main-color-2-text"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
-                                                            {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)} {!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
-                                                    </>
-                                                )
-                                            }
-                                            {
-                                                (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                                    <>
-                                                        <p className="cv-heading from-heading font-weight-700 font-size-2 line-height-0-1 main-color-2-text">FROM</p>
-                                                        {!!state && (<p className="font-size-1 line-height-1 main-color-2-text">{state}<br /></p>)}
-                                                        {!!city && (<p className="font-size-1 line-height-1 main-color-2-text">{city}<br /></p>)}
-                                                        {!!zipCode && (<p className="font-size-1 line-height-1 main-color-2-text">{zipCode}<br /></p>)}
-                                                        {!!country && (<p className="font-size-1 line-height-1 main-color-2-text">{country}<br /></p>)}
-                                                        {!!phone && (<p className="font-size-1 line-height-1 main-color-2-text">{phone}<br /></p>)}
-                                                        {!!email && (<p className="font-size-1 line-height-1 main-color-2-text">{email}</p>)}
-                                                    </>
-                                                )
-                                            }
+                                            <p className="cv-heading to-heading font-weight-700 font-size-2 line-height-0-1 main-color-2-text">TO</p>
+                                            <p className="cv-sender font-size-1 line-height-1 main-color-2-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                            <p className="cv-heading from-heading font-weight-700 font-size-2 line-height-0-1 main-color-2-text">FROM</p>
+                                            <p className="font-size-1 line-height-1 main-color-2-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                         </div>
                                     </div>
                                 </div>

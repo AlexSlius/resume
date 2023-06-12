@@ -97,39 +97,21 @@ export const CoverCv016 = ({
                         <div className="middle-area">
                             <div className="column-left">
                                 <div className="destination-block block-block">
-                                    {
-                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                            <div className="block-to">
-                                                <h3 className="heading-type-1 font-size-4 line-height-6 main-color-2-text font-weight-300">To</h3>
-                                                <div className="underheading-line"></div>
-                                                <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{`${applyingCompanyName} ${applyingCompanyJobTitle}`}</p>
-                                                <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{`${applyingCompanyTitle} ${applyingCompanyContact}`}</p>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                            <div className="block-from">
-                                                <h3 className="heading-type-1 font-size-4 line-height-6 font-weight-300">From</h3>
-                                                <div className="underheading-line"></div>
-                                                {
-                                                    !!state && (
-                                                        <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{state}</p>
-                                                    )
-                                                }
-                                                <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
-                                                    {`${!!city && (`${city}, `)} ${!!zipCode && (`${zipCode}, `)} ${!!country && (`${country}`)}`}
-                                                </p>
-                                                {!!phone && (<p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{phone}</p>)}
-                                                {!!email && (<p className="font-size-1 line-height-2 main-color-2-text font-weight-300">{email}</p>)}
-                                            </div>
-                                        )
-                                    }
+                                    <div className="block-to">
+                                        <h3 className="heading-type-1 font-size-4 line-height-6 main-color-2-text font-weight-300">To</h3>
+                                        <div className="underheading-line"></div>
+                                        <p className="font-size-1 line-height-2 main-color-2-text font-weight-300" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                    </div>
+                                    <div className="block-from">
+                                        <h3 className="heading-type-1 font-size-4 line-height-6 font-weight-300">From</h3>
+                                        <div className="underheading-line"></div>
+                                        <p className="font-size-1 line-height-2 main-color-2-text font-weight-300" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="column-right">
                                 <div className="letter-block">
-                                    <h3 className="letter-heading font-size-2 cv-letter-heading line-height-3 main-color-2-text font-weight-400">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
+                                    {/* <h3 className="letter-heading font-size-2 cv-letter-heading line-height-3 main-color-2-text font-weight-400">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3> */}
                                     <div className="letter-text cv-letter-text font-size-1 line-height-2 main-color-2-text font-weight-300" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                 </div>
                             </div>

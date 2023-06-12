@@ -9,16 +9,6 @@ export const CoverCv013 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -92,29 +82,17 @@ export const CoverCv013 = ({
                                 <div className="destination-contacts-block">
                                     <h3 className="block-heading font-size-2 additional-color-1-text">To</h3>
                                     <div className="block-item">
-                                        <p> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
-                                            {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
-                                        <p>{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
+                                        <p dangerouslySetInnerHTML={{ __html: data.to }}></p>
                                     </div>
-                                    {
-                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                            <>
-                                                <h3 className="block-heading font-size-2 additional-color-1-text">From</h3>
-                                                <div className="block-item">
-                                                    <p>{`${!!city ? (`${city}, `) : ""} ${!!zipCode ? (`${zipCode}, `) : ""} ${!!country ? (`${country}`) : ""}`}</p>
-                                                    {!!phone && (<p className="font-size-1 line-height-1">{phone}<br /></p>)}
-                                                    {!!email && (<p className="font-size-1 line-height-1">{email}</p>)}
-                                                </div>
-                                            </>
-                                        )
-                                    }
+                                    <h3 className="block-heading font-size-2 additional-color-1-text">From</h3>
+                                    <div className="block-item" dangerouslySetInnerHTML={{ __html: data.from }}></div>
                                 </div>
                             </div>
                         </div>
                         <div className="column-right">
                             <h1 className="cv-name font-size-3">{firstName}{` `} {lastName}</h1>
                             <div className="letter-block">
-                                <h2 className="cv-letter-heading block-heading letter-heading font-size-1">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                {/* <h2 className="cv-letter-heading block-heading letter-heading font-size-1">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div className="cv-letter-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>

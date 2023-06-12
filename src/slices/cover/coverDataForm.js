@@ -51,6 +51,8 @@ const initialState = {
         lastPosition: "undefined",
     },
     coverGenerateDate: null,
+    from: null,
+    to: null,
     coverDataObjNew: {
         firstName: "",
         lastName: "",
@@ -121,6 +123,8 @@ export const slice = createSlice({
             return {
                 ...state,
                 coverGenerateDate: action.payload.coverDataForm.coverGenerateDate,
+                from: action.payload.coverDataForm.from,
+                to: action.payload.coverDataForm.to,
                 coverDataObj: {
                     ...state.coverDataObj,
                     ...action.payload.coverDataForm.coverDataObj,
@@ -146,8 +150,10 @@ export const slice = createSlice({
         },
         [getCoverLetterById.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            state.coverDataObj = action.payload.data;
-            state.coverGenerateDate = action.payload.cover_letter;
+            state.coverDataObj = action.payload?.data || initialState.coverDataObj;
+            state.coverGenerateDate = action.payload?.cover_letter || null;
+            state.from = action.payload?.from || null;
+            state.to = action.payload?.to || null;
         },
         // get cover ketter generate
         [getCoverGenerateDate.pending]: (state) => {

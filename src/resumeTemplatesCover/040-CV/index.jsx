@@ -11,16 +11,6 @@ export const CoverCv040 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -96,32 +86,14 @@ export const CoverCv040 = ({
                             </div>
                             <div className="column-right additional-color-1-border">
                                 <div className="addresses-block">
-                                    {
-                                        (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                            <div className="block-to">
-                                                <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">To</h3>
-                                                <p className="font-size-2 line-height-2 font-weight-400">{`${!!applyingCompanyName ? (applyingCompanyName) : ""} ${!!applyingCompanyJobTitle ? applyingCompanyJobTitle : ""}`}</p>
-                                                <p className="font-size-2 line-height-2 font-weight-400">{`${!!applyingCompanyTitle ? applyingCompanyTitle : ""} ${!!applyingCompanyContact ? applyingCompanyContact : ""}`}</p>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                            <div className="block-from">
-                                                <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">From</h3>
-                                                {
-                                                    !!state && (
-                                                        <p className="font-size-2 line-height-2 font-weight-400">{state}</p>
-                                                    )
-                                                }
-                                                {!!phone && (<p className="font-size-2 line-height-2 font-weight-400">{phone}</p>)}
-                                                {!!email && (<p className="font-size-2 line-height-2 font-weight-400">{email}</p>)}
-                                                <p className="font-size-2 line-height-2 font-weight-400">
-                                                    {`${!!city ? (`${city}, `) : ""} ${!!zipCode ? (`${zipCode}, `) : ""} ${!!country ? (`${country}`) : ""}`}
-                                                </p>
-                                            </div>
-                                        )
-                                    }
+                                    <div className="block-to">
+                                        <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">To</h3>
+                                        <p className="font-size-2 line-height-2 font-weight-400" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                    </div>
+                                    <div className="block-from">
+                                        <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">From</h3>
+                                        <p className="font-size-2 line-height-2 font-weight-400" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="center-block additional-color-1-border">
@@ -130,7 +102,7 @@ export const CoverCv040 = ({
                         </div>
                         <div className="middle-area additional-color-1-border">
                             <div className="letter-block">
-                                <h3 className="letter-heading font-size-5 cv-letter-heading line-height-5 font-weight-400">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3>
+                                {/* <h3 className="letter-heading font-size-5 cv-letter-heading line-height-5 font-weight-400">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3> */}
                                 <div className="font-size-2 cv-letter-text line-height-2 font-weight-400" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>

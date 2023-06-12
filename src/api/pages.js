@@ -9,7 +9,7 @@ export default class ClientsAPI extends Base {
         return this.apiClient.get(`home/cover/user_photos`);
     }
     sendContactUs(data, type = "formData") {
-        return this.apiClient.post("sendContactUs", data, type);
+        return this.apiClient.post("contact", data, type);
     }
 }
 

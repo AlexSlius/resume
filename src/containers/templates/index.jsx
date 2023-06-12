@@ -305,17 +305,19 @@ const Templates = ({
             if (typeof window != "undefined") {
                 if (!!reportTemplateRef.current) {
                     function start() {
-                        let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                        let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
 
-                        devPages.forEach(element => {
-                            element.classList.add("none");
-                        });
+                        if (!!devPages) {
+                            devPages.forEach(element => {
+                                element.classList.add("none");
+                            });
 
-                        let currentPage = devPages[pagePagCurrent - 1];
+                            let currentPage = devPages[pagePagCurrent - 1];
 
-                        if (!!currentPage) {
-                            currentPage.classList.remove("none");
-                            currentPage.classList.add("active");
+                            if (!!currentPage) {
+                                currentPage.classList.remove("none");
+                                currentPage.classList.add("active");
+                            }
                         }
                     }
 
@@ -340,9 +342,9 @@ const Templates = ({
             if (typeof window != "undefined") {
                 function start() {
                     if (!!reportTemplateRef.current) {
-                        let devPages = reportTemplateRef.current.querySelectorAll('.cv-body.cv-body-visible');
+                        let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
 
-                        setPagesPag(!!devPages.length ? devPages.length : 1);
+                        setPagesPag(!!devPages?.length ? devPages.length : 1);
                     } else {
                         setPagesPag(1);
                     }
@@ -545,7 +547,7 @@ const Templates = ({
                                             reportTemplateRef={reportTemplateRef}
                                             isNewResume={isNewResume}
                                             resumeData={dataOther}
-                                            data={isNewResume ? dataCoverLetterTemplate : { ...(coverDataForm?.coverDataObj ? coverDataForm.coverDataObj : {}), coverGenerateDate: coverDataForm.coverGenerateDate }}
+                                            data={isNewResume ? dataCoverLetterTemplate : { ...(coverDataForm?.coverDataObj ? coverDataForm.coverDataObj : {}), coverGenerateDate: coverDataForm.coverGenerateDate, from: coverDataForm.to, to: coverDataForm.from }}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
                                         />

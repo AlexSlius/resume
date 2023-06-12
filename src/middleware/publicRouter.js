@@ -15,7 +15,7 @@ import {
     getCoverTemplates,
     getCoverShareTemplateActive
 } from "../controllers/cover/coverData";
-import { getCoverLetterById, getCoverDataShare } from "../controllers/cover/personalize";
+import { getCoverLetterById, getCoverDataShare, getCoverGenerateDate } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
 // import { striteGetProductById } from "../controllers/strite";
@@ -71,6 +71,9 @@ export const withPublicRoute = ({
 
             if (!!isPageCoverLetter) {
                 await store.dispatch(getAllPageCoverLetter({ dispatch: store.dispatch }));
+                // if (ctx?.query?.idCv != "new") {
+                //     await store.dispatch(getCoverGenerateDate(ctx?.query?.idCv));
+                // }
             }
 
             if (!!isGetShareResume) {

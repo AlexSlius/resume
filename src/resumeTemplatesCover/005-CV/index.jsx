@@ -9,14 +9,6 @@ export const CoverCv005 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
         applyingCompanyTitle,
         applyingCompanyContact,
     } = data;
@@ -103,7 +95,7 @@ export const CoverCv005 = ({
                         </div>
                         <div className="cv-body-area middle-area">
                             <div className="cv-letter">
-                                <h2 className="cv-heading cv-letter-heading  main-color-1-text font-weight-600 font-size-3 line-height-4">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2>
+                                {/* <h2 className="cv-heading cv-letter-heading  main-color-1-text font-weight-600 font-size-3 line-height-4">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div className="cv-text cv-letter-text main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>
@@ -111,32 +103,15 @@ export const CoverCv005 = ({
                             <div className="cv-destination">
                                 <div className="cv-destination-block">
                                     <div className="destination-details">
-                                        {
-                                            (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                <div className="to-block block-block">
-                                                    <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">TO</p>
-                                                    <p className="cv-sender main-color-2-text font-size-1 line-height-1"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
-                                                        {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
-                                                    <p className="cv-sender main-color-2-text font-size-1 line-height-1">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
-                                                </div>
-                                            )
-                                        }
-                                        {
-                                            (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
-                                                <div className="from-block block-block">
-                                                    <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">FROM</p>
-                                                    <span className="horizontal-line main-color-2-border"></span>
-                                                    <div className="cv-destination">
-                                                        {!!state && (<p className="main-color-2-text font-size-1 line-height-1">{state}<br /></p>)}
-                                                        {!!city && (<p className="main-color-2-text font-size-1 line-height-1">{city}<br /></p>)}
-                                                        {!!zipCode && (<p className="main-color-2-text font-size-1 line-height-1">{zipCode}<br /></p>)}
-                                                        {!!country && (<p className="main-color-2-text font-size-1 line-height-1">{country}<br /></p>)}
-                                                        {!!phone && (<p className="main-color-2-text font-size-1 line-height-1">{phone}<br /></p>)}
-                                                        {!!email && (<p className="main-color-2-text font-size-1 line-height-1">{email}</p>)}
-                                                    </div>
-                                                </div>
-                                            )
-                                        }
+                                        <div className="to-block block-block">
+                                            <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">TO</p>
+                                            <p className="cv-sender main-color-2-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                        </div>
+                                        <div className="from-block block-block">
+                                            <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">FROM</p>
+                                            <span className="horizontal-line main-color-2-border"></span>
+                                            <div className="cv-destination main-color-2-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.from }}></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
