@@ -126,9 +126,10 @@ const ResumeMain = ({
                )
             }
 
+            {/* style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }} */}
             {
                isCover && (
-                  <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }}>
+                  <div className="resume-main_scale resume-main_scale_cover" >
                      <TemplatesSelectCover
                         scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
