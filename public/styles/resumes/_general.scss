@@ -135,9 +135,16 @@
 
 .line_text {
   display: inline-block;
+  width: 46px;
+  position: relative;
 
   &::before {
-    content: '__________________';
-    letter-spacing: -1px;
+    content: '';
+    height: 1px;
+    width: inherit;
+    background: #333;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }

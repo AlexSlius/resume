@@ -71,9 +71,9 @@ export const withPublicRoute = ({
 
             if (!!isPageCoverLetter) {
                 await store.dispatch(getAllPageCoverLetter({ dispatch: store.dispatch }));
-                // if (ctx?.query?.idCv != "new") {
-                //     await store.dispatch(getCoverGenerateDate(ctx?.query?.idCv));
-                // }
+                if (ctx?.query?.idCv != "new") {
+                    await store.dispatch(getCoverGenerateDate(ctx?.query?.idCv));
+                }
             }
 
             if (!!isGetShareResume) {
