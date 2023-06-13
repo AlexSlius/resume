@@ -19,21 +19,21 @@ export const CoverCv031 = ({
             $('.cv-body-visible').remove();
 
             function rebuildingPages2() {
-                let cv_letter_heading = $('#cv-body-2 .middle-area .letter-block .right-side .cv-letter-heading').clone();
-                let cv_letter_text = $('#cv-body-2 .middle-area .letter-block .right-side .cv-letter-text').clone();
+                let cv_letter_heading = $('#cv-body-2 .middle-area .letter-block .cv-letter-heading').clone();
+                let cv_letter_text = $('#cv-body-2 .middle-area .letter-block .cv-letter-text').clone();
 
                 getCvLetterContainer().append(cv_letter_heading);
 
-                let original_cv_letter_text = $('#cv-body-2 .middle-area .letter-block .right-side .cv-letter-text');
+                let original_cv_letter_text = $('#cv-body-2 .middle-area .letter-block .cv-letter-text');
                 getCvLetterContainer().append(cv_letter_text);
 
                 let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-                if (getPageContainer2().height() > (getPageContainer2().parent().height() - 40)) {
+                if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                     do {
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                     }
-                    while (getPageContainer2().height() > (getPageContainer2().parent().height() - 40));
+                    while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                     letter_current_page_number++;
                     getCvLetterContainer().append(original_cv_letter_text.clone());

@@ -11,16 +11,6 @@ export const CoverCv016 = ({
     const {
         firstName,
         lastName,
-        email,
-        phone,
-        country,
-        city,
-        zipCode,
-        state,
-        applyingCompanyName,
-        applyingCompanyJobTitle,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
