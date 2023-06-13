@@ -227,7 +227,7 @@ const TextEditor = ({
                                             isArray(data) ? (
                                                 !!data.length ? (
                                                     data.map((item, index) => {
-                                                        let isStatus = devValue.includes(item?.[keys]);
+                                                        let isStatus = devValue?.includes(item?.[keys]);
 
                                                         return (
                                                             <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { isArray } from 'lodash';
+import { isArray, isString } from 'lodash';
 import { CFormInput } from "@coreui/react";
 
 import Icon from "../../Icon"
@@ -69,7 +69,9 @@ export const FormSearchContent = ({
                                 <ul className='scroll-style'>
                                     {
                                         data.map((item, index) => {
-                                            let isStatus = valueText.includes(item?.[keys]);
+                                            let isStatus = false;
+                                            
+                                            isStatus = isString(valueText) && (valueText?.includes(item?.[keys]) || false);
 
                                             return (
                                                 <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
