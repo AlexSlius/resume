@@ -245,6 +245,7 @@ const FormSkill = ({
                                                       position={item.position}
                                                       onDelete={handleDeleteItemSkill}
                                                       ratingChanged={handleUpdateItemSkillOne}
+                                                      skillId={item.cvId}
                                                       valueStats={item.level}
                                                       isStar={!skillsObj.hideExperienceLevel}
                                                    />

@@ -10,6 +10,7 @@ export const ActiveItemSkillsAndStarts = ({
     ratingChanged = () => { },
     id = null,
     label = "",
+    skillId = 0,
     valueStats = 0,
     position,
     provided,
@@ -39,7 +40,8 @@ export const ActiveItemSkillsAndStarts = ({
                                         {
                                             name: label,
                                             level: value,
-                                            position: position
+                                            position: position,
+                                            skill_id: skillId,
                                         },
                                         index
                                     )} />

@@ -66,11 +66,11 @@ export const slice = createSlice({
         [fetchGetCvCarreers.fulfilled]: (state, action) => {
             state.status = statusLoaded;
 
-            if (isString(action.payload) && action.payload.length > 0) {
+            if (!!action.payload?.id_job_title) {
                 state.isData = true;
             }
 
-            state.data = action.payload;
+            state.data = action?.payload?.data || initialState.data;
         },
     }
 });

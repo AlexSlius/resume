@@ -102,7 +102,7 @@ const FormSocials = ({
         if (!(+contactObj?.jobTitleId > 0)) {
             let jobTitleFormEmployment = jobTitleFromEmployment(employmentObj);
 
-             if (!!jobTitleFormEmployment?.idJobTitle) {
+            if (!!jobTitleFormEmployment?.idJobTitle) {
                 dispatch(fetchGetListObjectiveById(jobTitleFormEmployment?.idJobTitle));
                 dispatch(updateFieldSearchJobTitle(''))
             }

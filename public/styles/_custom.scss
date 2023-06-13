@@ -530,6 +530,7 @@ input[type="number"]:focus {
         padding-left: 16px;
 
         b,
+        strong,
         i {
             color: #3679FD;
             font-style: normal;
@@ -720,7 +721,7 @@ button {
     justify-content: center;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 9px -4px rgba(0,0,0, 0.4);
+    box-shadow: 0 0 9px -4px rgba(0, 0, 0, 0.4);
 
     svg {
         width: 20px;
@@ -1894,12 +1895,13 @@ button {
     }
 
     @media (max-width: 520px) {
-        & > div,
-        & > button {
+
+        &>div,
+        &>button {
             width: 50%;
         }
 
-        & > div {
+        &>div {
             button {
                 width: 100%;
                 justify-content: center;

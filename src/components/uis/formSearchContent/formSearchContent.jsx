@@ -69,9 +69,7 @@ export const FormSearchContent = ({
                                 <ul className='scroll-style'>
                                     {
                                         data.map((item, index) => {
-                                            let isStatus = false;
-                                            
-                                            isStatus = isString(valueText) && (valueText?.includes(item?.[keys]) || false);
+                                            let isStatus = (isString(valueText) && (valueText?.includes(item?.[keys]))) || false;
 
                                             return (
                                                 <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>

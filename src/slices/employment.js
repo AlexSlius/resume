@@ -20,7 +20,7 @@ const initialState = {
     country: "",
     assignment: "",
     city: "",
-    title_id: null,
+    title_id: "",
   },
   status: statusLoaded,
   statusUpdate: statusLoaded

@@ -1,11 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
-import { isArray } from 'lodash';
 
 export const fetchGetCvCarreers = createAsyncThunk('careers/fetchGetCvCarreers', async ({ idCv }, thunkAPI) => {
     const response = await api.careers.getCvCarreers(idCv);
-    return isArray(response) || response?.error ? "" : response;
+    return response;
 });
 
 export const fetchDeleteAll = createAsyncThunk('careers/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
@@ -17,7 +16,6 @@ export const fetchDeleteAll = createAsyncThunk('careers/fetchDeleteAll', async (
 export const fetchAddServer = createAsyncThunk('careers/fetchAddServer', async ({ idCv }, thunkAPI) => {
     const { careers: { data } } = thunkAPI.getState();
     const response = await api.careers.create(idCv, { data });
-
 
     if (response?.error == "item_exist") {
         await thunkAPI.dispatch(fetchUpdateServer({ idCv, data }))
