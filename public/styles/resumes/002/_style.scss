@@ -843,6 +843,12 @@
     display: none;
   }
 
+  .line_text {
+    &::before {
+      background: $main_color_1;
+    }
+  }
+
   .color-scheme-state-color-set-0 {
     .image-color-set-0 {
       display: block;

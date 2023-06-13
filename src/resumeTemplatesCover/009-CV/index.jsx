@@ -32,11 +32,11 @@ export const CoverCv009 = ({
 
                 let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-                if (getPageContainer2().height() > getPageContainer2().parent().height()) {
+                if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                     do {
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                     }
-                    while (getPageContainer2().height() > getPageContainer2().parent().height());
+                    while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                     letter_current_page_number++;
                     getCvLetterContainer().append(original_cv_letter_text.clone());

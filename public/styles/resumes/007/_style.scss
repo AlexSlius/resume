@@ -852,6 +852,22 @@
   $color_set_4_additional_color_2: rgba(166, 166, 190, 1);
   $color_set_4_additional_color_3: rgba(189, 200, 239, 1);
 
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
+  .destination-details {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-text {

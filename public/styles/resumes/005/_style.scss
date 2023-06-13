@@ -111,6 +111,12 @@
         &.bottom-area {
           padding: 0px 30px;
           box-sizing: border-box;
+
+          .line_text {
+            &::before {
+              background: rgb(255, 255, 255);
+            }
+          }
         }
       }
     }
@@ -229,6 +235,14 @@
           &.bottom-area {
             padding: 30px 51px;
             min-height: 140px;
+
+            .cv-letter-text {
+              .line_text {
+                &::before {
+                  background: rgb(255, 255, 255);
+                }
+              }
+            }
 
             .block-block {
               margin-top: 0px;
@@ -650,6 +664,22 @@
   /* Color scheme */
   .image-color-set {
     display: none;
+  }
+
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
+  .bottom-area {
+    .line_text {
+      &::before {
+        background: rgb(255, 255, 255);
+      }
+    }
   }
 
   .color-scheme-state-color-set-1 {

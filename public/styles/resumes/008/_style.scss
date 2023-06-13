@@ -1059,6 +1059,22 @@ var lineHeightMapping = {
   $color_set_5_additional_color_1: rgba(13, 126, 105, 1);
   $color_set_6_additional_color_1: rgba(183, 99, 0, 1);
 
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_2;
+      }
+    }
+  }
+
+  .cv-destination-block {
+    .line_text {
+      &::before {
+        background: $main_color_2;
+      }
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-text {

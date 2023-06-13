@@ -785,6 +785,12 @@
       color: $main_color_1;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_0_additional_color_1;
+      }
+    }
+
     .main-color-1-background {
       background-color: $main_color_1;
     }
@@ -823,6 +829,12 @@
   .color-scheme-state-color-set-1 {
     .main-color-1-text {
       color: $main_color_1;
+    }
+
+    .line_text {
+      &::before {
+        background: $color_set_1_additional_color_1;
+      }
     }
 
     .main-color-1-background {
@@ -865,6 +877,12 @@
       color: $main_color_1;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_2_additional_color_1;
+      }
+    }
+
     .main-color-1-background {
       background-color: $main_color_1;
     }
@@ -903,6 +921,12 @@
   .color-scheme-state-color-set-3 {
     .main-color-1-text {
       color: $main_color_1;
+    }
+
+    .line_text {
+      &::before {
+        background: $color_set_3_additional_color_1;
+      }
     }
 
     .main-color-1-background {
@@ -945,6 +969,12 @@
       color: $main_color_1;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_4_additional_color_1;
+      }
+    }
+
     .main-color-1-background {
       background-color: $main_color_1;
     }
@@ -985,6 +1015,12 @@
       color: $main_color_1;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_5_additional_color_1;
+      }
+    }
+
     .main-color-1-background {
       background-color: $main_color_1;
     }
@@ -1023,6 +1059,12 @@
   .color-scheme-state-color-set-6 {
     .main-color-1-text {
       color: $main_color_1;
+    }
+
+    .line_text {
+      &::before {
+        background: $color_set_6_additional_color_1;
+      }
     }
 
     .main-color-1-background {

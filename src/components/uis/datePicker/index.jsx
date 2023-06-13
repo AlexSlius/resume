@@ -17,6 +17,7 @@ export const DatePicker = ({
     formatInput = 'MMM, YYYY',
     formatData = 'M, Y',
     isMindata = true,
+    onlyAYear = false,
     prevData = undefined,
 }) => {
     let refSelect = useRef(undefined);
@@ -43,7 +44,7 @@ export const DatePicker = ({
                         always_visible: $(useRefContainer?.current),
                         direction: prevD,
                         onSelect: function (data) {
-                            onChange((isMindata ? data.replace(",", ", 01,") : data), true);
+                            onChange((isMindata ? data.replace(",", ", 01,") : onlyAYear ? `01, 01, ${data}` : data), true);
 
                             useRefData?.current.blur();
                             useRefDataNewIn?.current.blur();

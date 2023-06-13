@@ -77,15 +77,13 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedi
     return response;
 });
 
-export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById', async (idCv, thunkAPI) => {
+export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById2', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
     return response;
 });
 
 export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
-
-    consol.log("getCoverLetterById: ", getCoverLetterById);
 
     return response || null;
 });

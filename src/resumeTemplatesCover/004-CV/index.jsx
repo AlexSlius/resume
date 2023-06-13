@@ -19,23 +19,22 @@ export const CoverCv004 = ({
 
             $('.cv-body-visible').remove();
 
-            // Reccomendation letter
             function rebuildingPages2() {
                 let cv_letter_heading = $('#cv-body-2 .columns-wrapper .column-1 .letter-block .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .columns-wrapper .column-1 .letter-block .cv-letter-text').clone();
 
                 getCvLetterContainer().append(cv_letter_heading);
 
-                let original_cv_letter_text = $('#cv-body-2 .columns-wrapper .column-1 .cv-letter-text');
+                let original_cv_letter_text = $('#cv-body-2 .columns-wrapper .column-1 .letter-block .cv-letter-text');
                 getCvLetterContainer().append(cv_letter_text);
 
                 let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-                if (getPageContainer2().height() > getPageContainer2().parent().height()) {
+                if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                     do {
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                     }
-                    while (getPageContainer2().height() > getPageContainer2().parent().height());
+                    while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                     letter_current_page_number++;
                     getCvLetterContainer().append(original_cv_letter_text.clone());

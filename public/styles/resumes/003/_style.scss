@@ -156,7 +156,7 @@
 
   .cv-body-2 .cv-body-content .cv-body-area.area-1 {
     padding: 50px 50px 38px;
-}
+  }
 
   #cv-body-hidden-container,
   #cv-body-2 {
@@ -954,6 +954,14 @@
   /* Color scheme */
   .image-color-set {
     display: none;
+  }
+
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
   }
 
   .color-scheme-state-color-set-0 {

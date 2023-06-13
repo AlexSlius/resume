@@ -617,6 +617,12 @@
     }
   }
 
+  .line_text {
+    &::before {
+      background: #01153A;
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-2-background {

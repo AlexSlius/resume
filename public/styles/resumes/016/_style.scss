@@ -712,6 +712,12 @@
   $color_set_4_additional_color_1: #FFB489;
   $color_set_5_additional_color_1: #7EE0FF;
 
+  .line_text {
+    &::before {
+      background: $main_color_2;
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .cv-body-content {

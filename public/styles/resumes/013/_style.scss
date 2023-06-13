@@ -582,6 +582,12 @@
     }
   }
 
+  .line_text {
+    &::before {
+      background: $main_color_1;
+    }
+  }
+
   .color-scheme-state-color-set-1 {
     .main-color-1-text {
       color: $main_color_1;

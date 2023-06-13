@@ -2,15 +2,12 @@ import React, { useEffect } from "react";
 
 export const CoverCv002 = ({
     data,
-    idCv,
     stateClasses,
     reportTemplateRef,
 }) => {
     const {
         firstName,
         lastName,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -18,54 +15,29 @@ export const CoverCv002 = ({
             let letter_current_page_number = 1;
 
             function rebuildingPages2() {
-                $('.cv-body.cv-body-visible').remove();
+                $('.cv-body-visible').remove();
 
-                letter_current_page_number = 1;
                 let cv_letter_heading = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-heading').clone();
                 let cv_letter_text = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').clone();
 
-                // getCvLetterContainer().append(cv_letter_heading);
+                getCvLetterContainer().append(cv_letter_heading);
 
-                // получает высоту блока текста
-                let cv_letter_text_height = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text').height();
-                // получает сам текст и разбивает по переносу строки "абзац"
-                let cv_letter_text_lines = $('#cv-body-2 .cv-body-area.area-2 .column-left #cv-letter-text').html().split("\n");
+                let original_cv_letter_text = $('#cv-body-2 .cv-body-area.area-2 .column-left .cv-letter-text');
+                getCvLetterContainer().append(cv_letter_text);
 
+                let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-                // делит высоту на количество строк
-                let cv_letter_line_height = cv_letter_text_height / cv_letter_text_lines.length;
-
-                let text_first_part_max_height = getCvLetterContainer().innerHeight() - getCvLetterContainer().find(cv_letter_heading).outerHeight(true);
-
-                let text_first_part_lines = 0;
-
-                for (let l = 1; l <= cv_letter_text_lines.length; l++) {
-                    if ((cv_letter_line_height * l) > (text_first_part_max_height - 40)) {
-                        text_first_part_lines = l - 1;
-                        break;
-                    } else {
-                        text_first_part_lines = l;
+                if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+                    do {
+                        text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                     }
-                }
+                    while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
-                let cv_letter_text_part_1 = "";
-                let cv_letter_text_part_2 = "";
-
-                for (let l = 0; l < cv_letter_text_lines.length; l++) {
-
-                    if (l <= text_first_part_lines) {
-                        cv_letter_text_part_1 += cv_letter_text_lines[l];
-                    } else {
-                        cv_letter_text_part_2 += cv_letter_text_lines[l];
-                    }
-                }
-
-                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_1));
-                if (cv_letter_text_part_2) {
                     letter_current_page_number++;
+                    getCvLetterContainer().append(original_cv_letter_text.clone());
+                    let text2 = getCvLetterContainer().find('.cv-letter-text');
+                    text2.html(text2.html().substring(text1.html().length));
                 }
-
-                getCvLetterContainer().append($(cv_letter_text).clone().html(cv_letter_text_part_2));
             }
 
             function getCvLetterContainer() {
@@ -74,7 +46,6 @@ export const CoverCv002 = ({
 
             function getPageContainer2() {
                 let page = $('#cv-chapter-section-resume').find('.cv-body.cv-body-visible.page-' + letter_current_page_number);
-
                 if (page.length > 0) {
                     return page.find('.cv-body-content');
                 } else {
@@ -84,10 +55,8 @@ export const CoverCv002 = ({
 
             function createNewPage2() {
                 let page_element = $('#cv-body-2').clone();
-
                 page_element.attr('id', '');
                 page_element.addClass(['cv-body-visible', 'page-' + letter_current_page_number]);
-
                 let page_element_container = page_element.find('.cv-body-content');
 
                 page_element_container.find('.cv-body-area.area-2 .column-left').children().remove();

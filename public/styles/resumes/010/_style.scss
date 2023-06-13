@@ -719,6 +719,12 @@
       color: $main_color_4;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_1_additional_color_1;
+      }
+    }
+
     .additional-color-1-text {
       color: $color_set_1_additional_color_1;
     }
@@ -785,6 +791,12 @@
   .color-scheme-state-color-set-2 {
     .main-color-4-text {
       color: $main_color_4;
+    }
+
+    .line_text {
+      &::before {
+        background: $color_set_2_additional_color_1;
+      }
     }
 
     .additional-color-1-text {
@@ -855,6 +867,12 @@
       color: $main_color_4;
     }
 
+    .line_text {
+      &::before {
+        background: $color_set_3_additional_color_1;
+      }
+    }
+
     .additional-color-1-text {
       color: $color_set_3_additional_color_1;
     }
@@ -921,6 +939,12 @@
   .color-scheme-state-color-set-4 {
     .main-color-4-text {
       color: $main_color_4;
+    }
+
+    .line_text {
+      &::before {
+        background: $color_set_4_additional_color_1;
+      }
     }
 
     .additional-color-1-text {

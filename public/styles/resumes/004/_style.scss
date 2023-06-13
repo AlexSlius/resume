@@ -874,6 +874,14 @@
     }
   }
 
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
   .color-scheme-state-color-set-1 {
     .image-color-set-1 {
       display: block;

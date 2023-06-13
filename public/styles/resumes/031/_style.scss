@@ -684,6 +684,12 @@
     }
   }
 
+  .line_text {
+    &::before {
+      background: $color_set_1_additional_color_1;
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-background {

@@ -198,6 +198,12 @@
   $color_set_6_additional_color_1: #DC9934;
   $color_set_6_additional_color_2: #3C2B2A;
 
+  .line_text {
+    &::before {
+      background: #01153A;
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-background {

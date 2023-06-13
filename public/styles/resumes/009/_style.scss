@@ -948,6 +948,22 @@
   $color_set_2_additional_color_2: rgba(0, 100, 210, 1);
   $color_set_2_additional_color_3: rgba(76, 140, 216, 1);
 
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
+  .delivery-block {
+    .line_text {
+      &::before {
+        background: $main_color_2;
+      }
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-text {

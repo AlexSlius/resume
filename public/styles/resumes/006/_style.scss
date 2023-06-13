@@ -734,6 +734,22 @@
   $color_set_8_additional_color_1: rgba(159, 140, 201, 1);
   $color_set_9_additional_color_1: rgba(129, 172, 198, 1);
 
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
+  .bottom-area {
+    .line_text {
+      &::before {
+        background: $main_color_2;
+      }
+    }
+  }
+
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-text {

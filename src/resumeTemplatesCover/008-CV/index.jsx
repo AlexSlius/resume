@@ -11,8 +11,6 @@ export const CoverCv008 = ({
     const {
         firstName,
         lastName,
-        applyingCompanyTitle,
-        applyingCompanyContact,
     } = data;
 
     useEffect(() => {
@@ -23,12 +21,12 @@ export const CoverCv008 = ({
             $('.cv-body-visible').remove();
 
             function rebuildingPages2() {
-                let cv_letter_heading = $('#cv-body-2 .column-right .cv-letter-heading').clone();
-                let cv_letter_text = $('#cv-body-2 .column-right .cv-letter-text').clone();
+                let cv_letter_heading = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-heading').clone();
+                let cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text').clone();
 
                 getCvLetterContainer().append(cv_letter_heading);
 
-                let original_cv_letter_text = $('#cv-body-2 .column-right .cv-letter-text');
+                let original_cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text');
                 getCvLetterContainer().append(cv_letter_text);
 
                 let text1 = getCvLetterContainer().find('.cv-letter-text');

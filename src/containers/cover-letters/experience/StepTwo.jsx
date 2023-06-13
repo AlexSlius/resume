@@ -121,7 +121,10 @@ export const StepTwo = ({
                                                 ) :
                                                 (
                                                     <DatePicker
+                                                        formatInput="YYYY"
+                                                        formatData="Y"
                                                         floatingLabel="Date"
+                                                        onlyAYear={true}
                                                         selected={coverDataObj.graduateDate}
                                                         onChange={(date) => handleUpdateField({ name: "graduateDate", value: date })}
                                                     />
