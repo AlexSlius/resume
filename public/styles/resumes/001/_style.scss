@@ -295,8 +295,8 @@
               .column-right {
                 margin-left: 0;
                 & > .cv-heading {
-                  text-align: right;
                   font-weight: 300;
+                  max-width: 144px;
                 }
                 .cv-career-block {
                   border-width: 1px;
