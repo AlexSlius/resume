@@ -109,6 +109,11 @@
         font-family: Rubik;
     }
 
+    * {
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
+    }
+
     a {
       color: $main_color_1;
     }
@@ -273,7 +278,7 @@
                       height: 100%;
                     }
                     .cv-heading {
-                      margin-bottom: 8px;
+                      margin-bottom: 8px !important;
                     }
                   }
                 }
@@ -319,6 +324,7 @@
                     column-gap: 8px;
                     .career-links-link {
                       display: block;
+                      width: 16px;
                       height: 16px;
                       text-decoration: none;
                       svg {
@@ -336,7 +342,7 @@
             background-color: #fff;
             padding: 20px 30px 20px;
             .cv-heading {
-              margin-bottom: 5px;
+              margin-bottom: 5px !important;
             }
             h3.cv-heading {
               text-transform: uppercase;
