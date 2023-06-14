@@ -11,6 +11,6 @@ const ResumeExperiencePage = () => {
     )
 }
 
-export const getServerSideProps = withPrivateRoute({ isGetFormCover: true });
+export const getServerSideProps = withPrivateRoute({ isGetFormCover: true, isPageCoverLetter: true });
 
 export default ResumeExperiencePage;

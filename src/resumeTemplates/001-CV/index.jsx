@@ -553,15 +553,13 @@ export const ResumeCv001 = ({
                           <div className="skills-estimation-block">
                             {
                               languages.map((item, index) => (
-                                
-                                  <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1">{item.language}</p>
-                                    <Estimation
-                                      level={item.level}
-                                      startLeng={6}
-                                    />
-                                  </div>
-                                
+                                <div className="skill-item" key={index}>
+                                  <p className="skill-name font-size-1">{item.language}</p>
+                                  <Estimation
+                                    level={item.level}
+                                    startLeng={6}
+                                  />
+                                </div>
                               ))
                             }
                           </div>

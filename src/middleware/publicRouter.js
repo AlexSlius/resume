@@ -30,6 +30,7 @@ export const withPublicRoute = ({
     isGetShareCover = false,
     isPageCoverLetter = false,
     isStrite = false,
+    isItemCoverPage = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -71,6 +72,9 @@ export const withPublicRoute = ({
 
             if (!!isPageCoverLetter) {
                 await store.dispatch(getAllPageCoverLetter({ dispatch: store.dispatch }));
+            }
+
+            if (!!isItemCoverPage) {
                 if (ctx?.query?.idCv != "new") {
                     await store.dispatch(getCoverGenerateDate(ctx?.query?.idCv));
                 }
