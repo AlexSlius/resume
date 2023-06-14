@@ -323,7 +323,7 @@ export const ResumeCv001 = ({
                   (isArray(employment) && !!employment.length) && (
                     <div className="employment-history-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Employment history</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
+                      <div className="block-info font-size-1 main-color-1-text">
                         {
                           employment.map((itemEm, index) => (
                             <div key={index} className="desrip-content">
