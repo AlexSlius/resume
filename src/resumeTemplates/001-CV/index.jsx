@@ -164,7 +164,7 @@ export const ResumeCv001 = ({
           getPageArea2().append(column_left);
 
           // Insert separator
-          var separator = $('<div class="separator"></div>');
+          var separator = $('<div class="separator additional-color-3-border"></div>');
           getPageArea2().append(separator);
 
           return $(column_left);

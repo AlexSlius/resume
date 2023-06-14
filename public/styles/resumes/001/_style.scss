@@ -351,7 +351,8 @@
               color: $main_color_1;
             }
             .separator {
-              border-left: 1px solid rgba(214, 208, 208, 1);
+              border-left-width: 1px;
+              border-style: solid;
               margin-left: 28px;
             }
             .references-block {
@@ -496,6 +497,10 @@
         border-color: $color_set_0_additional_color_2;
       }
 
+      .additional-color-3-border {
+        border-color: $color_set_0_additional_color_3;
+      }
+
       .additional-color-1-svg {
         path {
           fill: $color_set_0_additional_color_1;
@@ -543,6 +548,10 @@
       .additional-color-2-border {
         border-color: $color_set_1_additional_color_2;
       }
+      
+      .additional-color-3-border {
+        border-color: $color_set_1_additional_color_3;
+      }
 
       .additional-color-1-svg {
         path {
@@ -580,6 +589,10 @@
         background-color: $color_set_2_additional_color_1;
       }
 
+      .additional-color-2-border {
+        border-color: $color_set_2_additional_color_2;
+      }
+
       .additional-color-1-border {
         border-color: $color_set_2_additional_color_1;
       }
@@ -588,8 +601,8 @@
         color: $color_set_2_additional_color_2;
       }
 
-      .additional-color-2-border {
-        border-color: $color_set_2_additional_color_2;
+      .additional-color-3-border {
+        border-color: $color_set_2_additional_color_3;
       }
 
       .additional-color-1-svg {
@@ -640,6 +653,10 @@
         border-color: $color_set_3_additional_color_2;
       }
 
+      .additional-color-3-border {
+        border-color: $color_set_3_additional_color_3;
+      }
+
       .additional-color-1-svg {
         path {
           fill: $color_set_3_additional_color_1;
@@ -688,6 +705,10 @@
         border-color: $color_set_4_additional_color_2;
       }
 
+      .additional-color-3-border {
+        border-color: $color_set_4_additional_color_3;
+      }
+
       .additional-color-1-svg {
         path {
           fill: $color_set_4_additional_color_1;
@@ -734,6 +755,10 @@
 
       .additional-color-2-border {
         border-color: $color_set_5_additional_color_2;
+      }
+
+      .additional-color-3-border {
+        border-color: $color_set_5_additional_color_3;
       }
 
       .additional-color-1-svg {
