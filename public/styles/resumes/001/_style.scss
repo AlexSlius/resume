@@ -389,7 +389,6 @@
               .skills-block {
                 .skills-estimation-block {
                   margin-top: 10px;
-                  max-height: 100px;
                 }
               }
             }
@@ -425,34 +424,39 @@
           }
         }
       }
-    }
 
-    .cv-body-2 {
-      .cv-body-area {
-        &.area-2 {
-          padding: 50px 50px 20px 50px;
-          .cv-letter {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: stretch;
-            .cv-letter-heading {
-              margin-bottom: 23px;
+      &.cv-body-2 {
+        .cv-body-area {
+          &.area-2 {
+            padding: 0 50px 20px;
+            .column-right {
+              .cv-heading {
+                margin-bottom: 0 !important;
+              }
             }
-          }
-
-          .cv-destination-block {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: stretch;
-            border-width: 1px;
-            border-style: solid;
-            padding: 15px 20px;
-            box-sizing: border-box;
-            .cv-sender {
-              margin-bottom: 10px;
+            .cv-letter {
+              padding-top: 30px;
+              .cv-letter-heading {
+                margin-bottom: 23px;
+              }
+            }
+            .cv-destination {
+              padding-top: 30px;
+              width: 144px;
+            }
+            .cv-destination-block {
+              display: flex;
+              flex-direction: column;
+              align-items: stretch;
+              justify-content: stretch;
+              border-width: 1px;
+              border-style: solid;
+              padding: 20px 15px;
+              box-sizing: border-box;
+              .cv-sender {
+                margin-bottom: 10px;
+                word-break: break-all;
+              }
             }
           }
         }
