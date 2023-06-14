@@ -323,6 +323,7 @@ export const ResumeCv001 = ({
                   (isArray(employment) && !!employment.length) && (
                     <div className="employment-history-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Employment history</h3>
+<<<<<<< HEAD
                       <div className="block-info font-size-1 main-color-1-text">
                         {
                           employment.map((itemEm, index) => (
@@ -334,6 +335,17 @@ export const ResumeCv001 = ({
                           ))
                         }
                       </div>
+=======
+                      {
+                        employment.map((itemEm, index) => (
+                          <div className="block-info font-size-1 main-color-1-text desrip-content" key={index}>
+                            {(!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>)}
+                            {(!!itemEm?.title || itemEm?.company || !!itemEm?.city) && (<h4 className="cv-heading">{!!itemEm?.title && (`${itemEm?.title},`)} {!!itemEm?.company && (`${itemEm?.company},`)} {!!itemEm?.city && (`${itemEm?.city}`)}</h4>)}
+                            <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                          </div>
+                        ))
+                      }
+>>>>>>> ec7d7335516e4b94bf4d27bf65718632fe181942
                     </div>
                   )
                 }
@@ -343,19 +355,17 @@ export const ResumeCv001 = ({
                   isArray(extra_curricular) && !!extra_curricular.length && (
                     <div className="extra-curricular-activities-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Extra-curricular activities</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
-                        {
-                          extra_curricular.map((itemEx, index) => (
-                            <div key={index}>
-                              {(!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>)}
+                      {
+                        extra_curricular.map((itemEx, index) => (
+                          <div className="block-info font-size-1 main-color-1-text" key={index}>
+                            {(!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>)}
 
-                              {(!!itemEx?.title || itemEx?.employer) && (<h4 className="cv-heading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</h4>)}
+                            {(!!itemEx?.title || itemEx?.employer) && (<h4 className="cv-heading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</h4>)}
 
-                              <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
-                            </div>
-                          ))
-                        }
-                      </div>
+                            <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
+                          </div>
+                        ))
+                      }
                     </div>
                   )
                 }
@@ -365,19 +375,17 @@ export const ResumeCv001 = ({
                   isArray(internship) && !!internship.length && (
                     <div className="internships-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Internships</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
-                        {
-                          internship.map((itemIn, index) => (
-                            <div key={index}>
-                              {(!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>)}
+                      {
+                        internship.map((itemIn, index) => (
+                          <div className="block-info font-size-1 main-color-1-text" key={index}>
+                            {(!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>)}
 
-                              {(!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (<h4 className="cv-heading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</h4>)}
+                            {(!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (<h4 className="cv-heading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</h4>)}
 
-                              <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
-                            </div>
-                          ))
-                        }
-                      </div>
+                            <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                          </div>
+                        ))
+                      }
                     </div>
                   )
                 }
@@ -387,29 +395,27 @@ export const ResumeCv001 = ({
                   isArray(reference) && !!reference.length && (
                     <div className="references-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">References</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
-                        {
-                          reference.map((itemRef, index) => (
-                            <div key={index}>
-                              {/* <p className="date-range additional-color-2-text">March 2022 - December 2022</p> */}
-                              {
-                                (!!itemRef?.fullName || !!itemRef?.company) && (
-                                  <h4 className="cv-heading">
-                                    {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                    {!!itemRef?.company && (`${itemRef.company}`)}
-                                  </h4>
-                                )
-                              }
-                              {
-                                !!itemRef?.email && (
-                                  <p>{itemRef.email}</p>
-                                )
-                              }
-                              {itemRef.phone && (<p>{itemRef.phone}</p>)}
-                            </div>
-                          ))
-                        }
-                      </div>
+                      {
+                        reference.map((itemRef, index) => (
+                          <div className="block-info font-size-1 main-color-1-text" key={index}>
+                            {/* <p className="date-range additional-color-2-text">March 2022 - December 2022</p> */}
+                            {
+                              (!!itemRef?.fullName || !!itemRef?.company) && (
+                                <h4 className="cv-heading">
+                                  {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
+                                  {!!itemRef?.company && (`${itemRef.company}`)}
+                                </h4>
+                              )
+                            }
+                            {
+                              !!itemRef?.email && (
+                                <p>{itemRef.email}</p>
+                              )
+                            }
+                            {itemRef.phone && (<p>{itemRef.phone}</p>)}
+                          </div>
+                        ))
+                      }
                     </div>
                   )
                 }
@@ -422,39 +428,37 @@ export const ResumeCv001 = ({
                   isArray(education) && !!education.length && (
                     <div className="education-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Education</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
-                        {
-                          education.map((itemEd, index) => (
-                            <div key={index}>
-                              {(!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>)}
-                              {
-                                (itemEd?.degree) && (
-                                  <p className="degree-block additional-color-2-text">
-                                    {itemEd?.degree && (`${itemEd.degree}, `)}
-                                  </p>
-                                )
-                              }
-                              {
-                                itemEd?.study && (
-                                  <h4 className="cv-heading">{itemEd.study}</h4>
-                                )
-                              }
-                              {
-                                (itemEd?.facility) && (
-                                  <p className="college-block">
-                                    {itemEd?.facility && (`${itemEd.facility}, `)}
-                                  </p>
-                                )
-                              }
-                              {
-                                !!itemEd?.description && (
-                                  <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
-                                )
-                              }
-                            </div>
-                          ))
-                        }
-                      </div>
+                      {
+                        education.map((itemEd, index) => (
+                          <div className="block-info font-size-1 main-color-1-text" key={index}>
+                            {(!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>)}
+                            {
+                              (itemEd?.degree) && (
+                                <p className="degree-block additional-color-2-text">
+                                  {itemEd?.degree && (`${itemEd.degree}, `)}
+                                </p>
+                              )
+                            }
+                            {
+                              itemEd?.study && (
+                                <h4 className="cv-heading">{itemEd.study}</h4>
+                              )
+                            }
+                            {
+                              (itemEd?.facility) && (
+                                <p className="college-block">
+                                  {itemEd?.facility && (`${itemEd.facility}, `)}
+                                </p>
+                              )
+                            }
+                            {
+                              !!itemEd?.description && (
+                                <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                              )
+                            }
+                          </div>
+                        ))
+                      }
                     </div>
                   )
                 }
@@ -465,25 +469,23 @@ export const ResumeCv001 = ({
                   isArray(courses) && !!courses.length && (
                     <div className="courses-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Courses</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
-                        {
-                          courses.map((itemCo, index) => (
-                            <div key={index}>
-                              {(!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>)}
-                              {
-                                !!itemCo?.title && (
-                                  <h4 className="cv-heading">{itemCo.title}</h4>
-                                )
-                              }
-                              {
-                                !!itemCo?.institution && (
-                                  <p>{itemCo.institution}</p>
-                                )
-                              }
-                            </div>
-                          ))
-                        }
-                      </div>
+                      {
+                        courses.map((itemCo, index) => (
+                          <div className="block-info font-size-1 main-color-1-text" key={index}>
+                            {(!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>)}
+                            {
+                              !!itemCo?.title && (
+                                <h4 className="cv-heading">{itemCo.title}</h4>
+                              )
+                            }
+                            {
+                              !!itemCo?.institution && (
+                                <p>{itemCo.institution}</p>
+                              )
+                            }
+                          </div>
+                        ))
+                      }
                     </div>
                   )
                 }
@@ -542,7 +544,7 @@ export const ResumeCv001 = ({
                             {
                               skills.map((item, index) => (
                                 <div className="skill-item" key={index}>
-                                  <p className="skill-name additional-color-1-text">{item.name}</p>
+                                  <p className="skill-name">{item.name}</p>
                                   {
                                     !hide_experience_level && (
                                       <Estimation level={item.level} />
@@ -567,7 +569,7 @@ export const ResumeCv001 = ({
                               languages.map((item, index) => (
                                 
                                   <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1 additional-color-1-text">{item.language}</p>
+                                    <p className="skill-name font-size-1">{item.language}</p>
                                     <Estimation
                                       level={item.level}
                                       startLeng={6}
