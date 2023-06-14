@@ -323,19 +323,6 @@ export const ResumeCv001 = ({
                   (isArray(employment) && !!employment.length) && (
                     <div className="employment-history-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Employment history</h3>
-<<<<<<< HEAD
-                      <div className="block-info font-size-1 main-color-1-text">
-                        {
-                          employment.map((itemEm, index) => (
-                            <div key={index} className="desrip-content">
-                              {(!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>)}
-                              {(!!itemEm?.title || itemEm?.company || !!itemEm?.city) && (<h4 className="cv-heading">{!!itemEm?.title && (`${itemEm?.title},`)} {!!itemEm?.company && (`${itemEm?.company},`)} {!!itemEm?.city && (`${itemEm?.city}`)}</h4>)}
-                              <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
-                            </div>
-                          ))
-                        }
-                      </div>
-=======
                       {
                         employment.map((itemEm, index) => (
                           <div className="block-info font-size-1 main-color-1-text desrip-content" key={index}>
@@ -345,7 +332,6 @@ export const ResumeCv001 = ({
                           </div>
                         ))
                       }
->>>>>>> ec7d7335516e4b94bf4d27bf65718632fe181942
                     </div>
                   )
                 }
@@ -567,15 +553,13 @@ export const ResumeCv001 = ({
                           <div className="skills-estimation-block">
                             {
                               languages.map((item, index) => (
-                                
-                                  <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1">{item.language}</p>
-                                    <Estimation
-                                      level={item.level}
-                                      startLeng={6}
-                                    />
-                                  </div>
-                                
+                                <div className="skill-item" key={index}>
+                                  <p className="skill-name font-size-1">{item.language}</p>
+                                  <Estimation
+                                    level={item.level}
+                                    startLeng={6}
+                                  />
+                                </div>
                               ))
                             }
                           </div>
