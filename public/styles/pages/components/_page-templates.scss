@@ -224,8 +224,9 @@
 .page-share {
     &.pdf {
         .page-templates__right {
-            padding: 0!important;
+            padding: 0 !important;
         }
+
         .ptr-c__content {
             max-width: 100% !important;
 
@@ -539,6 +540,10 @@
     .body-template-resume {
         transform-origin: 50% 0px;
         min-width: 618px;
+
+        @media(max-width: 1023px) {
+            transform-origin: 0px 0px;
+        }
     }
 
     .ptr-c {
