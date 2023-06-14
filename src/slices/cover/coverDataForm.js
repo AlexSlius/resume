@@ -164,6 +164,8 @@ export const slice = createSlice({
             state.statusCoverGenerate = statusLoaded;
             state.status = statusLoaded;
             state.coverGenerateDate = action.payload.cover_letter;
+            state.from = action.payload?.from || null;
+            state.to = action.payload?.to || null;
         },
         [updateCoverLetterById.pending]: (state) => {
             state.status = statusLoader;

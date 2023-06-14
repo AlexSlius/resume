@@ -20,9 +20,7 @@
     @media (any-hover: hover) {
         &:hover {
             background: #1856d3 !important;
-            ;
             color: #fff !important;
-            ;
         }
     }
 }
@@ -1056,7 +1054,7 @@ button {
     }
 
     .react-datepicker__month-text {
-        font-family: "gt_font";
+        font-family: "GTEestiProDisplay";
         width: 71px;
         height: 42px;
         display: flex;
@@ -1083,7 +1081,7 @@ button {
     .react-datepicker__header {
         border: none;
         background: #FFFFFF;
-        font-family: "gt_font";
+        font-family: "GTEestiProDisplay";
         font-size: 1rem;
         line-height: (19/16);
         font-style: normal;

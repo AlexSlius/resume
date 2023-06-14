@@ -85,6 +85,8 @@ export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById2', 
 export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
 
+    console.log("response: ", response);
+
     return response || null;
 });
 
@@ -100,6 +102,8 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
     newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
 
     const response = await api.personalize.updateCoverLetterById(idCv, newObj);
+
+    console.log("response: ", updateCoverLetterById);
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
