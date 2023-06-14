@@ -530,7 +530,7 @@ export const ResumeCv001 = ({
                             {
                               skills.map((item, index) => (
                                 <div className="skill-item" key={index}>
-                                  <p className="skill-name additional-color-1-text">{item.name}</p>
+                                  <p className="skill-name">{item.name}</p>
                                   {
                                     !hide_experience_level && (
                                       <Estimation level={item.level} />
@@ -555,7 +555,7 @@ export const ResumeCv001 = ({
                               languages.map((item, index) => (
                                 
                                   <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1 additional-color-1-text">{item.language}</p>
+                                    <p className="skill-name font-size-1">{item.language}</p>
                                     <Estimation
                                       level={item.level}
                                       startLeng={6}
