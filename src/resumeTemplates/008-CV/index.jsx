@@ -427,8 +427,8 @@ export const ResumeCv008 = ({
                               <p className="font-size-1 line-height-1 main-color-2-text">{item.language}</p>
                               <div className="skill-estimation-container">
                                 {
-                                  [...new Array(+item.level)].map(inxeItem => (
-                                    <span key={inxeItem} className="skill-estimation-point main-color-2-background"></span>
+                                  [...new Array(+item.level)].map((inxeItem, index) => (
+                                    <span key={index} className="skill-estimation-point main-color-2-background"></span>
                                   ))
                                 }
                               </div>
@@ -488,7 +488,7 @@ export const ResumeCv008 = ({
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-7 main-color-2-text">Employment History</h3>
                       {
                         employment.map((itemEm, index) => (
-                          <div>
+                          <div key={index}>
                             <p className="font-weight-500 font-size-3 line-height-4 main-color-2-text">
                               {!!itemEm?.title && (`${itemEm?.title}, `)}
                               {!!itemEm?.company && (` ${itemEm?.company}, `)}

@@ -94,7 +94,7 @@ export const CardResume = ({
                         <input
                             type="text"
                             onChange={(e) => setStateName(e.target.value)}
-                            value={stateName}
+                            value={stateName?.length > 0 ? stateName : ""}
                             onFocus={() => setFocus(true)}
                             // onKeyUp={(e) => handlekeyUp(e, stateName, id)}
                             onBlur={() => onBlud()}

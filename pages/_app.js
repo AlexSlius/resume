@@ -14,7 +14,6 @@ import { wrapper } from '../src/store'
 import { downloadPagePdf } from "../src/utils/isdownPdf";
 
 // Styles
-import 'swiper/css';
 import '../public/styles/fonts.scss';
 import '../public/styles/pages/vendor.scss';
 import '../public/styles/pages/main.scss';

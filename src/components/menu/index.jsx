@@ -7,7 +7,6 @@ import Icon from "../Icon";
 import { routersPages } from "../../constants/next-routers";
 import MenuSideBar from "../../components/sideBar/MenuSidebar";
 import MenuSidebarCoverLetters from "../../components/sideBar/MenuSidebarCoverLetters";
-import HeadUser from "../headUser/HeadUser";
 
 import iconCreative from "/public/images/icons/icon_creav.svg?sprite";
 import iconProfesional from "/public/images/icons/briefcase-account.svg?sprite";
@@ -20,15 +19,10 @@ import iconModFaq from "/public/images/icons/icon_mob_menu-faq.svg?sprite";
 import iconNeedHelp from "/public/images/icons/iocn-need-help.svg?sprite"
 
 
-export const Menu = ({ pageName }) => {
+export const Menu = () => {
     const router = useRouter();
     const path = router.pathname;
     const {
-        auth: {
-            autorizate: {
-                isAthorized,
-            }
-        },
         theme: {
             currentResolution
         }
