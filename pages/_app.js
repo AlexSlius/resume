@@ -46,8 +46,12 @@ const MyApp = ({ Component, ...rest }) => {
       <Head>
         <meta httpEquiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preload" href="/styles/fonts.css" />
         <link rel="icon" type="image/x-icon" href="/favicons/fav3.ico" />
-        <link rel="stylesheet" href="/styles/fonts.css" />
+        <link rel="preload" href="/fonts/GTEestiProDisplay-Bold.woff2" as="font" type="font/woff2" />
+        <link rel="preload" href="/fonts/GTEestiProDisplay-Light.woff2" as="font" type="font/woff2" />
+        <link rel="preload" href="/fonts/GTEestiProDisplay-Medium.woff2" as="font" type="font/woff2" />
+        <link rel="preload" href="/fonts/GTEestiProDisplay-UltraBold.woff2" as="font" type="font/woff2" />
         <link rel="stylesheet" href="/styles/pages/vendor/normalize.css" />
         <link rel="stylesheet" href="/styles/pages/vendor/swiper-bundle.min.css" />
       </Head>

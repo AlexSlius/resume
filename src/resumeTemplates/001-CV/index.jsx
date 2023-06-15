@@ -501,7 +501,7 @@ export const ResumeCv001 = ({
                   isArray(hobbies) && !!hobbies.length && (
                     <div className="hobbies-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Hobbies</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
+                      <div className="block-info font-size-1 main-color-1-text">
                         <p>
                           {
                             hobbies.map((item, index) => (
