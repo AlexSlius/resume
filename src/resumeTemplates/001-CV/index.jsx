@@ -421,7 +421,7 @@ export const ResumeCv001 = ({
                             {
                               (itemEd?.degree) && (
                                 <p className="degree-block additional-color-2-text">
-                                  {itemEd?.degree && (`${itemEd.degree}, `)}
+                                  {(itemEd?.degree?.length > 0) ? (`${itemEd.degree}, `) : ""}
                                 </p>
                               )
                             }
