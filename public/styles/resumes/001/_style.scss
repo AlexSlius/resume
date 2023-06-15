@@ -351,7 +351,8 @@
               color: $main_color_1;
             }
             .separator {
-              border-left: 1px solid rgba(214, 208, 208, 1);
+              border-left-width: 1px;
+              border-style: solid;
               margin-left: 28px;
             }
             .references-block {
@@ -388,7 +389,6 @@
               .skills-block {
                 .skills-estimation-block {
                   margin-top: 10px;
-                  max-height: 100px;
                 }
               }
             }
@@ -424,34 +424,39 @@
           }
         }
       }
-    }
 
-    .cv-body-2 {
-      .cv-body-area {
-        &.area-2 {
-          padding: 50px 50px 20px 50px;
-          .cv-letter {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: stretch;
-            .cv-letter-heading {
-              margin-bottom: 23px;
+      &.cv-body-2 {
+        .cv-body-area {
+          &.area-2 {
+            padding: 0 50px 20px;
+            .column-right {
+              .cv-heading {
+                margin-bottom: 0 !important;
+              }
             }
-          }
-
-          .cv-destination-block {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: stretch;
-            border-width: 1px;
-            border-style: solid;
-            padding: 15px 20px;
-            box-sizing: border-box;
-            .cv-sender {
-              margin-bottom: 10px;
+            .cv-letter {
+              padding-top: 30px;
+              .cv-letter-heading {
+                margin-bottom: 23px;
+              }
+            }
+            .cv-destination {
+              padding-top: 30px;
+              width: 144px;
+            }
+            .cv-destination-block {
+              display: flex;
+              flex-direction: column;
+              align-items: stretch;
+              justify-content: stretch;
+              border-width: 1px;
+              border-style: solid;
+              padding: 20px 15px;
+              box-sizing: border-box;
+              .cv-sender {
+                margin-bottom: 10px;
+                word-break: break-all;
+              }
             }
           }
         }
@@ -494,6 +499,10 @@
 
       .additional-color-2-border {
         border-color: $color_set_0_additional_color_2;
+      }
+
+      .additional-color-3-border {
+        border-color: $color_set_0_additional_color_3;
       }
 
       .additional-color-1-svg {
@@ -543,6 +552,10 @@
       .additional-color-2-border {
         border-color: $color_set_1_additional_color_2;
       }
+      
+      .additional-color-3-border {
+        border-color: $color_set_1_additional_color_3;
+      }
 
       .additional-color-1-svg {
         path {
@@ -580,6 +593,10 @@
         background-color: $color_set_2_additional_color_1;
       }
 
+      .additional-color-2-border {
+        border-color: $color_set_2_additional_color_2;
+      }
+
       .additional-color-1-border {
         border-color: $color_set_2_additional_color_1;
       }
@@ -588,8 +605,8 @@
         color: $color_set_2_additional_color_2;
       }
 
-      .additional-color-2-border {
-        border-color: $color_set_2_additional_color_2;
+      .additional-color-3-border {
+        border-color: $color_set_2_additional_color_3;
       }
 
       .additional-color-1-svg {
@@ -640,6 +657,10 @@
         border-color: $color_set_3_additional_color_2;
       }
 
+      .additional-color-3-border {
+        border-color: $color_set_3_additional_color_3;
+      }
+
       .additional-color-1-svg {
         path {
           fill: $color_set_3_additional_color_1;
@@ -688,6 +709,10 @@
         border-color: $color_set_4_additional_color_2;
       }
 
+      .additional-color-3-border {
+        border-color: $color_set_4_additional_color_3;
+      }
+
       .additional-color-1-svg {
         path {
           fill: $color_set_4_additional_color_1;
@@ -734,6 +759,10 @@
 
       .additional-color-2-border {
         border-color: $color_set_5_additional_color_2;
+      }
+
+      .additional-color-3-border {
+        border-color: $color_set_5_additional_color_3;
       }
 
       .additional-color-1-svg {

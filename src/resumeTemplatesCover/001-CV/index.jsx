@@ -80,7 +80,7 @@ export const CoverCv001 = ({
                             (!!firstName || !!lastName) && (
                                 <div className="cv-body-area area-1 additional-color-3-background">
                                     <div className="column-left">
-                                        <h1 className="cv-heading heading-type-1 additional-color-1-text font-size-3 line-height-3">
+                                        <h1 className="cv-heading font-size-3">
                                             {!!firstName && (firstName)}
                                             {` `}
                                             {!!lastName && (lastName)}
@@ -93,17 +93,17 @@ export const CoverCv001 = ({
                             <div className="column-left">
                                 <div className="cv-letter">
                                     {/* <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                                    <div className="cv-letter-text font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                    <div className="cv-letter-text font-size-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                 </div>
                             </div>
                             <div className="column-right">
                                 <div className="cv-destination">
-                                    <div className="cv-destination-block additional-color-2-border">
+                                    <div className="cv-destination-block additional-color-3-border">
                                         <div className="destination-details">
-                                            <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">To</p>
-                                            <p className="cv-sender font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
-                                            <p className="cv-heading heading-type-6 font-size-1 line-height-1 additional-color-1-text">From</p>
-                                            <p className="cv-destination font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                            <p className="cv-heading font-size-2 additional-color-1-text">To</p>
+                                            <p className="cv-sender font-size-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                            <p className="cv-heading font-size-2 additional-color-1-text">From</p>
+                                            <p className="font-size-1" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                         </div>
                                     </div>
                                 </div>
