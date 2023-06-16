@@ -74,12 +74,12 @@ export const CoverCv002 = ({
         <div className="sv_002 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume">
-                    <div className="cv-body-content">
+                    <div className="cv-body-content font-size-1 main-color-1-text additional-color-2-border">
                         {
                             (!!firstName || !!lastName) && (
                                 <div className="cv-body-area area-1">
                                     <div className="column-left">
-                                        <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">
+                                        <h1 className="cv-heading additional-color-1-text cv-name font-size-4">
                                             {!!firstName && (firstName)}{` `}
                                             {!!lastName && (lastName)}
                                         </h1>
@@ -90,23 +90,23 @@ export const CoverCv002 = ({
                         <div className="cv-body-area area-2">
                             <div className="column-left">
                                 {/* <h2 className="cv-heading cv-letter-heading heading-type-6 font-size-2 line-height-4 main-color-1-text letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                                <div id="cv-letter-text" className="cv-text  cv-letter-text font-size-1 line-height-1 main-color-1-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                <div id="cv-letter-text" className="cv-text  cv-letter-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
-                            <div className="separator"></div>
+                            <div className="separator additional-color-2-border"></div>
                             <div className="column-right">
                                 <div className="cv-destination">
-                                    <div className="cv-destination-block block-block additional-color-2-border">
+                                    <div className="cv-destination-block block-block">
                                         <div className="destination-details">
-                                            <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">TO
-                                                <span className="line-after-block-heading additional-color-2-border"></span>
+                                            <h3 className="cv-heading font-size-2 additional-color-1-text">TO
+                                                <span className="line-after-block-heading additional-color-1-border"></span>
                                             </h3>
-                                            <p className="cv-sender font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                            <p className="cv-sender" dangerouslySetInnerHTML={{ __html: data.to }}></p>
 
-                                            <h3 className="cv-heading heading-type-3 font-size-2 line-height-2 additional-color-1-text">
+                                            <h3 className="cv-heading ont-size-2 additional-color-1-text">
                                                 FROM
-                                                <span className="line-after-block-heading additional-color-2-border"></span>
+                                                <span className="line-after-block-heading additional-color-1-border"></span>
                                             </h3>
-                                            <p className="cv-destination font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                            <p className="cv-destination" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                         </div>
                                     </div>
                                 </div>
