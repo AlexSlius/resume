@@ -31,7 +31,6 @@ export const CoverCv002 = ({
                     do {
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
-                        console.log(text1.html());
                     }
                     while (getPageContainer2().height() >= (getPageContainer2().parent().height()));
                     console.log(text1.html().length);
