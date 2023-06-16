@@ -442,7 +442,8 @@
             }
             .cv-destination {
               padding-top: 30px;
-              width: 144px;
+              min-width: 144px;
+              max-width: 190px;
             }
             .cv-destination-block {
               display: flex;
