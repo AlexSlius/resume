@@ -93,7 +93,7 @@ export const Header = () => {
                                         </div>
                                     ) : (
                                         <>
-                                            <Link href={`/${routersPages['login']}`} className="logins">Login</Link>
+                                            <Link href={`/${routersPages['login']}`} className="logins">Account</Link>
                                             <Link href={`/${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                                 <img src="/images/page/get-start.svg" alt="img" />
                                                 <span>Get started</span>
@@ -144,7 +144,7 @@ export const Header = () => {
                                                         </div>
                                                     </>
                                                 ) : <>
-                                                    <Link href={`/${routersPages['login']}`} className="logins">Login</Link>
+                                                    <Link href={`/${routersPages['login']}`} className="logins">Account</Link>
                                                     <Link href={`/${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
                                                         <img src="/images/page/get-start.svg" alt="img" />
                                                         <span>Get started</span>

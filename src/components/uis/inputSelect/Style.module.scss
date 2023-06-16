@@ -71,6 +71,15 @@
             padding: 12px 16px;
             align-items: center;
             color: #01153a;
+            cursor: pointer;
+
+            &:hover {
+                button {
+                    svg {
+                        fill: #3679FD;
+                    }
+                }
+            }
         }
 
         &_no {

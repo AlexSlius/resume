@@ -14,7 +14,12 @@ import { cleanStartPersonFields } from "../../constants/formPerson";
 
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false }, thunkAPI) => {
-    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
+    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters }, users: { objFormSettings } } = thunkAPI.getState();
+    const dataAccout = {
+        email: objFormSettings?.email,
+        firstName: objFormSettings?.firstName,
+        lastName: objFormSettings?.lastName,
+    };
 
     const newObj = camelToSnake({
         firstName: coverDataObj.firstName,
@@ -27,7 +32,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
         phone: coverDataObj.phone,
     });
 
-    const response = await api.personalize.addCover(newObj);
+    const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
 
     if (response?.status == "added") {
         if (isDashboard) {
@@ -85,8 +90,6 @@ export const getCoverLetterById = createAsyncThunk('fetch/getCoverLetterById2', 
 export const getCoverGenerateDate = createAsyncThunk('fetch/getCoverGenerateDate', async (idCv, thunkAPI) => {
     const response = await api.personalize.getCoverLetterById(idCv);
 
-    console.log("response: ", response);
-
     return response || null;
 });
 
@@ -102,8 +105,6 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
     newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
 
     const response = await api.personalize.updateCoverLetterById(idCv, newObj);
-
-    console.log("response: ", updateCoverLetterById);
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));

@@ -354,6 +354,7 @@ const FormReference = ({
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="reference"
                />
             </CCol>
          </CRow>

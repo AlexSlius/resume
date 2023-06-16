@@ -28,6 +28,7 @@ export const ContactUsPage = () => {
     const [errorFields, setErrorFields] = useState({
         email: false,
         name: false,
+        description: false,
     });
 
     const handkeCheck = (check) => {
@@ -45,6 +46,7 @@ export const ContactUsPage = () => {
         setErrorFields({
             email: false,
             name: false,
+            description: false,
         });
     }
 
@@ -75,7 +77,14 @@ export const ContactUsPage = () => {
             }))
         }
 
-        if (!validateEmail(formState.email) || formState.name?.length < 1) {
+        if (formState.description?.length < 50) {
+            setErrorFields(prev => ({
+                ...prev,
+                description: true
+            }))
+        }
+
+        if (!validateEmail(formState.email) || formState.name?.length < 1 || formState.description?.length < 50) {
             return;
         }
 
@@ -142,6 +151,7 @@ export const ContactUsPage = () => {
                                     onChange={(e) => handleUpdateField("description", e.target.value)}
                                     name="description"
                                     placeholder={'Question or remark'}
+                                    textError={errorFields.description && (formState.description?.length == 0 ? "The main field is required" : formState.description?.length < 50 ? "A small description. Increase the description to 50 characters" : "")}
                                 />
                             </div>
                         </div>

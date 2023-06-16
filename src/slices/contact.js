@@ -102,7 +102,6 @@ export const slice = createSlice({
       state.statusNew = statusLoader;
     },
     [contactSetNew.fulfilled]: (state) => {
-      state.contactObjNew = initialState.contactObjNew;
       state.statusNew = statusLoaded;
     },
     // new add

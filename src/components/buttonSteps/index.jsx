@@ -5,12 +5,13 @@ import classnames from 'classnames';
 
 import { LoadChildrenBtn } from "../loadChildrenBtn"
 import { isLoader } from "../../helpers/loadings"
-import { isAllActive, nextofLink, prevOfLink } from "../../helpers/routers";
+import { isAllActive, nextofLink } from "../../helpers/routers";
 
 import { routersPages } from "../../constants/next-routers";
 
 import style from "./Style.module.scss";
 import { ComponentHigherLoadBtn } from "../componentHigherLoadBtn";
+import { sectionStatusAllButTheCustomSection, getActiveSectionByName } from "../../utils/customSection";
 
 export const ButtonSteps = ({
     loadBtnNext = false,
@@ -25,16 +26,17 @@ export const ButtonSteps = ({
     disabledNext = false,
     disableDelete = false,
     onHandleBtnNext = () => { },
-    onHandleBtnPrev = () => { },
     onHandleNew = () => { },
     onClean = () => { },
-    clickFinish = () => { },
+    // clickFinish = () => { },
+    nameSection = null,
 }) => {
     const router = useRouter();
     const {
         menuAsideResume: {
             list
-        }
+        },
+        addSection
     } = useSelector(state => state);
 
     const isAll = isAllActive(list);
@@ -58,22 +60,16 @@ export const ButtonSteps = ({
         }
     }
 
-    // const clickPrev = () => {
-    //     let pathName = router.asPath;
-    //     let linkPrev = prevOfLink(list, pathName);
-
-    //     if (!!linkPrev)
-    //         Router.push(linkPrev);
-
-    //     onHandleBtnPrev();
-    // }
+    const clickFinish = () => {
+        Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
+    }
 
     return (
         <div>
             <div className={classnames(style.buttonWrapper, style.row)}>
 
                 {
-                    isFinish ? (
+                    (isFinish || (sectionStatusAllButTheCustomSection(addSection?.list) && getActiveSectionByName(addSection?.list, nameSection))) ? (
                         <div>
                             <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
                                 <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>

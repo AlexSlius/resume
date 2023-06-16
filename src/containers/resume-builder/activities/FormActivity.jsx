@@ -454,6 +454,7 @@ const FormActivity = ({
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="extraCurricular"
                />
             </CCol>
          </CRow>

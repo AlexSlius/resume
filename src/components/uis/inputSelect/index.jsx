@@ -219,13 +219,13 @@ export const InputSelect = ({
                     setShowlist(true);
                 }
 
-                if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState.length)) {
+                if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState?.length)) {
                     if (refIdTimeout.current) {
                         clearTimeout(refIdTimeout.current);
                     }
 
                     refIdTimeout.current = setTimeout(async () => {
-                        if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState.length) {
+                        if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState?.length) {
                             handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
                             // if (isRequire) {
                             //     setIsNoneReuq(false);
@@ -308,10 +308,10 @@ export const InputSelect = ({
                                                         {
                                                             isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
                                                                 !refMoreThanOne.current && (
-                                                                    <li className={`${style.list__li} ${style.list__li_first}`}>
+                                                                    <li className={`${style.list__li} ${style.list__li_first}`} onClick={onAddNew}>
                                                                         <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
                                                                         <div className={`${style.rig}`}>
-                                                                            <button className={`${style.button_add}`} onClick={onAddNew} title="Add to list?" type="button">
+                                                                            <button className={`${style.button_add}`} title="Add to list?" type="button">
                                                                                 <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
                                                                             </button>
                                                                         </div>

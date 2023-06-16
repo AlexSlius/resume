@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { CSidebarNav, CNavItem } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
@@ -20,6 +20,7 @@ import { routersPages } from "../../constants/next-routers";
 
 // Styles
 import style from './SideBar.module.scss'
+import { sectionStatusAllButTheCustomSection } from "../../utils/customSection";
 
 
 const MenuSideBar = () => {
@@ -127,16 +128,17 @@ const MenuSideBar = () => {
                     })
                 }
 
-                {/* !!sectionIndexAndAll(list)?.lengAll && ( */}
                 {
-                    <CNavItem>
-                        <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
-                            <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, `/add_section${dopQuery}`)}>
-                                <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
-                                Advanced
-                            </a>
-                        </ActiveLink>
-                    </CNavItem>
+                    !sectionStatusAllButTheCustomSection(list) && (
+                        <CNavItem>
+                            <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
+                                <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, `/add_section${dopQuery}`)}>
+                                    <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
+                                    Advanced
+                                </a>
+                            </ActiveLink>
+                        </CNavItem>
+                    )
                 }
             </CSidebarNav>
         </>

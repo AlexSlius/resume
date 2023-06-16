@@ -71,6 +71,9 @@ const FormPersonalize = ({
                 isAthorized
             }
         },
+        users: {
+            objFormSettings,
+        },
         menuAsideResume
     } = storeDate;
     const isNew = (idCv == "new");
@@ -168,6 +171,13 @@ const FormPersonalize = ({
 
     useEffect(() => {
         dispatch(fetchGetCountrys());
+
+        if (isNew && isAthorized) {
+            let { firstName, lastName, email } = objFormSettings;
+            handleUpdateItemField({ name: "firstName", value: firstName });
+            handleUpdateItemField({ name: "lastName", value: lastName });
+            handleUpdateItemField({ name: "email", value: email });
+        }
     }, []);
 
     return (

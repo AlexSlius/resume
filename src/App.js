@@ -1,17 +1,17 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { useWindowSize } from "./hooks/custom-hooks";
 import { setAliasScreenResolution } from "./helpers/theme-helpers";
-import { fetchUserGetAvatar, fetchUserGetProfile } from "./controllers/users";
+import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "./controllers/users";
 
 const App = ({
     children,
     store,
 }) => {
+    const router = useRouter();
+
     const {
-        auth: {
-            autorizate
-        },
         theme: {
             currentResolution,
         }
@@ -25,9 +25,13 @@ const App = ({
     }, [windowSize]);
 
     useEffect(() => {
-        store.dispatch(fetchUserGetAvatar());
         store.dispatch(fetchUserGetProfile());
+        store.dispatch(getUserDataSettings());
     }, []);
+
+    useEffect(() => {
+        store.dispatch(fetchUserGetAvatar());
+    }, [router.asPath]);
 
     return (children)
 }

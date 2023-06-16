@@ -14,6 +14,8 @@ import { wrapper } from '../src/store'
 import { downloadPagePdf } from "../src/utils/isdownPdf";
 
 // Styles
+import '../public/styles/pages/vendor/normalize.css';
+import '../public/styles/pages/vendor/swiper-bundle.min.css';
 import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
@@ -99,8 +101,7 @@ const MyApp = ({ Component, ...rest }) => {
           }} />
 
         <link rel="icon" type="image/x-icon" href="/favicons/fav3.ico" />
-        <link rel="stylesheet" href="/styles/pages/vendor/normalize.css" as="style" />
-        <link rel="stylesheet" href="/styles/pages/vendor/swiper-bundle.min.css" as="style" />
+
       </Head>
       <App store={store}>
         <Component

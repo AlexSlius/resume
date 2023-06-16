@@ -13,7 +13,6 @@ import { CFormInput } from "@coreui/react"
 import Icon from "../../Icon"
 
 import iconPlus from "/public/images/icons/plu-opas.svg?sprite"
-import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
 import iconSearch from "/public/images/icons/search-grey.svg?sprite"
 import iconX from '/public/images/icons/icon-x.svg?sprite';
 import iconOkText from '/public/images/icons/icon-ok-text.svg?sprite'
@@ -96,6 +95,12 @@ const TextEditor = ({
             const handleClick = (e) => {
                 const cordinate = e.target.getBoundingClientRect();
                 const windowInnerHeight = window.innerHeight;
+
+                if (refCurentClass.current?.includes("open")) {
+                    setmodalClass('');
+                    refCurentClass.current = '';
+                    return;
+                }
 
                 if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
                     setmodalClass(prev => {
@@ -227,7 +232,7 @@ const TextEditor = ({
                                             isArray(data) ? (
                                                 !!data.length ? (
                                                     data.map((item, index) => {
-                                                        let isStatus = devValue?.includes(item?.[keys]);
+                                                        let isStatus = convertToHTML(state.getCurrentContent())?.includes(item?.[keys]);
 
                                                         return (
                                                             <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>

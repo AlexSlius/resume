@@ -11,9 +11,15 @@ import { setUpdateResumeActive } from './resumeData';
 import { cleanSliseNew } from "../slices/contact"
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState()
-    const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, pictureFile)
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew }, users: { objFormSettings, avatar: { image } } } = thunkAPI.getState();
 
+    const dataAccout = {
+        email: objFormSettings?.email || '',
+        first_name: objFormSettings?.firstName || '',
+        last_name: objFormSettings?.lastName || ''
+    };
+
+    const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (image || null) : pictureFile);
     const response = await api.contact.setAddResume(newObj);
 
     if (isRedirect) {
@@ -37,8 +43,8 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
 })
 
 export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', async ({ dataImage, isNewResume, isRedirect = true }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState()
-    const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, dataImage)
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume } = thunkAPI.getState();
+    const newObj = newObjContact(isNewResume ? contactObjNew : contactObj, dataImage);
 
     const response = await api.contact.setBaseInfo(newObj);
 

@@ -8,7 +8,6 @@ import { ROUTES, ROUTES_COVER } from "../../constants/routes";
 import { routersPages } from "../../constants/next-routers";
 import { postShareResume } from "../../controllers/resumes";
 import { postShareCover } from "../../controllers/cover/covers";
-import { addItemNotification } from "../../slices/notifications";
 import { copyToClipboard } from "../../helpers/bufer";
 import config from "../../config/config.json";
 
@@ -38,7 +37,7 @@ export const MenuButton = ({
 
         if (res?.payload?.status == 'shared') {
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${idCv}?key=${res.payload.key}`, async () => {
-                await dispatch(addItemNotification({ text: "link copied" }));
+                //    
             });
         }
     }
@@ -48,7 +47,7 @@ export const MenuButton = ({
 
         if (res?.payload?.status == 'shared') {
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${idCv}?key=${res.payload.key}`, async () => {
-                await dispatch(addItemNotification({ text: "link copied" }));
+                // 
             });
         }
     }
@@ -70,7 +69,7 @@ export const MenuButton = ({
                     <li className="menus-card_li">
                         <button className="item-btn-m" onClick={handleShare}>
                             <Icon svg={iconShare} />
-                            <span>Share a link</span>
+                            <span>Copy URL</span>
                         </button>
                     </li>
                 </ul>

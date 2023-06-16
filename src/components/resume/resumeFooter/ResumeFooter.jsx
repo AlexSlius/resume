@@ -13,6 +13,7 @@ import templateIcon from '/public/images/icons/selectFillNone.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
 import { handleChanbdegAutOrPlan } from '../../../utils/downShare';
+import Link from 'next/link';
 
 
 const ResumeFooter = ({
@@ -35,14 +36,6 @@ const ResumeFooter = ({
          isSubscribe
       }
    } = useSelector((state) => state);
-
-   const handleRouter = () => {
-      if (!isCover) {
-         Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}`)
-      } else {
-         Router.push(`/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}`)
-      }
-   }
 
    const handleDownload = () => {
       if (!isCover) {
@@ -71,17 +64,12 @@ const ResumeFooter = ({
    return (
       <div className="resume-footer d-flex gap-3 justify-content-between py-3">
          <div className="resume-footer__left">
-            <CButton
-               className='resume-footer__button'
-               color="secondary"
-               variant="outline"
-               onClick={handleRouter}
-            >
+            <Link href={!isCover ? `/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}` : `/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}`} className='btn btn-outline-secondary resume-footer__button'>
                <Icon svg={templateIcon} classNames={['icon-20']} />
                {
                   isMob ? ("Template") : ("Select template")
                }
-            </CButton>
+            </Link>
          </div>
          <div className="resume-footer__right d-flex ">
             <CButton

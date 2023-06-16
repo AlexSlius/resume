@@ -9,7 +9,7 @@ export const Checked = ({
     label = '',
     onChange = () => { },
     checkbox,
-    defaultChecked = false,
+    defaultChecked,
     isBold = false
 }) => {
     return (

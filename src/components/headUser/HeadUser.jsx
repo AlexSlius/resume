@@ -1,35 +1,18 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Link from 'next/link'
+import { useSelector } from 'react-redux'
 
 // Components
 import UserMenu from '../userMenu';
 import Icon from '../Icon'
 
-import { logout } from '../../controllers/auth'
-
 import style from './HeadUser.module.scss'
 import arrowProfileIcon from '/public/images/icons/arrow-profile.svg?sprite'
-import iconDashboard from '/public/images/icons/icon-dashboard.svg?sprite'
-import iconSettings from '/public/images/icons/icon_settings.svg?sprite'
-import iconHelp from '/public/images/icons/icon-he.svg?sprite'
-import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
-import iconHLogin from '/public/images/icons/icon-h-login.svg?sprite'
-import iconSingUp from '/public/images/icons/icon-sing-up.svg?sprite'
-
-import { routersPages } from "../../constants/next-routers"
 
 const HeadUser = () => {
-   const dispatch = useDispatch();
    const [showMenu, setShowMenu] = useState();
    const classIsShowMenu = showMenu ? style.opens : ''
 
    const {
-      auth: {
-         autorizate: {
-            isAthorized,
-         }
-      },
       users: {
          avatar
       }

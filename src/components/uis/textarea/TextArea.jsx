@@ -5,16 +5,22 @@ const Textarea = ({
    onChange,
    placeholder,
    name,
+   textError = "",
 }) => {
    return (
       <div className={`textarea__item`}>
          <CFormTextarea
             autoComplete="off"
             placeholder={placeholder}
-            value={value}
+            value={value || ""}
             onChange={onChange}
             name={name}
          />
+          {
+            !!textError && (
+               <div className="error-text-in">{textError}</div>
+            )
+         }
       </div>
    )
 }

@@ -6,12 +6,10 @@ import React from "react";
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
-import { LoadWr } from "../../../components/loadWr"
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ItemDragDrop } from "../../../components/ItemDragDrop";
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { fetchGetHobies } from "../../../controllers/dependencies";
-import { isLoader } from "../../../helpers/loadings"
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
 
@@ -22,7 +20,6 @@ import {
 import {
    fetchPostAddCvHobie,
    fetchDeleteHobie,
-   fetchGetCvHobie,
    fetchPostUpdatePositionHobie,
    fetchDeleteAll
 } from "../../../controllers/hobies";
@@ -42,7 +39,6 @@ const FormHobies = ({
       hobies: {
          hobiesObj,
          hobieObjNew,
-         statusList
       },
       auth: {
          autorizate: {
@@ -92,70 +88,68 @@ const FormHobies = ({
    }
 
    React.useEffect(() => {
-      // dispatch(fetchGetCvHobie({ idCv }));
+      dispatch(fetchGetHobies());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'hobbies' }));
    }, []);
 
    return (
       <>
-         {/* isLoad={isLoader(statusList)} */}
-         <LoadWr >
-            <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-               <Droppable droppableId="droppable">
-                  {
-                     (provided, snapshot) => (
-                        <CRow className="mobile-rows g-30"
-                           ref={provided.innerRef}
-                           {...provided.droppableProps}
-                        >
-                           {
-                              isArray(hobiesObj) && (
-                                 hobiesObj.map((item, index) => (
-                                    <Draggable
-                                       key={item.id}
-                                       draggableId={String(item.id)}
-                                       index={index}
-                                    >
-                                       {
-                                          (provided, snapshot) => (
-                                             <ItemDragDrop
-                                                id={item?.id}
-                                                provided={provided}
-                                                label={item?.text}
-                                                onDelete={onDeleteItemHobies}
-                                             />
-                                          )
-                                       }
-                                    </Draggable>
-                                 ))
-                              )
-                           }
-                           {provided.placeholder}
-                           <CCol xs={6}>
-                              <InputSelect
-                                 placeholder="Search hobby"
-                                 valueState={hobieObjNew.text || ""}
-                                 name="text"
-                                 data={hobies.list}
-                                 // isLoad={isLoader(hobies?.status)}
-                                 handleSaveSelect={updateitemFiledNew}
-                                 handleServerRequest={handleGetHobiesList}
-                                 isOutDataObj={false}
-                                 isRequire={true}
-                              />
-                           </CCol>
-                        </CRow>
-                     )
-                  }
-               </Droppable>
-            </DragDropContext>
-         </LoadWr>
+         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+            <Droppable droppableId="droppable">
+               {
+                  (provided, snapshot) => (
+                     <CRow className="mobile-rows g-30"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                     >
+                        {
+                           isArray(hobiesObj) && (
+                              hobiesObj.map((item, index) => (
+                                 <Draggable
+                                    key={item.id}
+                                    draggableId={String(item.id)}
+                                    index={index}
+                                 >
+                                    {
+                                       (provided, snapshot) => (
+                                          <ItemDragDrop
+                                             id={item?.id}
+                                             provided={provided}
+                                             label={item?.text}
+                                             onDelete={onDeleteItemHobies}
+                                          />
+                                       )
+                                    }
+                                 </Draggable>
+                              ))
+                           )
+                        }
+                        {provided.placeholder}
+                        <CCol xs={6}>
+                           <InputSelect
+                              placeholder="Search hobby"
+                              valueState={hobieObjNew.text || ""}
+                              name="text"
+                              data={hobies.list}
+                              handleSaveSelect={updateitemFiledNew}
+                              handleServerRequest={handleGetHobiesList}
+                              isOutDataObj={false}
+                              isRequire={true}
+                              isValidIn={true}
+                           />
+                        </CCol>
+                     </CRow>
+                  )
+               }
+            </Droppable>
+         </DragDropContext>
          <CRow className="mt-4">
             <CCol>
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="hobbies"
                />
             </CCol>
          </CRow>

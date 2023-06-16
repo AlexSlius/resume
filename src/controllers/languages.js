@@ -9,9 +9,9 @@ export const fetchGetCvLanguages = createAsyncThunk('languages/fetchGetCvLanguag
 });
 
 export const fetchPostAddCvOneLanguages = createAsyncThunk('languages/fetchPostAddCvOneLanguages', async ({ idCv }, thunkAPI) => {
-    const { languages: { objNew } } = thunkAPI.getState();
+    const { languages: { objNew: { language, level } } } = thunkAPI.getState();
 
-    const response = await api.languages.addLanguagesItem(idCv, objNew);
+    const response = await api.languages.addLanguagesItem(idCv, { language, level });
     await thunkAPI.dispatch(fetchGetCvLanguages({ idCv }));
     return response;
 });

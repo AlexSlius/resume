@@ -121,7 +121,7 @@ const Dashboard = () => {
 
         if (res?.payload?.status == 'shared') {
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${id}?key=${res.payload.key}`, async () => {
-                await dispatch(addItemNotification({ text: "link copied" }));
+                // 
             });
         }
     }
@@ -150,7 +150,7 @@ const Dashboard = () => {
 
         if (res?.payload?.status == 'shared') {
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${id}?key=${res.payload.key}`, async () => {
-                await dispatch(addItemNotification({ text: "link copied" }));
+                // 
             });
         }
     }

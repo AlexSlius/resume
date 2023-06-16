@@ -341,6 +341,7 @@ const FormCourse = ({
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="courses"
                />
             </CCol>
          </CRow>

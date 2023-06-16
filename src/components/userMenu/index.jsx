@@ -9,12 +9,7 @@ import { SvgImage } from "../../components/svgImage";
 import { logout } from '../../controllers/auth'
 
 import style from '../headUser/HeadUser.module.scss'
-import iconDashboard from '/public/images/icons/icon-dashboard.svg?sprite'
-import iconSettings from '/public/images/icons/icon_settings.svg?sprite'
-import iconHelp from '/public/images/icons/icon-he.svg?sprite'
 import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
-import iconHLogin from '/public/images/icons/icon-h-login.svg?sprite'
-import iconSingUp from '/public/images/icons/icon-sing-up.svg?sprite'
 
 import { routersPages } from "../../constants/next-routers"
 
@@ -31,9 +26,6 @@ const userMenu = () => {
         theme: {
             currentResolution
         },
-        users: {
-            avatar
-        }
     } = useSelector((state) => state);
 
     useEffect(() => {
@@ -104,28 +96,14 @@ const userMenu = () => {
                                             <SvgImage image={'user'} width={'17px'} height={'17px'} color={'#3679fd'} />
                                         )
                                 }
-                                <span>Login</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={`/${routersPages['register']}`} className={`nav-link ${style.link}`}>
-                                {
-                                    ['md', 'sm', 'xs'].includes(currentResolution) ?
-                                        (
-                                            <SvgImage image={'sign-up'} width={'17px'} height={'17px'} color={'#838799'} />
-                                        ) :
-                                        (
-                                            <SvgImage image={'sign-up'} width={'17px'} height={'17px'} color={'#3679fd'} />
-                                        )
-                                }
-                                <span>Sign up</span>
+                                <span>Account</span>
                             </Link>
                         </li>
                     </>
                 )
             }
             <li>
-                <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`}>
+                <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
                     {
                         ['md', 'sm', 'xs'].includes(currentResolution) ?
                             (

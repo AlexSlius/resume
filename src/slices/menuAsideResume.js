@@ -40,7 +40,7 @@ let startDates = [
     },
     {
         key: 'careerObjective',
-        name: 'Career Objective',
+        name: 'Summary',
         status: true,
         link: '/career-objective',
         keyIcon: [keysIcons["сareerObjective"]],

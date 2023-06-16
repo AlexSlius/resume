@@ -105,7 +105,7 @@ export const fetchGetSocials = createAsyncThunk('fetch/fetchGetSocials', async (
 })
 
 export const fetchGetHobies = createAsyncThunk('fetch/fetchGetHobies', async (params) => {
-    const response = await api.dependencies.getHobies({ "query": params || '' });
+    const response = await api.dependencies.getHobies(params ? { "query": params || '' } : {});
     return response;
 })
 
@@ -133,7 +133,7 @@ export const fetchGetListLanguages = createAsyncThunk('fetch/fetchGetListLanguag
 })
 
 export const fetchGetListCertificates = createAsyncThunk('fetch/fetchGetListCertificates', async (value) => {
-    const response = await api.dependencies.getCertificates({ query: value, limit: `40` });
+    const response = await api.dependencies.getCertificates({ ...(value ? { query: value } : {}), limit: `40` });
     return response;
 })
 

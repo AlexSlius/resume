@@ -3,17 +3,13 @@ import Router from "next/router";
 
 import api from "../apiSingleton";
 import { cookieDestroy, cookieSet } from '../helpers/nookies';
-import { isRespondServerSuccesss } from '../helpers/checkingStatuses';
 
 import { routersPages } from '../constants/next-routers';
 import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
-import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
+import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "../controllers/users";
 import { contactSetNew } from "../controllers/contacts";
 import { coverSetNew } from "../controllers/cover/personalize";
-import { sessionStorageGet, localStorageRemove, sessionStorageRemove, localStorageGet } from '../helpers/localStorage';
-import { setUpdateResumeActive } from './resumeData';
-import { cleanSliseNew } from "../slices/contact";
-import { cleanCoverNewForm } from "../slices/cover/coverDataForm";
+import { localStorageRemove, sessionStorageRemove } from '../helpers/localStorage';
 import { addItemNotification } from "../slices/notifications";
 
 
@@ -22,95 +18,10 @@ export const logout = async (dispatch) => {
     await localStorageRemove('session_id');
     await sessionStorageRemove("typeResume");
     await dispatch(setLogout());
-    setTimeout(() => {
-        Router.push('/');
-    }, 500);
+    await Router.push('/');
 }
 
-// не используется
-export const fetchAuthLogin = createAsyncThunk('fetch/authLogin', async (data) => {
-    sessionStorageRemove("typeResume");
-
-    const response = await api.auth.login(data);
-
-    if (response?.token) {
-        cookieSet({ key: 'token', data: response.token });
-        Router.push(`${routersPages['dashboard']}`);
-    }
-
-    return response;
-})
-
-// typeResume пока не использую // не используется
-export const fetchAuthRegister = createAsyncThunk('fetch/authRegister', async ({ data, typeResume }, thunkAPI) => {
-    const { menuAsideResume, resumeData: { resumeActiveNew } } = thunkAPI.getState();
-    const response = await api.auth.register(data);
-
-    if (response?.token) {
-        cookieSet({ key: 'token', data: response.token });
-
-        let nextRouterPage = sessionStorageGet('routet_page_next');
-        let isPages = localStorageGet("is_page");
-
-        if (isPages == "resume") {
-            if (!!resumeActiveNew.id) {
-                thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id }, isRemoveSesion: true }));
-            }
-        } else if (isPages == "cover") {
-            // шаблон для cover 
-        }
-
-        if (!!nextRouterPage) {
-            Router.push(`/${routersPages[(isPages == "cover") ? 'coverLetter' : 'resumeBuilder']}/${response.id}${nextRouterPage}`);
-        } else {
-            Router.push(`/${routersPages['dashboard']}`);
-        }
-
-        thunkAPI.dispatch(cleanSliseNew());
-        thunkAPI.dispatch(cleanCoverNewForm());
-    } else {
-        if (response?.errors == "session_empty") {
-            Router.push(`${routersPages['resumeBuilderNew']}`);
-        }
-    }
-
-    return response;
-})
-
-// не используется
-export const fetchAuthResetPassword = createAsyncThunk('fetch/AuthResetPassword', async (data) => {
-    const response = await api.auth.resetPassword(data);
-    const isStatus = isRespondServerSuccesss(response);
-
-    if (isStatus)
-        Router.push(`/${routersPages['checEmail']}`);
-
-    return response;
-})
-
-// не используется
-export const fetchAuthCodeResetPassword = createAsyncThunk('fetch/AuthCodeResetPassword', async (data) => {
-    const response = await api.auth.changeCodePassword(data);
-    const isStatus = isRespondServerSuccesss(response);
-
-    if (isStatus)
-        Router.push(`/${routersPages['newPassword']}`);
-
-    return response;
-})
-
-// не используется
-export const fetchAuthNewPassword = createAsyncThunk('fetch/authNewPasswor', async (data) => {
-    const response = await api.auth.newPassword(data);
-
-    if (isStatus)
-        Router.push(`/${routersPages['login']}`);
-
-    return response;
-})
-
-// automation registr
-export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', async ({ data, setState }, thunkAPI) => {
+export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', async ({ data, setState, setIsPassword }, thunkAPI) => {
     setState(prev => ({ ...prev, load: true }));
     const response = await api.auth.autorizeSendCodeByEmail({ ...data });
 
@@ -119,6 +30,7 @@ export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', 
         cookieSet({ key: 'token', data: response.token });
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(getUserDataSettings());
         return {};
     }
 
@@ -126,6 +38,7 @@ export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', 
         setState({
             load: false, text: `A user with this email already exists. ${response?.status || ""}`
         });
+        setIsPassword(true);
         return {};
     }
 
@@ -144,11 +57,12 @@ export const loginFormCode = createAsyncThunk('fetch/loginFormCode', async ({ da
         setState(prev => ({ ...prev, text: '' }));
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(getUserDataSettings());
         return {};
     }
 
     if (!response?.token?.length > 0) {
-        setState({ load: false, text: response?.status || "" });
+        setState(prev => ({ ...prev, text: response?.status || "" }));
         return {};
     }
 
@@ -166,7 +80,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     let resSession = undefined;
 
     if (isResume) {
-        // resume
+        // resume get session_di
         resSession = await thunkAPI.dispatch(contactSetNew({
             isNewResume: true,
             dataImage: pictureFile,
@@ -175,7 +89,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     }
 
     if (!isResume) {
-        // cover
+        // cover get session_di
         resSession = await thunkAPI.dispatch(coverSetNew({
             isRedirect: false,
         }));
@@ -197,6 +111,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(getUserDataSettings());
 
         return { id: reseAut?.payload.id };
     }
@@ -215,6 +130,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(getUserDataSettings());
 
         return { id: undefined };
     }
@@ -259,6 +175,7 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
         await thunkAPI.dispatch(setIsAuth(true));
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
+        await thunkAPI.dispatch(getUserDataSettings());
         // await thunkAPI.dispatch(addItemNotification({ text: response.status }));
     }
 

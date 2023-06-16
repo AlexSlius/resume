@@ -90,6 +90,8 @@ const FormEmployment = ({
   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
   const refData = useRef(employmentObj);
   const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
+  // const isDataPage = isObjDatas(employmentObj?.[0] || {}) || isObjDatas(objNew);
+
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -159,7 +161,7 @@ const FormEmployment = ({
       };
     }
 
-    dispatch(getEmploymentsList({ params: { ...params, limit: 40 } }));
+    dispatch(getEmploymentsList({ params: { ...params, limit: 20 } }));
   }
 
   const handleUpdateServer = async (index) => {
@@ -264,6 +266,11 @@ const FormEmployment = ({
   }
 
   useEffect(() => {
+    // when entering, create a new form
+    // if (isArray(employmentObj) && (employmentObj.length == 0)) {
+    //   handleAddone();
+    // }
+
     dispatch(fetchGetCountrys());
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
 

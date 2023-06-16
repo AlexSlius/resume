@@ -15,7 +15,6 @@ import { InputEmail } from "../../../components/uis/inputEmail";
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
-   contactSetNew,
    fetchUpdateContact,
    contactAddNew,
    updateIsErrorEmail,
@@ -87,6 +86,10 @@ const FormContact = ({
          autorizate: {
             isAthorized
          }
+      },
+      users: {
+         objFormSettings,
+         avatar,
       },
       menuAsideResume,
    } = storeDate;
@@ -196,8 +199,6 @@ const FormContact = ({
             pictureFile,
             link
          });
-         // это для старой версии авторизации если не зареган
-         // await dispatch(contactSetNew({ pictureFile, isNewResume }));
       }
    }
 
@@ -206,7 +207,7 @@ const FormContact = ({
    }
 
    const updateContactServer = async () => {
-      if (idCv != "new") {
+      if (!isNewResume) {
          if (refIdTimeout.current) {
             clearTimeout(refIdTimeout.current);
          }
@@ -251,8 +252,16 @@ const FormContact = ({
 
    useEffect(() => {
       dispatch(fetchGetCountrys()); // get all countrys
-      if (idCv == "new") {
+      if (isNewResume) {
          sessionStorageRemove('picture');
+      }
+
+      if (isNewResume && isAthorized) {
+         let { firstName, lastName, email } = objFormSettings;
+         handlerSetDateState('firstName', firstName);
+         handlerSetDateState('lastName', lastName);
+         handlerSetDateState('email', email);
+         handlerSetDateState('picture', avatar?.image || null);
       }
    }, []);
 

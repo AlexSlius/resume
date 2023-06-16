@@ -3,17 +3,31 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from "../apiSingleton";
 import { camelToSnake } from '../helpers/caseConverters';
 import { isActiveSubscribe } from '../strite/subscribe';
+import { cookieParse } from '../helpers/nookies';
 
 export const fetchUserGetAvatar = createAsyncThunk('users/fetchUserGetAvatar', async () => {
-    const response = await api.users.getUserAvatar();
-    return response;
+    let cookies = cookieParse({ ctx: null });
+
+    if (!!cookies?.token) {
+        const response = await api.users.getUserAvatar();
+        return response;
+    }
+
+    return null;
 });
 
 export const fetchUserGetProfile = createAsyncThunk('users/fetchUserGetProfile', async () => {
-    const response = await api.users.getUserProgile();
-    let isSubscribe = isActiveSubscribe(response);
+    let cookies = cookieParse({ ctx: null });
 
-    return { user: response, isSubscribe };
+    if (!!cookies?.token) {
+
+        const response = await api.users.getUserProgile();
+        let isSubscribe = isActiveSubscribe(response);
+
+        return { user: response, isSubscribe };
+    }
+
+    return null;
 });
 
 export const fetchUserDeleteProfile = createAsyncThunk('users/fetchUserDeleteProfile', async (_, thunkAPI) => {

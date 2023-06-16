@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-    CCol,
-    CRow,
-} from "@coreui/react";
+import { CCol, CRow } from "@coreui/react";
 import Router, { useRouter } from "next/router";
-import React from "react";
+import { useEffect } from "react";
 
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import { ButtonSteps } from "../../../components/buttonSteps"
@@ -12,17 +9,12 @@ import Icon from "../../../components/Icon";
 import { LoadBlock } from "../../../components/loadBlock";
 
 import { fetchPostUpdateCategoryStatus } from "../../../controllers/addSections"
-import { localStorageGet } from "../../../helpers/localStorage";
 import { isUpdate } from "../../../helpers/checkingStatuses";
-import { isLoader } from "../../../helpers/loadings"
 import { camelCaseStrind } from "../../../helpers/caseConverters";
 import { sectionIndexAndAll } from "../../../helpers/sections";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
-import { addItemSection } from "../../../slices/menuAsideResume";
 
-import {
-    routersPages
-} from "../../../constants/next-routers";
+import { routersPages } from "../../../constants/next-routers";
 
 import style from "./Style.module.scss"
 import iconPlus from "/public/images/icons/icon_plus.svg?sprite";
@@ -46,10 +38,10 @@ const AddSection = () => {
         },
         addSection: {
             list,
-            status
         },
         menuAsideResume
     } = useSelector((state) => state);
+
     const idCv = router.query.idCv;
     const shareKey = router.query?.shareKey;
 
@@ -60,12 +52,7 @@ const AddSection = () => {
 
         if (isUpdate(res.payload, "update")) {
             let keyLink = camelCaseStrind(name);
-
-            console.log(keyLink);
-
             let itemObj = menuAsideResume.listAdd.find(el => el.key == keyLink)
-
-            // dispatch(addItemSection({ value: itemObj }));
 
             if (itemObj) {
                 Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
@@ -73,11 +60,7 @@ const AddSection = () => {
         }
     }
 
-    const clickFinish = () => {
-        Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']} `);
-    }
-
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'customSection' }));
     }, []);
 
@@ -90,7 +73,6 @@ const AddSection = () => {
             </HeadMainContent>
 
             {
-                //  isLoader(status)
                 false ? (
                     <LoadBlock />
                 ) : (
@@ -222,12 +204,10 @@ const AddSection = () => {
                                     </CCol>
                                 )
                             }
-
-                            {
+                            {/* {
                                 (list?.customSection?.status === null) && (
                                     <CCol xl={6} className="pb-4">
-                                        {/* onClick={() => handleAddItemSection("customSection")} */}
-                                        <div className={`${style.item_section} ${style.disabled} itm-s`} >
+                                        <div className={`${style.item_section} ${style.disabled} itm-s`} onClick={() => handleAddItemSection("customSection")}>
                                             <div className={`${style.item_section__left} `}>
                                                 <Icon svg={iconSettings} />
                                                 <span>Custom section</span>
@@ -240,7 +220,7 @@ const AddSection = () => {
                                         </div>
                                     </CCol>
                                 )
-                            }
+                            } */}
                         </CRow>
                     )
                 )
@@ -248,7 +228,6 @@ const AddSection = () => {
             <CRow>
                 <CCol>
                     <ButtonSteps
-                        clickFinish={clickFinish}
                         isFinish={true}
                         isAthorized={isAthorized}
                     />

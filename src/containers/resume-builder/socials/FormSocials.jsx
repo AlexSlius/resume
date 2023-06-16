@@ -163,6 +163,7 @@ const FormSocials = ({
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="socialLinks"
                />
             </CCol>
          </CRow>

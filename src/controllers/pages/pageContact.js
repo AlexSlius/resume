@@ -10,7 +10,7 @@ export const sendFormContactUs = createAsyncThunk('pageContact/sendFormContactUs
     const response = await api.pages.sendContactUs(data);
 
     if (isRespondServerSuccesss(response)) {
-        thunkAPI.dispatch(addItemNotification({ text: "Message sent" }));
+        // thunkAPI.dispatch(addItemNotification({ text: "Message sent" }));
         setState(false);
 
         return true;

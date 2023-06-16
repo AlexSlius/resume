@@ -62,16 +62,12 @@ const AdminPage = ({
                                                     </div>
                                                 )
                                             }
-                                            {
-                                                !isSubscribe && (
-                                                    <div className={style.wr_updat_now}>
-                                                        <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
-                                                            <Icon svg={iconUpdateNow} />
-                                                            <span>Upgrade now</span>
-                                                        </Link>
-                                                    </div>
-                                                )
-                                            }
+                                            <div className={style.wr_updat_now}>
+                                                <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
+                                                    <Icon svg={iconUpdateNow} />
+                                                    <span>Upgrade now</span>
+                                                </Link>
+                                            </div>
                                             <HeadUser />
                                         </>
                                     )

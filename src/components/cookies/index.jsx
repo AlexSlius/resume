@@ -10,8 +10,6 @@ import { localStorageGet, localStorageSet } from '../../helpers/localStorage';
 
 import iconCookie from "/public/images/icons/cookie.svg?sprite";
 import iconOk from "/public/images/icons/icon-ok.svg?sprite"
-import iconDecine from "/public/images/icons/icon-x-d.svg?sprite"
-
 
 export const Cookies = () => {
     const [stateCooking, setStateCooking] = React.useState(false);
@@ -28,10 +26,6 @@ export const Cookies = () => {
         localStorageSet('isCooking', true);
     }
 
-    const handleDecline = () => {
-        setStateCooking(false);
-    }
-
     if (!stateCooking)
         return <></>;
 
@@ -44,7 +38,7 @@ export const Cookies = () => {
                             <Icon svg={iconCookie} />
                         </div>
                         <div className="cookies-c__t">This website uses cookies to ensure you get the best experience
-                            on our website. By using our site you consent cookies. <Link href={routersPages['privacyPolicy']}>Learn more</Link></div>
+                            on our website. By using our site you consent cookies. <Link href={routersPages['privacyPolicy']} target='_blank'>Learn more</Link></div>
                     </div>
                     <div className="cookies-c__r">
                         <ButtonIcon

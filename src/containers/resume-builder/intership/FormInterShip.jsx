@@ -486,6 +486,7 @@ const FormInterShip = ({
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="internship"
                />
             </CCol>
          </CRow>

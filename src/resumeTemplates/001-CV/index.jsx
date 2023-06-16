@@ -481,7 +481,7 @@ export const ResumeCv001 = ({
                   isArray(certificates) && !!certificates.length && (
                     <div className="certificates-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Certificates</h3>
-                      <div class="block-info font-size-1 main-color-1-text">
+                      <div className="block-info font-size-1 main-color-1-text">
                         {
                           certificates.map((item, index) => (
                             <h4 key={index} className="cv-heading font-size-1 main-color-1-text">

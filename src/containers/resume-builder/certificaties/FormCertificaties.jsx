@@ -1,14 +1,8 @@
 
-import {
-   CCol,
-   CRow,
-} from "@coreui/react";
-import React from "react";
+import { CCol, CRow, } from "@coreui/react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 
-import Input from "../../../components/uis/input"
-import { LoadWr } from "../../../components/loadWr";
-import { isLoader } from "../../../helpers/loadings"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { InputSelect } from "../../../components/uis/inputSelect"
@@ -17,29 +11,25 @@ import {
    updateItemCertificatieFiledNew,
    updateItemCertificatieFiled
 } from "../../../slices/certificaties";
-
 import {
    fetchPostAddCvOneCertificates,
    fetchDeleteCertificates,
    fetchUpdateCertificates,
-   fetchGetCvCertificates,
    fetchDeleteAll
 } from "../../../controllers/certificaties";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { fetchGetListCertificates } from '../../../controllers/dependencies';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 const FormCertificaties = ({
    dispatch,
    storeDate,
    idCv
 }) => {
-   const refIdTimeout = React.useRef(undefined);
-
    const {
       certificaties: {
          ObjNew,
          certificatiesObj,
-         status,
       },
       auth: {
          autorizate: {
@@ -68,70 +58,69 @@ const FormCertificaties = ({
 
       if (!!data) {
          await dispatch(fetchPostAddCvOneCertificates({ idCv }));
+         focusFieldInputClassName("name_new");
+         await dispatch(fetchGetListCertificates());
       }
    }
 
    const handleClean = () => {
       dispatch(fetchDeleteAll({ idCv }));
+      dispatch(fetchGetListCertificates());
    }
 
    const handleServerRequestCertificatsList = async (text) => {
       await dispatch(fetchGetListCertificates(text));
    }
 
-   React.useEffect(() => {
-      // dispatch(fetchGetCvCertificates({ idCv }));
+   useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certificates' }));
+      dispatch(fetchGetListCertificates());
    }, []);
 
    return (
       <>
-         {/* isLoad={isLoader(status)} */}
-         <LoadWr >
-            <CRow className="mobile-rows g-30 r-gap-30">
-               {
-                  isArray(certificatiesObj) && certificatiesObj.map((item, index) => (
-                     <CCol
-                        key={item.id}
-                        xs={6}
-                     >
-                        <InputSelect
-                           isDelete={true}
-                           label={`Licence / Certification # ${index + 1}`}
-                           valueState={item.name || ""}
-                           data={certificaties.list}
-                           handleSaveSelect={({ name, value }, data) => updateitemFiled({ index, name: "name", value }, data)}
-                           handleServerRequest={handleServerRequestCertificatsList}
-                           isOutDataObj={false}
-                           onDelete={() => handleDeleteitem(item.id)}
-                           isRequire={true}
-                           
-                           isValidIn={true}
-                           validIn={item.name?.length > 2}
-                        />
-                     </CCol>
-                  ))
-               }
-               <CCol xs={6}
-               >
-                  <InputSelect
-                     label={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
-                     valueState={ObjNew.name}
-                     data={certificaties.list}
-                     handleSaveSelect={({ name, value }, data) => updateitemFiledNew({ name: "name", value }, data)}
-                     handleServerRequest={handleServerRequestCertificatsList}
-                     isOutDataObj={false}
-                     isRequire={true}
-                  />
-               </CCol>
-            </CRow>
-         </LoadWr>
+         <CRow className="mobile-rows g-30 r-gap-30">
+            {
+               isArray(certificatiesObj) && certificatiesObj.map((item, index) => (
+                  <CCol
+                     key={item.id}
+                     xs={6}
+                  >
+                     <InputSelect
+                        isDelete={true}
+                        label={`Licence / Certification # ${index + 1}`}
+                        valueState={item.name || ""}
+                        data={certificaties.list}
+                        handleSaveSelect={({ name, value }, data) => updateitemFiled({ index, name: "name", value }, data)}
+                        handleServerRequest={handleServerRequestCertificatsList}
+                        isOutDataObj={false}
+                        onDelete={() => handleDeleteitem(item.id)}
+                        isRequire={true}
+                        isValidIn={true}
+                        validIn={item.name?.length > 2}
+                     />
+                  </CCol>
+               ))
+            }
+            <CCol xs={6} className="name_new">
+               <InputSelect
+                  label={`New certification #${isArray(certificatiesObj) ? certificatiesObj.length + 1 : ''}`}
+                  valueState={ObjNew.name}
+                  data={certificaties.list}
+                  handleSaveSelect={({ name, value }, data) => updateitemFiledNew({ name: "name", value }, data)}
+                  handleServerRequest={handleServerRequestCertificatsList}
+                  isOutDataObj={false}
+                  isRequire={true}
+               />
+            </CCol>
+         </CRow>
          <CRow className="mt-4">
             <CCol>
                <ButtonSteps
                   isAthorized={isAthorized}
                   disabledNext={!isDataPage}
                   onClean={handleClean}
+                  nameSection="certificates"
                />
             </CCol>
          </CRow>

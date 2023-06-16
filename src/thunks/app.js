@@ -14,12 +14,9 @@ import { getSocials } from './socials';
 import { setLoading } from '../slices/app';
 import { getCountry } from './country';
 
-
-
 export const getLoading = (params) => (dispatch) => {
     dispatch(slice.actions.getLoginLoading(params.isLoginLoading));
 };
-
 
 export const getAppData = () => async (dispatch) => {
     await dispatch(setLoading(true));

@@ -58,7 +58,7 @@ export const slice = createSlice({
         },
         [fetchUserGetAvatar.fulfilled]: (state, action) => {
             state.statusAvatar = statusLoaded;
-            state.avatar = action.payload;
+            state.avatar = action?.payload || state.avatar == initialState.avatar;
         },
         // delete profile
         [fetchUserDeleteProfile.pending]: (state, action) => {
@@ -72,8 +72,8 @@ export const slice = createSlice({
             state.status = statusLoader;
         },
         [fetchUserGetProfile.fulfilled]: (state, action) => {
-            state.objForm = action.payload.user;
-            state.isSubscribe = action.payload.isSubscribe;
+            state.objForm = action.payload?.user || initialState.objForm;
+            state.isSubscribe = action.payload?.isSubscribe || initialState.isSubscribe;
             state.status = statusLoaded;
         },
         //get settings

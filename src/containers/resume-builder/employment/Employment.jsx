@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import FormEmployment from "./FormEmployment";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 
-
 const Employment = () => {
    const dispatch = useDispatch();
    const states = useSelector((state) => state);

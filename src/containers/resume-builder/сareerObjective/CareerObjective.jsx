@@ -14,7 +14,7 @@ const Socials = () => {
     return (
         <>
             <HeadMainContent
-                title={'Career Objective'}
+                title={'Summary'}
                 description={`This section will usually be one of the first things a hiring manager reads. It tells them,
             “Here’s who I am, and here’s what I can do for your company”.`}
             >
