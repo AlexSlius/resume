@@ -48,6 +48,9 @@ export const ResumeCv002 = ({
 
   React.useEffect(() => {
     if (typeof window != "undefined") {
+      var font_size_class = '';
+      var line_height_class = '';
+      var color_class = '';
       let current_page_number = 1;
 
       function rebuildingPages() {
@@ -73,53 +76,13 @@ export const ResumeCv002 = ({
         getPageColumnLeft();
         getPageColumnRight();
 
-        // Column left
-        current_page_number = 1;
-        getPageColumnLeft().append(employment_history_block);
-        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height()) {
-          employment_history_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(employment_history_block);
-        }
-
-        getPageColumnLeft().append(education_block);
-        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height()) {
-          education_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(education_block);
-        }
-
-        getPageColumnLeft().append(courses_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          courses_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(courses_block);
-        }
-
-        getPageColumnLeft().append(extra_curricular_activities_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          extra_curricular_activities_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(extra_curricular_activities_block);
-        }
-
-        getPageColumnLeft().append(internships_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          internships_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(internships_block);
-        }
-        if (!getPageColumnRight()) {
-          let col_r = getPageColumnRight();
-        }
-
-
         // Column right
         current_page_number = 1;
         getPageColumnRight().append(profile_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           profile_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(profile_block);
         }
 
@@ -127,6 +90,7 @@ export const ResumeCv002 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           skills_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(skills_block);
         }
 
@@ -134,6 +98,7 @@ export const ResumeCv002 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           languages_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(languages_block);
         }
 
@@ -141,6 +106,7 @@ export const ResumeCv002 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           certificates_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(certificates_block);
         }
 
@@ -148,6 +114,7 @@ export const ResumeCv002 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           references_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(references_block);
         }
 
@@ -155,6 +122,7 @@ export const ResumeCv002 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           hobbies_block.remove();
           current_page_number++;
+          getPageColumnLeft();
           getPageColumnRight().append(hobbies_block);
         }
 
@@ -162,7 +130,48 @@ export const ResumeCv002 = ({
           let col_r = getPageColumnRight();
         }
 
+        // Column left
         current_page_number = 1;
+        getPageColumnLeft().append(employment_history_block);
+        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height()) {
+          employment_history_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(employment_history_block);
+          getPageColumnRight();
+        }
+
+        getPageColumnLeft().append(education_block);
+        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height()) {
+          education_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(education_block);
+          getPageColumnRight();
+        }
+
+        getPageColumnLeft().append(courses_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          courses_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(courses_block);
+          getPageColumnRight();
+        }
+
+        getPageColumnLeft().append(extra_curricular_activities_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          extra_curricular_activities_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(extra_curricular_activities_block);
+          getPageColumnRight();
+        }
+
+        getPageColumnLeft().append(internships_block);
+        if (getPageContainer().height() > getPageContainer().parent().height()) {
+          internships_block.remove();
+          current_page_number++;
+          getPageColumnLeft().append(internships_block);
+          getPageColumnRight();
+        }
+
         getPageContainer().append(footer_block);
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           footer_block.remove();
@@ -171,16 +180,15 @@ export const ResumeCv002 = ({
         }
       }
 
-      rebuildingPages();
-
       function createNewPage(page_number) {
-        let page_element = $('<div class="cv-body cv-body-visible page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
-        let page_element_container = $('<div class="cv-body-content"></div>');
+        var page_element = $('<div class="cv-body cv-body-1 cv-body-visible page-' + page_number + ' ' + font_size_class + ' ' + line_height_class + ' ' + color_class + '" data-chapter="cv" data-page="' + page_number + '"></div>');
+        page_element.attr('data-chapter', 'cv');
+        page_element.attr('data-page', page_number);
+        var page_element_container = $('<div class="cv-body-content additional-color-2-border font-size-1 main-color-1-text"></div>');
         page_element.append(page_element_container);
         if ($('#cv-chapter-section-cv').find(page_element)) {
           $('#cv-chapter-section-cv').append(page_element);
         }
-
         return page_element_container;
       }
 
@@ -231,6 +239,8 @@ export const ResumeCv002 = ({
           return createNewPage(current_page_number);
         }
       }
+
+      rebuildingPages();
     }
   }, [data, stateClasses]);
 
@@ -238,25 +248,27 @@ export const ResumeCv002 = ({
     <div className="sv_002" ref={reportTemplateRef}>
       <WrDiv id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo  color-scheme-state-color-set-0`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
-          <div className="cv-body-content">
+          <div className="cv-body-content additional-color-2-border font-size-1 main-color-1-text">
             <div className="cv-body-area area-1">
               {
                 isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName || contact?.[0]?.picture || contact?.[0]?.jobTitle) && (
                   <div className="personal-info-block">
                     {
                       contact?.[0]?.picture && (
-                        <img className="cv-photo" src={contact?.[0].picture} />
+                        <div className="photo-block">
+                          <img className="cv-photo" src={contact?.[0].picture} />
+                        </div>
                       )
                     }
                     <div className="cv-headings-wrap">
                       {
                         (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
-                          <h1 className="cv-heading additional-color-1-text cv-name font-weight-600 font-size-5 line-height-4">{`${contact?.[0]?.firstName} ${contact?.[0]?.lastName}`}</h1>
+                          <h1 className="cv-heading additional-color-1-text cv-name font-size-4">{`${contact?.[0]?.firstName} ${contact?.[0]?.lastName}`}</h1>
                         )
                       }
                       {
                         contact?.[0]?.jobTitle && (
-                          <h1 className="cv-heading cv-prophecy additional-color-1-text font-weight-400 font-size-3 line-height-3">{contact?.[0]?.jobTitle}</h1>
+                          <h2 className="cv-heading cv-prophecy additional-color-1-text font-size-2">{contact?.[0]?.jobTitle}</h2>
                         )
                       }
                     </div>
@@ -268,34 +280,34 @@ export const ResumeCv002 = ({
                   <div className="profile-secondary-info additional-color-2-border">
                     {
                       !!contact?.[0]?.dateOfBirth && (
-                        <>
-                          <span className="name main-color-3-text font-size-1 line-height-1">Birth Date</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
-                        </>
+                        <div className="profile-secondary-info-item">
+                          <span className="name additional-color-2-text">Birth Date</span>
+                          <span className="value additional-color-1-text">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
+                        </div>
                       )
                     }
                     {
                       !!contact?.[0]?.placeOfBirth && (
-                        <>
-                          <span className="name main-color-3-text font-size-1 line-height-1">Place of Birth</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
-                        </>
+                        <div className="profile-secondary-info-item">
+                          <span className="name additional-color-2-text">Place of Birth</span>
+                          <span className="value additional-color-1-text">{contact?.[0]?.placeOfBirth}</span>
+                        </div>
                       )
                     }
                     {
                       !!contact?.[0]?.nationality && (
-                        <>
-                          <span className="name main-color-3-text font-size-1 line-height-1">Nationality</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
-                        </>
+                        <div className="profile-secondary-info-item">
+                          <span className="name additional-color-2-text">Nationality</span>
+                          <span className="value additional-color-1-text">{contact?.[0]?.nationality}</span>
+                        </div>
                       )
                     }
                     {
                       !!contact?.[0]?.driverLicense && (
-                        <>
-                          <span className="name main-color-3-text font-size-1 line-height-1">Driving Licence</span>
-                          <span className="value main-color-1-text font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
-                        </>
+                        <div className="profile-secondary-info-item">
+                          <span className="name additional-color-2-text">Driving Licence</span>
+                          <span className="value additional-color-1-text">{contact?.[0]?.driverLicense}</span>
+                        </div>
                       )
                     }
                   </div>
@@ -309,25 +321,30 @@ export const ResumeCv002 = ({
                 {
                   isArray(employment) && !!employment.length && (
                     <div className="employment-history-block block-block wrappable-block">
-                      <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Employment history
-                        <span className="line-after-block-heading additional-color-2-border"></span>
+                        <span className="line-after-block-heading additional-color-1-border"></span>
                       </h3>
 
                       {
                         employment.map((itemEm, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
+                            {
+                              (!!itemEm?.title || itemEm?.company) && (
+                                <h4 className="cv-heading">{!!itemEm?.title && (`${itemEm?.title},`)} {!!itemEm?.company && (`${itemEm?.company}`)}</h4>
+                              )
+                            }
+                            {
+                              (!!itemEm?.city) && (
+                                <h4 className="cv-subheading"> {!!itemEm?.city && (`${itemEm?.city}`)}</h4>
+                              )
+                            }
                             {
                               (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                                <p className="date-range font-size-1 line-height-1 main-color-1-text">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
+                                <p className="date-range additional-color-2-text">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
                               )
                             }
-                            {
-                              (!!itemEm?.title || itemEm?.company || !!itemEm?.city) && (
-                                <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemEm?.title && (`${itemEm?.title},`)} {!!itemEm?.company && (`${itemEm?.company},`)} {!!itemEm?.city && (`${itemEm?.city}`)}</h4>
-                              )
-                            }
-                            <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                            <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                           </div>
                         ))
                       }
@@ -339,34 +356,40 @@ export const ResumeCv002 = ({
                 {
                   isArray(education) && !!education.length && (
                     <div className="education-block block-block wrappable-block">
-                      <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Education
-                        <span className="line-after-block-heading main-color-1-border"></span>
+                        <span className="line-after-block-heading additional-color-1-border"></span>
                       </h3>
                       {
                         education.map((itemEd, index) => (
-                          <div key={index}>
-                            {
-                              (
-                                !!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (<p className="date-range font-size-1 line-height-1 main-color-1-text">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>
-                              )
-                            }
+                          <div className="block-info" key={index}>
                             {
                               itemEd?.study && (
-                                <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{itemEd.study}</h4>
+                                <h4 className="cv-heading">{itemEd.study}</h4>
                               )
                             }
                             {
-                              (itemEd?.facility || itemEd?.degree) && (
-                                <p className="education-text font-size-1 line-height-1 main-color-1-text">
-                                  {itemEd?.facility && (`${itemEd.facility}, `)}
+                              (itemEd?.facility) && (
+                                <p className="education-text">
+                                  {itemEd?.facility && (`${itemEd.facility}`)}
+                                </p>
+                              )
+                            }
+                            {
+                              (itemEd?.degree) && (
+                                <p className="degree-text">
                                   {itemEd?.degree && (`${itemEd.degree}`)}
                                 </p>
                               )
                             }
                             {
+                              (
+                                !!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              )
+                            }
+                            {
                               !!itemEd?.description && (
-                                <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                                <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
                               )
                             }
                           </div>
@@ -380,26 +403,26 @@ export const ResumeCv002 = ({
                 {
                   isArray(courses) && !!courses.length && (
                     <div className="courses-block block-block wrappable-block">
-                      <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Courses
-                        <span className="line-after-block-heading additional-color-2-border"></span>
+                        <span className="line-after-block-heading additional-color-1-border"></span>
                       </h3>
                       {
                         courses.map((itemCo, index) => (
-                          <div key={index}>
-                            {
-                              (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                                <p className="date-range font-size-1 line-height-1 main-color-1-text">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
-                              )
-                            }
+                          <div className="block-info" key={index}>
                             {
                               !!itemCo?.title && (
-                                <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{itemCo.title}</h4>
+                                <h4 className="cv-heading">{itemCo.title}</h4>
                               )
                             }
                             {
                               !!itemCo?.institution && (
-                                <p className="courses-text font-size-1 line-height-1 main-color-1-text">{itemCo.institution}</p>
+                                <p className="courses-text">{itemCo.institution}</p>
+                              )
+                            }
+                            {
+                              (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
+                                <p className="date-range additional-color-2-text">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
                               )
                             }
                           </div>
@@ -413,24 +436,24 @@ export const ResumeCv002 = ({
                 {
                   isArray(extra_curricular) && !!extra_curricular.length && (
                     <div className="extra-curricular-activities-block block-block wrappable-block">
-                      <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Extra-curricular activities
-                        <span className="line-after-block-heading additional-color-2-border"></span>
+                        <span className="line-after-block-heading additional-color-1-border"></span>
                       </h3>
                       {
                         extra_curricular.map((itemEx, index) => (
-                          <div key={index}>
-                            {
-                              (
-                                !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range font-size-1 line-height-1 main-color-1-text">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
-                              )
-                            }
+                          <div className="block-info" key={index}>
                             {
                               (!!itemEx?.title || itemEx?.employer) && (
-                                <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</h4>
+                                <h4 className="cv-heading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</h4>
                               )
                             }
-                            <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
+                            {
+                              (
+                                !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              )
+                            }
+                            <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
                           </div>
                         ))
                       }
@@ -442,22 +465,22 @@ export const ResumeCv002 = ({
                 {
                   isArray(internship) && !!internship.length && (
                     <div className="internships-block block-block wrappable-block">
-                      <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Internships
-                        <span className="line-after-block-heading additional-color-2-border"></span>
+                        <span className="line-after-block-heading additional-color-1-border"></span>
                       </h3>
 
                       {
                         internship.map((itemIn, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
+                            {(!!itemIn?.jobTitle || itemIn?.employer) && (<h4 className="cv-heading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer}`)}</h4>)}
+                            {(!!itemIn?.city) && (<h4 className="cv-subheading">{!!itemIn?.city && (`${itemIn?.city}`)}</h4>)}
                             {
                               (
-                                !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range font-size-1 line-height-1 main-color-1-text">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
+                                !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range additional-color-2-text">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
                               )
                             }
-                            {(!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (<h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</h4>)}
-
-                            <div className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                            <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
                           </div>
                         ))
                       }
@@ -473,31 +496,29 @@ export const ResumeCv002 = ({
                   !!career_objective?.[0]?.data && (
                     <div className="profile-info-block wrappable-block">
                       <div className="profile-block block-block">
-                        <h2 className="cv-heading heading-type-3 font-size-2 font-weight-700 line-height-2 additional-color-1-text">
+                        <h2 className="cv-heading font-size-2 additional-color-1-text">
                           Profile
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h2>
-
-                        <div className="profile-text main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></div>
+                        <div className="profile-text" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></div>
                       </div>
                     </div>
                   )
                 }
 
-                <div className="skills-block block-block wrappable-block">
                   {
                     isArray(skills) && !!skills.length && (
-                      <>
-                        <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                      <div className="skills-block block-block wrappable-block">
+                        <h3 className="cv-heading font-size-2 additional-color-1-text">
                           Skills
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h3>
 
                         <div className="skills-estimation-block">
                           {
                             skills.map((item, index) => (
                               <div className="skill-item" key={index}>
-                                <p className="skill-name font-size-1 line-height-1 main-color-1-text">{item.name}</p>
+                                <p className="skill-name">{item.name}</p>
                                 {
                                   !hide_experience_level && (
                                     <Estimation level={item.level} />
@@ -507,22 +528,22 @@ export const ResumeCv002 = ({
                             ))
                           }
                         </div>
-                      </>
+                      </div>
                     )
                   }
 
                   {
                     isArray(languages) && !!languages.length && (
                       <div className="languages-block block-block wrappable-block">
-                        <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                        <h3 className="cv-heading font-size-2 additional-color-1-text">
                           Languages
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h3>
-                        <div className="skills-estimation-block block-block">
+                        <div className="skills-estimation-block">
                           {
                             languages.map((item, index) => (
                               <div className="skill-item" key={index}>
-                                <p className="skill-name font-size-1 line-height-1 main-color-1-text">{item.language}</p>
+                                <p className="skill-name">{item.language}</p>
                                 <Estimation
                                   level={item.level}
                                   startLeng={6}
@@ -539,17 +560,17 @@ export const ResumeCv002 = ({
                   {
                     isArray(certificates) && !!certificates.length && (
                       <div className="certificates-block block-block wrappable-block">
-                        <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                        <h3 className="cv-heading font-size-2 additional-color-1-text">
                           Certificates
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h3>
                         {
                           certificates.map((item, index) => (
-                            <h4 key={index} className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">
-                              <span key={index}>
+                            <div className="block-info" key={index}>
+                              <h4 className="cv-heading">
                                 {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
-                              </span>
-                            </h4>
+                              </h4>
+                            </div>
                           ))
                         }
                       </div>
@@ -560,18 +581,18 @@ export const ResumeCv002 = ({
                   {
                     isArray(reference) && !!reference.length && (
                       <div className="references-block block-block wrappable-block">
-                        <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                        <h3 className="cv-heading font-size-2 additional-color-1-text">
                           References
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h3>
 
                         {
                           reference.map((itemRef, index) => (
-                            <div key={index}>
-                              {/* <p className="date-range font-size-1 line-height-1 additional-color-2-text">March 2022 - December 2022</p> */}
+                            <div className="block-info" key={index}>
+                              {/* <p className="date-range font-size-1 additional-color-2-text">March 2022 - December 2022</p> */}
                               {
                                 (!!itemRef?.fullName || !!itemRef?.company) && (
-                                  <h4 className="cv-heading heading-type-4 font-size-1 line-height-1 main-color-1-text">
+                                  <h4 className="cv-heading">
                                     {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
                                     {!!itemRef?.company && (`${itemRef.company}`)}
                                   </h4>
@@ -579,12 +600,12 @@ export const ResumeCv002 = ({
                               }
                               {
                                 !!itemRef?.email && (
-                                  <p className="references-email font-size-1 line-height-1 main-color-1-text">{itemRef.email}</p>
+                                  <p className="references-email">{itemRef.email}</p>
                                 )
                               }
                               {
                                 !!itemRef.phone && (
-                                  <p className="references-phone font-size-1 line-height-1 main-color-1-text">{itemRef.phone}</p>
+                                  <p className="references-phone">{itemRef.phone}</p>
                                 )
                               }
                             </div>
@@ -598,12 +619,12 @@ export const ResumeCv002 = ({
                   {
                     isArray(hobbies) && !!hobbies.length && (
                       <div className="hobbies-block block-block wrappable-block">
-                        <h3 className="cv-heading heading-type-3 font-weight-700 font-size-2 line-height-2 additional-color-1-text">
+                        <h3 className="cv-heading font-size-2 additional-color-1-text">
                           Hobbies
-                          <span className="line-after-block-heading additional-color-2-border"></span>
+                          <span className="line-after-block-heading additional-color-1-border"></span>
                         </h3>
 
-                        <p className="hobbies-text font-size-1 line-height-1 main-color-1-text">
+                        <p className="hobbies-text">
                           {
                             hobbies.map((item, index) => (
                               <span key={index}>
@@ -615,38 +636,37 @@ export const ResumeCv002 = ({
                       </div>
                     )
                   }
-                </div>
               </div>
             </div>
 
-            <div className="cv-body-area bottom-area area-3 additional-color-1-border">
+            <div className="cv-body-area bottom-area area-3 additional-color-2-border">
 
               {
                 isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email) && (
                   <div className="column-left wrappable-wrapper">
                     <div className="career-details-block block-block wrappable-block">
-                      <p className="cv-heading heading-type-3 font-weight-700 font-size-1 line-height-1 additional-color-1-text">Details</p>
+                      <h4 className="cv-heading">Details</h4>
                       {
                         !!contact?.[0]?.phone && (
-                          <p className="career-phone font-size-1 line-height-1">
-                            <span className="contact-item-name additional-color-1-text">Phone:</span>
-                            <span className="contact-item-value main-color-1-text">{contact?.[0]?.phone}</span>
+                          <p className="career-details-block-item">
+                            <span className="contact-item-name additional-color-2-text">Phone:</span>
+                            <span className="contact-item-value">{contact?.[0]?.phone}</span>
                           </p>
                         )
                       }
                       {
                         !!contact?.[0]?.email && (
-                          <p className="career-phone font-size-1 line-height-1">
-                            <span className="contact-item-name additional-color-1-text">Email:</span>
-                            <span className="contact-item-value main-color-1-text">{contact?.[0]?.email}</span>
+                          <p className="career-details-block-item">
+                            <span className="contact-item-name additional-color-2-text">Email:</span>
+                            <span className="contact-item-value">{contact?.[0]?.email}</span>
                           </p>
                         )
                       }
                       {
                         (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
-                          <p className="career-phone font-size-1 line-height-1">
-                            <span className="contact-item-name additional-color-1-text">Address:</span>
-                            <span className="contact-item-value main-color-1-text">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
+                          <p className="career-details-block-item">
+                            <span className="contact-item-name additional-color-2-text">Address:</span>
+                            <span className="contact-item-value">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
                           </p>
                         )
                       }
@@ -659,7 +679,7 @@ export const ResumeCv002 = ({
                 isArray(social_links) && !!social_links.length && (
                   <div className="column-right wrappable-wrapper">
                     <div className="career-links block-block wrappable-block">
-                      <h1 className="career-links-head font-weight-700 font-size-1 line-height-1 additional-color-1-text">Links</h1>
+                      <h1 className="cv-heading">Links</h1>
                       {
                         social_links.map((itemSocial, index) => (
                           <a className="career-links-link" key={index} >
