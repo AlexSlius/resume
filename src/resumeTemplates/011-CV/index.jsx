@@ -2,6 +2,8 @@ import React from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
+import { isObjDatasKeys } from "../../helpers/datasPage";
+
 export const ResumeCv011 = ({
   data,
   idCv,
@@ -265,7 +267,7 @@ export const ResumeCv011 = ({
                 )
               }
               {
-                isArray(employment) && !!employment.length && (
+               (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                   <div className="employment-history-block block-block">
                     <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Employment History</h3>
                     {

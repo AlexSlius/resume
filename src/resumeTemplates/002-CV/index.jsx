@@ -3,6 +3,8 @@ import { isArray } from "lodash";
 import moment from 'moment';
 import styled from 'styled-components';
 
+import { isObjDatasKeys } from "../../helpers/datasPage";
+
 const Estimation = ({
   level = 0,
   maketLeng = 8,
@@ -319,7 +321,7 @@ export const ResumeCv002 = ({
               <div className="column-left wrappable-content-container" data-dom-id="area-2---column-left">
                 {/* employment */}
                 {
-                  isArray(employment) && !!employment.length && (
+                  (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                     <div className="employment-history-block block-block wrappable-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Employment history

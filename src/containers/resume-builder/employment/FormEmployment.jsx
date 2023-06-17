@@ -31,7 +31,7 @@ import {
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
@@ -44,6 +44,7 @@ import {
   fetchDeleteCleanAllEmployment
 } from "../../../controllers/employments";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
+import { isDelete } from '../../../helpers/checkingStatuses';
 
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
@@ -78,7 +79,6 @@ const FormEmployment = ({
     employment: {
       employmentObj,
       objNew,
-      status
     },
     auth: {
       autorizate: {
@@ -89,9 +89,8 @@ const FormEmployment = ({
   const [selected, setSelected] = useState(null);
   const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
   const refData = useRef(employmentObj);
-  const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
-  // const isDataPage = isObjDatas(employmentObj?.[0] || {}) || isObjDatas(objNew);
-
+  // const isDataPage = (isArray(employmentObj) && (employmentObj.length > 0)) || isObjDatas(objNew);
+  const isDataPage = (employmentObj?.lenght > 1) || isObjDatasKeys(employmentObj?.[0] || {}) || isObjDatas(objNew);
 
   const onDragEnd = (result) => {
     if (!result.destination) {
@@ -261,15 +260,19 @@ const FormEmployment = ({
   }
   // end new 
 
-  const handleClean = () => {
-    dispatch(fetchDeleteCleanAllEmployment({ idCv }));
+  const handleClean = async () => {
+    let res = await dispatch(fetchDeleteCleanAllEmployment({ idCv }));
+
+    if (isDelete(res.payload)) {
+      await handleAddone();
+    }
   }
 
   useEffect(() => {
     // when entering, create a new form
-    // if (isArray(employmentObj) && (employmentObj.length == 0)) {
-    //   handleAddone();
-    // }
+    if (isArray(employmentObj) && (employmentObj.length == 0)) {
+      handleAddone();
+    }
 
     dispatch(fetchGetCountrys());
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));

@@ -2,6 +2,8 @@ import React from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
+import { isObjDatasKeys } from "../../helpers/datasPage";
+
 import { levelLanguage } from "../../helpers/levelLanguage";
 
 export const ResumeCv031 = ({
@@ -426,7 +428,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(employment) && !!employment.length && (
+                (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                   <div className="employment-history-block block-block block-block-2">
                     <div className="left-side">
                       <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

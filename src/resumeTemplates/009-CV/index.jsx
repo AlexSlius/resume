@@ -2,6 +2,8 @@ import React from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
+import { isObjDatasKeys } from "../../helpers/datasPage";
+
 import Icon from "../../components/Icon";
 
 import imgBg from "/public/styles/resumes/009/image/bgBot.svg?sprite";
@@ -418,7 +420,7 @@ export const ResumeCv009 = ({
               </div>
               <div className="column-right main-color-3-background">
                 {
-                  isArray(employment) && !!employment.length && (
+                 (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                     <div className="employment-history-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-2 main-color-2-text additional-color-2-background font-weight-500 font-size-5 line-height-7">Employment History</h3>

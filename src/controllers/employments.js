@@ -32,6 +32,9 @@ export const fetchPostUpdatePositionEmployment = createAsyncThunk('countrus/fetc
 export const fetchDeleteCleanAllEmployment = createAsyncThunk('countrus/fetchDeleteCleanAllEmployment', async ({ idCv }, thunkAPI) => {
     const response = await api.employments.cleanAll(idCv);
     await thunkAPI.dispatch(fetchGetCvEmployments({ idCv }));
+
+    console.log(2222)
+
     return response;
 });
 
