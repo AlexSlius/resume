@@ -449,7 +449,7 @@ export const ResumeCv004 = ({
                 </div>
                 {/* education */}
                 {
-                  isArray(education) && !!education.length && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block additional-color-2-border">
                       <div className="left-side">
                         <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">EDUCATION</h3>
@@ -548,7 +548,7 @@ export const ResumeCv004 = ({
                 }
                 {/* references */}
                 {
-                  isArray(reference) && !!reference.length && (
+                 (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                     <div className="references-block block-block additional-color-2-border">
                       <div className="left-side">
                         <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">REFERENCES</h3>

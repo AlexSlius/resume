@@ -341,7 +341,7 @@ export const ResumeCv001 = ({
 
                 {/* extra_curricular */}
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Extra-curricular activities</h3>
                       {
@@ -361,7 +361,7 @@ export const ResumeCv001 = ({
 
                 {/* internship */}
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Internships</h3>
                       {
@@ -381,7 +381,7 @@ export const ResumeCv001 = ({
 
                 {/* references */}
                 {
-                  isArray(reference) && !!reference.length && (
+                  (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                     <div className="references-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">References</h3>
                       {
@@ -414,7 +414,7 @@ export const ResumeCv001 = ({
               <div className="column-right">
                 {/* education */}
                 {
-                  isArray(education) && !!education.length && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Education</h3>
                       {
@@ -455,7 +455,7 @@ export const ResumeCv001 = ({
 
                 {/* courses */}
                 {
-                  isArray(courses) && !!courses.length && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">Courses</h3>
                       {

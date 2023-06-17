@@ -341,7 +341,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(hobbies) && !!hobbies.length && (
+                  isArray(hobbies) && !!hobbies.length && (
                   <div className="hobbies-block block-block">
                     <h3 className="heading-type-1 block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">Hobbies</h3>
                     <p className="font-size-1 line-height-1 font-weight-400 main-color-3-text"> {
@@ -356,7 +356,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(reference) && !!reference.length && (
+                (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block block-block">
                     <h3 className="heading-type-1 block-heading font-size-2 line-height-3 font-weight-400 additional-color-1-text">References</h3>
                     {
@@ -459,7 +459,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(education) && !!education.length && (
+                 (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                   <div className="education-block block-block block-block-2">
                     <div className="left-side">
                       <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -496,7 +496,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(courses) && !!courses.length && (
+                 (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                   <div className="courses-block block-block block-block-2">
                     <div className="left-side">
                       <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -526,7 +526,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(extra_curricular) && !!extra_curricular.length && (
+                (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                   <div className="extra-curricular-activities-block block-block block-block-2">
                     <div className="left-side">
                       <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -557,7 +557,7 @@ export const ResumeCv031 = ({
                 )
               }
               {
-                isArray(internship) && !!internship.length && (
+               (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                   <div className="internships-block block-block block-block-2">
                     <div className="left-side">
                       <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

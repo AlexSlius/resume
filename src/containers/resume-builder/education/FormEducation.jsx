@@ -14,8 +14,9 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { cardData } from "../../../utils";
 import { reorder } from '../../../helpers/drageDrop';
 import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
+import { isDelete } from '../../../helpers/checkingStatuses';
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
@@ -60,7 +61,6 @@ const FormEducation = ({
       educations: {
          educationObj,
          objNew,
-         status,
       },
       dependencies: {
          studys,
@@ -76,8 +76,7 @@ const FormEducation = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(educationObj);
-
-   const isDataPage = (isArray(educationObj) && (educationObj.length > 0)) || isObjDatas(objNew);
+   const isDataPage = (educationObj?.lenght > 1) || isObjDatasKeys(educationObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -178,15 +177,6 @@ const FormEducation = ({
       }
    }
 
-   const handleSaveSelectStydyNew = ({ name, value }, data) => {
-      dispatch(updateItemFieldEducationNew({ name, value }));
-
-      if (!!data) {
-         automateNew();
-      }
-   }
-
-
    const handleSetDateStateDataNew = (name, date, statusClick = false, classnextFocus) => {
       dispatch(updateItemFieldEducationNew({ name, value: date }));
       automateNew();
@@ -196,8 +186,12 @@ const FormEducation = ({
    }
    // end new
 
-   const handleClean = () => {
-      dispatch(fetchDeleteAll({ idCv }));
+   const handleClean = async () => {
+      let res = await dispatch(fetchDeleteAll({ idCv }));
+
+      if (isDelete(res.payload)) {
+         await handleAddOne();
+      }
    }
 
    const getSearchListDegree = (text = '') => {
@@ -209,6 +203,11 @@ const FormEducation = ({
    }
 
    useEffect(() => {
+      // when entering, create a new form
+      if (isArray(educationObj) && (educationObj?.length == 0)) {
+         handleAddOne();
+      }
+
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
       getSearchListDegree();
 

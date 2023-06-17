@@ -37,6 +37,11 @@ export const isObjDatasKeys = (obj) => {
             if (item.length > 0)
                 return true;
         }
+
+        if (isObject(item))
+            if (isString(item?.date))
+                if (item?.date?.length > 0)
+                    return true;
     }
 
     return false;

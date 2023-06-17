@@ -2,6 +2,7 @@ import { CButton } from "@coreui/react"
 import Router, { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import classnames from 'classnames';
+import { useState } from "react";
 
 import { LoadChildrenBtn } from "../loadChildrenBtn"
 import { isLoader } from "../../helpers/loadings"
@@ -38,18 +39,24 @@ export const ButtonSteps = ({
         },
         addSection
     } = useSelector(state => state);
+    const [loadNex, setLoadnex] = useState(false);
+    const [loadSkip, setLoadSkip] = useState(false);
+    const [loadFinish, setLoadFinish] = useState(false);
 
     const isAll = isAllActive(list);
     const idCv = router.query.idCv;
     const shareKey = router.query?.shareKey;
+    const isSectionEnd = (sectionStatusAllButTheCustomSection(addSection?.list) && getActiveSectionByName(addSection?.list, nameSection));
 
-    const clickNext = () => {
+    const clickNext = (load = false) => {
         if (isNew) {
             onHandleNew();
         } else {
             let pathName = router.asPath;
 
             if (isAthorized) {
+                setLoadnex(load === true);
+                setLoadSkip(load === "skip")
                 let linkNext = nextofLink(list, pathName);
 
                 if (!!linkNext)
@@ -60,59 +67,80 @@ export const ButtonSteps = ({
         }
     }
 
-    const clickFinish = () => {
+    const clickFinish = (load = false) => {
+        setLoadSkip(load === "skip");
+        setLoadFinish(load === "finish");
         Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
     }
 
     return (
         <div>
             <div className={classnames(style.buttonWrapper, style.row)}>
-
                 {
-                    (isFinish || (sectionStatusAllButTheCustomSection(addSection?.list) && getActiveSectionByName(addSection?.list, nameSection))) ? (
+                    isFinish ? (
                         <div>
                             <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
                                 <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
                             </ComponentHigherLoadBtn>
                         </div>
                     ) : (
-                        <>
-                            {
-                                !isFirstStep && (
-                                    <div>
-                                        <LoadChildrenBtn isLoad={isLoader(loadBtnPrev)}>
-                                            <CButton
-                                                disabled={disableDelete}
-                                                type="button"
-                                                className={`${style.btn} ${style.btn_prev}`}
-                                                onClick={disabledNext ? clickNext : onClean}
-                                            >{disabledNext ? textBtnPrev : "Delete all"}</CButton>
+                        isSectionEnd ? (
+                            <>
+                                <div>
+                                    <LoadChildrenBtn isLoad={loadSkip}>
+                                        <CButton
+                                            disabled={disableDelete}
+                                            type="button"
+                                            className={`${style.btn} ${style.btn_prev}`}
+                                            onClick={disabledNext ? () => { clickFinish("skip") } : onClean}
+                                        >{disabledNext ? "Template" : "Delete all"}</CButton>
+                                    </LoadChildrenBtn>
+                                </div>
+                                <div>
+                                    <LoadChildrenBtn isLoad={loadFinish}>
+                                        <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>Finish</CButton>
+                                    </LoadChildrenBtn>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                {
+                                    !isFirstStep && (
+                                        <div>
+                                            <LoadChildrenBtn isLoad={loadSkip}>
+                                                <CButton
+                                                    disabled={disableDelete}
+                                                    type="button"
+                                                    className={`${style.btn} ${style.btn_prev}`}
+                                                    onClick={disabledNext ? () => { clickNext("skip") } : onClean}
+                                                >{disabledNext ? textBtnPrev : "Delete all"}</CButton>
+                                            </LoadChildrenBtn>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    !(isAll && isLastStep) ? (
+                                        <div>
+                                            <LoadChildrenBtn isLoad={loadNex}>
+                                                <CButton
+                                                    type="button"
+                                                    className={`${style.btn} ${style.btn_next}`}
+                                                    onClick={() => clickNext(true)}
+                                                    disabled={disabledNext}
+                                                >{textBtnNext}</CButton>
+                                            </LoadChildrenBtn>
+                                        </div>
+                                    ) : (
+                                        <LoadChildrenBtn isLoad={loadFinish}>
+                                            <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>Finish</CButton>
                                         </LoadChildrenBtn>
-                                    </div>
-                                )
-                            }
-                            {
-                                !(isAll && isLastStep) ? (
-                                    <div>
-                                        <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
-                                            <CButton
-                                                type="button"
-                                                className={`${style.btn} ${style.btn_next}`}
-                                                onClick={clickNext}
-                                                disabled={disabledNext}
-                                            >{textBtnNext}</CButton>
-                                        </ComponentHigherLoadBtn>
-                                    </div>
-                                ) : (
-                                    <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
-                                        <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
-                                    </ComponentHigherLoadBtn>
-                                )
-                            }
-                        </>
+                                    )
+                                }
+                            </>
+                        )
                     )
                 }
             </div>
-        </div >
+        </div>
     )
 }

@@ -15,8 +15,9 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { LoadWr } from "../../../components/loadWr"
 import { reorder } from '../../../helpers/drageDrop';
+import { isDelete } from '../../../helpers/checkingStatuses';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
@@ -85,8 +86,7 @@ const FormInterShip = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(interhipObj);
-
-   const isDataPage = (isArray(interhipObj) && (interhipObj.length > 0)) || isObjDatas(objNew);
+   const isDataPage = (interhipObj?.lenght > 1) || isObjDatasKeys(interhipObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -195,8 +195,12 @@ const FormInterShip = ({
       }, 500);
    }
 
-   const handleClean = () => {
-      dispatch(fetchDeleteAll({ idCv }));
+   const handleClean = async () => {
+      let res = await dispatch(fetchDeleteAll({ idCv }));
+
+      if (isDelete(res.payload)) {
+         await handleAddOne();
+      }
    }
 
    const handleServerRequestGetJopsTitle = async (text) => {
@@ -228,6 +232,11 @@ const FormInterShip = ({
    }
 
    useEffect(() => {
+      // when entering, create a new form
+      if (isArray(interhipObj) && (interhipObj?.length == 0)) {
+         handleAddOne();
+      }
+
       dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
 

@@ -366,7 +366,7 @@ export const ResumeCv009 = ({
                     <path d="M 0,0 117,0 117,26 z" />
                   </svg>
                   {
-                    isArray(hobbies) && !!hobbies.length && (
+                     isArray(hobbies) && !!hobbies.length && (
                       <div className="hobbies-block">
                         <h3 className="heading-type-1 main-color-2-text font-weight-500 font-size-6 line-height-8">Hobbies</h3>
                         <div className="font-weight-500 font-size-1-1 line-height-2-2">
@@ -449,7 +449,7 @@ export const ResumeCv009 = ({
                   )
                 }
                 {
-                  isArray(education) && !!education.length && (
+                   (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-1 main-color-2-text additional-color-2-background font-weight-500 font-size-5 line-height-7">Education</h3>
@@ -484,7 +484,7 @@ export const ResumeCv009 = ({
                   )
                 }
                 {
-                  isArray(courses) && !!courses.length && (
+                   (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-1 main-color-2-text additional-color-2-background font-size-5 line-height-7">Courses</h3>
@@ -512,7 +512,7 @@ export const ResumeCv009 = ({
                 }
 
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-1 main-color-2-text additional-color-2-background font-weight-500 font-size-5 line-height-7">Internships</h3>
@@ -540,7 +540,7 @@ export const ResumeCv009 = ({
                 }
 
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block">
                       <div className="heading-wrapper">
                         <h3 className="heading-type-2 main-color-2-text additional-color-2-background font-weight-500 font-size-5 line-height-7">Extra-curricular activities</h3>
@@ -574,7 +574,7 @@ export const ResumeCv009 = ({
                 <Icon svg={imgBg} classNames={["additional-color-2-svg-path"]} />
               </div>
               {
-                isArray(reference) && !!reference.length && (
+               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block">
                     <h3 className="references-heading main-color-2-text font-size-5 line-height-7">References</h3>
                     {

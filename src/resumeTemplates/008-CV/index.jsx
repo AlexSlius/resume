@@ -349,7 +349,7 @@ export const ResumeCv008 = ({
                 )
               }
               {
-                isArray(reference) && !!reference.length && (
+               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="right-side">
                     <div className="references-block">
                       <span className="circled main-color-2-border"></span>
@@ -443,7 +443,7 @@ export const ResumeCv008 = ({
                 }
 
                 {
-                  isArray(hobbies) && !!hobbies.length && (
+                   isArray(hobbies) && !!hobbies.length && (
                     <div className="hobbies-block">
                       <div className="lefter font-size-4 line-height-6 additional-color-1-text">HOBBIES</div>
                       <div className="hobbies-list font-weight-500 font-size-1 line-height-3 main-color-2-text">
@@ -511,7 +511,7 @@ export const ResumeCv008 = ({
                 }
 
                 {
-                  isArray(education) && !!education.length > 0 && (
+                 (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block">
                       <div className="horizontal-line main-color-2-border"></div>
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6 main-color-2-text">Education</h3>
@@ -541,7 +541,7 @@ export const ResumeCv008 = ({
                 }
 
                 {
-                  isArray(courses) && !!courses.length && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block">
                       <div className="horizontal-line main-color-2-border"></div>
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6 main-color-2-text">Courses</h3>
@@ -565,7 +565,7 @@ export const ResumeCv008 = ({
                 }
 
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block">
                       <div className="horizontal-line main-color-2-border"></div>
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6 main-color-2-text">Extra-curricular activities</h3>
@@ -590,7 +590,7 @@ export const ResumeCv008 = ({
                   )
                 }
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block">
                       <div className="horizontal-line main-color-2-border"></div>
                       <h3 className="heading-type-3 font-weight-500 font-size-4 line-height-6">Internships</h3>

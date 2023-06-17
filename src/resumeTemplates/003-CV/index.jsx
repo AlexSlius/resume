@@ -427,7 +427,7 @@ export const ResumeCv003 = ({
                 }
                 {/* education */}
                 {
-                  isArray(education) && !!education.length && (
+                   (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block wrappable-block">
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-weight-600 font-size-2 line-height-2 main-color-1-text">
                         Education
@@ -467,7 +467,7 @@ export const ResumeCv003 = ({
                 }
                 {/* courses */}
                 {
-                  isArray(courses) && !!courses.length && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block wrappable-block">
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-size-2 line-height-2 main-color-1-text">
                         Courses
@@ -501,7 +501,7 @@ export const ResumeCv003 = ({
                 }
                 {/* extra_curricular */}
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                 (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block wrappable-block">
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-size-2 line-height-2 main-color-1-text">
                         Extra-curricular activities
@@ -531,7 +531,7 @@ export const ResumeCv003 = ({
                 }
                 {/* internship */}
                 {
-                  isArray(internship) && !!internship.length && (
+                 (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block wrappable-block">
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-size-2 line-height-2 main-color-1-text">
                         Internships
@@ -647,7 +647,7 @@ export const ResumeCv003 = ({
                 }
                 {/* references */}
                 {
-                  isArray(reference) && !!reference.length && (
+                 (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                     <div className="references-block block-block wrappable-block">
                       <div className="horiz-line additional-color-1-border"></div>
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-size-2 line-height-2 main-color-1-text">
@@ -684,7 +684,7 @@ export const ResumeCv003 = ({
                 }
                 {/* hobbies */}
                 {
-                  isArray(hobbies) && !!hobbies.length && (
+                 isArray(hobbies) && !!hobbies.length && (
                     <div className="hobbies-block block-block wrappable-block">
                       <div className="horiz-line additional-color-1-border"></div>
                       <h3 className="cv-heading heading-type-3 font-weight-600 font-size-2 line-height-2 main-color-1-text">

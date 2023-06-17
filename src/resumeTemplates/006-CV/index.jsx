@@ -327,7 +327,7 @@ export const ResumeCv006 = ({
                 }
 
                 {
-                  isArray(education) && !!education.length && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     education.map((itemEd, index) => (
                       <div className={`education-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">
@@ -365,7 +365,7 @@ export const ResumeCv006 = ({
                   )
                 }
                 {
-                  isArray(courses) && !!courses.length && (
+                   (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     courses.map((itemCo, index) => (
                       <div className={`courses-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">
@@ -398,7 +398,7 @@ export const ResumeCv006 = ({
                   )
                 }
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     extra_curricular.map((itemEx, index) => (
                       <div key={index} className={`extra-curricular-activities-block block-block ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
@@ -428,7 +428,7 @@ export const ResumeCv006 = ({
                 }
 
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     internship.map((itemIn, index) => (
                       <div key={index} className={`internship-block block-block  ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
@@ -457,7 +457,7 @@ export const ResumeCv006 = ({
                   )
                 }
                 {
-                  isArray(reference) && !!reference.length && (
+                  (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                     <div className="references-block block-block additional-color-1-border">
                       <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">References</h3>
 

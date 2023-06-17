@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from 'react';
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
-import { LoadWr } from "../../../components/loadWr"
 import Input from "../../../components/uis/input"
 import { InputEmail } from "../../../components/uis/inputEmail";
 import { InputSelect } from "../../../components/uis/inputSelect"
@@ -12,8 +11,9 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import DraggedItem from "../../../other/draggedItem/DraggedItem";
 
 import { reorder } from '../../../helpers/drageDrop';
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
+import { isDelete } from '../../../helpers/checkingStatuses';
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
 import {
@@ -68,8 +68,7 @@ const FormReference = ({
    const refData = useRef(referencesObj);
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
-
-   const isDataPage = (isArray(referencesObj) && (referencesObj.length > 0)) || isObjDatas(objNew);
+   const isDataPage = (referencesObj?.lenght > 1) || isObjDatasKeys(referencesObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -176,11 +175,21 @@ const FormReference = ({
       return re?.payload?.id;
    }
 
-   const handleClean = () => {
-      dispatch(fetchDeleteAll({ idCv }));
+   const handleClean = async () => {
+      let res = await dispatch(fetchDeleteAll({ idCv }));
+
+      if (isDelete(res.payload)) {
+         console.log("2222");
+         await handleAddOne();
+      }
    }
 
    useEffect(() => {
+      // when entering, create a new form
+      if (isArray(referencesObj) && (referencesObj?.length == 0)) {
+         handleAddOne();
+      }
+
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
 
       return () => {
@@ -198,8 +207,6 @@ const FormReference = ({
             isArray(referencesObj) && (referencesObj.length > 0) && (
                <CRow>
                   <CCol>
-                     {/* isLoad={isLoader(status)} */}
-                     <LoadWr>
                         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                            <Droppable droppableId="droppable">
                               {
@@ -289,7 +296,6 @@ const FormReference = ({
                               }
                            </Droppable>
                         </DragDropContext>
-                     </LoadWr>
                   </CCol>
                </CRow>
             )

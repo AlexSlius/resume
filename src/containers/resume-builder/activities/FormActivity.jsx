@@ -11,8 +11,9 @@ import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
 import { reorder } from '../../../helpers/drageDrop';
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
+import { isDelete } from '../../../helpers/checkingStatuses';
 import { cardData } from "../../../utils";
 import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
 
@@ -75,8 +76,7 @@ const FormActivity = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(activityObj);
-
-   const isDataPage = (isArray(activityObj) && (activityObj.length > 0)) || isObjDatas(objNew);
+   const isDataPage = (activityObj?.lenght > 1) || isObjDatasKeys(activityObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -185,8 +185,12 @@ const FormActivity = ({
       await dispatch(fetchGetCities({ id: idCountru, params: value }));
    }
 
-   const handleClean = () => {
-      dispatch(fetchDeleteAll({ idCv }));
+   const handleClean = async () => {
+      let res = await dispatch(fetchDeleteAll({ idCv }));
+
+      if (isDelete(res.payload)) {
+         await handleAddOne();
+      }
    }
 
    const handleServerRequestCompanyList = async (text) => {
@@ -204,6 +208,11 @@ const FormActivity = ({
    }
 
    useEffect(() => {
+      // when entering, create a new form
+      if (isArray(activityObj) && (activityObj?.length == 0)) {
+         handleAddOne();
+      }
+
       dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
 

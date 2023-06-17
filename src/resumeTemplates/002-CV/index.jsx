@@ -356,7 +356,7 @@ export const ResumeCv002 = ({
 
                 {/* education */}
                 {
-                  isArray(education) && !!education.length && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block wrappable-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Education
@@ -403,7 +403,7 @@ export const ResumeCv002 = ({
 
                 {/* courses */}
                 {
-                  isArray(courses) && !!courses.length && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block wrappable-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Courses
@@ -436,7 +436,7 @@ export const ResumeCv002 = ({
 
                 {/* extra_curricular */}
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block wrappable-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Extra-curricular activities
@@ -465,7 +465,7 @@ export const ResumeCv002 = ({
 
                 {/* internship */}
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block wrappable-block">
                       <h3 className="cv-heading font-size-2 additional-color-1-text">
                         Internships
@@ -508,136 +508,136 @@ export const ResumeCv002 = ({
                   )
                 }
 
-                  {
-                    isArray(skills) && !!skills.length && (
-                      <div className="skills-block block-block wrappable-block">
-                        <h3 className="cv-heading font-size-2 additional-color-1-text">
-                          Skills
-                          <span className="line-after-block-heading additional-color-1-border"></span>
-                        </h3>
+                {
+                  isArray(skills) && !!skills.length && (
+                    <div className="skills-block block-block wrappable-block">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
+                        Skills
+                        <span className="line-after-block-heading additional-color-1-border"></span>
+                      </h3>
 
-                        <div className="skills-estimation-block">
-                          {
-                            skills.map((item, index) => (
-                              <div className="skill-item" key={index}>
-                                <p className="skill-name">{item.name}</p>
-                                {
-                                  !hide_experience_level && (
-                                    <Estimation level={item.level} />
-                                  )
-                                }
-                              </div>
-                            ))
-                          }
-                        </div>
-                      </div>
-                    )
-                  }
-
-                  {
-                    isArray(languages) && !!languages.length && (
-                      <div className="languages-block block-block wrappable-block">
-                        <h3 className="cv-heading font-size-2 additional-color-1-text">
-                          Languages
-                          <span className="line-after-block-heading additional-color-1-border"></span>
-                        </h3>
-                        <div className="skills-estimation-block">
-                          {
-                            languages.map((item, index) => (
-                              <div className="skill-item" key={index}>
-                                <p className="skill-name">{item.language}</p>
-                                <Estimation
-                                  level={item.level}
-                                  startLeng={6}
-                                />
-                              </div>
-                            ))
-                          }
-                        </div>
-                      </div>
-                    )
-                  }
-
-                  {/* certificates */}
-                  {
-                    isArray(certificates) && !!certificates.length && (
-                      <div className="certificates-block block-block wrappable-block">
-                        <h3 className="cv-heading font-size-2 additional-color-1-text">
-                          Certificates
-                          <span className="line-after-block-heading additional-color-1-border"></span>
-                        </h3>
+                      <div className="skills-estimation-block">
                         {
-                          certificates.map((item, index) => (
-                            <div className="block-info" key={index}>
-                              <h4 className="cv-heading">
-                                {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
-                              </h4>
-                            </div>
-                          ))
-                        }
-                      </div>
-                    )
-                  }
-
-                  {/* references */}
-                  {
-                    isArray(reference) && !!reference.length && (
-                      <div className="references-block block-block wrappable-block">
-                        <h3 className="cv-heading font-size-2 additional-color-1-text">
-                          References
-                          <span className="line-after-block-heading additional-color-1-border"></span>
-                        </h3>
-
-                        {
-                          reference.map((itemRef, index) => (
-                            <div className="block-info" key={index}>
-                              {/* <p className="date-range font-size-1 additional-color-2-text">March 2022 - December 2022</p> */}
+                          skills.map((item, index) => (
+                            <div className="skill-item" key={index}>
+                              <p className="skill-name">{item.name}</p>
                               {
-                                (!!itemRef?.fullName || !!itemRef?.company) && (
-                                  <h4 className="cv-heading">
-                                    {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                    {!!itemRef?.company && (`${itemRef.company}`)}
-                                  </h4>
-                                )
-                              }
-                              {
-                                !!itemRef?.email && (
-                                  <p className="references-email">{itemRef.email}</p>
-                                )
-                              }
-                              {
-                                !!itemRef.phone && (
-                                  <p className="references-phone">{itemRef.phone}</p>
+                                !hide_experience_level && (
+                                  <Estimation level={item.level} />
                                 )
                               }
                             </div>
                           ))
                         }
                       </div>
-                    )
-                  }
+                    </div>
+                  )
+                }
 
-                  {/* hobbies */}
-                  {
-                    isArray(hobbies) && !!hobbies.length && (
-                      <div className="hobbies-block block-block wrappable-block">
-                        <h3 className="cv-heading font-size-2 additional-color-1-text">
-                          Hobbies
-                          <span className="line-after-block-heading additional-color-1-border"></span>
-                        </h3>
-
-                        <p className="hobbies-text">
-                          {
-                            hobbies.map((item, index) => (
-                              <span key={index}>
-                                {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
-                              </span>
-                            ))
-                          }
-                        </p>
+                {
+                  isArray(languages) && !!languages.length && (
+                    <div className="languages-block block-block wrappable-block">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
+                        Languages
+                        <span className="line-after-block-heading additional-color-1-border"></span>
+                      </h3>
+                      <div className="skills-estimation-block">
+                        {
+                          languages.map((item, index) => (
+                            <div className="skill-item" key={index}>
+                              <p className="skill-name">{item.language}</p>
+                              <Estimation
+                                level={item.level}
+                                startLeng={6}
+                              />
+                            </div>
+                          ))
+                        }
                       </div>
-                    )
-                  }
+                    </div>
+                  )
+                }
+
+                {/* certificates */}
+                {
+                  isArray(certificates) && !!certificates.length && (
+                    <div className="certificates-block block-block wrappable-block">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
+                        Certificates
+                        <span className="line-after-block-heading additional-color-1-border"></span>
+                      </h3>
+                      {
+                        certificates.map((item, index) => (
+                          <div className="block-info" key={index}>
+                            <h4 className="cv-heading">
+                              {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
+                            </h4>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  )
+                }
+
+                {/* references */}
+                {
+                  (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
+                    <div className="references-block block-block wrappable-block">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
+                        References
+                        <span className="line-after-block-heading additional-color-1-border"></span>
+                      </h3>
+
+                      {
+                        reference.map((itemRef, index) => (
+                          <div className="block-info" key={index}>
+                            {/* <p className="date-range font-size-1 additional-color-2-text">March 2022 - December 2022</p> */}
+                            {
+                              (!!itemRef?.fullName || !!itemRef?.company) && (
+                                <h4 className="cv-heading">
+                                  {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
+                                  {!!itemRef?.company && (`${itemRef.company}`)}
+                                </h4>
+                              )
+                            }
+                            {
+                              !!itemRef?.email && (
+                                <p className="references-email">{itemRef.email}</p>
+                              )
+                            }
+                            {
+                              !!itemRef.phone && (
+                                <p className="references-phone">{itemRef.phone}</p>
+                              )
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+                  )
+                }
+
+                {/* hobbies */}
+                {
+                  isArray(hobbies) && !!hobbies.length && (
+                    <div className="hobbies-block block-block wrappable-block">
+                      <h3 className="cv-heading font-size-2 additional-color-1-text">
+                        Hobbies
+                        <span className="line-after-block-heading additional-color-1-border"></span>
+                      </h3>
+
+                      <p className="hobbies-text">
+                        {
+                          hobbies.map((item, index) => (
+                            <span key={index}>
+                              {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
+                            </span>
+                          ))
+                        }
+                      </p>
+                    </div>
+                  )
+                }
               </div>
             </div>
 

@@ -270,7 +270,7 @@ const FormEmployment = ({
 
   useEffect(() => {
     // when entering, create a new form
-    if (isArray(employmentObj) && (employmentObj.length == 0)) {
+    if (isArray(employmentObj) && (employmentObj?.length == 0)) {
       handleAddone();
     }
 

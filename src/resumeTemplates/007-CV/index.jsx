@@ -389,7 +389,7 @@ export const ResumeCv007 = ({
               }
 
               {
-                isArray(reference) && !!reference.length && (
+               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block block-block">
                     <h3 className="heading-type-3 font-weight-900 font-size-2 line-height-3">References</h3>
                     {
@@ -421,7 +421,7 @@ export const ResumeCv007 = ({
               }
 
               {
-                isArray(hobbies) && !!hobbies.length && (
+                 isArray(hobbies) && !!hobbies.length && (
                   <div className="hobbies-block block-block">
                     <h3 className="heading-type-3 font-weight-900 font-size-2 line-height-3">Hobbies</h3>
                     <p className="font-size-1 line-height-1">
@@ -485,7 +485,7 @@ export const ResumeCv007 = ({
                   )
                 }
                 {
-                  isArray(extra_curricular) && !!extra_curricular.length && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     extra_curricular.map((itemEx, index) => (
                       <div key={index} className={`extra-curricular-activities-block block-block ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
@@ -516,7 +516,7 @@ export const ResumeCv007 = ({
                   )
                 }
                 {
-                  isArray(internship) && !!internship.length && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     internship.map((itemIn, index) => (
                       <div key={index} className={`internships-block block-block  ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
@@ -549,7 +549,7 @@ export const ResumeCv007 = ({
               <div className="information-area-2 additional-color-1-background">
                 <span className="top-line main-color-1-background"></span>
                 {
-                  isArray(education) && !!education.length && (
+                   (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     education.map((itemEd, index) => (
                       <div className={`education-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">
@@ -589,7 +589,7 @@ export const ResumeCv007 = ({
                 }
 
                 {
-                  isArray(courses) && !!courses.length && (
+                   (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     courses.map((itemCo, index) => (
                       <div className={`courses-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">

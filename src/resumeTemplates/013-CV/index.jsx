@@ -338,7 +338,7 @@ export const ResumeCv013 = ({
                 )
               }
               {
-                isArray(reference) && !!reference.length && (
+               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">References</h3>
                     {
@@ -430,7 +430,7 @@ export const ResumeCv013 = ({
                 )
               }
               {
-                isArray(education) && !!education.length && (
+                (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                   <div className="education-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">Education</h3>
                     {
@@ -450,7 +450,7 @@ export const ResumeCv013 = ({
                 )
               }
               {
-                isArray(courses) && !!courses.length && (
+                 (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                   <div className="courses-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">Courses</h3>
                     {
@@ -473,7 +473,7 @@ export const ResumeCv013 = ({
                 )
               }
               {
-                isArray(extra_curricular) && !!extra_curricular.length && (
+                (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                   <div className="extra-curricular-activities-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">Extra-curricular activities</h3>
                     {
@@ -497,7 +497,7 @@ export const ResumeCv013 = ({
                 )
               }
               {
-                isArray(internship) && !!internship.length && (
+              (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                   <div className="internships-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">Internships</h3>
                     {

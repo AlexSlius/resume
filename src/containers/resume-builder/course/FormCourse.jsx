@@ -16,7 +16,8 @@ import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewF
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { reorder } from '../../../helpers/drageDrop';
-import { isObjDatas } from '../../../helpers/datasPage';
+import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
+import { isDelete } from '../../../helpers/checkingStatuses';
 import { ButtonSteps } from "../../../components/buttonSteps"
 
 import {
@@ -65,8 +66,7 @@ const FormCourse = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(courseObj);
-
-   const isDataPage = (isArray(courseObj) && (courseObj.length > 0)) || isObjDatas(objNew);
+   const isDataPage = (courseObj?.lenght > 1) || isObjDatasKeys(courseObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -100,8 +100,6 @@ const FormCourse = ({
    const handleSaveSelect = async ({ index, name, value }) => {
       await dispatch(updateItemFieldCourse({ index, name, value }));
       await handleUpdateServer(index);
-
-
    }
 
    const handleSaveSelectNew = async ({ name, value }, statusClick, classnextFocus) => {
@@ -151,8 +149,12 @@ const FormCourse = ({
       }
    }
 
-   const handleClean = () => {
-      dispatch(fetchDeleteAll({ idCv }));
+   const handleClean = async () => {
+      let res = await dispatch(fetchDeleteAll({ idCv }));
+
+      if (isDelete(res.payload)) {
+         await handleAddOne();
+      }
    }
 
    const automateNew = async (index) => {
@@ -167,6 +169,11 @@ const FormCourse = ({
    }
 
    useEffect(() => {
+      // when entering, create a new form
+      if (isArray(courseObj) && (courseObj?.length == 0)) {
+         handleAddOne();
+      }
+
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'courses' }));
 
       return () => {
