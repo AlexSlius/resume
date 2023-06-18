@@ -1,6 +1,6 @@
 import { CButton } from "@coreui/react"
 import Router, { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import classnames from 'classnames';
 import { useState } from "react";
 
@@ -13,6 +13,7 @@ import { routersPages } from "../../constants/next-routers";
 import style from "./Style.module.scss";
 import { ComponentHigherLoadBtn } from "../componentHigherLoadBtn";
 import { sectionStatusAllButTheCustomSection, getActiveSectionByName } from "../../utils/customSection";
+import { cleanFieldDepend } from "../../slices/dependencies";
 
 export const ButtonSteps = ({
     loadBtnNext = false,
@@ -33,6 +34,7 @@ export const ButtonSteps = ({
     nameSection = null,
 }) => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const {
         menuAsideResume: {
             list
@@ -73,6 +75,11 @@ export const ButtonSteps = ({
         Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
     }
 
+    const onHandleClean = () => {
+        onClean();
+        dispatch(cleanFieldDepend());
+    }
+
     return (
         <div>
             <div className={classnames(style.buttonWrapper, style.row)}>
@@ -92,7 +99,7 @@ export const ButtonSteps = ({
                                             disabled={disableDelete}
                                             type="button"
                                             className={`${style.btn} ${style.btn_prev}`}
-                                            onClick={disabledNext ? () => { clickFinish("skip") } : onClean}
+                                            onClick={disabledNext ? () => { clickFinish("skip") } : onHandleClean}
                                         >{disabledNext ? "Template" : "Delete all"}</CButton>
                                     </LoadChildrenBtn>
                                 </div>
@@ -112,7 +119,7 @@ export const ButtonSteps = ({
                                                     disabled={disableDelete}
                                                     type="button"
                                                     className={`${style.btn} ${style.btn_prev}`}
-                                                    onClick={disabledNext ? () => { clickNext("skip") } : onClean}
+                                                    onClick={disabledNext ? () => { clickNext("skip") } : onHandleClean}
                                                 >{disabledNext ? textBtnPrev : "Delete all"}</CButton>
                                             </LoadChildrenBtn>
                                         </div>

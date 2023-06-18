@@ -20,7 +20,7 @@ import {
     cleanFormPersonalize,
     cleanFormPersonalizeNew
 } from "../../../slices/cover/coverDataForm";
-
+import { cleanFieldDepend } from "../../../slices/dependencies";
 import {
     fetchGetCountrys,
     fetchGetCities,
@@ -150,6 +150,7 @@ const FormPersonalize = ({
     }
 
     const onClean = async () => {
+        dispatch(cleanFieldDepend());
         if (isNew) {
             await dispatch(cleanFormPersonalizeNew());
             return;

@@ -113,17 +113,29 @@ const initialState = {
         list: [],
         status: statusLoaded,
     },
-    university: {
-        list: [],
-        status: statusLoaded,
-    }
 };
 
 
 export const sliceDepenndecies = createSlice({
     name: 'dependencies',
     initialState,
-    reducers: {},
+    reducers: {
+        cleanFieldDepend(state, action) {
+            state.cities = initialState.cities;
+            state.nationality = initialState.nationality;
+            state.jopsTitle = initialState.jopsTitle;
+            state.companys = initialState.companys;
+            state.employers = initialState.employers;
+            state.studys = initialState.studys;
+            state.socials = initialState.socials;
+            state.hobies = initialState.hobies;
+            state.language = initialState.language;
+            state.certificaties = initialState.certificaties;
+            state.describes = initialState.describes;
+            state.university = initialState.university;
+            state.degree = initialState.degree;
+        },
+    },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
@@ -345,5 +357,9 @@ export const sliceDepenndecies = createSlice({
         },
     }
 });
+
+export const {
+    cleanFieldDepend
+} = sliceDepenndecies.actions;
 
 export const { reducer } = sliceDepenndecies;

@@ -1,7 +1,4 @@
-import {
-   CCol,
-   CRow,
-} from "@coreui/react";
+import { CCol, CRow, } from "@coreui/react";
 import React, { useEffect } from "react";
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
@@ -9,7 +6,6 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 import ModifyItems from './ModifyItems';
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
-import { LoadWr } from "../../../components/loadWr";
 import { ActiveItemSkillsAndStarts } from "./ActiveItemSkillsAndStarts";
 
 import { reorder } from '../../../helpers/drageDrop';
@@ -215,53 +211,50 @@ const FormSkill = ({
                </CRow>
             </CCol >
             <CCol xs={6}>
-               {/* isLoad={isLoader(statusListSkillsAll)} */}
-               <LoadWr >
-                  <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-                     <Droppable droppableId="droppable">
-                        {
-                           (provided, snapshot) => (
-                              <div
-                                 className="skills-items-level"
-                                 ref={provided.innerRef}
-                                 {...provided.droppableProps}
-                              >
-                                 {
-                                    isArray(skillsObj?.skillsListAll) && (
-                                       skillsObj.skillsListAll.map((item, index) => (
-                                          <Draggable
-                                             key={item.id}
-                                             draggableId={String(item.id)}
-                                             index={index}
-                                          >
-                                             {
-                                                (provided, snapshot) => (
-                                                   <ActiveItemSkillsAndStarts
-                                                      key={item.id}
-                                                      index={index}
-                                                      provided={provided}
-                                                      id={item.id}
-                                                      label={item.name}
-                                                      position={item.position}
-                                                      onDelete={handleDeleteItemSkill}
-                                                      ratingChanged={handleUpdateItemSkillOne}
-                                                      skillId={item.cvId}
-                                                      valueStats={item.level}
-                                                      isStar={!skillsObj.hideExperienceLevel}
-                                                   />
-                                                )
-                                             }
-                                          </Draggable>
-                                       ))
-                                    )
-                                 }
-                                 {provided.placeholder}
-                              </div>
-                           )
-                        }
-                     </Droppable>
-                  </DragDropContext>
-               </LoadWr>
+               <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+                  <Droppable droppableId="droppable">
+                     {
+                        (provided, snapshot) => (
+                           <div
+                              className="skills-items-level"
+                              ref={provided.innerRef}
+                              {...provided.droppableProps}
+                           >
+                              {
+                                 isArray(skillsObj?.skillsListAll) && (
+                                    skillsObj.skillsListAll.map((item, index) => (
+                                       <Draggable
+                                          key={item.id}
+                                          draggableId={String(item.id)}
+                                          index={index}
+                                       >
+                                          {
+                                             (provided, snapshot) => (
+                                                <ActiveItemSkillsAndStarts
+                                                   key={item.id}
+                                                   index={index}
+                                                   provided={provided}
+                                                   id={item.id}
+                                                   label={item.name}
+                                                   position={item.position}
+                                                   onDelete={handleDeleteItemSkill}
+                                                   ratingChanged={handleUpdateItemSkillOne}
+                                                   skillId={item.cvId}
+                                                   valueStats={item.level}
+                                                   isStar={!skillsObj.hideExperienceLevel}
+                                                />
+                                             )
+                                          }
+                                       </Draggable>
+                                    ))
+                                 )
+                              }
+                              {provided.placeholder}
+                           </div>
+                        )
+                     }
+                  </Droppable>
+               </DragDropContext>
             </CCol>
          </CRow>
          <CRow className="mt-4">
