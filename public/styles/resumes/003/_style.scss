@@ -156,10 +156,6 @@
     }
   }
 
-  .cv-body-2 .cv-body-content .cv-body-area.area-1 {
-    padding: 50px 50px 38px;
-  }
-
   #cv-body-hidden-container,
   #cv-body-2 {
     height: 0;
@@ -288,9 +284,18 @@
   }
 
   .cv-body-2 {
-    .cv-body-area {
-      &.area-2 {
+    .cv-body-content {
+      .cv-body-area.area-1 {
+        padding: 50px 50px 40px;
+      }
+
+      .cv-body-area.area-2 {
         padding: 40px 50px;
+
+        .column-right {
+          width: auto;
+          margin-left: 30px;
+        }
       }
     }
   }
@@ -399,8 +404,7 @@
   }
 
   .cv-destination {
-    border-left-width: 1px;
-    border-left-style: dotted;
+    border-left: 1px dotted $main_color_1;
   }
 
   .cv-destination-block {
@@ -408,7 +412,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    padding: 2px 20px 15px 20px;
+    padding: 0 0 15px 30px;
     width: 143px;
     box-sizing: border-box;
 
