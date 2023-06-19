@@ -339,9 +339,10 @@
 
     .mobile-menu {
         background-color: var(--white);
-        height: 100vh;
+        height: auto;
+        bottom: 0;
         width: 80%;
-        position: absolute;
+        position: fixed;
         overflow-y: auto;
         top: 0;
         right: 0;
@@ -460,10 +461,11 @@
 
     .overlay {
         width: 100vw;
-        height: 100vh;
+        height: auto;
+        bottom: 0;
         background: var(--black);
         opacity: 0.6;
-        position: absolute;
+        position: fixed;
         display: none;
         top: 0;
 
