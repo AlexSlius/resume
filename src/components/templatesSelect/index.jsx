@@ -25,7 +25,7 @@ import { ResumeCv041 } from '../../resumeTemplates/041-CV';
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 export const TemplatesSelect = ({
-    scale = 1,
+    scale = "scale(1)",
     isNewResume,
     status = "",
     stateLineSpacing = 50,

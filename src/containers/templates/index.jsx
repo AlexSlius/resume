@@ -66,6 +66,7 @@ const Templates = ({
     const [pagePagCurrent, setPagePagCurrent] = useState(1);
     const [showSettings, setShowSettings] = useState(false);
     const [showColorMob, setShowColorMod] = useState(false);
+    const [isOnegetMobTemplate, setIsOnegetTemplate] = useState(false);
 
     const dispatch = useDispatch();
     const router = useRouter();
@@ -236,6 +237,15 @@ const Templates = ({
 
     const templateChangeHandler = (now, previous) => {
         handleResume(templatesItems[now]);
+        if (now == 1 && !isOnegetMobTemplate) {
+            if (!isCover) {
+                dispatch(getResumesTemplates({ page: resumeData?.list?.count_pages }));
+            } else {
+                dispatch(getCoverTemplates({ page: coverData?.list?.count_pages }));
+            }
+
+            setIsOnegetTemplate(true);
+        }
     }
 
     const toggleTextSettings = () => {
@@ -431,7 +441,7 @@ const Templates = ({
                                                 <button type='button'>
                                                     <Icon svg={iconDotMenuH} />
                                                 </button>
-                                                <MenuButton />
+                                                <MenuButton isMob={true} isAthorized={isAthorized} />
                                             </div>
                                         </>
                                     )

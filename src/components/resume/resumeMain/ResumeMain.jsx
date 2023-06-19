@@ -110,12 +110,12 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`} ref={refDivResumeMain}>
-         <div className="scroll-style ">
+         <div className="scroll-style" >
             {
                !isCover && (
-                  <div className="resume-main_scale">
+                  <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
                      <TemplatesSelect
-                        scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
+                        // scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
@@ -129,13 +129,11 @@ const ResumeMain = ({
                   </div>
                )
             }
-
-            {/* style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain })})` }} */}
             {
                isCover && (
-                  <div className="resume-main_scale resume-main_scale_cover" >
+                  <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
                      <TemplatesSelectCover
-                        scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
+                        // scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}

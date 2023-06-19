@@ -376,12 +376,39 @@ input[type="number"]:focus {
         overflow: hidden;
     }
 
-    // @media(max-width: 767px) {
-    //     .modal-text {
-    //         position: relative;
-    //     }
-    // }
+    @media(max-width:991px) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }
+
+.poses_tx {
+    position: relative;
+}
+
+.modal_text_mob {
+    @media(max-width: 991px) {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin-top: 20px;
+        display: none;
+
+        .scroll-style {
+            max-height: 180px;
+            height: 160px !important;
+        }
+
+        .modal-text__main {
+            box-shadow: none;
+        }
+
+        &.open {
+            display: block!important;
+        }
+    }
+}
+
 
 .t-wr-btn {
     position: absolute;
@@ -1724,6 +1751,14 @@ button {
     opacity: 0 !important;
 }
 
+.MuiButtonBase-root {
+    margin: 0 !important;
+}
+
+.body-template-resume {
+    margin-top: -20px;
+}
+
 @media (max-width: 1559px) {
     .r-gap-30 {
         row-gap: 20px;
@@ -1780,8 +1815,6 @@ button {
         right: auto;
         left: 20px;
         bottom: 10px;
-        opacity: 0.5;
-        pointer-events: none;
 
         .wr-btn {
             display: flex;

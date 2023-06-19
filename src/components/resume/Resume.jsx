@@ -1,23 +1,19 @@
 import { CCol } from '@coreui/react';
-import React from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux"
 
 import ResumeHead from './resumeHead/ResumeHead'
 import ResumeMain from './resumeMain/ResumeMain'
 import ResumeFooter from './resumeFooter/ResumeFooter'
-import Icon from "../Icon";
-
-import backIcon from "/public/images/icons/back.svg?sprite"
 import { isHelperLoad } from '../../helpers/isHelperAllLoad';
 
 const Resume = ({
    isCover = false,
    currentResolution
 }) => {
-   const reportTemplateRef = React.useRef(null);
-   const [pagesPag, setPagesPag] = React.useState(1);
-   const [openMenu, setOpenMenu] = React.useState(false);
-   const [pagePagCurrent, setPagePagCurrent] = React.useState(0);
+   const reportTemplateRef = useRef(null);
+   const [pagesPag, setPagesPag] = useState(1);
+   const [pagePagCurrent, setPagePagCurrent] = useState(0);
 
    const {
       coverDataForm,
@@ -69,7 +65,7 @@ const Resume = ({
       setPagePagCurrent(prev => prev - 1);
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       if (typeof window != "undefined") {
          function start() {
             if (!!reportTemplateRef.current) {
@@ -101,7 +97,7 @@ const Resume = ({
       certificaties,
       careers]);
 
-   React.useEffect(() => {
+   useEffect(() => {
       if (typeof window != "undefined") {
          if (!!reportTemplateRef.current) {
             function star() {
@@ -142,13 +138,13 @@ const Resume = ({
       certificaties,
       careers]);
 
-   React.useEffect(() => {
+   useEffect(() => {
       setPagePagCurrent(1);
    }, []);
 
    return (
       <>
-         <CCol className={`resume ${isOpenPreviesMobTemplate ? "open" : ""}`}>
+         <CCol className={`resume mob_resume ${isOpenPreviesMobTemplate ? "open" : ""}`}>
             <ResumeHead
                currentPage={pagePagCurrent}
                lengthPages={pagesPag}

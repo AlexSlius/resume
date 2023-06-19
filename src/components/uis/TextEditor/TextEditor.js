@@ -208,57 +208,60 @@ const TextEditor = ({
         <div className='wr-text-edit'>
             {
                 isAddModal && (
-                    <>
-                        <div className='t-wr-btn'>
-                            <button className='wr-btn' ref={reBtn}>
-                                <span>Pre-written phrases</span>
-                                <Icon svg={isOpen ? iconX : iconPlus} />
-                            </button>
-                        </div>
-                        <div ref={refWr} className={`modal-text ${modalClass}`}>
-                            <div className='modal-text__main' ref={refMod}>
-                                <div className='modal-text__head'>
-                                    <CFormInput
-                                        onChange={(e) => setTextSearch(e.target.value)}
-                                        value={textSearch}
-                                        type="text"
-                                        placeholder="Filter phrases by keyword"
-                                    />
-                                    <Icon svg={iconSearch} />
-                                </div>
-                                <div className='modal-text__content'>
-                                    <ul className='scroll-style'>
-                                        {
-                                            isArray(data) ? (
-                                                !!data.length ? (
-                                                    data.map((item, index) => {
-                                                        let isStatus = convertToHTML(state.getCurrentContent())?.includes(item?.[keys]);
+                    <div ref={refWr} className={`modal-text modal_text_mob ${modalClass}`}>
+                        <div className='modal-text__main' ref={refMod}>
+                            <div className='modal-text__head'>
+                                <CFormInput
+                                    onChange={(e) => setTextSearch(e.target.value)}
+                                    value={textSearch}
+                                    type="text"
+                                    placeholder="Filter phrases by keyword"
+                                />
+                                <Icon svg={iconSearch} />
+                            </div>
+                            <div className='modal-text__content'>
+                                <ul className='scroll-style'>
+                                    {
+                                        isArray(data) ? (
+                                            !!data.length ? (
+                                                data.map((item, index) => {
+                                                    let isStatus = convertToHTML(state.getCurrentContent())?.includes(item?.[keys]);
 
-                                                        return (
-                                                            <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
-                                                                <span className='text-icon-in'>
-                                                                    <Icon svg={isStatus ? iconOkText : iconLeftText} />
-                                                                </span>
-                                                                <div className='text-div-in'>{item?.[keys] || ""}</div>
-                                                            </li>
-                                                        )
-                                                    })
-                                                ) : (
-                                                    <li className={`empty-text`}>{labelEmpty}</li>
-                                                )
+                                                    return (
+                                                        <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                            <span className='text-icon-in'>
+                                                                <Icon svg={isStatus ? iconOkText : iconLeftText} />
+                                                            </span>
+                                                            <div className='text-div-in'>{item?.[keys] || ""}</div>
+                                                        </li>
+                                                    )
+                                                })
                                             ) : (
                                                 <li className={`empty-text`}>{labelEmpty}</li>
                                             )
-                                        }
-                                    </ul>
-                                </div>
+                                        ) : (
+                                            <li className={`empty-text`}>{labelEmpty}</li>
+                                        )
+                                    }
+                                </ul>
                             </div>
                         </div>
-
-                    </>
+                    </div>
                 )
             }
-            <div onClick={focusEditor}>
+            <div onClick={focusEditor} className='poses_tx'>
+                {
+                    isAddModal && (
+                        <>
+                            <div className='t-wr-btn'>
+                                <button className='wr-btn' ref={reBtn}>
+                                    <span>Pre-written phrases</span>
+                                    <Icon svg={isOpen ? iconX : iconPlus} />
+                                </button>
+                            </div>
+                        </>
+                    )
+                }
                 <Editor
                     ref={editorRef}
                     editorState={state}

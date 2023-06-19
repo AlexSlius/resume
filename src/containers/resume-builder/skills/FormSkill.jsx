@@ -193,11 +193,7 @@ const FormSkill = ({
                         isOutDataObj={false}
                         isIconArrow={true}
                         isRequire={true}
-                        isShowUpClick={false}
-                        isActiveItem={true}
-                        activeArr={skillsObj?.skillsListAll}
                         isAddDiv={false}
-                        keyActiveEl='skillId'
                      />
                   </CCol>
                   <CCol xs={12}>

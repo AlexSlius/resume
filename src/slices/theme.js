@@ -20,7 +20,7 @@ export const slice = createSlice({
             state.isMenuOpen = action.payload;
         },
         updatePreviewsMobTemplateStatus(state, action) {
-            state.isOpenPreviesMobTemplate = !state.isOpenPreviesMobTemplate;
+            state.isOpenPreviesMobTemplate = (action.payload === null || action.payload === undefined) ? !state.isOpenPreviesMobTemplate : action.payload;
         },
     },
     extraReducers: {}
