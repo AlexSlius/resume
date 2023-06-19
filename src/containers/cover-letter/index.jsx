@@ -193,46 +193,33 @@ export const CoverLatter = () => {
                             </Link>
                         </div>
                         <div className="tabs-wrapper tab-content-wrapper">
-                            {
-                                stateCurrentTab == 1 && (
-                                    <div className="tabs-content tab-1">
-                                        <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
-                                        <div>
-                                            <h3 className="h3">Easy start</h3>
-                                            <p className="bottom-text">
-                                                We require no registration or money, just make tha right decision and enjoy our expert builder.
-                                            </p>
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            {
-                                stateCurrentTab == 2 && (
-                                    <div className="tabs-content  tab-2">
-                                        <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
-                                        <div>
-                                            <h3 className="h3">Beauty with ease</h3>
-                                            <p className="bottom-text">
-                                                Simply follow a few steps to set parameters, enabling us to craft a cover letter that highlights your unique achievements. Personalize the template to match your style and preference.
-                                            </p>
-                                        </div>
-                                    </div>
-                                )
-                            }
-
-                            {
-                                stateCurrentTab == 3 && (
-                                    <div className="tabs-content  tab-3">
-                                        <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
-                                        <div>
-                                            <h3 className="h3">Now It’s Yours</h3>
-                                            <p className="bottom-text">
-                                                Export in PDF or generate a URL to easily share and stream any updates in your Cover Letter in real time. All of this can be for free.
-                                            </p>
-                                        </div>
-                                    </div>
-                                )
-                            }
+                            <div className={`tabs-content tab-1  ${(stateCurrentTab == 1) ? "" : "hide"}`}>
+                                <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
+                                <div>
+                                    <h3 className="h3">Easy start</h3>
+                                    <p className="bottom-text">
+                                        We require no registration or money, just make tha right decision and enjoy our expert builder.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={`tabs-content tab-2  ${(stateCurrentTab == 2) ? "" : "hide"}`}>
+                                <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
+                                <div>
+                                    <h3 className="h3">Beauty with ease</h3>
+                                    <p className="bottom-text">
+                                        Simply follow a few steps to set parameters, enabling us to craft a cover letter that highlights your unique achievements. Personalize the template to match your style and preference.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={`tabs-content tab-3  ${(stateCurrentTab == 3) ? "" : "hide"}`}>
+                                <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
+                                <div>
+                                    <h3 className="h3">Now It’s Yours</h3>
+                                    <p className="bottom-text">
+                                        Export in PDF or generate a URL to easily share and stream any updates in your Cover Letter in real time. All of this can be for free.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <div className="tabs-wrapper tab-link-wrapper">
                             <div

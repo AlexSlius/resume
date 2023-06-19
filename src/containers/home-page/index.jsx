@@ -196,45 +196,33 @@ export const HomePage = () => {
                         </Link>
                     </div>
                     <div className="tabs-wrapper tab-content-wrapper">
-                        {
-                            stateCurrentTab == 1 && (
-                                <div className="tabs-content tab-1">
-                                    <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
-                                    <div>
-                                        <h3 className="h3">Your First Step</h3>
-                                        <p className="bottom-text">
-                                            Discover the Premium Difference with Our Resume Builder. We invite you to experience the superior quality of our services without registration or payment. Step into the future of resume creation, empowering your career journey with confidence and trust.
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        }
-                        {
-                            stateCurrentTab == 2 && (
-                                <div className="tabs-content  tab-2">
-                                    <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
-                                    <div>
-                                        <h3 className="h3">Achieve Beauty With Ease</h3>
-                                        <p className="bottom-text">
-                                            Opt for our eye-catching, professionally crafted resume or cover letter templates. Simply fill in your details, select and refine the relevant sections, and tweak the design and visuals to your liking. With our pre-written tasks, skills, and career objectives at your disposal, creating a standout resume is just a matter of minutes.
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        }
-                        {
-                            stateCurrentTab == 3 && (
-                                <div className="tabs-content  tab-3">
-                                    <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
-                                    <div>
-                                        <h3 className="h3">Now It’s Yours!</h3>
-                                        <p className="bottom-text">
-                                            Take advantage of our flexible export options. Choose PDF for optimal and consistent visual formatting, or obtain a unique URL to your resume for easy updates. Our goal is to make your resume sharing and updating process as streamlined as possible.
-                                        </p>
-                                    </div>
-                                </div>
-                            )
-                        }
+                        <div className={`tabs-content tab-1  ${(stateCurrentTab == 1) ? "" : "hide"}`}>
+                            <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
+                            <div>
+                                <h3 className="h3">Your First Step</h3>
+                                <p className="bottom-text">
+                                    Discover the Premium Difference with Our Resume Builder. We invite you to experience the superior quality of our services without registration or payment. Step into the future of resume creation, empowering your career journey with confidence and trust.
+                                </p>
+                            </div>
+                        </div>
+                        <div className={`tabs-content  tab-2 ${(stateCurrentTab == 2) ? "" : "hide"}`}>
+                            <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
+                            <div>
+                                <h3 className="h3">Achieve Beauty With Ease</h3>
+                                <p className="bottom-text">
+                                    Opt for our eye-catching, professionally crafted resume or cover letter templates. Simply fill in your details, select and refine the relevant sections, and tweak the design and visuals to your liking. With our pre-written tasks, skills, and career objectives at your disposal, creating a standout resume is just a matter of minutes.
+                                </p>
+                            </div>
+                        </div>
+                        <div className={`tabs-content  tab-3 ${(stateCurrentTab == 3) ? "" : "hide"}`}>
+                            <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
+                            <div>
+                                <h3 className="h3">Now It’s Yours!</h3>
+                                <p className="bottom-text">
+                                    Take advantage of our flexible export options. Choose PDF for optimal and consistent visual formatting, or obtain a unique URL to your resume for easy updates. Our goal is to make your resume sharing and updating process as streamlined as possible.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div className="tabs-wrapper tab-link-wrapper">
                         <div

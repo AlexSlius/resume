@@ -162,9 +162,6 @@ export const Menu = () => {
                                     </li>
                                     <li><Link className="nav-link" href={`${routersPages['contactUs']}`}>{isMob && <Icon svg={iconModContact} />}Contact Us</Link></li>
                                     <li><Link className="nav-link" href={`${routersPages['faqs']}`}>{isMob && <Icon svg={iconModFaq} />}FAQ</Link></li>
-                                    {
-                                        isMob && (<li><Link className="nav-link" href={`${routersPages['contactUs']}`}><Icon svg={iconNeedHelp} />Need help?</Link></li>)
-                                    }
                                 </ul>
                             </nav>
                         )
