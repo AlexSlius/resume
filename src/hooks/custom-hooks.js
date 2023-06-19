@@ -63,13 +63,15 @@ export const usePosition = () => {
   return { ...position, error };
 }
 
-export const useScaleResumePageShare = (constWidth = 628) => {
+export const useScaleResumePageShare = (constWidth = 624) => {
   const [scaleSize, setScaleSize] = useState(1);
 
   useEffect(() => {
     function handleResize() {
       if ((window.innerWidth + 32) < 630) {
-        setScaleSize(((window.innerWidth * 100) / constWidth) / 100);
+        let w = (((window.innerWidth - 44) * 100) / constWidth) / 100;
+
+        setScaleSize(w);
       } else {
         setScaleSize(1);
       }
@@ -97,12 +99,10 @@ export const useScaleResumeMain = ({
     function handleResize() {
       let wid = refDivResumeMain?.current?.offsetWidth;
 
-      if (!isMob)
-        wid -= 20;
-
       if (wid) {
         let w = (((wid * 100) / constWidth) / 100);
-        isMob && (w += 0.14);
+        isMob && (w -= 0.002);
+
         if (wid >= 640) {
           setScaleSize(1);
         } else {
@@ -114,7 +114,6 @@ export const useScaleResumeMain = ({
     }
 
     window.addEventListener("resize", handleResize);
-
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);

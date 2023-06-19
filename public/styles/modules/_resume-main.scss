@@ -141,10 +141,9 @@
 
 .resume-main_scale {
    pointer-events: none;
+   min-width: 624px;
 
    &>div {
-      min-width: 624px;
-
       .cv-body {
          width: 100% !important;
          max-width: 624px !important;
@@ -328,10 +327,6 @@
       flex: 0 0 560px;
       max-width: 560px;
    }
-
-   // .resume-main_scale {
-   //    transform: scale(0.77);
-   // }
 }
 
 .sidebar-nav .nav-link {
@@ -349,10 +344,6 @@
       flex: 0 0 460px;
       max-width: 460px;
    }
-
-   // .resume-main_scale {
-   //    transform: scale(0.645);
-   // }
 
    .sidebar-nav .nav-link {
       white-space: pre-wrap;
@@ -453,8 +444,8 @@
       max-height: fit-content;
    }
 
-   .resume-main_scale>div,
-   .sv_001 .cv-body {
-      min-width: 515px;
-   }
+   // .resume-main_scale>div,
+   // .sv_001 .cv-body {
+   //    min-width: 515px;
+   // }
 }

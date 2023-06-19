@@ -22,6 +22,7 @@ import { getScreenCover } from "../../controllers/cover/covers";
 import { routersPages } from "../../constants/next-routers";
 
 import style from "./AdminPage.module.scss"
+import { updatePreviewsMobTemplateStatus } from "../../slices/theme";
 
 const AdminPage = ({ children, isCover = false }) => {
    const [loadCode, setLoadCode] = useState(false);
@@ -78,6 +79,12 @@ const AdminPage = ({ children, isCover = false }) => {
          }
       }
    }, []);
+
+   useEffect(() => {
+      if (['sm', 'xs'].includes(currentResolution)) {
+         dispatch(updatePreviewsMobTemplateStatus(false));
+      }
+   }, [currentResolution]);
 
    return (
       <>

@@ -16,7 +16,6 @@ import iconModResume from "/public/images/icons/icon_mob_menu-resume.svg?sprite"
 import iconModCover from "/public/images/icons/icon_mob_menu-cover.svg?sprite";
 import iconModContact from "/public/images/icons/icon_mob_menu-contact.svg?sprite";
 import iconModFaq from "/public/images/icons/icon_mob_menu-faq.svg?sprite";
-import iconNeedHelp from "/public/images/icons/iocn-need-help.svg?sprite"
 
 
 export const Menu = () => {

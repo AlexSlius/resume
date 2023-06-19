@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 // Components
 import Icon from '../Icon'
 import { SvgImage } from "../../components/svgImage";
-
 import { logout } from '../../controllers/auth'
-
 import style from '../headUser/HeadUser.module.scss'
 import iconLogout from '/public/images/icons/icon-logo.svg?sprite'
-
 import { routersPages } from "../../constants/next-routers"
 
 const userMenu = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
     const [showMenu, setShowMenu] = useState();
-
     const {
         auth: {
             autorizate: {
@@ -27,6 +25,18 @@ const userMenu = () => {
             currentResolution
         },
     } = useSelector((state) => state);
+    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
+    const isDomPuncts = [
+        routersPages['dashboard'],
+        routersPages['settings'],
+        routersPages['resumeBuilder'],
+        routersPages['resumeBuilderNew'],
+        routersPages['coverLetter'],
+        routersPages['pageCoverLetter'],
+        routersPages['addSection'],
+        routersPages['resumeNow'],
+        routersPages['templates'],
+    ].find(el => router.asPath.includes(el));
 
     useEffect(() => {
         setShowMenu(false);
@@ -54,7 +64,7 @@ const userMenu = () => {
                         <li>
                             <Link href={isAthorized ? `/${routersPages['dashboard']}` : ''} className={`nav-link ${style.link} ${!isAthorized ? style.disabled : ""}`}>
                                 {
-                                    ['md', 'sm', 'xs'].includes(currentResolution) ?
+                                    isMob ?
                                         (
                                             <SvgImage image={'dashboard'} width={'17px'} height={'17px'} color={'#838799'} />
                                         ) :
@@ -68,7 +78,7 @@ const userMenu = () => {
                         <li>
                             <Link href={isAthorized ? `/${routersPages['settings']}` : ''} className={`nav-link ${style.link} ${!isAthorized ? style.disabled : ""}`}>
                                 {
-                                    ['md', 'sm', 'xs'].includes(currentResolution) ?
+                                    isMob ?
                                         (
                                             <SvgImage image={'settings'} width={'17px'} height={'17px'} color={'#838799'} />
                                         ) :
@@ -88,7 +98,7 @@ const userMenu = () => {
                         <li>
                             <Link href={`/${routersPages['login']}`} className={`nav-link ${style.link}`}>
                                 {
-                                    ['md', 'sm', 'xs'].includes(currentResolution) ?
+                                    isMob ?
                                         (
                                             <SvgImage image={'user'} width={'17px'} height={'17px'} color={'#838799'} />
                                         ) :
@@ -102,22 +112,41 @@ const userMenu = () => {
                     </>
                 )
             }
-            <li>
-                <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
-                    {
-                        ['md', 'sm', 'xs'].includes(currentResolution) ?
-                            (
-                                <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#838799'} />
-                            ) :
-                            (
-                                <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#3679fd'} />
-                            )
-                    }
-                    <span>FAQ</span>
-                </Link>
-            </li>
+
             {
-                isAthorized && !['md', 'sm', 'xs'].includes(currentResolution) ? (
+                isDomPuncts && (
+                    <>
+                        <li>
+                            <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
+                                {
+                                    isMob ?
+                                        (
+                                            <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#838799'} />
+                                        ) :
+                                        (
+                                            <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#3679fd'} />
+                                        )
+                                }
+                                <span>FAQ</span>
+                            </Link>
+                        </li>
+
+                        {
+                            isMob && (
+                                <li>
+                                    <Link href={`/${routersPages['contactUs']}`} className={`nav-link ${style.link}`} target='_blank'>
+                                        <SvgImage image={'contacte'} width={'17px'} height={'17px'} color={'#838799'} />
+                                        <span>Need help</span>
+                                    </Link>
+                                </li>
+                            )
+                        }
+                    </>
+                )
+            }
+
+            {
+                isAthorized && !isMob ? (
                     <li>
                         <button onClick={() => logout(dispatch)} className={`nav-link ${style.link}`}>
                             <Icon svg={iconLogout} />

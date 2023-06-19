@@ -310,11 +310,19 @@
     }
 
     .btn-burger_eye {
-        margin-right: 19px;
         height: 16px;
+        position: absolute;
+        right: 47px;
 
         svg {
             height: inherit;
+            fill: #546C97;
+        }
+
+        &.active {
+            svg {
+                fill: #3679FD;
+            }
         }
     }
 

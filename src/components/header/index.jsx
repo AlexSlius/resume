@@ -34,7 +34,8 @@ export const Header = () => {
             }
         },
         theme: {
-            currentResolution
+            currentResolution,
+            isOpenPreviesMobTemplate
         }
     } = useSelector((state) => state);
     const toggleMenu = () => {
@@ -68,7 +69,7 @@ export const Header = () => {
                             <div className="wr-burger">
                                 {
                                     (isResume || isCover) && (
-                                        <button className="btn-burger_eye" onClick={() => { dispatch(updatePreviewsMobTemplateStatus()) }}>
+                                        <button className={`btn-burger_eye ${isOpenPreviesMobTemplate ? "active" : ""}`} onClick={() => { dispatch(updatePreviewsMobTemplateStatus()) }}>
                                             <Icon svg={iconEye} />
                                         </button>
                                     )
@@ -85,7 +86,6 @@ export const Header = () => {
                             </Link>
                             <Menu pageName={pageName} />
                             <div className="right-info">
-                                {/* <Link href="#" className="lang">En</Link> */}
                                 {
                                     isAthorized ? (
                                         <div className="right-info__auth">

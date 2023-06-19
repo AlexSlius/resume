@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
 import Icon from "../Icon"
+import { SvgImage } from "../svgImage";
 
 import { ROUTES, ROUTES_COVER } from "../../constants/routes";
 import { routersPages } from "../../constants/next-routers";
@@ -17,6 +18,8 @@ import iconShare from "/public/images/icons/icon_share.svg?sprite"
 export const MenuButton = ({
     isEdit = false,
     isNew = false,
+    isMob = false,
+    isAthorized = false,
     handleChanbdegAutOrPlan = () => { },
 }) => {
     const dispatch = useDispatch();
@@ -56,6 +59,16 @@ export const MenuButton = ({
         <div className="menus-card_wr">
             <div className="menus-card_cont">
                 <ul className="menus-card_ul">
+                    {
+                        (isMob && isAthorized) && (
+                            <li className="menus-card_li">
+                                <Link href={`/${routersPages['dashboard']}`} className="item-btn-m">
+                                    <SvgImage image={'dashboard'} width={'17px'} height={'17px'} color={'#3679fd'} />
+                                    <span>Dashboard</span>
+                                </Link>
+                            </li>
+                        )
+                    }
                     {
                         !isEdit && !isNew && (
                             <li className="menus-card_li">

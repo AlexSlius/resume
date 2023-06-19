@@ -53,8 +53,6 @@ const FormLanguages = ({
       await dispatch(updateItemLanguageFiled({ index, name, value }));
       await handleUpdateServer(index);
 
-      console.log(name == "level", isEnd)
-
       if (name == "level" && isEnd) {
          focusFieldInputClassName("language_new");
       }
@@ -80,8 +78,12 @@ const FormLanguages = ({
       dispatch(fetchDeleteLanguages({ idCv, id }))
    }
 
-   const handleSaveSelectNew = ({ name, value }) => {
+   const handleSaveSelectNew = ({ name, value }, data) => {
       dispatch(updateItemLanguageFiledNew({ name, value }));
+
+      if (data) {
+         handleAddOne();
+      }
    }
 
    const handleServerRequestLanguagesList = async (text = '') => {
@@ -96,12 +98,6 @@ const FormLanguages = ({
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'languages' }));
       handleServerRequestLanguagesList('');
    }, []);
-
-   useEffect(() => {
-      if (!!objNew.language.length) {
-         handleAddOne();
-      }
-   }, [objNew]);
 
    return (
       <>
@@ -146,7 +142,7 @@ const FormLanguages = ({
                   <InputSelect
                      label="Language"
                      valueState={objNew.language || ""}
-                     handleSaveSelect={(obj) => handleSaveSelectNew({ ...obj, name: "language" })}
+                     handleSaveSelect={(obj, data) => handleSaveSelectNew({ ...obj, name: "language" }, data)}
                      handleServerRequest={handleServerRequestLanguagesList}
                      isOutDataObj={false}
                      data={language.list || []}

@@ -1,12 +1,11 @@
 import React from 'react'
 
 import Icon from '../Icon'
+import HeadUser from '../headUser/HeadUser'
 
-import style from './TemplateHead.module.scss'
-import savedIcon from '/public/images/icons/saved.svg?sprite'
 import arrowLeftIcon from '/public/images/icons/arrow-left.svg?sprite'
 import arrowRightIcon from '/public/images/icons/arrow-right.svg?sprite'
-import HeadUser from '../headUser/HeadUser'
+import style from './TemplateHead.module.scss'
 
 const TemplateHead = ({
    currentPage = 1,
@@ -19,8 +18,6 @@ const TemplateHead = ({
 
    return (
       <div className={`${style.resume_head}`}>
-         <div>
-         </div>
          <div className={`${style.resume_head__pagination}`}>
             <button className={`${style.resume_head__pagination_button} ${!isPrev ? style.non : ""}`} onClick={onPrev}>
                <Icon svg={arrowLeftIcon} classNames={[style.icon]} />
