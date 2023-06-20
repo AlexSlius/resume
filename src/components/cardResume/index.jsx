@@ -12,6 +12,7 @@ export const CardResume = ({
     label,
     id = null,
     image = null,
+    load = true,
     dateUpdate,
     handleEdit = () => { },
     handlekeyUp = () => { },
@@ -48,7 +49,9 @@ export const CardResume = ({
     return (
         <div className={`${style.card}`}>
             <div className={`${style.card__head}`}>
-                <img src={image} alt="picture resume" onClick={handleEdit} />
+                <div className={`${style.card__head_img} ${load ? style.load_img : ""}`}>
+                    <img src={image} alt="picture resume" onClick={handleEdit} />
+                </div>
                 <div className={`${style.card__navigation}`}>
                     <div>
                         <button className="btn-download" onClick={handleDewnload}>
@@ -103,6 +106,6 @@ export const CardResume = ({
                 </div>
                 <div className={`${style.card_date}`}>{dateUpdate}</div>
             </div>
-        </div >
+        </div>
     )
 }
