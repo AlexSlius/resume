@@ -29,7 +29,7 @@ import {
 } from "../../controllers/cover/covers";
 import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
-import { addItemNotification } from "../../slices/notifications";
+// import { addItemNotification } from "../../slices/notifications";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
