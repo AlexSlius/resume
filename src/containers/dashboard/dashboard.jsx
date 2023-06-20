@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isArray } from "lodash";
 
@@ -29,7 +29,6 @@ import {
 } from "../../controllers/cover/covers";
 import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
-import { addItemNotification } from "../../slices/notifications";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
@@ -43,6 +42,7 @@ const Dashboard = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [loadNewCard, setLoadNewCard] = useState();
+    const [loadCards, setLoadDards] = useState(true);
     const [deleteModal, setDeleteModal] = useState({ id: null, isResume: true });
 
     const {
@@ -195,7 +195,9 @@ const Dashboard = () => {
         handleCLoseModalDelete();
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
+        setLoadDards(true);
+
         if (type == "resume") {
             dispatch(fetchGetResumesList());
         }
@@ -212,7 +214,9 @@ const Dashboard = () => {
             if (type == "cover") {
                 dispatch(fetchGetCoversList());
             }
-        }, 1000);
+
+            setLoadDards(false);
+        }, 2000);
     }, [router.query.tab]);
 
     return (
@@ -255,6 +259,7 @@ const Dashboard = () => {
                                                 id={item.id}
                                                 image={!!item?.screenUrl ? item?.screenUrl : "/images/other/img_resume.png"}
                                                 label={item.cvName}
+                                                load={loadCards}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handlekeyUp={handlekeyUp}
@@ -300,6 +305,7 @@ const Dashboard = () => {
                                                 id={item.id}
                                                 image={!!item?.screenUrl ? item?.screenUrl : "/images/cover/dash-cover.png"}
                                                 label={item.coverName}
+                                                load={loadCards}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handlekeyUp={handlekeyUpCover}

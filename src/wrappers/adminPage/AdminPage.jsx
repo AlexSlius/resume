@@ -125,4 +125,5 @@ const AdminPage = ({ children, isCover = false }) => {
       </>
    )
 }
+
 export default AdminPage;
