@@ -1,7 +1,6 @@
 @use "sass:math";
 
 .main_content {
-   padding-top: 50px;
    &__back {
       @media (max-width: 991px) {
          display: none;
