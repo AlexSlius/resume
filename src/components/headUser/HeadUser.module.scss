@@ -150,11 +150,17 @@
       &:first-child {
          border-radius: 12px 12px 0 0;
          overflow: hidden;
+         @media(max-width: 991px) {
+            overflow: initial;
+         }
       }
 
       &:last-child {
          border-radius: 0 0 12px 12px;
          overflow: hidden;
+         @media(max-width: 991px) {
+            overflow: initial;
+         }
       }
 
       &:not(:first-child) {

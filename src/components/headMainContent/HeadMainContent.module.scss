@@ -1,8 +1,11 @@
 @use "sass:math";
 
 .main_content {
+   padding-top: 50px;
    &__back {
-      margin-bottom: 26px;
+      @media (max-width: 991px) {
+         display: none;
+      }
    }
 
    &__title {
@@ -34,6 +37,10 @@
       &__description {
          font-size: 12px;
       }
+   }
+
+   @media (max-width: 991px) {
+      padding-top: 50px;
    }
 }
 

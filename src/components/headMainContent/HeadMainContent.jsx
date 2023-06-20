@@ -6,7 +6,7 @@ const HeadMainContent = (props) => {
    const { title, description, children, isRows = true, link = '' } = props;
 
    return (
-      <>
+      <div className={style.main_content}>
          <div className={`${style.main_content__back}`}>
             <ButtonBack link={link} />
          </div>
@@ -32,7 +32,7 @@ const HeadMainContent = (props) => {
                </div>
             )
          }
-      </>
+      </div>
    )
 }
 
