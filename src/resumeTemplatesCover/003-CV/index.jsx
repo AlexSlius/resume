@@ -30,13 +30,14 @@ export const CoverCv003 = ({
                 if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                     do {
                         text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                        text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                     }
                     while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                     letter_current_page_number++;
                     getCvLetterContainer().append(original_cv_letter_text.clone());
                     let text2 = getCvLetterContainer().find('.cv-letter-text');
-                    text2.html(text2.html().substring(text1.html().length));
+                    text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
                 }
             }
 
@@ -74,38 +75,37 @@ export const CoverCv003 = ({
         <div className="sv_003 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className={`cv-body cv-body-2 cv-body---resume`}>
-                    <div className="cv-body-content">
+                    <div className="cv-body-content main-color-1-text font-size-1">
                         <div className="cv-body-area area-1 additional-color-2-background">
-                            <h1 className="cv-heading cv-name main-color-1-text heading-type-1 font-size-3 line-height-3">
-                                {!!firstName && (<span className="name-line-1 font-weight-400">{firstName}</span>)} {` `}
-                                {!!lastName && (<span className="name-line-2 font-weight-600">{lastName}</span>)}
+                            <h1 className="cv-heading cv-name font-size-4">
+                                {!!firstName && (<span className="name-line-1">{firstName}</span>)} {` `}
+                                {!!lastName && (<span className="name-line-2">{lastName}</span>)}
                             </h1>
                         </div>
                         <div className="cv-body-area area-2">
                             <div className="column-left">
-                                <div className="cv-letter">
-                                    {/* <h2 className="cv-heading letter-heading cv-letter-heading heading-type-6 font-size-2-2 line-height-2-2 main-color-1-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                                    <div className="cv-text cv-letter-text letter-text font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                <div className="letter-block">
+                                    {/* <h2 className="cv-heading letter-heading cv-letter-heading">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
+                                    <div className="cv-text cv-letter-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                 </div>
                             </div>
                             <div className="column-right">
-                                <div className="cv-destination main-color-1-border">
-                                    <div className="cv-destination-block block-block additional-color-2-border">
+                                <div className="cv-destination">
+                                    <div className="cv-destination-block block-block">
                                         <div className="destination-details">
-
                                             <div className="block-to">
-                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
+                                                <h3 className="cv-heading font-size-2">
                                                     TO
-                                                    <span className="line-after-block-heading additional-color-2-border"></span>
+                                                    <span className="line-after-block-heading additional-color-1-border"></span>
                                                 </h3>
-                                                <p className="cv-sender font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                                <p className="cv-sender" dangerouslySetInnerHTML={{ __html: data.to }}></p>
                                             </div>
                                             <div className="block-from">
-                                                <h3 className="cv-heading heading-type-3 font-weight-600 font-size-1 line-height-1 main-color-1-text">
+                                                <h3 className="cv-heading">
                                                     FROM
-                                                    <span className="line-after-block-heading additional-color-2-border"></span>
+                                                    <span className="line-after-block-heading additional-color-1-border"></span>
                                                 </h3>
-                                                <p className="font-size-1 line-height-1 main-color-1-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                                <p dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                             </div>
                                         </div>
                                     </div>
