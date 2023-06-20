@@ -2,6 +2,7 @@
 
 .main_content {
    &__back {
+      margin-bottom: 26px;
       @media (max-width: 991px) {
          display: none;
       }
