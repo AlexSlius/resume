@@ -384,13 +384,10 @@
     &.no-photo {
       background-color: #fff;
       padding: 30px 25px 11px;
+      text-align: center;
 
       .profile-name {
-        text-align: center;
-      }
-
-      .profile-speciality {
-        text-align: center;
+        margin-bottom: 24px !important;
       }
     }
   }
