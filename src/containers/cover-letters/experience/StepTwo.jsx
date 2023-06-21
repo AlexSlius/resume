@@ -1,13 +1,13 @@
 import { CForm, CCol, CRow } from "@coreui/react";
 import { useSelector } from "react-redux";
 import WheelPicker from 'react-simple-wheel-picker';
+import moment from "moment";
 
 import { DatePicker } from "../../../components/uis/datePicker";
-
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { BtnsStatus } from "../component/btnsStatus";
-import moment from "moment";
+
 
 import yearsMob from "./data/years.json";
 
@@ -18,6 +18,7 @@ export const StepTwo = ({
     coverDataObj,
 }) => {
     const selectYear = moment(new Date(coverDataObj.graduateDate)).format("YYYY");
+    const activeIdYearn = yearsMob.find(el => (el.value == selectYear))?.id;
 
     const handleClickBtn = async (value) => {
         await handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value, step: value == "Y" ? "nameCollege" : "professionalSkills" });
@@ -32,8 +33,6 @@ export const StepTwo = ({
     const dateSelect = (data) => {
         handleUpdateField({ name: "graduateDate", value: `02, 02, ${data.value}` });
     }
-
-    const activeIdYearn = yearsMob.find(el => (el.value == selectYear))?.id;
 
     return (
         <div className="step-wr">
