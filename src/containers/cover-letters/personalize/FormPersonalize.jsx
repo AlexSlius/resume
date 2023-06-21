@@ -1,5 +1,4 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-
 import React, { useRef, useState, useEffect } from "react";
 import Router from "next/router";
 
@@ -12,7 +11,6 @@ import { routersPages } from "../../../constants/next-routers";
 import { ROUTES } from "../../../constants/routes";
 import { BtnContinue } from "../component/btnContinue";
 import { ModalEmail } from "../../../components/modals/modalEmail";
-import { ComponentHigherLoadBtn } from "../../../components/componentHigherLoadBtn";
 
 import {
     updateItemField,
@@ -40,6 +38,7 @@ import { sendCodeResume } from "../../../utils/sendCode";
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { fieldsFormPerson } from "../../../constants/formPerson";
+import { LoadChildrenBtn } from "../../../components/loadChildrenBtn";
 
 
 const FormPersonalize = ({
@@ -52,6 +51,8 @@ const FormPersonalize = ({
     const [idCountry, setIdCountry] = useState(undefined);
     const [showModalEmail, setShowModalEmail] = useState(false);
     const [emailForRegister, setEmailForRegister] = useState('');
+    const [loadNext, setLoadNext] = useState(false);
+
     const {
         coverDataForm: {
             coverDataObj,
@@ -110,17 +111,17 @@ const FormPersonalize = ({
     }
 
     const newBasicNoAutorizstion = async (link = undefined) => {
+        setLoadNext(true);
         sendCodeResume({
             dispatch,
             link,
             isResume: false,
+            funCalb: () => setLoadNext(false),
         });
-        // это для старой версии авторизации если не зареган
-        // await dispatch(contactSetNew({ pictureFile, isNewResume }));
-        // await dispatch(coverSetNew({ isNewCover: true }));
     }
 
     const addNewCoverAutorization = async () => {
+        setLoadNext(true);
         if (isNew) {
             await dispatch(coverAddNew({}));
         } else {
@@ -296,12 +297,12 @@ const FormPersonalize = ({
                             disabled={!isEmptyForm}
                             onClick={onClean}
                         />
-                        <ComponentHigherLoadBtn>
+                        <LoadChildrenBtn isLoad={loadNext}>
                             <BtnContinue
                                 onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
                                 isButton={true}
                             />
-                        </ComponentHigherLoadBtn>
+                        </LoadChildrenBtn>
                     </div>
                 </div>
             </div>

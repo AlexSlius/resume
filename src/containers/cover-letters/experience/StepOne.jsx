@@ -3,9 +3,6 @@ import { BtnsStatus } from "../component/btnsStatus";
 
 export const StepOne = ({
     handleUpdateField = () => { },
-    handleClicQuery = () => { },
-    StepsName,
-    coverDataObj,
 }) => {
     const handleClickBtn = async (value) => {
         await handleUpdateField({ name: "questionGraduateFromCollege", value, step: "graduated" });

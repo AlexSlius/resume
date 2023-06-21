@@ -1,7 +1,8 @@
-import { ComponentHigherLoadBtn } from "../../../components/componentHigherLoadBtn";
+import { useState } from "react";
 import { ButtonIcon } from "../../../components/uis/buttonIcon";
 
 import iconBtnNext from "/public/images/icons/icon-bnt-next.svg?sprite";
+import { LoadChildrenBtn } from "../../../components/loadChildrenBtn";
 
 export const BtnContinue = ({
     href = '',
@@ -9,18 +10,20 @@ export const BtnContinue = ({
     label = "Continue",
     onHanleBtn = () => { },
 }) => {
+    const [loadBtn, isLoadBtn] = useState(false);
+
     return (
         <div className="wr-btn-cover">
-            <ComponentHigherLoadBtn>
+            <LoadChildrenBtn isLoad={loadBtn}>
                 <ButtonIcon
                     icon={iconBtnNext}
                     label={label}
                     isButton={isButton}
                     className="btn--blue btn-style-min"
                     href={href}
-                    onHandle={onHanleBtn}
+                    onHandle={() => { isLoadBtn(true); onHanleBtn(); }}
                 />
-            </ComponentHigherLoadBtn>
+            </LoadChildrenBtn>
         </div>
     )
 }
