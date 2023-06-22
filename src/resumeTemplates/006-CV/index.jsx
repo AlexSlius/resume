@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 export const ResumeCv006 = ({
   data,
@@ -101,7 +102,7 @@ export const ResumeCv006 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           references_block.remove();
           current_page_number++;
-          getPageColumnRight().append(references_block);
+          getPageColumnLeft().append(references_block);
         }
 
         if (max_page_number < current_page_number) {
@@ -186,7 +187,7 @@ export const ResumeCv006 = ({
         var page_element = $('<div class="cv-body cv-body-visible cv-body-1 page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
         page_element.attr('data-chapter', 'cv');
         page_element.attr('data-page', page_number);
-        var page_element_container = $('<div class="cv-body-content"></div>');
+        var page_element_container = $('<div class="cv-body-content font-size-1 main-color-1-text"></div>');
         page_element.append(page_element_container);
 
         if (current_page_number == 1) {
@@ -224,7 +225,7 @@ export const ResumeCv006 = ({
     <div className="sv_006" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1">
-          <div className="cv-body-content">
+          <div className="cv-body-content font-size-1 main-color-1-text">
             <div className="cv-body-area top-area">
               <div className="profile-block profile-information additional-color-1-border">
                 {
@@ -237,19 +238,19 @@ export const ResumeCv006 = ({
                 <div className="profile-info">
                   {
                     isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
-                      <h1 className="cv-name font-weight-700 font-size-3 line-height-4">
+                      <h1 className="cv-name font-size-3">
                         {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                       </h1>
                     )
                   }
                   {
                     isArray(contact) && contact?.[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-2 line-height-2">{contact?.[0]?.jobTitle}</h2>
+                      <h2 className="cv-prophecy font-size-2">{contact?.[0]?.jobTitle}</h2>
                     )
                   }
                   {
                     !!career_objective?.[0]?.data && (
-                      <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
+                      <p className="profile-info-text" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
                     )
                   }
                   {
@@ -258,32 +259,32 @@ export const ResumeCv006 = ({
                         {
                           !!contact?.[0]?.dateOfBirth && (
                             <p className="profile-info-item">
-                              <span className="item-name font-weight-300 font-size-1 line-height-1">Birth Date</span>
-                              <span className="item-value font-size-1 line-height-1">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
+                              <span className="item-name">Birth Date</span>
+                              <span className="item-value">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
                             </p>
                           )
                         }
                         {
                           !!contact?.[0]?.placeOfBirth && (
                             <p className="profile-info-item">
-                              <span className="item-name font-weight-300 font-size-1 line-height-1">Place of Birth</span>
-                              <span className="item-value font-size-1 line-height-1">{contact?.[0]?.placeOfBirth}</span>
+                              <span className="item-name">Place of Birth</span>
+                              <span className="item-value">{contact?.[0]?.placeOfBirth}</span>
                             </p>
                           )
                         }
                         {
                           !!contact?.[0]?.nationality && (
                             <p className="profile-info-item">
-                              <span className="item-name font-weight-300 font-size-1 line-height-1">Nationality</span>
-                              <span className="item-value font-size-1 line-height-1">{contact?.[0]?.nationality}</span>
+                              <span className="item-name">Nationality</span>
+                              <span className="item-value">{contact?.[0]?.nationality}</span>
                             </p>
                           )
                         }
                         {
                           !!contact?.[0]?.driverLicense && (
                             <p className="profile-info-item">
-                              <span className="item-name font-weight-300 font-size-1 line-height-1">Driving Licence</span>
-                              <span className="item-value font-size-1 line-height-1">{contact?.[0]?.driverLicense}</span>
+                              <span className="item-name">Driving Licence</span>
+                              <span className="item-value">{contact?.[0]?.driverLicense}</span>
                             </p>
                           )
                         }
@@ -293,7 +294,7 @@ export const ResumeCv006 = ({
                 </div>
               </div>
             </div>
-            <div className="cv-body-area middle-area main-color-3-background">
+            <div className="cv-body-area middle-area">
               <div className="column-1">
                 {
                   (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
@@ -302,7 +303,10 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range font-weight-600 font-size-1 line-height-1">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MM/yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MM/yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MM/yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MM/yy"))}
+                                {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MM/yy"))}
+                                </p>
                             )
                           }
                         </div>
@@ -311,15 +315,15 @@ export const ResumeCv006 = ({
                           <span className="block-circle additional-color-1-background"></span>
                           {
                             (index == 0) && (
-                              <h3 className={`heading-type-3 font-weight-700 font-size-2 line-height-2`}>Employment History</h3>
+                              <h3 className="cv-heading font-size-2">Employment History</h3>
                             )
                           }
-                          <p className="font-weight-600 font-size-1 line-height-1">
-                            {!!itemEm?.title && (`${itemEm?.title}, `)}
-                            {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                            {!!itemEm?.city && (`${itemEm?.city} `)}
+                          <p className="cv-subheading">
+                            {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                            {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                            {!!itemEm?.city && (itemEm?.city)}
                           </p>
-                          <div className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                          <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                         </div>
                       </div>
                     ))
@@ -333,10 +337,9 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
-                              <p className="date-range font-weight-600 font-size-1 line-height-1">
-                                {
-                                  !!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MM/yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MM/yy")}`)
-                                }
+                              <p className="date-range">
+                                {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MM/yy"))}
                               </p>
                             )
                           }
@@ -345,20 +348,24 @@ export const ResumeCv006 = ({
                           <span className="block-circle additional-color-1-background"></span>
                           {
                             (index == 0) && (
-                              <h3 className={`heading-type-3 font-weight-700 font-size-2 line-height-2`}>Education</h3>
+                              <h3 className="cv-heading font-size-2">Education</h3>
                             )
                           }
                           {
-                            (!!itemEd?.study) && (
-                              <p className="font-weight-600 font-size-1 line-height-1">{!!itemEd?.study && (`${itemEd?.study}, `)}  {itemEd?.facility && (`${itemEd.facility}`)}</p>
+                            (!!itemEd?.facility || !!itemEd?.study) && (
+                              <p className="cv-subheading">
+                                {!!itemEd?.facility && (checkForSymbol([itemEd?.study])) ? itemEd?.facility + ', ' : itemEd?.facility}
+                                {!!itemEd?.study && (itemEd?.study)}
+                                
+                              </p>
                             )
                           }
                           {
                             itemEd?.degree && (
-                              <p className="font-weight-600 font-size-1 line-height-1">{itemEd?.degree}</p>
+                              <p className="cv-subheading">{itemEd?.degree}</p>
                             )
                           }
-                          <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
+                          <p dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
                         </div>
                       </div>
                     ))
@@ -371,7 +378,10 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range font-weight-600 font-size-1 line-height-1">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MM/yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MM/yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -379,17 +389,17 @@ export const ResumeCv006 = ({
                           <span className="block-circle additional-color-1-background"></span>
                           {
                             (index == 0) && (
-                              <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Courses</h3>
+                              <h3 className="cv-heading font-size-2">Courses</h3>
                             )
                           }
                           {
                             !!itemCo?.title && (
-                              <p className="font-weight-600 font-size-1 line-height-1">{itemCo?.title}</p>
+                              <p className="cv-subheading">{itemCo?.title}</p>
                             )
                           }
                           {
                             !!itemCo?.institution && (
-                              <p className="font-size-1 line-height-1">{itemCo?.institution}</p>
+                              <p>{itemCo?.institution}</p>
                             )
                           }
                         </div>
@@ -404,7 +414,11 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (
-                              !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range font-weight-600 font-size-1 line-height-1">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MM/yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MM/yy")}`)}</p>
+                              !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
+                              <p className="date-range">
+                                {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -412,15 +426,18 @@ export const ResumeCv006 = ({
                           <span className="block-circle additional-color-1-background"></span>
                           {
                             (index == 0) && (
-                              <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Extra-curricular activities</h3>
+                              <h3 className="cv-heading font-size-2">Extra-curricular activities</h3>
                             )
                           }
                           {
                             (!!itemEx?.title || itemEx?.employer) && (
-                              <p className="font-weight-600 font-size-1 line-height-1">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
+                              <p className="cv-subheading">
+                                {(!!itemEx?.title && checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
+                                {(!!itemEx?.employer && itemEx?.employer)}
+                              </p>
                             )
                           }
-                          <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
+                          <p dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
                         </div>
                       </div>
                     ))
@@ -430,11 +447,14 @@ export const ResumeCv006 = ({
                 {
                   (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     internship.map((itemIn, index) => (
-                      <div key={index} className={`internship-block block-block  ${(index > 0) ? "block-net" : ""}`}>
+                      <div key={index} className={`internships-block block-block  ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
                           {
-                            (
-                              !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range font-weight-600 font-size-1 line-height-1">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MM/yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MM/yy")}`)}</p>
+                            (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
+                              <p className="date-range">
+                                {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -442,15 +462,19 @@ export const ResumeCv006 = ({
                           <span className="block-circle additional-color-1-background"></span>
                           {
                             (index == 0) && (
-                              <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Internships</h3>
+                              <h3 className="cv-heading font-size-2">Internships</h3>
                             )
                           }
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                              <p className="font-weight-600 font-size-1 line-height-1">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
+                              <p className="cv-subheading">
+                                {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                {!!itemIn?.city && (itemIn?.city)}
+                              </p>
                             )
                           }
-                          <div className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                          <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
                         </div>
                       </div>
                     ))
@@ -458,15 +482,15 @@ export const ResumeCv006 = ({
                 }
                 {
                   (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
-                    <div className="references-block block-block additional-color-1-border">
-                      <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">References</h3>
+                    <div className="references-block block-block">
+                      <h3 className="cv-heading font-size-2">References</h3>
 
                       {
                         reference.map((itemRef, index) => (
                           <div className="block-content-wrapper" key={index}>
                             {
                               (!!itemRef?.fullName || !!itemRef?.company) && (
-                                <span className="font-weight-600 font-size-1 line-height-">
+                                <span className="references-name">
                                   {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
                                   {!!itemRef?.company && (`${itemRef.company}`)}
                                 </span>
@@ -474,12 +498,12 @@ export const ResumeCv006 = ({
                             }
                             {
                               !!itemRef?.email && (
-                                <span className="font-size-1 line-height-1">{itemRef.email}</span>
+                                <span>{itemRef.email}</span>
                               )
                             }
                             {
                               !!itemRef.phone && (
-                                <span className="font-size-1 line-height-1">{itemRef.phone}</span>
+                                <span>{itemRef.phone}</span>
                               )
                             }
                           </div>
@@ -493,13 +517,13 @@ export const ResumeCv006 = ({
                 {
                   isArray(languages) && !!languages.length && (
                     <div className="languages-block block-block">
-                      <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Languages</h3>
+                      <h3 className="cv-heading font-size-2">Languages</h3>
 
                       <div className="languages-list">
                         {
                           languages.map((item, index) => (
                             <div className="language-list-item" key={index}>
-                              <p className="font-weight-600 font-size-1 line-height-1">{item.language}</p>
+                              <p className="language-name">{item.language}</p>
                               <p className="language-skill-estimation-wrapper">
                                 <span className="estimation-value additional-color-1-background" style={{ width: `${(item.level * 100) / 6}%` }}></span>
                               </p>
@@ -512,14 +536,14 @@ export const ResumeCv006 = ({
                 }
                 {
                   isArray(skills) && !!skills.length && (
-                    <div className="skills-block block-block additional-color-1-border">
-                      <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Skills</h3>
+                    <div className="skills-block block-block">
+                      <h3 className="cv-heading font-size-2">Skills</h3>
 
                       <div className="skills-list">
                         {
                           skills.map((item, index) => (
                             <div className="skills-list-item" key={index}>
-                              <p className="font-weight-600 font-size-1 line-height-1">{item.name}</p>
+                              <p className="skills-name">{item.name}</p>
                               {
                                 !hide_experience_level && (
                                   <div className="skill-estimation-point-list">
@@ -542,13 +566,13 @@ export const ResumeCv006 = ({
                 }
                 {
                   isArray(certificates) && !!certificates.length && (
-                    <div className="certificates-block block-block additional-color-1-border">
-                      <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Certificates</h3>
-                      <p className="font-size-1 line-height-1">
+                    <div className="certificates-block block-block">
+                      <h3 className="cv-heading font-size-2">Certificates</h3>
+                      <p className="certificates-info">
                         {
                           certificates.map((item, index) => (
                             <span key={index}>
-                              {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
+                              {`${item.name}`}
                             </span>
                           ))
                         }
@@ -558,9 +582,9 @@ export const ResumeCv006 = ({
                 }
                 {
                   isArray(hobbies) && !!hobbies.length && (
-                    <div className="hobbies-block block-block additional-color-1-border">
-                      <h3 className="heading-type-3 font-weight-700 font-size-2 line-height-2">Hobbies</h3>
-                      <p className="font-size-1 line-height-1">
+                    <div className="hobbies-block block-block">
+                      <h3 className="cv-heading font-size-2">Hobbies</h3>
+                      <p>
                         {
                           hobbies.map((item, index) => (
                             <span key={index}>
@@ -584,7 +608,7 @@ export const ResumeCv006 = ({
                           <svg className="main-color-2-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.94 8.66683C12.7933 8.66683 12.64 8.62016 12.4933 8.58683C12.1966 8.52047 11.9047 8.43359 11.62 8.32683C11.3107 8.21432 10.9708 8.22016 10.6655 8.34323C10.3603 8.46631 10.1114 8.69792 9.96666 8.9935L9.81999 9.30016C9.17254 8.93297 8.57441 8.48493 8.03999 7.96683C7.52189 7.43241 7.07386 6.83428 6.70666 6.18683L7.01333 6.04683C7.3089 5.90211 7.54051 5.65318 7.66359 5.34796C7.78666 5.04273 7.79251 4.70277 7.67999 4.3935C7.57412 4.10618 7.48726 3.81221 7.41999 3.5135C7.38666 3.36683 7.35999 3.2135 7.33999 3.06683C7.25904 2.59724 7.01308 2.17199 6.64641 1.86766C6.27974 1.56332 5.81646 1.3999 5.33999 1.40683H3.33333C3.05149 1.40646 2.77276 1.46566 2.5154 1.58055C2.25805 1.69544 2.02788 1.86343 1.83999 2.0735C1.64821 2.28927 1.5054 2.544 1.42139 2.82019C1.33739 3.09638 1.31417 3.38748 1.35333 3.6735C1.71572 6.44826 2.98347 9.02593 4.95999 11.0068C6.94089 12.9834 9.51857 14.2511 12.2933 14.6135C12.3799 14.6201 12.4668 14.6201 12.5533 14.6135C13.0449 14.6142 13.5196 14.4338 13.8867 14.1068C14.0967 13.9189 14.2647 13.6888 14.3796 13.4314C14.4945 13.1741 14.5537 12.8953 14.5533 12.6135V10.6135C14.5497 10.1529 14.3872 9.70757 14.0933 9.35289C13.7993 8.99821 13.392 8.75588 12.94 8.66683ZM13.2667 12.6668C13.2664 12.7599 13.2468 12.8518 13.2089 12.9368C13.171 13.0217 13.1157 13.0978 13.0467 13.1602C12.9736 13.2267 12.8866 13.2762 12.7921 13.305C12.6975 13.3339 12.5978 13.3413 12.5 13.3268C10.0122 13.0019 7.70016 11.8682 5.91999 10.1002C4.13831 8.31847 2.99468 5.99841 2.66666 3.50016C2.65218 3.40239 2.65962 3.30261 2.68844 3.20806C2.71727 3.11352 2.76676 3.02656 2.83333 2.9535C2.89641 2.8836 2.97358 2.82785 3.05976 2.78993C3.14594 2.75201 3.23917 2.73278 3.33333 2.7335H5.33333C5.48743 2.72973 5.63808 2.77949 5.75964 2.8743C5.88119 2.96911 5.96613 3.10311 5.99999 3.2535C5.99999 3.4335 6.05999 3.62016 6.09999 3.80016C6.17704 4.14941 6.27954 4.49254 6.40666 4.82683L5.47333 5.26683C5.3129 5.34047 5.18823 5.47473 5.12666 5.64016C5.05998 5.80247 5.05998 5.98452 5.12666 6.14683C6.08613 8.202 7.73816 9.85403 9.79333 10.8135C9.95563 10.8802 10.1377 10.8802 10.3 10.8135C10.4654 10.7519 10.5997 10.6273 10.6733 10.4668L11.0933 9.5335C11.4373 9.65891 11.7891 9.76136 12.1467 9.84016C12.32 9.88016 12.5067 9.9135 12.6867 9.94016C12.837 9.97403 12.9711 10.059 13.0659 10.1805C13.1607 10.3021 13.2104 10.4527 13.2067 10.6068L13.2667 12.6668ZM9.33333 1.3335C9.17999 1.3335 9.01999 1.3335 8.86666 1.3335C8.68985 1.34853 8.52625 1.43318 8.41185 1.56883C8.29745 1.70448 8.24163 1.88002 8.25666 2.05683C8.27169 2.23364 8.35634 2.39724 8.49199 2.51164C8.62764 2.62603 8.80318 2.68186 8.97999 2.66683H9.33333C10.3942 2.66683 11.4116 3.08826 12.1618 3.8384C12.9119 4.58855 13.3333 5.60596 13.3333 6.66683C13.3333 6.78683 13.3333 6.90016 13.3333 7.02016C13.3185 7.19604 13.3741 7.37059 13.4878 7.50556C13.6016 7.64053 13.7642 7.7249 13.94 7.74016H13.9933C14.1602 7.74084 14.3213 7.6789 14.4447 7.56657C14.5682 7.45425 14.645 7.29971 14.66 7.1335C14.66 6.98016 14.66 6.82016 14.66 6.66683C14.66 5.2535 14.099 3.89795 13.1003 2.89795C12.1015 1.89795 10.7467 1.33526 9.33333 1.3335ZM10.6667 6.66683C10.6667 6.84364 10.7369 7.01321 10.8619 7.13823C10.9869 7.26326 11.1565 7.3335 11.3333 7.3335C11.5101 7.3335 11.6797 7.26326 11.8047 7.13823C11.9298 7.01321 12 6.84364 12 6.66683C12 5.95959 11.719 5.28131 11.2189 4.78121C10.7188 4.28111 10.0406 4.00016 9.33333 4.00016C9.15652 4.00016 8.98695 4.0704 8.86192 4.19543C8.7369 4.32045 8.66666 4.49002 8.66666 4.66683C8.66666 4.84364 8.7369 5.01321 8.86192 5.13823C8.98695 5.26326 9.15652 5.3335 9.33333 5.3335C9.68695 5.3335 10.0261 5.47397 10.2761 5.72402C10.5262 5.97407 10.6667 6.31321 10.6667 6.66683Z" fill="white" />
                           </svg>
-                          <span className="main-color-2-text font-weight-500 font-size-1 line-height-1">{contact?.[0]?.phone}</span>
+                          <span className="main-color-2-text font-size-1">{contact?.[0]?.phone}</span>
                         </div>
                       )
                     }
@@ -594,7 +618,7 @@ export const ResumeCv006 = ({
                           <svg className="main-color-2-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.6666 2.6665H3.33331C2.80288 2.6665 2.29417 2.87722 1.9191 3.25229C1.54403 3.62736 1.33331 4.13607 1.33331 4.6665V11.3332C1.33331 11.8636 1.54403 12.3723 1.9191 12.7474C2.29417 13.1225 2.80288 13.3332 3.33331 13.3332H12.6666C13.1971 13.3332 13.7058 13.1225 14.0809 12.7474C14.4559 12.3723 14.6666 11.8636 14.6666 11.3332V4.6665C14.6666 4.13607 14.4559 3.62736 14.0809 3.25229C13.7058 2.87722 13.1971 2.6665 12.6666 2.6665ZM3.33331 3.99984H12.6666C12.8435 3.99984 13.013 4.07008 13.1381 4.1951C13.2631 4.32012 13.3333 4.48969 13.3333 4.6665L7.99998 7.91984L2.66665 4.6665C2.66665 4.48969 2.73688 4.32012 2.86191 4.1951C2.98693 4.07008 3.1565 3.99984 3.33331 3.99984ZM13.3333 11.3332C13.3333 11.51 13.2631 11.6796 13.1381 11.8046C13.013 11.9296 12.8435 11.9998 12.6666 11.9998H3.33331C3.1565 11.9998 2.98693 11.9296 2.86191 11.8046C2.73688 11.6796 2.66665 11.51 2.66665 11.3332V6.1865L7.65331 9.23317C7.75466 9.29168 7.86962 9.32249 7.98665 9.32249C8.10367 9.32249 8.21863 9.29168 8.31998 9.23317L13.3333 6.1865V11.3332Z" fill="white" />
                           </svg>
-                          <span className="main-color-2-text font-weight-500 font-size-1 line-height-1">{contact?.[0]?.email}</span>
+                          <span className="main-color-2-text font-size-1">{contact?.[0]?.email}</span>
                         </div>
                       )
                     }
@@ -604,7 +628,7 @@ export const ResumeCv006 = ({
                           <svg className="main-color-2-svg" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.24996 2.98644C8.25539 1.92558 6.90648 1.32959 5.49996 1.32959C4.09343 1.32959 2.74452 1.92558 1.74996 2.98644C0.755394 4.04731 0.196655 5.48615 0.196655 6.98644C0.196655 8.48674 0.755394 9.92558 1.74996 10.9864L5.04371 14.5064C5.10181 14.5689 5.17093 14.6185 5.2471 14.6524C5.32326 14.6862 5.40495 14.7036 5.48746 14.7036C5.56996 14.7036 5.65165 14.6862 5.72782 14.6524C5.80398 14.6185 5.8731 14.5689 5.93121 14.5064L9.24996 10.9531C10.2404 9.89666 10.7968 8.46381 10.7968 6.96978C10.7968 5.47574 10.2404 4.0429 9.24996 2.98644ZM8.35621 9.99978L5.49996 13.0598L2.64371 9.99978C2.07942 9.39732 1.69525 8.62994 1.53977 7.79464C1.38428 6.95933 1.46445 6.09361 1.77015 5.3069C2.07584 4.52019 2.59334 3.84781 3.25723 3.37476C3.92111 2.90171 4.70157 2.64923 5.49996 2.64923C6.29834 2.64923 7.0788 2.90171 7.74269 3.37476C8.40657 3.84781 8.92407 4.52019 9.22976 5.3069C9.53546 6.09361 9.61563 6.95933 9.46015 7.79464C9.30466 8.62994 8.92049 9.39732 8.35621 9.99978ZM3.62496 4.93978C3.1204 5.47963 2.83708 6.21082 2.83708 6.97311C2.83708 7.7354 3.1204 8.4666 3.62496 9.00644C3.99981 9.40697 4.4772 9.6805 4.99724 9.79271C5.51728 9.90493 6.0568 9.85083 6.54813 9.63721C7.03945 9.42359 7.46069 9.05996 7.75901 8.59194C8.05732 8.12392 8.21941 7.57236 8.22496 7.00644C8.22777 6.62858 8.15953 6.25395 8.02427 5.9047C7.88901 5.55546 7.68947 5.23868 7.43746 4.97311C7.18975 4.70283 6.89438 4.48747 6.56835 4.33942C6.24231 4.19137 5.89204 4.11356 5.53771 4.11046C5.18337 4.10737 4.83196 4.17904 4.50369 4.32137C4.17542 4.4637 3.87678 4.67386 3.62496 4.93978ZM6.55621 8.05978C6.31936 8.31627 6.00634 8.47705 5.67066 8.51461C5.33498 8.55218 4.9975 8.4642 4.7159 8.26573C4.4343 8.06725 4.22608 7.77061 4.12684 7.4265C4.02759 7.08239 4.04349 6.7122 4.1718 6.37921C4.30012 6.04623 4.53289 5.77112 4.83032 5.60093C5.12775 5.43075 5.47136 5.37605 5.80242 5.44619C6.13347 5.51633 6.4314 5.70695 6.64527 5.98547C6.85915 6.26398 6.97568 6.61309 6.97496 6.97311C6.96586 7.38462 6.80401 7.77546 6.52496 8.05978H6.55621Z" fill="white" />
                           </svg>
-                          <span className="main-color-2-text font-weight-500 font-size-1 line-height-1">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
+                          <span className="main-color-2-text font-size-1">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
                         </div>
                       )
                     }
@@ -616,7 +640,7 @@ export const ResumeCv006 = ({
                           </svg>
                           {
                             social_links.map((item, index) => (
-                              <a key={index} className="main-color-2-text font-weight-500 font-size-1 line-height-1">{item.name}</a>
+                              <a key={index} className="main-color-2-text font-size-1">{item.name}</a>
                             ))
                           }
                         </div>
