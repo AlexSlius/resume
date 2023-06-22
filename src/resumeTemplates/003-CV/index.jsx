@@ -695,8 +695,8 @@ export const ResumeCv003 = ({
                             {
                               (!!itemRef?.fullName || !!itemRef?.company) && (
                                 <p className="cv-heading">
-                                  {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                  {!!itemRef?.company && (`${itemRef.company}`)}
+                                  {!!itemRef?.fullName && (checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
+                                  {!!itemRef?.company && (itemRef?.company)}
                                 </p>
                               )
                             }
