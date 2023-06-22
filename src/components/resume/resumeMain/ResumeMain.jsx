@@ -2,16 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from 'next/router'
 
-import { TemplatesSelect } from '../../templatesSelect';
+// import { TemplatesSelect } from '../../templatesSelect';
 import { TemplatesSelectCover } from "../../templateSelectCover";
 
-import {
-   getResumeActive,
-} from "../../../controllers/resumeData";
-
-import {
-   getCoverDataActive,
-} from "../../../controllers/cover/coverData";
+import { getResumeActive } from "../../../controllers/resumeData";
+import { getCoverDataActive } from "../../../controllers/cover/coverData";
 import { useScaleResumeMain } from "../../../hooks/custom-hooks";
 
 
@@ -72,7 +67,8 @@ const ResumeMain = ({
    };
 
    let dataCoverLetterTemplate = {
-      ...coverDataForm.coverDataObj,
+      firstName: coverDataForm.coverDataObj.firstName,
+      lastName: coverDataForm.coverDataObj.lastName,
       coverGenerateDate: coverDataForm.coverGenerateDate,
       from: coverDataForm.from,
       to: coverDataForm.to,
@@ -81,12 +77,6 @@ const ResumeMain = ({
    let dataCoverLetterTemplateNew = {
       firstName: coverDataForm.coverDataObjNew.firstName,
       lastName: coverDataForm.coverDataObjNew.lastName,
-      email: coverDataForm.coverDataObjNew.email,
-      phone: coverDataForm.coverDataObjNew.phone,
-      country: coverDataForm.coverDataObjNew.country,
-      city: coverDataForm.coverDataObjNew.city,
-      zipCode: coverDataForm.coverDataObjNew.zipCode,
-      state: coverDataForm.coverDataObjNew.state,
       coverGenerateDate: coverDataForm.coverGenerateDate,
       from: coverDataForm.from,
       to: coverDataForm.to,
@@ -115,7 +105,6 @@ const ResumeMain = ({
                !isCover && (
                   <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
                      <TemplatesSelect
-                        // scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         data={dataResumeTemplate}
                         resumeData={dataOther}
@@ -133,7 +122,6 @@ const ResumeMain = ({
                isCover && (
                   <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
                      <TemplatesSelectCover
-                        // scale={`scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})`}
                         isNewResume={isNewResume}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                         data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect, memo } from "react";
 
-export const CoverCv001 = ({
+const CoverCv001 = ({
     data,
     stateClasses,
     reportTemplateRef,
@@ -71,7 +71,7 @@ export const CoverCv001 = ({
 
             rebuildingPages2();
         }
-    }, [data, stateClasses]);
+    }, [data]);
 
     return (
         <div className="sv_001 template-wrapper" ref={reportTemplateRef}>
@@ -117,3 +117,5 @@ export const CoverCv001 = ({
         </div>
     )
 }
+
+export default memo(CoverCv001);

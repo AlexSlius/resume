@@ -20,7 +20,6 @@ import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
 
-
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const isPdf = downloadPagePdf(rest);

@@ -1,11 +1,10 @@
 import React from "react";
-import { useRouter } from 'next/router'
 
 import { LoadWr } from "../loadWr";
 import { isLoader } from "../../helpers/loadings";
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
-import { CoverCv001 } from '../../resumeTemplatesCover/001-CV';
+import CoverCv001 from '../../resumeTemplatesCover/001-CV';
 import { CoverCv002 } from '../../resumeTemplatesCover/002-CV';
 import { CoverCv003 } from '../../resumeTemplatesCover/003-CV';
 import { CoverCv004 } from '../../resumeTemplatesCover/004-CV';
@@ -43,8 +42,6 @@ export const TemplatesSelectCover = ({
     ${isNewResume ?
             (!!resumeData?.resumeActiveNew?.template_class ? resumeData.resumeActiveNew.template_class : "") :
             (!!resumeData?.resumeActive?.template_class ? resumeData.resumeActive.template_class : "")}`;
-    const router = useRouter();
-    const idCv = router.query.idCv;
 
     let statusLoad = statusResumeActive || status;
 
@@ -56,7 +53,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -67,7 +63,7 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
+
                     />
                 )
             }
@@ -78,7 +74,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -88,7 +83,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -99,7 +93,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -110,7 +103,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -121,7 +113,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -132,7 +123,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -143,7 +133,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -154,7 +143,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -165,7 +153,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -176,7 +163,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -187,7 +173,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -198,7 +183,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -209,7 +193,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -220,7 +203,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -231,7 +213,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
@@ -242,7 +223,6 @@ export const TemplatesSelectCover = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
-                        idCv={idCv}
                     />
                 )
             }
