@@ -485,8 +485,8 @@ export const ResumeCv004 = ({
                               {
                                 (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
                                   <p className="data-range">
-                                    {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MM/yy"))}
-                                    {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MM/yy"))}
+                                    {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MMMM yy"))}
+                                    {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MMMM yy"))}
                                   </p>
                                 )
                               }
@@ -515,16 +515,16 @@ export const ResumeCv004 = ({
                               {
                                 (!!itemEm?.company || !!itemEm?.city) && (
                                   <p className="company-text">
-                                    {(!!itemEm?.company && checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
-                                    {(!!itemEm?.city && itemEm?.city)}
+                                    {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                                    {!!itemEm?.city && (itemEm?.city)}
                                   </p>
                                 )
                               }
                               {
                                 (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
                                   <p className="date-range">
-                                    {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MM/yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MM/yy"))}
-                                    {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MM/yy"))}
+                                    {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MMMM yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MMMM yy"))}
+                                    {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MMMM yy"))}
                                   </p>
                                 )
                               }
@@ -573,8 +573,8 @@ export const ResumeCv004 = ({
                               {
                                 (!!itemRef?.fullName || !!itemRef?.company) && (
                                   <p className="name-text">
-                                    {(!!itemRef?.fullName && checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
-                                    {(!!itemRef?.company && itemRef?.company)}
+                                    {!!itemRef?.fullName && (checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
+                                    {!!itemRef?.company && (itemRef?.company)}
                                   </p>
                                 )
                               }
