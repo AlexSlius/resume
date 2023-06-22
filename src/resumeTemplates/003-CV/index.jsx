@@ -2,6 +2,7 @@ import React from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const Estimation = ({
   level = 0,
@@ -407,17 +408,22 @@ export const ResumeCv003 = ({
                               <p className="cv-heading block-subheading">
                                 {
                                   !!itemEm?.title && (
-                                    <span className="employment-position">{`${itemEm?.title}, `}</span>
+                                    <span className="employment-position">
+                                      {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                                    </span>
                                   )
                                 }
                                 <span className="company-and-city">
-                                  {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                                  {!!itemEm?.city && (`${itemEm?.city} `)}
+                                  {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                                  {!!itemEm?.city && (itemEm?.city)}
                                 </span>
                               </p>
                               {
                                 (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                                  <p className="date-range">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
+                                  <p className="date-range">
+                                    {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MMMM yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MMMM yy"))}
+                                    {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MMMM yy"))}
+                                  </p>
                                 )
                               }
                             </div>
@@ -441,16 +447,18 @@ export const ResumeCv003 = ({
                           <div className="block-info" key={index}>
                             <div className="horizontal-wrap">
                               {
-                                (!!itemEd?.study) && (
-                                  <p className="cv-heading block-subheading">{!!itemEd?.facility && (`${itemEd.facility}, `)} {!!itemEd?.study && (`${itemEd?.study}, `)}</p>
+                                (!!itemEd?.study || itemEd?.facility) && (
+                                  <p className="cv-heading block-subheading">
+                                    {!!itemEd?.facility && (checkForSymbol([itemEd?.study])) ? itemEd?.facility + ', ' : itemEd?.facility}
+                                    {!!itemEd?.study && (itemEd?.study)}
+                                  </p>
                                 )
                               }
                               {
                                 (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
                                   <p className="date-range">
-                                    {
-                                      !!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)
-                                    }
+                                    {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MMMM yy"))}
+                                    {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MMMM yy"))}
                                   </p>
                                 )
                               }
@@ -491,7 +499,10 @@ export const ResumeCv003 = ({
                               }
                               {
                                 (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                                  <p className="date-range">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
+                                  <p className="date-range">
+                                    {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MMMM yy"))}
+                                    {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MMMM yy"))}
+                                  </p>
                                 )
                               }
                             </div>
@@ -520,12 +531,20 @@ export const ResumeCv003 = ({
                             <div className="horizontal-wrap">
                               {
                                 (!!itemEx?.title || itemEx?.employer) && (
-                                  <p className="cv-heading block-subheading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
+                                  <p className="cv-heading block-subheading">
+                                    {!!itemEx?.title && (checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
+                                    {!!itemEx?.employer && (itemEx?.employer)}
+
+                                  </p>
                                 )
                               }
                               {
                                 (
-                                  !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
+                                  !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
+                                  <p className="date-range">
+                                    {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MMMM yy"))}
+                                    {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MMMM yy"))}
+                                  </p>
                                 )
                               }
                             </div>
@@ -550,12 +569,20 @@ export const ResumeCv003 = ({
                             <div className="horizontal-wrap">
                               {
                                 (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                                  <p className="cv-heading block-subheading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
+                                  <p className="cv-heading block-subheading">
+                                    {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                    {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                    {!!itemIn?.city && (itemIn?.city)}
+                                  </p>
                                 )
                               }
                               {
                                 (
-                                  !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
+                                  !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
+                                  <p className="date-range">
+                                    {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MMMM yy"))}
+                                    {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MMMM yy"))}
+                                  </p>
                                 )
                               }
                             </div>
