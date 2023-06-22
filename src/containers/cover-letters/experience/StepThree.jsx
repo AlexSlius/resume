@@ -1,9 +1,9 @@
 import { CForm, CCol, CRow } from "@coreui/react"
+
 import { StepContent } from "../../../components/stepContent";
 import { InputSelect } from "../../../components/uis/inputSelect";
 import { BtnContinue } from "../component/btnContinue";
 import { DatePicker } from "../../../components/uis/datePicker"
-
 import { getUniversityByName } from "../../../controllers/dependencies";
 
 export const StepThree = ({
@@ -65,8 +65,11 @@ export const StepThree = ({
                         <div className="wr-form-cover">
                             <CForm className="wr-gab-30">
                                 <CRow>
-                                    <CCol xs={6}>
+                                    <CCol xs={12} md={6}>
                                         <DatePicker
+                                            formatInput="YYYY"
+                                            formatData="Y"
+                                            onlyAYear={true}
                                             floatingLabel="Date"
                                             selected={coverDataObj.expectedYearOfGraduation}
                                             onChange={(date) => handleUpdateField({ name: 'expectedYearOfGraduation', value: date })}
