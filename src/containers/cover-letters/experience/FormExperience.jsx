@@ -20,7 +20,7 @@ import { StepSixteen } from "./StepSixteen";
 
 import { updateItemField } from "../../../slices/cover/coverDataForm";
 import { routersPages } from "../../../constants/next-routers";
-import { ROUTES_COVER } from "../../../constants/routes";
+import { QUERY_TAB_COVER } from "../../../constants/routes";
 import { updateCoverLetterById } from "../../../controllers/cover/personalize";
 import { StepsName } from "../../../constants/cover";
 
@@ -37,11 +37,8 @@ const FormExperience = ({
     const {
         coverDataForm: {
             coverDataObj,
-            status
         },
         dependencies: {
-            coutrys,
-            cities,
             fieldOfStudy,
             jopsTitle,
             companys,
@@ -73,8 +70,12 @@ const FormExperience = ({
 
     const handleClicQuery = async (queryStep) => {
         await Router.push({
-            pathname: `/${routersPages['coverLetter']}/${idCv}/${ROUTES_COVER['experience']}`,
-            query: { step: queryStep, ...((shareKey?.length > 0) ? { shareKey: shareKey } : {}) },
+            pathname: `/${routersPages['coverLetter']}/${idCv}`,
+            query: {
+                tab: QUERY_TAB_COVER['experience'],
+                step: queryStep,
+                ...((shareKey?.length > 0) ? { shareKey: shareKey } : {})
+            },
         });
     }
 

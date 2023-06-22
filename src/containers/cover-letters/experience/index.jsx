@@ -80,7 +80,7 @@ const arrStep = {
     },
 };
 
-const Contact = () => {
+const Experience = () => {
     const dispatch = useDispatch();
     const states = useSelector((state) => state);
     const router = useRouter();
@@ -115,4 +115,4 @@ const Contact = () => {
     )
 }
 
-export default Contact;
+export default Experience;

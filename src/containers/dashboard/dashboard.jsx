@@ -32,7 +32,7 @@ import { coverAddNew } from "../../controllers/cover/personalize";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
-import { ROUTES, ROUTES_COVER } from "../../constants/routes";
+import { ROUTES } from "../../constants/routes";
 
 import style from "./Style.module.scss";
 
@@ -71,7 +71,7 @@ const Dashboard = () => {
     }
 
     const handleOnUpdateCover = async (data) => {
-        await Router.push(`${routersPages['coverLetter']}/${data.id}/${ROUTES_COVER['']}?shareKey=${data.shareKey}`);
+        await Router.push(`${routersPages['coverLetter']}/${data.id}?tab=contact&shareKey=${data.shareKey}`);
     }
 
     // new add resume

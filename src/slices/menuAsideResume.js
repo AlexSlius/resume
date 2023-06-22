@@ -111,14 +111,14 @@ let startDatesCoverLetters = [
         key: 'personalize',
         name: 'Personalize',
         status: true,
-        link: '/personalize',
+        link: '?tab=contact',
         keyIcon: [keysIcons["iconContact"]],
     },
     {
         key: 'experience',
         name: 'Experience',
         status: true,
-        link: '/experience',
+        link: '?tab=experience',
         keyIcon: [keysIcons["iconEmploymen"]],
     },
     {
