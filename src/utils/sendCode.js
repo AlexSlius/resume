@@ -21,6 +21,10 @@ export const sendCodeResume = async ({
         res = await dispatch(updateIsErrorEmailCover());
     }
 
+    if (!res?.payload?.email) {
+        allFunCalb();
+    }
+
     if (res?.payload?.email) {
         let { email } = res?.payload;
 
