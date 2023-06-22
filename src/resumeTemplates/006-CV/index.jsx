@@ -101,7 +101,7 @@ export const ResumeCv006 = ({
         if (getPageContainer().height() > getPageContainer().parent().height()) {
           references_block.remove();
           current_page_number++;
-          getPageColumnRight().append(references_block);
+          getPageColumnLeft().append(references_block);
         }
 
         if (max_page_number < current_page_number) {
