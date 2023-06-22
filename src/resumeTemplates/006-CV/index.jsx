@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol"
 
 export const ResumeCv006 = ({
   data,
@@ -302,7 +303,10 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MM/yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MM/yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MM/yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MM/yy"))}
+                                {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MM/yy"))}
+                                </p>
                             )
                           }
                         </div>
@@ -315,9 +319,9 @@ export const ResumeCv006 = ({
                             )
                           }
                           <p className="cv-subheading">
-                            {!!itemEm?.title && (`${itemEm?.title}, `)}
-                            {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                            {!!itemEm?.city && (`${itemEm?.city} `)}
+                            {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                            {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                            {!!itemEm?.city && (itemEm?.city)}
                           </p>
                           <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                         </div>
@@ -334,9 +338,8 @@ export const ResumeCv006 = ({
                           {
                             (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
                               <p className="date-range">
-                                {
-                                  !!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MM/yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MM/yy")}`)
-                                }
+                                {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MM/yy"))}
                               </p>
                             )
                           }
@@ -349,8 +352,12 @@ export const ResumeCv006 = ({
                             )
                           }
                           {
-                            (!!itemEd?.study) && (
-                              <p className="cv-subheading">{!!itemEd?.study && (`${itemEd?.study}, `)}  {itemEd?.facility && (`${itemEd.facility}`)}</p>
+                            (!!itemEd?.facility || !!itemEd?.study) && (
+                              <p className="cv-subheading">
+                                {!!itemEd?.facility && (checkForSymbol([itemEd?.study])) ? itemEd?.facility + ', ' : itemEd?.facility}
+                                {!!itemEd?.study && (itemEd?.study)}
+                                
+                              </p>
                             )
                           }
                           {
@@ -371,7 +378,10 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MM/yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MM/yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -404,7 +414,11 @@ export const ResumeCv006 = ({
                         <div className="left-side">
                           {
                             (
-                              !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (<p className="date-range">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MM/yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MM/yy")}`)}</p>
+                              !!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
+                              <p className="date-range">
+                                {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -417,7 +431,10 @@ export const ResumeCv006 = ({
                           }
                           {
                             (!!itemEx?.title || itemEx?.employer) && (
-                              <p className="cv-subheading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
+                              <p className="cv-subheading">
+                                {(!!itemEx?.title && checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
+                                {(!!itemEx?.employer && itemEx?.employer)}
+                              </p>
                             )
                           }
                           <p dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
@@ -433,8 +450,11 @@ export const ResumeCv006 = ({
                       <div key={index} className={`internships-block block-block  ${(index > 0) ? "block-net" : ""}`}>
                         <div className="left-side">
                           {
-                            (
-                              !!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (<p className="date-range">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MM/yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MM/yy")}`)}</p>
+                            (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
+                              <p className="date-range">
+                                {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MM/yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MM/yy"))}
+                                {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MM/yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -447,7 +467,11 @@ export const ResumeCv006 = ({
                           }
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                              <p className="cv-subheading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
+                              <p className="cv-subheading">
+                                {(!!itemIn?.jobTitle && checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                {(!!itemIn?.employer && checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                {(!!itemIn?.city && itemIn?.city)}
+                              </p>
                             )
                           }
                           <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
