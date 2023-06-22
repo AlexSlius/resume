@@ -8,9 +8,10 @@ import { routersPages } from '../constants/next-routers';
 import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
 import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "../controllers/users";
 import { contactSetNew } from "../controllers/contacts";
-import { coverSetNew } from "../controllers/cover/personalize";
+import { coverSetNew, getCoverLetterById } from "../controllers/cover/personalize";
 import { localStorageRemove, sessionStorageRemove } from '../helpers/localStorage';
 import { addItemNotification } from "../slices/notifications";
+import { getCoverDataActive, setUpdateCoverDataActive } from './cover/coverData';
 
 
 export const logout = async (dispatch) => {
@@ -79,6 +80,11 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     allFunCalb = () => { },
 }, thunkAPI) => {
     let resSession = undefined;
+    let {
+        coverData: {
+            resumeActiveNew
+        }
+    } = thunkAPI.getState();
 
     if (isResume) {
         // resume get session_di
@@ -116,6 +122,19 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 
         await allFunCalb();
 
+        if (isResume) {
+            // resume
+            // thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id }, isRemoveSesion: true }));
+        }
+
+        if (!isResume) {
+            // cover letter
+            // если регистраиция то создаю шаблон 
+            await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: reseAut?.payload.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
+            await thunkAPI.dispatch(getCoverLetterById(reseAut?.payload.id));
+            await thunkAPI.dispatch(getCoverDataActive({ idCv: reseAut?.payload.id }));
+        }
+
         return { id: reseAut?.payload.id };
     }
 
@@ -132,10 +151,6 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             email: data.email,
             id_session: resSession?.payload?.session_id
         }));
-
-        await thunkAPI.dispatch(fetchUserGetAvatar());
-        await thunkAPI.dispatch(fetchUserGetProfile());
-        await thunkAPI.dispatch(getUserDataSettings());
 
         return { id: undefined };
     }

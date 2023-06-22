@@ -38,7 +38,6 @@ import { sendCodeResume } from "../../../utils/sendCode";
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { fieldsFormPerson } from "../../../constants/formPerson";
-import { LoadChildrenBtn } from "../../../components/loadChildrenBtn";
 
 
 const FormPersonalize = ({

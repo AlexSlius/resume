@@ -1,10 +1,6 @@
-import {
-   CContainer,
-   CRow,
-   CCol
-} from "@coreui/react"
+import { CContainer, CRow, CCol } from "@coreui/react"
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/router'
 
 import SideBar from "../../components/sideBar/SideBar";
@@ -26,6 +22,7 @@ import { updatePreviewsMobTemplateStatus } from "../../slices/theme";
 
 const AdminPage = ({ children, isCover = false }) => {
    const [loadCode, setLoadCode] = useState(false);
+   const refIdR = useRef("new");
    const dispatch = useDispatch();
    const router = useRouter();
 
@@ -62,21 +59,24 @@ const AdminPage = ({ children, isCover = false }) => {
       }
    }
 
+   const onScreen = () => {
+      let shareKey = router?.query?.shareKey;
+      let path = router?.asPath;
+
+      if (refIdR.current != "new") {
+         if (!!path.includes(routersPages['resumeBuilder'])) {
+            dispatch(getScreenResume({ id: refIdR.current, shareKey }));
+         }
+
+         if (!!path.includes(routersPages['coverLetter'])) {
+            dispatch(getScreenCover({ id: refIdR.current, shareKey }));
+         }
+      }
+   };
+
    useEffect(() => {
       return () => {
-         let idR = router?.query?.idCv;
-         let shareKey = router?.query?.shareKey;
-         let path = router?.asPath;
-
-         if (idR != "new") {
-            if (!!path.includes(routersPages['resumeBuilder'])) {
-               dispatch(getScreenResume({ id: idR, shareKey }));
-            }
-
-            if (!!path.includes(routersPages['coverLetter'])) {
-               dispatch(getScreenCover({ id: idR, shareKey }));
-            }
-         }
+         onScreen();
       }
    }, []);
 
@@ -85,6 +85,10 @@ const AdminPage = ({ children, isCover = false }) => {
          dispatch(updatePreviewsMobTemplateStatus(false));
       }
    }, [currentResolution]);
+
+   useEffect(() => {
+      refIdR.current = router?.query?.idCv;
+   }, [router]);
 
    return (
       <>

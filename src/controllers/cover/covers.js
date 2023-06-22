@@ -44,11 +44,13 @@ export const lastPositionCover = createAsyncThunk('resumes/lastPositionCover', a
 });
 
 export const getScreenCover = createAsyncThunk('resumes/getScreenCover', async ({ id, shareKey }, thunkAPI) => {
-    if (shareKey?.length > 0) {
+    let iskey = (shareKey?.length > 0) && (shareKey != "null");
+
+    if (iskey) {
         const response = await api.covers.screenCover(id, shareKey);
     }
 
-    if (!(shareKey?.length > 0)) {
+    if (!(iskey)) {
         let res = await thunkAPI.dispatch(postShareCover({ id }));
 
         if (res.payload?.key?.length > 0) {

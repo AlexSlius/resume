@@ -5,7 +5,6 @@ import { setIsAuth } from "../slices/auth";
 import { cookieParse } from "../helpers/nookies";
 import { isExist } from '../helpers/checkingStatuses';
 import { getAllResumeBuilder } from "../controllers/getAllResumeBuilder";
-// import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
 import {
     getResumesTemplates,
     getResumeDataShare,
@@ -18,7 +17,6 @@ import {
 import { getCoverLetterById, getCoverDataShare, getCoverGenerateDate } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
-// import { striteGetProductById } from "../controllers/strite";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -29,7 +27,6 @@ export const withPublicRoute = ({
     isGetShareResume = false,
     isGetShareCover = false,
     isPageCoverLetter = false,
-    isStrite = false,
     isItemCoverPage = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
@@ -41,12 +38,6 @@ export const withPublicRoute = ({
                 const serverRespons = await api.auth.isAuthorization({ 'token': cookis.token });
                 const isEx = isExist(serverRespons);
                 await store.dispatch(setIsAuth(isEx));
-
-                // переделать
-                // if (!!isEx) {
-                //     await store.dispatch(fetchUserGetAvatar());
-                //     await store.dispatch(fetchUserGetProfile());
-                // }
             }
 
             if (ctx?.query?.idCv != "new") {
@@ -89,10 +80,6 @@ export const withPublicRoute = ({
                 await store.dispatch(getCoverDataShare({ idCv: ctx?.query?.idCv, key: ctx?.query?.key }));
                 await store.dispatch(getCoverShareTemplateActive({ idCv: ctx?.query?.idCv }));
             }
-
-            // if (!!isStrite) {
-            //     await store.dispatch(striteGetProductById());
-            // }
 
             return { props: {} };
         } catch (error) {

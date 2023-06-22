@@ -9,7 +9,6 @@ import { routersPages } from "../constants/next-routers";
 import { getResumesTemplates } from "../controllers/resumeData";
 import { getCoverTemplates } from "../controllers/cover/coverData";
 import { getCoverLetterById } from "../controllers/cover/personalize";
-// import { fetchUserGetAvatar, fetchUserGetProfile } from "../controllers/users";
 
 export const withPrivateRoute = ({
     isGetAllBuilder = false,
@@ -27,12 +26,6 @@ export const withPrivateRoute = ({
                 const serverResponse = await api.auth.isAuthorization({ 'token': cookies.token });
                 const isEx = isExist(serverResponse);
                 await store.dispatch(setIsAuth(isEx));
-
-                // переделать
-                // if (!!isEx) {
-                //     await store.dispatch(fetchUserGetAvatar());
-                //     await store.dispatch(fetchUserGetProfile());
-                // }
 
                 if (ctx?.query?.idCv != "new") {
                     if (!!isGetAllBuilder)
