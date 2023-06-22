@@ -468,9 +468,9 @@ export const ResumeCv006 = ({
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
                               <p className="cv-subheading">
-                                {(!!itemIn?.jobTitle && checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
-                                {(!!itemIn?.employer && checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
-                                {(!!itemIn?.city && itemIn?.city)}
+                                {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                {!!itemIn?.city && (itemIn?.city)}
                               </p>
                             )
                           }
