@@ -1,8 +1,5 @@
-import {
-    CSidebarNav,
-    CNavItem,
-} from "@coreui/react"
-import React from "react"
+import { CSidebarNav, CNavItem } from "@coreui/react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
@@ -11,11 +8,8 @@ import ActiveLink from "../Active-link"
 
 import { getCategoryViewedStatusCover } from "../../controllers/addSections";
 import { coverAddNew } from "../../controllers/cover/personalize";
-
 import { sendCodeResume } from "../../utils/sendCode";
-
 import { routerLinksAsideMenuIcon } from "../../constants/next-routers"
-
 import { routersPages } from "../../constants/next-routers";
 
 import style from './SideBar.module.scss'
@@ -59,7 +53,7 @@ const MenuSidebarCoverLetters = () => {
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!isNewResume) {
             dispatch(getCategoryViewedStatusCover({ idCv }))
         }
@@ -78,24 +72,27 @@ const MenuSidebarCoverLetters = () => {
                                 return;
                         }
 
+                        if (index == 0) {
+                            activeClassActives = style.link_current;
+                        }
+
                         if (!!viewedList?.[obj?.key]?.status) {
                             activeClassActives = style.link_current;
                         }
 
-                        if (obj?.key == 'personalize' && !!idCv) {
-                            activeClassActives = style.link_current;
-                        }
-
                         if (obj?.key == 'experience' && !isNewResume && !!(lastPosition?.length > 0)) {
-                            linkQuery = `?step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
+                            linkQuery = `&step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
                             activeClassActives = style.link_current;
                         } else {
-                            linkQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`
+                            linkQuery = `${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
                         }
 
                         return (
                             <CNavItem key={index}>
-                                <ActiveLink href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}>
+                                <ActiveLink
+                                    href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}
+                                    onQuery={(index < (menuAsideResume.coverLetters.list.length - 1) ? "tab" : "")}
+                                >
                                     <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${linkQuery}`)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}

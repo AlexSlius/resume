@@ -14,7 +14,7 @@ export const ROUTES = {
     'experience': 'experience'
 }
 
-export const ROUTES_COVER = {
-    '': 'personalize',
-    'experience': 'experience',
+export const QUERY_TAB_COVER = {
+    'contact': 'contact',
+    'experience': 'experience'
 }

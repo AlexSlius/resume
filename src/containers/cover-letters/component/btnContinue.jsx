@@ -9,12 +9,13 @@ export const BtnContinue = ({
     isButton = false,
     label = "Continue",
     onHanleBtn = () => { },
+    isload = undefined,
 }) => {
     const [loadBtn, isLoadBtn] = useState(false);
 
     return (
         <div className="wr-btn-cover">
-            <LoadChildrenBtn isLoad={loadBtn}>
+            <LoadChildrenBtn isLoad={(isload === undefined) ? loadBtn : isload}>
                 <ButtonIcon
                     icon={iconBtnNext}
                     label={label}

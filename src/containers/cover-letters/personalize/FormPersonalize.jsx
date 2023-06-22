@@ -8,7 +8,7 @@ import { InputEmail } from "../../../components/uis/inputEmail";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
 import { routersPages } from "../../../constants/next-routers";
-import { ROUTES } from "../../../constants/routes";
+import { ROUTES, QUERY_TAB_COVER } from "../../../constants/routes";
 import { BtnContinue } from "../component/btnContinue";
 import { ModalEmail } from "../../../components/modals/modalEmail";
 
@@ -112,20 +112,21 @@ const FormPersonalize = ({
 
     const newBasicNoAutorizstion = async (link = undefined) => {
         setLoadNext(true);
-        sendCodeResume({
+        await sendCodeResume({
             dispatch,
             link,
             isResume: false,
-            funCalb: () => setLoadNext(false),
+            allFunCalb: () => { setLoadNext(false); }
         });
     }
 
     const addNewCoverAutorization = async () => {
         setLoadNext(true);
+
         if (isNew) {
             await dispatch(coverAddNew({}));
         } else {
-            Router.push(`/${routersPages['coverLetter']}/${idCv}/${ROUTES['experience']}?step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
+            Router.push(`/${routersPages['coverLetter']}/${idCv}?tab=${QUERY_TAB_COVER['experience']}&step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
         }
     }
 
@@ -297,12 +298,11 @@ const FormPersonalize = ({
                             disabled={!isEmptyForm}
                             onClick={onClean}
                         />
-                        <LoadChildrenBtn isLoad={loadNext}>
-                            <BtnContinue
-                                onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
-                                isButton={true}
-                            />
-                        </LoadChildrenBtn>
+                        <BtnContinue
+                            isload={loadNext}
+                            onHanleBtn={() => { isAthorized ? addNewCoverAutorization() : newBasicNoAutorizstion(menuAsideResume.coverLetters.list[1].link) }}
+                            isButton={true}
+                        />
                     </div>
                 </div>
             </div>

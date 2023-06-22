@@ -52,6 +52,12 @@ export const fetchUserUpdateServer = createAsyncThunk('users/fetchUserUpdateServ
 });
 
 export const getUserDataSettings = createAsyncThunk('users/getUserDataSettings', async (_, thunkAPI) => {
-    const response = await api.users.getUserDataSettings();
-    return response;
+    let cookies = cookieParse({ ctx: null });
+
+    if (!!cookies?.token) {
+        const response = await api.users.getUserDataSettings();
+        return response;
+    }
+
+    return null;
 });

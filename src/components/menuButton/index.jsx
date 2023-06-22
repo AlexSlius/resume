@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Icon from "../Icon"
 import { SvgImage } from "../svgImage";
 
-import { ROUTES, ROUTES_COVER } from "../../constants/routes";
+import { ROUTES, QUERY_TAB_COVER } from "../../constants/routes";
 import { routersPages } from "../../constants/next-routers";
 import { postShareResume } from "../../controllers/resumes";
 import { postShareCover } from "../../controllers/cover/covers";
@@ -72,7 +72,7 @@ export const MenuButton = ({
                     {
                         !isEdit && !isNew && (
                             <li className="menus-card_li">
-                                <Link href={`/${routersPages[isResume ? "resumeBuilder" : "coverLetter"]}/${idCv}/${isResume ? ROUTES[''] : ROUTES_COVER['']}`} className="item-btn-m" >
+                                <Link href={isResume ? `/${routersPages["resumeBuilder"]}/${idCv}/${ROUTES['']}` : `/${routersPages["coverLetter"]}/${idCv}?tab=${QUERY_TAB_COVER['contact']}`} className="item-btn-m" >
                                     <Icon svg={iconEdit} />
                                     <span>Edit</span>
                                 </Link>

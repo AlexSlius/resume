@@ -75,7 +75,8 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     isResume,
     pictureFile = null,
     linkRedirect = undefined,
-    isClickBtn = false
+    isClickBtn = false,
+    allFunCalb = () => { },
 }, thunkAPI) => {
     let resSession = undefined;
 
@@ -113,12 +114,16 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
         await thunkAPI.dispatch(fetchUserGetProfile());
         await thunkAPI.dispatch(getUserDataSettings());
 
+        await allFunCalb();
+
         return { id: reseAut?.payload.id };
     }
 
     if (response?.code) {
         // это если существующий пользователь то приходит код 
         // вызывать модалку дла ввода кода
+        await allFunCalb();
+
         await thunkAPI.dispatch(updateFieldsModalAuth({
             show: true,
             isClickBtn: isClickBtn,
@@ -135,6 +140,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
         return { id: undefined };
     }
 
+    await allFunCalb();
     return {};
 })
 

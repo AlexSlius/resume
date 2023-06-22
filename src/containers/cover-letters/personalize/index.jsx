@@ -7,7 +7,6 @@ import HeadMainContent from "../../../components/headMainContent/HeadMainContent
 import { Progress } from "../../../components/progress";
 
 import { helperProgress } from "../../../helpers/helperProgress";
-import { getCoverLetterById } from "../../../controllers/cover/personalize";
 import { postUpdateCategoryViewedStatusCover } from "../../../controllers/addSections";
 
 import contactIcon from "/public/images/icons/contact.svg?sprite"

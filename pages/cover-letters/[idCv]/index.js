@@ -1,12 +1,12 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
-import ContainerPagePersonalize from "../../../src/containers/cover-letters/personalize"
+import ContainerCoverPage from "../../../src/containers/cover-letters"
 
 import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const ResumePersonalizePage = () => {
     return (
         <WrapepeAdminpage isCover={true}>
-            <ContainerPagePersonalize />
+            <ContainerCoverPage />
         </WrapepeAdminpage>
     )
 }
