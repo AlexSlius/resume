@@ -3,7 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
-import { checkForSymbol } from "../../utils/checkForSymbol"
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 export const ResumeCv006 = ({
   data,
