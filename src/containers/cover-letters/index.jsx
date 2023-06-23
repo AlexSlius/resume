@@ -29,7 +29,6 @@ const CoverPage = () => {
 
     useEffect(() => {
         dispatch(fetchGetCountrys());
-        console.log("fetchGetCountrys: 22");
 
         if (isNew && isAthorized) {
             let { firstName, lastName, email } = objFormSettings;

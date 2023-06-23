@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { LoadWr } from "../loadWr";
@@ -40,6 +40,7 @@ export const TemplatesSelectCover = ({
     isTemplate = false,
 }) => {
     const dispatch = useDispatch();
+    const refIdTimeout = useRef(undefined);
 
     const stateClasses = `
     ${sizeLineSpacing(+stateLineSpacing)} 
@@ -51,7 +52,14 @@ export const TemplatesSelectCover = ({
     let statusLoad = statusResumeActive || status;
 
     const handleFalseDrafind = () => {
-        dispatch(handleUpdateDrawingFalse());
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            dispatch(handleUpdateDrawingFalse());
+            clearTimeout(refIdTimeout.current);
+        }, 500);
     }
 
     return (

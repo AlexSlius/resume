@@ -11,7 +11,6 @@ import {
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
 import { cleanStartPersonFields } from "../../constants/formPerson";
-import { ContactlessOutlined } from '@material-ui/icons';
 
 const initialState = {
     coverDataObj: {
@@ -144,6 +143,8 @@ export const slice = createSlice({
             state.status = statusLoaded;
             state.coverDataObj = action?.payload.data || initialState.coverDataObj;
             state.coverGenerateDate = action?.payload?.cover_letter || null;
+            state.to = action.payload?.to || null
+            state.from = action.payload?.from || null;
         },
         // get
         [getCoverLetterById.pending]: (state) => {
