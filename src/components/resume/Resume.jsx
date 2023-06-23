@@ -118,10 +118,6 @@ const Resume = ({
             }
 
             star();
-
-            // setTimeout(() => {
-            //    star();
-            // }, 5000);
          }
       }
    }, [pagePagCurrent, resumeData.data, resumeData.resumeActive, resumeData.resumeActive, contacts,

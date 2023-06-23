@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 import ContactPesonalize from "./personalize";
 import Experience from "./experience";
 
+
 import { QUERY_TAB_COVER } from "../../constants/routes";
+
 
 const CoverPage = () => {
     const router = useRouter();
