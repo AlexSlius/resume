@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { LoadWr } from "../loadWr";
 import { isLoader } from "../../helpers/loadings";
 import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
-import { handleUpdateDrawingFalse } from "../../slices/cover/coverDataForm";
+import { handleUpdateDrawingFalse, handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
 
 import CoverCv001 from '../../resumeTemplatesCover/001-CV';
 import { CoverCv002 } from '../../resumeTemplatesCover/002-CV';
@@ -52,6 +52,11 @@ export const TemplatesSelectCover = ({
     let statusLoad = statusResumeActive || status;
 
     const handleFalseDrafind = () => {
+        if (isNewResume) {
+            dispatch(handleUpdateDrawingTrue());
+            return;
+        }
+
         if (refIdTimeout.current) {
             clearTimeout(refIdTimeout.current);
         }

@@ -104,6 +104,9 @@ export const slice = createSlice({
         handleUpdateDrawingFalse(state, action) {
             state.drawing = false;
         },
+        handleUpdateDrawingTrue(state, action) {
+            state.drawing = true;
+        },
         updateItemField(state, action) {
             let { name, value } = action.payload;
             state.coverDataObj[name] = value;
@@ -187,7 +190,8 @@ export const {
     cleanFormPersonalize,
     cleanFormPersonalizeNew,
     cleanCoverNewForm,
-    handleUpdateDrawingFalse
+    handleUpdateDrawingFalse,
+    handleUpdateDrawingTrue
 } = slice.actions;
 
 export const { reducer } = slice;
