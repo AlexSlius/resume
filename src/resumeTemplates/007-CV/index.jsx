@@ -28,6 +28,7 @@ export const ResumeCv007 = ({
     hide_experience_level
   } = data;
 
+  let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
 
   React.useEffect(() => {
     if (typeof window != 'undefined') {
@@ -241,7 +242,7 @@ export const ResumeCv007 = ({
 
   return (
     <div className="sv_007" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section  color-scheme-state-color-set-1 `} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1 `} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1">
           <div className="cv-body-content font-size-1 main-color-1-text">
             <div className="column-left">

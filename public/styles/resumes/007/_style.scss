@@ -129,6 +129,7 @@
       .column-left {
         width: 158px;
         min-width: 158px;
+        padding-top: 127px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -500,6 +501,7 @@
 
   .main-info-block {
     margin-top: 20px;
+    margin-left: -188px;
   }
 
   .internships-block {
@@ -567,14 +569,23 @@
 
   /* Stylization */
   #cv-chapter-section-cv {
-    .photo-block {
-      display: none;
-    }
-
     &.has-photo {
-      .photo-block {
+      .photo-wrapper {
         display: flex;
       }
+      .cv-body {
+        .cv-body-content {
+          .column-left {
+            padding-top: 0;
+          }
+        }
+      }
+      .main-info-block {
+        margin-left: 0;
+      }
+    }
+    .photo-wrapper {
+      display: none;
     }
   }
 
@@ -641,6 +652,9 @@
         }
       }
     }
+    .profile-main-block {
+      margin-top: -12px;
+    }
   }
 
   .font-size-scheme-state-big {
@@ -683,6 +697,10 @@
         }
       }
     }
+
+    .profile-main-block {
+      margin-top: -8px;
+    } 
   }
 
   /* Line height scheme */
