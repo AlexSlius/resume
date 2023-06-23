@@ -20,13 +20,14 @@ const drawing = () => {
             if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
                 while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
@@ -89,25 +90,25 @@ export const CoverCv004 = ({
         <div className="sv_004 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className={`cv-body cv-body-2 cv-body---resume`}>
-                    <div className="cv-body-content">
-                        <div className="name-block toggle-photo-state toggle-photo-state-active">
+                    <div className="cv-body-content font-size-1 main-color-1-text">
+                        <div className="name-block">
                             <h1 className="additional-color-1-text font-size-4 line-height-4 font-family-arsenal">{firstName}{` `} {lastName}</h1>
                         </div>
                         <div className="columns-wrapper">
                             <div className="column-1">
                                 <div className="letter-block">
                                     {/* <h3 className="first-line cv-letter-heading additional-color-1-text font-size-3 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h3> */}
-                                    <div className="cv-letter-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                    <div className="cv-letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                                 </div>
                             </div>
                             <div className="column-2">
                                 <div className="to-block">
-                                    <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">TO</h3>
-                                    <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                    <h3 className="cv-heading additional-color-1-text font-size-3">TO</h3>
+                                    <p dangerouslySetInnerHTML={{ __html: data.to }}></p>
                                 </div>
-                                <div className="from-block block-block">
-                                    <h3 className="additional-color-1-text font-size-3 line-height-3 font-family-arsenal">FROM</h3>
-                                    <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                <div className="from-block block-block additional-color-1-border">
+                                    <h3 className="cv-heading additional-color-1-text font-size-3">FROM</h3>
+                                    <p dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                 </div>
                             </div>
                         </div>
