@@ -115,7 +115,7 @@ const FormPersonalize = ({
         setLoadNext(true);
 
         if (isNew) {
-            await dispatch(coverAddNew({}));
+            await dispatch(coverAddNew({isAddNewAuth: true}));
         } else {
             Router.push(`/${routersPages['coverLetter']}/${idCv}?tab=${QUERY_TAB_COVER['experience']}&step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
         }

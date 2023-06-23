@@ -11,16 +11,26 @@ import { addItemNotification } from "../../slices/notifications";
 import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
 import { cleanStartPersonFields } from "../../constants/formPerson";
+import { setUpdateCoverDataActive } from './coverData';
 
 
-export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false }, thunkAPI) => {
-    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters }, users: { objFormSettings } } = thunkAPI.getState();
+export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false }, thunkAPI) => {
+    const {
+        coverDataForm: { coverDataObj },
+        menuAsideResume: { coverLetters },
+        users: { objFormSettings },
+        coverData: {
+            resumeActiveNew
+        }
+    } = thunkAPI.getState();
+
     const dataAccout = {
         email: objFormSettings?.email,
         firstName: objFormSettings?.firstName,
         lastName: objFormSettings?.lastName,
     };
 
+    // getCoverDataActive
     const newObj = camelToSnake({
         firstName: coverDataObj.firstName,
         lastName: coverDataObj.lastName,
@@ -38,6 +48,9 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
         if (isDashboard) {
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[0].link}`);
         } else {
+            if (isAddNewAuth) {
+                await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
+            }
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
         }
     }
