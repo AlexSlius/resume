@@ -327,13 +327,14 @@
 
         .cv-body-area {
           &.top-area {
+            padding: 30px 30px 0;
             .cv-name {
               margin-left: 19px;
             }
           }
 
           &.middle-area {
-            padding: 0px 50px;
+            padding: 30px 50px;
 
             .cv-heading {
               margin-bottom: 15px;
