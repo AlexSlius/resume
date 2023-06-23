@@ -256,12 +256,6 @@
       }
     }
 
-    &.cv-body-1 {
-      .cv-body-content {
-        .cv-body-area {}
-      }
-    }
-
     &.cv-body-2 {
       .cv-body-content {
         padding: 70px 38px 70px 49px;
@@ -302,14 +296,6 @@
         }
       }
     }
-
-    &.page-2,
-    &.page-3,
-    &.page-4 {
-      div:nth-child(2) {
-        margin-top: 0;
-      }
-    }
   }
 
   .cv-heading {
@@ -323,9 +309,6 @@
     font-weight: 600;
     margin-bottom: 5px;
     position: relative;
-  }
-
-  .block-block {
   }
 
   .skills-languages-block {
@@ -466,14 +449,6 @@
     }
   }
 
-  .details-block {
-    .details-wrapper {
-      .details-item {
-        &:last-child {}
-      }
-    }
-  }
-
   .references-block {
     margin-top: 10px;
 
@@ -516,10 +491,6 @@
         padding-bottom: 30px !important;
       }
     }
-  }
-
-  .education-block {
-    
   }
 
   .courses-block {
