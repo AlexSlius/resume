@@ -332,11 +332,15 @@
   .photo-block {
     display: none;
     width: 193px;
-    min-height: 193px;
+    height: 193px;
 
 
-    img {
-      width: 100%;
+    .photo {
+      width: 193px;
+      height: 193px;
+      background-size: 193px auto;
+      background-position: 50% 50%;
+      overflow: hidden;
     }
 
     &.active {
