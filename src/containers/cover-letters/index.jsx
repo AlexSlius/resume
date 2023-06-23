@@ -32,9 +32,10 @@ const CoverPage = () => {
 
         if (isNew && isAthorized) {
             let { firstName, lastName, email } = objFormSettings;
-            updateItemField({ name: "firstName", value: firstName });
-            updateItemField({ name: "lastName", value: lastName });
-            updateItemField({ name: "email", value: email });
+
+            dispatch(updateItemField({ name: "firstName", value: firstName }));
+            dispatch(updateItemField({ name: "lastName", value: lastName }));
+            dispatch(updateItemField({ name: "email", value: email }));
         }
     }, []);
 
