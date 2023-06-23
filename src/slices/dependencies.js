@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
+// import { HYDRATE } from 'next-redux-wrapper';
 
 import { statusLoaded, statusLoader, statusError } from '../constants/statuses';
 import {
@@ -137,12 +137,12 @@ export const sliceDepenndecies = createSlice({
         },
     },
     extraReducers: {
-        [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                ...action.payload.dependencies,
-            }
-        },
+        // [HYDRATE]: (state, action) => {
+        //     return {
+        //         ...state,
+        //         ...action.payload.dependencies,
+        //     }
+        // },
         // getUniversity
         [getUniversity.pending]: (state) => {
             state.university.status = statusLoader;
@@ -292,9 +292,6 @@ export const sliceDepenndecies = createSlice({
         [fetchGetCountrys.fulfilled]: (state, action) => {
             state.coutrys.status = statusLoaded;
             state.coutrys.list = action.payload;
-        },
-        [fetchGetCountrys.rejected]: (state) => {
-            state.coutrys.status = statusError;
         },
         //get all cities
         [fetchGetCities.pending]: (state) => {

@@ -150,26 +150,23 @@ export const slice = createSlice({
             state.status = statusLoader;
         },
         [getCoverLetterById.fulfilled]: (state, action) => {
-            state.status = statusLoaded;
-            state.drawing = true;
             state.coverDataObj = action.payload?.data || initialState.coverDataObj;
             state.coverGenerateDate = action.payload?.cover_letter || null;
             state.from = action.payload?.from || null;
             state.to = action.payload?.to || null;
+            state.status = statusLoaded;
+            state.drawing = true;
         },
         // get cover ketter generate
         [getCoverGenerateDate.pending]: (state) => {
             state.status = statusLoader;
         },
         [getCoverGenerateDate.fulfilled]: (state, action) => {
+            state.coverGenerateDate = action.payload.cover_letter;
+            state.to = action.payload?.to || null
+            state.from = action.payload?.from || null;
             state.drawing = true;
             state.status = statusLoaded;
-            state = {
-                ...state,
-                coverGenerateDate: action.payload.cover_letter,
-                from: action.payload?.from || null,
-                to: action.payload?.to || null
-            }
         },
         [updateCoverLetterById.pending]: (state) => {
             state.status = statusLoader;

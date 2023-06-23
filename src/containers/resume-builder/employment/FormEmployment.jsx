@@ -45,6 +45,7 @@ import {
 } from "../../../controllers/employments";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
 import { isDelete } from '../../../helpers/checkingStatuses';
+import { fetchUserGetAvatar } from '../../../controllers/users';
 
 
 const TextEditor = dynamic(() => import('../../../components/uis/TextEditor/TextEditor'), {
@@ -284,6 +285,7 @@ const FormEmployment = ({
 
   useEffect(() => {
     refData.current = employmentObj;
+    dispatch(fetchUserGetAvatar());
   }, [employmentObj]);
 
   return (

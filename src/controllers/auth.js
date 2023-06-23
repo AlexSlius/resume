@@ -197,7 +197,6 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
         await thunkAPI.dispatch(fetchUserGetAvatar());
         await thunkAPI.dispatch(fetchUserGetProfile());
         await thunkAPI.dispatch(getUserDataSettings());
-        // await thunkAPI.dispatch(addItemNotification({ text: response.status }));
     }
 
     // resume

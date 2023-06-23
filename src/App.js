@@ -27,11 +27,8 @@ const App = ({
     useEffect(() => {
         store.dispatch(fetchUserGetProfile());
         store.dispatch(getUserDataSettings());
-    }, []);
-
-    useEffect(() => {
         store.dispatch(fetchUserGetAvatar());
-    }, [router.asPath]);
+    }, []);
 
     return (children)
 }

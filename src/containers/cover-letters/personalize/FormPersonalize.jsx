@@ -8,7 +8,7 @@ import { InputEmail } from "../../../components/uis/inputEmail";
 import { InputSelect } from "../../../components/uis/inputSelect";
 
 import { routersPages } from "../../../constants/next-routers";
-import { ROUTES, QUERY_TAB_COVER } from "../../../constants/routes";
+import { QUERY_TAB_COVER } from "../../../constants/routes";
 import { BtnContinue } from "../component/btnContinue";
 import { ModalEmail } from "../../../components/modals/modalEmail";
 
@@ -19,13 +19,9 @@ import {
     cleanFormPersonalizeNew
 } from "../../../slices/cover/coverDataForm";
 import { cleanFieldDepend } from "../../../slices/dependencies";
-import {
-    fetchGetCountrys,
-    fetchGetCities,
-} from "../../../controllers/dependencies"
+import { fetchGetCities } from "../../../controllers/dependencies"
 import {
     coverAddNew,
-    coverSetNew,
     updateIsErrorEmail,
     updateCoverLetterById,
 } from "../../../controllers/cover/personalize";
@@ -38,7 +34,6 @@ import { sendCodeResume } from "../../../utils/sendCode";
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import { fieldsFormPerson } from "../../../constants/formPerson";
-
 
 const FormPersonalize = ({
     dispatch,
@@ -70,9 +65,6 @@ const FormPersonalize = ({
             autorizate: {
                 isAthorized
             }
-        },
-        users: {
-            objFormSettings,
         },
         menuAsideResume
     } = storeDate;
@@ -170,17 +162,6 @@ const FormPersonalize = ({
     useEffect(() => {
         setIdCountry(getIdOfNameCountrys({ objArr: coutrys?.list, nameCountry: contObj?.country }));
     }, [coutrys.list, contObj?.country]);
-
-    useEffect(() => {
-        dispatch(fetchGetCountrys());
-
-        if (isNew && isAthorized) {
-            let { firstName, lastName, email } = objFormSettings;
-            handleUpdateItemField({ name: "firstName", value: firstName });
-            handleUpdateItemField({ name: "lastName", value: lastName });
-            handleUpdateItemField({ name: "email", value: email });
-        }
-    }, []);
 
     return (
         <>
