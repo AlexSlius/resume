@@ -11,6 +11,7 @@ import {
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
 import { cleanStartPersonFields } from "../../constants/formPerson";
+import { ContactlessOutlined } from '@material-ui/icons';
 
 const initialState = {
     coverDataObj: {
@@ -89,6 +90,7 @@ const initialState = {
         applyingCompanyTitle: "",
         applyingCompanyContact: "",
     },
+    drawing: true,
     emailRegister: '',
     isErrorEmail: false,
     status: statusLoaded,
@@ -100,6 +102,9 @@ export const slice = createSlice({
     name: 'coverDataForm',
     initialState,
     reducers: {
+        handleUpdateDrawingFalse(state, action) {
+            state.drawing = false;
+        },
         updateItemField(state, action) {
             let { name, value } = action.payload;
             state.coverDataObj[name] = value;
@@ -133,8 +138,6 @@ export const slice = createSlice({
         },
         // getCoverDataShare show
         [getCoverDataShare.pending]: (state) => {
-            // state.coverDataObj = initialState.coverDataObj;
-            // state.coverGenerateDate = initialState.coverGenerateDate;
             state.status = statusLoader;
         },
         [getCoverDataShare.fulfilled]: (state, action) => {
@@ -144,12 +147,11 @@ export const slice = createSlice({
         },
         // get
         [getCoverLetterById.pending]: (state) => {
-            // state.coverDataObj = initialState.coverDataObj;
-            // state.coverGenerateDate = initialState.coverGenerateDate;
             state.status = statusLoader;
         },
         [getCoverLetterById.fulfilled]: (state, action) => {
             state.status = statusLoaded;
+            state.drawing = true;
             state.coverDataObj = action.payload?.data || initialState.coverDataObj;
             state.coverGenerateDate = action.payload?.cover_letter || null;
             state.from = action.payload?.from || null;
@@ -160,6 +162,7 @@ export const slice = createSlice({
             state.status = statusLoader;
         },
         [getCoverGenerateDate.fulfilled]: (state, action) => {
+            state.drawing = true;
             state.status = statusLoaded;
             state = {
                 ...state,
@@ -167,9 +170,6 @@ export const slice = createSlice({
                 from: action.payload?.from || null,
                 to: action.payload?.to || null
             }
-            // state.coverGenerateDate = action.payload.cover_letter;
-            // state.from = action.payload?.from || null;
-            // state.to = action.payload?.to || null;
         },
         [updateCoverLetterById.pending]: (state) => {
             state.status = statusLoader;
@@ -188,7 +188,8 @@ export const {
     updateFieldEmailForRegister,
     cleanFormPersonalize,
     cleanFormPersonalizeNew,
-    cleanCoverNewForm
+    cleanCoverNewForm,
+    handleUpdateDrawingFalse
 } = slice.actions;
 
 export const { reducer } = slice;

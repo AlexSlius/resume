@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from 'next/router'
 
-// import { TemplatesSelect } from '../../templatesSelect';
+import { TemplatesSelect } from '../../templatesSelect';
 import { TemplatesSelectCover } from "../../templateSelectCover";
 
 import { getResumeActive } from "../../../controllers/resumeData";
@@ -131,6 +131,7 @@ const ResumeMain = ({
                         reportTemplateRef={reportTemplateRef}
                         status={dataOther?.status}
                         statusResumeActive={dataOther?.statusResumeActive}
+                        drawing={coverDataForm.drawing}
                      />
                   </div>
                )

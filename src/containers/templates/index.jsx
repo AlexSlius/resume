@@ -560,6 +560,8 @@ const Templates = ({
                                             data={isNewResume ? dataCoverLetterTemplate : { ...(coverDataForm?.coverDataObj ? coverDataForm.coverDataObj : {}), coverGenerateDate: coverDataForm.coverGenerateDate, from: coverDataForm.to, to: coverDataForm.from }}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
+                                            drawing={true}
+                                            isTemplate={true}
                                         />
                                     )
                                 }
