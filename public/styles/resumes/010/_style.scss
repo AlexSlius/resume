@@ -317,11 +317,13 @@
               left: 5px;
             }
 
-            img {
-              display: block;
-              width: 100%;
-              height: 100%;
-              border-radius: 50%;
+            .photo {
+              width: 155px;
+              height: 155px;
+              border-radius: 100%;
+              background-size: 155px auto;
+              background-position: 50% 50%;
+              overflow: hidden;
             }
           }
 

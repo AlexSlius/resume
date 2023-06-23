@@ -705,7 +705,7 @@ export const ResumeCv010 = ({
                           </radialGradient>
                         </defs>
                       </svg>
-                      <img src={contact?.[0]?.picture} />
+                      <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                     </div>
                   )
                 }
