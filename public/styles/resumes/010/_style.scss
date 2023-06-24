@@ -401,39 +401,45 @@
         }
       }
     }
+  }
 
-    &.cv-body-2 {
-      .cv-body-content {
-        .column-left {
-          .letter-block {
-            width: 340px;
-            margin: 18px 0px 0px 0px;
+  .cv-body.cv-body-2 {
+    .cv-body-content {
+      .column-left {
+        .letter-block {
+          width: 340px;
+          margin: 20px 0px 0px 0px;
 
-            .letter-heading {
-              margin-bottom: 15px;
-            }
+          .letter-heading {
+            margin-bottom: 15px;
           }
         }
+        .cv-name {
+          margin-top: 20px;
+        }
+      }
 
-        .column-right {
-          .destination-block {
-            padding: 122px 13px 125px 13px;
+      .column-right {
+        .destination-block {
+          padding: 122px 13px 125px 13px;
 
-            .block-from {
-              margin-top: 20px;
-            }
-            p {
-              margin-bottom: 3px;
+          .block-from {
+            margin-top: 20px;
+          }
 
-              &:last-child {
-                margin-bottom: 0px;
-              }
+          .cv-subheading {
+            font-family: 'Oswald', sans-serif;
+          }
+          p {
+            margin-bottom: 3px;
+
+            &:last-child {
+              margin-bottom: 0px;
             }
           }
         }
       }
     }
-
   }
 
   /* Stylization */
