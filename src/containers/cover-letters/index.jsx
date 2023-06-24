@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { fetchGetCountrys } from "../../controllers/dependencies"
-import { updateItemField } from "../../slices/cover/coverDataForm";
+import { handleUpdateDrawingTrue, updateItemField } from "../../slices/cover/coverDataForm";
 import ContactPesonalize from "./personalize";
 import Experience from "./experience";
 
@@ -36,6 +36,10 @@ const CoverPage = () => {
             dispatch(updateItemField({ name: "firstName", value: firstName }));
             dispatch(updateItemField({ name: "lastName", value: lastName }));
             dispatch(updateItemField({ name: "email", value: email }));
+        }
+
+        return () => {
+            dispatch(handleUpdateDrawingTrue());
         }
     }, []);
 
