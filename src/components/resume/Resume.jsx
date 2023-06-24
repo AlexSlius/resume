@@ -81,9 +81,18 @@ const Resume = ({
 
          setTimeout(() => {
             start();
-         }, 1000);
+         }, 200);
       }
-   }, [resumeData?.data, resumeData.resumeActive, contacts,
+   }, [
+      pagePagCurrent,
+      // cover
+      coverDataForm.drawing,
+      coverData.resumeActive,
+      coverData.resumeActiveNew,
+      // resume
+      resumeData.resumeActive,
+      resumeData.resumeActiveNew,
+      contacts,
       employment,
       educations,
       skills,
@@ -95,7 +104,10 @@ const Resume = ({
       languages,
       references,
       certificaties,
-      careers]);
+      careers
+   ]);
+
+   // resumeData?.data
 
    useEffect(() => {
       if (typeof window != "undefined") {
@@ -120,7 +132,15 @@ const Resume = ({
             star();
          }
       }
-   }, [pagePagCurrent, resumeData.data, resumeData.resumeActive, resumeData.resumeActive, contacts,
+   }, [
+      pagePagCurrent,
+      // cover
+      coverDataForm.drawing,
+      coverData.resumeActive,
+      coverData.resumeActiveNew,
+      // resume
+      resumeData.resumeActive,
+      resumeData.resumeActiveNew,
       employment,
       educations,
       skills,
@@ -132,7 +152,11 @@ const Resume = ({
       languages,
       references,
       certificaties,
-      careers]);
+      careers
+   ]);
+
+   //resumeData.data
+
 
    useEffect(() => {
       setPagePagCurrent(1);
