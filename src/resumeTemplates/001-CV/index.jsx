@@ -230,7 +230,7 @@ export const ResumeCv001 = ({
                       {
                         isArray(contact) && contact?.[0]?.picture && (
                           <div className="photo-block">
-                            <img className="cv-photo" src={contact?.[0]?.picture} />
+                            <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                           </div>
                         )
                       }

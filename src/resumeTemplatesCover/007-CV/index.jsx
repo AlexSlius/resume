@@ -17,16 +17,17 @@ const drawing = () => {
 
             let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-            if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+            if (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
-                while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+                while (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
@@ -88,16 +89,16 @@ export const CoverCv007 = ({
     return (
         <div className="sv_007 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
-                <div className="cv-body cv-body-2">
-                    <div className="cv-body-content">
+                <div id="cv-body-2" data-chapter="resume" data-page="1"  className="cv-body cv-body-2">
+                    <div className="cv-body-content font-size-1 main-color-1-text">
                         <div className="column-left">
                             <div className="cv-destination">
                                 <div className="cv-destination-block">
                                     <div className="destination-details">
-                                        <p className="headint-type-3 heading-to font-weight-900 font-size-2 line-height-3">TO</p>
-                                        <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
-                                        <p className="heading-type-3 heading-from font-weight-900 font-size-2 line-height-3">FROM</p>
-                                        <p className="font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                        <p className="cv-heading heading-to font-size-2">TO</p>
+                                        <p dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                        <p className="cv-heading heading-from font-size-2">FROM</p>
+                                        <p dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                     </div>
                                 </div>
                             </div>
@@ -106,48 +107,20 @@ export const CoverCv007 = ({
                             <h1 className="cv-name font-size-5 line-height-6">
                                 {
                                     !!firstName?.length && (
-                                        <span className="text-line-1 font-weight-300">{firstName}&nbsp;</span>
+                                        <span className="text-line-1">{firstName}&nbsp;</span>
                                     )
                                 }
                                 {
                                     !!lastName?.length && (
-                                        <span className="text-line-2 font-weight-900">{` ${firstName}`}</span>
+                                        <span className="text-line-2">{` ${lastName}`}</span>
                                     )
                                 }
                             </h1>
                             <div className="letter-wrapper additional-color-2-background">
                                 <div className="black-line main-color-1-background"></div>
                                 {/* <h2 className="cv-heading  cv-letter-heading font-weight-600 font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                                <div className="font-size-1 cv-letter-text line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                <div className="cv-letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="nine-points nine-points-1">
-                        <div className="inner-wrapper">
-                            <div className="point p1 additional-color-1-background"></div>
-                            <div className="point p2 additional-color-1-background"></div>
-                            <div className="point p3 additional-color-1-background"></div>
-                            <div className="point p4 additional-color-1-background"></div>
-                            <div className="point p5 additional-color-1-background"></div>
-                            <div className="point p6 additional-color-1-background"></div>
-                            <div className="point p7 additional-color-1-background"></div>
-                            <div className="point p8 additional-color-1-background"></div>
-                            <div className="point p9 additional-color-1-background"></div>
-                        </div>
-                    </div>
-
-                    <div className="nine-points nine-points-2">
-                        <div className="inner-wrapper">
-                            <div className="point p1 additional-color-1-background"></div>
-                            <div className="point p2 additional-color-1-background"></div>
-                            <div className="point p3 additional-color-1-background"></div>
-                            <div className="point p4 additional-color-1-background"></div>
-                            <div className="point p5 additional-color-1-background"></div>
-                            <div className="point p6 additional-color-1-background"></div>
-                            <div className="point p7 additional-color-1-background"></div>
-                            <div className="point p8 additional-color-1-background"></div>
-                            <div className="point p9 additional-color-1-background"></div>
                         </div>
                     </div>
                 </div>

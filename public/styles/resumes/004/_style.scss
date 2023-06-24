@@ -261,17 +261,14 @@
     }
 
     &.cv-body-2 {
-      padding: 50px 50px;
+      padding: 50px;
 
       .cv-body-content {
         flex-direction: column;
 
         .name-block {
-          text-align: center;
-
-          &.toggle-photo-state-active {
-            text-align: left;
-          }
+          font-family: 'Arsenal';
+          font-weight: 700;
         }
 
         .columns-wrapper {
@@ -294,6 +291,12 @@
           .column-2 {
             width: 118px;
             margin-left: 58px;
+
+            .cv-heading {
+              margin-bottom: 10px !important;
+              font-family: 'Arsenal', sans-serif;
+              font-weight: 700;
+            }
 
             .to-block {
               margin-bottom: 30px;
@@ -332,11 +335,15 @@
   .photo-block {
     display: none;
     width: 193px;
-    min-height: 193px;
+    height: 193px;
 
 
-    img {
-      width: 100%;
+    .photo {
+      width: 193px;
+      height: 193px;
+      background-size: 193px auto;
+      background-position: 50% 50%;
+      overflow: hidden;
     }
 
     &.active {

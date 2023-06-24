@@ -272,10 +272,14 @@
                       flex-shrink: 0;
                       width: 90px;
                       height: 90px;
-                    }
-                    .cv-photo {
-                      width: 100%;
-                      height: 100%;
+
+                      .photo {
+                        width: 90px;
+                        height: 90px;
+                        background-size: 90px auto;
+                        background-position: 50% 50%;
+                        overflow: hidden;
+                      }
                     }
                     .cv-heading {
                       margin-bottom: 8px !important;

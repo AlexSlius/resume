@@ -231,7 +231,7 @@ export const ResumeCv006 = ({
                 {
                   !!contact?.[0]?.picture && (
                     <div className="photo-wrapper">
-                      <img src={contact?.[0]?.picture} />
+                      <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                     </div>
                   )
                 }

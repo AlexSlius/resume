@@ -20,13 +20,14 @@ const drawing = () => {
             if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
                 while (getPageContainer2().height() > (getPageContainer2().parent().height()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
@@ -88,32 +89,30 @@ export const CoverCv006 = ({
         <div className="sv_006 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
                 <div id="cv-body-2" className="cv-body cv-body-2">
-                    <div className="cv-body-content">
+                    <div className="cv-body-content main-color-1-text font-size-1">
                         <div className="cv-body-area top-area">
                             <div className="profile-information additional-color-1-border">
-                                <h1 className="cv-name font-weight-700 font-size-3 line-height-4">
+                                <h1 className="cv-name font-size-3">
                                     {firstName}{` `} {lastName}
                                 </h1>
                             </div>
                         </div>
                         <div className="cv-body-area middle-area">
                             {/* <h2 className="cv-heading cv-letter-heading main-color-1-text font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                            <div className="cv-text cv-letter-text main-color-1-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                            <div className="cv-text cv-letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                         </div>
                         <div className="cv-body-area bottom-area additional-color-1-background">
                             <div className="cv-destination">
                                 <div className="cv-destination-block">
                                     <div className="destination-details">
                                         <div className="to-block block-block">
-                                            <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">TO</p>
-                                            <span className="horizontal-line main-color-2-border"></span>
-                                            <p className="cv-sender main-color-2-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                            <p className="cv-heading main-color-2-text font-size-2">TO</p>
+                                            <p className="cv-sender main-color-2-text" dangerouslySetInnerHTML={{ __html: data.to }}></p>
                                         </div>
                                         <div className="from-block block-block">
-                                            <p className="cv-heading main-color-2-text font-weight-700 font-size-2 line-height-2">FROM</p>
-                                            <span className="horizontal-line main-color-2-border"></span>
+                                            <p className="cv-heading main-color-2-text font-size-2">FROM</p>
                                             <div className="cv-destination">
-                                                <p className="main-color-2-text font-size-1 line-height-1" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                                <p className="main-color-2-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                             </div>
                                         </div>
                                     </div>
