@@ -544,6 +544,8 @@ const Templates = ({
                                             data={isNewResume ? dataResumeTemplate : dataOther?.data}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
+                                            drawing={true}
+                                            isTemplate={true}
                                         />
                                     )
                                 }

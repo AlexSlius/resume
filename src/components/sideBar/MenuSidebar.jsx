@@ -17,6 +17,7 @@ import { sendCodeResume } from "../../utils/sendCode";
 // Constants
 import { routerLinksAsideMenuIcon, keysIcons } from "../../constants/next-routers"
 import { routersPages } from "../../constants/next-routers";
+import { ROUTES } from "../../constants/routes";
 
 // Styles
 import style from './SideBar.module.scss'
@@ -42,7 +43,7 @@ const MenuSideBar = () => {
     const shareKey = router.query?.shareKey;
     const isNewResume = (idCv == "new");
 
-    let dopQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`;
+    let dopQuery = `${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`;
 
     const handleClick = async (e, link) => {
         if (idCv == "new") {
@@ -117,7 +118,10 @@ const MenuSideBar = () => {
 
                         return (
                             <CNavItem key={index}>
-                                <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}${dopQuery}`} activeClassName={style.active}>
+                                <ActiveLink
+                                    href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}${dopQuery}`} activeClassName={style.active}
+                                    onQuery={"tab"}
+                                >
                                     <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${obj.link}${dopQuery}`)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
@@ -131,8 +135,11 @@ const MenuSideBar = () => {
                 {
                     !sectionStatusAllButTheCustomSection(list) && (
                         <CNavItem>
-                            <ActiveLink href={`/${routersPages['resumeBuilder']}/${idCv}/add_section`} activeClassName={style.active}>
-                                <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, `/add_section${dopQuery}`)}>
+                            <ActiveLink
+                                href={`/${routersPages['resumeBuilder']}/${idCv}?tab=${ROUTES['addSection']}`} activeClassName={style.active}
+                                onQuery={"tab"}
+                            >
+                                <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, `?tab=${ROUTES['addSection']}${dopQuery}`)}>
                                     <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
                                     Advanced
                                 </a>

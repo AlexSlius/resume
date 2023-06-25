@@ -38,7 +38,7 @@ export const nextofLink = (routerLinksAsideMenu, path) => {
     }
 
     if (!nextLink) {
-        nextLink = `/${routersPages['addSection']}`;
+        nextLink = `?tab=${routersPages['addSection']}`;
     }
 
     return nextLink;

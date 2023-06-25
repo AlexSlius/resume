@@ -1,12 +1,12 @@
 import WrapepeAdminpage from "../../../src/wrappers/adminPage/AdminPage"
-import ContainerPageContact from "../../../src/containers/resume-builder/contact/Contact"
+import ResumeBuilderPage from "../../../src/containers/resume-builder"
 
 import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const ResumeContactPage = () => {
     return (
         <WrapepeAdminpage>
-            <ContainerPageContact />
+            <ResumeBuilderPage />
         </WrapepeAdminpage>
     )
 }

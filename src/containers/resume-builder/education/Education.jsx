@@ -1,15 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from 'next/router'
-
 import FormEducation from "./FormEducation";
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 
-const Education = () => {
-   const dispatch = useDispatch();
-   const states = useSelector((state) => state);
-   const router = useRouter();
-   const idCv = router.query.idCv;
-
+const Education = ({ idCv, states, dispatch }) => {
    return (
       <>
          <HeadMainContent

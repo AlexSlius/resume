@@ -1,13 +1,206 @@
-import React from "react";
+import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 
+const drawing = () => {
+  if (typeof window != 'undefined') {
+    var current_page_number = 1;
+    var max_page_number = 1;
+
+    function rebuildingPages() {
+      current_page_number = 1;
+      max_page_number = 1;
+
+      $('.cv-body.cv-body-visible').remove();
+
+      // var header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
+      var footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
+      var photo_block = $('#cv-body-hidden-container .photo-block').clone();
+      var profile_block = $('#cv-body-hidden-container .profile-block').clone();
+      var employment_history_block = $('#cv-body-hidden-container .employment-history-block').clone();
+      var extra_curricular_activities_block = $('#cv-body-hidden-container .extra-curricular-activities-block').clone();
+      var internships_block = $('#cv-body-hidden-container .internships-block').clone();
+      var references_block = $('#cv-body-hidden-container .references-block').clone();
+      var details_block = $('#cv-body-hidden-container .details-block').clone();
+      var education_block = $('#cv-body-hidden-container .education-block').clone();
+      var courses_block = $('#cv-body-hidden-container .courses-block').clone();
+      var certificates_block = $('#cv-body-hidden-container .certificates-block').clone();
+      var hobbies_block = $('#cv-body-hidden-container .hobbies-block').clone();
+      var skills_block = $('#cv-body-hidden-container .skills-block').clone();
+      var languages_block = $('#cv-body-hidden-container .languages-block').clone();
+      var bottom_block = $('#cv-body-hidden-container .bottom-block').clone();
+
+      getPageArea1().append(profile_block);
+
+      // Column left
+      current_page_number = 1;
+      getPageColumnLeft().append(employment_history_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        employment_history_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(employment_history_block);
+      }
+
+      getPageColumnLeft().append(education_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        education_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(education_block);
+      }
+
+      getPageColumnLeft().append(courses_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        courses_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(courses_block);
+      }
+
+      getPageColumnLeft().append(extra_curricular_activities_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        extra_curricular_activities_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(extra_curricular_activities_block);
+      }
+
+      getPageColumnLeft().append(internships_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        internships_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(internships_block);
+      }
+
+      //
+      getPageColumnLeft().append(references_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        references_block.remove();
+        current_page_number++;
+        getPageColumnLeft().append(references_block);
+      }
+
+      if (max_page_number < current_page_number) {
+        max_page_number = current_page_number;
+      }
+
+      // Right block
+      current_page_number = 1;
+      getPageColumnRight().append(languages_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        languages_block.remove();
+        current_page_number++;
+        getPageColumnRight().append(languages_block);
+      }
+
+      getPageColumnRight().append(skills_block);
+      if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
+        skills_block.remove();
+        current_page_number++;
+        getPageColumnRight().append(skills_block);
+      }
+
+      getPageColumnRight().append(certificates_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        certificates_block.remove();
+        current_page_number++;
+        getPageColumnRight().append(certificates_block);
+      }
+
+      getPageColumnRight().append(hobbies_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        hobbies_block.remove();
+        current_page_number++;
+        getPageColumnRight().append(hobbies_block);
+      }
+
+      if (max_page_number < current_page_number) {
+        max_page_number = current_page_number;
+      }
+
+      current_page_number = max_page_number;
+
+      // Bottom block
+      getPageArea3().append(bottom_block);
+      if (getPageContainer().height() > getPageContainer().parent().height()) {
+        bottom_block.remove();
+        current_page_number++;
+        getPageArea3().append(bottom_block);
+      }
+    }
+
+    function getPageArea1() {
+      return getPageContainer().find('.cv-body-area.top-area');
+    }
+
+    function getPageArea2() {
+      return getPageContainer().find('.cv-body-area.middle-area');
+    }
+
+    function getPageArea3() {
+      return getPageContainer().find('.cv-body-area.bottom-area');
+    }
+
+    function getPageColumnLeft() {
+      return getPageArea2().find('.column-1');
+    }
+
+    function getPageColumnRight() {
+      return getPageArea2().find('.column-2');
+    }
+
+    function getPageContainer() {
+      var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+      if (page.length > 0) {
+        return page.find('.cv-body-content');
+      } else {
+        return createNewPage(current_page_number);
+      }
+    }
+
+    function createNewPage(page_number) {
+      var page_element = $('<div class="cv-body cv-body-visible cv-body-1 page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
+      page_element.attr('data-chapter', 'cv');
+      page_element.attr('data-page', page_number);
+      var page_element_container = $('<div class="cv-body-content font-size-1 main-color-1-text"></div>');
+      page_element.append(page_element_container);
+
+      if (current_page_number == 1) {
+        var top_area = $('#cv-body-hidden-container .top-area').clone();
+        top_area.children().remove();
+        page_element_container.append(top_area);
+      }
+
+      var middle_area = $('#cv-body-hidden-container .middle-area').clone();
+      middle_area.children().remove();
+      var column_left = $('#cv-body-hidden-container .middle-area .column-1').clone();
+      column_left.children().remove();
+      middle_area.append(column_left);
+      var column_right = $('#cv-body-hidden-container .middle-area .column-2').clone();
+      column_right.children().remove();
+      middle_area.append(column_right);
+      page_element_container.append(middle_area);
+
+      var bottom_area = $('#cv-body-hidden-container .bottom-area').clone();
+      bottom_area.children().remove();
+      page_element_container.append(bottom_area);
+
+      if ($('#cv-chapter-section-cv').find(page_element)) {
+        $('#cv-chapter-section-cv').append(page_element);
+      }
+
+      return page_element_container;
+    }
+
+    rebuildingPages();
+  }
+}
+
 export const ResumeCv006 = ({
   data,
-  idCv,
+  isDrawing = false,
+  isTemplate = false,
+  handleFalseDrafind = () => { },
   stateClasses,
   reportTemplateRef
 }) => {
@@ -29,197 +222,17 @@ export const ResumeCv006 = ({
   } = data;
 
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
-
-  React.useEffect(() => {
-    if (typeof window != 'undefined') {
-      var current_page_number = 1;
-      var max_page_number = 1;
-
-      function rebuildingPages() {
-        current_page_number = 1;
-        max_page_number = 1;
-
-        $('.cv-body.cv-body-visible').remove();
-
-        // var header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
-        var footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
-        var photo_block = $('#cv-body-hidden-container .photo-block').clone();
-        var profile_block = $('#cv-body-hidden-container .profile-block').clone();
-        var employment_history_block = $('#cv-body-hidden-container .employment-history-block').clone();
-        var extra_curricular_activities_block = $('#cv-body-hidden-container .extra-curricular-activities-block').clone();
-        var internships_block = $('#cv-body-hidden-container .internships-block').clone();
-        var references_block = $('#cv-body-hidden-container .references-block').clone();
-        var details_block = $('#cv-body-hidden-container .details-block').clone();
-        var education_block = $('#cv-body-hidden-container .education-block').clone();
-        var courses_block = $('#cv-body-hidden-container .courses-block').clone();
-        var certificates_block = $('#cv-body-hidden-container .certificates-block').clone();
-        var hobbies_block = $('#cv-body-hidden-container .hobbies-block').clone();
-        var skills_block = $('#cv-body-hidden-container .skills-block').clone();
-        var languages_block = $('#cv-body-hidden-container .languages-block').clone();
-        var bottom_block = $('#cv-body-hidden-container .bottom-block').clone();
-
-        getPageArea1().append(profile_block);
-
-        // Column left
-        current_page_number = 1;
-        getPageColumnLeft().append(employment_history_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          employment_history_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(employment_history_block);
-        }
-
-        getPageColumnLeft().append(education_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          education_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(education_block);
-        }
-
-        getPageColumnLeft().append(courses_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          courses_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(courses_block);
-        }
-
-        getPageColumnLeft().append(extra_curricular_activities_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          extra_curricular_activities_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(extra_curricular_activities_block);
-        }
-
-        getPageColumnLeft().append(internships_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          internships_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(internships_block);
-        }
-
-        //
-        getPageColumnLeft().append(references_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          references_block.remove();
-          current_page_number++;
-          getPageColumnLeft().append(references_block);
-        }
-
-        if (max_page_number < current_page_number) {
-          max_page_number = current_page_number;
-        }
-
-        // Right block
-        current_page_number = 1;
-        getPageColumnRight().append(languages_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          languages_block.remove();
-          current_page_number++;
-          getPageColumnRight().append(languages_block);
-        }
-
-        getPageColumnRight().append(skills_block);
-        if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
-          skills_block.remove();
-          current_page_number++;
-          getPageColumnRight().append(skills_block);
-        }
-
-        getPageColumnRight().append(certificates_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          certificates_block.remove();
-          current_page_number++;
-          getPageColumnRight().append(certificates_block);
-        }
-
-        getPageColumnRight().append(hobbies_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          hobbies_block.remove();
-          current_page_number++;
-          getPageColumnRight().append(hobbies_block);
-        }
-
-        if (max_page_number < current_page_number) {
-          max_page_number = current_page_number;
-        }
-
-        current_page_number = max_page_number;
-
-        // Bottom block
-        getPageArea3().append(bottom_block);
-        if (getPageContainer().height() > getPageContainer().parent().height()) {
-          bottom_block.remove();
-          current_page_number++;
-          getPageArea3().append(bottom_block);
-        }
-      }
-
-      function getPageArea1() {
-        return getPageContainer().find('.cv-body-area.top-area');
-      }
-
-      function getPageArea2() {
-        return getPageContainer().find('.cv-body-area.middle-area');
-      }
-
-      function getPageArea3() {
-        return getPageContainer().find('.cv-body-area.bottom-area');
-      }
-
-      function getPageColumnLeft() {
-        return getPageArea2().find('.column-1');
-      }
-
-      function getPageColumnRight() {
-        return getPageArea2().find('.column-2');
-      }
-
-      function getPageContainer() {
-        var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
-        if (page.length > 0) {
-          return page.find('.cv-body-content');
-        } else {
-          return createNewPage(current_page_number);
-        }
-      }
-
-      function createNewPage(page_number) {
-        var page_element = $('<div class="cv-body cv-body-visible cv-body-1 page-' + page_number + '" data-chapter="cv" data-page="' + page_number + '"></div>');
-        page_element.attr('data-chapter', 'cv');
-        page_element.attr('data-page', page_number);
-        var page_element_container = $('<div class="cv-body-content font-size-1 main-color-1-text"></div>');
-        page_element.append(page_element_container);
-
-        if (current_page_number == 1) {
-          var top_area = $('#cv-body-hidden-container .top-area').clone();
-          top_area.children().remove();
-          page_element_container.append(top_area);
-        }
-
-        var middle_area = $('#cv-body-hidden-container .middle-area').clone();
-        middle_area.children().remove();
-        var column_left = $('#cv-body-hidden-container .middle-area .column-1').clone();
-        column_left.children().remove();
-        middle_area.append(column_left);
-        var column_right = $('#cv-body-hidden-container .middle-area .column-2').clone();
-        column_right.children().remove();
-        middle_area.append(column_right);
-        page_element_container.append(middle_area);
-
-        var bottom_area = $('#cv-body-hidden-container .bottom-area').clone();
-        bottom_area.children().remove();
-        page_element_container.append(bottom_area);
-
-        if ($('#cv-chapter-section-cv').find(page_element)) {
-          $('#cv-chapter-section-cv').append(page_element);
-        }
-
-        return page_element_container;
-      }
-
-      rebuildingPages();
+  
+  useEffect(() => {
+    if (isTemplate) {
+        drawing();
     }
-  }, [data, stateClasses]);
+
+    if (!!isDrawing && !isTemplate) {
+        drawing();
+        handleFalseDrafind();
+    }
+}, [isDrawing, data]);
 
   return (
     <div className="sv_006" ref={reportTemplateRef}>

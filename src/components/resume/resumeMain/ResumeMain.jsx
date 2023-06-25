@@ -114,6 +114,7 @@ const ResumeMain = ({
                         statusResumeActive={dataOther?.statusResumeActive}
                         reportTemplateRef={reportTemplateRef}
                         resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
+                        drawing={resumeData.drawing}
                      />
                   </div>
                )

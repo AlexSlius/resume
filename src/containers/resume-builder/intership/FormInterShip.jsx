@@ -39,7 +39,6 @@ import {
 
 import {
    fetchGetCities,
-   fetchGetCountrys,
    getJopsTitle,
    addJopsTitle,
    getCompanyList,
@@ -237,7 +236,6 @@ const FormInterShip = ({
          handleAddOne();
       }
 
-      dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
 
       return () => {

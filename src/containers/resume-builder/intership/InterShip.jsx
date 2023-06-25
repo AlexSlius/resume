@@ -1,14 +1,7 @@
 import FormInterShip from "./FormInterShip"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from 'next/router'
 
-const InterShip = () => {
-   const dispatch = useDispatch();
-   const states = useSelector((state) => state);
-   const router = useRouter();
-   const idCv = router.query.idCv;
-
+const InterShip = ({ idCv, states, dispatch }) => {
    return (
       <>
          <HeadMainContent

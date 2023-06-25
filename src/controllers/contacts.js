@@ -3,12 +3,12 @@ import Router from "next/router";
 
 import api from "../apiSingleton";
 import { isSuccessNewContact, isRespondServerSuccesss, isError } from '../helpers/checkingStatuses';
-import { localStorageSet, sessionStorageSet, sessionStorageRemove } from "../helpers/localStorage"
+import { localStorageSet, sessionStorageSet } from "../helpers/localStorage"
 import { routersPages } from '../constants/next-routers';
 import { newObjContact } from '../helpers/resumeDestructObj';
 import { addItemNotification } from "../slices/notifications";
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
-import { cleanSliseNew } from "../slices/contact"
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew }, users: { objFormSettings, avatar: { image } } } = thunkAPI.getState();
@@ -24,7 +24,6 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
 
     if (isRedirect) {
         if (isRespondServerSuccesss(response)) {
-            // thunkAPI.dispatch(cleanSliseNew());
             thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
 
             if (isDashboard) {
@@ -52,7 +51,6 @@ export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', asy
         if (isSuccessNewContact(response)) {
             localStorageSet("session_id", response.session_id);
             localStorageSet("is_page", "resume");
-            // thunkAPI.dispatch(cleanSliseNew());
 
             sessionStorageSet("routet_page_next", `${menuAsideResume.list[1].link}`)
             Router.push(`/${routersPages['register']}`);
@@ -79,7 +77,10 @@ export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', a
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        return response;
     }
+
+    thunkAPI.dispatch(handleCVUpdateDrawingTrue());
 
     return response;
 });

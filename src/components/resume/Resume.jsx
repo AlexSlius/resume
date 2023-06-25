@@ -92,6 +92,7 @@ const Resume = ({
       // resume
       resumeData.resumeActive,
       resumeData.resumeActiveNew,
+      resumeData.drawing,
       contacts,
       employment,
       educations,
@@ -141,6 +142,7 @@ const Resume = ({
       // resume
       resumeData.resumeActive,
       resumeData.resumeActiveNew,
+      resumeData.drawing,
       employment,
       educations,
       skills,

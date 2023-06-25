@@ -1,5 +1,5 @@
 export const ROUTES = {
-    '': 'contact',
+    'contact': 'contact',
     'employment': 'employment',
     'education': 'education',
     'skills': 'skills',
@@ -11,7 +11,9 @@ export const ROUTES = {
     'languages': 'languages',
     'reference': 'reference',
     'certificaties': 'certificaties',
-    'experience': 'experience'
+    'experience': 'experience',
+    'сareerObjective': 'career-objective',
+    'addSection': 'add-section',
 }
 
 export const QUERY_TAB_COVER = {

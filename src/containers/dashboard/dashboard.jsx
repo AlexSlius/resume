@@ -32,7 +32,7 @@ import { coverAddNew } from "../../controllers/cover/personalize";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
-import { ROUTES } from "../../constants/routes";
+import { ROUTES, QUERY_TAB_COVER } from "../../constants/routes";
 
 import style from "./Style.module.scss";
 
@@ -67,11 +67,11 @@ const Dashboard = () => {
     }
 
     const handleOnUpdateResume = async (data) => {
-        await Router.push(`${routersPages['resumeBuilder']}/${data.id}/${ROUTES['']}?shareKey=${data.shareKey}`);
+        await Router.push(`${routersPages['resumeBuilder']}/${data.id}?tab=${ROUTES['contact']}&shareKey=${data.shareKey}`);
     }
 
     const handleOnUpdateCover = async (data) => {
-        await Router.push(`${routersPages['coverLetter']}/${data.id}?tab=contact&shareKey=${data.shareKey}`);
+        await Router.push(`${routersPages['coverLetter']}/${data.id}?tab=${QUERY_TAB_COVER['contact']}&shareKey=${data.shareKey}`);
     }
 
     // new add resume

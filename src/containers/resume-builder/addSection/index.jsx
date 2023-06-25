@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { CCol, CRow } from "@coreui/react";
 import Router, { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -27,9 +26,8 @@ import certificationsIcon from '/public/images/icons/certifications.svg?sprite'
 import socialIcon from '/public/images/icons/social.svg?sprite'
 import hobbiesIcon from '/public/images/icons/hobies.svg?sprite'
 
-const AddSection = () => {
+const AddSection = ({ idCv, states, dispatch }) => {
     const router = useRouter();
-    const dispatch = useDispatch();
     const {
         auth: {
             autorizate: {
@@ -40,9 +38,8 @@ const AddSection = () => {
             list,
         },
         menuAsideResume
-    } = useSelector((state) => state);
+    } = states;
 
-    const idCv = router.query.idCv;
     const shareKey = router.query?.shareKey;
 
     const handleAddItemSection = async (name) => {
@@ -55,7 +52,7 @@ const AddSection = () => {
             let itemObj = menuAsideResume.listAdd.find(el => el.key == keyLink)
 
             if (itemObj) {
-                Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
+                Router.push(`/${routersPages['resumeBuilder']}/${idCv}${itemObj.link}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
             }
         }
     }

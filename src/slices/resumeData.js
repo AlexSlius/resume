@@ -26,6 +26,7 @@ const initialState = {
         template_line_spacing: "50",
         template_text_size: "50",
     },
+    drawing: true,
     status: statusLoaded,
     statusResumeActive: statusLoaded,
 };
@@ -34,6 +35,12 @@ export const slice = createSlice({
     name: 'resumeData',
     initialState,
     reducers: {
+        handleCVUpdateDrawingFalse(state, action) {
+            state.drawing = false;
+        },
+        handleCVUpdateDrawingTrue(state, action) {
+            state.drawing = true;
+        },
         updateActiveResumeNew(state, action) {
             state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
         },
@@ -94,6 +101,8 @@ export const slice = createSlice({
 });
 
 export const {
+    handleCVUpdateDrawingFalse,
+    handleCVUpdateDrawingTrue,
     updateActiveResumeNew,
     updateActiveResume
 } = slice.actions;

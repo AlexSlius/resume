@@ -1,7 +1,11 @@
 import { useRouter } from 'next/router'
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import { LoadWr } from "../loadWr";
 import { isLoader } from "../../helpers/loadings";
+import { handleCVUpdateDrawingTrue, handleCVUpdateDrawingFalse } from "../../slices/resumeData";
+import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
 
 import { ResumeCv001 } from '../../resumeTemplates/001-CV';
 import { ResumeCv002 } from '../../resumeTemplates/002-CV';
@@ -22,8 +26,6 @@ import { ResumeCv032 } from '../../resumeTemplates/032-CV';
 import { ResumeCv040 } from '../../resumeTemplates/040-CV';
 import { ResumeCv041 } from '../../resumeTemplates/041-CV';
 
-import { sizeFont, sizeLineSpacing } from "../../thunks/templates";
-
 export const TemplatesSelect = ({
     scale = "scale(1)",
     isNewResume,
@@ -35,7 +37,11 @@ export const TemplatesSelect = ({
     resumeActive,
     statusResumeActive,
     reportTemplateRef,
+    drawing = false,
+    isTemplate = false,
 }) => {
+    const dispatch = useDispatch();
+    const refIdTimeout = useRef(undefined);
     const stateClasses = `
     ${sizeLineSpacing(+stateLineSpacing)} 
     ${sizeFont(+stateFontSize)} 
@@ -47,6 +53,22 @@ export const TemplatesSelect = ({
 
     let statusLoad = statusResumeActive || status;
 
+    const handleFalseDrafind = () => {
+        if (isNewResume) {
+            dispatch(handleCVUpdateDrawingTrue());
+            return;
+        }
+
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            dispatch(handleCVUpdateDrawingFalse());
+            clearTimeout(refIdTimeout.current);
+        }, 500);
+    }
+
     return (
         <LoadWr isLoad={isLoader(statusLoad)} style={{ transform: scale }} classes='resume_transform'>
             {
@@ -56,6 +78,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -67,6 +92,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -78,6 +106,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -89,6 +120,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -100,6 +134,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -111,6 +148,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -122,6 +162,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -133,6 +176,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -144,6 +190,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -155,6 +204,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -166,6 +218,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -177,6 +232,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -188,6 +246,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -199,6 +260,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -210,6 +274,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -221,6 +288,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -232,6 +302,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }
@@ -243,6 +316,9 @@ export const TemplatesSelect = ({
                         stateClasses={stateClasses}
                         data={data}
                         idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
                     />
                 )
             }

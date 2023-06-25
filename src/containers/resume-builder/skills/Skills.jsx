@@ -1,18 +1,11 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { useRouter } from 'next/router'
+import { useEffect } from "react";
 
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormSkill from './FormSkill.jsx'
 import { Switch } from "../../../components/uis/switch";
 import { fetchUpdateExperienceLevel, fetchGetExperienceLevel } from "../../../controllers/skills";
 
-const Skills = () => {
-   const dispatch = useDispatch();
-   const states = useSelector((state) => state);
-   const router = useRouter();
-   const idCv = router.query.idCv;
-
+const Skills = ({ idCv, states, dispatch }) => {
    const {
       skills: {
          skillsObj: {
@@ -21,7 +14,7 @@ const Skills = () => {
       },
    } = states;
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(fetchGetExperienceLevel({ idCv }));
    }, []);
 

@@ -26,7 +26,6 @@ import {
    cleanSlise
 } from "../../../slices/contact"
 import {
-   fetchGetCountrys,
    fetchGetCities,
    fetchGetDrivers,
    fetchGetNationality,
@@ -250,7 +249,6 @@ const FormContact = ({
    }
 
    useEffect(() => {
-      dispatch(fetchGetCountrys()); // get all countrys
       if (isNewResume) {
          sessionStorageRemove('picture');
       }

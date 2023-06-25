@@ -25,6 +25,7 @@ const ResumeFooter = ({
    const { idCv, shareKey } = router.query;
    const isNewResume = (idCv == "new");
    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
+   const dopQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`;
 
    const {
       auth: {
@@ -64,7 +65,7 @@ const ResumeFooter = ({
    return (
       <div className="resume-footer d-flex gap-3 justify-content-between py-3">
          <div className="resume-footer__left">
-            <Link href={!isCover ? `/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}` : `/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}`} className='btn btn-outline-secondary resume-footer__button'>
+            <Link href={!isCover ? `/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${dopQuery}` : `/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}${dopQuery}`} className='btn btn-outline-secondary resume-footer__button'>
                <Icon svg={templateIcon} classNames={['icon-20']} />
                {
                   isMob ? ("Template") : ("Select template")

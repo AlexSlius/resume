@@ -1,16 +1,7 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { useRouter } from 'next/router'
-
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormSocials from "./FormSocials";
 
-const Socials = () => {
-   const dispatch = useDispatch();
-   const states = useSelector((state) => state);
-   const router = useRouter();
-   const idCv = router.query.idCv;
-
+const Socials = ({ idCv, states, dispatch }) => {
    return (
       <>
          <HeadMainContent

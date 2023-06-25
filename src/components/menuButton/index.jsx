@@ -25,7 +25,9 @@ export const MenuButton = ({
     const dispatch = useDispatch();
     const router = useRouter();
     const { idCv } = router.query;
+    const shareKey = router.query?.shareKey;
     const isResume = router.asPath.includes("resume-builder");
+    const dopQuery = `${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`;
 
     const handleShare = () => {
         if (isResume) {
@@ -72,7 +74,7 @@ export const MenuButton = ({
                     {
                         !isEdit && !isNew && (
                             <li className="menus-card_li">
-                                <Link href={isResume ? `/${routersPages["resumeBuilder"]}/${idCv}/${ROUTES['']}` : `/${routersPages["coverLetter"]}/${idCv}?tab=${QUERY_TAB_COVER['contact']}`} className="item-btn-m" >
+                                <Link href={isResume ? `/${routersPages["resumeBuilder"]}/${idCv}?tab=${ROUTES['contact']}${dopQuery}` : `/${routersPages["coverLetter"]}/${idCv}?tab=${QUERY_TAB_COVER['contact']}${dopQuery}`} className="item-btn-m" >
                                     <Icon svg={iconEdit} />
                                     <span>Edit</span>
                                 </Link>

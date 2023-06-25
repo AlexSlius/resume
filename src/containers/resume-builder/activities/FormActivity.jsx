@@ -32,7 +32,6 @@ import {
 } from "../../../controllers/activitys";
 import {
    fetchGetCities,
-   fetchGetCountrys,
    getCompanyList,
    addCompany
 } from '../../../controllers/dependencies';
@@ -213,7 +212,6 @@ const FormActivity = ({
          handleAddOne();
       }
 
-      dispatch(fetchGetCountrys());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
 
       return () => {

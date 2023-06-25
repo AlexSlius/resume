@@ -15,7 +15,6 @@ import {
   getJopsTitle,
   getCompanyList,
   fetchGetCities,
-  fetchGetCountrys,
   getEmploymentsList,
   addJopsTitle,
   addCompany
@@ -270,12 +269,13 @@ const FormEmployment = ({
   }
 
   useEffect(() => {
+    dispatch(fetchUserGetAvatar());
+
     // when entering, create a new form
     if (isArray(employmentObj) && (employmentObj?.length == 0)) {
       handleAddone();
     }
 
-    dispatch(fetchGetCountrys());
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
 
     return () => {
@@ -285,7 +285,6 @@ const FormEmployment = ({
 
   useEffect(() => {
     refData.current = employmentObj;
-    dispatch(fetchUserGetAvatar());
   }, [employmentObj]);
 
   return (

@@ -1,16 +1,7 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"
-import { useRouter } from 'next/router'
-
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 import FormCarreer from "./CareerObjectiveForm";
 
-const Socials = () => {
-    const dispatch = useDispatch();
-    const states = useSelector((state) => state);
-    const router = useRouter();
-    const idCv = router.query.idCv;
-
+const CareerObjective = ({ idCv, states, dispatch }) => {
     return (
         <>
             <HeadMainContent
@@ -28,4 +19,4 @@ const Socials = () => {
     )
 }
 
-export default Socials;
+export default CareerObjective;

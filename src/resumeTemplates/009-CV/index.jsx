@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -8,9 +8,198 @@ import Icon from "../../components/Icon";
 
 import imgBg from "/public/styles/resumes/009/image/bgBot.svg?sprite";
 
+const drawing = () => {
+  if (typeof window != 'undefined') {
+    let current_page_number = 1;
+
+    function rebuildingPages() {
+      $('.cv-body.cv-body-visible').remove();
+
+      let photo_block = $('#cv-body-hidden-container .cv-body-content .photo-wrapper').clone();
+      let main_info_block = $('#cv-body-hidden-container .cv-body-content .main-info-block').clone();
+      let links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
+      let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
+      let information_block_1 = $('#cv-body-hidden-container .cv-body-content .information-block-1').clone();
+      let information_block_2 = $('#cv-body-hidden-container .cv-body-content .information-block-2').clone();
+      let information_block_3 = $('#cv-body-hidden-container .cv-body-content .information-block-3').clone();
+      let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
+      let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
+      let courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
+      let internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
+      let extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
+      let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+
+      current_page_number = 1;
+
+      getContentContainer1().append(photo_block);
+      if (checkHeight()) {
+        photo_block.remove();
+        current_page_number++;
+        getContentContainer1().append(photo_block);
+      }
+
+      getContentContainer2().append(main_info_block);
+      if (checkHeight()) {
+        main_info_block.remove();
+        current_page_number++;
+        getContentContainer2().append(main_info_block);
+      }
+
+      getContentContainer2().append(links_block);
+      if (checkHeight()) {
+        links_block.remove();
+        current_page_number++;
+        getContentContainer2().append(links_block);
+      }
+
+      //
+      current_page_number = 1;
+      getContentContainer3().append(profile_block);
+      if (checkHeight()) {
+        profile_block.remove();
+        current_page_number++;
+        getContentContainer3().append(profile_block);
+      }
+
+      getContentContainer3().append(information_block_1);
+      if (checkHeight()) {
+        information_block_1.remove();
+        current_page_number++;
+        getContentContainer3().append(information_block_1);
+      }
+
+      getContentContainer3().append(information_block_2);
+      if (checkHeight()) {
+        information_block_2.remove();
+        current_page_number++;
+        getContentContainer3().append(information_block_2);
+      }
+
+      getContentContainer3().append(information_block_3);
+      if (checkHeight()) {
+        information_block_3.remove();
+        current_page_number++;
+        getContentContainer3().append(information_block_3);
+      }
+
+      //
+      current_page_number = 1;
+
+      getContentContainer4().append(employment_history_block);
+      if (checkHeight()) {
+        employment_history_block.remove();
+        current_page_number++;
+        getContentContainer4().append(employment_history_block);
+      }
+
+      getContentContainer4().append(education_block);
+      if (checkHeight()) {
+        education_block.remove();
+        current_page_number++;
+        getContentContainer4().append(education_block);
+      }
+
+      getContentContainer4().append(courses_block);
+      if (checkHeight()) {
+        courses_block.remove();
+        current_page_number++;
+        getContentContainer4().append(courses_block);
+      }
+
+      getContentContainer4().append(internships_block);
+      if (checkHeight()) {
+        internships_block.remove();
+        current_page_number++;
+        getContentContainer4().append(internships_block);
+      }
+
+      getContentContainer4().append(extra_curricular_activities_block);
+      if (checkHeight()) {
+        extra_curricular_activities_block.remove();
+        current_page_number++;
+        getContentContainer4().append(extra_curricular_activities_block);
+      }
+
+      //
+
+      current_page_number = 1;
+
+      getContentContainer5().append(references_block);
+      if (checkHeight()) {
+        references_block.remove();
+        current_page_number++;
+        getContentContainer5().append(references_block);
+      }
+    }
+
+    function getContentContainer1() {
+      return getPageContainer().find('.top-area .column-left');
+    }
+
+    function getContentContainer2() {
+      return getPageContainer().find('.top-area .column-right');
+    }
+
+    function getContentContainer3() {
+      return getPageContainer().find('.middle-area .column-left');
+    }
+
+    function getContentContainer4() {
+      return getPageContainer().find('.middle-area .column-right');
+    }
+
+    function getContentContainer5() {
+      return getPageContainer().find('.bottom-area .block-container');
+    }
+
+    function checkHeight() {
+      console.log("Test 1: ", getPageContainer().outerHeight());
+      console.log("Test 2: ", getPageContainer().parent().outerHeight());
+
+      return getPageContainer().outerHeight() > getPageContainer().parent().outerHeight();
+    }
+
+    function getPageContainer() {
+      let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
+      if (page.length > 0) {
+        return page.find('.cv-body-content');
+      } else {
+        return createNewPage(current_page_number);
+      }
+    }
+
+    function createNewPage(page_number) {
+      let page_element = $('#cv-body-hidden-container').clone();
+      page_element.attr('id', '');
+      page_element.addClass(['cv-body-visible', 'page-' + current_page_number]);
+
+      let page_element_container = page_element.find('.cv-body-content');
+      page_element_container.find('.top-area .column-left').children().remove();
+      page_element_container.find('.top-area .column-right').children().remove();
+      page_element_container.find('.middle-area .column-left').children().remove();
+      page_element_container.find('.middle-area .column-right').children().remove();
+      page_element_container.find('.bottom-area .block-container').children().remove();
+
+      page_element.append(page_element_container);
+
+      if ($('#cv-chapter-section-cv').find(page_element)) {
+        $('#cv-chapter-section-cv').append(page_element);
+      }
+
+      return page_element_container;
+    }
+
+    $(document).ready(function () {
+      rebuildingPages();
+    });
+  }
+}
+
 export const ResumeCv009 = ({
   data,
-  idCv,
+  isDrawing = false,
+  isTemplate = false,
+  handleFalseDrafind = () => { },
   stateClasses,
   reportTemplateRef
 }) => {
@@ -31,192 +220,16 @@ export const ResumeCv009 = ({
     hide_experience_level
   } = data;
 
-  React.useEffect(() => {
-    if (typeof window != 'undefined') {
-      let current_page_number = 1;
-
-      function rebuildingPages() {
-        $('.cv-body.cv-body-visible').remove();
-
-        let photo_block = $('#cv-body-hidden-container .cv-body-content .photo-wrapper').clone();
-        let main_info_block = $('#cv-body-hidden-container .cv-body-content .main-info-block').clone();
-        let links_block = $('#cv-body-hidden-container .cv-body-content .links-block').clone();
-        let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
-        let information_block_1 = $('#cv-body-hidden-container .cv-body-content .information-block-1').clone();
-        let information_block_2 = $('#cv-body-hidden-container .cv-body-content .information-block-2').clone();
-        let information_block_3 = $('#cv-body-hidden-container .cv-body-content .information-block-3').clone();
-        let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
-        let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
-        let courses_block = $('#cv-body-hidden-container .cv-body-content .courses-block').clone();
-        let internships_block = $('#cv-body-hidden-container .cv-body-content .internships-block').clone();
-        let extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .extra-curricular-activities-block').clone();
-        let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
-
-        current_page_number = 1;
-
-        getContentContainer1().append(photo_block);
-        if (checkHeight()) {
-          photo_block.remove();
-          current_page_number++;
-          getContentContainer1().append(photo_block);
-        }
-
-        getContentContainer2().append(main_info_block);
-        if (checkHeight()) {
-          main_info_block.remove();
-          current_page_number++;
-          getContentContainer2().append(main_info_block);
-        }
-
-        getContentContainer2().append(links_block);
-        if (checkHeight()) {
-          links_block.remove();
-          current_page_number++;
-          getContentContainer2().append(links_block);
-        }
-
-        //
-        current_page_number = 1;
-        getContentContainer3().append(profile_block);
-        if (checkHeight()) {
-          profile_block.remove();
-          current_page_number++;
-          getContentContainer3().append(profile_block);
-        }
-
-        getContentContainer3().append(information_block_1);
-        if (checkHeight()) {
-          information_block_1.remove();
-          current_page_number++;
-          getContentContainer3().append(information_block_1);
-        }
-
-        getContentContainer3().append(information_block_2);
-        if (checkHeight()) {
-          information_block_2.remove();
-          current_page_number++;
-          getContentContainer3().append(information_block_2);
-        }
-
-        getContentContainer3().append(information_block_3);
-        if (checkHeight()) {
-          information_block_3.remove();
-          current_page_number++;
-          getContentContainer3().append(information_block_3);
-        }
-
-        //
-        current_page_number = 1;
-
-        getContentContainer4().append(employment_history_block);
-        if (checkHeight()) {
-          employment_history_block.remove();
-          current_page_number++;
-          getContentContainer4().append(employment_history_block);
-        }
-
-        getContentContainer4().append(education_block);
-        if (checkHeight()) {
-          education_block.remove();
-          current_page_number++;
-          getContentContainer4().append(education_block);
-        }
-
-        getContentContainer4().append(courses_block);
-        if (checkHeight()) {
-          courses_block.remove();
-          current_page_number++;
-          getContentContainer4().append(courses_block);
-        }
-
-        getContentContainer4().append(internships_block);
-        if (checkHeight()) {
-          internships_block.remove();
-          current_page_number++;
-          getContentContainer4().append(internships_block);
-        }
-
-        getContentContainer4().append(extra_curricular_activities_block);
-        if (checkHeight()) {
-          extra_curricular_activities_block.remove();
-          current_page_number++;
-          getContentContainer4().append(extra_curricular_activities_block);
-        }
-
-        //
-
-        current_page_number = 1;
-
-        getContentContainer5().append(references_block);
-        if (checkHeight()) {
-          references_block.remove();
-          current_page_number++;
-          getContentContainer5().append(references_block);
-        }
-      }
-
-      function getContentContainer1() {
-        return getPageContainer().find('.top-area .column-left');
-      }
-
-      function getContentContainer2() {
-        return getPageContainer().find('.top-area .column-right');
-      }
-
-      function getContentContainer3() {
-        return getPageContainer().find('.middle-area .column-left');
-      }
-
-      function getContentContainer4() {
-        return getPageContainer().find('.middle-area .column-right');
-      }
-
-      function getContentContainer5() {
-        return getPageContainer().find('.bottom-area .block-container');
-      }
-
-      function checkHeight() {
-        console.log("Test 1: ", getPageContainer().outerHeight());
-        console.log("Test 2: ", getPageContainer().parent().outerHeight());
-
-        return getPageContainer().outerHeight() > getPageContainer().parent().outerHeight();
-      }
-
-      function getPageContainer() {
-        let page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
-        if (page.length > 0) {
-          return page.find('.cv-body-content');
-        } else {
-          return createNewPage(current_page_number);
-        }
-      }
-
-      function createNewPage(page_number) {
-        let page_element = $('#cv-body-hidden-container').clone();
-        page_element.attr('id', '');
-        page_element.addClass(['cv-body-visible', 'page-' + current_page_number]);
-
-        let page_element_container = page_element.find('.cv-body-content');
-        page_element_container.find('.top-area .column-left').children().remove();
-        page_element_container.find('.top-area .column-right').children().remove();
-        page_element_container.find('.middle-area .column-left').children().remove();
-        page_element_container.find('.middle-area .column-right').children().remove();
-        page_element_container.find('.bottom-area .block-container').children().remove();
-
-        page_element.append(page_element_container);
-
-        if ($('#cv-chapter-section-cv').find(page_element)) {
-          $('#cv-chapter-section-cv').append(page_element);
-        }
-
-        return page_element_container;
-      }
-
-      $(document).ready(function () {
-        rebuildingPages();
-      });
+  useEffect(() => {
+    if (isTemplate) {
+        drawing();
     }
-  }, [data, stateClasses]);
+
+    if (!!isDrawing && !isTemplate) {
+        drawing();
+        handleFalseDrafind();
+    }
+}, [isDrawing, data]);
 
   return (
     <div className="sv_009" ref={reportTemplateRef}>
