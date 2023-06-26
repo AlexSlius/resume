@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
@@ -28,16 +28,18 @@ const Contact = () => {
     const states = useSelector((state) => state);
     const router = useRouter();
     const idCv = router.query.idCv;
+    const isNew = (idCv == "new");
     const shareKey = router.query?.shareKey;
 
     const {
         coverDataForm: {
             coverDataObj,
+            coverDataObjNew,
         },
     } = states;
 
     useEffect(() => {
-        if (idCv != "new") {
+        if (!isNew) {
             dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'personalize' }));
         }
         localStorage.setItem('page', 'personalize');
@@ -50,7 +52,7 @@ const Contact = () => {
             />
             <Progress
                 label="Information completed"
-                interest={helperProgress({ objForms: coverDataObj, arrField: fieldsName })}
+                interest={helperProgress({ objForms: isNew ? coverDataObjNew : coverDataObj, arrField: fieldsName })}
                 icon={contactIcon}
             />
             <FormPersonalize

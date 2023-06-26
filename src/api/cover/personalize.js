@@ -16,4 +16,7 @@ export default class ClientsAPI extends Base {
     getCoverDataShare(cvId, key) {
         return this.apiClient.get(`share/cover/${cvId}/${key}`);
     }
+    getCoverTextNoAuthNew(data, type = "formData") {
+        return this.apiClient.post('open/cover/', data, type);
+    }
 }

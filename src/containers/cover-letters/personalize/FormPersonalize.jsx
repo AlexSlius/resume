@@ -24,6 +24,7 @@ import {
     coverAddNew,
     updateIsErrorEmail,
     updateCoverLetterById,
+    getCoverTextNoAuthNew,
 } from "../../../controllers/cover/personalize";
 
 import { getIdOfNameCountrys } from "../../../helpers/countrys"
@@ -66,6 +67,9 @@ const FormPersonalize = ({
                 isAthorized
             }
         },
+        users: {
+            objFormSettings,
+        },
         menuAsideResume
     } = storeDate;
     const isNew = (idCv == "new");
@@ -87,6 +91,10 @@ const FormPersonalize = ({
             dispatch(updateItemField({ name, value }));
         } else {
             dispatch(updateItemField({ name, value }));
+        }
+
+        if (isNew) {
+            handleUpdateNewServer();
         }
 
         if (!isNew) {
@@ -115,10 +123,21 @@ const FormPersonalize = ({
         setLoadNext(true);
 
         if (isNew) {
-            await dispatch(coverAddNew({isAddNewAuth: true}));
+            await dispatch(coverAddNew({ isAddNewAuth: true }));
         } else {
             Router.push(`/${routersPages['coverLetter']}/${idCv}?tab=${QUERY_TAB_COVER['experience']}&step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
         }
+    }
+
+    const handleUpdateNewServer = () => {
+        if (refIdTimeout.current) {
+            clearTimeout(refIdTimeout.current);
+        }
+
+        refIdTimeout.current = setTimeout(async () => {
+            dispatch(getCoverTextNoAuthNew());
+            clearTimeout(refIdTimeout.current);
+        }, 300);
     }
 
     const handleUpdateServer = async (index) => {
@@ -127,7 +146,7 @@ const FormPersonalize = ({
         }
 
         refIdTimeout.current = setTimeout(async () => {
-            await dispatch((updateCoverLetterById({ idCv })));
+            dispatch((updateCoverLetterById({ idCv })));
             clearTimeout(refIdTimeout.current);
         }, 300);
     }
@@ -162,6 +181,20 @@ const FormPersonalize = ({
     useEffect(() => {
         setIdCountry(getIdOfNameCountrys({ objArr: coutrys?.list, nameCountry: contObj?.country }));
     }, [coutrys.list, contObj?.country]);
+
+    useEffect(() => {
+        if (isNew) {
+            dispatch(getCoverTextNoAuthNew());
+        }
+
+        if (isNew && isAthorized) {
+            let { firstName, lastName, email } = objFormSettings;
+
+            !(contObj?.firstName?.length > 0) && handleUpdateItemField({ name: "firstName", value: firstName });
+            !(contObj?.lastName?.length > 0) && handleUpdateItemField({ name: "lastName", value: lastName });
+            !(contObj?.email?.length > 0) && handleUpdateItemField({ name: "email", value: email });
+        }
+    }, [objFormSettings]);
 
     return (
         <>

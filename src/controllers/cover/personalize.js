@@ -7,6 +7,7 @@ import { isSuccessNewContact, isError } from '../../helpers/checkingStatuses';
 import { localStorageSet, sessionStorageSet } from "../../helpers/localStorage"
 import { routersPages } from '../../constants/next-routers';
 import { addItemNotification } from "../../slices/notifications";
+import { cleanNewForm } from "../../slices/cover/coverDataForm";
 // import { setUpdateResumeActive } from '../resumeData';
 import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
@@ -16,7 +17,7 @@ import { setUpdateCoverDataActive } from './coverData';
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false }, thunkAPI) => {
     const {
-        coverDataForm: { coverDataObj },
+        coverDataForm: { coverDataObjNew },
         menuAsideResume: { coverLetters },
         users: { objFormSettings },
         coverData: {
@@ -32,14 +33,14 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
 
     // getCoverDataActive
     const newObj = camelToSnake({
-        firstName: coverDataObj.firstName,
-        lastName: coverDataObj.lastName,
-        country: coverDataObj.country,
-        city: coverDataObj.city,
-        state: coverDataObj.state,
-        zipCode: coverDataObj.zipCode,
-        email: coverDataObj.email,
-        phone: coverDataObj.phone,
+        firstName: coverDataObjNew.firstName,
+        lastName: coverDataObjNew.lastName,
+        country: coverDataObjNew.country,
+        city: coverDataObjNew.city,
+        state: coverDataObjNew.state,
+        zipCode: coverDataObjNew.zipCode,
+        email: coverDataObjNew.email,
+        phone: coverDataObjNew.phone,
     });
 
     const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
@@ -53,6 +54,8 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
             }
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
         }
+
+        await thunkAPI.dispatch(cleanNewForm());
     }
 
     if (isError(response)) {
@@ -63,17 +66,17 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
 });
 
 export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedirect = true }, thunkAPI) => {
-    const { coverDataForm: { coverDataObj }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
+    const { coverDataForm: { coverDataObjNew }, menuAsideResume: { coverLetters } } = thunkAPI.getState();
 
     const newObj = camelToSnake({
-        firstName: coverDataObj.firstName,
-        lastName: coverDataObj.lastName,
-        country: coverDataObj.country,
-        city: coverDataObj.city,
-        state: coverDataObj.state,
-        zipCode: coverDataObj.zipCode,
-        email: coverDataObj.email,
-        phone: coverDataObj.phone,
+        firstName: coverDataObjNew.firstName,
+        lastName: coverDataObjNew.lastName,
+        country: coverDataObjNew.country,
+        city: coverDataObjNew.city,
+        state: coverDataObjNew.state,
+        zipCode: coverDataObjNew.zipCode,
+        email: coverDataObjNew.email,
+        phone: coverDataObjNew.phone,
     });
 
     const response = await api.personalize.createNewCoverBasic(newObj);
@@ -128,12 +131,26 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
     return response;
 });
 
+export const getCoverTextNoAuthNew = createAsyncThunk('fetch/getCoverTextNoAuthNew', async (_, thunkAPI) => {
+    const { coverDataForm: { coverDataObjNew } } = thunkAPI.getState();
+
+    // функция doNotTransmitEmptyData не возвращает пустые поля
+    const newObj = camelToSnake(doNotTransmitEmptyData(coverDataObjNew));
+
+    newObj.graduate_date = newObj?.graduate_date ? moment(new Date(newObj.graduate_date)) : "";
+    newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
+
+    const response = await api.personalize.getCoverTextNoAuthNew(newObj);
+
+    return response;
+});
+
+
 export const getCoverDataShare = createAsyncThunk('resumeData/getCoverDataShare', async ({ idCv, key }) => {
     const response = await api.personalize.getCoverDataShare(idCv, key);
 
     return response;
 });
-
 
 export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmailCover', async (_, thunkAPI) => {
     const { coverDataForm: { emailRegister, coverDataObjNew } } = thunkAPI.getState()
@@ -148,3 +165,5 @@ export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmailCove
 
     return { status: true }
 });
+
+

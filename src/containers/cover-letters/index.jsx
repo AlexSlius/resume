@@ -3,10 +3,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { fetchGetCountrys } from "../../controllers/dependencies"
-import { handleUpdateDrawingTrue, updateItemField } from "../../slices/cover/coverDataForm";
+import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
 import ContactPesonalize from "./personalize";
 import Experience from "./experience";
-
 
 import { QUERY_TAB_COVER } from "../../constants/routes";
 
@@ -14,29 +13,17 @@ import { QUERY_TAB_COVER } from "../../constants/routes";
 const CoverPage = () => {
     const dispatch = useDispatch();
     const router = useRouter();
-    const { tab, idCv } = router.query;
-    const isNew = (idCv == "new");
+    const { tab } = router.query;
     const {
         auth: {
             autorizate: {
                 isAthorized
             }
-        },
-        users: {
-            objFormSettings,
-        },
+        }
     } = useSelector(state => state);
 
     useEffect(() => {
         dispatch(fetchGetCountrys());
-
-        if (isNew && isAthorized) {
-            let { firstName, lastName, email } = objFormSettings;
-
-            dispatch(updateItemField({ name: "firstName", value: firstName }));
-            dispatch(updateItemField({ name: "lastName", value: lastName }));
-            dispatch(updateItemField({ name: "email", value: email }));
-        }
 
         return () => {
             dispatch(handleUpdateDrawingTrue());

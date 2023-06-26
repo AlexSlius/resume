@@ -6,7 +6,8 @@ import {
     getCoverGenerateDate,
     getCoverDataShare,
     updateCoverLetterById,
-    updateIsErrorEmail
+    updateIsErrorEmail,
+    getCoverTextNoAuthNew
 } from "../../controllers/cover/personalize";
 
 import { statusLoaded, statusLoader } from '../../constants/statuses';
@@ -101,6 +102,12 @@ export const slice = createSlice({
     name: 'coverDataForm',
     initialState,
     reducers: {
+        cleanNewForm(state, action) {
+            state.coverDataObjNew = initialState.coverDataObjNew;
+        },
+        cleanFormPersonalizeNew(state, action) {
+            state.coverDataObjNew = { ...state.coverDataObjNew, ...cleanStartPersonFields };
+        },
         handleUpdateDrawingFalse(state, action) {
             state.drawing = false;
         },
@@ -112,31 +119,22 @@ export const slice = createSlice({
             state.coverDataObj[name] = value;
             state.coverDataObjNew[name] = value;
         },
-        cleanCoverNewForm(state, action) {
-            state.coverDataObjNew = initialState.coverDataObjNew;
-        },
         updateFieldEmailForRegister(state, action) {
             state.emailRegister = action.payload;
         },
         cleanFormPersonalize(state, action) {
             state.coverDataObj = { ...state.coverDataObj, ...cleanStartPersonFields };
         },
-        cleanFormPersonalizeNew(state, action) {
-            state.coverDataObjNew = { ...state.coverDataObjNew, ...cleanStartPersonFields };
-        }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                coverGenerateDate: action.payload.coverDataForm.coverGenerateDate,
-                from: action.payload.coverDataForm.from,
-                to: action.payload.coverDataForm.to,
-                coverDataObj: {
-                    ...state.coverDataObj,
-                    ...action.payload.coverDataForm.coverDataObj,
-                },
+            if (action.payload.coverDataForm.coverGenerateDate?.length > 0) {
+                state.coverGenerateDate = action.payload.coverDataForm.coverGenerateDate;
+                state.from = action.payload.coverDataForm.from;
+                state.to = action.payload.coverDataForm.to;
             }
+
+            state.coverDataObj = action.payload.coverDataForm.coverDataObj;
         },
         // getCoverDataShare show
         [getCoverDataShare.pending]: (state) => {
@@ -160,6 +158,17 @@ export const slice = createSlice({
             state.to = action.payload?.to || null;
             state.status = statusLoaded;
             state.drawing = true;
+        },
+        // get covet text no auth
+        [getCoverTextNoAuthNew.pending]: (state) => {
+            state.status = statusLoader;
+        },
+        [getCoverTextNoAuthNew.fulfilled]: (state, action) => {
+            state.coverGenerateDate = action.payload.cover_letter;
+            state.to = action.payload?.to || null
+            state.from = action.payload?.from || null;
+            state.drawing = true;
+            state.status = statusLoaded;
         },
         // get cover ketter generate
         [getCoverGenerateDate.pending]: (state) => {
@@ -191,7 +200,8 @@ export const {
     cleanFormPersonalizeNew,
     cleanCoverNewForm,
     handleUpdateDrawingFalse,
-    handleUpdateDrawingTrue
+    handleUpdateDrawingTrue,
+    cleanNewForm
 } = slice.actions;
 
 export const { reducer } = slice;

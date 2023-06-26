@@ -6,6 +6,7 @@ import { cookieDestroy, cookieSet } from '../helpers/nookies';
 
 import { routersPages } from '../constants/next-routers';
 import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
+import { cleanNewForm } from "../slices/cover/coverDataForm";
 import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "../controllers/users";
 import { contactSetNew } from "../controllers/contacts";
 import { coverSetNew, getCoverLetterById } from "../controllers/cover/personalize";
@@ -124,9 +125,10 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
 
         await allFunCalb();
 
+
         if (isResume) {
             // resume
-            thunkAPI.dispatch(setUpdateResumeActive({ idCv: reseAut?.payload.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
+            await thunkAPI.dispatch(setUpdateResumeActive({ idCv: reseAut?.payload.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
             await thunkAPI.dispatch(getResumeActive({ idCv: reseAut?.payload.id }));
         }
 
@@ -136,6 +138,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: reseAut?.payload.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
             await thunkAPI.dispatch(getCoverLetterById(reseAut?.payload.id));
             await thunkAPI.dispatch(getCoverDataActive({ idCv: reseAut?.payload.id }));
+            await thunkAPI.dispatch(cleanNewForm());
         }
 
         return { id: reseAut?.payload.id };

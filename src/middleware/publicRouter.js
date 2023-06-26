@@ -14,7 +14,7 @@ import {
     getCoverTemplates,
     getCoverShareTemplateActive
 } from "../controllers/cover/coverData";
-import { getCoverLetterById, getCoverDataShare, getCoverGenerateDate } from "../controllers/cover/personalize";
+import { getCoverLetterById, getCoverDataShare, getCoverGenerateDate, getCoverTextNoAuthNew } from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
 
@@ -28,6 +28,7 @@ export const withPublicRoute = ({
     isGetShareCover = false,
     isPageCoverLetter = false,
     isItemCoverPage = false,
+    isCoverNew = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -47,6 +48,10 @@ export const withPublicRoute = ({
                 if (!!isGetFormCover) {
                     await store.dispatch(getCoverLetterById(ctx?.query?.idCv));
                 }
+            }
+
+            if (isCoverNew && ctx?.query?.idCv == "new" && ctx?.resolvedUrl?.includes("cover-letters")) {
+                await store.dispatch(getCoverTextNoAuthNew());
             }
 
             if (!!isGetResumesTemplates) {

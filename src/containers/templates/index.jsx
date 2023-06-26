@@ -40,9 +40,6 @@ import {
     setUpdateCoverDataActive,
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
-import {
-    getCoverLetterById
-} from "../../controllers/cover/personalize";
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
@@ -128,6 +125,20 @@ const Templates = ({
     };
 
     let dataCoverLetterTemplate = {
+        firstName: coverDataForm.coverDataObj.firstName,
+        lastName: coverDataForm.coverDataObj.lastName,
+        email: coverDataForm.coverDataObj.email,
+        phone: coverDataForm.coverDataObj.phone,
+        country: coverDataForm.coverDataObj.country,
+        city: coverDataForm.coverDataObj.city,
+        zipCode: coverDataForm.coverDataObj.zipCode,
+        state: coverDataForm.coverDataObj.state,
+        coverGenerateDate: coverDataForm.coverGenerateDate,
+        from: coverDataForm.from,
+        to: coverDataForm.to,
+    };
+
+    let dataCoverLetterTemplateNew = {
         firstName: coverDataForm.coverDataObjNew.firstName,
         lastName: coverDataForm.coverDataObjNew.lastName,
         email: coverDataForm.coverDataObjNew.email,
@@ -136,7 +147,9 @@ const Templates = ({
         city: coverDataForm.coverDataObjNew.city,
         zipCode: coverDataForm.coverDataObjNew.zipCode,
         state: coverDataForm.coverDataObjNew.state,
-        coverGenerateDate: null,
+        coverGenerateDate: coverDataForm.coverGenerateDate,
+        from: coverDataForm.from,
+        to: coverDataForm.to,
     };
 
     // update resume
@@ -392,7 +405,6 @@ const Templates = ({
                     dispatch(getResumeActive({ idCv }));
                 } else {
                     // get cover 
-                    dispatch(getCoverLetterById(idCv));
                     dispatch(getCoverDataActive({ idCv }));
                 }
             }
@@ -559,7 +571,7 @@ const Templates = ({
                                             reportTemplateRef={reportTemplateRef}
                                             isNewResume={isNewResume}
                                             resumeData={dataOther}
-                                            data={isNewResume ? dataCoverLetterTemplate : { ...(coverDataForm?.coverDataObj ? coverDataForm.coverDataObj : {}), coverGenerateDate: coverDataForm.coverGenerateDate, from: coverDataForm.to, to: coverDataForm.from }}
+                                            data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
                                             drawing={true}

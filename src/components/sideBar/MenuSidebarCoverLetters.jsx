@@ -93,7 +93,7 @@ const MenuSidebarCoverLetters = () => {
                                     href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}
                                     onQuery={(index < (menuAsideResume.coverLetters.list.length - 1) ? "tab" : "")}
                                 >
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${linkQuery}`)}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${obj.link}${linkQuery}`)}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>
