@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
 export const fetchGetCvLanguages = createAsyncThunk('languages/fetchGetCvLanguages', async ({ idCv }, thunkAPI) => {
     const response = await api.languages.getListLanguages(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -27,6 +29,7 @@ export const fetchUpdateLanguages = createAsyncThunk('languages/fetchUpdateLangu
 
     const obj = languageObj[index];
     const response = await api.languages.updateLanguagesItem(obj.id, obj);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

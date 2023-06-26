@@ -71,11 +71,13 @@ const FormLanguages = ({
 
    const handleAddOne = () => {
       dispatch(fetchPostAddCvOneLanguages({ idCv }));
-      handleServerRequestLanguagesList();
+      setTimeout(() => {
+         handleServerRequestLanguagesList();
+      }, 1000);
    }
 
    const handDeleteitem = (id) => {
-      dispatch(fetchDeleteLanguages({ idCv, id }))
+      dispatch(fetchDeleteLanguages({ idCv, id }));
    }
 
    const handleSaveSelectNew = ({ name, value }, data) => {

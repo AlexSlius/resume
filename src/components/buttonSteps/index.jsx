@@ -72,7 +72,7 @@ export const ButtonSteps = ({
     const clickFinish = (load = false) => {
         setLoadSkip(load === "skip");
         setLoadFinish(load === "finish");
-        Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`);
+        Router.push(`/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`);
     }
 
     const onHandleClean = () => {

@@ -2,16 +2,18 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 import { addNewF, updateF } from '../helpers/dataController';
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
-export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducations', async ({ idCv }, thunkAPI) => {
+export const fetchGetCvEducations = createAsyncThunk('education/fetchGetCvEducations', async ({ idCv, isDrawing = false }, thunkAPI) => {
     const response = await api.educations.getListEducation(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
 export const fetchPostUpdatePositionEducations = createAsyncThunk('countrus/fetchPostUpdatePositionEducations', async ({ idCv, data }, thunkAPI) => {
     const response = await api.educations.updatePosition(data);
-    await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvEducations({ idCv, isDrawing: true }));
     return response;
 });
 
@@ -19,19 +21,19 @@ export const fetchPostAddCvOneEducation = createAsyncThunk('education/fetchPostA
     const { educations: { objNew } } = thunkAPI.getState();
 
     const response = await api.educations.addEducationItem(idCv, { ...addNewF(objNew), position });
-    await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvEducations({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteEducation = createAsyncThunk('countrus/fetchDeleteHobie', async ({ idCv, id }, thunkAPI) => {
     const response = await api.educations.deleteEducationItem(id);
-    await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvEducations({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteAll = createAsyncThunk('education/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
     const response = await api.educations.cleanAll(idCv);
-    await thunkAPI.dispatch(fetchGetCvEducations({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvEducations({ idCv, isDrawing: true }));
     return response;
 });
 
@@ -40,6 +42,7 @@ export const fetchUpdateEducation = createAsyncThunk('countrus/fetchUpdateEducat
     let { id, ...obj } = educationObj[index];
 
     const response = await api.educations.updateEducationItem(id, updateF(obj, true));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

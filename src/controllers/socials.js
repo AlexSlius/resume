@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 export const fetchAddItemLink = createAsyncThunk('link/fetchAddItemLink', async ({ idCv, data }, thunkAPI) => {
     const response = await api.social.addItemSocial(idCv, data);
@@ -10,12 +11,15 @@ export const fetchAddItemLink = createAsyncThunk('link/fetchAddItemLink', async 
 
 export const fetchGetAllLinks = createAsyncThunk('link/fetchGetAllLinks', async ({ idCv }, thunkAPI) => {
     const response = await api.social.getAllLisk(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
 export const fetchUpdateItemLink = createAsyncThunk('link/fetchUpdateItemLink', async ({ idCv, id, data }, thunkAPI) => {
     const response = await api.social.postUpdateItemLink(id, data);
     await thunkAPI.dispatch(fetchGetAllLinks({ idCv }));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

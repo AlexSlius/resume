@@ -145,17 +145,6 @@ const FormEducation = ({
       dispatch(fetchDeleteEducation({ idCv, id }));
    }
 
-   const handleDeleteLastEmpty = () => {
-      let resObj = lastFormDelete({
-         data: refData.current,
-         dependence: keysFiled,
-      });
-
-      if (resObj?.id) {
-         handleDeleteOne(resObj.id);
-      }
-   }
-
    // new
    const automateNew = async (index) => {
       if (refIdTimeout.current) {
@@ -210,10 +199,6 @@ const FormEducation = ({
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
       getSearchListDegree();
-
-      return () => {
-         handleDeleteLastEmpty();
-      }
    }, []);
 
    useEffect(() => {

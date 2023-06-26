@@ -2,16 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 import { addNewF, updateF } from '../helpers/dataController';
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
 export const fetchGetCvInternships = createAsyncThunk('interhip/fetchGetCvInternships', async ({ idCv }, thunkAPI) => {
     const response = await api.internships.getListInternships(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
 export const fetchPostUpdatePositionInternships = createAsyncThunk('countrus/fetchPostUpdatePositionInternships', async ({ idCv, data }, thunkAPI) => {
     const response = await api.internships.updatePosition(data);
     await thunkAPI.dispatch(fetchGetCvInternships({ idCv }));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -42,6 +45,7 @@ export const fetchUpdateInternships = createAsyncThunk('interhip/fetchUpdateInte
     obj.job_title = jobTitle;
 
     const response = await api.internships.updateInternshipsItem(id, updateF(obj, true));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

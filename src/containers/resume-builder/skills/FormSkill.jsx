@@ -89,7 +89,8 @@ const FormSkill = ({
    }
 
    const handleAddItemSkillOne = async (idSkill, text) => {
-      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, level: 0, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
+      // level: 1
+      await dispatch(fetchPostAddSkillone({ idCv, data: { name: text, skill_id: idSkill, position: newPosition(skillsObj.skillsListAll) } }));
    }
 
    const handleUpdateItemSkillOne = async (id, data, index) => {

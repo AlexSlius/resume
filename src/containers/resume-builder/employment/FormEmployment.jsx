@@ -191,17 +191,6 @@ const FormEmployment = ({
     dispatch(fetchDeleteEmployment({ idCv, id }));
   }
 
-  const handleDeleteLastEmpty = () => {
-    let resObj = lastFormDelete({
-      data: refData.current,
-      dependence: keysFiled,
-    });
-
-    if (resObj?.id) {
-      handleDeleteOne(resObj.id);
-    }
-  }
-
   const handleAddNewJobTitle = async (text, isNewForm = false) => {
     let re = await dispatch(addJopsTitle(text));
 
@@ -277,10 +266,6 @@ const FormEmployment = ({
     }
 
     dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'employment' }));
-
-    return () => {
-      handleDeleteLastEmpty();
-    }
   }, []);
 
   useEffect(() => {

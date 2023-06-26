@@ -2,16 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 import { addNewF, updateF } from '../helpers/dataController';
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
 export const fetchGetCvCourses = createAsyncThunk('education/fetchGetCvCourses', async ({ idCv }, thunkAPI) => {
     const response = await api.courses.getListCourses(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
 export const fetchPostUpdatePositionCourses = createAsyncThunk('countrus/fetchPostUpdatePositionCourses', async ({ idCv, data }, thunkAPI) => {
     const response = await api.courses.updatePosition(data);
     await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -40,6 +43,7 @@ export const fetchUpdateCourses = createAsyncThunk('countrus/fetchUpdateCourses'
     let { id, ...obj } = courseObj[index];
 
     const response = await api.courses.updateCoursesItem(id, updateF(obj, true));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

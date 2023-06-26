@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { isArray } from 'lodash';
 
 import api from "../apiSingleton";
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
 export const fetchGetCvReferences = createAsyncThunk('interhip/fetchGetCvReferences', async ({ idCv }) => {
     const response = await api.references.getListReferences(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -20,6 +21,7 @@ export const fetchPostAddCvOneReferences = createAsyncThunk('interhip/fetchPostA
 export const fetchPostUpdatePositionReferences = createAsyncThunk('countrus/fetchPostUpdatePositionReferences', async ({ idCv, data }, thunkAPI) => {
     const response = await api.references.updatePosition(data);
     await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -42,6 +44,7 @@ export const fetchUpdateReferences = createAsyncThunk('interhip/fetchUpdateRefer
     obj.full_name = fullName;
 
     const response = await api.references.updateReferencesItem(id, obj);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 

@@ -59,7 +59,9 @@ const FormCertificaties = ({
       if (!!data) {
          await dispatch(fetchPostAddCvOneCertificates({ idCv }));
          focusFieldInputClassName("name_new");
-         await dispatch(fetchGetListCertificates());
+         setTimeout(() => {
+            dispatch(fetchGetListCertificates());
+         }, 600);
       }
    }
 

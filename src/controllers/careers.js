@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 export const fetchGetCvCarreers = createAsyncThunk('careers/fetchGetCvCarreers', async ({ idCv }, thunkAPI) => {
     const response = await api.careers.getCvCarreers(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -23,6 +25,9 @@ export const fetchAddServer = createAsyncThunk('careers/fetchAddServer', async (
         await thunkAPI.dispatch(fetchGetCvCarreers({ idCv }));
     }
 
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
     return response;
 });
 
@@ -30,5 +35,7 @@ export const fetchUpdateServer = createAsyncThunk('careers/fetchUpdateServer', a
     const { careers: { data } } = thunkAPI.getState();
     const response = await api.careers.update(idCv, { data });
     await thunkAPI.dispatch(fetchGetCvCarreers({ idCv }));
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });

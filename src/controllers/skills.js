@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import api from "../apiSingleton";
 import { isUpdate } from '../helpers/checkingStatuses';
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 export const fetchGetSkillslistWork = createAsyncThunk('countrus/fetchGetSkillslistWork', async (params) => {
     const response = await api.skills.getSkillslistWork({ "query": params || '', limit: 10 });
@@ -13,26 +14,29 @@ export const fetchGetSkillslistSearch = createAsyncThunk('countrus/fetchGetSkill
     return response;
 });
 
-export const fetchGetSkillslistAll = createAsyncThunk('countrus/fetchGetSkillslistAll', async (id) => {
-    const response = await api.skills.getSkillslistAll(id);
+export const fetchGetSkillslistAll = createAsyncThunk('countrus/fetchGetSkillslistAll', async ({ idCv, isDrawing = false }, thunkAPI) => {
+    const response = await api.skills.getSkillslistAll(idCv);
+
+    if (isDrawing)
+        await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
 export const fetchPostAddSkillone = createAsyncThunk('countrus/fetchPostAddSkillone', async ({ idCv, data }, thunkAPI) => {
     const response = await api.skills.addItemSkillOne(idCv, data);
-    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    await thunkAPI.dispatch(fetchGetSkillslistAll({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchPostUpdateSkillone = createAsyncThunk('countrus/fetchPostUpdateSkillone', async ({ idCv, id, data }, thunkAPI) => {
     const response = await api.skills.updateItemSkillOne(id, data);
-    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    await thunkAPI.dispatch(fetchGetSkillslistAll({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchPostUpdatePositionSkills = createAsyncThunk('countrus/fetchPostUpdatePositionSkills', async ({ idCv, data }, thunkAPI) => {
     const response = await api.skills.updatePosition(data);
-    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    await thunkAPI.dispatch(fetchGetSkillslistAll({ idCv, isDrawing: true }));
     return response;
 });
 
@@ -43,12 +47,16 @@ export const getSkillsPositionStartOne = createAsyncThunk('countrus/getSkillsPos
 
 export const fetchPostDeleteSkillOne = createAsyncThunk('countrus/fetchPostDeleteSkillOne', async ({ idCv, id }, thunkAPI) => {
     const response = await api.skills.deleteItemSkillOne(id);
-    await thunkAPI.dispatch(fetchGetSkillslistAll(idCv));
+    await thunkAPI.dispatch(fetchGetSkillslistAll({ idCv, isDrawing: true }));
     return response;
 });
 
-export const fetchGetExperienceLevel = createAsyncThunk('countrus/fetchGetExperienceLevel', async ({ idCv }, thunkAPI) => {
+export const fetchGetExperienceLevel = createAsyncThunk('countrus/fetchGetExperienceLevel', async ({ idCv, isDrawing = false }, thunkAPI) => {
     const response = await api.skills.getExperienceLevel(idCv);
+
+    if (isDrawing)
+        await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
     return response;
 });
 
@@ -62,7 +70,7 @@ export const fetchUpdateExperienceLevel = createAsyncThunk('countrus/fetchUpdate
     const response = await api.skills.updateExperienceLevel(idCv, { hide_experience_level: data });
 
     if (isUpdate(response)) {
-        thunkAPI.dispatch(fetchGetExperienceLevel({ idCv }));
+        await thunkAPI.dispatch(fetchGetExperienceLevel({ idCv, isDrawing: true }));
     }
     return response;
 });
