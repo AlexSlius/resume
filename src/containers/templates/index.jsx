@@ -40,6 +40,7 @@ import {
     setUpdateCoverDataActive,
     getCoverTemplates,
 } from "../../controllers/cover/coverData";
+import { getCoverTextNoAuthNew } from "../../controllers/cover/personalize";
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
 
@@ -383,6 +384,9 @@ const Templates = ({
     }, [dataOther?.data, dataOther.resumeActive]);
 
     useEffect(() => {
+        if (isNewResume)
+            dispatch(getCoverTextNoAuthNew());
+
         if (!isPageView) {
             if (!isCover) {
                 if (isNewResume) {

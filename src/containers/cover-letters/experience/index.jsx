@@ -85,7 +85,7 @@ const Experience = () => {
     const states = useSelector((state) => state);
     const router = useRouter();
     const { step, idCv } = router.query;
-    let routerStetBack = backRoter(StepsName, step, idCv);
+    let routerStetBack = backRoter(StepsName, step, idCv, states.coverDataForm.coverDataObj);
 
     useEffect(() => {
         dispatch(postUpdateCategoryViewedStatusCover({ idCv, category: 'experience' }));
