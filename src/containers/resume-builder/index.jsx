@@ -20,7 +20,6 @@ import AddSections from "./addSection";
 
 import { fetchGetCountrys } from "../../controllers/dependencies"
 import { handleCVUpdateDrawingTrue } from "../../slices/resumeData";
-import { updateItemFieldContact } from "../../slices/contact"
 
 import { ROUTES } from "../../constants/routes";
 
@@ -31,29 +30,15 @@ const ResumeBuildter = () => {
             autorizate: {
                 isAthorized
             }
-        },
-        users: {
-            objFormSettings,
-            avatar,
-        },
+        }
     } = useSelector(state => state);
     const states = useSelector((state) => state);
     const router = useRouter();
     const idCv = router.query?.idCv;
     const tab = router.query?.tab;
-    const isNew = (idCv == "new");
 
     useEffect(() => {
         dispatch(fetchGetCountrys());
-
-        if (isNew && isAthorized) {
-            let { firstName, lastName, email } = objFormSettings;
-
-            dispatch(updateItemFieldContact({ name: "firstName", value: firstName }));
-            dispatch(updateItemFieldContact({ name: "lastName", value: lastName }));
-            dispatch(updateItemFieldContact({ name: "email", value: email }));
-            dispatch(updateItemFieldContact('picture', avatar?.image || null));
-        }
 
         return () => {
             dispatch(handleCVUpdateDrawingTrue());
@@ -72,7 +57,7 @@ const ResumeBuildter = () => {
                 )
             }
             {
-                isAthorized && (
+                (isAthorized && idCv != "new") && (
                     <>
                         {
                             (tab == ROUTES['employment']) && (

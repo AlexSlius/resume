@@ -255,10 +255,11 @@ const FormContact = ({
 
       if (isNewResume && isAthorized) {
          let { firstName, lastName, email } = objFormSettings;
-         handlerSetDateState('firstName', firstName);
-         handlerSetDateState('lastName', lastName);
-         handlerSetDateState('email', email);
-         handlerSetDateState('picture', avatar?.image || null);
+
+         !(contObj?.firstName?.length > 0) && handlerSetDateState('firstName', firstName);
+         !(contObj?.lastName?.length > 0) && handlerSetDateState('lastName', lastName);
+         !(contObj?.email?.length > 0) && handlerSetDateState('email', email);
+         !(contObj?.picture?.length > 0) && handlerSetDateState('picture', avatar?.image || null);
       }
    }, []);
 

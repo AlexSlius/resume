@@ -52,7 +52,7 @@ const MenuSideBar = () => {
             let pictureFile = sessionStorageGet('picture');
 
             if (isAthorized) {
-                dispatch(contactAddNew({ pictureFile, isNewResume }));
+                dispatch(contactAddNew({ pictureFile, isNewResume, link: link }));
             } else {
                 sendCodeResume({
                     dispatch,

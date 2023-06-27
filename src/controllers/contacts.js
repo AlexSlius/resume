@@ -10,8 +10,8 @@ import { addItemNotification } from "../slices/notifications";
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData: { resumeActiveNew }, users: { objFormSettings, avatar: { image } } } = thunkAPI.getState();
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined }, thunkAPI) => {
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar: { image } } } = thunkAPI.getState();
 
     const dataAccout = {
         email: objFormSettings?.email || '',
@@ -24,12 +24,12 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
 
     if (isRedirect) {
         if (isRespondServerSuccesss(response)) {
-            thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeActiveNew.id } }));
+            await thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
 
             if (isDashboard) {
                 await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[0].link}`);
             } else {
-                await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[1].link}`);
+                await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${link ? link : menuAsideResume.list[1].link}`);
             }
         }
     }

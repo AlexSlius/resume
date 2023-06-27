@@ -14,9 +14,15 @@ import {
     getCoverTemplates,
     getCoverShareTemplateActive
 } from "../controllers/cover/coverData";
-import { getCoverLetterById, getCoverDataShare, getCoverGenerateDate, getCoverTextNoAuthNew } from "../controllers/cover/personalize";
+import {
+    getCoverLetterById,
+    getCoverDataShare,
+    getCoverGenerateDate,
+    getCoverTextNoAuthNew
+} from "../controllers/cover/personalize";
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
+import { fetchGetResumeData } from "../controllers/resumeData";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -29,6 +35,7 @@ export const withPublicRoute = ({
     isPageCoverLetter = false,
     isItemCoverPage = false,
     isCoverNew = false,
+    isGetResumeDataAll = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
@@ -52,6 +59,10 @@ export const withPublicRoute = ({
 
             if (isCoverNew && ctx?.query?.idCv == "new" && ctx?.resolvedUrl?.includes("cover-letters")) {
                 await store.dispatch(getCoverTextNoAuthNew());
+            }
+
+            if (!!isGetResumeDataAll && (ctx?.query?.idCv != "new")) {
+                await store.dispatch(fetchGetResumeData({ idCv: ctx?.query?.idCv }));
             }
 
             if (!!isGetResumesTemplates) {

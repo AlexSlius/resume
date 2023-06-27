@@ -30,7 +30,7 @@ import {
 } from "../../slices/cover/coverData";
 
 import {
-    fetchGetResumeData,
+    // fetchGetResumeData,
     getResumeActive,
     setUpdateResumeActive,
     getResumesTemplates
@@ -405,7 +405,7 @@ const Templates = ({
             if (!isNewResume) {
                 if (!isCover) {
                     // get resume
-                    dispatch(fetchGetResumeData({ idCv }));
+                    // dispatch(fetchGetResumeData({ idCv }));
                     dispatch(getResumeActive({ idCv }));
                 } else {
                     // get cover 
