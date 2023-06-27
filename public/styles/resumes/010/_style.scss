@@ -87,12 +87,12 @@
       li {
         position: relative;
         list-style: none;
-        margin-left: 20px;
+        margin-left: 15px;
 
         &::before {
           content: " ";
           position: absolute;
-          left: -10px;
+          left: -15px;
           top: 50%;
           transform: translateY(-50%);
           display: block;
@@ -118,7 +118,6 @@
 
   .item-value-container {
     height: 3px;
-    width: 155px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -182,7 +181,7 @@
         flex-shrink: 0;
 
         .block-block {
-          margin-top: 15px;
+          margin-top: 12px;
           .date-range {
             display: flex;
             align-items: center;
