@@ -101,8 +101,8 @@ export const CoverCv006 = ({
                             {/* <h2 className="cv-heading cv-letter-heading main-color-1-text font-size-2 line-height-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                             <div className="cv-text cv-letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                         </div>
-                        <div className="cv-body-area bottom-area additional-color-1-background">
-                            <div className="cv-destination">
+                        <div className="cv-body-area bottom-area">
+                            <div className="cv-destination additional-color-1-background">
                                 <div className="cv-destination-block">
                                     <div className="destination-details">
                                         <div className="to-block block-block">
@@ -111,9 +111,7 @@ export const CoverCv006 = ({
                                         </div>
                                         <div className="from-block block-block">
                                             <p className="cv-heading main-color-2-text font-size-2">FROM</p>
-                                            <div className="cv-destination">
-                                                <p className="main-color-2-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
-                                            </div>
+                                            <p className="main-color-2-text" dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                         </div>
                                     </div>
                                 </div>
