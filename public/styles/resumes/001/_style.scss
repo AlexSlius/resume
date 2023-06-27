@@ -419,37 +419,42 @@
       }
 
       &.cv-body-2 {
-        .cv-body-area {
-          &.area-2 {
-            padding: 0 50px 20px;
-            .column-right {
-              .cv-heading {
-                margin-bottom: 0 !important;
+        .cv-body-content {
+          .cv-body-area {
+            &.area-1 {
+              padding: 35px 50px 20px;
+            }
+            &.area-2 {
+              padding: 0 50px 20px;
+              .column-right {
+                .cv-heading {
+                  margin-bottom: 0 !important;
+                }
               }
-            }
-            .cv-letter {
-              padding-top: 30px;
-              .cv-letter-heading {
-                margin-bottom: 23px;
+              .cv-letter {
+                padding-top: 30px;
+                .cv-letter-heading {
+                  margin-bottom: 23px;
+                }
               }
-            }
-            .cv-destination {
-              padding-top: 30px;
-              min-width: 144px;
-              max-width: 190px;
-            }
-            .cv-destination-block {
-              display: flex;
-              flex-direction: column;
-              align-items: stretch;
-              justify-content: stretch;
-              border-width: 1px;
-              border-style: solid;
-              padding: 20px 15px;
-              box-sizing: border-box;
-              .cv-sender {
-                margin-bottom: 10px;
-                word-break: break-all;
+              .cv-destination {
+                padding-top: 30px;
+                min-width: 144px;
+                max-width: 190px;
+              }
+              .cv-destination-block {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: stretch;
+                border-width: 1px;
+                border-style: solid;
+                padding: 20px 15px;
+                box-sizing: border-box;
+                .cv-sender {
+                  margin-bottom: 10px;
+                  word-break: break-all;
+                }
               }
             }
           }
