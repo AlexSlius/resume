@@ -116,7 +116,6 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 14px;
     row-gap: 8px;
 
     .skill-item {
@@ -254,7 +253,7 @@
           padding: 0 25px;
           .separator {
             border-left: 1px dotted $main_color_1;
-            margin-left: 28px;
+            margin-left: 20px;
           }
         }
 
@@ -435,8 +434,6 @@
     }
 
     .skills-estimation-block {
-      margin-top: 14px !important;
-
       .skill-item {
         .skill-estimation {
           svg {
@@ -659,6 +656,14 @@
     .font-size-4 {
       font-size: 24px;
     }
+    
+    .profile-secondary-info {
+      .profile-item {
+        .name {
+          width: 60px;
+        }
+      }
+    }
   }
 
   .font-size-scheme-state-medium {
@@ -677,6 +682,14 @@
     .font-size-4 {
       font-size: 26px;
     }
+
+    .profile-secondary-info {
+      .profile-item {
+        .name {
+          width: 75px;
+        }
+      }
+    }
   }
 
   .font-size-scheme-state-big {
@@ -694,6 +707,14 @@
 
     .font-size-4 {
       font-size: 28px;
+    }
+
+    .profile-secondary-info {
+      .profile-item {
+        .name {
+          width: 85px;
+        }
+      }
     }
   }
 
