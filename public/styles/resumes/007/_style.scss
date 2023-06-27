@@ -191,7 +191,7 @@
 
             .left-side {
               width: 71px;
-              padding: 48px 15px 0 0;
+              padding: 44px 15px 0 0;
               position: relative;
               box-sizing: border-box;
 
@@ -219,7 +219,7 @@
 
             .right-side {
               flex: 1;
-              padding: 30px 15px 0;
+              padding: 25px 15px 0;
 
               .circle-point {
                 display: block;
@@ -240,13 +240,11 @@
               .right-side {
                 padding-top: 10px;
               }
+            }
 
-              &:last-of-type {
-                .left-side {
-                  .dotted-line {
-                    height: 15px;
-                  }
-                }
+            &:last-child {
+              .right-side {
+                padding-bottom: 30px;
               }
             }
           }
@@ -482,35 +480,6 @@
     margin-left: -188px;
   }
 
-  .internships-block {
-    &:last-child {
-      .left-side {
-        .dotted-line {
-          height: 52px;
-        }
-      }
-
-      .right-side {
-        padding-bottom: 30px !important;
-      }
-    }
-  }
-
-  .courses-block {
-
-    &:last-child {
-      .left-side {
-        .dotted-line {
-          height: 52px;
-        }
-      }
-
-      .right-side {
-        padding-bottom: 30px !important;
-      }
-    }
-  }
-
   .cv-destination {
     width: 100%;
 
@@ -613,7 +582,12 @@
           .information-area-2 {
             .block-block {
               .left-side {
-                padding-top: 50px;
+                padding-top: 44px;
+              }
+              .right-side {
+                .circle-point {
+                  top: 2px;
+                }
               }
               &.block-net {
                 .left-side {
@@ -658,7 +632,12 @@
           .information-area-2 {
             .block-block {
               .left-side {
-                padding-top: 50px;
+                padding-top: 46px;
+              }
+              .right-side {
+                .circle-point {
+                  top: 3px;
+                }
               }
               &.block-net {
                 .left-side {
