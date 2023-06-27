@@ -88,7 +88,7 @@ export const LoginPage = () => {
                                         type="submit"
                                         color="blue"
                                         disabled={!validEmail(email)}
-                                    >Next</CButton>
+                                    ><span>Next</span></CButton>
                                 </LoadChildrenBtn>
                             </CCol>
                         </CRow>

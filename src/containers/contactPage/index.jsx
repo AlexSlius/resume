@@ -141,7 +141,7 @@ export const ContactPage = () => {
                                             className={`btn_form`}
                                             type="submit"
                                             color="blue"
-                                        >Pay $44.95</CButton>
+                                        ><span>Pay $44.95</span></CButton>
                                     </LoadChildrenBtn>
                                 </CCol>
                             </CRow>

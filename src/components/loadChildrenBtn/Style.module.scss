@@ -26,5 +26,17 @@
             z-index: 4;
             background: url('/images/icons/preloader-blue.svg') center/contain no-repeat;
         }
+
+        span,
+        svg,
+        img {
+            transition: 0.3s;
+        }
+
+        span,
+        svg,
+        img {
+            opacity: 0;
+        }
     }
 }

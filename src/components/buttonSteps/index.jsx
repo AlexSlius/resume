@@ -87,7 +87,9 @@ export const ButtonSteps = ({
                     isFinish ? (
                         <div>
                             <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
-                                <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>Finish</CButton>
+                                <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>
+                                    <span>Finish</span>
+                                </CButton>
                             </ComponentHigherLoadBtn>
                         </div>
                     ) : (
@@ -100,12 +102,16 @@ export const ButtonSteps = ({
                                             type="button"
                                             className={`${style.btn} ${style.btn_prev}`}
                                             onClick={disabledNext ? () => { clickFinish("skip") } : onHandleClean}
-                                        >{disabledNext ? "Template" : "Delete all"}</CButton>
+                                        >
+                                            <span>{disabledNext ? "Template" : "Delete all"}</span>
+                                        </CButton>
                                     </LoadChildrenBtn>
                                 </div>
                                 <div>
                                     <LoadChildrenBtn isLoad={loadFinish}>
-                                        <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>Finish</CButton>
+                                        <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>
+                                            <span>Finish</span>
+                                        </CButton>
                                     </LoadChildrenBtn>
                                 </div>
                             </>
@@ -120,7 +126,9 @@ export const ButtonSteps = ({
                                                     type="button"
                                                     className={`${style.btn} ${style.btn_prev}`}
                                                     onClick={disabledNext ? () => { clickNext("skip") } : onHandleClean}
-                                                >{disabledNext ? textBtnPrev : "Delete all"}</CButton>
+                                                >
+                                                    <span>{disabledNext ? textBtnPrev : "Delete all"}</span>
+                                                </CButton>
                                             </LoadChildrenBtn>
                                         </div>
                                     )
@@ -134,12 +142,16 @@ export const ButtonSteps = ({
                                                     className={`${style.btn} ${style.btn_next}`}
                                                     onClick={() => clickNext(true)}
                                                     disabled={disabledNext}
-                                                >{textBtnNext}</CButton>
+                                                >
+                                                    <span>{textBtnNext}</span>
+                                                </CButton>
                                             </LoadChildrenBtn>
                                         </div>
                                     ) : (
                                         <LoadChildrenBtn isLoad={loadFinish}>
-                                            <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>Finish</CButton>
+                                            <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={() => clickFinish("finish")}>
+                                                <span>Finish</span>
+                                            </CButton>
                                         </LoadChildrenBtn>
                                     )
                                 }

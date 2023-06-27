@@ -200,7 +200,7 @@ const Settings = () => {
                     </CCol>
                     <CCol xl={12} className={`mt-4 ${style.wr_btn_form}`}>
                         <LoadChildrenBtn isLoad={isLoader(statusDelete)}>
-                            <CButton type="button" className="btn-red min-220" onClick={handleDeleteProfile}>Delete Account</CButton>
+                            <CButton type="button" className="btn-red min-220" onClick={handleDeleteProfile}><span>Delete Account</span></CButton>
                         </LoadChildrenBtn>
                     </CCol>
                 </CRow>

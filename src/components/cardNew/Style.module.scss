@@ -19,6 +19,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: 0.3s;
 
             svg {
                 width: 20px;
@@ -58,6 +59,10 @@
                 width: 20px;
                 height: 20px;
                 background: url("/../images/icons/preloader-blue.svg?sprite") center/contain no-repeat;
+            }
+
+            & > div {
+                opacity: 0;
             }
         }
     }
