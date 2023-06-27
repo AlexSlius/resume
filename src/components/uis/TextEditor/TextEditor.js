@@ -1,10 +1,9 @@
-import * as React from 'react';
+import { useRef, useEffect, useState } from 'react';
 import {
     ContentState,
     Editor,
     EditorState,
     convertFromHTML,
-    convertToRaw,
 } from 'draft-js';
 
 import { convertToHTML } from "draft-convert"
@@ -26,25 +25,26 @@ const TextEditor = ({
     data = [],
     nTimeMs = 500,
     labelEmpty = "Empty list",
-    isLoad = false,
     isAddModal = false,
     keys = "name",
     defParams = "",
-    updatenIsNew = null
+    updatenIsNew = null,
+    isClean = false,
+    setIsClean = () => { },
 }) => {
-    const [state, setState] = React.useState(() => EditorState.createEmpty());
+    const [state, setState] = useState(() => EditorState.createEmpty());
 
-    const refStart = React.useRef(false);
-    const refMod = React.useRef(undefined);
-    const editorRef = React.useRef(null);
-    const reBtn = React.useRef(undefined);
-    const refWr = React.useRef(undefined);
-    const refCurentClass = React.useRef(undefined);
-    const refIdTimeout = React.useRef(null);
-    const refTriger = React.useRef(undefined);
-    const refIdDispatchTimeout = React.useRef(null);
-    const [modalClass, setmodalClass] = React.useState('');
-    const [textSearch, setTextSearch] = React.useState('');
+    const refStart = useRef(false);
+    const refMod = useRef(undefined);
+    const editorRef = useRef(null);
+    const reBtn = useRef(undefined);
+    const refWr = useRef(undefined);
+    const refCurentClass = useRef(undefined);
+    const refIdTimeout = useRef(null);
+    const refTriger = useRef(undefined);
+    const refIdDispatchTimeout = useRef(null);
+    const [modalClass, setmodalClass] = useState('');
+    const [textSearch, setTextSearch] = useState('');
 
     let isOpen = modalClass.includes('open') ? true : false;
 
@@ -81,7 +81,7 @@ const TextEditor = ({
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         const blocksFromHTML = convertFromHTML(devValue || "");
 
         const states = ContentState.createFromBlockArray(
@@ -144,7 +144,7 @@ const TextEditor = ({
         }
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         let blocksFromHTML = convertFromHTML(devValue || "");
 
         const states = ContentState.createFromBlockArray(
@@ -155,7 +155,22 @@ const TextEditor = ({
         setState(EditorState.createWithContent(states));
     }, [updatenIsNew]); // devValue
 
-    React.useEffect(() => {
+    useEffect(() => {
+        if (isClean) {
+            let blocksFromHTML = convertFromHTML("");
+
+            const states = ContentState.createFromBlockArray(
+                blocksFromHTML.contentBlocks,
+                blocksFromHTML.entityMap
+            );
+
+            setState(EditorState.createWithContent(states));
+
+            setIsClean(false);
+        }
+    }, [isClean]);
+
+    useEffect(() => {
         if (isAddModal) {
             if (textSearch.length > 0) {
 
@@ -171,7 +186,7 @@ const TextEditor = ({
         }
     }, [textSearch]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (refTriger.current === undefined) {
             refTriger.current = "one render";
         } else {
@@ -197,7 +212,7 @@ const TextEditor = ({
         }
     }, [state.getCurrentContent()]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setTextSearch('');
         if (isOpen) {
             handleServerRequest(defParams ? defParams : textSearch, !!textSearch?.length);

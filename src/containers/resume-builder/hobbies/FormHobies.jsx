@@ -2,7 +2,7 @@ import {
    CCol,
    CRow,
 } from "@coreui/react";
-import React from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd-next"
 
@@ -12,6 +12,7 @@ import { ButtonSteps } from "../../../components/buttonSteps"
 import { fetchGetHobies } from "../../../controllers/dependencies";
 import { reorder } from '../../../helpers/drageDrop';
 import { isObjDatas } from '../../../helpers/datasPage';
+import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 import {
    updateItemHobiesFiledNew,
@@ -59,6 +60,7 @@ const FormHobies = ({
       if (isClisk) {
          dispatch(fetchPostAddCvHobie({ idCv, data: { [name]: value, id: data.id, position: newPosition(hobiesObj) } }));
          dispatch(updateItemHobiesFiledNew({ name, value: '' }));
+         focusFieldInputClassName('hobby_new');
       }
    }
 
@@ -87,7 +89,7 @@ const FormHobies = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(fetchGetHobies());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'hobbies' }));
    }, []);
@@ -125,7 +127,7 @@ const FormHobies = ({
                            )
                         }
                         {provided.placeholder}
-                        <CCol xs={6}>
+                        <CCol xs={6} className='hobby_new'>
                            <InputSelect
                               placeholder="Search hobby"
                               valueState={hobieObjNew.text || ""}

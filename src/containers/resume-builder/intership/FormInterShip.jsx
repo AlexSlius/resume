@@ -154,17 +154,6 @@ const FormInterShip = ({
       dispatch(fetchDeleteInternships({ idCv, id }));
    }
 
-   const handleDeleteLastEmpty = () => {
-      let resObj = lastFormDelete({
-         data: refData.current,
-         dependence: keysFiled,
-      });
-
-      if (resObj?.id) {
-         handleDeleteOne(resObj.id);
-      }
-   }
-
    const handleAddOne = async () => {
       let isAddNew = isAddForm({
          data: interhipObj,
@@ -237,10 +226,6 @@ const FormInterShip = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
-
-      return () => {
-         handleDeleteLastEmpty();
-      }
    }, []);
 
    useEffect(() => {

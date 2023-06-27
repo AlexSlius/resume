@@ -5,16 +5,18 @@ import { addNewF, updateF } from '../helpers/dataController';
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
-export const fetchGetCvCourses = createAsyncThunk('education/fetchGetCvCourses', async ({ idCv }, thunkAPI) => {
+export const fetchGetCvCourses = createAsyncThunk('education/fetchGetCvCourses', async ({ idCv, isDrawing = false }, thunkAPI) => {
     const response = await api.courses.getListCourses(idCv);
-    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
+    if (isDrawing)
+        await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
     return response;
 });
 
 export const fetchPostUpdatePositionCourses = createAsyncThunk('countrus/fetchPostUpdatePositionCourses', async ({ idCv, data }, thunkAPI) => {
     const response = await api.courses.updatePosition(data);
-    await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
-    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    await thunkAPI.dispatch(fetchGetCvCourses({ idCv, isDrawing: true }));
     return response;
 });
 
@@ -22,19 +24,19 @@ export const fetchPostAddCvOneCourses = createAsyncThunk('education/fetchPostAdd
     const { courses: { objNew } } = thunkAPI.getState();
 
     const response = await api.courses.addCoursesItem(idCv, { ...addNewF(objNew), position });
-    await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvCourses({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteCourses = createAsyncThunk('countrus/fetchDeleteHobie', async ({ idCv, id }, thunkAPI) => {
     const response = await api.courses.deleteCoursesItem(id);
-    await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvCourses({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteAll = createAsyncThunk('courses/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
     const response = await api.courses.cleanAll(idCv);
-    await thunkAPI.dispatch(fetchGetCvCourses({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvCourses({ idCv, isDrawing: true }));
     return response;
 });
 

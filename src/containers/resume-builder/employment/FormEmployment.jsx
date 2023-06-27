@@ -33,7 +33,7 @@ import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { cardData } from "../../../utils";
-import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
+import { isAddForm, isFocusForm } from '../../../utils/isAddNewFormResume';
 
 import {
   fetchPostAddCvOneEmployment,
@@ -278,7 +278,6 @@ const FormEmployment = ({
         isArray(employmentObj) && (employmentObj.length > 0) && (
           <CRow>
             <CCol>
-              {/* <LoadWr isLoad={isLoader(status)}> */}
               <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
                 <Droppable droppableId="droppable">
                   {
@@ -416,7 +415,6 @@ const FormEmployment = ({
                   }
                 </Droppable>
               </DragDropContext>
-              {/* </LoadWr> */}
             </CCol>
           </CRow>
         )

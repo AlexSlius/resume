@@ -4,9 +4,12 @@ import api from "../apiSingleton";
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
-export const fetchGetCvReferences = createAsyncThunk('interhip/fetchGetCvReferences', async ({ idCv }) => {
+export const fetchGetCvReferences = createAsyncThunk('interhip/fetchGetCvReferences', async ({ idCv, isDrawing = false }, thunkAPI) => {
     const response = await api.references.getListReferences(idCv);
-    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
+    if (isDrawing)
+        await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
     return response;
 });
 
@@ -14,26 +17,25 @@ export const fetchPostAddCvOneReferences = createAsyncThunk('interhip/fetchPostA
     const { references: { objNew } } = thunkAPI.getState();
 
     const response = await api.references.addReferencesItem(idCv, { ...objNew, position });
-    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchPostUpdatePositionReferences = createAsyncThunk('countrus/fetchPostUpdatePositionReferences', async ({ idCv, data }, thunkAPI) => {
     const response = await api.references.updatePosition(data);
-    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
-    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteReferences = createAsyncThunk('interhip/fetchDeleteReferences', async ({ idCv, id }, thunkAPI) => {
     const response = await api.references.deleteReferencesItem(id);
-    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv, isDrawing: true }));
     return response;
 });
 
 export const fetchDeleteAll = createAsyncThunk('references/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
     const response = await api.references.cleanAll(idCv);
-    await thunkAPI.dispatch(fetchGetCvReferences({ idCv }));
+    await thunkAPI.dispatch(fetchGetCvReferences({ idCv, isDrawing: true }));
     return response;
 });
 
@@ -45,6 +47,7 @@ export const fetchUpdateReferences = createAsyncThunk('interhip/fetchUpdateRefer
 
     const response = await api.references.updateReferencesItem(id, obj);
     await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
     return response;
 });
 

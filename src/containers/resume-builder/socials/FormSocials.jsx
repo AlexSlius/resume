@@ -2,14 +2,12 @@ import {
    CCol,
    CRow,
 } from "@coreui/react";
-import React from "react";
+import {useEffect} from "react";
 import { isArray } from "lodash";
 
 import Input from "../../../components/uis/input"
-import { LoadWr } from "../../../components/loadWr";
 import { InputSelect } from "../../../components/uis/inputSelect"
 import { ButtonSteps } from "../../../components/buttonSteps"
-import { isLoader } from "../../../helpers/loadings"
 import { isObjDatas } from '../../../helpers/datasPage';
 import { fetchGetSocials } from "../../../controllers/dependencies";
 
@@ -17,7 +15,6 @@ import { updateItemSocialFiled, updateItemSocialFiledNew } from "../../../slices
 import {
    fetchAddItemLink,
    fetchUpdateItemLink,
-   fetchGetAllLinks,
    fetchDeleteItemLink,
    fetchDeleteAll
 } from "../../../controllers/socials";
@@ -36,7 +33,6 @@ const FormSocials = ({
       socials: {
          socialObj,
          socialObjNew,
-         statusList,
       },
       auth: {
          autorizate: {
@@ -92,71 +88,68 @@ const FormSocials = ({
       dispatch(fetchDeleteAll({ idCv }));
    }
 
-   React.useEffect(() => {
+   useEffect(() => {
       dispatch(fetchGetSocials());
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'socialLinks' }));
    }, []);
 
    return (
       <>
-         {/* isLoad={isLoader(statusList)} */}
-         <LoadWr >
-            {
-               isArray(socialObj) && socialObj.map((item, index) => (
-                  <CRow
-                     className="g-30 r-gap-30"
-                     key={index}
-                  >
-                     <CCol xs={6} className="mb-4">
-                        <InputSelect
-                           label="Label"
-                           valueState={item.name || ""}
-                           data={socials.list}
-                           handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj, name: "name" })}
-                           handleServerRequest={handleGetSocial}
-                           isOutDataObj={false}
-                           isIconArrow={true}
-                           isRequire={true}
-                           isValidIn={true}
-                           validIn={item.name?.length > 2}
-                        />
-                     </CCol>
-                     <CCol xs={6} className="mb-4">
-                        <Input
-                           id={item.id}
-                           placeholder="Link"
-                           value={item.link}
-                           name="link"
-                           isDelete={true}
-                           onDelete={handleDeleteitem}
-                           onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
-                           onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
-                           isValidIn={true}
-                           validIn={item.link?.length > 4}
-                        />
-                     </CCol>
-                  </CRow>
-               ))
-            }
-            <CRow
-               className="g-30 r-gap-30"
-            >
-               <CCol xs={6} className="mb-4">
-                  <InputSelect
-                     label="Label"
-                     placeholder="Label"
-                     valueState={socialObjNew.name || ""}
-                     data={socials.list}
-                     handleSaveSelect={(obj) => updateitemFiledNew({ ...obj, name: "name" })}
-                     handleServerRequest={handleGetSocial}
-                     isOutDataObj={false}
-                     isIconArrow={true}
-                     isValidIn={true}
-                     validIn={socialObjNew.name?.length > 4}
-                  />
-               </CCol>
-            </CRow>
-         </LoadWr>
+         {
+            isArray(socialObj) && socialObj.map((item, index) => (
+               <CRow
+                  className="g-30 r-gap-30"
+                  key={index}
+               >
+                  <CCol xs={6} className="mb-4">
+                     <InputSelect
+                        label="Label"
+                        valueState={item.name || ""}
+                        data={socials.list}
+                        handleSaveSelect={(obj) => updateitemFiled({ id: item.id, index, isClickSelect: true, link: item.link, ...obj, name: "name" })}
+                        handleServerRequest={handleGetSocial}
+                        isOutDataObj={false}
+                        isIconArrow={true}
+                        isRequire={true}
+                        isValidIn={true}
+                        validIn={item.name?.length > 2}
+                     />
+                  </CCol>
+                  <CCol xs={6} className="mb-4">
+                     <Input
+                        id={item.id}
+                        placeholder="Link"
+                        value={item.link}
+                        name="link"
+                        isDelete={true}
+                        onDelete={handleDeleteitem}
+                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
+                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
+                        isValidIn={true}
+                        validIn={item.link?.length > 4}
+                     />
+                  </CCol>
+               </CRow>
+            ))
+         }
+         <CRow
+            className="g-30 r-gap-30"
+         >
+            <CCol xs={6} className="mb-4">
+               <InputSelect
+                  label="Label"
+                  placeholder="Label"
+                  valueState={socialObjNew.name || ""}
+                  data={socials.list}
+                  handleSaveSelect={(obj) => updateitemFiledNew({ ...obj, name: "name" })}
+                  handleServerRequest={handleGetSocial}
+                  isOutDataObj={false}
+                  isIconArrow={true}
+                  isValidIn={true}
+                  validIn={socialObjNew.name?.length > 4}
+               />
+            </CCol>
+         </CRow>
          <CRow >
             <CCol>
                <ButtonSteps

@@ -131,17 +131,6 @@ const FormReference = ({
       dispatch(fetchDeleteReferences({ idCv, id }));
    }
 
-   const handleDeleteLastEmpty = () => {
-      let resObj = lastFormDelete({
-         data: refData.current,
-         dependence: keysFiled,
-      });
-
-      if (resObj?.id) {
-         handleDeleteOne(resObj.id);
-      }
-   }
-
    const handleAddOne = async () => {
       let isAddNew = isAddForm({
          data: referencesObj,
@@ -191,10 +180,6 @@ const FormReference = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
-
-      return () => {
-         handleDeleteLastEmpty();
-      }
    }, []);
 
    useEffect(() => {

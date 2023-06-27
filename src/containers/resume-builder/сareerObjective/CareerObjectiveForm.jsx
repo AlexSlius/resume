@@ -32,6 +32,7 @@ const FormSocials = ({
 }) => {
     const refIdTimeout = useRef(undefined);
     const [update, setUpdate] = useState(null);
+    const [isClean, setIsClean] = useState(false);
 
     const {
         dependencies: {
@@ -74,6 +75,7 @@ const FormSocials = ({
 
     const handleClean = () => {
         dispatch(fetchDeleteAll({ idCv }));
+        setIsClean(true);
     }
 
     const handleUpdateServer = async (index) => {
@@ -123,6 +125,8 @@ const FormSocials = ({
                             isAddModal={false}
                             devValue={data}
                             updatenIsNew={update}
+                            isClean={isClean}
+                            setIsClean={setIsClean}
                             handleServeDispatchContent={(textContent) => handleUpdateText(textContent)}
                         />
                     </div>

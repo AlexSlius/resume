@@ -126,17 +126,6 @@ const FormActivity = ({
       dispatch(fetchDeleteActivitys({ idCv, id }));
    }
 
-   const handleDeleteLastEmpty = () => {
-      let resObj = lastFormDelete({
-         data: refData.current,
-         dependence: keysFiled,
-      });
-
-      if (resObj?.id) {
-         handleDeleteOne(resObj.id);
-      }
-   }
-
    const handleAddOne = async () => {
       let isAddNew = isAddForm({
          data: activityObj,
@@ -213,10 +202,6 @@ const FormActivity = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
-
-      return () => {
-         handleDeleteLastEmpty();
-      }
    }, []);
 
    useEffect(() => {
