@@ -419,8 +419,11 @@
       }
 
       .column-right {
+        .information-block {
+          margin-top: 0;
+        }
         .destination-block {
-          padding: 122px 13px 125px 13px;
+          padding: 64px 13px 125px 13px;
 
           .block-from {
             margin-top: 20px;
