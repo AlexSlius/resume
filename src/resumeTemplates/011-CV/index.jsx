@@ -212,57 +212,56 @@ export const ResumeCv011 = ({
     <div className="sv_011" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-0`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1">
-          <div className="cv-body-content">
+          <div className="cv-body-content font-size-2 main-color-1-text">
             <div className="column-left">
               <div className="personal-info-block">
                 {
                   !!contact?.[0]?.picture && (
                     <div className="photo-block">
-                      <img src={contact?.[0]?.picture} />
-                      <div className="photo-overlay additional-color-2-background"></div>
+                      <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                     </div>
                   )
                 }
                 <div className="personal-info">
                   {
                     isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
-                      <h1 className="cv-name font-size-6 line-height-6 font-weight-400 additional-color-2-text">
+                      <h1 className="cv-name font-size-6 additional-color-2-text">
                         {!!contact?.[0]?.firstName && (contact?.[0]?.firstName)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}
                       </h1>
                     )
                   }
                   {
                     isArray(contact) && contact?.[0]?.jobTitle && (
-                      <h2 className="cv-prophecy font-size-3 line-height-3 font-weight-400 additional-color-3-text">{contact?.[0]?.jobTitle.toUpperCase()}</h2>
+                      <h2 className="cv-prophecy font-size-3 additional-color-3-text">{contact?.[0]?.jobTitle.toUpperCase()}</h2>
                     )
                   }
                   <div className="personal-additional-info">
                     {
                       !!contact?.[0]?.nationality && (
                         <div className="info-item">
-                          <p className="info-item-name font-size-2 line-height-2 font-weight-400 additional-color-3-text">N AT I O N A L I T Y</p>
-                          <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text">{contact?.[0]?.nationality}</p>
+                          <p className="info-item-name additional-color-3-text">Nationality</p>
+                          <p className="info-item-value additional-color-1-text">{contact?.[0]?.nationality}</p>
                         </div>
                       )
                     }
                     {
                       !!contact?.[0]?.driverLicense && (
                         <div className="info-item">
-                          <p className="info-item-name font-size-2 line-height-2 font-weight-400 additional-color-3-text">D R I V I N G L I C E N S E</p>
-                          <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text">{contact?.[0]?.driverLicense}</p>
+                          <p className="info-item-name additional-color-3-text">Drivinglicense</p>
+                          <p className="info-item-value additional-color-1-text">{contact?.[0]?.driverLicense}</p>
                         </div>
                       )
                     }
                     {
                       (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth) && (
                         <div className="info-item">
-                          <p className="info-item-name font-size-2 line-height-2 font-weight-400 additional-color-3-text">D A T E / P L A C E O F B I R T H</p>
+                          <p className="info-item-name additional-color-3-text">Date/PlaceOfBirth</p>
                           {!!contact?.[0]?.dateOfBirth && (
-                            <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</p>
+                            <p className="info-item-value additional-color-1-text">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</p>
                           )}
                           {
                             !!contact?.[0]?.placeOfBirth && (
-                              <p className="info-item-value font-size-2 line-height-2 font-weight-400 additional-color-1-text"> {contact?.[0]?.placeOfBirth}</p>
+                              <p className="info-item-value additional-color-1-text"> {contact?.[0]?.placeOfBirth}</p>
                             )
                           }
                         </div>
@@ -274,32 +273,34 @@ export const ResumeCv011 = ({
               {
                 !!career_objective?.[0]?.data && (
                   <div className="profile-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Profile</h3>
-                    <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Profile</h3>
+                    <p className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
                   </div>
                 )
               }
               {
                (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                   <div className="employment-history-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Employment History</h3>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Employment History</h3>
                     {
                       employment.map((itemEm, index) => (
-                        <div key={index}>
-                          <p className="block-subheading font-size-3 line-height-3 font-weight-400 additional-color-3-text">
+                        <div className="block-info" key={index}>
+                          <p className="block-subheading font-size-3 additional-color-3-text">
                             {!!itemEm?.title && (`${itemEm?.title}, `)}
                             {!!itemEm?.company && (` ${itemEm?.company}, `)}
                             {!!itemEm?.city && (`${itemEm?.city} `)}
                           </p>
                           {
                             (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range font-size-1 line-height-1 font-weight-300 additional-color-1-text">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range font-size-1 additional-color-1-text">
+                                {!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)}
+                                {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}
+                              </p>
                             )
                           }
-                          <div className="text-block-wrapper font-size-2 line-height-2 font-weight-400 additional-color-1-text">
+                          <div className="text-block-wrapper additional-color-1-text">
                             <div className="text-block">
                               <div className="left-side">
-                                <div className="circle-point additional-color-3-background"></div>
                                 <div className="vertical-line additional-color-3-background"></div>
                               </div>
                               <div className="right-side" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
@@ -314,21 +315,28 @@ export const ResumeCv011 = ({
               {
                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                   <div className="education-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Education History</h3>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Education History</h3>
                     {
                       education.map((itemEd, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemEd?.study) && (
-                              <p className="block-subheading font-size-3 line-height-3 font-weight-400 additional-color-3-text">{itemEd?.facility && (`${itemEd.facility}, `)} {!!itemEd?.study && (`${itemEd?.study}, `)} {itemEd?.degree && (`${itemEd?.degree}`)} </p>
+                              <p className="block-subheading font-size-3 additional-color-3-text">
+                                {itemEd?.degree && (`${itemEd?.degree} - `)}
+                                {itemEd?.facility && (`${itemEd.facility}, `)}
+                                {!!itemEd?.study && (`${itemEd?.study}`)} 
+                              </p>
                             )
                           }
                           {
                             (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
-                              <p className="date-range font-size-1 line-height-1 font-weight-300 additional-color-1-text">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range font-size-1 additional-color-1-text">
+                                {!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)}
+                                {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}
+                              </p>
                             )
                           }
-                          <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
+                          <p className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
                         </div>
                       ))
                     }
@@ -338,19 +346,25 @@ export const ResumeCv011 = ({
               {
                 (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                   <div className="courses-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Courses</h3>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Courses</h3>
 
                     {
                       courses.map((itemCo, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemCo?.title || !!itemCo?.institution) && (
-                              <p className="block-subheading font-size-3 line-height-3 font-weight-400 additional-color-3-text">{!!itemCo?.title && (`${itemCo?.title},`)} {!!itemCo?.institution && (itemCo?.institution)}</p>
+                              <p className="block-subheading font-size-3 additional-color-3-text">
+                                {!!itemCo?.title && (`${itemCo?.title}, `)}
+                                {!!itemCo?.institution && (itemCo?.institution)}
+                              </p>
                             )
                           }
                           {
                             (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range font-size-2 line-height-2 font-weight-300 additional-color-1-text">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range additional-color-1-text">
+                                {!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)}
+                                {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}
+                              </p>
                             )
                           }
                         </div>
@@ -362,21 +376,27 @@ export const ResumeCv011 = ({
               {
                 (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                   <div className="extra-curricular-activities-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Extra-curricular activities</h3>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Extra-curricular activities</h3>
                     {
                       extra_curricular.map((itemEx, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemEx?.title || itemEx?.employer) && (
-                              <p className="block-subheading font-size-3 line-height-3 font-weight-400 additional-color-3-text">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
+                              <p className="block-subheading font-size-3 additional-color-3-text">
+                                {!!itemEx?.title && (`${itemEx?.title}, `)}
+                                {!!itemEx?.employer && (`${itemEx?.employer}`)}
+                              </p>
                             )
                           }
                           {
                             (!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
-                              <p className="date-range font-size-2 line-height-2 font-weight-300 additional-color-1-text">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range additional-color-1-text">
+                                {!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)}
+                                {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}
+                              </p>
                             )
                           }
-                          <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
+                          <p className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
                         </div>
                       ))
                     }
@@ -386,29 +406,28 @@ export const ResumeCv011 = ({
               {
                (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                   <div className="internships-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-5 line-height-5 font-weight-400 additional-color-2-text">Internships</h3>
+                    <h3 className="block-heading font-size-5 additional-color-2-text">Internships</h3>
                     {
                       internship.map((itemIn, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                              <p className="block-subheading font-size-3 line-height-3 font-weight-400 additional-color-3-text">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
+                              <p className="block-subheading font-size-3 additional-color-3-text">
+                                {!!itemIn.jobTitle && (`${itemIn?.jobTitle}, `)}
+                                {!!itemIn?.employer && (`${itemIn?.employer}, `)}
+                                {!!itemIn?.city && (`${itemIn?.city}`)}
+                              </p>
                             )
                           }
                           {
                             (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
-                              <p className="date-range font-size-2 line-height-2 font-weight-300 additional-color-1-text">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range additional-color-1-text">
+                                {!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)}
+                                {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}
+                              </p>
                             )
                           }
-                          <div className="text-block-wrapper font-size-2 line-height-2 font-weight-400 additional-color-1-text">
-                            <div className="text-block">
-                              <div className="left-side">
-                                <div className="circle-point additional-color-3-background"></div>
-                                <div className="vertical-line additional-color-3-background"></div>
-                              </div>
-                              <div className="right-side" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
-                            </div>
-                          </div>
+                          <p className="right-side" dangerouslySetInnerHTML={{ __html: itemIn.description }}></p>
                         </div>
                       ))
                     }
@@ -431,10 +450,13 @@ export const ResumeCv011 = ({
                           </div>
                           {
                             (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
-                              <p className="font-size-1 line-height-2 main-color-2-text font-weight-300">
-                                {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
-                                {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
-                              </p>
+                              <div className="right-side additional-color-1-text">
+                                {(`
+                                  ${!!contact?.[0]?.city && contact?.[0]?.city}, 
+                                  ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} 
+                                  ${!!contact?.[0]?.country && contact?.[0]?.country}
+                                `)}
+                              </div>
                             )
                           }
                         </div>
@@ -446,7 +468,7 @@ export const ResumeCv011 = ({
                                   <path d="M6.25081 6.74873C8.35247 8.8504 8.83456 6.41832 10.1725 7.75623C11.4616 9.0454 12.2037 9.3054 10.5679 10.9412C10.3621 11.1037 9.06206 13.0862 4.48498 8.51457C-0.0921061 3.93748 1.89039 2.63748 2.05289 2.43165C3.69414 0.790401 3.94873 1.5379 5.23789 2.82707C6.58123 4.16498 4.14914 4.64707 6.25081 6.74873Z" fill="white" />
                                 </svg>
                               </div>
-                              <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">{contact?.[0]?.phone}</div>
+                              <div className="right-side additional-color-1-text">{contact?.[0]?.phone}</div>
                             </div>
                           )
                         }
@@ -458,7 +480,7 @@ export const ResumeCv011 = ({
                                   <path fillRule="evenodd" clipRule="evenodd" d="M1.53242 3.67619C1.50446 3.78221 1.48958 3.89344 1.48958 4.00801V8.99134C1.48958 9.71176 2.07458 10.2913 2.78958 10.2913H10.2104C10.9308 10.2913 11.5104 9.71176 11.5104 8.99134V4.00801C11.5104 3.89151 11.4951 3.7787 11.4664 3.67143L7.76132 7.34958L7.76025 7.35065C7.04836 8.06143 5.94851 8.05619 5.23618 7.35299L5.23468 7.35151L1.53242 3.67619ZM10.3044 2.71137C10.2734 2.70914 10.242 2.70801 10.2104 2.70801H2.78958C2.75607 2.70801 2.72287 2.70927 2.69002 2.71176L6.28997 6.28551L6.29052 6.28605C6.42271 6.41611 6.57851 6.41107 6.70066 6.28892L6.7026 6.28698L6.7026 6.28699L10.3044 2.71137Z" fill="white" />
                                 </svg>
                               </div>
-                              <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">
+                              <div className="right-side additional-color-1-text">
                                 {contact?.[0]?.email}
                               </div>
                             </div>
@@ -469,14 +491,9 @@ export const ResumeCv011 = ({
                             social_links.map((item, index) => (
                               <div className="block-item" key={index}>
                                 <div className="left-side">
-                                  {/* <svg className="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.4993 10.4998H8.94645V8.06366C8.94645 7.48274 8.93609 6.73492 8.13882 6.73492C7.33002 6.73492 7.20626 7.36783 7.20626 8.02135V10.4996H5.65344V5.48996H7.14415V6.17457H7.16506C7.46858 5.65469 8.03503 5.34303 8.63589 5.36538C10.2098 5.36538 10.5 6.40241 10.5 7.75157L10.4993 10.4998Z" fill="white" />
-                                    <path d="M3.90121 4.80541C3.90112 4.80541 3.90107 4.80541 3.90103 4.80541C3.40667 4.80541 2.99988 4.39795 2.99988 3.90273C2.99988 3.4075 3.40667 3 3.90103 3C4.39533 3 4.80208 3.40741 4.80217 3.90254C4.80217 3.90259 4.80217 3.90263 4.80217 3.90273C4.80217 4.39786 4.39548 4.80536 3.90121 4.80541Z" fill="white" />
-                                    <path d="M4.67775 10.5H3.12329V5.49023H4.67775V10.5Z" fill="white" />
-                                  </svg> */}
                                   <img src={item.icon} />
                                 </div>
-                                <div className="right-side font-size-2 line-height-2 font-weight-400 additional-color-1-text">{item.name}</div>
+                                <div className="right-side additional-color-1-text">{item.name}</div>
                               </div>
                             ))
                           )
@@ -489,8 +506,8 @@ export const ResumeCv011 = ({
               {
                 isArray(certificates) && !!certificates.length && (
                   <div className="certificates-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-4 line-height-4 font-weight-400 additional-color-3-text">Certificates</h3>
-                    <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">
+                    <h3 className="block-heading font-size-4 additional-color-3-text">Certificates</h3>
+                    <div className="certificates-block-info additional-color-1-text">
                       {
                         certificates.map((item, index) => (
                           <span key={index}>
@@ -498,20 +515,20 @@ export const ResumeCv011 = ({
                           </span>
                         ))
                       }
-                    </p>
+                    </div>
                   </div>
                 )
               }
               {
                 (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-4 line-height-4 font-weight-400 additional-color-3-text">References</h3>
+                    <h3 className="block-heading font-size-4 additional-color-3-text">References</h3>
                     {
                       reference.map((itemRef, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemRef?.fullName || !!itemRef?.company) && (
-                              <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">
+                              <p className="additional-color-1-text">
                                 {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
                                 {!!itemRef?.company && (`${itemRef.company}`)}
                               </p>
@@ -519,12 +536,12 @@ export const ResumeCv011 = ({
                           }
                           {
                             !!itemRef?.email && (
-                              <p className="font-size-2 line-height-2 additional-color-1-text">{itemRef.email}</p>
+                              <p className="additional-color-1-text">{itemRef.email}</p>
                             )
                           }
                           {
                             !!itemRef.phone && (
-                              <p className="font-size-2 line-height-2 additional-color-1-text">{itemRef.phone}</p>
+                              <p className="additional-color-1-text">{itemRef.phone}</p>
                             )
                           }
                         </div>
@@ -536,8 +553,8 @@ export const ResumeCv011 = ({
               {
                  isArray(hobbies) && !!hobbies.length && (
                   <div className="hobbies-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-4 line-height-4 font-weight-400 additional-color-3-text">Hobbies</h3>
-                    <p className="font-size-2 line-height-2 additional-color-1-text">
+                    <h3 className="block-heading font-size-4 additional-color-3-text">Hobbies</h3>
+                    <p className="additional-color-1-text">
                       {
                         hobbies.map((item, index) => (
                           <span key={index}>
@@ -552,12 +569,12 @@ export const ResumeCv011 = ({
               {
                 !!(isArray(skills) && skills.length) && (
                   <div className="skills-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-4 line-height-4 font-weight-400 additional-color-3-text">Skills</h3>
+                    <h3 className="block-heading font-size-4 additional-color-3-text">Skills</h3>
                     <div className="skills-list estimated-items-list">
                       {
                         skills.map((item, index) => (
                           <div className="list-item" key={index}>
-                            <p className="item-name font-size-2 line-height-2 font-weight-400 additional-color-1-text">{item.name}</p>
+                            <p className="item-name additional-color-1-text">{item.name}</p>
                             {
                               !hide_experience_level && (
                                 <div className="estimation-wrapper">
@@ -576,12 +593,12 @@ export const ResumeCv011 = ({
               {
                 isArray(languages) && !!languages.length && (
                   <div className="languages-block block-block">
-                    <h3 className="block-heading heading-type-1 font-size-4 line-height-4 font-weight-400 additional-color-3-text">Languages</h3>
+                    <h3 className="block-heading font-size-4 additional-color-3-text">Languages</h3>
                     <div className="skills-list estimated-items-list">
                       {
                         languages.map((item, index) => (
                           <div className="list-item" key={index}>
-                            <p className="item-name font-size-2 line-height-2 font-weight-400 additional-color-1-text">{item.language}</p>
+                            <p className="item-name additional-color-1-text">{item.language}</p>
                             <div className="estimation-wrapper">
                               <div className="estimation-background additional-color-2-background"></div>
                               <div className="estimation-value additional-color-2-background" style={{ width: `${(+item.level * 100) / 6}%` }}></div>
