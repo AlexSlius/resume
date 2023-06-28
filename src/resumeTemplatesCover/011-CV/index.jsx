@@ -18,16 +18,17 @@ const drawing = () => {
 
             let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-            if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+            if (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
-                while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+                while (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
@@ -99,15 +100,15 @@ export const CoverCv011 = ({
     return (
         <div className="sv_011 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="resume">
-                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume page-2 font-size-scheme-1 line-height-scheme-1">
-                    <div className="cv-body-content">
+                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2">
+                    <div className="cv-body-content font-size-2 main-color-1-text">
                         <div className="column-left">
                             <div className="personal-data-block">
-                                <h1 className="cv-name font-size-5 line-height-6">{firstName}{` `} {lastName}</h1>
+                                <h1 className="cv-name font-size-6 additional-color-2-text">{firstName}{` `} {lastName}</h1>
                             </div>
                             <div className="letter-block">
                                 {/* <h2 className="block-heading letter-heading cv-letter-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
-                                <div className="letter-text  cv-letter-text font-size-2 line-height-2 font-weight-400 additional-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
+                                <div className="letter-text cv-letter-text additional-color-1-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>
                             </div>
                         </div>
                         <div className="column-right">
@@ -115,40 +116,35 @@ export const CoverCv011 = ({
                                 <div className="left-block additional-color-2-background"></div>
                                 <div className="right-block">
                                     <div className="destination-contacts-block">
-                                        {
-                                            (!!applyingCompanyName || !!applyingCompanyJobTitle || !!applyingCompanyTitle || applyingCompanyContact) && (
-                                                <>
-                                                    <div className="block-item">
-                                                        <div className="left-side"></div>
-                                                        <div className="right-side">
-                                                            <h3 className="block-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">To</h3>
-                                                        </div>
-                                                    </div>
-                                                    <div className="block-item">
-                                                        <div className="left-side">
-                                                            <svg className="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fillRule="evenodd" clipRule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
-                                                            </svg>
-                                                        </div>
-                                                        <div className="right-side">
-                                                            <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text"> {!!applyingCompanyName && (<>{applyingCompanyName}</>)}{` `}
-                                                                {!!applyingCompanyJobTitle && (<>{applyingCompanyJobTitle}<br /></>)}</p>
-                                                            <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">{!!applyingCompanyTitle && (<>{applyingCompanyTitle}</>)}{` `} {!!applyingCompanyContact && (<>{applyingCompanyContact}</>)}</p>
-                                                        </div>
-                                                    </div>
-                                                </>
-                                            )
+                                        {<>
+                                            <div className="block-item">
+                                                <div className="left-side"></div>
+                                                <div className="right-side">
+                                                    <h3 className="block-heading font-size-4 additional-color-3-text">To</h3>
+                                                </div>
+                                            </div>
+                                            <div className="block-item">
+                                                <div className="left-side">
+                                                    <svg className="main-color-2-svg" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fillRule="evenodd" clipRule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
+                                                    </svg>
+                                                </div>
+                                                <div className="right-side">
+                                                    <p dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                                </div>
+                                            </div>
+                                        </>
                                         }
                                         {
                                             (!!state || !!city || !!zipCode || !!country || !!phone || !!email) && (
                                                 <>
-                                                    <div className="block-item">
+                                                    <div className="block-item block-from">
                                                         <div className="left-side"></div>
                                                         <div className="right-side">
-                                                            <h3 className="block-heading font-size-4 line-height-4 font-weight-400 additional-color-3-text">From</h3>
+                                                            <h3 className="block-heading font-size-4 additional-color-3-text">From</h3>
                                                             {
                                                                 !!state && (
-                                                                    <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">{state}</p>
+                                                                    <p className="additional-color-1-text">{state}</p>
                                                                 )
                                                             }
                                                         </div>
@@ -160,7 +156,7 @@ export const CoverCv011 = ({
                                                             </svg>
                                                         </div>
                                                         <div className="right-side">
-                                                            <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">
+                                                            <p className="additional-color-1-text">
                                                                 {`${!!city ? (`${city}, `) : ""} ${!!zipCode ? (`${zipCode}, `) : ""} ${!!country ? (`${country}`) : ""}`}
                                                             </p>
                                                         </div>
@@ -174,7 +170,7 @@ export const CoverCv011 = ({
                                                                     </svg>
                                                                 </div>
                                                                 <div className="right-side">
-                                                                    <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">{phone}</p>
+                                                                    <p className="additional-color-1-text">{phone}</p>
                                                                 </div>
                                                             </div>
                                                         )
@@ -188,7 +184,7 @@ export const CoverCv011 = ({
                                                                     </svg>
                                                                 </div>
                                                                 <div className="right-side">
-                                                                    <p className="font-size-2 line-height-2 font-weight-400 additional-color-1-text">{email}</p>
+                                                                    <p className="additional-color-1-text">{email}</p>
                                                                 </div>
                                                             </div>
                                                         )
