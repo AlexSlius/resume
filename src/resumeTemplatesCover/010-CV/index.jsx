@@ -18,12 +18,12 @@ const drawing = () => {
 
             let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-            if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+            if (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
-                while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+                while (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
@@ -51,6 +51,7 @@ const drawing = () => {
             page_element.addClass(['cv-body-visible', 'page-' + letter_current_page_number]);
             let page_element_container = page_element.find('.cv-body-content');
 
+            page_element_container.find('.column-left .letter-block .cv-letter-heading').remove();
             page_element_container.find('.column-left .letter-block .cv-letter-text').remove();
 
             $('#cv-chapter-section-resume').append(page_element);
@@ -89,7 +90,7 @@ export const CoverCv010 = ({
     return (
         <div className="sv_010 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
-                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2 cv-body---resume page-2 font-size-scheme-1 line-height-scheme-1">
+                <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2">
                     <div className="cv-body-content font-size-2 additional-color-4-background additional-color-2-text">
                         <div className="column-left">
                             <h1 className="cv-name font-size-5">{firstName}{` `} {lastName}</h1>

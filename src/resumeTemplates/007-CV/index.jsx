@@ -129,7 +129,7 @@ const drawing = () => {
     }
 
     function checkHeight() {
-      return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
+      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
     }
 
     function getContentArea2() {

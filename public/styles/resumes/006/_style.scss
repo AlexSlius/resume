@@ -81,7 +81,7 @@
 
       .cv-body-area {
         &.top-area {
-          padding: 30px 30px 25px;
+          padding: 30px 30px 0;
 
           .profile-information {
             display: flex;
@@ -97,7 +97,6 @@
         }
 
         &.middle-area {
-          flex: 1;
           padding: 0px 30px;
         }
       }
@@ -176,7 +175,7 @@
             flex-direction: row;
             align-items: stretch;
             justify-content: space-between;
-            padding: 25px 25px 25px 30px;
+            padding: 25px 30px;
 
             .column-1 {
               flex: 1;
@@ -275,7 +274,8 @@
           &.bottom-area {
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: flex-end;
+            flex: 1;
             justify-content: space-between;
 
             .footer-block {
@@ -283,6 +283,8 @@
               align-items: center;
 
               svg {
+                width: 15px;
+                height: 15px;
                 margin-right: 5px;
               }
 
@@ -333,6 +335,12 @@
             }
           }
 
+          &.top-area {
+            .profile-information {
+              padding-top: 30px;
+            }
+          }
+
           &.middle-area {
             padding: 30px 50px;
 
@@ -342,15 +350,18 @@
           }
 
           &.bottom-area {
-            padding: 30px 51px;
-            min-height: 140px;
+            display: flex;
+            flex: 1;
+            align-items: flex-end;
+            min-height: 100px;
 
             .block-block {
               margin-top: 0px;
             }
 
             .cv-destination {
-              height: 100%;
+              padding: 30px 51px;
+              flex-basis: 100%;
 
               .cv-destination-block {
                 height: 100%;
