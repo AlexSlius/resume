@@ -81,7 +81,6 @@
   }
 
   .cv-name {
-    text-align: center;
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
   }
@@ -89,7 +88,6 @@
   .cv-prophecy {
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-align: center;
     margin-top: 2px;
     font-weight: 400;
   }
@@ -205,6 +203,7 @@
           .personal-info-block {
             display: flex;
             margin-bottom: 20px;
+            margin-left: 20px;
             .photo-block {
               width: 159px;
               height: 159px;
@@ -222,7 +221,7 @@
               padding-top: 30px;
               flex: 1;
               .personal-additional-info {
-                margin: 20px 0 0 46px;
+                margin-top: 20px;
                 .info-item {
                   &:not(:first-child) {
                     margin-top: 8px;
@@ -452,6 +451,28 @@
     &.has-photo {
       .photo-block {
         display: flex;
+      }
+      .cv-name {
+        text-align: center;
+      }
+      .cv-prophecy {
+        text-align: center;
+      }
+      .cv-body {
+        &.cv-body-1 {
+          .cv-body-content {
+            .column-left {
+              .personal-info-block {
+                margin-left: 0;
+                .personal-info {
+                  .personal-additional-info {
+                    margin-left: 46px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
