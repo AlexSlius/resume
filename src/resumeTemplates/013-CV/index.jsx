@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const drawing = () => {
   if (typeof window != 'undefined') {
@@ -356,12 +357,12 @@ export const ResumeCv013 = ({
                     <h3 className="block-heading font-size-2 additional-color-1-text">References</h3>
                     {
                       reference.map((itemRef, index) => (
-                        <div key={index}>
+                        <div className="block-info" key={index}>
                           {
                             (!!itemRef?.fullName || !!itemRef?.company) && (
                               <p >
-                                {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                {!!itemRef?.company && (`${itemRef.company}`)}
+                                {!!itemRef?.fullName && (checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
+                                {!!itemRef?.company && (itemRef?.company)}
                               </p>
                             )
                           }
@@ -424,13 +425,16 @@ export const ResumeCv013 = ({
                       employment.map((itemEm, index) => (
                         <div className="block-info" key={index}>
                           <p className="block-subheading">
-                            {!!itemEm?.title && (`${itemEm?.title}, `)}
-                            {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                            {!!itemEm?.city && (`${itemEm?.city} `)}
+                            {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                            {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                            {!!itemEm?.city && (itemEm?.city)}
                           </p>
                           {
                             (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MMMM yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MMMM yy"))}
+                                {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MMMM yy"))}
+                              </p>
                             )
                           }
                           <div className="text-block-wrapper">
@@ -449,12 +453,21 @@ export const ResumeCv013 = ({
                     {
                       education.map((itemEd, index) => (
                         <div className="block-info" key={index}>
-                          <p className="block-subheading">{itemEd?.facility && (`${itemEd.facility}, `)} {!!itemEd?.study && (`${itemEd?.study}, `)} {itemEd?.degree && (`${itemEd?.degree}`)} </p>
+                          <p className="block-subheading">
+                            {!!itemEd?.facility && (checkForSymbol([itemEd?.study])) ? itemEd?.facility + ', ' : itemEd?.facility}
+                            {!!itemEd?.study && (itemEd?.study)}
+                          </p>
                           {
                             (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
-                              <p className="date-range">{!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MMMM yy"))}
+                              </p>
                             )
                           }
+                          <p className="block-degree">
+                            {!!itemEd?.degree && (`${itemEd?.degree}`)}
+                          </p>
                           <p dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
                         </div>
                       ))
@@ -471,12 +484,18 @@ export const ResumeCv013 = ({
                         <div className="block-info" key={index}>
                           {
                             (!!itemCo?.title || !!itemCo?.institution) && (
-                              <p className="block-subheading">{!!itemCo?.title && (`${itemCo?.title},`)} {!!itemCo?.institution && (itemCo?.institution)}</p>
+                              <p className="block-subheading">
+                                {!!itemCo?.title && (checkForSymbol([itemCo?.institution])) ? itemCo?.title + ', ' : itemCo?.title}
+                                {!!itemCo?.institution && (itemCo?.institution)}
+                              </p>
                             )
                           }
                           {
                             (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MMMM yy"))}
+                              </p>
                             )
                           }
                         </div>
@@ -494,12 +513,18 @@ export const ResumeCv013 = ({
                         <div className="block-info" key={index}>
                           {
                             (!!itemEx?.title || itemEx?.employer) && (
-                              <p className="block-subheading">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
+                              <p className="block-subheading">
+                                {!!itemEx?.title && (checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
+                                {!!itemEx?.employer && (itemEx?.employer)}
+                              </p>
                             )
                           }
                           {
                             (!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
-                              <p className="date-range">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MMMM yy"))}
+                              </p>
                             )
                           }
                           <p dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
@@ -518,12 +543,19 @@ export const ResumeCv013 = ({
                         <div className="block-info" key={index}>
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                              <p className="block-subheading">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
+                              <p className="block-subheading">
+                                {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                {!!itemIn?.city && (itemIn?.city)}
+                              </p>
                             )
                           }
                           {
                             (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
-                              <p className="date-range">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
+                              <p className="date-range">
+                                {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MMMM yy"))}
+                              </p>
                             )
                           }
                           <div className="text-block-wrapper font-size-2">
@@ -545,11 +577,11 @@ export const ResumeCv013 = ({
                   <div className="certificates-block block-block">
                     <h3 className="block-heading font-size-2 additional-color-1-text">Certificates</h3>
                     <div className="block-info">
-                      <p>
+                      <p className="certificates-list">
                         {
                           certificates.map((item, index) => (
                             <span key={index}>
-                              {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
+                              {`${item.name}`}
                             </span>
                           ))
                         }

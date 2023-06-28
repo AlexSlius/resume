@@ -338,6 +338,10 @@
       font-family: 'Lato Black', sans-serif;
     }
 
+    .block-degree {
+      margin-bottom: 2px;
+    }
+
     .date-range {
       margin-bottom: 2px;
     }
@@ -360,6 +364,18 @@
     }
   }
 
+  .certificates-block {
+    .certificates-list {
+      span {
+        display: block;
+
+        &:not(:first-of-type) {
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+
   .links-block {
     .links-block-content {
       display: flex;
@@ -373,86 +389,6 @@
       margin-bottom: 15px!important;
     }
   }
-
-  /* Control panel */
-  #control-panel {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 10000;
-
-    .control-panel-item-block {
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 5px 10px;
-      margin-bottom: 5px;
-
-      .control-panel-heading {
-        font-size: 11px;
-        margin: 0px 0px 0px 0px;
-      }
-
-      .control-panel-item-input-list {
-        &.radio-input-list {
-          .input-list-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            margin: 3px 0px;
-
-            .radio-input {
-              display: block;
-              border-radius: 50%;
-              border: 2px solid #d6d0d0;
-              width: 7px;
-              height: 7px;
-              background-color: transparent;
-              margin-right: 5px;
-              pointer-events: none;
-            }
-
-            .radio-input-label {
-              font-size: 10px;
-              pointer-events: none;
-            }
-
-            &.active {
-              .radio-input {
-                background-color: #d6d0d0;
-              }
-            }
-          }
-
-          &.color-list {
-            .input-list-item {
-              .radio-input-label {
-                flex: 1;
-                height: 15px;
-                border-radius: 3px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-
-                .color-set-color {
-                  display: block;
-                  border-radius: 50%;
-                  width: 15px;
-                  height: 15px;
-                  border: 0.5px solid #d4d4d4;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-
 
   /* Stylization */
   #cv-chapter-section-cv {
