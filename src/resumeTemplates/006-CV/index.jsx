@@ -232,7 +232,7 @@ export const ResumeCv006 = ({
         drawing();
         handleFalseDrafind();
     }
-}, [isDrawing, data]);
+}, [isDrawing, data, stateClasses]);
 
   return (
     <div className="sv_006" ref={reportTemplateRef}>

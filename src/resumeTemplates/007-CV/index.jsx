@@ -251,7 +251,7 @@ export const ResumeCv007 = ({
         drawing();
         handleFalseDrafind();
     }
-}, [isDrawing, data]);
+}, [isDrawing, data, stateClasses]);
 
   return (
     <div className="sv_007" ref={reportTemplateRef}>

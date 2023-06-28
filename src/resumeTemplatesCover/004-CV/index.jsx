@@ -83,7 +83,7 @@ export const CoverCv004 = ({
             drawing();
             handleFalseDrafind();
         }
-    }, [isDrawing, data]);
+    }, [isDrawing, data, stateClasses]);
 
 
     return (

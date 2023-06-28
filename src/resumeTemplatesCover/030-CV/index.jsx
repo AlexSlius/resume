@@ -84,7 +84,7 @@ export const CoverCv030 = ({
             drawing();
             handleFalseDrafind();
         }
-    }, [isDrawing, data]);
+    }, [isDrawing, data, stateClasses]);
 
     return (
         <div className="sv_030 template-wrapper" ref={reportTemplateRef}>

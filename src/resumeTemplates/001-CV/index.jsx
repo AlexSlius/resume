@@ -214,14 +214,14 @@ export const ResumeCv001 = ({
 
   useEffect(() => {
     if (isTemplate) {
-        drawing();
+      drawing();
     }
 
     if (!!isDrawing && !isTemplate) {
-        drawing();
-        handleFalseDrafind();
+      drawing();
+      handleFalseDrafind();
     }
-}, [isDrawing, data]);
+  }, [isDrawing, data, stateClasses]);
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>
