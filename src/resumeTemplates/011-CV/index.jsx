@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const drawing = () => {
   if (typeof window != 'undefined') {
@@ -286,15 +287,15 @@ export const ResumeCv011 = ({
                       employment.map((itemEm, index) => (
                         <div className="block-info" key={index}>
                           <p className="block-subheading font-size-3 additional-color-3-text">
-                            {!!itemEm?.title && (`${itemEm?.title}, `)}
-                            {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                            {!!itemEm?.city && (`${itemEm?.city} `)}
+                            {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                            {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                            {!!itemEm?.city && (itemEm?.city)}
                           </p>
                           {
                             (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
                               <p className="date-range font-size-1 additional-color-1-text">
-                                {!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}
+                                {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MMMM yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MMMM yy"))}
+                                {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MMMM yy"))}
                               </p>
                             )
                           }
@@ -320,19 +321,19 @@ export const ResumeCv011 = ({
                       education.map((itemEd, index) => (
                         <div className="block-info" key={index}>
                           {
-                            (!!itemEd?.study) && (
+                            (!!itemEd?.degree || !!itemEd?.facility || !!itemEd?.study) && (
                               <p className="block-subheading font-size-3 additional-color-3-text">
-                                {itemEd?.degree && (`${itemEd?.degree} - `)}
-                                {itemEd?.facility && (`${itemEd.facility}, `)}
-                                {!!itemEd?.study && (`${itemEd?.study}`)} 
+                                {!!itemEd?.degree && (checkForSymbol([itemEd?.facility, itemEd?.study])) ? itemEd?.degree + ' - ' : itemEd?.degree}
+                                {!!itemEd?.facility && (checkForSymbol([itemEd?.study])) ? itemEd?.facility + ', ' : itemEd?.facility}
+                                {!!itemEd?.study && (itemEd?.study)}
                               </p>
                             )
                           }
                           {
                             (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
                               <p className="date-range font-size-1 additional-color-1-text">
-                                {!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}
+                                {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MMMM yy"))}
                               </p>
                             )
                           }
@@ -354,16 +355,16 @@ export const ResumeCv011 = ({
                           {
                             (!!itemCo?.title || !!itemCo?.institution) && (
                               <p className="block-subheading font-size-3 additional-color-3-text">
-                                {!!itemCo?.title && (`${itemCo?.title}, `)}
+                                {!!itemCo?.title && (checkForSymbol([itemCo?.institution])) ? itemCo?.title + ', ' : itemCo?.title}
                                 {!!itemCo?.institution && (itemCo?.institution)}
                               </p>
                             )
                           }
                           {
                             (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range additional-color-1-text">
-                                {!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}
+                              <p className="date-range font-size-1 additional-color-1-text">
+                                {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MMMM yy"))}
                               </p>
                             )
                           }
@@ -383,16 +384,16 @@ export const ResumeCv011 = ({
                           {
                             (!!itemEx?.title || itemEx?.employer) && (
                               <p className="block-subheading font-size-3 additional-color-3-text">
-                                {!!itemEx?.title && (`${itemEx?.title}, `)}
-                                {!!itemEx?.employer && (`${itemEx?.employer}`)}
+                                {!!itemEx?.title && (checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
+                                {!!itemEx?.employer && (itemEx?.employer)}
                               </p>
                             )
                           }
                           {
                             (!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
-                              <p className="date-range additional-color-1-text">
-                                {!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}
+                              <p className="date-range font-size-1 additional-color-1-text">
+                                {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MMMM yy"))}
                               </p>
                             )
                           }
@@ -413,17 +414,17 @@ export const ResumeCv011 = ({
                           {
                             (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
                               <p className="block-subheading font-size-3 additional-color-3-text">
-                                {!!itemIn.jobTitle && (`${itemIn?.jobTitle}, `)}
-                                {!!itemIn?.employer && (`${itemIn?.employer}, `)}
-                                {!!itemIn?.city && (`${itemIn?.city}`)}
+                                {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
+                                {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
+                                {!!itemIn?.city && (itemIn?.city)}
                               </p>
                             )
                           }
                           {
                             (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
-                              <p className="date-range additional-color-1-text">
-                                {!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}
+                              <p className="date-range font-size-1 additional-color-1-text">
+                                {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MMMM yy"))}
+                                {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MMMM yy"))}
                               </p>
                             )
                           }
@@ -529,8 +530,8 @@ export const ResumeCv011 = ({
                           {
                             (!!itemRef?.fullName || !!itemRef?.company) && (
                               <p className="additional-color-1-text">
-                                {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                {!!itemRef?.company && (`${itemRef.company}`)}
+                                {!!itemRef?.fullName && (checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
+                                {!!itemRef?.company && (itemRef?.company)}
                               </p>
                             )
                           }
