@@ -17,16 +17,17 @@ const drawing = () => {
 
             let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-            if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+            if (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
-                while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+                while (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
