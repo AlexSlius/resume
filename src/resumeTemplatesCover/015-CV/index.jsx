@@ -91,7 +91,7 @@ export const CoverCv015 = ({
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2">
                     <div className="cv-body-content main-color-1-text font-size-1">
                         <div className="column-left">
-                            <h1 className="cv-name font-size-4">{firstName}{` `} {lastName}</h1>
+                            <h1 className="cv-name font-size-4 additional-color-1-text">{firstName}{` `} {lastName}</h1>
                             <div className="letter-block">
                                 {/* <h2 className="cv-letter-heading block-heading letter-heading font-size-3">{!!applyingCompanyTitle && (`Dear ${applyingCompanyTitle}`)} {!!applyingCompanyContact && (<>{applyingCompanyContact},</>)}</h2> */}
                                 <div className="cv-letter-text letter-text" dangerouslySetInnerHTML={{ __html: data.coverGenerateDate }}></div>

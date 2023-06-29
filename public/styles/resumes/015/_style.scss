@@ -65,7 +65,7 @@ $color_set_6_additional_color_1: #0F7355;
     flex-basis: calc(100% - 80px);
     .cv-name {
       font-family: 'Poppins ExtraBold', sans-serif;
-      margin-bottom: 2px;
+      margin-bottom: 2px !important;
     }
   }
   
@@ -194,7 +194,7 @@ $color_set_6_additional_color_1: #0F7355;
         }
         .cv-name {
           font-family: 'Poppins ExtraBold', sans-serif;
-          margin-bottom: 70px;
+          margin-bottom: 70px !important;
         }
         .letter-text {
           p:not(:first-child) {
