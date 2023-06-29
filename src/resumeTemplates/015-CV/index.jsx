@@ -476,8 +476,8 @@ export const ResumeCv015 = ({
                     <div className="skills-list estimated-items-list">
                       {
                         languages.map((item, index) => (
-                          <div className="list-item" >
-                            <p className="item-name" key={index}>{`${item.language} - ${levelLanguage(item.level)}`}</p>
+                          <div className="list-item" key={index}>
+                            <p className="item-name">{`${item.language} - ${levelLanguage(item.level)}`}</p>
                           </div>
                         ))
                       }
