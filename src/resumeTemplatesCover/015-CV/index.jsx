@@ -6,6 +6,7 @@ const drawing = () => {
         let letter_current_page_number = 1;
 
         function rebuildingPages2() {
+            $('.cv-body-visible').remove();
             var cv_letter_heading = $('#cv-body-2 .column-left .letter-block .cv-letter-heading').clone();
             var cv_letter_text = $('#cv-body-2 .column-left .letter-block .cv-letter-text').clone();
           
