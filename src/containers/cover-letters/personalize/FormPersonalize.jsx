@@ -236,6 +236,7 @@ const FormPersonalize = ({
                                     isOutDataObj={false}
                                     isIconArrow={true}
                                     isFlag={true}
+                                    isStaticData={true}
                                     isValidIn={true}
                                     validIn={contObj.country?.length > 2}
                                 />

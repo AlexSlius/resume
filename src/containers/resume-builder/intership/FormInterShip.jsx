@@ -331,6 +331,7 @@ const FormInterShip = ({
                                                                   isOutDataObj={false}
                                                                   isIconArrow={true}
                                                                   isFlag={true}
+                                                                  isStaticData={true}
                                                                   isValidIn={true}
                                                                   validIn={item.country?.length > 3}
                                                                />
@@ -436,6 +437,7 @@ const FormInterShip = ({
                         isOutDataObj={false}
                         isIconArrow={true}
                         isFlag={true}
+                        isStaticData={true}
                         isValidIn={true}
                         validIn={objNew.country?.length > 3}
                      />

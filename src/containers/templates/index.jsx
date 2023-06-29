@@ -43,6 +43,7 @@ import {
 import { getCoverTextNoAuthNew } from "../../controllers/cover/personalize";
 import { useScaleResumePageShare } from '../../hooks/custom-hooks';
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
+import { validEmail } from '../../helpers/validEmail';
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -90,6 +91,7 @@ const Templates = ({
         contacts: {
             contactObj,
             contactObjNew,
+            emailRegister
         },
         employment,
         educations,
@@ -107,6 +109,11 @@ const Templates = ({
 
     const dataOther = isCover ? coverData : resumeData;
     const templatesItems = isCover ? coverData?.list?.items : resumeData?.list?.items;
+    const showBtn = (!isAthorized && isNewResume) ?
+        !validEmail(router.asPath.includes(routersPages['resumeBuilder']) ?
+            emailRegister?.length > 0 ? emailRegister : contactObjNew.email :
+            coverDataForm?.emailRegister?.length > 0 ? coverDataForm.emailRegister : coverDataForm.coverDataObjNew.emain) :
+        false;
 
     let dataResumeTemplate = {
         contact: isNewResume ? [contactObjNew] : [contactObj],
@@ -545,7 +552,7 @@ const Templates = ({
                         )
                     }
 
-                    <div className="ptr-c scroll-style">
+                    <div className="ptr-c scroll-style hide_scroll">
                         <div className="ptr-c__content">
                             <div className="body-template-resume" style={{ transform: `scale(${useScaleResumePageShare()})` }}>
                                 {
@@ -677,20 +684,23 @@ const Templates = ({
                                         ) : null
 
                                     }
+
+
                                     <ButtonIcon
                                         isButton={true}
                                         icon={downloadIcon}
                                         label="Download PDF"
-                                        className="btn--blue"
+                                        className={`btn--blue ${showBtn ? "opacet" : ""}`}
                                         onHandle={() => chanbdegAutOrPlan(handleDownload)}
                                     />
+
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (
                                             <div className="color-it color-select color-it_select-mob" onClick={() => setShowColorMod(prev => !prev)}>
                                                 <Icon svg={iconPlusColor} />
                                             </div>
                                         ) : (
-                                            <div className={`menu-show-tem ab-menu menus-card`}>
+                                            <div className={`menu-show-tem ab-menu menus-card ${showBtn ? "opacet" : ""}`}>
                                                 <CButton
                                                     className='resume-footer__button'
                                                     color="secondary"

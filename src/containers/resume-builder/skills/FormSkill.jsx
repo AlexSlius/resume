@@ -109,15 +109,6 @@ const FormSkill = ({
       }
    }
 
-   const handleClickActiveItem = (data) => {
-      if (isArray(skillsObj?.skillsListAll)) {
-         let { id } = skillsObj.skillsListAll.find(el => el.skillId == data.id);
-
-         if (id)
-            handleDeleteItemSkill(id);
-      }
-   }
-
    const onDragEnd = (result) => {
       if (!result.destination) {
          return;
@@ -190,11 +181,11 @@ const FormSkill = ({
                         data={skillsObj?.searchSkillsList || []}
                         handleSaveSelect={(obj, data) => updateitemFiled({ ...obj, name: "searchSkils", update: false }, data)}
                         handleServerRequest={randomSearchSkills}
-                        handleClickActiveItem={handleClickActiveItem}
                         isOutDataObj={false}
                         isIconArrow={true}
                         isRequire={true}
                         isAddDiv={false}
+                        isAcitveCurrent={false}
                      />
                   </CCol>
                   <CCol xs={12}>

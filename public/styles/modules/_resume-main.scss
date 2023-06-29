@@ -4,17 +4,15 @@
 }
 
 .col.resume {
-   flex: 0 0 700px;
-   padding: 0px 30px 0px 30px;
+   flex: 0 0 694px;
+   padding: 0px 14px 0px 30px;
    display: flex;
    flex-direction: column;
    height: 100vh;
 }
 
 .resume-main {
-   // border-radius: 12px;
    flex: 1 1 auto;
-   // padding: 24px 0;
    height: calc(100vh - 160px);
    overflow: hidden;
 
@@ -22,7 +20,6 @@
       max-height: 100%;
       overflow-y: auto;
       margin-right: 10px;
-      // padding: 0 24px;
    }
 
    p {
@@ -340,7 +337,7 @@
 
 @media (max-width: 1559px) {
    .col.resume {
-      padding: 0px 20px 0px 20px;
+      padding: 0px 4px 0px 20px;
       flex: 0 0 460px;
       max-width: 460px;
    }

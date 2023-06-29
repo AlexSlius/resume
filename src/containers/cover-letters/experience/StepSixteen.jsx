@@ -114,6 +114,8 @@ export const StepSixteen = ({
                                 isValidIn={true}
                                 validIn={coverDataObj.applyingCompanyTitle?.length > 2}
                                 isSearch={false}
+                                isStaticData={true}
+                                isKyrentName={true}
                             />
                         </CCol>
                         <CCol xs={4} className="name_comp">

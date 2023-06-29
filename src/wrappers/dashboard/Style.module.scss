@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: flex-end;
-    padding: 20px 23px;
+    padding: 20px 3px 20px 23px;
     align-items: center;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .container_main_cons {
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 @media (max-width: 1199px) {
@@ -64,6 +64,7 @@
             margin-right: auto;
         }
     }
+
     .wr_updat_now {
         padding-right: 20px;
     }
@@ -75,5 +76,5 @@
             display: none;
         }
     }
-    
+
 }

@@ -369,6 +369,7 @@ const FormContact = ({
                      isOutDataObj={false}
                      isIconArrow={true}
                      isFlag={true}
+                     isStaticData={true}
                      isValidIn={true}
                      isCap={true}
                      name="CNTY"
@@ -417,6 +418,7 @@ const FormContact = ({
                      handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'driverLicense', value }, data)}
                      keyName="category"
                      keyText="category"
+                     isStaticData={true}
                      isOutDataObj={false}
                      isValidIn={true}
                      validIn={contObj.driverLicense?.length > 3}
@@ -432,6 +434,7 @@ const FormContact = ({
                      handleSaveSelect={({ name, value }, data) => handleSaveSelect({ name: 'nationality', value }, data)}
                      handleServerRequest={handleServerRequestNationaly}
                      isOutDataObj={false}
+                     isStaticData={true}
                      isRequire={true}
                      isValidIn={true}
                      isCap={true}

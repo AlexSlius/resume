@@ -324,7 +324,6 @@ const FormEmployment = ({
                                         isRequire={true}
                                         isValidIn={true}
                                         validIn={item.title?.length > 3}
-                                        isCap={true}
                                       />
                                     </CCol>
                                     <CCol xs={6} className={`company_n${index}`}>
@@ -338,7 +337,6 @@ const FormEmployment = ({
                                         handleAddNew={handleAddNewCompany}
                                         isOutDataObj={false}
                                         isRequire={true}
-                                        isCap={true}
                                         isValidIn={true}
                                         validIn={item.company?.length > 3}
                                       />
@@ -371,7 +369,7 @@ const FormEmployment = ({
                                         isOutDataObj={false}
                                         isIconArrow={true}
                                         isFlag={true}
-                                        isCap={true}
+                                        isStaticData={true}
                                         isValidIn={true}
                                         validIn={item.country?.length > 3}
                                       />
@@ -483,6 +481,7 @@ const FormEmployment = ({
                 isOutDataObj={false}
                 isIconArrow={true}
                 isFlag={true}
+                isStaticData={true}
                 isCap={true}
                 isValidIn={true}
                 validIn={objNew.country?.length > 3}

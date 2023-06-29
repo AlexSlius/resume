@@ -1,38 +1,33 @@
-import { CFormInput } from "@coreui/react"
-import { isArray, isString } from "lodash";
+import { isArray } from "lodash";
 import { useRef, useEffect, useState } from "react"
 
-import Input from "../input";
-
 import { theFirstHeaderCharacter } from "../../../helpers/strings";
-import Icon from "../../Icon"
 
 import style from "./Style.module.scss"
-import iconPlus from "/public/images/icons/plu-opas.svg?sprite"
-import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
-import deleteIcon from "/public/images/icons/delete.svg??sprite";
+
+import { ItemLi } from "./itemLi";
+import { Head } from "./head";
+import { AddList } from "./addLi";
+import { mathcesSelect } from "../../../utils/selectMatches";
 
 
 export const InputSelect = ({
     handleSaveSelect = () => { },
     handleChallenge = () => { },
-    handleOpenChangle = () => { },
     handleAddNew = () => { },
     handleServerRequest = () => { },
     onDelete = () => { },
     handleClickActiveItem = () => { },
     label = undefined,
     placeholder = undefined,
-    isLoad = false,
-    isBackgraundLoad = false,
     invalid = false,
     isFirstList = true,
     valueState = '',
     name = undefined,
     data = [],
     keyName = "name",
+    isKyrentName = false,
     keyText = "name",
-    labelEmpty = "empty list",
     isAddDiv = false,
     obj,
     nTimeMs = 500,
@@ -44,8 +39,6 @@ export const InputSelect = ({
     keyIcon = "image",
     isSearch = true,
     firstChildUpCase = true,
-    isRequire = false,
-    isCap = true,
     onBlur = () => { },
     isDelete = false,
     id = null,
@@ -57,6 +50,8 @@ export const InputSelect = ({
     isActiveItem = false,
     activeArr = [],
     keyActiveEl = 'id',
+    isStaticData = false,
+    isAcitveCurrent = true,
 }) => {
     const refSelect = useRef(undefined);
     const reIn = useRef(undefined)
@@ -66,19 +61,29 @@ export const InputSelect = ({
     const refCurentClass = useRef(undefined)
     const refIdActiveItem = useRef(false)
     const refIdTimeout = useRef(undefined)
-    const refMoreThanOne = useRef(false);
     const [showList, setShowlist] = useState(false)
     const [className, setClassName] = useState('')
     const [imgSrc, setImgSrc] = useState(null);
     const [isNoneReuq, setIsNoneReuq] = useState(false);
 
-    // const classBgLoad = isBackgraundLoad ? style.load_bg : ''
-    const classBgLoad = '';
-    let classDelete = isDelete ? 'btn_delete' : '';
+    const classDelete = isDelete ? 'btn_delete' : '';
+    const keyNameDev = `${keyName}_d`;
 
     const isValid = valueState?.id != undefined;
     const dopClass = isIconArrow ? style.iconArrow : '';
-
+    const {
+        data: mathDatasList,
+        marhIsAdd
+    } = mathcesSelect({
+        arrList: data,
+        keyName,
+        keyText,
+        valueState,
+        isOutDataObj,
+        isSearch,
+        isStaticData,
+        keyNameDev,
+    });
 
     const handleOnChange = (e) => {
         let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
@@ -192,14 +197,6 @@ export const InputSelect = ({
     }, []);
 
     useEffect(() => {
-        if (isModal) {
-            if (className.includes(style.open)) {
-                handleOpenChangle();
-            }
-        }
-    }, [className]);
-
-    useEffect(() => {
         if (isFlag) {
             if (isArray(data)) {
                 for (let i = 0; i < data.length; i++) {
@@ -227,18 +224,12 @@ export const InputSelect = ({
                     refIdTimeout.current = setTimeout(async () => {
                         if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState?.length) {
                             handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
-                            // if (isRequire) {
-                            //     setIsNoneReuq(false);
-                            // }
                         }
                         clearTimeout(refIdTimeout.current);
                     }, nTimeMs);
                 }
             }
 
-            // if (isRequire) {
-            //     setIsNoneReuq(true);
-            // }
         } else {
             isOneStart.current = true;
         }
@@ -248,158 +239,101 @@ export const InputSelect = ({
                 setImgSrc(null);
             }
         }
-    }, [(!!isOutDataObj ? valueState[keyText] : valueState)])
+    }, [(!!isOutDataObj ? valueState[keyText] : valueState)]);
 
     return (
         <div ref={refSelect} className={`${style.mob_select} ${className} dom_mob_select`}>
-            <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classBgLoad} ${classDelete}`} ref={reWrClick}>
-                <div className={`${style.mod__wr_r}`}>
-                    {
-                        (!!isFlag && (!!imgSrc?.length > 0) && (!!isOutDataObj ? valueState[keyText] || '' : valueState || '')) && (
-                            <div className={`${style.wrpa_click}`}>
-                                <img src={imgSrc} />
-                            </div>
-                        )
-                    }
-
-                    <Input
-                        onChange={handleOnChange}
-                        onBlur={handledOnBlur}
-                        onFocus={onFocus}
-                        autoComplete={autoComplete}
-                        label={label}
-                        value={!!isOutDataObj ? valueState[keyText] || '' : valueState || ''}
-                        invalid={!!invalid}
-                        valid={!isValidIn ? isCouValid ? !!isValid : false : validIn}
-                        name={name}
-                        className={`${style.contoll} ${(!!isFlag && !!imgSrc?.length > 0) ? style.imput_img : ""}`}
-                        placeholder={placeholder}
-                        obj={{
-                            ref: reIn,
-                            ...obj
-                        }}
-                    />
-                </div>
-
-                {
-                    isDelete && (
-                        <button className="bnt-delet-ite" onClick={() => { onDelete(id) }}>
-                            <Icon svg={deleteIcon} />
-                        </button>
-                    )
-                }
-            </div>
+            <Head
+                {...{
+                    dopClass,
+                    imgSrc,
+                    classDelete,
+                    reWrClick,
+                    isFlag,
+                    isOutDataObj,
+                    valueState,
+                    keyText,
+                    handleOnChange,
+                    handledOnBlur,
+                    autoComplete,
+                    label,
+                    invalid,
+                    isValidIn,
+                    isCouValid,
+                    isValid,
+                    validIn,
+                    placeholder,
+                    reIn,
+                    name,
+                    obj,
+                    isDelete,
+                    onDelete,
+                    onFocus,
+                    id,
+                    isSearch,
+                }}
+            />
             {
                 isModal && (
                     <div ref={refWr} className={`${style.wr} wrs`}>
                         {
                             showList && (
-                                ((!!data?.length || !!isLoad) || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (
+                                (!!data?.length || (isAddDiv && (!!isOutDataObj ? !!valueState[keyText] : !!valueState))) && (
                                     <div className={`${style.wr__list} `}>
-                                        {/*  ${isNoneReuq ? style.none : ""} */}
                                         <ul className={`${style.list} scroll-style`}>
                                             {
-                                                isLoad ? (
-                                                    <li className={`${style.list__li_load}`}>
-                                                        <Icon svg={iconPreloader} />
-                                                    </li>
-                                                ) : (
-                                                    <>
-                                                        {
-                                                            isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
-                                                                !refMoreThanOne.current && (
-                                                                    <li className={`${style.list__li} ${style.list__li_first}`} onClick={onAddNew}>
-                                                                        <span>{!!isOutDataObj ? valueState[keyText] : valueState || ''}</span>
-                                                                        <div className={`${style.rig}`}>
-                                                                            <button className={`${style.button_add}`} title="Add to list?" type="button">
-                                                                                <Icon svg={iconPlus} classNames={[style.button_add_icon]} />
-                                                                            </button>
-                                                                        </div>
-                                                                    </li>
-                                                                )
-                                                            )
-                                                        }
-                                                        {
-                                                            isArray(data) ? (
-                                                                !!data.length ? (
-                                                                    data.map((item, index) => {
-                                                                        let activeClassItem = '';
-                                                                        let textFirst = '';
-                                                                        let textLast = '';
-
-                                                                        if (isActiveItem) {
-                                                                            if (isArray(activeArr)) {
-                                                                                if (!!activeArr.find(el => el[keyActiveEl] == item.id)) {
-                                                                                    activeClassItem = style.active;
-                                                                                }
-                                                                            }
-                                                                        } else {
-                                                                            if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
-                                                                                activeClassItem = style.active;
-                                                                            }
-                                                                        }
-
-                                                                        if (isSearch && !isBackgraundLoad && !isLoad) {
-                                                                            let textOutItem = isString(item[keyName]) &&
-                                                                                item[keyName].toLowerCase().indexOf(!!isOutDataObj ?
-                                                                                    valueState[keyText]?.toLowerCase() :
-                                                                                    valueState?.toLowerCase(), 0)
-
-                                                                            textOutItem = (textOutItem === 0);
-
-                                                                            if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && !textOutItem) {
-                                                                                if (!!refMoreThanOne.current) {
-                                                                                    refMoreThanOne.current = false;
-                                                                                }
-                                                                                return;
-                                                                            } else if ((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) == 0 || (!!isOutDataObj ? valueState[keyText] : valueState) == undefined) {
-                                                                                textLast = item[keyName];
-                                                                                if (!refMoreThanOne.current) {
-                                                                                    refMoreThanOne.current = true;
-                                                                                }
-                                                                            } else if (((!!isOutDataObj ? valueState[keyText]?.length : valueState?.length) > 0) && textOutItem) {
-                                                                                textLast = item[keyName].toLowerCase().replace((!!isOutDataObj ? valueState[keyText] : valueState)?.toLowerCase(), '');
-                                                                                textFirst = theFirstHeaderCharacter((!!isOutDataObj ? valueState[keyText] : valueState));
-                                                                                if (!refMoreThanOne.current) {
-                                                                                    refMoreThanOne.current = true;
-                                                                                }
-                                                                            }
-                                                                        } else {
-                                                                            textLast = item[keyName];
-                                                                            if (!refMoreThanOne.current) {
-                                                                                refMoreThanOne.current = true;
-                                                                            }
-                                                                        }
-
-                                                                        // capitalizeAll
-                                                                        return (
-                                                                            <li key={index} className={`${style.list__li}`}>
-                                                                                <button
-                                                                                    className={`${style.button} ${activeClassItem} ${isCap ? style.cap : ''}`}
-                                                                                    type="button"
-                                                                                    onClick={() => handleOnClickSelect(item, !!activeClassItem)}
-                                                                                >
-                                                                                    {(!!isFlag && !!item[keyIcon]?.length) && <img src={item[keyIcon]} />}
-                                                                                    {!!textFirst && <span>{isUpperCase ? textFirst.toUpperCase() : textFirst}</span>}{isUpperCase ? textLast.toUpperCase() : textLast}
-                                                                                </button>
-                                                                            </li>
-                                                                        )
-                                                                    })
-                                                                ) : (
-                                                                    <>
-                                                                        {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
-                                                                    </>
-                                                                )
-                                                            )
-                                                                : (
-                                                                    <>
-                                                                        {/* <li className={`${style.list__li} ${style.list__li_no}`}>{labelEmpty}</li> */}
-                                                                    </>
-                                                                )
-                                                        }
-                                                    </>
+                                                isAddDiv && !isValid && (!!isOutDataObj ? !!valueState[keyText] : valueState) && (
+                                                    marhIsAdd && (
+                                                        <AddList
+                                                            {...{
+                                                                onAddNew,
+                                                                isOutDataObj,
+                                                                valueState,
+                                                                keyText
+                                                            }}
+                                                        />
+                                                    )
                                                 )
                                             }
+                                            {
+                                                isArray(data) ? (
+                                                    mathDatasList.map((item, index) => {
+                                                        if (!item[keyName])
+                                                            return null;
+
+                                                        let activeClassItem = '';
+
+                                                        if (isActiveItem) {
+                                                            if (isArray(activeArr)) {
+                                                                if (!!activeArr.find(el => el[keyActiveEl] == item.id)) {
+                                                                    activeClassItem = style.active;
+                                                                }
+                                                            }
+                                                        } else {
+                                                            if (isAcitveCurrent)
+                                                                if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
+                                                                    activeClassItem = style.active;
+                                                                }
+                                                        }
+
+                                                        return (
+                                                            <ItemLi
+                                                                key={index}
+                                                                {...{
+                                                                    item,
+                                                                    value: isKyrentName ? item[keyName] : item[keyNameDev],
+                                                                    activeClassItem,
+                                                                    isFlag,
+                                                                    keyIcon,
+                                                                    isUpperCase,
+                                                                    handleOnClickSelect
+                                                                }}
+                                                            />
+                                                        )
+                                                    })
+                                                ) : null
+                                            }
+
                                         </ul>
                                     </div>
                                 )

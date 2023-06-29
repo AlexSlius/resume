@@ -11,7 +11,7 @@ import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar: { image } } } = thunkAPI.getState();
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar: { image, id: idAvatar } } } = thunkAPI.getState();
 
     const dataAccout = {
         email: objFormSettings?.email || '',
@@ -19,7 +19,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
         last_name: objFormSettings?.lastName || ''
     };
 
-    const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (image || null) : pictureFile);
+    const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (idAvatar || null) : pictureFile);
     const response = await api.contact.setAddResume(newObj);
 
     if (isRedirect) {

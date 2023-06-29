@@ -20,6 +20,10 @@ body {
    font-weight: 350;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
+
+   @media (min-width: 124px) {
+      padding: 0 calc(16px - (100vw - 100%)) 0 0;
+   }
 }
 
 code {
