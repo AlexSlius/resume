@@ -1,0 +1,592 @@
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('./fonts/Noto_Sans/NotoSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Noto Sans Light';
+  src: url('./fonts/Noto_Sans/NotoSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Noto Sans Medium';
+  src: url('./fonts/Noto_Sans/NotoSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url('./fonts/Poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins ExtraBold';
+  src: url('./fonts/Poppins/Poppins-ExtraBold.ttf');
+}
+
+.sv_015 {
+  font-family: 'Noto Sans', sans-serif;
+
+/* Colors */
+$main_color_1: #FFFFFF;
+$main_color_2: #131313 ;
+
+$color_set_0_additional_color_1: #195B80;
+
+$color_set_1_additional_color_1: #115FA8;
+
+$color_set_2_additional_color_1: #50369A;
+
+$color_set_3_additional_color_1: #7D0078;
+
+$color_set_4_additional_color_1: #6C0349;
+
+$color_set_5_additional_color_1: #A82614;
+
+$color_set_6_additional_color_1: #0F7355;
+
+  * {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: $main_color_1;
+    text-decoration: none;
+  }
+
+  .name-block {
+    flex-basis: calc(100% - 80px);
+    .cv-name {
+      font-family: 'Poppins ExtraBold', sans-serif;
+      margin-bottom: 2px;
+    }
+  }
+  
+  .degree-block {
+    font-family: 'Poppins Bold', sans-serif;
+    margin-bottom: 2px;
+  }
+  
+  .cv-prophecy {
+    text-align: center;
+    margin-top: 1px;
+  }
+  
+  #cv-body-hidden-container, #cv-body-2 {
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .cv-body {
+    width: 595px;
+    height: 842px;
+    max-height: 842px;
+    min-height: 842px;
+    background: linear-gradient(175.84deg, #E1F1FF 0.31%, #E9E5F4 32.5%, #FFEDD4 62.87%, #FFE5E8 95.97%);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+    .cv-body-content {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: stretch;
+      position: relative;
+      z-index: 10;
+    }
+  
+    &.cv-body-1 {
+      .cv-body-content {
+          .column-right {
+            width: 205px;
+            min-width: 205px;
+            padding: 0 30px;
+            color: $main_color_1;
+            .personal-info-block {
+              .personal-info {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                row-gap: 12px;
+                .info-item-name {
+                  font-family: 'Poppins ExtraBold', sans-serif;
+                  margin-bottom: 4px;
+                }
+                .info-item-value:not(:first-child) {
+                  margin-top: 2px;
+                }
+              }
+            }
+            .references-block {
+              p:not(:first-of-type) {
+                margin-top: 4px;
+              }
+            }
+          }
+          .column-left {
+            padding: 0 30px;
+            .photo-block {
+              width: 67px;
+              height: 67px;
+              position: relative;
+              border-radius: 100%;
+              overflow: hidden;
+              margin-right: 13px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .profile-block {
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+  
+              & > .block-heading {
+                flex-basis: 100%;
+                margin-top: 20px;
+              }
+            }
+            .certificates-block {
+              .certificates-list {
+                span {
+                  font-family: "Poppins ExtraBold", sans-serif;
+                  display: block;
+                  &:not(:first-of-type) {
+                    margin-top: 6px;
+                  }
+                }
+              }
+            }
+          }
+      }
+      &.page-1 {
+          .column-right {
+            padding-top: 86px;
+          }
+      }
+    }
+  
+    &.cv-body-2 {
+      .cv-body-content {
+        .column-right {
+          padding: 140px 30px 0 0;
+          width: 202px;
+          min-width: 202px;
+        }
+        .column-left {
+          padding: 45px 40px 0 30px;
+        }
+        .cv-name {
+          font-family: 'Poppins ExtraBold', sans-serif;
+          margin-bottom: 70px;
+        }
+        .letter-text {
+          p:not(:first-child) {
+            margin-top: 10px;
+          }
+          p:last-child {
+            margin-top: 30px;
+          }
+        }
+      }
+    }
+  }
+  
+  .skills-list {
+    .list-item {
+      &:not(:first-child) {
+        margin-top: 4px;
+      }
+    }
+  }
+  
+  .text-block-wrapper {
+    ul {
+      li {
+        position: relative;
+        list-style: none;
+        padding-left: 10px;
+  
+        &:not(:first-child) {
+          margin-top: 5px;
+        }
+  
+        &::before {
+          content: " ";
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          background: $main_color_2;
+          border-radius: 100%;
+          left: 0;
+          top: 1px;
+        }
+      }
+    }
+  }
+  
+  /* --- */
+  .contacts-information-block {
+    position: relative;
+    .contacts-block {
+      max-width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      .block-item {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: stretch;
+  
+        &:not(:first-child) {
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+  
+  .destination-block {
+    position: relative;
+    padding: 40px 20px;
+    background: $main_color_2;
+    color: $main_color_1;
+  
+    .block-item {
+      p:not(:first-child) {
+        margin-top: 2px;
+      }
+    }
+  
+    .block-heading:not(:first-child) {
+      margin-top: 20px;
+    }
+  
+    &.block-block:first-child {
+      margin: 0;
+    }
+  }
+  
+  .block-block {
+    .block-heading {
+      margin-bottom: 4px !important;
+      font-family: 'Poppins ExtraBold', sans-serif;
+    }
+  
+    .name-block {
+      .block-heading {
+        font-family: 'Noto Sans Light', sans-serif;
+        font-weight: 300;
+      }
+    }
+  
+    p:last-child {
+      margin-bottom: 0;
+    }
+  
+    .block-subheading {
+      margin-bottom: 4px;
+      font-family: 'Poppins Bold', sans-serif;
+    }
+    .date-range {
+      font-family: 'Noto Sans Medium', sans-serif;
+      margin-bottom: 4px;
+    }
+  
+    .block-info:not(:first-of-type) {
+      margin-top: 10px;
+    }
+  
+    .text-block:not(:last-child) {
+      margin-bottom: 2px;;
+    }
+  
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+  
+    &:first-child {
+      margin-top: 30px;
+    }
+  }
+  
+  .links-block {
+    .links-block-content {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      row-gap: 4px;
+    }
+  }
+  
+  .letter-block {
+    .block-heading {
+      font-family: 'Poppins ExtraBold', sans-serif;
+      margin-bottom: 4px !important;
+    }
+  }
+  
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-block {
+      display: none;
+    }
+    &.has-photo {
+      .photo-block {
+        display: block;
+      }
+    }
+  }
+  
+  /* Font size scheme */
+  .font-size-scheme-state-small {
+    .font-size-1 {
+      font-size: 8px;
+    }
+    .font-size-2 {
+      font-size: 10px;
+    }
+    .font-size-3 {
+      font-size: 14px;
+    }
+    .font-size-4 {
+      font-size: 20px;
+    }
+  
+    .text-block-wrapper {
+      ul {
+        li {
+          &::before {
+            top: 3px;
+          }
+        }
+      }
+    }
+  }
+  
+  .font-size-scheme-state-medium {
+    .font-size-1 {
+      font-size: 10px;
+    }
+    .font-size-2 {
+      font-size: 12px;
+    }
+    .font-size-3 {
+      font-size: 16px;
+    }
+    .font-size-4 {
+      font-size: 22px;
+    }
+  
+    .text-block-wrapper {
+      ul {
+        li {
+          &::before {
+            top: 5px;
+          }
+        }
+      }
+    }
+  }
+  
+  .font-size-scheme-state-big {
+    .font-size-1 {
+      font-size: 12px;
+    }
+    .font-size-2 {
+      font-size: 14px;
+    }
+    .font-size-3 {
+      font-size: 18px;
+    }
+    .font-size-4 {
+      font-size: 24px;
+    }
+  
+    .text-block-wrapper {
+      ul {
+        li {
+          &::before {
+            top: 6px;
+          }
+        }
+      }
+    }
+  }
+  
+  /* Line height scheme */
+  .line-height-scheme-state-small {
+    .cv-body {
+      line-height: 1.2;
+    }
+  }
+  
+  .line-height-scheme-state-medium {
+    .cv-body {
+      line-height: 1.4;
+    }
+  }
+  
+  .line-height-scheme-state-big {
+    .cv-body {
+      line-height: 1.6;
+    }
+  }
+  
+  /* Color scheme */
+  .color-scheme-state-color-set-0 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_0_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_0_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_0_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-1 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_1_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_1_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_1_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-2 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_2_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_2_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_2_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-3 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_3_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_3_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_3_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-4 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+    .additional-color-1-text {
+      color: $color_set_4_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_4_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_4_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-5 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_5_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_5_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_5_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-6 {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-text {
+      color: $color_set_6_additional_color_1;
+    }
+  
+    .additional-color-1-background {
+      background-color: $color_set_6_additional_color_1;
+    }
+  
+    .text-block-wrapper ul li::before {
+      background: $color_set_6_additional_color_1;
+    }
+  }
+  
+  .color-scheme-state-color-set-default {
+    .main-color-1-text {
+      color: $main_color_2;
+    }
+  
+    .additional-color-1-background {
+      background-color: $main_color_2;
+    }
+  
+    .cv-body {
+      background: $main_color_1;
+    }
+  }
+}

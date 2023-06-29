@@ -1,7 +1,8 @@
 export const levelLanguage = (level) => {
     let lev = "A1";
+    console.log(level);
 
-    switch (level) {
+    switch (Number(level)) {
         case 1:
             lev = "A1";
             break;

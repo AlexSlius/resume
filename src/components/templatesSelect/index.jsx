@@ -19,6 +19,7 @@ import { ResumeCv009 } from '../../resumeTemplates/009-CV';
 import { ResumeCv010 } from '../../resumeTemplates/010-CV';
 import { ResumeCv011 } from '../../resumeTemplates/011-CV';
 import { ResumeCv013 } from '../../resumeTemplates/013-CV';
+import { ResumeCv015 } from '../../resumeTemplates/015-CV';
 import { ResumeCv016 } from '../../resumeTemplates/016-CV';
 import { ResumeCv030 } from '../../resumeTemplates/030-CV';
 import { ResumeCv031 } from '../../resumeTemplates/031-CV';
@@ -228,6 +229,20 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "013-CV" && (
                     <ResumeCv013
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
+                    />
+                )
+            }
+
+{
+                resumeActive == "015-CV" && (
+                    <ResumeCv015
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
