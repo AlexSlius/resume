@@ -38,7 +38,7 @@ export const deleteResume = createAsyncThunk('resumes/deleteResume', async ({ id
     return response;
 });
 
-export const getScreenResume = createAsyncThunk('resumes/getScreenResume', async ({ id, shareKey }, thunkAPI) => {
+export const getScreenResume = createAsyncThunk('resumes/getScreenResume', async ({ id, shareKey = '' }, thunkAPI) => {
     if (shareKey?.length > 0) {
         const response = await api.resumes.screenResume(id, shareKey);
     }

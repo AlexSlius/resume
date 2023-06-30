@@ -15,7 +15,6 @@ export const CardResume = ({
     load = true,
     dateUpdate,
     handleEdit = () => { },
-    handlekeyUp = () => { },
     handleBlur = () => { },
     handleShare = () => { },
     handleDelete = () => { },
@@ -37,7 +36,6 @@ export const CardResume = ({
     }
 
     const onBlud = () => {
-        // handleBlur(stateName, id);
         setFocus(false);
     }
 
@@ -49,7 +47,7 @@ export const CardResume = ({
     return (
         <div className={`${style.card}`}>
             <div className={`${style.card__head}`}>
-                <div className={`${style.card__head_img} ${load ? style.load_img : ""}`}>
+                <div className={`${style.card__head_img} ${(load || !image?.length) ? style.load_img : ""}`}>
                     <img src={image} alt="picture resume" onClick={handleEdit} />
                 </div>
                 <div className={`${style.card__navigation}`}>
@@ -99,7 +97,6 @@ export const CardResume = ({
                             onChange={(e) => setStateName(e.target.value)}
                             value={stateName?.length > 0 ? stateName : ""}
                             onFocus={() => setFocus(true)}
-                            // onKeyUp={(e) => handlekeyUp(e, stateName, id)}
                             onBlur={() => onBlud()}
                         />
                     </div>

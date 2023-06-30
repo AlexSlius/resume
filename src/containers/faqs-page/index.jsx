@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSelector } from 'react-redux'
 import Head from 'next/head'
 
 import { AccordionComponent } from "../../components/accordion"
@@ -17,12 +16,6 @@ export const FaqsPage = () => {
     const [textSearch, setTextSearch] = useState("");
     const [arrList, setArrList] = useState(dataListFags.slice(1, 6));
 
-    const {
-        theme: {
-            currentResolution
-        }
-    } = useSelector((state) => state);
-
     const handleKeyUpa = (e) => {
         e.preventDefault();
 
@@ -34,19 +27,15 @@ export const FaqsPage = () => {
     const handleChange = (e) => {
         let value = e.target.value;
         setTextSearch(value);
-
-        if (value.length == 0) {
-            updateListByText();
-        }
-    }
-
-    const handleSubmit = () => {
-        updateListByText();
     }
 
     const updateListByText = () => {
         setArrList(searchFag(textSearch, dataListFags));
     }
+
+    useEffect(() => {
+        updateListByText();
+    }, [textSearch]);
 
     return (
         <>
@@ -76,14 +65,6 @@ export const FaqsPage = () => {
                                     onChange={handleChange}
                                     handleKeyUpa={handleKeyUpa}
                                 />
-                                <button className="form-btn btns btn--blue btn--search btn-search-fag" type="button" onClick={handleSubmit}>
-                                    <img loading="lazy" src="/images/page/search-icon.svg" alt="img" />
-                                    {
-                                        currentResolution !== "xs" && (
-                                            "Find a question"
-                                        )
-                                    }
-                                </button>
                             </div>
                             <div className="faq-page__wrapper">
                                 <AccordionComponent arr={arrList} />

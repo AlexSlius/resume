@@ -81,3 +81,27 @@ export const stritePaymentIntents = async (data) => {
         console.log("Error get products", error);
     }
 }
+
+
+// export const striteWebHook = async (data) => {
+//     try {
+//         let resumHook = await stripe.webhooks.constructEvent({
+//             payload: 'https://api.resulon.com/stripe/webhook',
+//             header: '',
+//             secret: '',
+
+//         });
+
+//         const subscription = await stripe.subscriptions.create({
+//             customer: data.stripeUserId,
+//             items: [{ price: priceId }],
+//             payment_behavior: 'default_incomplete',
+//             payment_settings: { save_default_payment_method: 'on_subscription' },
+//             expand: ['latest_invoice.payment_intent'],
+//         });
+
+//         return subscription;
+//     } catch (error) {
+//         console.log("Error strite web hook", error);
+//     }
+// }

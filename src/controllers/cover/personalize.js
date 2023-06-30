@@ -13,6 +13,7 @@ import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
 import { cleanStartPersonFields } from "../../constants/formPerson";
 import { setUpdateCoverDataActive } from './coverData';
+import { getScreenCover } from './covers';
 
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false }, thunkAPI) => {
@@ -46,6 +47,8 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
     const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
 
     if (response?.status == "added") {
+        thunkAPI.dispatch(getScreenCover({ id: response.id }));
+
         if (isDashboard) {
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[0].link}`);
         } else {

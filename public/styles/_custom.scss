@@ -489,6 +489,26 @@ input[type="number"]:focus {
             height: 20px;
             margin-top: -10px;
         }
+
+        .wrs {
+            margin-top: -10px;
+
+            &>div {
+                border-radius: 0px 0px 12px 12px;
+                overflow: hidden;
+            }
+
+            ul {
+                max-height: 345px;
+                min-height: 345px;
+
+                li {
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
     }
 
     &.open {

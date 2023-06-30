@@ -87,20 +87,8 @@ const Dashboard = () => {
         await setLoadNewCard(false);
     }
 
-    const handlekeyUp = (e, stateName, id) => {
-        if (e.keyCode == 13) {
-            handleUpdateNameResume(stateName, id);
-        }
-    }
-
     const handleBlur = (stateName, id) => {
         handleUpdateNameResume(stateName, id);
-    }
-
-    const handlekeyUpCover = (e, stateName, id) => {
-        if (e.keyCode == 13) {
-            handleUpdateNameCover(stateName, id);
-        }
     }
 
     const handleBlurCover = (stateName, id) => {
@@ -257,12 +245,11 @@ const Dashboard = () => {
                                             <CardResume
                                                 key={item.id}
                                                 id={item.id}
-                                                image={!!item?.screenUrl ? item?.screenUrl : "/images/other/img_resume.png"}
+                                                image={!!item?.screenUrl ? item?.screenUrl : ""} // /images/other/img_resume.png
                                                 label={item.cvName}
                                                 load={loadCards}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateResume(item)}
-                                                handlekeyUp={handlekeyUp}
                                                 handleBlur={handleBlur}
                                                 handleDelete={() => handleDeleteResume(item.id)}
                                                 handleShare={() => chanbdegAutOrPlanResume(item.id, false)}
@@ -303,12 +290,11 @@ const Dashboard = () => {
                                             <CardResume
                                                 key={item.id}
                                                 id={item.id}
-                                                image={!!item?.screenUrl ? item?.screenUrl : "/images/cover/dash-cover.png"}
+                                                image={!!item?.screenUrl ? item?.screenUrl : ""} // /images/cover/dash-cover.png
                                                 label={item.coverName}
                                                 load={loadCards}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateCover(item)}
-                                                handlekeyUp={handlekeyUpCover}
                                                 handleBlur={handleBlurCover}
                                                 handleDelete={() => handleDeleteCover(item.id)}
                                                 handleShare={() => chanbdegAutOrPlanCover(item.id, false)}

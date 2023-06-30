@@ -38,6 +38,7 @@ export const InputSelect = ({
     isFlag = false,
     keyIcon = "image",
     isSearch = true,
+    isIconDandruff = false,
     firstChildUpCase = true,
     onBlur = () => { },
     isDelete = false,
@@ -52,6 +53,7 @@ export const InputSelect = ({
     keyActiveEl = 'id',
     isStaticData = false,
     isAcitveCurrent = true,
+    isOnlyDown = false,
 }) => {
     const refSelect = useRef(undefined);
     const reIn = useRef(undefined)
@@ -141,19 +143,29 @@ export const InputSelect = ({
 
     useEffect(() => {
         if (isModal) {
+
             const handleClick = (e) => {
                 const cordinate = e.target.getBoundingClientRect();
                 const windowInnerHeight = window.innerHeight;
 
-                if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
+                if (!isOnlyDown) {
+                    if ((windowInnerHeight - cordinate.bottom) > refWr.current.offsetHeight) {
+                        setClassName(prev => {
+                            refCurentClass.current = `${prev} ${style.open}`;
+                            return `${prev} ${style.open}`;
+                        });
+                    } else {
+                        setClassName(prev => {
+                            refCurentClass.current = `${prev} ${style.open_top} ${style.open}`;
+                            return `${prev} ${style.open_top} ${style.open}`;
+                        });
+                    }
+                }
+
+                if (isOnlyDown) {
                     setClassName(prev => {
                         refCurentClass.current = `${prev} ${style.open}`;
                         return `${prev} ${style.open}`;
-                    });
-                } else {
-                    setClassName(prev => {
-                        refCurentClass.current = `${prev} ${style.open_top} ${style.open}`;
-                        return `${prev} ${style.open_top} ${style.open}`;
                     });
                 }
             }
@@ -271,6 +283,7 @@ export const InputSelect = ({
                     onFocus,
                     id,
                     isSearch,
+                    isIconDandruff,
                 }}
             />
             {

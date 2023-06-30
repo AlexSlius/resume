@@ -3,6 +3,7 @@ import Input from "../input";
 
 import style from "./Style.module.scss"
 import deleteIcon from "/public/images/icons/delete.svg??sprite";
+import iconSearch from "/public/images/icons/search-grey.svg?sprite"
 
 export const Head = ({
     dopClass,
@@ -30,7 +31,8 @@ export const Head = ({
     onDelete,
     onFocus,
     id,
-    isSearch
+    isSearch,
+    isIconDandruff
 }) => {
     return (
         <div className={`${style.mod_filed} ${dopClass} ${!!imgSrc ? style.is_flag : ''} ${classDelete}`} ref={reWrClick}>
@@ -42,7 +44,6 @@ export const Head = ({
                         </div>
                     )
                 }
-
                 <Input
                     onChange={isSearch ? handleOnChange : () => { }}
                     onBlur={handledOnBlur}
@@ -60,6 +61,11 @@ export const Head = ({
                         ...obj
                     }}
                 />
+                {
+                    isIconDandruff && (
+                        <Icon svg={iconSearch} />
+                    )
+                }
             </div>
 
             {

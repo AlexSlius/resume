@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux"
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import App from "../src/App";
 
@@ -19,12 +19,14 @@ import '../public/styles/pages/vendor/swiper-bundle.min.css';
 import '../public/styles/pages/main.scss';
 import '../public/styles/resumes/main.scss';
 import '../public/styles/style.scss';
+import { routersPages } from "../src/constants/next-routers";
 
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const isPdf = downloadPagePdf(rest);
   // const [loading, setLoading] = useState();
-  // const router = useRouter();
+  const router = useRouter();
+  const isPageShare = router.asPath.includes(routersPages['shareResume']) || router.asPath.includes(routersPages['shareCover']);
 
   if (typeof window != "undefined") {
     window.$ = window.jQuery = require('jquery');
@@ -95,6 +97,7 @@ const MyApp = ({ Component, ...rest }) => {
             
             body {
                 font-family: "GTEestiProDisplay", sans-serif;
+                ${isPageShare ? 'padding: 0!important' : ""}
             }
          `,
           }} />

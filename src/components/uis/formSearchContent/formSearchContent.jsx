@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { isArray, isString } from 'lodash';
-import { CFormInput } from "@coreui/react";
 
 import Icon from "../../Icon"
+import { InputSelect } from "../../uis/inputSelect"
 
 import iconPreloader from "/public/images/icons/preloader-blue.svg?sprite"
-import iconSearch from "/public/images/icons/search-grey.svg?sprite"
 import iconLeftText from '/public/images/icons/icon-t-left.svg?sprite'
 import iconOkText from '/public/images/icons/icon-ok-text.svg?sprite'
 import iconEmpty from "/public/images/icons/icon-empty-list.svg?sprite"
@@ -19,9 +18,11 @@ export const FormSearchContent = ({
     nTimeMs = 500,
     isExternalDate = false,
     externalValue = "",
+    listVariant = [],
     externalCollback = () => { },
     handleServerRequest = () => { },
     handleUpdateText = () => { },
+    handleGet = () => { },
 }) => {
     const refIdTimeout = useRef(null);
     const [textSearch, setTextSearch] = useState('');
@@ -50,13 +51,18 @@ export const FormSearchContent = ({
         <div className={`modal-text search-text-content`}>
             <div className='modal-text__main'>
                 <div className='modal-text__head'>
-                    <CFormInput
-                        onChange={(e) => isExternalDate ? externalCollback(e.target.value) : setTextSearch(e.target.value)}
-                        value={val}
-                        type="text"
+                    <InputSelect
                         placeholder="Filter phrases by keyword"
+                        valueState={val}
+                        data={listVariant}
+                        handleSaveSelect={(obj, data) => isExternalDate ? externalCollback(obj.value, data) : setTextSearch(obj.value)}
+                        handleServerRequest={handleGet}
+                        isOutDataObj={false}
+                        isAcitveCurrent={false}
+                        isIconDandruff={true}
+                        isOnlyDown={true}
                     />
-                    <Icon svg={iconSearch} />
+
                 </div>
                 <div className='modal-text__content modal-text__content_mod'>
                     {

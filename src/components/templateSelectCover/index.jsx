@@ -225,7 +225,7 @@ export const TemplatesSelectCover = ({
                 )
             }
 
-{
+            {
                 resumeActive == "015-CV" && (
                     <CoverCv015
                         reportTemplateRef={reportTemplateRef}

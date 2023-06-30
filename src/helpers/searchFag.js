@@ -18,5 +18,5 @@ export const searchFag = (text = '', arr = []) => {
         return listOut;
     }
 
-    return arr.slice(1, 6);
+    return arr;
 }

@@ -9,6 +9,7 @@ import { newObjContact } from '../helpers/resumeDestructObj';
 import { addItemNotification } from "../slices/notifications";
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
+import { getScreenResume } from './resumes';
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar: { image, id: idAvatar } } } = thunkAPI.getState();
@@ -25,6 +26,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     if (isRedirect) {
         if (isRespondServerSuccesss(response)) {
             await thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
+            await thunkAPI.dispatch(getScreenResume({ id: response.id }));
 
             if (isDashboard) {
                 await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${menuAsideResume.list[0].link}`);
