@@ -98,9 +98,8 @@ const FormSocials = ({
     }
 
     const handlesUp = (value, data) => {
-        if (!data) dispatch(updateFieldSearchJobTitle(value));
+        dispatch(updateFieldSearchJobTitle(value));
         if (data) dispatch(fetchGetListObjectiveById(data.id));
-
     }
 
     useEffect(() => {

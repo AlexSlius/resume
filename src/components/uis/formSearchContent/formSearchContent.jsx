@@ -66,7 +66,7 @@ export const FormSearchContent = ({
                 </div>
                 <div className='modal-text__content modal-text__content_mod'>
                     {
-                        !!val.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results for <span>{val}</span></div>
+                        !!val.length && <div className="modal-text__show">Showing {isArray(data) ? data.length : 0} results </div> // for <span>{val}</span>
                     }
 
                     {
