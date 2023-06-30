@@ -552,6 +552,7 @@ const Templates = ({
                         )
                     }
 
+                    {/* hide_scroll */}
                     <div className="ptr-c scroll-style hide_scroll">
                         <div className="ptr-c__content">
                             <div className="body-template-resume" style={{ transform: `scale(${useScaleResumePageShare()})` }}>
