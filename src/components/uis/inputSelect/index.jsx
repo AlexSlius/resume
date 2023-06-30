@@ -228,20 +228,15 @@ export const InputSelect = ({
                     setShowlist(true);
                 }
 
-                if ((!!isOutDataObj ? !!valueState[keyText] : !!valueState?.length)) {
-                    if (refIdTimeout.current) {
-                        clearTimeout(refIdTimeout.current);
-                    }
-
-                    refIdTimeout.current = setTimeout(async () => {
-                        if (!!isOutDataObj ? !!valueState[keyText].length : !!valueState?.length) {
-                            handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
-                        }
-                        clearTimeout(refIdTimeout.current);
-                    }, nTimeMs);
+                if (refIdTimeout.current) {
+                    clearTimeout(refIdTimeout.current);
                 }
-            }
 
+                refIdTimeout.current = setTimeout(async () => {
+                    handleServerRequest(!!isOutDataObj ? valueState[keyText] : valueState);
+                    clearTimeout(refIdTimeout.current);
+                }, nTimeMs);
+            }
         } else {
             isOneStart.current = true;
         }

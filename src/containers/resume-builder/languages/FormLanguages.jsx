@@ -36,7 +36,6 @@ const FormLanguages = ({
       },
       languages: {
          languageObj,
-         status,
          objNew
       },
       auth: {
