@@ -190,43 +190,14 @@
 
     &.cv-body-2 {
       .cv-body-content {
-        .top-area {
-          .cv-name {
-            margin-top: 34px;
-          }
-        }
-
+        min-height: 100%;
         .middle-area {
-          margin-top: 68px;
+          margin-top: 30px;
+          column-gap: 50px;
         }
 
         .column-left {
-          .letter-block {
-            width: 340px;
-            margin: 18px 0px 0px 0px;
-
-            .letter-heading {
-              margin-bottom: 15px;
-            }
-          }
-        }
-
-        .column-right {
-          .destination-block {
-            padding: 122px 13px 125px 13px;
-
-            .block-from {
-              margin-top: 20px;
-            }
-
-            p {
-              margin-bottom: 3px;
-
-              &:last-child {
-                margin-bottom: 0px;
-              }
-            }
-          }
+          width: 130px;
         }
       }
     }
@@ -364,12 +335,6 @@
       .underheading-line {
         margin-bottom: 5px;
       }
-    }
-  }
-
-  .letter-block {
-    .letter-text {
-      margin-top: 15px;
     }
   }
 
