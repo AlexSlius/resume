@@ -22,11 +22,13 @@
 
 .sv_016 {
   font-family: 'Inter', sans-serif;
+  font-weight: 400;
 
   * {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     font-family: 'Inter', sans-serif;
+    font-weight: 400;
   }
 
   *,
@@ -87,7 +89,9 @@
       li {
         list-style-type: disc;
         margin-left: 16px;
-        margin-top: 6px;
+        &:not(:first-of-type) {
+          margin-top: 5px;
+        }
       }
     }
 
@@ -165,7 +169,7 @@
       .top-area {
         display: flex;
         column-gap: 40px;
-        margin: 25px 30px 0;
+        margin: 55px 30px 40px;
         .column-right {
           display: flex;
           align-items: center;
@@ -244,7 +248,7 @@
     }
 
     .block-subheading {
-      margin-top: 5px;
+      margin-bottom: 5px;
     }
 
     .block-info {
@@ -255,7 +259,9 @@
     }
 
     .date-range {
-      margin-top: 5px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
 
     &:not(:first-of-type) {
@@ -316,62 +322,24 @@
 
   .references-block {
     p {
-      margin-top: 5px;
-    }
-  }
-
-  .profile-block {
-    p {
-      margin-top: 5px;
-    }
-  }
-
-  .employment-history-block {
-    margin-top: 10px;
-
-    .text-block-list {
-      .text-block {
+      &:not(:first-of-type) {
         margin-top: 5px;
       }
-    }
-  }
-
-  .education-block {
-    margin-top: 10px;
-
-    p {
-      margin-top: 5px;
     }
   }
 
   .courses-block {
-    margin-top: 10px;
+    .date-range {
+      margin-bottom: 0;
+    }
 
   }
 
   .certificates-block {
-    margin-top: 10px;
-
-    p {
-      margin-top: 5px;
-    }
-  }
-
-  .extra-curricular-activities-block {
-    margin-top: 10px;
-
-    p {
-      margin-top: 5px;
-    }
-  }
-
-  .internships-block {
-    margin-top: 10px;
-
-    .text-block-list {
-      .text-block {
-        margin-top: 5px;
-      }
+    .certificates-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
     }
   }
 
@@ -406,7 +374,13 @@
   }
 
   /* Stylization */
-  #cv-ch apter-section-cv {}
+  #cv-chapter-section-cv {
+    &.has-photo {
+      .top-area {
+        margin: 25px 30px 0;
+      }
+    }
+  }
 
   /* Font size scheme */
   .font-size-scheme-state-small {

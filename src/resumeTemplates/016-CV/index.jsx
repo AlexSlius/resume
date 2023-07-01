@@ -227,6 +227,8 @@ export const ResumeCv016 = ({
     languages,
   } = data;
   const isContactArray = isArray(contact);
+  let conta = contact?.[0];
+  let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 
   useEffect(() => {
     if (isTemplate) {
@@ -241,16 +243,16 @@ export const ResumeCv016 = ({
 
   return (
     <div className="sv_016" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1 ${classPhoto}`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1">
           <div className="cv-body-content font-size-1 main-color-2-text">
             <div className="circle-shade"></div>
             <div className="top-area">
               {
-                !!contact?.[0]?.picture && (
+                !!conta?.picture && (
                   <div className="column-left">
                     <div className="photo-wrapper">
-                    <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
+                    <div className="photo" style={{ backgroundImage: `url(${conta?.picture})` }}></div>
                     </div>
                   </div>
                 )
@@ -474,7 +476,7 @@ export const ResumeCv016 = ({
                       
                       {
                         employment.map((itemEm, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
                             <p className="block-subheading font-size-2">
                               {!!itemEm?.title && (`${itemEm?.title}, `)}
                               {!!itemEm?.company && (` ${itemEm?.company}, `)}
@@ -485,7 +487,7 @@ export const ResumeCv016 = ({
                                 <p className="date-range">{!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} -`)} {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}</p>
                               )
                             }
-                            <div className="text-block-list " dangerouslySetInnerHTML={{ __html: itemEm.assignment }}>
+                            <div className="text-block-list" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}>
                             </div>
                           </div>
                         ))
@@ -503,7 +505,7 @@ export const ResumeCv016 = ({
                       
                       {
                         education.map((itemEd, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
                             {
                               (!!itemEd?.study) && (
                                 <p className="block-subheading font-size-2">{itemEd?.facility && (`${itemEd.facility}, `)} {!!itemEd?.study && (`${itemEd?.study}, `)} {itemEd?.degree && (`${itemEd?.degree}`)} </p>
@@ -531,7 +533,7 @@ export const ResumeCv016 = ({
                       
                       {
                         courses.map((itemCo, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
                             {
                               (!!itemCo?.title || !!itemCo?.institution) && (
                                 <p className="block-subheading font-size-2">{!!itemCo?.title && (`${itemCo?.title},`)} {!!itemCo?.institution && (itemCo?.institution)}</p>
@@ -556,7 +558,7 @@ export const ResumeCv016 = ({
                         <h3 className="cv-heading font-size-3">11</h3>
                       </div>
                       
-                      <p>
+                      <p className="certificates-info">
                         {
                           certificates.map((item, index) => (
                             <span key={index}>
@@ -578,7 +580,7 @@ export const ResumeCv016 = ({
                       
                       {
                         extra_curricular.map((itemEx, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
                             {
                               (!!itemEx?.title || itemEx?.employer) && (
                                 <p className="block-subheading font-size-2">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
@@ -606,7 +608,7 @@ export const ResumeCv016 = ({
                       
                       {
                         internship.map((itemIn, index) => (
-                          <div key={index}>
+                          <div className="block-info" key={index}>
                             {
                               (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
                                 <p className="block-subheading font-size-2">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
@@ -617,7 +619,7 @@ export const ResumeCv016 = ({
                                 <p className="date-range">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
                               )
                             }
-                            <div className="text-block-list" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                            <p dangerouslySetInnerHTML={{ __html: itemIn.description }}></p>
                           </div>
                         ))
                       }
