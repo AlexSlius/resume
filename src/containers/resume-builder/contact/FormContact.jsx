@@ -201,7 +201,7 @@ const FormContact = ({
    }
 
    const onHandleNewAuthorization = async () => {
-      await dispatch(contactAddNew({ pictureFile, isNewResume }));
+      await dispatch(contactAddNew({ pictureFile, isNewResume, isPage: true }));
    }
 
    const updateContactServer = async () => {

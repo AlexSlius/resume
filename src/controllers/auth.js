@@ -14,6 +14,7 @@ import { localStorageRemove, sessionStorageRemove } from '../helpers/localStorag
 import { addItemNotification } from "../slices/notifications";
 import { getCoverDataActive, setUpdateCoverDataActive } from './cover/coverData';
 import { setUpdateResumeActive, getResumeActive } from "./resumeData";
+import { cleanSliseNew } from "../slices/contact";
 
 
 export const logout = async (dispatch) => {
@@ -130,6 +131,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             // resume
             await thunkAPI.dispatch(setUpdateResumeActive({ idCv: reseAut?.payload.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
             await thunkAPI.dispatch(getResumeActive({ idCv: reseAut?.payload.id }));
+            thunkAPI.dispatch(cleanSliseNew());
         }
 
         if (!isResume) {
@@ -138,7 +140,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: reseAut?.payload.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
             await thunkAPI.dispatch(getCoverLetterById(reseAut?.payload.id));
             await thunkAPI.dispatch(getCoverDataActive({ idCv: reseAut?.payload.id }));
-            await thunkAPI.dispatch(cleanNewForm());
+            thunkAPI.dispatch(cleanNewForm());
         }
 
         return { id: reseAut?.payload.id };

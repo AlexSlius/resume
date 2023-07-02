@@ -10,17 +10,17 @@ import { addItemNotification } from "../slices/notifications";
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
 import { getScreenResume } from './resumes';
+import { cleanSliseNew } from "../slices/contact";
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar: { image, id: idAvatar } } } = thunkAPI.getState();
-
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined, isPage = false }, thunkAPI) => {
+    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar } } = thunkAPI.getState();
     const dataAccout = {
         email: objFormSettings?.email || '',
         first_name: objFormSettings?.firstName || '',
         last_name: objFormSettings?.lastName || ''
     };
-
-    const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (idAvatar || null) : pictureFile);
+    const picture = isPage ? contactObjNew?.picture?.includes('data:image/') ? pictureFile : avatar?.image_name : pictureFile;
+    const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (avatar?.image_name || null) : picture);
     const response = await api.contact.setAddResume(newObj);
 
     if (isRedirect) {
@@ -33,6 +33,8 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
             } else {
                 await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${link ? link : menuAsideResume.list[1].link}`);
             }
+
+            thunkAPI.dispatch(cleanSliseNew());
         }
     }
 
