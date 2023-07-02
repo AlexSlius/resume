@@ -66,7 +66,7 @@ export const loginFormCode = createAsyncThunk('fetch/loginFormCode', async ({ da
     }
 
     if (!response?.token?.length > 0) {
-        setState(prev => ({ ...prev, text: response?.status || "" }));
+        setState({ load: false, text: response?.status || "" });
         return {};
     }
 
