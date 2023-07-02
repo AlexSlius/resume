@@ -151,7 +151,7 @@ $color_set_7_additional_color_1: #87608D;
       .cv-body-content {
         .top-area {
           .cv-name {
-            margin-top: 75px !important;
+            margin-top: 75px;
             margin-bottom: 56px !important;
           }
         }
@@ -159,37 +159,24 @@ $color_set_7_additional_color_1: #87608D;
         .middle-area {
           flex: 1;
           flex-direction: column;
-          margin: 0px 112px 0px 123px;
-          padding: 0px;
+          margin: 0 125px;
+          padding: 0;
 
           .letter-block {
             margin-top: 15px;
-
-            .letter-heading {
-              font-family: 'PlayfairDisplay', sans-serif;
-              margin-bottom: 15px !important;
-            }
           }
         }
 
         .bottom-area {
+          margin: 10px 0 45px;
           .addresses-block {
             display: flex;
-            align-items: stretch;
-            justify-content: stretch;
-            margin: 0px 121px 45px 121px;
+            flex-wrap: wrap;
+            column-gap: 50px;
+            margin: 0px 125px;
 
             .block-to {
-              margin: 0px 50px 0px 0px;
-
-            }
-
-            .cv-heading {
-              margin-bottom: 6px;
-            }
-
-            p {
-              margin-top: 5px;
+              width: 100px;
             }
           }
         }
