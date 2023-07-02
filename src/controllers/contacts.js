@@ -39,7 +39,7 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
     }
 
     if (isError(response)) {
-        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
     }
 
     return response;
@@ -62,7 +62,7 @@ export const contactSetNew = createAsyncThunk('fetch/setNewRegisterContact', asy
     }
 
     if (isError(response)) {
-        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
     }
 
     return response;
@@ -80,7 +80,7 @@ export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', a
     const response = await api.contact.updateContact(idCv, newObj);
 
     if (isError(response)) {
-        await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
         return response;
     }
 
