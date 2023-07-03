@@ -143,21 +143,16 @@
 
           .addresses-block {
             display: flex;
-            align-items: stretch;
-            justify-content: stretch;
+            column-gap: 50px;
 
-            .to-block {
-              margin: 0px 50px 0px 0px;
-
-              p {
-                margin-top: 5px;
-              }
+            .cv-heading {
+              font-family: 'Orbitron', sans-serif;
+              margin-bottom: 6px !important;
+              font-weight: 400;
             }
 
-            .from-block {
-              p {
-                margin-top: 5px;
-              }
+            .to-block {
+              flex-basis: 100px;
             }
           }
         }
