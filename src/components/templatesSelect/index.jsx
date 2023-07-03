@@ -28,7 +28,6 @@ import { ResumeCv040 } from '../../resumeTemplates/040-CV';
 import { ResumeCv041 } from '../../resumeTemplates/041-CV';
 
 export const TemplatesSelect = ({
-    scale = "scale(1)",
     isNewResume,
     status = "",
     stateLineSpacing = 50,
@@ -71,7 +70,7 @@ export const TemplatesSelect = ({
     }
 
     return (
-        <LoadWr isLoad={isLoader(statusLoad)} style={{ transform: scale }} classes='resume_transform'>
+        <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>
             {
                 resumeActive == "001-CV" && (
                     <ResumeCv001
@@ -240,7 +239,7 @@ export const TemplatesSelect = ({
                 )
             }
 
-{
+            {
                 resumeActive == "015-CV" && (
                     <ResumeCv015
                         reportTemplateRef={reportTemplateRef}

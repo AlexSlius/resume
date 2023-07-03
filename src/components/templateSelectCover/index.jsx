@@ -27,7 +27,6 @@ import { CoverCv040 } from '../../resumeTemplatesCover/040-CV';
 import { CoverCv041 } from '../../resumeTemplatesCover/041-CV';
 
 export const TemplatesSelectCover = ({
-    scale = 1,
     isNewResume,
     status = "",
     stateLineSpacing = 50,
@@ -69,7 +68,7 @@ export const TemplatesSelectCover = ({
     }
 
     return (
-        <LoadWr isLoad={isLoader(statusLoad)} style={{ transform: scale }} classes='resume_transform'>
+        <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>
             {
                 resumeActive == "001-CV" && (
                     <CoverCv001
