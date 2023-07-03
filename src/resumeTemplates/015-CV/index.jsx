@@ -180,7 +180,7 @@ export const ResumeCv015 = ({
                     )
                   }
                 </div>
-                <h3 class="block-heading font-size-3 additional-color-1-text">Profile</h3>
+                <h3 className="block-heading font-size-3 additional-color-1-text">Profile</h3>
                 {
                     career_objective?.[0]?.data && (
                       <p className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
@@ -443,7 +443,7 @@ export const ResumeCv015 = ({
                       <div className="skills-list estimated-items-list">
                         {
                           skills.map((item, index) => (
-                            <div className="list-item">
+                            <div className="list-item" key={index}>
                               <p className="item-name">{item?.name}</p>
                             </div>
                           ))

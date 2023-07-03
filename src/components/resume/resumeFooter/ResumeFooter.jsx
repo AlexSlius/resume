@@ -78,7 +78,7 @@ const ResumeFooter = ({
    }
 
    return (
-      <div className="resume-footer d-flex gap-3 justify-content-between py-3">
+      <div className="resume-footer d-flex gap-3 justify-content-between py-3 footer_resume_div">
          <div className="resume-footer__left">
             <Link href={!isCover ? `/${routersPages['resumeBuilder']}/${idCv}/${routersPages['templates']}${dopQuery}` : `/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}${dopQuery}`} className='btn btn-outline-secondary resume-footer__button'>
                <Icon svg={templateIcon} classNames={['icon-20']} />

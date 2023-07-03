@@ -4,7 +4,8 @@
 }
 
 .col.resume {
-   flex: 0 0 694px;
+   flex: 0 0 614px;
+   max-width: 614px;
    padding: 0px 14px 0px 30px;
    display: flex;
    flex-direction: column;
@@ -13,13 +14,19 @@
 
 .resume-main {
    flex: 1 1 auto;
-   height: calc(100vh - 160px);
+   height: calc(100vh - 166px);
    overflow: hidden;
 
    &_scroll {
       max-height: 100%;
       overflow-y: auto;
       margin-right: 10px;
+   }
+
+   &>.scroll-style {
+      @media (min-width: 1023px) {
+         height: inherit;
+      }
    }
 
    p {
@@ -149,11 +156,11 @@
       }
    }
 
-   transform-origin: 0px 0px;
-}
+   transform-origin: 0 0;
 
-.resume_transform {
-   transform-origin: 0px 0px;
+   // @media (min-width: 1023px) {
+   //    transform-origin: center 0;
+   // }
 }
 
 .resume-footer {
@@ -321,8 +328,8 @@
 
 @media (max-width: 1720px) {
    .col.resume {
-      flex: 0 0 560px;
-      max-width: 560px;
+      flex: 0 0 520px;
+      max-width: 520px;
    }
 }
 
@@ -338,8 +345,8 @@
 @media (max-width: 1559px) {
    .col.resume {
       padding: 0px 4px 0px 20px;
-      flex: 0 0 460px;
-      max-width: 460px;
+      flex: 0 0 420px;
+      max-width: 420px;
    }
 
    .sidebar-nav .nav-link {
@@ -427,6 +434,12 @@
 
 }
 
+@media (max-width: 1024px) {
+   .col.resume {
+      padding: 0px 20px 0px 20px;
+   }
+}
+
 @media (max-width: 992px) {
    .resume-btn {
       &.hide-result {
@@ -440,9 +453,4 @@
    .resume-main_scroll {
       max-height: fit-content;
    }
-
-   // .resume-main_scale>div,
-   // .sv_001 .cv-body {
-   //    min-width: 515px;
-   // }
 }

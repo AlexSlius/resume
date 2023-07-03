@@ -20,7 +20,7 @@ const ResumeHead = ({
    let isPrev = lengthPages == 1 ? false : currentPage == 1 ? false : true;
 
    return (
-      <div className={`${style.resume_head}`}>
+      <div className={`${style.resume_head} head_resume_div`}>
          {
             !['sm', 'xs', 'md'].includes(currentResolution) ? (
                <div className={`${style.resume_head__status}`}>

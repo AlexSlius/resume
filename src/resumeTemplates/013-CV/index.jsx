@@ -301,7 +301,7 @@ export const ResumeCv013 = ({
                       <div className="skills-list estimated-items-list">
                         {
                           skills.map((item, index) => (
-                            <div className="list-item">
+                            <div className="list-item" key={index}>
                               <p className="item-name">{item?.name}</p>
                               <div className="estimation-wrapper">
                                 <div className="estimation-background"></div>

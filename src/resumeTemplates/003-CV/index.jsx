@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 import { isObjDatasKeys } from "../../helpers/datasPage";
@@ -235,14 +235,14 @@ export const ResumeCv003 = ({
 
   useEffect(() => {
     if (isTemplate) {
-        drawing();
+      drawing();
     }
 
     if (!!isDrawing && !isTemplate) {
-        drawing();
-        handleFalseDrafind();
+      drawing();
+      handleFalseDrafind();
     }
-}, [isDrawing, data, stateClasses]);
+  }, [isDrawing, data, stateClasses]);
 
   return (
     <div className="sv_003" ref={reportTemplateRef}>
@@ -448,7 +448,7 @@ export const ResumeCv003 = ({
                 }
                 {/* education */}
                 {
-                   (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block">
                       <h3 className="cv-heading font-size-2">
                         Education
@@ -478,7 +478,7 @@ export const ResumeCv003 = ({
                             <div className="degree-text">
                               {!!itemEd?.degree && (`${itemEd.degree}`)}
                             </div>
-                            
+
                             {/* <p className="horizontal-wrap education-text font-size-1">Bachelor</p> */}
                             {
                               !!itemEd?.description && (
@@ -531,7 +531,7 @@ export const ResumeCv003 = ({
                 }
                 {/* extra_curricular */}
                 {
-                 (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
+                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
                     <div className="extra-curricular-activities-block block-block">
                       <h3 className="cv-heading font-size-2">
                         Extra-curricular activities
@@ -569,7 +569,7 @@ export const ResumeCv003 = ({
                 }
                 {/* internship */}
                 {
-                 (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block">
                       <h3 className="cv-heading font-size-2">
                         Internships
@@ -655,7 +655,7 @@ export const ResumeCv003 = ({
                                           className="additional-color-1-svg-path">
                                           <path
                                             d="M5 0L6.29313 3.22016L9.75528 3.45492L7.09232 5.67984L7.93893 9.04508L5 7.2L2.06107 9.04508L2.90768 5.67984L0.244718 3.45492L3.70687 3.22016L5 0Z"
-                                            fill="#A0A0A0" className={(index + 1) <= item.level ? "additional-color-1-svg"  : "" } />
+                                            fill="#A0A0A0" className={(index + 1) <= item.level ? "additional-color-1-svg" : ""} />
                                         </svg>
                                       ))
                                     }
@@ -680,9 +680,9 @@ export const ResumeCv003 = ({
                       </h3>
                       {
                         certificates.map((item, index) => (
-                          <div className="block-info">
-                            <p key={index} className="cv-heading">
-                              <span key={index}>
+                          <div className="block-info" key={index}>
+                            <p className="cv-heading">
+                              <span >
                                 {`${item.name}${((certificates.length - 1) != index) ? (", ") : ""}`}
                               </span>
                             </p>
@@ -694,7 +694,7 @@ export const ResumeCv003 = ({
                 }
                 {/* references */}
                 {
-                 (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
+                  (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                     <div className="references-block block-block horiz-line">
                       <h3 className="cv-heading font-size-2">
                         References
@@ -730,7 +730,7 @@ export const ResumeCv003 = ({
                 }
                 {/* hobbies */}
                 {
-                 isArray(hobbies) && !!hobbies.length && (
+                  isArray(hobbies) && !!hobbies.length && (
                     <div className="hobbies-block block-block horiz-line">
                       <h3 className="cv-heading font-size-2">
                         Hobbies

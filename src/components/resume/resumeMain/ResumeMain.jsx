@@ -100,7 +100,7 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main`} ref={refDivResumeMain}>
-         <div className="scroll-style hide_scroll" >
+         {/* <div className="scroll-style hide_scroll" > */}
             {
                !isCover && (
                   <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
@@ -137,7 +137,7 @@ const ResumeMain = ({
                   </div>
                )
             }
-         </div>
+         {/* </div> */}
       </div>
    )
 }

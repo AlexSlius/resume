@@ -63,6 +63,7 @@ export const usePosition = () => {
   return { ...position, error };
 }
 
+// page select teplate
 export const useScaleResumePageShare = (constWidth = 624) => {
   const [scaleSize, setScaleSize] = useState(1);
 
@@ -87,9 +88,11 @@ export const useScaleResumePageShare = (constWidth = 624) => {
   return scaleSize;
 }
 
+// resume main
 export const useScaleResumeMain = ({
   refDivResumeMain,
   constWidth = 624,
+  constHeight = 842,
   currentResolution = [],
 }) => {
   const [scaleSize, setScaleSize] = useState(1);
@@ -97,19 +100,31 @@ export const useScaleResumeMain = ({
 
   useEffect(() => {
     function handleResize() {
-      let wid = refDivResumeMain?.current?.offsetWidth;
+      if (refDivResumeMain?.current) {
+        let wid = refDivResumeMain.current.offsetWidth;
 
-      if (wid) {
-        let w = (((wid * 100) / constWidth) / 100);
-        isMob && (w -= 0.002);
+        if (!isMob) {
+          let hMain = refDivResumeMain.current.offsetHeight;
+          let trS = ((100 * hMain) / constHeight) / 100;
 
-        if (wid >= 640) {
-          setScaleSize(1);
-        } else {
-          setScaleSize(w);
+          if (trS > 1) {
+            setScaleSize(1);
+          }
+
+          if (trS < 1)
+            setScaleSize(trS);
         }
-      } else {
-        setScaleSize(1);
+
+        if (isMob) {
+          let w = (((wid * 100) / constWidth) / 100);
+          isMob && (w -= 0.002);
+
+          if (wid >= 640) {
+            setScaleSize(1);
+          } else {
+            setScaleSize(w);
+          }
+        }
       }
     }
 
@@ -121,3 +136,38 @@ export const useScaleResumeMain = ({
 
   return scaleSize;
 }
+
+// export const useScaleResumeMain = ({
+//   refDivResumeMain,
+//   constWidth = 624,
+//   currentResolution = [],
+// }) => {
+//   const [scaleSize, setScaleSize] = useState(1);
+//   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
+
+//   useEffect(() => {
+//     function handleResize() {
+//       let wid = refDivResumeMain?.current?.offsetWidth;
+
+//       if (wid) {
+//         let w = (((wid * 100) / constWidth) / 100);
+//         isMob && (w -= 0.002);
+
+//         if (wid >= 640) {
+//           setScaleSize(1);
+//         } else {
+//           setScaleSize(w);
+//         }
+//       } else {
+//         setScaleSize(1);
+//       }
+//     }
+
+//     window.addEventListener("resize", handleResize);
+//     handleResize();
+
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, [currentResolution]);
+
+//   return scaleSize;
+// }
