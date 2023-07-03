@@ -108,8 +108,6 @@ const Resume = ({
       careers
    ]);
 
-   // resumeData?.data
-
    useEffect(() => {
       if (typeof window != "undefined") {
          if (!!reportTemplateRef.current) {
@@ -156,9 +154,6 @@ const Resume = ({
       certificaties,
       careers
    ]);
-
-   //resumeData.data
-
 
    useEffect(() => {
       setPagePagCurrent(1);

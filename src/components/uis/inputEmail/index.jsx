@@ -23,6 +23,7 @@ export const InputEmail = ({
         <Input
             label={label}
             invalid={(value?.length > 0 && !(/\S+@\S+\.\S+/.test(value)))}
+            name="email"
             value={value}
             readOnly={false}
             valid={/\S+@\S+\.\S+/.test(value)}

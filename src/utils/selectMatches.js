@@ -32,26 +32,18 @@ export const mathcesSelect = ({
             }
 
         let positionInText = textValueLowe?.length > 0 && textLove.indexOf(textValueLowe) == 0;
-
-        let replaceText = positionInText ?
-            textLove.replace(textValueLowe, `<i>${textValueLowe.charAt(0).toUpperCase() + textValueLowe.slice(1)}</i>`) :
-            text;
-        let textUpper = replaceText;
+        let textUpper = '';
 
         if (textLove !== textValueLowe) isMath = true;
 
-        if (positionInText)
-            textUpper = replaceText.split(/\s+/).map((word, index) => {
-                if (index > 0) {
-                    return (word[0] ? word[0] : '').toUpperCase() + word.substring(1);
-                }
-
-                return word;
-            }).join(' ');
+        if (positionInText) {
+            let lenghVal = textValueLowe.length;
+            textUpper = `<i>${text.substr(0, lenghVal)}</i>${text.substr(lenghVal, text.length - 1)}`;
+        }
 
         return {
             ...el,
-            [keyNameDev]: textUpper,
+            [keyNameDev]: positionInText ? textUpper : text,
         }
     }));
 

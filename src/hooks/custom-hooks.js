@@ -125,6 +125,10 @@ export const useScaleResumeMain = ({
             setScaleSize(w);
           }
         }
+
+        setTimeout(() => {
+          refDivResumeMain.current.classList.remove('load');
+        }, 500);
       }
     }
 
