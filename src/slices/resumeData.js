@@ -35,6 +35,9 @@ export const slice = createSlice({
     name: 'resumeData',
     initialState,
     reducers: {
+        cleanResumeActive(state, action) {
+            state.resumeActive = initialState.resumeActive;
+        },
         handleCVUpdateDrawingFalse(state, action) {
             state.drawing = false;
         },
@@ -50,12 +53,9 @@ export const slice = createSlice({
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                list: { ...state.list, ...action.payload.resumeData.list },
-                data: { ...state.data, ...action.payload.resumeData.data },
-                resumeActive: { ...state.resumeActive, ...action.payload.resumeData.resumeActive },
-            }
+            state.list = { ...state.list, ...action.payload.resumeData.list };
+            state.data = { ...state.data, ...action.payload.resumeData.data };
+            state.resumeActive = { ...state.resumeActive, ...action.payload.resumeData.resumeActive };
         },
         // get resume active
         [getResumeActive.pending]: (state) => {
@@ -104,7 +104,8 @@ export const {
     handleCVUpdateDrawingFalse,
     handleCVUpdateDrawingTrue,
     updateActiveResumeNew,
-    updateActiveResume
+    updateActiveResume,
+    cleanResumeActive
 } = slice.actions;
 
 export const { reducer } = slice;

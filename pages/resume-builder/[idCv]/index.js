@@ -11,6 +11,6 @@ const ResumeContactPage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetAllBuilder: true });
+export const getServerSideProps = withPublicRoute({ isGetActiveResume: true, isGetAllBuilder: true });
 
 export default ResumeContactPage;

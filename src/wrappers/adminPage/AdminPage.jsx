@@ -11,6 +11,8 @@ import { Header } from "../../components/header";
 import { ModalCodeAuth } from "../../components/modals/modalCodeAuth";
 
 import { updateFieldsModalAuth, cleanFieldsModalAuth } from '../../slices/auth';
+import { cleanResumeActive } from "../../slices/resumeData";
+import { cleanCoverActive } from "../../slices/cover/coverData";
 import { autorizeAuthCode } from "../../controllers/auth";
 import { getScreenResume } from "../../controllers/resumes";
 import { getScreenCover } from "../../controllers/cover/covers";
@@ -77,6 +79,8 @@ const AdminPage = ({ children, isCover = false }) => {
    useEffect(() => {
       return () => {
          onScreen();
+         dispatch(cleanResumeActive());
+         dispatch(cleanCoverActive());
       }
    }, []);
 

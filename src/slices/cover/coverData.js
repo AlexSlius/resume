@@ -31,6 +31,9 @@ export const slice = createSlice({
     name: 'coverData',
     initialState,
     reducers: {
+        cleanCoverActive(state, action) {
+            state.resumeActive = initialState.resumeActive;
+        },
         updateActiveCoverNew(state, action) {
             state.resumeActiveNew = { ...state.resumeActiveNew, ...action.payload };
         },
@@ -40,12 +43,9 @@ export const slice = createSlice({
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                list: { ...state.list, ...action.payload.coverData.list },
-                data: { ...state.data, ...action.payload.coverData.data },
-                resumeActive: { ...state.resumeActive, ...action.payload.coverData.resumeActive },
-            }
+            state.list = { ...state.list, ...action.payload.coverData.list };
+            state.data = { ...state.data, ...action.payload.coverData.data };
+            state.resumeActive = { ...state.resumeActive, ...action.payload.coverData.resumeActive };
         },
         // getCoverShareTemplateActive
         [getCoverShareTemplateActive.pending]: (state) => {
@@ -76,7 +76,8 @@ export const slice = createSlice({
 
 export const {
     updateActiveCoverNew,
-    updateActiveCover
+    updateActiveCover,
+    cleanCoverActive
 } = slice.actions;
 
 export const { reducer } = slice;

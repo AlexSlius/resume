@@ -23,6 +23,8 @@ import {
 import { getAllPageHome } from "../controllers/pages/pagesHome";
 import { getAllPageCoverLetter } from "../controllers/pages/pagesCoverLetters";
 import { fetchGetResumeData } from "../controllers/resumeData";
+import { getResumeActive } from "../controllers/resumeData";
+import { getCoverDataActive } from "../controllers/cover/coverData";
 
 export const withPublicRoute = ({
     isGetAllBuilder = false,
@@ -36,10 +38,13 @@ export const withPublicRoute = ({
     isItemCoverPage = false,
     isCoverNew = false,
     isGetResumeDataAll = false,
+    isGetActiveResume = false,
 }) => {
     return wrapper.getServerSideProps(store => async (ctx) => {
         try {
             const cookis = cookieParse({ ctx });
+            const isNew = (ctx?.query?.idCv == "new");
+            const isResume = ctx?.resolvedUrl.includes('resume-builder');
 
             if (!!cookis?.token) {
                 api.apiClient.setToken(cookis.token);
@@ -48,7 +53,7 @@ export const withPublicRoute = ({
                 await store.dispatch(setIsAuth(isEx));
             }
 
-            if (ctx?.query?.idCv != "new") {
+            if (!isNew) {
                 if (!!isGetAllBuilder)
                     await getAllResumeBuilder({ dispatch: store.dispatch, idCv: ctx?.query?.idCv });
 
@@ -57,11 +62,21 @@ export const withPublicRoute = ({
                 }
             }
 
-            if (isCoverNew && ctx?.query?.idCv == "new" && ctx?.resolvedUrl?.includes("cover-letters")) {
+            if (isGetActiveResume) {
+                if (!isNew) {
+                    if (isResume) {
+                        store.dispatch(getResumeActive({ idCv: ctx?.query?.idCv }));
+                    } else {
+                        store.dispatch(getCoverDataActive({ idCv: ctx?.query?.idCv }));
+                    }
+                }
+            }
+
+            if (isCoverNew && isNew && ctx?.resolvedUrl?.includes("cover-letters")) {
                 await store.dispatch(getCoverTextNoAuthNew());
             }
 
-            if (!!isGetResumeDataAll && (ctx?.query?.idCv != "new")) {
+            if (!!isGetResumeDataAll && !isNew) {
                 await store.dispatch(fetchGetResumeData({ idCv: ctx?.query?.idCv }));
             }
 
@@ -82,7 +97,7 @@ export const withPublicRoute = ({
             }
 
             if (!!isItemCoverPage) {
-                if (ctx?.query?.idCv != "new") {
+                if (!isNew) {
                     await store.dispatch(getCoverGenerateDate(ctx?.query?.idCv));
                 }
             }

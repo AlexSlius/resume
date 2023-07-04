@@ -128,7 +128,7 @@ export const useScaleResumeMain = ({
 
         setTimeout(() => {
           refDivResumeMain.current.classList.remove('load');
-        }, 500);
+        }, 400);
       }
     }
 
