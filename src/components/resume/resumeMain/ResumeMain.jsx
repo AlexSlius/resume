@@ -82,6 +82,8 @@ const ResumeMain = ({
       to: coverDataForm.to,
    };
 
+   let { scaleSize, origin } = useScaleResumeMain({ refDivResumeMain, currentResolution });
+
    useEffect(() => {
       const activeResume = dataOther?.resumeActive;
       setStateLIneSpacig(activeResume?.template_line_spacing ? +activeResume?.template_line_spacing : 50);
@@ -100,42 +102,42 @@ const ResumeMain = ({
 
    return (
       <div className={`resume-main load`} ref={refDivResumeMain}>
-            {
-               !isCover && (
-                  <div className="resume-main_scale" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
-                     <TemplatesSelect
-                        isNewResume={isNewResume}
-                        data={dataResumeTemplate}
-                        resumeData={dataOther}
-                        stateLineSpacing={stateLineSpacing}
-                        stateFontSize={stateFontSize}
-                        status={dataOther?.status}
-                        statusResumeActive={dataOther?.statusResumeActive}
-                        reportTemplateRef={reportTemplateRef}
-                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
-                        drawing={resumeData.drawing}
-                     />
-                  </div>
-               )
-            }
-            {
-               isCover && (
-                  <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${useScaleResumeMain({ refDivResumeMain, currentResolution })})` }}>
-                     <TemplatesSelectCover
-                        isNewResume={isNewResume}
-                        resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
-                        data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
-                        stateLineSpacing={stateLineSpacing}
-                        stateFontSize={stateFontSize}
-                        resumeData={dataOther}
-                        reportTemplateRef={reportTemplateRef}
-                        status={dataOther?.status}
-                        statusResumeActive={dataOther?.statusResumeActive}
-                        drawing={coverDataForm.drawing}
-                     />
-                  </div>
-               )
-            }
+         {
+            !isCover && (
+               <div className="resume-main_scale" style={{ transform: `scale(${scaleSize})`, transformOrigin: `calc(50% - ${origin}px) 0` }}>
+                  <TemplatesSelect
+                     isNewResume={isNewResume}
+                     data={dataResumeTemplate}
+                     resumeData={dataOther}
+                     stateLineSpacing={stateLineSpacing}
+                     stateFontSize={stateFontSize}
+                     status={dataOther?.status}
+                     statusResumeActive={dataOther?.statusResumeActive}
+                     reportTemplateRef={reportTemplateRef}
+                     resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
+                     drawing={resumeData.drawing}
+                  />
+               </div>
+            )
+         }
+         {
+            isCover && (
+               <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${scaleSize})` }}>
+                  <TemplatesSelectCover
+                     isNewResume={isNewResume}
+                     resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
+                     data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
+                     stateLineSpacing={stateLineSpacing}
+                     stateFontSize={stateFontSize}
+                     resumeData={dataOther}
+                     reportTemplateRef={reportTemplateRef}
+                     status={dataOther?.status}
+                     statusResumeActive={dataOther?.statusResumeActive}
+                     drawing={coverDataForm.drawing}
+                  />
+               </div>
+            )
+         }
       </div>
    )
 }

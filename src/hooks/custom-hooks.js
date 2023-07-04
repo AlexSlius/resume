@@ -96,6 +96,7 @@ export const useScaleResumeMain = ({
   currentResolution = [],
 }) => {
   const [scaleSize, setScaleSize] = useState(1);
+  const [origin, setOrigin] = useState(0);
   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
   useEffect(() => {
@@ -106,6 +107,9 @@ export const useScaleResumeMain = ({
         if (!isMob) {
           let hMain = refDivResumeMain.current.offsetHeight;
           let trS = ((100 * hMain) / constHeight) / 100;
+          let wOr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetWidth;
+
+          setOrigin((wOr * trS) / 2);
 
           if (trS > 1) {
             setScaleSize(1);
@@ -124,6 +128,8 @@ export const useScaleResumeMain = ({
           } else {
             setScaleSize(w);
           }
+
+          setOrigin(0)
         }
 
         setTimeout(() => {
@@ -138,40 +144,5 @@ export const useScaleResumeMain = ({
     return () => window.removeEventListener("resize", handleResize);
   }, [currentResolution]);
 
-  return scaleSize;
+  return { scaleSize, origin };
 }
-
-// export const useScaleResumeMain = ({
-//   refDivResumeMain,
-//   constWidth = 624,
-//   currentResolution = [],
-// }) => {
-//   const [scaleSize, setScaleSize] = useState(1);
-//   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
-
-//   useEffect(() => {
-//     function handleResize() {
-//       let wid = refDivResumeMain?.current?.offsetWidth;
-
-//       if (wid) {
-//         let w = (((wid * 100) / constWidth) / 100);
-//         isMob && (w -= 0.002);
-
-//         if (wid >= 640) {
-//           setScaleSize(1);
-//         } else {
-//           setScaleSize(w);
-//         }
-//       } else {
-//         setScaleSize(1);
-//       }
-//     }
-
-//     window.addEventListener("resize", handleResize);
-//     handleResize();
-
-//     return () => window.removeEventListener("resize", handleResize);
-//   }, [currentResolution]);
-
-//   return scaleSize;
-// }
