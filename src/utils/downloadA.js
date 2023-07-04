@@ -1,19 +1,23 @@
+import fetch from "isomorphic-unfetch";
 import config from "../config/config.json";
 
-export const downloadA = (linhref) => {
-    const link = document.createElement('a');
-    link.href = `${config.API_URL}/${linhref}`;
-    link.setAttribute(
-        'download',
-        `FileName.pdf`,
-    );
+export const downloadA = async (linhref, isResume = true, setStatesetStateLoadDown = () => { }) => {
+    let res = await fetch(`${config.API_URL}/${linhref}`);
 
-    // Append to html link element page
-    document.body.appendChild(link);
+    if (res.status == 200) {
+        const blob = await res.blob();
+        const fownloadurl = window.URL.createObjectURL(blob);
 
-    // Start download
-    link.click();
+        const link = document.createElement('a');
+        link.setAttribute('download', isResume ? "resume.pdf" : 'cover.pdf');
+        link.href = fownloadurl;
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
 
-    // Clean up and remove the link
-    link.parentNode.removeChild(link);
+        setStatesetStateLoadDown(false);
+    }
+
+    if (res.status != 200)
+        setStatesetStateLoadDown(false);
 }

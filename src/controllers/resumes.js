@@ -21,15 +21,20 @@ export const postShareResume = createAsyncThunk('resumes/postShareResume', async
     return response;
 });
 
-export const downloadPdf = createAsyncThunk('resume/getDownloadResume', async ({ id, shareKey }, thunkAPI) => {
+export const downloadPdf = createAsyncThunk('resume/getDownloadResume', async ({ id, shareKey, setStatesetStateLoadDown = () => { } }, thunkAPI) => {
     if (shareKey?.length > 0) {
-        downloadA(`share/cv_pdf/${id}/${shareKey}`);
+        downloadA(`share/cv_pdf/${id}/${shareKey}`, true, setStatesetStateLoadDown);
     } else {
         let res = await thunkAPI.dispatch(postShareResume({ id }));
 
         if (res?.payload?.key?.length > 0)
-            await downloadA(`share/cv_pdf/${id}/${res?.payload?.key}`);
+            downloadA(`share/cv_pdf/${id}/${res?.payload?.key}`, true, setStatesetStateLoadDown);
+
+        if (!res?.payload?.key?.length > 0)
+            setStatesetStateLoadDown(false);
     }
+
+    return {};
 });
 
 export const deleteResume = createAsyncThunk('resumes/deleteResume', async ({ id }, thunkAPI) => {

@@ -1,4 +1,5 @@
 import { CButton } from '@coreui/react'
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import Router from 'next/router';
 import { useRouter } from 'next/router'
@@ -15,6 +16,7 @@ import { validEmail } from '../../../helpers/validEmail';
 import templateIcon from '/public/images/icons/selectFillNone.svg?sprite'
 import downloadIcon from '/public/images/icons/download.svg?sprite'
 import dotsIcon from '/public/images/icons/dotsFillNone.svg?sprite'
+import { LoadChildrenBtn } from '../../loadChildrenBtn';
 
 
 const ResumeFooter = ({
@@ -23,6 +25,7 @@ const ResumeFooter = ({
 }) => {
    const router = useRouter();
    const dispatch = useDispatch();
+   const [stateLoadDown, setStatesetStateLoadDown] = useState(false);
    const { idCv, shareKey } = router.query;
    const isNewResume = (idCv == "new");
    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
@@ -54,12 +57,14 @@ const ResumeFooter = ({
       true;
 
    const handleDownload = () => {
+      setStatesetStateLoadDown(true);
+
       if (!isCover) {
-         dispatch(downloadPdf({ id: idCv, shareKey: shareKey }));
+         dispatch(downloadPdf({ id: idCv, shareKey: shareKey, setStatesetStateLoadDown }));
       }
 
       if (isCover) {
-         dispatch(downloadLetterPdf({ id: idCv, shareKey: shareKey }));
+         dispatch(downloadLetterPdf({ id: idCv, shareKey: shareKey, setStatesetStateLoadDown }));
       }
    }
 
@@ -90,16 +95,20 @@ const ResumeFooter = ({
          {
             showBtn && (
                <div className="resume-footer__right d-flex ">
-                  <CButton
-                     className='resume-footer__button'
-                     color="secondary" variant="outline"
-                     onClick={() => chanbdegAutOrPlan(handleDownload)}
-                  >
-                     <Icon svg={downloadIcon} classNames={['icon-20']} />
-                     {
-                        isMob ? ("PDF") : ("Download PDF")
-                     }
-                  </CButton>
+                  <LoadChildrenBtn isLoad={stateLoadDown}>
+                     <CButton
+                        className='resume-footer__button'
+                        color="secondary" variant="outline"
+                        onClick={() => chanbdegAutOrPlan(handleDownload)}
+                     >
+                        <Icon svg={downloadIcon} classNames={['icon-20']} />
+                        <span>
+                           {
+                              isMob ? ("PDF") : ("Download PDF")
+                           }
+                        </span>
+                     </CButton>
+                  </LoadChildrenBtn>
 
                   <div className={`menu-show-tem ab-menu menus-card}`}>
                      <CButton

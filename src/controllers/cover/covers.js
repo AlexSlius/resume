@@ -21,15 +21,20 @@ export const postShareCover = createAsyncThunk('resumes/postShareCover', async (
     return response;
 });
 
-export const downloadLetterPdf = createAsyncThunk('resume/getDownloadLetter', async ({ id, shareKey }, thunkAPI) => {
+export const downloadLetterPdf = createAsyncThunk('resume/getDownloadLetter', async ({ id, shareKey, setStatesetStateLoadDown = () => { } }, thunkAPI) => {
     if (shareKey?.length > 0) {
-        downloadA(`share/cover_pdf/${id}/${shareKey}`);
+        downloadA(`share/cover_pdf/${id}/${shareKey}`, false, setStatesetStateLoadDown,);
     } else {
         let res = await thunkAPI.dispatch(postShareCover({ id }));
 
         if (res?.payload?.key?.length > 0)
-            await downloadA(`share/cover_pdf/${id}/${res?.payload?.key}`);
+            downloadA(`share/cover_pdf/${id}/${res?.payload?.key}`, false, setStatesetStateLoadDown);
+
+        if (!res?.payload?.key?.length > 0)
+            setStatesetStateLoadDown(false);
     }
+
+    return {};
 });
 
 export const deleteCover = createAsyncThunk('resumes/deleteCover', async ({ id }, thunkAPI) => {
