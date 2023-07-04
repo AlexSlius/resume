@@ -10,7 +10,12 @@
   font-weight: 400;
 }
 
-.sv_031 {
+@font-face {
+  font-family: 'Poppins';
+  src: url('./fonts/Poppins/Poppins-Light.ttf');
+  font-weight: 300;
+}
+
   /* Colors */
   $main_color_1: #F0F0F0;
   $main_color_2: #989898;
@@ -24,12 +29,15 @@
   $color_set_6_additional_color_1: #64668A;
   $color_set_7_additional_color_1: #87608D;
 
+.sv_031 {
+
   font-family: 'Poppins', sans-serif;
 
   * {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
   *,
@@ -38,53 +46,16 @@
     box-sizing: border-box;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 700;
-  }
-
-  .font-weight-300 {
-    font-weight: 300;
-  }
-
-  .font-weight-400 {
-    font-weight: 400;
-  }
-
-  .font-weight-500 {
-    font-weight: 500;
-  }
-
-  .font-weight-600 {
-    font-weight: 600;
-  }
-
-  .font-weight-700 {
-    font-weight: 700;
-  }
-
-  .font-weight-900 {
-    font-weight: 900;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 700;
-  }
-
   .cv-prophecy {
-    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
   }
 
   .cv-name {
-    text-align: center;
     font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
   }
 
   #cv-body-hidden-container,
@@ -105,51 +76,28 @@
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
-    padding: 19.2px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
 
     .cv-body-content {
       flex: 1;
       display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: stretch;
       position: relative;
-      z-index: 10;
-      border-width: 0.96px;
+      border-width: 1px;
       border-style: solid;
-      padding: 19.8px 28.8px;
+      padding: 20px;
+      column-gap: 30px;
 
       .column-left {
         width: 124px;
         min-width: 124px;
-        margin-right: 5px;
       }
-
-      .column-right {}
-    }
-
-    &.cv-body-1 {
-      .cv-body-content {
-        .column-left {
-          width: 124px;
-          margin: 0px 5px 0px 0px;
-        }
-
-        .column-right {
-          .cv-name {
-            text-align: left;
-            margin: 0px 0px 0px 26px;
-          }
-
-          .cv-prophecy {
-            text-align: left;
-            margin: 5px 0px 18px 26px !important;
-            text-transform: uppercase;
-          }
+      .column-right {
+        .block-block {
+          margin-left: -22px;
+          display: flex;
+          column-gap: 2px;
         }
       }
     }
@@ -195,21 +143,16 @@
 
           .addresses-block {
             display: flex;
-            align-items: stretch;
-            justify-content: stretch;
+            column-gap: 50px;
 
-            .to-block {
-              margin: 0px 50px 0px 0px;
-
-              p {
-                margin-top: 5px;
-              }
+            .cv-heading {
+              font-family: 'Orbitron', sans-serif;
+              margin-bottom: 6px !important;
+              font-weight: 400;
             }
 
-            .from-block {
-              p {
-                margin-top: 5px;
-              }
+            .to-block {
+              flex-basis: 100px;
             }
           }
         }
@@ -218,127 +161,104 @@
 
   }
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .additional-color-1-svg {
-    width: 10px;
-    height: 10px;
-  }
-
-  .estimation-container {
-    .item-estimation {
-      display: block;
-      height: 1px;
-    }
-  }
-
   /* Blocks styling */
   .block-block {
-    .block-heading {
+    .cv-heading {
       font-family: 'Orbitron', sans-serif;
+      margin-bottom: 6px !important;
+      font-weight: 400;
     }
 
-    .block-subheading {
-      margin: 0px 0px 5px 0px;
+    .cv-subheading {
+      margin-bottom: 5px;
     }
 
-    &.block-block-2 {
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-
-      .block-heading {
-        margin: 0px 0px 6px 0px !important;
+    .block-info {
+      &:not(:first-of-type) {
+        margin-top: 10px;
       }
+    }
 
-      .left-side {
-        width: 20px;
-        margin: 0px 6px 0px 0px;
+    .date-range {
+      text-transform: uppercase;
+      color: $main_color_2;
+      letter-spacing: 0.8px;
+      margin-bottom: 5px;
+      font-weight: 300;
+    }
 
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
+    &:not(:first-of-type) {
+      margin-top: 10px;
+    }
 
-      .date-range {
-        margin-bottom: 5px;
-      }
+    &.profile-block {
+      margin-top: 20px;
     }
   }
 
   .photo-block {
-    img {
+    width: 115px;
+    height: 115px;
+    .photo {
       display: block;
+      border-radius: 100%;
       width: 115px;
       height: 115px;
-      border-radius: 50%;
+      overflow: hidden;
+      border-radius: 100%;
+      background-size: 115px auto;
+      background-position: center center;
     }
   }
 
   .details-block {
-    margin-top: 10px;
-
-    .contacts-block {
-      margin-top: 6px;
-    }
-
     .profile-info-list {
-      margin-top: 13px;
-
+      margin-top: 12px;
       .info-list-item {
-        margin-top: 5px;
-
-        &:first-child {
-          margin-top: 0px;
+        .item-name {
+          font-weight: 300;
+          color: $main_color_2;
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+        }
+        .item-value {
+          margin-top: 2px;
+        }
+        &:not(:first-of-type) {
+          margin-top: 5px;
         }
       }
     }
   }
 
   .links-block {
-    margin-top: 10px;
-
     .social {
       display: flex;
-      align-items: stretch;
-      margin-top: 6px;
-
+      column-gap: 5px;
       a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-width: 1px;
-        border-style: solid;
-        width: 33.04px;
-        height: 27.36px;
-        border-radius: 13.4413px;
-        margin-left: 5px;
+        min-width: 36px;
+        text-align: center;
         text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 14px;
+        border-style: solid;
+        border-width: 1px;
 
-        &:first-child {
-          margin-left: 0px;
-        }
       }
     }
   }
 
   .skills-block {
-    margin-top: 10px;
-
     .skills-list {
       .skills-list-item {
-        margin-top: 5px;
-
-        &:first-item {
-          margin-top: 0px;
+        &:not(:first-of-type) {
+          margin-top: 5px;
         }
-
-        .skill-name {
-          margin-bottom: 3px;
+      }
+      .estimation-wrapper {
+        margin-top: 2px;
+        .estimation-value {
+          height: 2px;
         }
       }
     }
@@ -347,90 +267,45 @@
   .languages-block {
     margin-top: 10px;
 
-    .estimated-items-list {
-      .estimated-item {
-        margin-top: 5px;
-
-        .item-name {
-          margin: 0px 0px 3px 0px;
+    .languages-list {
+      .languages-item {
+        &:not(:first-of-type) {
+          margin-top: 5px;
         }
-
-        .estimation-container {
-          .item-estimation {}
-        }
-
-        &:first-child {
-          margin-top: 6px;
+      }
+      .estimation-wrapper {
+        margin-top: 2px;
+        .estimation-value {
+          height: 2px;
         }
       }
     }
   }
 
-  .hobbies-block {
-    margin-top: 10px;
-
-    p {
-      margin-top: 5px;
-    }
-  }
-
   .references-block {
-    margin-top: 10px;
-
     p {
-      margin-top: 3px;
-
-      &:first-child {
-        margin-top: 6px;
+      &:not(:first-of-type) {
+        margin-top: 4px;
       }
     }
   }
 
   .certificates-block {
-    margin-top: 10px;
-
-    p {
-      margin-top: 3px;
-
-      &:first-child {
-        margin-top: 6px;
-      }
+    .certificates-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
     }
   }
-
-  .profile-block {}
 
   .employment-history-block {
-    margin-top: 10px;
-  }
-
-  .education-block {
-    margin-top: 10px;
-
-    .subheading-line {
-      display: flex;
-      align-items: center;
-
-      .block-subheading {
-        margin-bottom: 0px;
-      }
-
-      svg {
-        margin: 0px 5px;
+    ul {
+      li {
+        &:not(:first-of-type) {
+          margin-top: 4px;
+        }
       }
     }
-  }
-
-  .courses-block {
-    margin-top: 10px;
-  }
-
-  .extra-curricular-activities-block {
-    margin-top: 10px;
-  }
-
-  .internships-block {
-    margin-top: 10px;
   }
 
   .letter-block {
@@ -443,83 +318,6 @@
     .additional-color-1-svg {
       width: 20px;
       height: 20px;
-    }
-  }
-
-  /* Control panel */
-  #control-panel {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 10000;
-
-    .control-panel-item-block {
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 5px 10px;
-
-      .control-panel-heading {
-        font-size: 11px;
-        margin: 0px 0px 0px 0px;
-      }
-
-      .control-panel-item-input-list {
-        &.radio-input-list {
-          .input-list-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            margin: 3px 0px;
-
-            .radio-input {
-              display: block;
-              border-radius: 50%;
-              border: 2px solid #d6d0d0;
-              width: 7px;
-              height: 7px;
-              background-color: transparent;
-              margin-right: 5px;
-              pointer-events: none;
-            }
-
-            .radio-input-label {
-              font-size: 10px;
-              pointer-events: none;
-            }
-
-            &.active {
-              .radio-input {
-                background-color: #d6d0d0;
-              }
-            }
-          }
-
-          &.color-list {
-            .input-list-item {
-              .radio-input-label {
-                flex: 1;
-                height: 15px;
-                border-radius: 3px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-
-                .color-set-color {
-                  display: block;
-                  border-radius: 50%;
-                  width: 15px;
-                  height: 15px;
-                  border: 0.5px solid #d4d4d4;
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
 
@@ -595,109 +393,27 @@
 
   /* Line height scheme */
   .line-height-scheme-state-small {
-    .line-height-1 {
-      line-height: 11.2px;
-    }
-
-    .line-height-2 {
-      line-height: 12.8px;
-    }
-
-    .line-height-3 {
-      line-height: 12.54px;
-    }
-
-    .line-height-4 {
-      line-height: 14px;
-    }
-
-    .line-height-5 {
-      line-height: 15px;
-    }
-
-    .line-height-6 {
-      line-height: 20.06px;
-    }
-
-    .line-height-7 {
-      line-height: 28.6px;
+    .cv-body-content {
+      line-height: 1.2;
     }
   }
 
   .line-height-scheme-state-medium {
-    .line-height-1 {
-      line-height: 13.2px;
-    }
-
-    .line-height-2 {
-      line-height: 14.8px;
-    }
-
-    .line-height-3 {
-      line-height: 14.54px;
-    }
-
-    .line-height-4 {
-      line-height: 16px;
-    }
-
-    .line-height-5 {
-      line-height: 17px;
-    }
-
-    .line-height-6 {
-      line-height: 22.06px;
-    }
-
-    .line-height-7 {
-      line-height: 30.6px;
+    .cv-body-content {
+      line-height: 1.4;
     }
   }
 
   .line-height-scheme-state-big {
-    .line-height-1 {
-      line-height: 15.2px;
+    .cv-body-content {
+      line-height: 1.6;
     }
-
-    .line-height-2 {
-      line-height: 16.8px;
-    }
-
-    .line-height-3 {
-      line-height: 16.54px;
-    }
-
-    .line-height-4 {
-      line-height: 18px;
-    }
-
-    .line-height-5 {
-      line-height: 19px;
-    }
-
-    .line-height-6 {
-      line-height: 24.06px;
-    }
-
-    .line-height-7 {
-      line-height: 32.6px;
-    }
-  }
-
-  .line_text {
-    &::before {
-      background: $color_set_1_additional_color_1;
-    }
-  }
+  } 
 
   /* Color scheme */
   .color-scheme-state-color-set-1 {
     .main-color-1-background {
       background-color: $main_color_1;
-    }
-
-    .main-color-2-text {
-      color: $main_color_2;
     }
 
     .main-color-3-text {
@@ -720,7 +436,7 @@
     }
 
     .additional-color-1-background {
-      background-color: $color_set_1_additional_color_1;
+      background-color: $main_color_2;
     }
 
     .additional-color-1-svg {
@@ -733,10 +449,6 @@
   .color-scheme-state-color-set-2 {
     .main-color-1-background {
       background-color: $main_color_1;
-    }
-
-    .main-color-2-text {
-      color: $main_color_2;
     }
 
     .main-color-3-text {
@@ -774,10 +486,6 @@
       background-color: $main_color_1;
     }
 
-    .main-color-2-text {
-      color: $main_color_2;
-    }
-
     .main-color-3-text {
       color: $main_color_3;
     }
@@ -811,10 +519,6 @@
   .color-scheme-state-color-set-4 {
     .main-color-1-background {
       background-color: $main_color_1;
-    }
-
-    .main-color-2-text {
-      color: $main_color_2;
     }
 
     .main-color-3-text {
@@ -852,10 +556,6 @@
       background-color: $main_color_1;
     }
 
-    .main-color-2-text {
-      color: $main_color_2;
-    }
-
     .main-color-3-text {
       color: $main_color_3;
     }
@@ -889,10 +589,6 @@
   .color-scheme-state-color-set-6 {
     .main-color-1-background {
       background-color: $main_color_1;
-    }
-
-    .main-color-2-text {
-      color: $main_color_2;
     }
 
     .main-color-3-text {
@@ -930,10 +626,6 @@
       background-color: $main_color_1;
     }
 
-    .main-color-2-text {
-      color: $main_color_2;
-    }
-
     .main-color-3-text {
       color: $main_color_3;
     }
@@ -960,127 +652,6 @@
     .additional-color-1-svg {
       path {
         stroke: $color_set_7_additional_color_1;
-      }
-    }
-  }
-
-  /* Custom class for custom color and font-size or line-height */
-  /* ReactJS scripts shoud change CUSTOM_FONT_SIZE, CUSTOM_LINE_HEIGHT and CUSTOM_COLOR to any values
-AND change appropriate container classes to font-size-scheme-state-custom, line-height-scheme-state-custom, color-scheme-state-color-set-custom */
-  .font-size-scheme-state-custom {
-    .font-size-1 {
-      /* font-size: CUSTOM_FONT_SIZE; */
-    }
-
-    .font-size-2 {
-      /* font-size: CUSTOM_FONT_SIZE; */
-    }
-
-    .font-size-3 {
-      /* font-size: CUSTOM_FONT_SIZE; */
-    }
-
-    .font-size-4 {
-      /* font-size: CUSTOM_FONT_SIZE; */
-    }
-
-    .font-size-5 {
-      /* font-size: CUSTOM_FONT_SIZE; */
-    }
-  }
-
-  /* Line height scheme */
-  .line-height-scheme-state-custom {
-    .line-height-1 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-
-    .line-height-2 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-
-    .line-height-3 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-
-    .line-height-4 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-
-    .line-height-5 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-
-    .line-height-6 {
-      /* line-height: CUSTOM_LINE_HEIGHT; */
-    }
-  }
-
-
-  .color-scheme-state-color-set-custom {
-    .main-color-1-text {
-      color: $main_color_1;
-    }
-
-    .main-color-1-background {
-      background-color: $main_color_1;
-    }
-
-    .main-color-2-text {
-      color: $main_color_2;
-    }
-
-    .main-color-2-border {
-      border-color: $main_color_2;
-    }
-
-    .additional-color-1-text {
-      /* color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-1-border {
-      /* border-color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-1-background {
-      /* background-color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-1-svg-path {
-      path {
-        /* stroke: CUSTOM_COLOR; */
-        fill: transparent;
-      }
-    }
-
-    .additional-color-1-svg {
-      path {
-        /* fill: CUSTOM_COLOR; */
-      }
-    }
-
-    .additional-color-2-text {
-      /* color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-2-border {
-      /* border-color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-2-background {
-      /* background-color: CUSTOM_COLOR; */
-    }
-
-    .additional-color-2-svg-path {
-      path {
-        /* stroke: CUSTOM_COLOR; */
-        fill: transparent;
-      }
-    }
-
-    .additional-color-2-svg {
-      path {
-        /* fill: CUSTOM_COLOR; */
       }
     }
   }
