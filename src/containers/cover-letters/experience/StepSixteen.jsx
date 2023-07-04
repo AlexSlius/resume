@@ -1,5 +1,5 @@
 import { CForm, CCol, CRow } from "@coreui/react"
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
@@ -28,6 +28,7 @@ export const StepSixteen = ({
     companysList,
     idCv
 }) => {
+    const routers = useRouter();
     const handleUpdateFiled = ({ name, value }, data, classnextFocus) => {
         handleUpdateField({ name, value });
 
@@ -54,7 +55,7 @@ export const StepSixteen = ({
     }
 
     const handleFinish = () => {
-        Router.push(`/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']} `);
+        Router.push(`/${routersPages['coverLetter']}/${idCv}/${routersPages['templates']}${routers?.query?.shareKey ? `?shareKey=${routers?.query?.shareKey}` : ""}`);
     }
 
     return (

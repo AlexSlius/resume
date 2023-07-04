@@ -84,7 +84,7 @@ const MenuSidebarCoverLetters = () => {
                             linkQuery = `&step=${lastPosition || undefined}${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
                             activeClassActives = style.link_current;
                         } else {
-                            linkQuery = `${(shareKey?.length > 0) ? `&shareKey=${shareKey}` : ""}`
+                            linkQuery = `${(shareKey?.length > 0) ? `?shareKey=${shareKey}` : ""}`
                         }
 
                         return (
