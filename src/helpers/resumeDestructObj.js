@@ -1,5 +1,7 @@
-export const newObjContact = (contactObj, dataImage) => {
-    return {
+import { isObject } from "lodash";
+
+export const newObjContact = (contactObj, dataImage, isUpdate = false) => {
+    let obj = {
         job_title: contactObj?.jobTitle || '',
         date_of_birth: contactObj?.dateOfBirth || '',
         driver_license: contactObj.driverLicense || '',
@@ -13,7 +15,15 @@ export const newObjContact = (contactObj, dataImage) => {
         first_name: contactObj.firstName || '',
         nationality: contactObj.nationality || '',
         email: contactObj.email,
-        picture: dataImage || null,
         job_title_id: contactObj.jobTitleId
     }
+
+    if (isUpdate)
+        if (isObject(dataImage))
+            obj.picture = dataImage || null;
+
+    if (!isUpdate)
+        obj.picture = dataImage;
+
+    return obj;
 }

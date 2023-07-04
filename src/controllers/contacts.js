@@ -11,6 +11,7 @@ import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 import { setUpdateResumeActive } from './resumeData';
 import { getScreenResume } from './resumes';
 import { cleanSliseNew } from "../slices/contact";
+import { fetchUserGetAvatar } from './users';
 
 export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined, isPage = false }, thunkAPI) => {
     const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar } } = thunkAPI.getState();
@@ -74,8 +75,9 @@ export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (
 })
 
 export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv, dataImage }, thunkAPI) => {
-    const { contacts: { contactObj } } = thunkAPI.getState()
-    const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture);
+    const { contacts: { contactObj } } = thunkAPI.getState();
+
+    const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture, true);
 
     const response = await api.contact.updateContact(idCv, newObj);
 
@@ -85,6 +87,7 @@ export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', a
     }
 
     thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+    thunkAPI.dispatch(fetchUserGetAvatar());
 
     return response;
 });

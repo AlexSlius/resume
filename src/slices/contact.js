@@ -67,10 +67,10 @@ export const slice = createSlice({
       state.contactObjNew.picture = action.payload;
     },
     cleanSlise(state, action) {
-      // state.contactObj = initialState.contactObj;
+      state.contactObj = initialState.contactObj;
     },
     cleanSliseNew(state, action) {
-      // state.contactObjNew = initialState.contactObjNew;
+      state.contactObjNew = initialState.contactObjNew;
     },
     updateFieldEmailForRegister(state, action) {
       state.emailRegister = action.payload;
