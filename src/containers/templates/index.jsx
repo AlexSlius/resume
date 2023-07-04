@@ -16,6 +16,7 @@ import { Buttonhelp } from "../../components/uis/buttonHelp"
 import CustomizedSlider from '../../components/uis/range';
 import { MenuButton } from '../../components/menuButton';
 import { SelectColor } from '../../components/selectColor';
+import { LoadChildrenBtn } from '../../components/loadChildrenBtn';
 
 import { downloadPdf, getScreenResume } from "../../controllers/resumes";
 import { downloadLetterPdf, getScreenCover } from "../../controllers/cover/covers";
@@ -65,11 +66,12 @@ const Templates = ({
     const [pagePagCurrent, setPagePagCurrent] = useState(1);
     const [showSettings, setShowSettings] = useState(false);
     const [showColorMob, setShowColorMod] = useState(false);
+    const [stateLoadDown, setStatesetStateLoadDown] = useState(false);
     const [isOnegetMobTemplate, setIsOnegetTemplate] = useState(false);
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const { idCv } = router.query;
+    const { idCv, shareKey } = router.query;
     const reportTemplateRef = useRef(null);
     const isNewResume = (idCv == "new");
 
@@ -274,12 +276,14 @@ const Templates = ({
     }
 
     const handleDownload = () => {
+        setStatesetStateLoadDown(true);
+
         if (!isCover) {
-            dispatch(downloadPdf({ id: idCv }));
+            dispatch(downloadPdf({ id: idCv, shareKey: shareKey, setStatesetStateLoadDown }));
         }
 
         if (isCover) {
-            dispatch(downloadLetterPdf({ id: idCv }));
+            dispatch(downloadLetterPdf({ id: idCv, shareKey: shareKey, setStatesetStateLoadDown }));
         }
     }
 
@@ -683,17 +687,17 @@ const Templates = ({
                                                 </div>
                                             </div>
                                         ) : null
-
                                     }
 
-
-                                    <ButtonIcon
-                                        isButton={true}
-                                        icon={downloadIcon}
-                                        label="Download PDF"
-                                        className={`btn--blue ${showBtn ? "opacet" : ""}`}
-                                        onHandle={() => chanbdegAutOrPlan(handleDownload)}
-                                    />
+                                    <LoadChildrenBtn isLoad={stateLoadDown}>
+                                        <ButtonIcon
+                                            isButton={true}
+                                            icon={downloadIcon}
+                                            label="Download PDF"
+                                            className={`btn--blue ${showBtn ? "opacet" : ""}`}
+                                            onHandle={() => chanbdegAutOrPlan(handleDownload)}
+                                        />
+                                    </LoadChildrenBtn>
 
                                     {
                                         ['sm', 'xs', 'md'].includes(currentResolution) ? (
