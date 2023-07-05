@@ -18,16 +18,17 @@ const drawing = () => {
 
             let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-            if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+            if (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight())) {
                 do {
                     text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
+                    text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
                 }
-                while (getPageContainer2().height() > (getPageContainer2().parent().height()));
+                while (getPageContainer2().outerHeight() > (getPageContainer2().parent().outerHeight()));
 
                 letter_current_page_number++;
                 getCvLetterContainer().append(original_cv_letter_text.clone());
                 let text2 = getCvLetterContainer().find('.cv-letter-text');
-                text2.html(text2.html().substring(text1.html().length));
+                text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
             }
         }
 
@@ -90,20 +91,20 @@ export const CoverCv040 = ({
         <div className="sv_040 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">
                 <div id="cv-body-2" data-chapter="resume" data-page="1" className="cv-body cv-body-2  main-color-1-background">
-                    <div className="cv-body-content">
+                    <div className="cv-body-content font-size-2 main-color-4-text">
                         <div className="top-area">
                             <div className="column-left additional-color-1-border">
-                                <h1 className="cv-name font-size-6 line-height-6 font-weight-300">{!!firstName && (<>{firstName} <br /></>)} {lastName}</h1>
+                                <h1 className="cv-name font-size-6">{!!firstName && (<>{firstName} <br /></>)} {lastName}</h1>
                             </div>
                             <div className="column-right additional-color-1-border">
                                 <div className="addresses-block">
                                     <div className="block-to">
-                                        <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">To</h3>
-                                        <p className="font-size-2 line-height-2 font-weight-400" dangerouslySetInnerHTML={{ __html: data.to }}></p>
+                                        <p className="cv-heading font-size-1">To</p>
+                                        <p dangerouslySetInnerHTML={{ __html: data.to }}></p>
                                     </div>
                                     <div className="block-from">
-                                        <h3 className="block-heading font-size-1 line-height-1 font-weight-400 main-color-3-text">From</h3>
-                                        <p className="font-size-2 line-height-2 font-weight-400" dangerouslySetInnerHTML={{ __html: data.from }}></p>
+                                        <p className="cv-heading font-size-1">From</p>
+                                        <p dangerouslySetInnerHTML={{ __html: data.from }}></p>
                                     </div>
                                 </div>
                             </div>

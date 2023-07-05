@@ -268,12 +268,19 @@
              border-right-width: 1px;
              border-right-style: solid;
              padding: 41px 52px 41px 0px;
+             justify-content: center;
            }
 
            .column-right {
              border-left-width: 1px;
              border-left-style: solid;
              padding: 41px 0px 41px 52px;
+             justify-content: center;
+
+             .cv-heading {
+              margin-bottom: 5px;
+              color: $main_color_3;
+             }
            }
 
            .center-block {
@@ -430,17 +437,7 @@
    }
 
    .block-from {
-     margin: 10px 0px 0px 0px;
-
-     p {
-       margin: 5px 0px 0px 0px;
-     }
-   }
-
-   .block-to {
-     p {
-       margin: 5px 0px 0px 0px;
-     }
+     margin-top: 10px;
    }
 
    /* Stylization */
