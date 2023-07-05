@@ -217,7 +217,7 @@ export const ResumeCv032 = ({
     <div className="sv_032" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-1-background">
-          <div className="cv-body-content font-size-1 main-color-3-texts">
+          <div className="cv-body-content font-size-1 main-color-3-text">
             <div className="column-left">
               <div className="main-info-block block-block">
                 <h1 className="cv-name font-size-6 additional-color-1-text">{!!contact?.[0]?.firstName && (<>{contact?.[0]?.firstName}<br /></>)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}</h1>
