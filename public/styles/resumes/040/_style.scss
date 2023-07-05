@@ -355,6 +355,12 @@
    }
 
    .personal-info-block {
+      p {
+        text-align: left;
+    }
+   }
+
+   .personal-info-block {
      .contacts-block {
        p {
          &:not(:first-of-type) {
@@ -366,9 +372,11 @@
      .personal-info-list {
        display: flex;
        gap: 8px;
+       flex-wrap: wrap;
        margin-top: 10px;
 
        .personal-info-list-item {
+        flex-shrink: 0;
          .item-name {
           color: $main_color_3;
          }
