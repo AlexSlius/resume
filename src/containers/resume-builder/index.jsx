@@ -23,7 +23,7 @@ import { handleCVUpdateDrawingTrue } from "../../slices/resumeData";
 
 import { ROUTES } from "../../constants/routes";
 
-const ResumeBuildter = () => {
+const ResumeBuildter = ({ statePictureFile, setStatePictureFile }) => {
     const dispatch = useDispatch();
     const {
         auth: {
@@ -53,6 +53,8 @@ const ResumeBuildter = () => {
                         idCv={idCv}
                         states={states}
                         dispatch={dispatch}
+                        setStatePictureFile={setStatePictureFile}
+                        statePictureFile={statePictureFile}
                     />
                 )
             }

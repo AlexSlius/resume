@@ -94,29 +94,41 @@ export const useScaleResumeMain = ({
   constWidth = 624,
   constHeight = 842,
   currentResolution = [],
+  drawing,
 }) => {
-  const [scaleSize, setScaleSize] = useState(1);
+  const [scaleSize, setScaleSize] = useState(0.915677);
   const [origin, setOrigin] = useState(0);
+  const [originTop, setOriginTop] = useState(0);
   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
-  useEffect(() => {
-    function handleResize() {
+  function handleResize() {
+    if (typeof window != "undefined")
       if (refDivResumeMain?.current) {
         let wid = refDivResumeMain.current.offsetWidth;
+        let hed = refDivResumeMain.current.offsetHeight
 
         if (!isMob) {
-          let hMain = refDivResumeMain.current.offsetHeight;
-          let trS = ((100 * hMain) / constHeight) / 100;
           let wOr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetWidth;
+          let wHr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetHeight;
+          let sc = scaleSize;
 
-          setOrigin((wOr * trS) / 2);
-
-          if (trS > 1) {
-            setScaleSize(1);
+          // если будет больше по ширине
+          if (wOr > wid) {
+            let trW = ((wid * 100) / wOr) / 100;
+            sc = trW;
           }
 
-          if (trS < 1)
-            setScaleSize(trS);
+          // проверяем влазит ли по высоте после уменшения по шиоирне, если не влезает то уменшаем чтобы влезло по высоте
+          let whS = (wHr * sc);
+          if (whS > hed) {
+            let minH = whS - hed;
+            let vic = sc - ((minH * 100) / hed / 100);
+            sc = vic;
+          }
+
+          setScaleSize(sc);
+          setOrigin((wid - (wOr * sc)) / 2);
+          setOriginTop((hed - (wHr * sc)) / 2);
         }
 
         if (isMob) {
@@ -129,20 +141,19 @@ export const useScaleResumeMain = ({
             setScaleSize(w);
           }
 
-          setOrigin(0)
+          setOrigin(0);
+          setOriginTop(0);
         }
-
-        setTimeout(() => {
-          refDivResumeMain.current.classList.remove('load');
-        }, 400);
       }
-    }
+  }
 
-    window.addEventListener("resize", handleResize);
+  useEffect(() => {
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
-  }, [currentResolution]);
+    window.addEventListener("resize", handleResize);
 
-  return { scaleSize, origin };
+    return () => window.removeEventListener("resize", handleResize);
+  }, [currentResolution, drawing]);
+
+  return { scaleSize, origin, originTop };
 }

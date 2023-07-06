@@ -11,7 +11,6 @@ import ActiveLink from "../Active-link"
 import { contactAddNew } from "../../controllers/contacts"
 
 // Helpers
-import { sessionStorageGet } from "../../helpers/localStorage";
 import { sendCodeResume } from "../../utils/sendCode";
 
 // Constants
@@ -24,7 +23,7 @@ import style from './SideBar.module.scss'
 import { sectionStatusAllButTheCustomSection } from "../../utils/customSection";
 
 
-const MenuSideBar = () => {
+const MenuSideBar = ({ statePictureFile }) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const {
@@ -49,14 +48,12 @@ const MenuSideBar = () => {
         if (idCv == "new") {
             e.preventDefault();
 
-            let pictureFile = sessionStorageGet('picture');
-
             if (isAthorized) {
-                dispatch(contactAddNew({ pictureFile, isNewResume, link: link }));
+                dispatch(contactAddNew({ pictureFile: statePictureFile, isNewResume, link: link }));
             } else {
                 sendCodeResume({
                     dispatch,
-                    pictureFile,
+                    pictureFile: statePictureFile,
                     link
                 });
             }

@@ -39,6 +39,7 @@ export const TemplatesSelect = ({
     reportTemplateRef,
     drawing = false,
     isTemplate = false,
+    handleReload = () => { },
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -65,6 +66,7 @@ export const TemplatesSelect = ({
 
         refIdTimeout.current = setTimeout(async () => {
             dispatch(handleCVUpdateDrawingFalse());
+            handleReload();
             clearTimeout(refIdTimeout.current);
         }, 500);
     }

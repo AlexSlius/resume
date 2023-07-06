@@ -1,4 +1,4 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux"
 import { useRouter } from "next/router";
@@ -25,6 +25,7 @@ const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const isPdf = downloadPagePdf(rest);
   // const [loading, setLoading] = useState();
+  const [statePictureFile, setStatePictureFile] = useState(22222);
   const router = useRouter();
   const isPageShare = router.asPath.includes(routersPages['shareResume']) || router.asPath.includes(routersPages['shareCover']);
 
@@ -105,8 +106,10 @@ const MyApp = ({ Component, ...rest }) => {
         <link rel="icon" type="image/x-icon" href="/favicons/fav3.ico" />
 
       </Head>
-      <App store={store}>
+      <App store={store} >
         <Component
+          setStatePictureFile={setStatePictureFile}
+          statePictureFile={statePictureFile}
           {...props}
         />
         {

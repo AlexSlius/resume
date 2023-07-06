@@ -9,7 +9,6 @@ import { getResumeActive } from "../../../controllers/resumeData";
 import { getCoverDataActive } from "../../../controllers/cover/coverData";
 import { useScaleResumeMain } from "../../../hooks/custom-hooks";
 
-
 const ResumeMain = ({
    reportTemplateRef,
    isCover,
@@ -21,6 +20,7 @@ const ResumeMain = ({
    const isNewResume = (idCv == "new");
    const [stateFontSize, setStateFontSize] = useState(50);
    const [stateLineSpacing, setStateLIneSpacig] = useState(50);
+   const [loadContent, setLoadContent] = useState(true);
 
    const {
       contacts: {
@@ -82,7 +82,7 @@ const ResumeMain = ({
       to: coverDataForm.to,
    };
 
-   let { scaleSize, origin } = useScaleResumeMain({ refDivResumeMain, currentResolution });
+   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: resumeData.drawing });
 
    useEffect(() => {
       const activeResume = dataOther?.resumeActive;
@@ -100,11 +100,17 @@ const ResumeMain = ({
       }
    }, []);
 
+   const handleReload = () => {
+      if (loadContent) {
+         setLoadContent(false);
+      }
+   }
+
    return (
-      <div className={`resume-main load`} ref={refDivResumeMain}>
+      <div className={`resume-main ${loadContent ? "load" : ""}`} ref={refDivResumeMain}>
          {
             !isCover && (
-               <div className="resume-main_scale" style={{ transform: `scale(${scaleSize})`, transformOrigin: `calc(50% - ${origin}px) 0` }}>
+               <div className={`resume-main_scale`} style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
                   <TemplatesSelect
                      isNewResume={isNewResume}
                      data={dataResumeTemplate}
@@ -116,13 +122,14 @@ const ResumeMain = ({
                      reportTemplateRef={reportTemplateRef}
                      resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                      drawing={resumeData.drawing}
+                     handleReload={handleReload}
                   />
                </div>
             )
          }
          {
             isCover && (
-               <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${scaleSize})` }}>
+               <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
                   <TemplatesSelectCover
                      isNewResume={isNewResume}
                      resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
@@ -134,6 +141,7 @@ const ResumeMain = ({
                      status={dataOther?.status}
                      statusResumeActive={dataOther?.statusResumeActive}
                      drawing={coverDataForm.drawing}
+                     handleReload={handleReload}
                   />
                </div>
             )

@@ -16,7 +16,7 @@ import { setUpdateCoverDataActive } from './coverData';
 import { getScreenCover } from './covers';
 
 
-export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false }, thunkAPI) => {
+export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false, isRedirect = true, isClean = true }, thunkAPI) => {
     const {
         coverDataForm: { coverDataObjNew },
         menuAsideResume: { coverLetters },
@@ -55,17 +55,20 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
             if (isAddNewAuth) {
                 await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
             }
-            await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
+
+            if (isRedirect)
+                await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
         }
 
-        await thunkAPI.dispatch(cleanNewForm());
+        if (isClean)
+            await thunkAPI.dispatch(cleanNewForm());
     }
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
     }
 
-    return {};
+    return response;
 });
 
 export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedirect = true }, thunkAPI) => {
