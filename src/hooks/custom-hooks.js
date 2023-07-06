@@ -92,9 +92,9 @@ export const useScaleResumePageShare = (constWidth = 624) => {
 export const useScaleResumeMain = ({
   refDivResumeMain,
   constWidth = 624,
-  constHeight = 842,
   currentResolution = [],
   drawing,
+  loadContent
 }) => {
   const [scaleSize, setScaleSize] = useState(0.915677);
   const [origin, setOrigin] = useState(0);
@@ -118,7 +118,7 @@ export const useScaleResumeMain = ({
             sc = trW;
           }
 
-          // проверяем влазит ли по высоте после уменшения по шиоирне, если не влезает то уменшаем чтобы влезло по высоте
+          // проверяем влазит ли по высоте после уменшения по ширине, если не влезает то уменшаем чтобы влезло по высоте
           let whS = (wHr * sc);
           if (whS > hed) {
             let minH = whS - hed;
@@ -153,7 +153,7 @@ export const useScaleResumeMain = ({
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [currentResolution, drawing]);
+  }, [currentResolution, drawing, loadContent]);
 
   return { scaleSize, origin, originTop };
 }

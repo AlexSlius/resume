@@ -82,7 +82,7 @@ const ResumeMain = ({
       to: coverDataForm.to,
    };
 
-   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: resumeData.drawing });
+   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: resumeData.drawing, loadContent });
 
    useEffect(() => {
       const activeResume = dataOther?.resumeActive;
