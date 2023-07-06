@@ -252,6 +252,7 @@
         .top-area {
           .main-info-block {
             margin: 134px auto 54px;
+            width: 325px;
           }
         }
 
@@ -270,34 +271,19 @@
 
           .addresses-block {
             width: 325px;
-            margin: 0px auto 55px;
+            margin: 20px auto 35px;
             display: flex;
-            align-items: stretch;
-            justify-content: stretch;
+            column-gap: 30px;
 
             .block-to {
-              margin: 0px 33px 0px 0px;
-
-              .block-heading {
-                margin: 0px 0px 5px 0px;
-              }
-
-              p {
-                margin-top: 3px;
-              }
+              flex: 0;
             }
 
-            .block-from {
-              .block-heading {
-                margin: 0px 0px 5px 0px;
-              }
-
-              p {
-                margin-top: 3px;
-              }
+            .cv-heading {
+              font-weight: 700;
+              margin-bottom: 6px;
+              color: $main_color_3;
             }
-
-            padding-top: 30px;
           }
         }
 
