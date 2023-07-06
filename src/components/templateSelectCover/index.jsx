@@ -23,6 +23,7 @@ import { CoverCv016 } from '../../resumeTemplatesCover/016-CV';
 import { CoverCv030 } from '../../resumeTemplatesCover/030-CV';
 import { CoverCv031 } from '../../resumeTemplatesCover/031-CV';
 import { CoverCv032 } from '../../resumeTemplatesCover/032-CV';
+import { CoverCv039 } from '../../resumeTemplatesCover/039-CV';
 import { CoverCv040 } from '../../resumeTemplatesCover/040-CV';
 import { CoverCv041 } from '../../resumeTemplatesCover/041-CV';
 
@@ -279,6 +280,19 @@ export const TemplatesSelectCover = ({
             {
                 resumeActive == "032-CV" && (
                     <CoverCv032
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        isTemplate={isTemplate}
+                        isDrawing={drawing}
+                        handleFalseDrafind={handleFalseDrafind}
+                    />
+                )
+            }
+
+{
+                resumeActive == "039-CV" && (
+                    <CoverCv039
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
