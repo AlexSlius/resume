@@ -91,12 +91,18 @@ const ResumeMain = ({
    }, [dataOther]);
 
    useEffect(() => {
-      if (idCv != "new") {
+      if (!isNewResume) {
          if (!isCover) {
             dispatch(getResumeActive({ idCv }));
          } else {
             dispatch(getCoverDataActive({ idCv }));
          }
+      }
+
+      if (isNewResume) {
+         setTimeout(() => {
+            handleReload();
+         }, 300);
       }
    }, []);
 
