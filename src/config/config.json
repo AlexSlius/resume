@@ -3,6 +3,5 @@
     "STRITE_API_URL": "https://api.stripe.com/",
     "STRITE_PUBLICK_KEY": "pk_test_51MyvEUEBJR7rLeB2X2JOP0Xwa1zVFBzMSGxQEfWPGQzNrsDAKqvHpsCmG74pXLmdPwWfJ5HGDuMV1Ce88BCS5dDd00CYS3Bhbm",
     "STRITE_PRIVATE_KEY": "sk_test_51MyvEUEBJR7rLeB2ZmuGNbMwtbBRH43RuE2YIoSkvoGN494JFNtPeBl6n1AibQGEtrnA6Bg2xWOLOaBZzmqDizGD00uBqI72WB",
-    "STRITE_ID_PRODUCT": "prod_NsNsjlon5ztUwu",
     "API_URL": "https://api.resulon.com"
 }
