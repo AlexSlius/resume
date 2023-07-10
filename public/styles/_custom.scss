@@ -1,3 +1,8 @@
+a:hover {
+    color: var(--blue);
+    transition: 0.3s;
+}
+
 .r-gap-30 {
     row-gap: 30px;
 }
@@ -2108,5 +2113,29 @@ button {
                 }
             }
         }
+    }
+}
+
+
+// redesign
+.button-p {
+    padding: 21px 35px;
+    text-align: center;
+    color: var(--white)!important;
+    border-radius: 35px;
+    background: var(--blue);
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    transition: 0.4s;
+
+    &:hover {
+        background: var(--blueB);
+    }
+
+    &.button-type-standart {
+
     }
 }

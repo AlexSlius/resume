@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import App from "../src/App";
 
 // Components
-// import { PreloaderPage } from "../src/components/preloaderPage";
 import Notifications from "../src/components/notifications";
 import { Cookies } from "../src/components/cookies";
 
@@ -24,7 +23,6 @@ import { routersPages } from "../src/constants/next-routers";
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const isPdf = downloadPagePdf(rest);
-  // const [loading, setLoading] = useState();
   const [statePictureFile, setStatePictureFile] = useState(22222);
   const router = useRouter();
   const isPageShare = router.asPath.includes(routersPages['shareResume']) || router.asPath.includes(routersPages['shareCover']);
@@ -34,22 +32,19 @@ const MyApp = ({ Component, ...rest }) => {
     require('zebra_datepicker');
   }
 
-  // useEffect(() => {
-  //   setLoading(false);
-  //   router.events.on("routeChangeStart", () => {
-  //     setLoading(true);
-  //   });
-
-  //   router.events.on("routeChangeComplete", () => {
-  //     setLoading(false);
-  //   });
-  // }, []);
-
   return (
     <Provider store={store}>
       <Head>
         <meta httpEquiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* noto */}
+        <link rel="preload" href="/fonts/noto/NotoSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-Medium.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
+
+
+        {/* GTEestiProDisplay */}
         <link rel="preload" href="/fonts/GTEestiProDisplay-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/GTEestiProDisplay-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/GTEestiProDisplay-Medium.woff2" as="font" type="font/woff2" crossOrigin="" />
@@ -60,7 +55,7 @@ const MyApp = ({ Component, ...rest }) => {
           dangerouslySetInnerHTML={{
             __html: `
 
-            @font-face {
+          @font-face {
               font-family: "GTEestiProDisplay";
               src: url("/fonts/GTEestiProDisplay-Light.woff2") format("woff2");
               font-weight: 350;
@@ -92,21 +87,62 @@ const MyApp = ({ Component, ...rest }) => {
               font-style: normal;
           }
 
-            * {
-                font-family: "GTEestiProDisplay", sans-serif;
-            }
+          @font-face {
+            font-family: "NotoSans";
+            src: url("/fonts/noto/NotoSans-Regular.woff2") format("woff2");
+            font-weight: 400;
+            font-display: swap;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "NotoSans";
+            src: url("/fonts/noto/NotoSans-Medium.woff2") format("woff2");
+            font-weight: 500;
+            font-display: swap;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "NotoSans";
+            src: url("/fonts/noto/NotoSans-SemiBold.woff2") format("woff2");
+            font-weight: 600;
+            font-display: swap;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: "NotoSans";
+            src: url("/fonts/noto/NotoSans-Bold.woff2") format("woff2");
+            font-weight: 700;
+            font-display: swap;
+            font-style: normal;
+        }
+        
+          * {
+              font-family: "GTEestiProDisplay", sans-serif;
+          }
             
-            body {
-                font-family: "GTEestiProDisplay", sans-serif;
-                ${isPageShare ? 'padding: 0!important' : ""}
-            }
+          body {
+              font-family: "GTEestiProDisplay", sans-serif;
+              ${isPageShare ? 'padding: 0!important' : ""}
+          }
+
+          body .renewal,
+          body .renewal * {
+            font-family: "NotoSans", sans-serif;
+          }
+
+          body .renewal {
+            font-weight: 400;
+          }
          `,
           }} />
 
         <link rel="icon" type="image/x-icon" href="/favicons/fav3.ico" />
 
       </Head>
-      <App store={store} >
+      <App store={store}>
         <Component
           setStatePictureFile={setStatePictureFile}
           statePictureFile={statePictureFile}

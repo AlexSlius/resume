@@ -42,7 +42,7 @@ h3.h3 {
 .containers {
     max-width: 1200px !important;
     margin: 0 auto;
-    padding: 0 15px !important;
+    padding: 0 20px !important;
 }
 
 .page {
@@ -210,6 +210,10 @@ svg {
         height: 40px;
         right: -23px;
         top: -3px;
+    }
+
+    .page.renewal {
+        padding-top: 50px;
     }
 }
 

@@ -1,21 +1,19 @@
-import { useEffect } from "react";
-import { Footer } from "../../components/footer"
-import { Header } from "../../components/header"
+import { useRouter } from "next/router";
 
-import { cleanSliseNew } from "../../slices/contact";
-import { useDispatch } from "react-redux";
+import { Footer } from "../../components/footer";
+import { Header } from "../../components/header";
 
 export const WrapperPage = ({ children }) => {
-    const dispatch = useDispatch()
-    // useEffect(() => {
-    //     dispatch(cleanSliseNew());
-    // }, []);
+    const router = useRouter();
+    const isHome = router.asPath == "/";
 
-    return <div className="page">
-        <Header />
-        <main className="main">
-            {children}
-        </main>
-        <Footer />
-    </div>
+    return (
+        <div className={`page renewal ${isHome ? "home" : ''}`}>
+            <Header isHome={isHome} isContentpage={true}/>
+            <main className="main">
+                {children}
+            </main>
+            <Footer />
+        </div>
+    )
 }

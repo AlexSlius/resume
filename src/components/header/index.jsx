@@ -12,16 +12,23 @@ import Icon from "../Icon";
 import { routersPages } from "../../constants/next-routers";
 import HeadUser from "../headUser/HeadUser";
 import UserMenu from "../userMenu";
+import { RightLink } from "./rightLink";
 import { ButtonBack } from "../uis/buttonBack"
+
 import { backRoter } from "../../helpers/experienceRouterBack";
 import { logout } from '../../controllers/auth'
 
 import { StepsName } from "../../constants/cover";
 
 import iconBurger from "/public/images/icons/menu-burger.svg?sprite";
+import iconBurgerWhite from "/public/images/icons/menu-burger-white.svg?sprite";
+
 import iconEye from "/public/images/icons/icon_eye.svg?sprite";
 
-export const Header = () => {
+export const Header = ({
+    isHome = false,
+    isContentpage = false
+}) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const { step, idCv } = router.query;
@@ -60,11 +67,16 @@ export const Header = () => {
                 {
                     isMob ? (
                         <div className="head-mob">
-                            <div className="head-mob__back">
-                                <ButtonBack text="" link={router.asPath.includes('experience') ? routerStetBack : ""} />
-                            </div>
+                            {
+                                !isContentpage && (
+                                    <div className="head-mob__back">
+                                        <ButtonBack text="" link={router.asPath.includes('experience') ? routerStetBack : ""} />
+                                    </div>
+                                )
+                            }
+
                             <Link href="/" className="logo">
-                                <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
+                                <img loading="lazy" src={isHome ? "/images/page/logo-white-header.svg" : "/images/page/logo.svg"} alt="logo" />
                             </Link>
                             <div className="wr-burger">
                                 {
@@ -75,14 +87,14 @@ export const Header = () => {
                                     )
                                 }
                                 <button className="btn-burger" onClick={toggleMenu}>
-                                    <Icon svg={iconBurger} />
+                                    <Icon svg={isHome ? iconBurgerWhite : iconBurger} />
                                 </button>
                             </div>
                         </div>
                     ) : (
                         <>
                             <Link href="/" className="logo">
-                                <img loading="lazy" src="/images/page/logo.svg" alt="img" />
+                                <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
                             </Link>
                             <Menu pageName={pageName} />
                             <div className="right-info">
@@ -92,13 +104,7 @@ export const Header = () => {
                                             <HeadUser />
                                         </div>
                                     ) : (
-                                        <>
-                                            <Link href={`/${routersPages['login']}`} className="logins">Account</Link>
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
-                                                <img src="/images/page/get-start.svg" alt="img" />
-                                                <span>Get started</span>
-                                            </Link>
-                                        </>
+                                        <RightLink />
                                     )
                                 }
                             </div>
@@ -144,11 +150,7 @@ export const Header = () => {
                                                         </div>
                                                     </>
                                                 ) : <>
-                                                    <Link href={`/${routersPages['login']}`} className="logins">Account</Link>
-                                                    <Link href={`/${routersPages['resumeBuilderNew']}`} className="get-startend btns btn--grey">
-                                                        <img src="/images/page/get-start.svg" alt="img" />
-                                                        <span>Get started</span>
-                                                    </Link>
+                                                    <RightLink />
                                                 </>
                                         }
                                     </div>

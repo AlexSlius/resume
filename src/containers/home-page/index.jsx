@@ -6,43 +6,19 @@ import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
 import Head from 'next/head'
 
+// components
 import { AccordionComponent } from "../../components/accordion"
 import { Partners } from "../../components/partners";
-import { MainTitle } from "../../components/mainTitle";
-import { UsersCreated } from "../../components/usersCreated";
-import { PromoNumbers } from '../../components/promoNumbers';
+import { SectionPromo } from "../../components/sectionPromo";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
 import { routersPages } from "../../constants/next-routers";
 
+// data page
 import promoNumbersData from './data/promo-numbers.json';
+import arrAccordion from "./data/data-accordion.json";
 
-const arr = [
-    {
-        title: "Why do I need an online resume builder?",
-        text: "<p>An online resume builder is an essential tool for creating professional and compelling resumes. It eliminates the need to start from scratch, thus saving you time and effort. Such a tool guides you in selecting the right format, using suitable language, and avoiding common mistakes. This way, you can focus on tailoring your resume content to match the job requirements. An online resume builder also ensures your skills, experiences, and achievements are presented in the most attractive and readable manner.</p>"
-    },
-    {
-        title: "What are the standout features of this resume builder?",
-        text: `
-        <p>There are several distinctive features that make this service stand out:</p>
-        <p>Task Recommendations: It provides personalized task recommendations based on your past experiences and the role you're targeting. This feature ensures your resume is tailored and relevant.</p>
-        <p>Skill Suggestions: This service suggests the most suitable skills for your field. This can help you present yourself as an ideal candidate for the role.</p>
-        <p>Career Objectives: It assists you in formulating precise and engaging career objectives that align with your desired role. This can set the tone of your resume.</p>
-        <p>Customizable Templates: A variety of professional templates are available for you to choose from. You can select the one that best matches your taste and the job requirements.</p>
-        <p>Customizability: You can adjust fonts, colors, and the spacing between lines. This allows you to create a unique resume that remains professional yet showcases your personal style.</p>
-        `
-    },
-    {
-        title: "Can I use it for free?",
-        text: "<p>Yes, you can use this service for free for a limited period. During this trial period, you can access all the features and benefits offered. After the trial period ends, a subscription will be necessary to continue using the services.</p>"
-    },
-    {
-        title: "Can I customize templates to fit my preferences?",
-        text: "<p>Absolutely! The available templates can be fully customized. You can adjust the colors, font sizes, and line spacing to match your personal preferences. This means you can create a resume that is professional and still reflects your individual style.</p>"
-    },
-];
 
 export const HomePage = () => {
     const dispatch = useDispatch();
@@ -64,6 +40,7 @@ export const HomePage = () => {
         },
         resumeData,
     } = useSelector((state) => state);
+    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
 
     const promoNumbers = promoNumbersData.data;
 
@@ -125,40 +102,19 @@ export const HomePage = () => {
                     content="Take a step towards your dream job with our free-to-use online resume builder. Craft impressive, professional resumes without the need for registration. Start your job-winning resume journey today."
                 />
             </Head>
-            <section className="promo">
-                <div className="containers">
-                    <div className="promo__wrapper">
-                        <div className="promo-offer">
-                            <p className="top-text">YOUR DREAM JOB IS NEAR</p>
-                            <MainTitle firstText={'Premium'} secondText={'Online'} thirdText={'Resume'} fourthText={'Builder'} />
-                            <p className="bottom-text left-arrow">
-                                Our professional Resume Builder has helped thousands of job seekers land more interviews and get hired faster.
-                            </p>
-                            <div className="promo-offer__bottom">
-                                <Link href={`${routersPages['resumeBuilderNew']}`} className="promo-offer__btn btns btn--blue">
-                                    Create My Resume
-                                </Link>
-                                <UsersCreated data={usersCreated} />
-                            </div>
-                        </div>
-                        <div className="promo-img">
-                            <img src="/images/page/promo-img.svg" alt="img" />
-                        </div>
-                    </div>
-                    <div className="promo-num">
-                        {
-                            promoNumbers ?
-                                (
-                                    promoNumbers.map(({ count, firstText, secondText, image, percent }, index) => (
-                                        <PromoNumbers key={`promoNumber-${index}`} count={count} firstText={firstText} secondText={secondText} image={image} percent={percent} />
-                                    ))
-                                ) :
-                                null
-                        }
-                    </div>
-                </div>
-            </section>
-            <div className="offer-sec mt-130">
+            <SectionPromo
+                topTitle="YOUR DREAM JOB IS NEAR"
+                mainTitle="Premium Online Resume Builder"
+                textBtn="Create My Resume"
+                linkBtn={`${routersPages['resumeBuilderNew']}`}
+                desc=" Our professional Resume Builder has helped thousands of job seekers land more interviews and get hired faster."
+                promoNumbers={promoNumbers}
+                imgRight="/images/page/resumes_3x.webp"
+                users={usersCreated}
+                isMob={isMob}
+            />
+
+            <section className="offer-sec mt-130">
                 <div className="containers">
                     <div className="offer-sec_flex">
                         <div className="promo-offer">
@@ -179,7 +135,7 @@ export const HomePage = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             <section className="tabs mt-130">
                 <img className="sec-bg" loading="lazy" src="/images/page/tabs-bg.png" alt="img" />
                 <div className="containers">
@@ -355,7 +311,6 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
-
             <section className="faq mt-130">
                 <div className="containers">
                     <div className="faq-flex">
@@ -377,7 +332,7 @@ export const HomePage = () => {
                             }
                         </div>
                         <div className="faq__right">
-                            <AccordionComponent arr={arr} defaultStart="0" />
+                            <AccordionComponent arr={arrAccordion} defaultStart="0" />
                         </div>
 
                         {
@@ -391,7 +346,6 @@ export const HomePage = () => {
                     </div>
                 </div>
             </section>
-
             <section className="partners mt-130">
                 <div className="containers">
                     <h2 className="h2">
