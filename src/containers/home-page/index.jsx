@@ -88,7 +88,10 @@ export const HomePage = () => {
                 btnText="Create My Resume"
                 link={`/${routersPages['resumeBuilderNew']}`}
             />
-            <ProfessionalStory />
+            <ProfessionalStory
+                textBtn="Create Cover Letter"
+                linkBtn={`/${routersPages['resumeBuilderNew']}`}
+            />
             <SectionReviews />
 
             {/* <section className="document mt-130">
