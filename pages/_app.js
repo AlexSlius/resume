@@ -42,8 +42,8 @@ const MyApp = ({ Component, ...rest }) => {
         <link rel="preload" href="/fonts/noto/NotoSans-Medium.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/noto/NotoSans-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/noto/NotoSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
-
-
+        <link rel="preload" href="/fonts/noto/NotoSans-Thin.woff2" as="font" type="font/woff2" crossOrigin="" />
+        
         {/* GTEestiProDisplay */}
         <link rel="preload" href="/fonts/GTEestiProDisplay-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/GTEestiProDisplay-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
@@ -86,6 +86,14 @@ const MyApp = ({ Component, ...rest }) => {
               font-display: swap;
               font-style: normal;
           }
+
+          @font-face {
+            font-family: "NotoSans";
+            src: url("/fonts/noto/NotoSans-Thin.woff2") format("woff2");
+            font-weight: 300;
+            font-display: swap;
+            font-style: normal;
+        }
 
           @font-face {
             font-family: "NotoSans";

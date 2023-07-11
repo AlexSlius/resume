@@ -1,5 +1,7 @@
 .promo {
     margin-top: 30px;
+    position: relative;
+    z-index: 2;
 }
 
 .cover-letter {
@@ -364,6 +366,40 @@
 }
 
 
+.promo-scroll {
+    display: flex;
+    gap: 12px;
+    margin-right: -34px;
+    margin-left: -34px;
+    width: calc(100% + 68px);
+    overflow-x: scroll;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 0;
+        height: 0;
+    }
+
+    &__item {
+        padding: 12px 12px 0 12px;
+        border: 1px dashed rgba(255, 255, 255, 0.5);
+        border-bottom: 0;
+        border-radius: 16px 16px 0 0;
+        width: 234px;
+        max-width: 234px;
+        min-width: 234px;
+        img {
+            max-width: 100%!important;
+        }
+    }
+}
+
 @media (max-width: 1480px) {
     .promo-img {
         margin-right: -50px;
@@ -646,61 +682,5 @@
 
     .tabs__top {
         gap: 20px !important;
-    }
-}
-
-@media (max-width: 359px) {
-    .promo__wrapper {
-        .top-text {
-            font-size: 12px;
-        }
-    }
-
-    .promo-offer .bottom-text,
-    .user-icons p {
-        font-size: 12px;
-        max-width: none;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .user-icons p {
-        margin-bottom: 0;
-    }
-
-    .user-icons>div div {
-        width: 34px;
-        height: 34px;
-        min-width: 34px;
-    }
-
-    .mt-130,
-    div.tabs {
-        margin-top: 24px !important;
-    }
-
-    .offer-sec__btn {
-        margin-top: 24px;
-    }
-
-    h2.h2 {
-        font-size: 20px;
-    }
-
-    .offer-sec__btn {
-        margin-top: 24px;
-    }
-
-    .top-text {
-        font-size: 12px;
-    }
-
-    .promo-offer .bottom-text {
-        margin-top: 10px;
-    }
-
-    .tabs__top {
-        gap: 12px !important;
     }
 }

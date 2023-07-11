@@ -3,13 +3,18 @@ import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import { useSelector, useDispatch } from 'react-redux'
-import { isArray } from "lodash";
 import Head from 'next/head'
 
 // components
 import { AccordionComponent } from "../../components/accordion"
 import { Partners } from "../../components/partners";
 import { SectionPromo } from "../../components/sectionPromo";
+import { SectionCtepsCeating } from "../../components/sectionCtepsCeating";
+import { SectionAdvantages } from "../../components/sectionAdvantages";
+import { PerfectTemplate } from "../../components/perfectTemplate";
+import { SectionLetAi } from "../../components/sectionLetAi";
+import { ProfessionalStory } from "../../components/professionalStory";
+import { SectionReviews } from "../../components/sectionReviews";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
@@ -22,12 +27,6 @@ import arrAccordion from "./data/data-accordion.json";
 
 export const HomePage = () => {
     const dispatch = useDispatch();
-    const refIdInterval = useRef(undefined);
-    const isStart = useRef(true);
-    const [stateCurrentTab, setStateCurrentTab] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [fetching, setFetching] = useState();
-    const [cuNext, setCuNext] = useState(0);
 
     const {
         pages: {
@@ -40,58 +39,17 @@ export const HomePage = () => {
         },
         resumeData,
     } = useSelector((state) => state);
-    const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
+    const isMob = ['sm', 'xs'].includes(currentResolution);
 
     const promoNumbers = promoNumbersData.data;
 
-    const handleClickTab = (tabIndex) => {
-        setStateCurrentTab(tabIndex);
-    }
-
-    const handleSlider = (e) => {
-        let col = e.imagesLoaded;
-        let current = e.activeIndex;
-
-        if ((current + 4) > (col + cuNext)) {
-            setFetching(true);
-        }
+    const handlePerfectTemplate = () => {
+        dispatch(updateActiveResumeNew({ slug: "041-CV", id: 41 }));
     }
 
     useEffect(() => {
-        async function start() {
-            if (fetching && resumeData?.list?.count_pages > currentPage) {
-                let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
-
-                if (res?.payload?.items) {
-                    setCurrentPage(prev => prev + 1);
-                    setFetching(false);
-                    setCuNext(prev => prev + 9);
-                }
-            }
-        }
-
-        start();
         localStorage.setItem('page', 'home-page');
-    }, [fetching]);
-
-    useEffect(() => {
-        if (isStart.current) {
-            setStateCurrentTab(1);
-            isStart.current = false;
-        }
-
-        if (refIdInterval.current)
-            clearTimeout(refIdInterval.current)
-
-        refIdInterval.current = setTimeout(() => {
-            setStateCurrentTab(prev => {
-                if (prev < 3) {
-                    return prev + 1;
-                }
-                return 1;
-            });
-        }, 5900);
-    }, [stateCurrentTab]);
+    }, []);
 
     return (
         <>
@@ -112,161 +70,28 @@ export const HomePage = () => {
                 imgRight="/images/page/resumes_3x.webp"
                 users={usersCreated}
                 isMob={isMob}
+                arrImg={['/images/page/item-resum-one.png', '/images/page/item-resum-one.png', '/images/page/item-resum-one.png', '/images/page/item-resum-one.png']}
             />
+            <SectionCtepsCeating
+                linkBtn={`${routersPages['resumeBuilderNew']}`}
+                textBtn='Create My Resume'
+                title="Create perfect resumes for the modern job market"
+                desc="In three simple steps, create the perfect document to impress hiring managers and employers. Minimum time, maximum professional quality."
+                isMob={isMob}
+            />
+            <SectionAdvantages />
+            <PerfectTemplate
+                link={`/${routersPages['resumeBuilderNew']}`}
+                nandlePrev={handlePerfectTemplate}
+            />
+            <SectionLetAi
+                btnText="Create My Resume"
+                link={`/${routersPages['resumeBuilderNew']}`}
+            />
+            <ProfessionalStory />
+            <SectionReviews />
 
-            <section className="offer-sec mt-130">
-                <div className="containers">
-                    <div className="offer-sec_flex">
-                        <div className="promo-offer">
-                            <p className="top-text">SECURE YOUR DREAM JOB</p>
-                            <h2 className="h2">
-                                Create your professional story in minutes. Take advantage of our cover letter creator.
-                            </h2>
-                            <p className="bottom-text">
-                                Unlock Your Potential with Our Automated Cover Letter Creator: Designed to craft tailored cover letters within minutes, our cutting-edge tool helps you stand out in any job market. Leverage our unique, game-changing features for your career advancement.
-                            </p>
-                            <Link href={`${routersPages['coverLetterNew']}`} className="offer-sec__btn btns btn--grey">
-                                <img src="images/page/edit.svg" alt="img" />
-                                Create Cover Letter
-                            </Link>
-                        </div>
-                        <div className="offer-sec__img">
-                            <img loading="lazy" src="images/page/section-img1.svg" alt="img" />
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="tabs mt-130">
-                <img className="sec-bg" loading="lazy" src="/images/page/tabs-bg.png" alt="img" />
-                <div className="containers">
-                    <div className="tabs__top">
-                        <h2 className="text-center h2">
-                            Create perfect resumes for the modern job market
-                        </h2>
-                        <p className="bottom-text text-center">
-                            In three simple steps, create the perfect document to impress hiring managers
-                            and employers. Minimum time, maximum professional quality.
-                        </p>
-                        <Link href={`${routersPages['resumeBuilderNew']}`} className="tabs__top--btn btns btn--blue">
-                            Create My Resume
-                        </Link>
-                    </div>
-                    <div className="tabs-wrapper tab-content-wrapper">
-                        <div className={`tabs-content tab-1  ${(stateCurrentTab == 1) ? "" : "hide"}`}>
-                            <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
-                            <div>
-                                <h3 className="h3">Your First Step</h3>
-                                <p className="bottom-text">
-                                    Discover the Premium Difference with Our Resume Builder. We invite you to experience the superior quality of our services without registration or payment. Step into the future of resume creation, empowering your career journey with confidence and trust.
-                                </p>
-                            </div>
-                        </div>
-                        <div className={`tabs-content  tab-2 ${(stateCurrentTab == 2) ? "" : "hide"}`}>
-                            <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
-                            <div>
-                                <h3 className="h3">Achieve Beauty With Ease</h3>
-                                <p className="bottom-text">
-                                    Opt for our eye-catching, professionally crafted resume or cover letter templates. Simply fill in your details, select and refine the relevant sections, and tweak the design and visuals to your liking. With our pre-written tasks, skills, and career objectives at your disposal, creating a standout resume is just a matter of minutes.
-                                </p>
-                            </div>
-                        </div>
-                        <div className={`tabs-content  tab-3 ${(stateCurrentTab == 3) ? "" : "hide"}`}>
-                            <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
-                            <div>
-                                <h3 className="h3">Now It’s Yours!</h3>
-                                <p className="bottom-text">
-                                    Take advantage of our flexible export options. Choose PDF for optimal and consistent visual formatting, or obtain a unique URL to your resume for easy updates. Our goal is to make your resume sharing and updating process as streamlined as possible.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="tabs-wrapper tab-link-wrapper">
-                        <div
-                            className={`tab ${stateCurrentTab == 1 ? "tab-active" : ''}`}
-                            onClick={() => handleClickTab(1)}
-                        >
-                            <p>1. Easy Start</p>
-                            <img loading="lazy" src="/images/page/section-img2.svg" alt="img" />
-                            <div className="progress">
-                                <span></span>
-                            </div>
-                        </div>
-                        <div
-                            className={`tab ${stateCurrentTab == 2 ? "tab-active" : ''}`}
-                            onClick={() => handleClickTab(2)}
-                        >
-                            <p>2. Create</p>
-                            <img loading="lazy" src="/images/page/section-img3.svg" alt="img" />
-                            <div className="progress">
-                                <span></span>
-                            </div>
-                        </div>
-                        <div
-                            className={`tab ${stateCurrentTab == 3 ? "tab-active" : ''}`}
-                            onClick={() => handleClickTab(3)}
-                        >
-                            <p>3. Download</p>
-                            <img loading="lazy" src="/images/page/section-img4.svg" alt="img" />
-                            <div className="progress">
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="advantages mt-130">
-                <div className="containers">
-                    <h2 className="h2">
-                        Features designed to help you win your <span><span className="border"></span>dream job</span>
-                    </h2>
-                    <div className="advantages__wrapper">
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img.png" alt="img" />
-                            <div>
-                                <h4>Easy, free, premium</h4>
-                                <p>Kickstart your journey with us at no cost, with absolutely no registration required.</p>
-                            </div>
-                        </div>
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img2.png" alt="img" />
-                            <div>
-                                <h4>Spelling matter</h4>
-                                <p>We safeguard your resume against text errors, enhancing your professional image.</p>
-                            </div>
-                        </div>
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img3.png" alt="img" />
-                            <div>
-                                <h4>Your data is safe</h4>
-                                <p>Your data is sacred; we assure it remains unshared.</p>
-                            </div>
-                        </div>
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img4.png" alt="img" />
-                            <div>
-                                <h4>Premium recommendations</h4>
-                                <p>Choose our role-specific premium recommendations, no writing required.</p>
-                            </div>
-                        </div>
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img5.png" alt="img" />
-                            <div>
-                                <h4>Cover letters</h4>
-                                <p>Explore our free, perfectly matching resume and cover letter templates.</p>
-                            </div>
-                        </div>
-                        <div className="advantages-item">
-                            <img loading="lazy" src="/images/page/features-img6.png" alt="img" />
-                            <div>
-                                <h4>Convenient format options</h4>
-                                <p>Choose PDF or share a direct URL for maximum convenience.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="document mt-130">
-                <img className="sec-bg" loading="lazy" src="/images/page/document-bg.png" alt="img" />
+            {/* <section className="document mt-130">
                 <div className="containers">
                     <h2 className="text-center h2">Select from our top resume templates</h2>
                     <div className="document__wrapper">
@@ -310,8 +135,8 @@ export const HomePage = () => {
                         </Swiper>
                     </div>
                 </div>
-            </section>
-            <section className="faq mt-130">
+            </section> */}
+            {/* <section className="faq mt-130">
                 <div className="containers">
                     <div className="faq-flex">
                         <div className="faq__left">
@@ -345,15 +170,15 @@ export const HomePage = () => {
                         }
                     </div>
                 </div>
-            </section>
-            <section className="partners mt-130">
+            </section> */}
+            {/* <section className="partners mt-130">
                 <div className="containers">
                     <h2 className="h2">
                         Our customers get hired by top companies
                     </h2>
                     <Partners />
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }

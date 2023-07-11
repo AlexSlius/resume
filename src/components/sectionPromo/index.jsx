@@ -13,6 +13,7 @@ export const SectionPromo = ({
     imgRight,
     users,
     isMob,
+    arrImg,
 }) => {
     return (
         <section className="promo">
@@ -35,8 +36,14 @@ export const SectionPromo = ({
                         <UsersCreated data={users} />
                         {
                             isMob && (
-                                <div>
-                                    swiper
+                                <div className="promo-scroll">
+                                    {
+                                        arrImg.map((item, index) => (
+                                            <div className="promo-scroll__item" key={index}>
+                                                <img src={item} alt="item resume" />
+                                            </div>
+                                        ))
+                                    }
                                 </div>
                             )
                         }
