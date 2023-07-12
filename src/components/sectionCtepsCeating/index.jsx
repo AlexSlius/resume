@@ -98,10 +98,10 @@ export const SectionCtepsCeating = ({
                             <img src="/images/page/tab-new-1.png" alt="img tab one" />
                         </div>
                         <div className={`t-r-im ${(stateCurrentTab == 2) ? "" : "hide"}`}>
-                            <img src="/images/page/tab-new-1.png" alt="img tab one" />
+                            <img src="/images/page/tab-new-2.png" alt="img tab one" />
                         </div>
                         <div className={`t-r-im ${(stateCurrentTab == 3) ? "" : "hide"}`}>
-                            <img src="/images/page/tab-new-1.png" alt="img tab one" />
+                            <img src="/images/page/tab-new-3.png" alt="img tab one" />
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
 import { useSelector, useDispatch } from 'react-redux'
 import Head from 'next/head'
 
@@ -15,6 +13,10 @@ import { PerfectTemplate } from "../../components/perfectTemplate";
 import { SectionLetAi } from "../../components/sectionLetAi";
 import { ProfessionalStory } from "../../components/professionalStory";
 import { SectionReviews } from "../../components/sectionReviews";
+import { SectionRelevant } from "../../components/relevant";
+import { SectionSelectTemplates } from "../../components/sectionSelectTeplates";
+import { SectionPrivacyOfYou } from "../../components/sectionPrivacyOfYou";
+import { SectionCustomers } from "../../components/customers";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { getResumesTemplates } from "../../controllers/resumeData"
@@ -22,6 +24,7 @@ import { routersPages } from "../../constants/next-routers";
 
 // data page
 import promoNumbersData from './data/promo-numbers.json';
+import reviewsObjData from "./data/data-reviews.json";
 import arrAccordion from "./data/data-accordion.json";
 
 
@@ -90,55 +93,28 @@ export const HomePage = () => {
             />
             <ProfessionalStory
                 textBtn="Create Cover Letter"
-                linkBtn={`/${routersPages['resumeBuilderNew']}`}
+                linkBtn={`/${routersPages['coverLetterNew']}`}
             />
-            <SectionReviews />
+            <SectionReviews
+                title="Reviews"
+                data={reviewsObjData}
+                isMob={isMob}
+            />
+            <SectionRelevant />
+            <SectionSelectTemplates
+                title="Select from our<br/> top resume templates"
+                data={resumeData?.list?.items || []}
+                linkAll={`/${routersPages['jobWinningResumeTemplates']}`}
+                linkTemplateNew={`/${routersPages['resumeBuilderNew']}`}
+                handleLink={(itemResume) => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))}
+            />
+            <SectionPrivacyOfYou
+                title="Privacy of your information"
+                des="Protecting your privacy is our top priority.
+            This Privacy Policy outlines the types of personal information we collect, how we use and protect that information, and your rights and choices regarding your personal data."
+            />
+            <SectionCustomers />
 
-            {/* <section className="document mt-130">
-                <div className="containers">
-                    <h2 className="text-center h2">Select from our top resume templates</h2>
-                    <div className="document__wrapper">
-                        <Swiper
-                            className="document-swiper"
-                            modules={[Navigation, Pagination]}
-                            spaceBetween={30}
-                            slidesPerView={3}
-                            loopedSlides={4}
-                            speed={1000}
-                            pagination={{
-                                clickable: true
-                            }}
-                            navigation
-                            breakpoints={{
-                                200: {
-                                    slidesPerView: 1
-                                },
-                                560: {
-                                    slidesPerView: 2
-                                },
-                                820: {
-                                    slidesPerView: 3
-                                }
-                            }}
-                            onSlideChange={(e) => handleSlider(e)}
-                        >
-                            {
-                                isArray(resumeData?.list?.items) && resumeData.list.items.map((itemResume, index) => (
-                                    <SwiperSlide key={index} onClick={() => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))}>
-                                        <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__link_before"></Link>
-                                        <div className="doc-img">
-                                            <img loading="lazy" src={itemResume.image} alt={itemResume.name} />
-                                        </div>
-                                        <div className="doc-btn"  >
-                                            <Link href={`/${routersPages['resumeBuilderNew']}`} className="document__btn btns btn--blue">Use this template</Link>
-                                        </div>
-                                    </SwiperSlide>
-                                ))
-                            }
-                        </Swiper>
-                    </div>
-                </div>
-            </section> */}
             {/* <section className="faq mt-130">
                 <div className="containers">
                     <div className="faq-flex">

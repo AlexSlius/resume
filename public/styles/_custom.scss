@@ -2121,7 +2121,7 @@ button {
 .button-p {
     padding: 21px 35px;
     text-align: center;
-    color: var(--white)!important;
+    color: var(--white) !important;
     border-radius: 35px;
     background: var(--blue);
     font-size: 16px;
@@ -2135,7 +2135,42 @@ button {
         background: var(--blueB);
     }
 
-    &.button-type-standart {
+    &:active {
+        background: rgba(68, 125, 235, 1);
+    }
 
+    &.button-p_icon {
+        align-items: center;
+
+        i {
+            line-height: 0;
+            margin-right: 8px;
+        }
+    }
+
+    &.button-p_grey {
+        background: var(--grey);
+
+        &:hover {
+            background: var(--blue);
+        }
+
+        &:active {
+            background: rgba(68, 125, 235, 1);
+        }
+    }
+
+    &.button-p_light_grey {
+        background: rgba(84, 108, 151, 0.10);
+        color: var(--grey) !important;
+
+        &:hover {
+            color: var(--blue) !important;
+            ;
+        }
+
+        &:active {
+            background: rgba(84, 108, 151, 0.15);
+        }
     }
 }

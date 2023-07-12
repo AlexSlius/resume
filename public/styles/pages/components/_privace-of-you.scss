@@ -1,0 +1,128 @@
+.s-rovacy {
+    &__main {
+        border-radius: 20px;
+        background: rgba(84, 108, 151, 0.05);
+        border-radius: 20px;
+        padding: 48px;
+        position: relative;
+        min-height: 404px;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -13%;
+            width: 80%;
+            background: url("/../images/page/bg-provacy.png") center right/90% no-repeat;
+            height: 100%;
+        }
+    }
+
+    &__cont {
+        max-width: 422px;
+
+        h3 {
+            font-weight: 600;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+
+            i {
+                display: inline-block;
+                position: relative;
+                margin-left: 16px;
+                width: 32px;
+                height: 32px;
+                line-height: 0;
+                background: url("/../images/icons/cions.svg") center/contain no-repeat;
+            }
+        }
+
+        p {
+            margin: 24px 0 0 0;
+            color: var(--grey);
+            line-height: 150%;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .s-rovacy__cont {
+        max-width: 320px;
+    }
+
+    .s-rovacy {
+        &__cont {
+            h3 {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+
+                i {
+                    margin-bottom: 12px;
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .s-rovacy__cont {
+        max-width: 100%;
+    }
+
+    .s-rovacy {
+        &__main {
+            padding: 30px 24px;
+            flex-direction: column-reverse;
+            display: flex;
+
+            &::before {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 100%;
+                max-width: 100%;
+                display: block;
+                background: url("/../images/page/bg-provacy.png") 107% center /90% no-repeat;
+                padding-bottom: 59.4%;
+                margin-left: -24px;
+                margin-right: -24px;
+                margin-bottom: -34px;
+            }
+        }
+
+        &__cont {
+            text-align: center;
+
+            h3 {
+                font-size: 20px;
+                align-items: center;
+
+                i {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+
+            p {
+                font-size: 14px;
+                margin-top: 14px;
+            }
+        }
+    }
+}
+
+@media(max-width: 570px) {
+    .s-rovacy {
+        &__main {
+            &::before {
+                background: url(/../images/page/bg-provacy.png) 48% center/167% no-repeat;
+                padding-bottom: 113%;
+                width: calc(100% + 48px);
+                max-width: calc(100% + 48px);
+            }
+        }
+    }
+}
