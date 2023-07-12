@@ -1,11 +1,9 @@
-import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import Head from 'next/head'
 
 // components
 import { AccordionComponent } from "../../components/accordion"
-import { Partners } from "../../components/partners";
 import { SectionPromo } from "../../components/sectionPromo";
 import { SectionCtepsCeating } from "../../components/sectionCtepsCeating";
 import { SectionAdvantages } from "../../components/sectionAdvantages";
@@ -19,7 +17,6 @@ import { SectionPrivacyOfYou } from "../../components/sectionPrivacyOfYou";
 import { SectionCustomers } from "../../components/customers";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
-import { getResumesTemplates } from "../../controllers/resumeData"
 import { routersPages } from "../../constants/next-routers";
 
 // data page

@@ -11,7 +11,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Components
 import { MainTitle } from "../../components/mainTitle";
-import { Partners } from "../../components/partners";
 import { AccordionComponent } from "../../components/accordion";
 import { ImageSprite } from "../../components/imageSprite";
 import { PromoNumbers } from '../../components/promoNumbers';
@@ -151,8 +150,6 @@ export const CoverLatter = () => {
                         </div>
                     </div>
                 </section>
-
-                <Partners />
 
                 <section className="offer-sec">
                     <div className="containers">
