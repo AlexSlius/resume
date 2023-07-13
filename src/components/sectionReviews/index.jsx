@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
+import { useState, useEffect } from 'react';
 
 import { CardReviews } from '../cardReviews';
 
@@ -8,6 +9,11 @@ export const SectionReviews = ({
     data,
     isMob,
 }) => {
+    const [domLoaded, setDomLoaded] = useState(false);
+
+    useEffect(() => {
+        setDomLoaded(true);
+    }, []);
     return (
         <section className="revs mt-180">
             <div className="containers">
@@ -27,77 +33,86 @@ export const SectionReviews = ({
                     !isMob && (
                         <>
                             <div className="revs-slider revs-slider-left">
-                                <Swiper
-                                    modules={[Autoplay]}
-                                    spaceBetween={30}
-                                    slidesPerView={4}
-                                    loop={true}
-                                    autoplay={{
-                                        delay: 0,
-                                        disableOnInteraction: false
-                                    }}
-                                    speed={16000}
-                                    allowTouchMove={false}
-                                    breakpoints={{
-                                        200: {
-                                            slidesPerView: 1
-                                        },
-                                        700: {
-                                            slidesPerView: 2
-                                        },
-                                        1100: {
-                                            slidesPerView: 3
-                                        },
-                                        1560: {
-                                            slidesPerView: 4
-                                        }
-                                    }}
-                                >
-                                    {
-                                        data?.one && data.one.map((item, index) => (
-                                            <SwiperSlide key={index}>
-                                                <CardReviews {...item} />
-                                            </SwiperSlide>
-                                        ))
-                                    }
-                                </Swiper>
+                                {
+                                    domLoaded && (
+                                        <Swiper
+                                            modules={[Autoplay]}
+                                            spaceBetween={30}
+                                            slidesPerView={4}
+                                            loop={true}
+                                            autoplay={{
+                                                delay: 0,
+                                                disableOnInteraction: false
+                                            }}
+                                            speed={16000}
+                                            allowTouchMove={false}
+                                            breakpoints={{
+                                                200: {
+                                                    slidesPerView: 1
+                                                },
+                                                700: {
+                                                    slidesPerView: 2
+                                                },
+                                                1100: {
+                                                    slidesPerView: 3
+                                                },
+                                                1560: {
+                                                    slidesPerView: 4
+                                                }
+                                            }}
+                                        >
+                                            {
+                                                data?.one && data.one.map((item, index) => (
+                                                    <SwiperSlide key={index}>
+                                                        <CardReviews {...item} />
+                                                    </SwiperSlide>
+                                                ))
+                                            }
+                                        </Swiper>
+                                    )
+                                }
                             </div>
                             <div className="revs-slider revs-slider-rught">
-                                <Swiper
-                                    modules={[Autoplay]}
-                                    spaceBetween={30}
-                                    slidesPerView={4}
-                                    loop={true}
-                                    autoplay={{
-                                        delay: 0,
-                                        disableOnInteraction: false,
-                                        reverseDirection: true
-                                    }}
-                                    speed={15000}
-                                    allowTouchMove={false}
-                                    breakpoints={{
-                                        200: {
-                                            slidesPerView: 1
-                                        },
-                                        700: {
-                                            slidesPerView: 2
-                                        },
-                                        1100: {
-                                            slidesPerView: 3
-                                        },
-                                        1560: {
-                                            slidesPerView: 4
-                                        }
-                                    }}
-                                >
-                                    {
-                                        data?.two && data.two.map((item, index) => (
-                                            <SwiperSlide key={index}>
-                                                <CardReviews {...item} />
-                                            </SwiperSlide>
-                                        ))
-                                    }
-                                </Swiper>
+                                {
+                                    domLoaded && (
+                                        <Swiper
+                                            modules={[Autoplay]}
+                                            spaceBetween={30}
+                                            slidesPerView={4}
+                                            loop={true}
+                                            autoplay={{
+                                                delay: 0,
+                                                disableOnInteraction: false,
+                                                reverseDirection: true
+                                            }}
+                                            speed={15000}
+                                            allowTouchMove={false}
+                                            breakpoints={{
+                                                200: {
+                                                    slidesPerView: 1
+                                                },
+                                                700: {
+                                                    slidesPerView: 2
+                                                },
+                                                1100: {
+                                                    slidesPerView: 3
+                                                },
+                                                1560: {
+                                                    slidesPerView: 4
+                                                }
+                                            }}
+                                        >
+                                            {
+                                                data?.two && data.two.map((item, index) => (
+                                                    <SwiperSlide key={index}>
+                                                        <CardReviews {...item} />
+                                                    </SwiperSlide>
+                                                ))
+                                            }
+                                        </Swiper>
+                                    )
+                                }
+
                             </div>
                         </>
                     )
@@ -105,36 +120,40 @@ export const SectionReviews = ({
                 {
                     isMob && (
                         <div className='revs-mob-slider'>
-                            <Swiper
-                                modules={[Autoplay]}
-                                spaceBetween={20}
-                                slidesPerView={2}
-                                loop={true}
-                                autoplay={{
-                                    delay: 0,
-                                    disableOnInteraction: false
-                                }}
-                                speed={10000}
-                                breakpoints={{
-                                    200: {
-                                        slidesPerView: 1
-                                    },
-                                    570: {
-                                        slidesPerView: 1.3
-                                    },
-                                    780: {
-                                        slidesPerView: 2
-                                    }
-                                }}
-                            >
-                                {
-                                    (data?.one && data?.two) && [...data.one, data.two].map((item, index) => (
-                                        <SwiperSlide key={index}>
-                                            <CardReviews {...item} />
-                                        </SwiperSlide>
-                                    ))
-                                }
-                            </Swiper>
+                            {
+                                domLoaded && (
+                                    <Swiper
+                                        modules={[Autoplay]}
+                                        spaceBetween={20}
+                                        slidesPerView={2}
+                                        loop={true}
+                                        autoplay={{
+                                            delay: 0,
+                                            disableOnInteraction: false
+                                        }}
+                                        speed={10000}
+                                        breakpoints={{
+                                            200: {
+                                                slidesPerView: 1
+                                            },
+                                            570: {
+                                                slidesPerView: 1.3
+                                            },
+                                            780: {
+                                                slidesPerView: 2
+                                            }
+                                        }}
+                                    >
+                                        {
+                                            (data?.one && data?.two) && [...data.one, data.two].map((item, index) => (
+                                                <SwiperSlide key={index}>
+                                                    <CardReviews {...item} />
+                                                </SwiperSlide>
+                                            ))
+                                        }
+                                    </Swiper>
+                                )
+                            }
                         </div>
                     )
                 }

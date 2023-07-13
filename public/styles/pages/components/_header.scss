@@ -544,6 +544,12 @@
             background: var(--blue);
         }
     }
+
+    .coverPage {
+        .header-r {
+            background: rgba(1, 21, 58, 1);
+        }
+    }
 }
 
 @media(max-width: 576px) {

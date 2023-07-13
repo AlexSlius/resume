@@ -1036,11 +1036,19 @@ button {
 }
 
 .Mui-expanded {
+    .title-accord {
+        color: #01153A !important;
+    }
+
     .MuiIconButton-label {
         svg {
-            fill: #3679FD;
+            fill: #01153A;
         }
     }
+}
+
+.MuiAccordionSummary-root {
+    min-height: 86px !important;
 }
 
 .error-text-in {
@@ -1820,6 +1828,7 @@ button {
 
     &:hover {
         border-color: var(--blue);
+
         svg {
             stroke: var(--blue);
         }
@@ -1841,6 +1850,11 @@ button {
             padding-left: 10px;
             padding-right: 10px;
         }
+    }
+
+    .bbtn-slid {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -2175,6 +2189,10 @@ button {
         }
     }
 
+    &.button-p_min-w {
+        min-width: 216px;
+    }
+
     &.button-p_grey {
         background: var(--grey);
 
@@ -2193,11 +2211,34 @@ button {
 
         &:hover {
             color: var(--blue) !important;
-            ;
         }
 
         &:active {
             background: rgba(84, 108, 151, 0.15);
         }
+    }
+
+    &.button-p_white {
+        background: #fff;
+        color: #01153A !important;
+
+        &:hover {
+            background: #EFEFEF;
+        }
+
+        &:active {
+            background: #FBFBFB;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .bbtn-slid {
+        width: 48px;
+        height: 48px;
+    }
+
+    .MuiAccordionSummary-root {
+        min-height: 64px !important;
     }
 }

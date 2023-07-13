@@ -1,23 +1,17 @@
 {
   "data": [
     {
-      "image": "chat",
-      "width": "66px",
-      "height": "66px",
+      "image": "/images/icons/exp-1.svg",
       "title": "Expert writing",
       "text": "You will be presented in a way that makes you special for the applied job."
     },
     {
-      "image": "conversation",
-      "width": "66px",
-      "height": "66px",
+      "image": "/images/icons/exp-2.svg",
       "title": "Keyword-optimized",
       "text": "Effortlessly tailor your cover letter to the specific job role using our laser-focused word selection!"
     },
     {
-      "image": "fire",
-      "width": "66px",
-      "height": "66px",
+      "image": "/images/icons/exp-3.svg",
       "title": "Completed in minutes",
       "text": "It will take you just a couple of minuted and almost no writing to greatly increase your chaces."
     }

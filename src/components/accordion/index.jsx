@@ -34,7 +34,7 @@ export const AccordionComponent = ({
                         onChange={handleChange(`panel${index}`)}
                     >
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <div className={`${style.accordeon_title}`}>{item.title}</div>
+                            <div className={`${style.accordeon_title} title-accord`}>{item.title}</div>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className={`${style.accordeon_text}`} dangerouslySetInnerHTML={{ __html: item.text }}></div>

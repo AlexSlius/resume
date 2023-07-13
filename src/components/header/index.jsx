@@ -27,6 +27,7 @@ import iconEye from "/public/images/icons/icon_eye.svg?sprite";
 
 export const Header = ({
     isHome = false,
+    isCoverPage = false,
     isContentpage = false
 }) => {
     const router = useRouter();
@@ -74,9 +75,8 @@ export const Header = ({
                                     </div>
                                 )
                             }
-
                             <Link href="/" className="logo">
-                                <img loading="lazy" src={isHome ? "/images/page/logo-white-header.svg" : "/images/page/logo.svg"} alt="logo" />
+                                <img loading="lazy" src={isCoverPage ? "/images/page/logo-cover-page.svg" : isHome ? "/images/page/logo-white-header.svg" : "/images/page/logo.svg"} alt="logo" />
                             </Link>
                             <div className="wr-burger">
                                 {
@@ -87,7 +87,7 @@ export const Header = ({
                                     )
                                 }
                                 <button className="btn-burger" onClick={toggleMenu}>
-                                    <Icon svg={isHome ? iconBurgerWhite : iconBurger} />
+                                    <Icon svg={isCoverPage ? iconBurgerWhite : isHome ? iconBurgerWhite : iconBurger} />
                                 </button>
                             </div>
                         </div>

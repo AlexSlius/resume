@@ -4,87 +4,6 @@
     z-index: 2;
 }
 
-.cover-letter {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    margin-bottom: 100px;
-
-    .promo__wrapper {
-        min-height: auto;
-    }
-
-    .promo-img {
-        position: relative;
-    }
-
-    .bottom-text {
-        max-width: 460px;
-    }
-
-    .containers {
-        position: relative;
-        z-index: 1;
-    }
-
-    &>section {
-        margin: 0;
-    }
-
-    section.promo {
-        margin-top: 30px;
-    }
-
-    @media screen and (max-width: 768px) {
-        gap: 40px;
-
-        .top-text {
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 26px;
-        }
-
-        .promo-offer {
-            align-items: center;
-
-            h1 {
-                font-weight: 700 !important;
-
-                p {
-                    margin-bottom: 3px;
-                }
-            }
-        }
-
-        .document {
-            background-color: var(--light-grey-1);
-        }
-
-        .user-icons {
-            &>div div {
-                width: 34px;
-                height: 34px;
-                min-width: 34px;
-            }
-
-            p {
-                width: 90px;
-                font-weight: 300;
-                font-size: 12px;
-                line-height: 17px;
-            }
-        }
-
-        .promo-num {
-            border: none;
-        }
-
-        .background {
-            display: none;
-        }
-    }
-}
-
 .sure-block {
     h2 {
         width: 522px;
@@ -163,12 +82,6 @@
     align-items: center;
     gap: 40px;
     margin-top: 30px;
-}
-
-.cover-letter {
-    .promo-offer__bottom {
-        margin: 0;
-    }
 }
 
 .promo-img {
@@ -350,6 +263,7 @@
 
 .advantage-list {
     width: 100%;
+    margin-top: 64px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -375,6 +289,7 @@
     overflow-x: scroll;
     padding-left: 24px;
     padding-right: 24px;
+    margin-bottom: -20px;
 
     &::-webkit-scrollbar {
         width: 0;
@@ -394,9 +309,20 @@
         width: 234px;
         max-width: 234px;
         min-width: 234px;
+
         img {
-            max-width: 100%!important;
+            max-width: 100% !important;
         }
+    }
+}
+
+.promo-offe {
+    text-align: center;
+
+    h2 {
+        max-width: 700px;
+        text-align: center;
+        margin: 0 auto;
     }
 }
 
@@ -527,10 +453,22 @@
         padding-top: 40px;
         margin-top: 0;
         background: var(--white);
+
+        &:not(.cover) {
+            overflow: hidden;
+        }
+
+        &.cover {
+            margin-bottom: 120px;
+        }
     }
 
     .home .promo {
         background: var(--blue);
+    }
+
+    .coverPage .promo {
+        background: rgba(1, 21, 58, 1);
     }
 
     .promo-offer__bottom {
@@ -633,7 +571,11 @@
     .home .top-text,
     .home .promo__wrapper h1.h1,
     .home .promo-offer .bottom-text,
-    .home .user-icons p {
+    .home .user-icons p,
+    .coverPage .top-text,
+    .coverPage .promo__wrapper h1.h1,
+    .coverPage .promo-offer .bottom-text,
+    .coverPage .user-icons p {
         color: var(--white);
     }
 
@@ -665,12 +607,35 @@
         }
     }
 
+    .coverPage .user-icons {
+        &>div div {
+            border-color: rgba(1, 21, 58, 1);
+        }
+    }
+
     .home .promo-offer .promo-offer__btn {
         background: var(--white);
         color: var(--black) !important;
 
         &:hover {
             background: #EFEFEF;
+        }
+    }
+
+    .advantage-list {
+        margin-top: 40px;
+    }
+
+    .promo-offer__imgs {
+        margin-left: -70px;
+        margin-right: -20px;
+        margin-bottom: -130px;
+        margin-top: -40px;
+
+        img {
+            max-width: 200%;
+            width: 110%;
+            transform: rotate(-14deg);
         }
     }
 }

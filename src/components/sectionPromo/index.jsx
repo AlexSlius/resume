@@ -14,9 +14,10 @@ export const SectionPromo = ({
     users,
     isMob,
     arrImg,
+    coverPage = false,
 }) => {
     return (
-        <section className="promo">
+        <section className={`promo ${coverPage ? "cover" : ""}`}>
             <div className="containers">
                 <div className="promo__wrapper">
                     <div className="promo-offer">
@@ -35,7 +36,14 @@ export const SectionPromo = ({
                         }
                         <UsersCreated data={users} />
                         {
-                            isMob && (
+                            (isMob && coverPage) && (
+                                <div className="promo-offer__imgs">
+                                    <img src={imgRight} alt="img" />
+                                </div>
+                            )
+                        }
+                        {
+                            isMob && !coverPage && (
                                 <div className="promo-scroll">
                                     {
                                         arrImg.map((item, index) => (

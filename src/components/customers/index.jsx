@@ -59,8 +59,10 @@ export const SectionCustomers = () => {
     const [stateid, setStateid] = useState(0);
 
     const handleSlider = (e) => {
-        let divA = refSwip.current.querySelector('.swiper-slide-active .item-card-custom').getAttribute('data-id-active');
-        setStateid(divA);
+        if (refSwip.current) {
+            let divA = refSwip.current.querySelector('.swiper-slide-active .item-card-custom').getAttribute('data-id-active');
+            setStateid(divA);
+        }
     }
 
     return (
@@ -73,7 +75,6 @@ export const SectionCustomers = () => {
                     <Swiper
                         modules={[Navigation]}
                         spaceBetween={30}
-                        slidesPerView={7.5}
                         centeredSlides={true}
                         roundLengths={true}
                         loopAdditionalSlides={30}
@@ -88,6 +89,30 @@ export const SectionCustomers = () => {
                             swiper.params.navigation.nextEl = navigationNextRef.current;
                         }}
                         onSlideChange={handleSlider}
+                        breakpoints={{
+                            200: {
+                                slidesPerView: 1.6,
+                                spaceBetween: 20
+                            },
+                            480: {
+                                slidesPerView: 2.6,
+                                spaceBetween: 20
+                            },
+                            576: {
+                                slidesPerView: 3.3,
+                                spaceBetween: 20
+                            },
+                            700: {
+                                slidesPerView: 4.3,
+                                spaceBetween: 20
+                            },
+                            1100: {
+                                slidesPerView: 5.5
+                            },
+                            1560: {
+                                slidesPerView: 7.5
+                            }
+                        }}
                     >
                         {
                             datas.map((item, index) => (

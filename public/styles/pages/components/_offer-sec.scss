@@ -19,11 +19,6 @@
     }
 }
 
-.offer-sec_flex {
-    display: flex;
-    gap: 70px;
-}
-
 .cover-letter {
     .offer-sec_flex {
         flex-direction: column;
@@ -54,10 +49,6 @@
             @media screen and (max-width: 768px) {
                 width: auto;
             }
-        }
-
-        p {
-            text-align: left;
         }
     }
 }

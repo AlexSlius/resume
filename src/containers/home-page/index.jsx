@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import Head from 'next/head'
 
 // components
-import { AccordionComponent } from "../../components/accordion"
 import { SectionPromo } from "../../components/sectionPromo";
 import { SectionCtepsCeating } from "../../components/sectionCtepsCeating";
 import { SectionAdvantages } from "../../components/sectionAdvantages";
@@ -15,6 +14,9 @@ import { SectionRelevant } from "../../components/relevant";
 import { SectionSelectTemplates } from "../../components/sectionSelectTeplates";
 import { SectionPrivacyOfYou } from "../../components/sectionPrivacyOfYou";
 import { SectionCustomers } from "../../components/customers";
+import { SectionGetYou } from "../../components/sectionGetYou";
+import { SectionFag } from "../../components/sectionFag";
+import { SectionForFree } from "../../components/sectionForFree";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { routersPages } from "../../constants/next-routers";
@@ -70,7 +72,7 @@ export const HomePage = () => {
                 imgRight="/images/page/resumes_3x.webp"
                 users={usersCreated}
                 isMob={isMob}
-                arrImg={['/images/page/item-resum-one.png', '/images/page/item-resum-one.png', '/images/page/item-resum-one.png', '/images/page/item-resum-one.png']}
+                arrImg={['/images/page/item-resum-1.png', '/images/page/item-resum-2.png', '/images/page/item-resum-3.png', '/images/page/item-resum-4.png', '/images/page/item-resum-5.png', '/images/page/item-resum-6.png']}
             />
             <SectionCtepsCeating
                 linkBtn={`${routersPages['resumeBuilderNew']}`}
@@ -111,50 +113,25 @@ export const HomePage = () => {
             This Privacy Policy outlines the types of personal information we collect, how we use and protect that information, and your rights and choices regarding your personal data."
             />
             <SectionCustomers />
-
-            {/* <section className="faq mt-130">
-                <div className="containers">
-                    <div className="faq-flex">
-                        <div className="faq__left">
-                            <h2 className="h2">
-                                FAQ: <br />
-                                Resume Builders
-                            </h2>
-                            <p className="bottom-text">
-                                Have questions? We’re here to help.
-                            </p>
-                            {
-                                !['sm', 'xs'].includes(currentResolution) && (
-                                    <div className="faq__left--bottom">
-                                        Didn't find what you're looking for?
-                                        <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
-                                    </div>
-                                )
-                            }
-                        </div>
-                        <div className="faq__right">
-                            <AccordionComponent arr={arrAccordion} defaultStart="0" />
-                        </div>
-
-                        {
-                            ['sm', 'xs'].includes(currentResolution) && (
-                                <div className="faq__left--bottom">
-                                    Didn't find what you're looking for?
-                                    <Link href={`/${routersPages['contactUs']}`}>You can always contact us.</Link>
-                                </div>
-                            )
-                        }
-                    </div>
-                </div>
-            </section> */}
-            {/* <section className="partners mt-130">
-                <div className="containers">
-                    <h2 className="h2">
-                        Our customers get hired by top companies
-                    </h2>
-                    <Partners />
-                </div>
-            </section> */}
+            <SectionGetYou
+                title="Get your 7-day trial"
+                des="Don’t want to commit just yet?
+                Take us for a test drive for 7 days and explore how the resume and cover letter builder work together to create the best application for a job."
+                linkBtn={`${routersPages['resumeBuilderNew']}`}
+                textBtn="Create My Resume"
+                isMob={isMob}
+            />
+            <SectionFag
+                dataArrAccordion={arrAccordion}
+                title="Frequently<br /> Asked Questions"
+            />
+            <SectionForFree
+                isMob={isMob}
+                title="Get started for free"
+                des="We provide a credit card-free 7-day trial period"
+                link={`/${routersPages['resumeBuilderNew']}`}
+                btnText="Create My Resume"
+            />
         </>
     )
 }
