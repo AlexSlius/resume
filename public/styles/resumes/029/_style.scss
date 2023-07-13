@@ -380,13 +380,19 @@
 
   /* Stylization */
   #cv-chapter-section-cv {
-    .photo-block {
+    .photo-wrapper {
       display: none;
+    }
+    .profile-information {
+      padding: 35px 200px 35px 25px;
     }
 
     &.has-photo {
-      .photo-block {
-        display: flex;
+      .photo-wrapper {
+        display: block;
+      }
+      .profile-information {
+        padding: 0;
       }
     }
   }
