@@ -1,0 +1,718 @@
+@font-face {
+  font-family: 'Russo One';
+  src: url('./fonts/Russo_One/RussoOne-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Syne';
+  src: url('./fonts/Syne/Syne-VariableFont_wght.ttf');
+}
+
+  /* Colors */
+  $main_color_1: #E2E2E2;
+  $main_color_2: #5E5E5E;
+  $main_color_3: #333;
+  $main_color_4: #000;
+
+  $color_set_1_additional_color_1: #C80000 ;
+  $color_set_2_additional_color_1: #C84800;
+  $color_set_3_additional_color_1: #DEBB00;
+  $color_set_4_additional_color_1: #79B300;
+  $color_set_5_additional_color_1: #00A77F;
+  $color_set_6_additional_color_1: #007FA7;
+  $color_set_7_additional_color_1: #694EB5;
+  $color_set_8_additional_color_1: #BA2045;
+
+.sv_029 {
+  font-family: 'Syne';
+
+  * {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  .skill-estimation-point-list {
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  
+  .cv-name {
+    font-family: 'Russo One';
+    letter-spacing: 0.9px;
+  }
+
+  .cv-prophecy {
+    font-family: 'Russo One';
+    letter-spacing: 1.2px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .estimation-wrapper {
+    margin-top: 4px;
+    .estimation-value {
+      height: 2px;
+    }
+  }
+
+  #cv-body-hidden-container,
+  #cv-body-2 {
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cv-body {
+    min-width: 595px;
+    min-height: 764px;
+    height: 764px;
+    max-height: 764px;
+    background-color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .cv-body-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: $main_color_3;
+
+      .cv-body-area {
+        &.top-area {
+          background: rgba($main_color_4, 0.3);
+          .profile-information {
+            display: flex;
+            column-gap: 20px;
+            align-items: center;
+            border-bottom-width: 10px;
+            border-bottom-style: solid;
+          }
+        }
+
+        &.middle-area {
+          padding: 0px 30px;
+        }
+      }
+    }
+
+    &.cv-body-1 {
+      .cv-body-content {
+        .cv-body-area {
+          &.top-area {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: stretch;
+
+            .photo-wrapper {
+              width: 187px;
+              height: 187px;
+              flex-shrink: 0;
+
+              .photo {
+                width: 187px;
+                height: 187px;
+                background-size: cover;
+                background-position: 50% 50%;
+                overflow: hidden;
+              }
+            }
+
+            .profile-info {
+              display: flex;
+              flex-direction: column;
+
+              .profile-info-text {
+                margin-top: 20px;
+              }
+            }
+          }
+
+          &.middle-area {
+            display: flex;
+            flex-direction: row;
+            column-gap: 30px;
+            justify-content: space-between;
+            padding: 5px 0 5px 25px;
+
+            .column-1 {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+            }
+
+            .column-2 {
+              width: 220px;
+              display: flex;
+              flex-direction: column;
+
+              .block-block {
+                margin-top: 0;
+                padding: 15px 20px 20px;
+                background: rgba($color: $main_color_4, $alpha: .3);
+
+                .cv-heading-block {
+                  margin-bottom: 4px;
+                }
+
+                &:not(:first-of-type) {
+                  margin-top: 12px;
+                }
+              }
+            }
+          }
+
+          &.bottom-area {
+            display: flex;
+            align-items: flex-end;
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    &.cv-body-2 {
+      .cv-body-content {
+        flex-direction: column;
+
+        .columns-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: stretch;
+          justify-content: stretch;
+        }
+
+        .cv-body-area {
+          &.top-area {
+            padding: 30px 30px 0;
+          }
+
+          &.top-area {
+            .profile-information {
+              padding-top: 30px;
+            }
+          }
+
+          &.middle-area {
+            padding: 30px 50px;
+
+            .cv-heading {
+              margin-bottom: 15px;
+            }
+          }
+
+          &.bottom-area {
+            display: flex;
+            flex: 1;
+            align-items: flex-end;
+            min-height: 100px;
+
+            .cv-destination {
+              padding: 30px 51px;
+              flex-basis: 100%;
+
+              .cv-destination-block {
+                height: 100%;
+
+                .destination-details {
+                  height: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                  justify-content: flex-start;
+
+                  .to-block {
+                    width: 118px;
+                    margin-right: 80px;
+                  }
+
+                  p {
+                    margin-bottom: 2px;
+
+                    &:last-child {
+                      margin-bottom: 0px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .block-block {
+    margin-top: 15px;
+    .cv-heading-block {
+      display: flex;
+      column-gap: 8px;
+      align-items: center;
+    }
+    .cv-heading {
+      font-family: 'Russo One';
+      letter-spacing: 0.25px;
+      
+    }
+    .cv-subheading {
+      font-family: 'Russo One';
+      margin-bottom: 4px;
+    }
+    .date-range {
+      font-family: 'Russo One';
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: $main_color_2;
+      margin-bottom: 4px;
+    }
+    .block-info {
+      &:not(:first-of-type) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .skills-block {
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+    }
+  }
+
+  .languages-block {
+    .languages-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+    }
+  }
+
+  .details-block {
+    .details-wrapper {
+      .details-item {
+        margin-bottom: 3px;
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+
+  .references-block {
+    .block-info {
+      p {
+        &:not(:first-of-type) {
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  .certificates-block {
+    .certificates-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+    }
+  }
+
+  .bottom-block {
+    width: 100%;
+    display: flex;
+    padding: 10px 25px 25px;
+    box-sizing: border-box;
+    background: rgba($color: $main_color_4, $alpha: 0.3);
+  }
+
+  .profile-additional-info {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 6px;
+    column-gap: 30px;
+
+    .footer-block {
+      display: flex;
+      flex-direction: column;
+      flex-basis: calc(100%/3 - 20px);
+
+      .item-name {
+        color: $main_color_2;
+        margin-bottom: 2px;
+      }
+
+      .item-value {
+        font-family: 'Russo One';
+
+      }
+    }
+  }
+
+  .links-block {
+    display: flex;
+    align-items: end;
+    column-gap: 10px;
+    justify-content: end;
+
+    .links-item {
+      display: block;
+      width: 23px;
+      height: 23px;
+    }
+  }
+
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-block {
+      display: none;
+    }
+
+    &.has-photo {
+      .photo-block {
+        display: flex;
+      }
+    }
+  }
+
+  .cv-letter-text {
+    .line_text {
+      &::before {
+        background: $main_color_1;
+      }
+    }
+  }
+
+
+    /* Font size scheme */
+    .font-size-scheme-state-small {
+      .font-size-1 {
+        font-size: 8px;
+      }
+  
+      .font-size-2 {
+        font-size: 10px;
+      }
+  
+      .font-size-3 {
+        font-size: 12px;
+      }
+
+      .font-size-4 {
+        font-size: 22px;
+      }
+    }
+  
+    .font-size-scheme-state-medium {
+      .font-size-1 {
+        font-size: 10px;
+      }
+  
+      .font-size-2 {
+        font-size: 12px;
+      }
+  
+      .font-size-3 {
+        font-size: 14px;
+      }
+
+      .font-size-4 {
+        font-size: 24px;
+      }
+    }
+  
+    .font-size-scheme-state-big {
+      .font-size-1 {
+        font-size: 12px;
+      }
+  
+      .font-size-2 {
+        font-size: 14px;
+      }
+  
+      .font-size-3 {
+        font-size: 16px;
+      }
+
+      .font-size-4 {
+        font-size: 26px;
+      }
+    }
+  
+    /* Line height scheme */
+    .line-height-scheme-state-small {
+      .cv-body-content {
+        line-height: 1.2;
+      }
+    }
+  
+    .line-height-scheme-state-medium {
+      .cv-body-content {
+        line-height: 1.4;
+      }
+    }
+  
+    .line-height-scheme-state-big {
+      .cv-body-content {
+        line-height: 1.6;
+      }
+    }
+
+  /* Color scheme */
+  .color-scheme-state-color-set-1 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_1_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_1_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_1_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_1_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-2 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_2_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_2_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_2_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_2_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-3 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_3_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_3_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_3_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_3_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-4 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_4_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_4_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_4_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_4_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-5 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_5_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_5_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_5_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_5_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-6 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_6_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_6_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_6_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_6_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-7 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_7_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_7_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_7_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_7_additional_color_1;
+    }
+  }
+
+
+  .color-scheme-state-color-set-8 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .main-color-3-background {
+      background-color: $main_color_3;
+    }
+
+    .additional-color-1-text {
+      color: $color_set_8_additional_color_1;
+    }
+
+    .additional-color-1-border {
+      border-color: $color_set_8_additional_color_1;
+    }
+
+    .additional-color-1-background {
+      background-color: $color_set_8_additional_color_1;
+    }
+
+    .additional-color-1-svg {
+      fill: $color_set_8_additional_color_1;
+    }
+  }
+}
