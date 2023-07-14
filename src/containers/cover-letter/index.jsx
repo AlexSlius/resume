@@ -34,6 +34,8 @@ import sureData from './data/sure.json';
 import faqData from './data/faq.json';
 import reviewsObjData from "./data/data-reviews.json";
 import { SectionOfferAdvantage } from "../../components/sectionAdvantage";
+import { SectionResumeAndCover } from "../../components/sectionResumeAndCover";
+import { SectionAutCreateCover } from "../../components/sectionAutomaticCreateCover";
 
 
 export const CoverLatter = () => {
@@ -82,6 +84,10 @@ export const CoverLatter = () => {
                 coverPage={true}
                 arrImg={['/images/page/item-resum-1.png', '/images/page/item-resum-2.png', '/images/page/item-resum-3.png', '/images/page/item-resum-4.png', '/images/page/item-resum-5.png', '/images/page/item-resum-6.png']}
             />
+            <SectionAutCreateCover
+                link={`${routersPages['coverLetterNew']}`}
+            />
+            <SectionResumeAndCover />
             <SectionOfferAdvantage
                 advantages={advantages}
             />
