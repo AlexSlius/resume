@@ -38,11 +38,11 @@ const MyApp = ({ Component, ...rest }) => {
         <meta httpEquiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* noto */}
-        <link rel="preload" href="/fonts/noto/NotoSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/noto/NotoSans-Medium.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/noto/NotoSans-SemiBold.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/noto/NotoSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preload" href="/fonts/noto/NotoSans-Thin.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-Regular.woff" as="font" type="font/woff" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-Medium.woff" as="font" type="font/woff" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-SemiBold.woff" as="font" type="font/woff" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/notosans-bold.woff" as="font" type="font/woff" crossOrigin="" />
+        <link rel="preload" href="/fonts/noto/NotoSans-Thin.woff" as="font" type="font/woff" crossOrigin="" />
         
         {/* GTEestiProDisplay */}
         <link rel="preload" href="/fonts/GTEestiProDisplay-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
@@ -89,7 +89,7 @@ const MyApp = ({ Component, ...rest }) => {
 
           @font-face {
             font-family: "NotoSans";
-            src: url("/fonts/noto/NotoSans-Thin.woff2") format("woff2");
+            src: url("/fonts/noto/NotoSans-Thin.woff") format("woff");
             font-weight: 300;
             font-display: swap;
             font-style: normal;
@@ -97,7 +97,7 @@ const MyApp = ({ Component, ...rest }) => {
 
           @font-face {
             font-family: "NotoSans";
-            src: url("/fonts/noto/NotoSans-Regular.woff2") format("woff2");
+            src: url("/fonts/noto/NotoSans-Regular.woff") format("woff");
             font-weight: 400;
             font-display: swap;
             font-style: normal;
@@ -105,7 +105,7 @@ const MyApp = ({ Component, ...rest }) => {
         
         @font-face {
             font-family: "NotoSans";
-            src: url("/fonts/noto/NotoSans-Medium.woff2") format("woff2");
+            src: url("/fonts/noto/NotoSans-Medium.woff") format("woff");
             font-weight: 500;
             font-display: swap;
             font-style: normal;
@@ -113,7 +113,7 @@ const MyApp = ({ Component, ...rest }) => {
         
         @font-face {
             font-family: "NotoSans";
-            src: url("/fonts/noto/NotoSans-SemiBold.woff2") format("woff2");
+            src: url("/fonts/noto/NotoSans-SemiBold.woff") format("woff");
             font-weight: 600;
             font-display: swap;
             font-style: normal;
@@ -121,7 +121,7 @@ const MyApp = ({ Component, ...rest }) => {
         
         @font-face {
             font-family: "NotoSans";
-            src: url("/fonts/noto/NotoSans-Bold.woff2") format("woff2");
+            src: url("/fonts/noto/notosans-bold.woff") format("woff");
             font-weight: 700;
             font-display: swap;
             font-style: normal;

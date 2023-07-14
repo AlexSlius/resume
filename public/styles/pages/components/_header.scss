@@ -65,6 +65,7 @@
     font-weight: 400;
     font-size: 12px;
     text-decoration: none;
+    font-weight: 400;
 }
 
 .submenu-item {
@@ -74,6 +75,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        font-weight: 400;
 
         &::after {
             content: "";
@@ -195,12 +197,12 @@
         }
 
         a {
-            font-weight: 350;
             font-size: 16px;
             line-height: 27px;
             color: var(--black);
             padding-left: 2px;
             padding-right: 2px;
+            font-weight: 400;
 
             &:hover {
                 color: var(--blue);
@@ -444,13 +446,14 @@
         li {
             a.nav-link {
                 padding: 19px 26px;
-                font-weight: 350;
+                font-weight: 400;
                 font-size: 18px;
                 line-height: 21px;
                 display: block;
                 color: #838799;
                 display: flex;
                 align-items: center;
+                font-family: "NotoSans", "GTEestiProDisplay", sans-serif;
 
                 svg {
                     width: 20px;

@@ -4,9 +4,10 @@ export const InputPage = ({
     value,
     onChange = () => { },
     handleKeyUpa = () => { },
+    isSearch = false,
 }) => {
     return (
-        <div className="form-input">
+        <div className={`form-input ${isSearch ? "in-sea" : ""}`}>
             <input
                 placeholder={placeholder}
                 type={type}

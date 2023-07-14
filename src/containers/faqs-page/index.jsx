@@ -51,15 +51,14 @@ export const FaqsPage = () => {
                 <div className="containers">
                     <div className="max-830px">
                         <div className="text-center">
-                            <h1 className="h1">
-                                FAQ<span className="icon-right-top">s</span>
-                            </h1>
+                            <h1 className="h1 h1_p48 fontw-600">FAQs</h1>
                             <p className="bottom-text">
                                 Do you have any questions? Please have a look at our frequently asked questions.
                                 If you cannot find the answer you need, please contact us.
                             </p>
-                            <div className="form">
+                            <div className="form form-fag">
                                 <InputPage
+                                    isSearch={true}
                                     placeholder="Search by keyword..."
                                     value={textSearch}
                                     onChange={handleChange}
