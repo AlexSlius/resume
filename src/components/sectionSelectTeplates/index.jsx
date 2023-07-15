@@ -8,6 +8,7 @@ export const SectionSelectTemplates = ({
     linkAll = '',
     linkTemplateNew = "",
     handleLink = () => { },
+    handlePreview = () =>{}
 }) => {
     return (
         <section className="ss-teml mt-180">
@@ -22,6 +23,7 @@ export const SectionSelectTemplates = ({
                                     {...item}
                                     link={linkTemplateNew}
                                     handleLink={() => handleLink(item)}
+                                    handlePreview={() => handlePreview(item)}
                                 />
                             )
                         ))

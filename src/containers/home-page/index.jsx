@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import Head from 'next/head'
 
@@ -17,6 +17,7 @@ import { SectionCustomers } from "../../components/customers";
 import { SectionGetYou } from "../../components/sectionGetYou";
 import { SectionFag } from "../../components/sectionFag";
 import { SectionForFree } from "../../components/sectionForFree";
+import { ModalTemplate } from "../../components/modals/modaltemplate";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { routersPages } from "../../constants/next-routers";
@@ -29,6 +30,10 @@ import arrAccordion from "./data/data-accordion.json";
 
 export const HomePage = () => {
     const dispatch = useDispatch();
+    const [modalTem, setModalTem] = useState({
+        status: false,
+        data: null
+    });
 
     const {
         pages: {
@@ -47,6 +52,20 @@ export const HomePage = () => {
 
     const handlePerfectTemplate = () => {
         dispatch(updateActiveResumeNew({ slug: "041-CV", id: 41 }));
+    }
+
+    const handleCloseModalTemplate = () => {
+        setModalTem({
+            status: false,
+            data: null
+        });
+    }
+
+    const handlePreview = (data) => {
+        setModalTem({
+            status: true,
+            data
+        });
     }
 
     useEffect(() => {
@@ -106,6 +125,7 @@ export const HomePage = () => {
                 linkAll={`/${routersPages['jobWinningResumeTemplates']}`}
                 linkTemplateNew={`/${routersPages['resumeBuilderNew']}`}
                 handleLink={(itemResume) => dispatch(updateActiveResumeNew({ slug: itemResume.slug, id: itemResume.id }))}
+                handlePreview={handlePreview}
             />
             <SectionPrivacyOfYou
                 title="Privacy of your information"
@@ -131,6 +151,13 @@ export const HomePage = () => {
                 des="We provide a credit card-free 7-day trial period"
                 link={`/${routersPages['resumeBuilderNew']}`}
                 btnText="Create My Resume"
+            />
+             <ModalTemplate
+                visible={modalTem.status}
+                item={modalTem.data}
+                onClose={handleCloseModalTemplate}
+                hrefLink={routersPages['resumeBuilderNew']}
+                handleLink={(val) => dispatch(updateActiveResumeNew(val))}
             />
         </>
     )

@@ -16,10 +16,8 @@ export const PrivacyPolicy = () => {
             <section className="contact-page page-texts">
                 <div className="containers">
                     <div className="max-830px">
-                        <h1 className="h1 text-center">
-                            PRIVACY POLIC<span className="icon-right-top">Y</span>
-                        </h1>
-                        <p className="bottom-text text-center">
+                        <h1 className="h1 h1_p48 fontw-600  text-center">Privacy policy</h1>
+                        <p className="bottom-text bottom-text_grey text-center">
                             Publication date: 24.02.2023
                         </p>
 
@@ -50,7 +48,7 @@ export const PrivacyPolicy = () => {
 
                                 <ul className="no-style">
                                     <li>
-                                        <h2 className="text-center"><p>DEFINITIONS</p></h2>
+                                        <h2 ><p>DEFINITIONS</p></h2>
                                         <ul>
                                             <li><p><span><b>Client</b> - an individual who receives Services from the Company in order to create a Resume to receive new job offers.</span></p></li>
 
@@ -77,7 +75,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>GENERAL PROVISIONS</p></h2>
+                                        <h2 ><p>GENERAL PROVISIONS</p></h2>
                                         <ul>
                                             <li><p><span>The Company processes and stores Personal Data based on the principles of legality, fairness and transparency by<Link href="https://gdpr-text.com/read/article-5/" target="_blank"> Article 5 "Principles relating to processing of personal data" of the GDPR.</Link></span></p></li>
                                             <li><p><span>The Company acts as a Processor of the Personal Data it receives from the Client in the ways specified in this Privacy Policy, and the Client acts as a Controller.</span></p></li>
@@ -85,7 +83,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>PERSONAL DATA</p></h2>
+                                        <h2 ><p>PERSONAL DATA</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company may receive the following Personal Data about the Client or its employees:</span></p>
@@ -242,7 +240,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>TRANSFER OF PERSONAL DATA</p></h2>
+                                        <h2 ><p>TRANSFER OF PERSONAL DATA</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company may transfer Personal Data to entities with which the Company cooperates in the implementation and provision of Services:</span></p>
@@ -265,7 +263,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>CLIENT CONSENT</p></h2>
+                                        <h2 ><p>CLIENT CONSENT</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The following actions are considered consent to the processing of Personal Data specified in this Privacy Policy:</span></p>
@@ -294,7 +292,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>PERSONAL DATA STORAGE AND PROTECTION</p></h2>
+                                        <h2 ><p>PERSONAL DATA STORAGE AND PROTECTION</p></h2>
                                         <ul>
                                             <li><p><span>The Company uses all necessary security and protection measures for Personal Data to ensure their confidentiality and prevents loss or improper disclosure.</span></p></li>
 
@@ -344,7 +342,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>GROUNDS FOR PERSONAL DATA PROCESSING</p></h2>
+                                        <h2 ><p>GROUNDS FOR PERSONAL DATA PROCESSING</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company processes Personal Data based on the following legal grounds:</span></p>
@@ -366,7 +364,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>JURISDICTION OF THE EUROPEAN UNION AND THE EUROPEAN ECONOMIC AREA</p></h2>
+                                        <h2 ><p>JURISDICTION OF THE EUROPEAN UNION AND THE EUROPEAN ECONOMIC AREA</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The terms of this section apply to residents of the European Union and the European Economic Area. In accordance with the terms of this paragraph, the Client has the following rights:</span></p>
@@ -394,7 +392,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>JURISDICTION OF THE UNITED STATES</p></h2>
+                                        <h2 ><p>JURISDICTION OF THE UNITED STATES</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The terms of this section apply to U.S. residents, which are contained in the Privacy Policy and are subject to specific requirements under the <Link href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB1121" target="_blank">California Consumer Privacy Act of 2018 (Cal. Civ. §§ 1789.100-1798.199)</Link> and the Privacy Act Regulations.</span></p>
@@ -445,7 +443,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>JURISDICTIONS OF OTHER COUNTRIES</p></h2>
+                                        <h2 ><p>JURISDICTIONS OF OTHER COUNTRIES</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company makes every effort to legally process Personal Data in accordance with international standards for personal data processing.</span></p>
@@ -465,7 +463,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>SUBMISSION OF REQUEST</p></h2>
+                                        <h2 ><p>SUBMISSION OF REQUEST</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>A Client in any jurisdiction has the right to submit a request to the Company if he believes that his rights have been violated by writing a request in writing to the support of the Company at the address: <Link href="mailto:contact@resulon.com">contact@resulon.com</Link></span></p>
@@ -482,7 +480,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>RESPONSIBILITY</p></h2>
+                                        <h2 ><p>RESPONSIBILITY</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company informs the Client that Personal Data may be used to provide the Services, and in case of disagreement with this, the Client is not entitled to receive the Services.</span></p>
@@ -524,7 +522,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>RESPONSIBILITY</p></h2>
+                                        <h2 ><p>RESPONSIBILITY</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>Site pages may contain electronic images known as web beacons (sometimes also called transparent gifs or pixel tags). Web beacons are usually small images placed on the web page or email you are viewing. The request that a device connected to the Internet makes to download such an image from the server/computer is recorded and it provides us with information such as the IP address, the time the image was viewed, and the type of browser used to do so.</span></p>
@@ -566,7 +564,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>ADULTS POLICY</p></h2>
+                                        <h2 ><p>ADULTS POLICY</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Services of the Company are intended for persons who have reached the age of majority, in accordance with the laws of the country of residence of such a person. The Company does not process the Personal Data of minors.</span></p>
@@ -580,7 +578,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>PRIVACY POLICY CHANGE</p></h2>
+                                        <h2 ><p>PRIVACY POLICY CHANGE</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>We have the right to periodically make changes to the Privacy Policy, the security of Personal Data, and compliance with the requirements of the laws of the jurisdiction in which we operate.</span></p>
@@ -597,7 +595,7 @@ export const PrivacyPolicy = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>CONTACTS</p></h2>
+                                        <h2 ><p>CONTACTS</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Client has the right to contact the Company support service at: <Link href="mailto:contact@resulon.com">contact@resulon.com</Link> to ensure his rights, in accordance with the terms of this Privacy Policy, or in case of violation of his rights, or to leave feedback or ask a question.</span></p>

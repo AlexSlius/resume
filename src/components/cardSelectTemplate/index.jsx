@@ -3,12 +3,12 @@ import Link from "next/link";
 import Icon from "../Icon";
 import iconEye from "/public/images/icons/eye-white.svg?sprite";
 
-
 export const CardSelectTemplate = ({
     link = "",
     image,
     name,
     handleLink = () => { },
+    handlePreview = () => { },
 }) => {
     return (
         <div className="card-selec">
@@ -18,7 +18,7 @@ export const CardSelectTemplate = ({
                 </div>
                 <div className="card-selec__hove">
                     <div className="card-selec__btn-top">
-                        <button className="button-p button-type-grey button-p_icon button-p_grey">
+                        <button className="button-p button-type-grey button-p_icon button-p_grey" onClick={handlePreview}>
                             <i>
                                 <Icon svg={iconEye} />
                             </i>

@@ -3,51 +3,6 @@
     padding-bottom: 20px;
 }
 
-.resumes-tabs {
-    display: flex;
-    align-items: center;
-    margin: 0 -15px;
-}
-
-.resumes-tab {
-    margin: 0 15px;
-    width: calc(20% - 30px);
-}
-
-.resumes-tab-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F6F8FA;
-    border-radius: 12px 12px 0px 0px;
-    padding: 27px 10px;
-    width: 100%;
-    font-weight: 400;
-    font-size: 20px;
-    color: #C4C7D0;
-    transition: 0.3s;
-    white-space: nowrap;
-
-    svg {
-        min-width: 21px;
-        width: 21px;
-        height: 21px;
-        margin-right: 15px;
-        fill: #C4C7D0;
-        transition: 0.3s;
-    }
-
-    &:hover,
-    &.active {
-        color: #FFFFFF;
-        background: #3679FD;
-
-        svg {
-            fill: #FFFFFF;
-        }
-    }
-}
-
 .items-resumes {
     display: grid;
     grid-gap: 30px;
@@ -58,6 +13,8 @@
 .item-card-resum {
     &__head {
         position: relative;
+        border-radius: 12px;
+        overflow: hidden;
 
         img {
             width: 100%;
@@ -66,6 +23,7 @@
 
         .doc-btn {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             position: absolute;
@@ -77,17 +35,12 @@
             z-index: 10;
             transition: opacity 0.2s ease-in-out;
             opacity: 0;
+            gap: 16px;
+        }
 
-            a {
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
+        a,
+        button {
+            min-width: 216px;
         }
 
         &:hover {
@@ -95,6 +48,11 @@
                 opacity: 1;
             }
         }
+    }
+
+    &__btn-top {
+        display: flex;
+        justify-content: center;
     }
 
     &__bot {
@@ -108,7 +66,7 @@
 
     &__titl {
         font-weight: 400;
-        font-size: 30px;
+        font-size: 24px;
         color: #01153A !important;
     }
 
@@ -120,8 +78,8 @@
 
     &__desk {
         margin: 6px 0 0 0;
-        font-weight: 350;
-        font-size: 18px;
+        font-weight: 400;
+        font-size: 16px;
         color: #838799;
         text-align: left;
     }
@@ -151,13 +109,13 @@
 }
 
 .mt-text-content {
-    margin-top: 4vw;
+    margin-top: 32px;
 }
 
 .content-text {
-    line-height: 1.25;
+    line-height: 1.5;
     color: #01153A;
-    font-weight: 350;
+    font-weight: 400;
     font-size: 16px;
 
     p {
@@ -247,70 +205,146 @@
     }
 }
 
+
+
+.btn-centers-w_t {
+    margin-top: 32px;
+}
+
+.btn-centers-w_t2 {
+    margin-top: 48px;
+}
+
+.card-color {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+
+    &__item {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        max-width: 34px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            border: 2px solid rgba(54, 121, 253, 1);
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            opacity: 0;
+        }
+
+        &.active {
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.card-color_t {
+    gap: 12px;
+
+    .card-color__item {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        max-width: 24px;
+
+        &::before {
+            transform: translate(-50%, -50%) scale(1.4);
+        }
+    }
+}
+
+.text-t-t {
+    text-align: center;
+    color: var(--grey);
+    max-width: 770px;
+    margin: 32px auto 0 auto;
+}
+
+.wr-select-row {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+.seler-r {
+    display: flex;
+    align-items: center;
+    background: rgba(235, 235, 235, 0.3);
+    border-radius: 40px;
+    padding: 8px;
+    gap: 22px;
+
+    button,
+    a {
+        border-radius: 34px;
+        background: transparent;
+        color: #838799;
+        font-size: 16px;
+        padding: 12px 10px;
+        cursor: pointer;
+        font-weight: 400;
+
+        &.active {
+            color: #01153A;
+            background: #fff;
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.12);
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+}
+
+.bottom-text_grey {
+    color: var(--grey) !important;
+    margin-top: 20px;
+}
+
 @media(max-width: 1199px) {
     .items-resumes {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media(max-width: 992px) {
-    .resumes-tabs {
-        overflow-x: auto;
-        max-width: 100%;
-
-        scrollbar-color: transparent transparent;
-        scrollbar-width: 0;
-
-        &::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            background-color: transparent;
-            border-radius: 0;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            border-radius: 0;
-            width: 0;
-        }
-    }
-
-    .resumes-tab {
-        width: auto;
-        min-width: calc(28% - 30px);
-    }
-
-    .resumes-tab-btn {
-        padding: 14px 12px;
-    }
-}
-
 @media (max-width: 767px) {
-    .resumes-tabs {
-        margin: 0 -20px;
-        padding: 0 16px;
-        max-width: calc(100% + 32px);
-    }
-
-    .resumes-tab {
-        margin: 0 4px;
-        min-width: auto;
-    }
-
-    .resumes-tab-btn {
-        font-size: 18px;
-    }
-
     .item-card-resum__titl {
         font-size: 26px;
+    }
+
+    .wr-select-row {
+        margin-top: 40px;
     }
 }
 
 @media (max-width: 576px) {
     .content-text {
-        font-size: 12px;
+        font-size: 14px;
 
         h2 {
+            font-size: 14px;
+        }
+    }
+
+    .page-texts {
+
+        .h1_p48,
+        .bottom-text_grey {
+            text-align: left !important;
+        }
+
+        .bottom-text {
             font-size: 14px;
         }
     }
@@ -321,7 +355,7 @@
 
     .items-resumes {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 40px;
     }
 
     .item-card-resum__titl {
@@ -340,17 +374,16 @@
         margin-top: 32px;
     }
 
-    .resumes-tab-btn {
-        font-size: 14px;
-    }
-
-    .resumes-tab-btn svg {
-        min-width: 14px;
-        width: 14px;
-        margin-right: 10px;
-    }
-
     .btn-centers-w.mt-40 {
         margin-top: 20px;
+    }
+
+    .text-t-t {
+        font-size: 14px;
+        margin-top: 24px;
+    }
+
+    .btn-centers-w_t {
+        margin-top: 24px;
     }
 }

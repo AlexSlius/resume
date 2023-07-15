@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from 'next/head'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -20,6 +20,7 @@ import { SectionForFree } from "../../components/sectionForFree";
 import { SectionReviews } from "../../components/sectionReviews";
 import { SectionPrivacyOfYou } from "../../components/sectionPrivacyOfYou";
 import { SectionSelectTemplates } from "../../components/sectionSelectTeplates";
+import { ModalTemplate } from "../../components/modals/modaltemplate";
 
 // Libraries
 import { updateActiveCoverNew } from "../../slices/cover/coverData";
@@ -40,9 +41,12 @@ import { SectionAutCreateCover } from "../../components/sectionAutomaticCreateCo
 
 export const CoverLatter = () => {
     const dispatch = useDispatch();
+    const [modalTem, setModalTem] = useState({
+        status: false,
+        data: null
+    });
     const promoNumbers = promoNumbersData.data;
     const advantages = advantagesData.data;
-    const sureItems = sureData.data;
     const faq = faqData.data;
 
     const {
@@ -57,6 +61,20 @@ export const CoverLatter = () => {
         coverData,
     } = useSelector((state) => state);
     const isMob = ['sm', 'xs'].includes(currentResolution);
+
+    const handleCloseModalTemplate = () => {
+        setModalTem({
+            status: false,
+            data: null
+        });
+    }
+
+    const handlePreview = (data) => {
+        setModalTem({
+            status: true,
+            data
+        });
+    }
 
     useEffect(() => {
         localStorage.setItem('page', 'cover-letter');
@@ -97,6 +115,7 @@ export const CoverLatter = () => {
                 linkAll={`/${routersPages['pageCoverLeterTemplates']}`}
                 linkTemplateNew={`/${routersPages['coverLetterNew']}`}
                 handleLink={(itemResume) => dispatch(updateActiveCoverNew({ slug: itemResume.slug, id: itemResume.id }))}
+                handlePreview={handlePreview}
             />
             <SectionPrivacyOfYou
                 title="Privacy of your information"
@@ -129,6 +148,13 @@ export const CoverLatter = () => {
                 link={`/${routersPages['coverLetterNew']}`}
                 btnText="Create Cover Letter"
                 pageCover={true}
+            />
+             <ModalTemplate
+                visible={modalTem.status}
+                item={modalTem.data}
+                onClose={handleCloseModalTemplate}
+                hrefLink={routersPages['coverLetterNew']}
+                handleLink={(val) => dispatch(updateActiveCoverNew(val))}
             />
         </>
     )
