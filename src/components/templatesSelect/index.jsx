@@ -21,6 +21,9 @@ import { ResumeCv011 } from '../../resumeTemplates/011-CV';
 import { ResumeCv013 } from '../../resumeTemplates/013-CV';
 import { ResumeCv015 } from '../../resumeTemplates/015-CV';
 import { ResumeCv016 } from '../../resumeTemplates/016-CV';
+import { ResumeCv017 } from '../../resumeTemplates/017-CV';
+import { ResumeCv026 } from '../../resumeTemplates/026-CV';
+import { ResumeCv029 } from '../../resumeTemplates/029-CV';
 import { ResumeCv030 } from '../../resumeTemplates/030-CV';
 import { ResumeCv031 } from '../../resumeTemplates/031-CV';
 import { ResumeCv032 } from '../../resumeTemplates/032-CV';
@@ -259,6 +262,48 @@ export const TemplatesSelect = ({
             {
                 resumeActive == "016-CV" && (
                     <ResumeCv016
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "017-CV" && (
+                    <ResumeCv017
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "026-CV" && (
+                    <ResumeCv026
+                        reportTemplateRef={reportTemplateRef}
+                        stateClasses={stateClasses}
+                        data={data}
+                        idCv={idCv}
+                        isDrawing={drawing}
+                        isTemplate={isTemplate}
+                        handleFalseDrafind={handleFalseDrafind}
+                    />
+                )
+            }
+
+            {
+                resumeActive == "029-CV" && (
+                    <ResumeCv029
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}

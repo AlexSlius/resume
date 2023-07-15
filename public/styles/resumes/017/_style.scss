@@ -1,0 +1,779 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('./fonts/Caveat/Caveat-VariableFont_wght.ttf');
+  font-weight: 400;
+}
+
+  /* Colors */
+  $main_color_1: #FFFFFF;
+  $main_color_2: #75BE87;
+
+  $color_set_1_additional_color_1: #353535;
+  $color_set_2_additional_color_1: #4F4085;
+  $color_set_3_additional_color_1: #502E56;
+  $color_set_4_additional_color_1: #49233C;
+  $color_set_5_additional_color_1: #282548; 
+  $color_set_6_additional_color_1: #1F1F1F;
+
+.sv_017 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 400;
+
+  * {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  .name-and-prophecy-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    text-align: right;
+  }
+
+  .cv-prophecy {
+    font-family: 'Caveat';
+    text-transform: lowercase;
+    color: $main_color_2;
+  }
+
+  .cv-name {
+    font-family: 'Caveat';
+  }
+
+
+  .item-value-container {
+    height: 3px;
+    width: 155px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    background: linear-gradient(270deg, #60A9CC 0%, #D13B83 100%);
+
+    .item-value {
+      width: 50%;
+      background-color: transparent;
+      position: relative;
+      height: 100%;
+    }
+
+    .item-value-point {
+      position: absolute;
+      transform: translate(10px, -50%);
+      right: 0px;
+      top: 50%;
+    }
+
+    .empty-gap {
+      flex: 1;
+      height: 100%;
+    }
+  }
+
+  .text-block-list {
+    ul {
+      li {
+        padding-left: 15px;
+        position: relative;
+        list-style-type: none;
+        &:not(:first-of-type) {
+          margin-top: 5px;
+        }
+        &::before {
+          display: block;
+          content: " ";
+          position: absolute;
+          width: 8px;
+          height: 10px;
+          left: 0px;
+          background: url('/../styles/resumes/017/image/check-icon.svg') no-repeat 0 50%;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .photo-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .photo {
+      display: block;
+      border-radius: 100%;
+      width: 110px;
+      height: 110px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  #cv-body-hidden-container,
+  #cv-body-2 {
+    height: auto;
+    max-height: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cv-body {
+    min-width: 595px;
+    min-height: 764px;
+    height: 764px;
+    max-height: 764px;
+    background-color: #fff;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    .cv-body-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      position: relative;
+      z-index: 10;
+
+      .top-area {
+        display: flex;
+        padding: 20px 30px 0;
+        column-gap: 10px;
+
+        .column-right {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .middle-area {
+        display: flex;
+        padding: 15px 0 15px 15px;
+        column-gap: 30px;
+      }
+
+      .column-left {
+        width: 250px;
+        flex-shrink: 0;
+      }
+    }
+
+    &.cv-body-1 {
+      &.page-2,
+      &.page-3,
+      &.page-4 {
+        .top-area {
+          display: none;
+        }
+      }
+    }
+
+    &.cv-body-2 {
+      .cv-body-content {
+        min-height: 100%;
+        .middle-area {
+          margin-top: 30px;
+          column-gap: 50px;
+        }
+
+        .column-left {
+          width: 130px;
+        }
+      }
+    }
+  }
+
+  /* Block styling */
+  .block-block {
+    .cv-heading {
+      font-family: 'Caveat';
+      color: $main_color_2;
+      margin-bottom: 5px;
+      padding-left: 15px;
+    }
+
+    .cv-subheading {
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+
+    .block-info {
+      &:not(:first-of-type) {
+        margin-top: 10px;
+      }
+    }
+
+    .bg-block {
+      padding: 12px 0;
+      position: relative;
+    }
+
+    .date-range {
+      margin-bottom: 5px;
+      padding: 6px 0 6px 8px;
+      background: url('/../styles/resumes/017/image/date-bg.svg') no-repeat 0 50%;
+      background-size: 124px auto;
+      line-height: 12px;
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 10px;
+    }
+
+    &.m-left {
+      .bg-block {
+        padding-right: 10px;
+        padding-left: 15px;
+      }
+      .top-bg {
+        position: absolute;
+        top: -1px;
+        width: 100%;
+        height: 2px;
+        background: url('/../styles/resumes/017/image/left/top.svg') no-repeat 15px 0;
+      }
+      .right-bg {
+        position: absolute;
+        width: 3px;
+        height: calc(100% - 12px);
+        right: -1px;
+        top: -1px;
+        margin-bottom: 10px;
+        background: url('/../styles/resumes/017/image/left/right.svg') repeat-y 0 0;
+      }
+      .bottom-bg {
+        position: absolute;
+        height: 17px;
+        width: 100%;
+        right: -1px;
+        bottom: 0;
+        background: url('/../styles/resumes/017/image/left/bottom.svg') no-repeat 0 0;
+      }
+    }
+    &.m-right {
+      .bg-block {
+        padding-left: 15px;
+        padding-right: 30px;
+      }
+      .cv-degree {
+        padding-left: 50px;
+        color: $main_color_2;
+      }
+      .cv-heading {
+        text-align: right;
+        padding-left: 0;
+        padding-right: 30px;
+      }
+      .top-bg {
+        position: absolute;
+        top: -1px;
+        width: 100%;
+        left: 0;
+        height: 5px;
+        background: url('/../styles/resumes/017/image/right/top.svg') no-repeat 0 0;
+      }
+      .left-bg {
+        position: absolute;
+        width: 3px;
+        height: calc(100% - 12px);
+        left: -1px;
+        top: 0;
+        margin-bottom: 10px;
+        background: url('/../styles/resumes/017/image/right/left.svg') repeat-y 0 0;
+      }
+      .bottom-bg {
+        position: absolute;
+        height: 28px;
+        width: 100%;
+        left: -1px;
+        bottom: 0;
+        background: url('/../styles/resumes/017/image/right/bottom.svg') no-repeat 0 0;
+      }
+
+      &.m-small {
+        .bg-block {
+          padding-right: 10px;
+        }
+        .top-bg {
+          position: absolute;
+          top: -1px;
+          width: 100%;
+          left: 0;
+          height: 4px;
+          background: url('/../styles/resumes/017/image/right-small/top.svg') no-repeat 0 0;
+        }
+        .left-bg {
+          position: absolute;
+          width: 1px;
+          height: calc(100% - 12px);
+          left: -1px;
+          top: 0;
+          margin-bottom: 10px;
+          background: url('/../styles/resumes/017/image/right-small/left.svg') repeat-y 0 0;
+        }
+        .bottom-bg {
+          position: absolute;
+          height: 13px;
+          width: 100%;
+          left: -1px;
+          bottom: 0;
+          background: url('/../styles/resumes/017/image/right-small/bottom.svg') no-repeat 0 0;
+        }
+      }
+    }
+  }
+
+  .estimation-wrapper {
+    position: relative;
+    height: 5px;
+    width: 135px;
+    margin-top: 2px;
+
+    .estimation-background {
+      z-index: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid $main_color_2;
+      border-radius: 10px;
+    }
+
+    .estimation-value {
+      z-index: 10;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      background: $main_color_2;
+      border-radius: 10px;
+    }
+  }
+
+  .name-and-photo-block {
+    display: flex;
+    height: 128px;
+    width: 454px;
+    padding-right: 10px;
+    justify-content: end;
+    align-items: center;
+    background: url('/../styles/resumes/017/image/photo-bg.svg') no-repeat 100% 0;
+  }
+
+  .profile-icon {
+    width: 126px;
+    height: 94px;
+    margin-top: 8px;
+    background: url('/../styles/resumes/017/image/profile-icon.svg') no-repeat 0 0;
+  }
+
+  .details-block {
+    .bg-block {
+      display: flex;
+      column-gap: 16px;
+    }
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      width: 110px;
+    }
+    .details-item {
+      display: flex;
+      align-items: start;
+      column-gap: 5px;
+      svg {
+        width: 10px;
+        height: auto;
+        margin-top: 1px;
+        flex-shrink: 0;
+      }
+    }
+    p {
+      &:not(:first-of-type) {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .additional-details-block {
+    .block-item {
+      display: flex;
+      column-gap: 5px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .item-value {
+        color: $main_color_2;
+        margin-top: 0;
+      }
+      &:not(:first-of-type) {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .links-block {
+    display: flex;
+    column-gap: 10px;
+    margin-top: 10px;
+    justify-content: end;
+    
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .skills-block {
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 6px;
+    }
+    .list-item {
+      display: flex;
+      column-gap: 10px;
+      justify-content: space-between;
+      align-items: start;
+    }
+  }
+
+  .courses-and-sertificates-block {
+    display: flex;
+    .left-side {
+      width: 50%;
+      flex-shrink: 0;
+    }
+    .right-side {
+      width: 50%;
+      flex-shrink: 0;
+    }
+  }
+
+  .hobbies-and-references-block {
+    display: flex;
+    .left-side {
+      width: 50%;
+      flex-shrink: 0;
+    }
+    .right-side {
+      width: 50%;
+      flex-shrink: 0;
+    }
+  }
+
+  .languages-block {
+    .languages-list {
+      display: flex;
+      column-gap: 30px;
+      row-gap: 10px;
+      .languages-item {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+      }
+      .languages-value {
+        font-family: 'Caveat';
+        color: $main_color_2;
+      }
+    }
+  }
+
+  .references-block {
+    p {
+      &:not(:first-of-type) {
+        margin-top: 5px;
+      }
+    }
+    .references-name {
+      font-weight: 700;
+    }
+  }
+
+  .certificates-block {
+    .certificates-info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+    }
+  }
+
+  .destination-block {
+    .block-to {
+      p {
+        margin-top: 5px;
+      }
+    }
+
+    .block-from {
+      margin-top: 19px;
+
+      p {
+        margin-top: 2px;
+
+        &:first-child {
+          margin-top: 5px;
+        }
+      }
+
+      .underheading-line {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  /* Stylization */
+  #cv-chapter-section-cv {
+    &.has-photo {
+    }
+  }
+
+  /* Font size scheme */
+  .font-size-scheme-state-small {
+    .font-size-1 {
+      font-size: 8px;
+    }
+
+    .font-size-2 {
+      font-size: 11px;
+    }
+
+    .font-size-3 {
+      font-size: 14px;
+    }
+
+    .font-size-4 {
+      font-size: 20px;
+    }
+
+    .font-size-5 {
+      font-size: 24px;
+    }
+
+    .font-size-6 {
+      font-size: 34px;
+    }
+  }
+
+  .font-size-scheme-state-medium {
+    .font-size-1 {
+      font-size: 10px;
+    }
+
+    .font-size-2 {
+      font-size: 13px;
+    }
+
+    .font-size-3 {
+      font-size: 16px;
+    }
+
+    .font-size-4 {
+      font-size: 22px;
+    }
+
+    .font-size-5 {
+      font-size: 26px;
+    }
+
+    .font-size-6 {
+      font-size: 36px;
+    }
+
+    .date-range {
+      padding: 10px 0 10px 8px;
+      background-size: 155px auto;
+    }
+
+    .block-block {
+      &.m-right {
+        .cv-degree {
+          padding-left: 70px;
+        }
+      }
+    }
+  }
+
+  .font-size-scheme-state-big {
+    .font-size-1 {
+      font-size: 12px;
+    }
+
+    .font-size-2 {
+      font-size: 15px;
+    }
+
+    .font-size-3 {
+      font-size: 18px;
+    }
+
+    .font-size-4 {
+      font-size: 24px;
+    }
+
+    .font-size-5 {
+      font-size: 28px;
+    }
+
+    .font-size-6 {
+      font-size: 38px;
+    }
+
+    .date-range {
+      padding: 15px 0 15px 8px;
+      background-size: 190px auto;
+    }
+
+    .block-block {
+      &.m-right {
+        .cv-degree {
+          padding-left: 70px;
+        }
+      }
+    }
+
+    .text-block-list {
+      ul {
+        li {
+          &::before {
+            top: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  /* Line height scheme */
+  .line-height-scheme-state-small {
+    .cv-body-content {
+      line-height: 1.2;
+    }
+  }
+
+  .line-height-scheme-state-medium {
+    .cv-body-content {
+      line-height: 1.4;
+    }
+  }
+
+  .line-height-scheme-state-big {
+    .cv-body-content {
+      line-height: 1.6 ;
+    }
+  }
+
+  .line_text {
+    &::before {
+      background: $main_color_2;
+    }
+  }
+
+  /* Color scheme */
+  .color-scheme-state-color-set-1 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_1_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-2 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_2_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-3 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_3_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-4 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_4_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-5 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_5_additional_color_1;
+    }
+  }
+
+  .color-scheme-state-color-set-6 {
+    .main-color-1-text {
+      color: $main_color_1;
+    }
+
+    .main-color-2-text {
+      color: $main_color_2;
+    }
+
+    .additional-color-1-background {
+      background: $color_set_6_additional_color_1;
+    }
+  }
+}
