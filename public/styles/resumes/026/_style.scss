@@ -471,10 +471,16 @@
     .photo-wrapper {
       display: none;
     }
+    .name-and-prophecy-wrapper {
+      margin-top: 50px;
+    }
 
     &.has-photo {
       .photo-wrapper {
         display: block;
+      }
+      .name-and-prophecy-wrapper {
+        margin-top: 0;
       }
     }
   }
