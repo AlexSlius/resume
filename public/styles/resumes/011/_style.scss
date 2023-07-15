@@ -53,6 +53,7 @@
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
   }
 
   *,
@@ -155,8 +156,8 @@
       position: relative;
       z-index: 10;
       .column-right {
-        width: 160px;
-        min-width: 160px;
+        width: 180px;
+        min-width: 180px;
         padding-right: 20px;
         margin-left: 45px;
         .block-block {
@@ -202,6 +203,7 @@
         .column-left {
           .personal-info-block {
             display: flex;
+            height: 200px;
             margin-bottom: 20px;
             margin-left: 20px;
             .photo-block {
@@ -211,7 +213,7 @@
               .photo {
                 width: 159px;
                 height: 159px;
-                background-size: 159px auto;
+                background-size: cover;
                 background-position: 50% 50%;
                 overflow: hidden;
               }
@@ -235,6 +237,18 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+
+    &.cv-body-1 {
+      &.page-2,
+      &.page-3,
+      &.page-4 {
+        .cv-body-content {
+          .column-right {
+            margin-top: 10px;
           }
         }
       }
@@ -361,7 +375,7 @@
     }
 
     .right-block {
-      padding: 50px 0;
+      padding: 36px 0 75px;
       .contacts-block {
         display: flex;
         flex-direction: column;

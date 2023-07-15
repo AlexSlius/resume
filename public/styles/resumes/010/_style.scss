@@ -176,7 +176,7 @@
       z-index: 10;
 
       .column-left {
-        width: 360px;
+        width: 415px;
         margin-right: 10px;
         flex-shrink: 0;
 
@@ -282,6 +282,7 @@
           margin-top: 78px;
           padding: 10px;
           border-radius: 20px;
+          height: 100%;
           box-sizing: border-box;
 
           .block-block {
@@ -296,7 +297,6 @@
             width: 155px;
             height: 155px;
             border-radius: 100%;
-            overflow: hidden;
             position: relative;
             margin: 0 auto 20px;
 
@@ -320,7 +320,7 @@
               width: 155px;
               height: 155px;
               border-radius: 100%;
-              background-size: 155px auto;
+              background-size: cover;
               background-position: 50% 50%;
               overflow: hidden;
             }

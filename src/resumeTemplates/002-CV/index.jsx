@@ -684,58 +684,59 @@ export const ResumeCv002 = ({
               </div>
             </div>
 
-            <div className="cv-body-area bottom-area area-3 additional-color-2-border">
+            <div className="cv-body-area bottom-area area-3">
+              <div className="bottom-block additional-color-2-border">
+                {
+                  isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email) && (
+                    <div className="column-left wrappable-wrapper">
+                      <div className="career-details-block block-block wrappable-block">
+                        <h4 className="cv-heading">Details</h4>
+                        {
+                          !!contact?.[0]?.phone && (
+                            <p className="career-details-block-item">
+                              <span className="contact-item-name additional-color-2-text">Phone:</span>
+                              <span className="contact-item-value">{contact?.[0]?.phone}</span>
+                            </p>
+                          )
+                        }
+                        {
+                          !!contact?.[0]?.email && (
+                            <p className="career-details-block-item">
+                              <span className="contact-item-name additional-color-2-text">Email:</span>
+                              <span className="contact-item-value">{contact?.[0]?.email}</span>
+                            </p>
+                          )
+                        }
+                        {
+                          (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
+                            <p className="career-details-block-item">
+                              <span className="contact-item-name additional-color-2-text">Address:</span>
+                              <span className="contact-item-value">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
+                            </p>
+                          )
+                        }
 
-              {
-                isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email) && (
-                  <div className="column-left wrappable-wrapper">
-                    <div className="career-details-block block-block wrappable-block">
-                      <h4 className="cv-heading">Details</h4>
-                      {
-                        !!contact?.[0]?.phone && (
-                          <p className="career-details-block-item">
-                            <span className="contact-item-name additional-color-2-text">Phone:</span>
-                            <span className="contact-item-value">{contact?.[0]?.phone}</span>
-                          </p>
-                        )
-                      }
-                      {
-                        !!contact?.[0]?.email && (
-                          <p className="career-details-block-item">
-                            <span className="contact-item-name additional-color-2-text">Email:</span>
-                            <span className="contact-item-value">{contact?.[0]?.email}</span>
-                          </p>
-                        )
-                      }
-                      {
-                        (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.address || !!contact?.[0]?.zipCode) && (
-                          <p className="career-details-block-item">
-                            <span className="contact-item-name additional-color-2-text">Address:</span>
-                            <span className="contact-item-value">{`${!!contact?.[0]?.country ? (`${contact?.[0]?.country},`) : ''} ${!!contact?.[0]?.address ? (`${contact?.[0]?.address},`) : ''} ${!!contact?.[0]?.city ? (`${contact?.[0]?.city},`) : ''} ${!!contact?.[0]?.zipCode ? contact?.[0]?.zipCode : ""}`}</span>
-                          </p>
-                        )
-                      }
-
+                      </div>
                     </div>
-                  </div>
-                )
-              }
-              {
-                isArray(social_links) && !!social_links.length && (
-                  <div className="column-right wrappable-wrapper">
-                    <div className="career-links block-block wrappable-block">
-                      <h1 className="cv-heading">Links</h1>
-                      {
-                        social_links.map((itemSocial, index) => (
-                          <a className="career-links-link" key={index} >
-                            <img src={itemSocial.icon} alt={itemSocial.name} />
-                          </a>
-                        ))
-                      }
+                  )
+                }
+                {
+                  isArray(social_links) && !!social_links.length && (
+                    <div className="column-right wrappable-wrapper">
+                      <div className="career-links block-block wrappable-block">
+                        <h1 className="cv-heading">Links</h1>
+                        {
+                          social_links.map((itemSocial, index) => (
+                            <a className="career-links-link" key={index} >
+                              <img src={itemSocial.icon} alt={itemSocial.name} />
+                            </a>
+                          ))
+                        }
+                      </div>
                     </div>
-                  </div>
-                )
-              }
+                  )
+                }
+              </div>
             </div>
           </div>
         </div>

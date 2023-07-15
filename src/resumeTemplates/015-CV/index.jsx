@@ -162,7 +162,7 @@ export const ResumeCv015 = ({
                 {
                   !!conta?.picture && (
                     <div className="photo-block">
-                      <img src={conta?.picture} />
+                      <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                     </div>
                   )
                 }
@@ -366,7 +366,7 @@ export const ResumeCv015 = ({
                       <h3 className="block-heading font-size-3">Details</h3>
                       <div className="contacts-block">
                         <div className="block-item">
-                          {`${conta?.address}, ${conta?.city}, ${conta?.zipCode}, ${conta?.country}`}
+                          {`${conta?.address + ', '} ${conta?.city + ', '} ${conta?.zipCode + ', '} ${conta?.country}`}
                         </div>
                         {
                           conta?.email && (
