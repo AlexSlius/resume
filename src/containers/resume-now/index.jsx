@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import Router, { useRouter } from "next/router";
 
 import { Header } from "../../components/header";
 import { WeAccept } from "./WeAccept";
@@ -8,6 +9,7 @@ import { Card } from './Card';
 import style from "./Style.module.scss"
 import arrCard from "./data/cards.json";
 import { NotificationPayment } from '../../components/notificationPayment';
+import { stripePaymentIntents } from '../../strite/api';
 
 const obj = {
     isShow: false,
@@ -17,6 +19,7 @@ const obj = {
 };
 
 const ResumeNow = () => {
+    const router = useRouter();
     const {
         theme: {
             currentResolution
@@ -33,6 +36,36 @@ const ResumeNow = () => {
             ...obj,
         }));
     }
+
+    const handleSubmit = (dataCard, setStateLoad) => {
+        stripePaymentIntents({
+            items: dataCard.plan,
+            type: dataCard.type,
+            customerId: objForm.stripeUserId,
+            Router,
+            setStateLoad
+        })
+    }
+
+    useEffect(() => {
+        if (router.query?.success == 'true') {
+            updateError({
+                isShow: true,
+                status: 'success',
+                discription: 'Payment success...',
+            })
+            return;
+        }
+
+        // if (router.query?.canceled == 'true') {
+        //     updateError({
+        //         isShow: true,
+        //         status: 'error',
+        //         title: 'Payment error'
+        //     })
+        //     return;
+        // }
+    }, []);
 
     return (
         <>
@@ -66,8 +99,7 @@ const ResumeNow = () => {
                                 key={index}
                                 itemCard={itemCard}
                                 index={index}
-                                updateError={updateError}
-                                objForm={objForm}
+                                handleSubmit={(setStateLoad) => handleSubmit(itemCard, setStateLoad)}
                             />
                         ))
                     }

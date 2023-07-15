@@ -34,7 +34,7 @@ import {
 } from "../../../controllers/dependencies"
 
 import { isLoader } from "../../../helpers/loadings"
-import { sessionStorageSet, sessionStorageRemove } from "../../../helpers/localStorage";
+import { sessionStorageRemove } from "../../../helpers/localStorage";
 import { getIdOfNameCountrys } from "../../../helpers/countrys";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
 import { focusFiedlInput } from "../../../helpers/fiedlFocus";
@@ -47,7 +47,9 @@ import reactComponent from '/public/images/icons/down.svg?sprite'
 const FormContact = ({
    dispatch,
    storeDate,
-   idCv
+   idCv,
+   setStatePictureFile,
+   statePictureFile
 }) => {
    const refIdTimeout = useRef(undefined);
 
@@ -121,20 +123,15 @@ const FormContact = ({
          }
 
          if (e.target.files[0]) {
-            await reader.readAsDataURL(e.target.files[0]);
-            await setPictureFile(e.target.files[0]);
+            reader.readAsDataURL(e.target.files[0]);
+            setStatePictureFile(e.target.files[0]);
 
             if (idCv != "new")
                await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
-
-            if (idCv != "new") {
-               sessionStorageSet('picture', e.target.files[0]);
-            }
          }
       } else {
          await dispatch(updatePictureContact(null));
          await dispatch(fetchUpdateContact({ idCv, dataImage: null }));
-         sessionStorageSet('picture', null);
       }
    }
 
@@ -194,14 +191,14 @@ const FormContact = ({
       if (!isAthorized) {
          sendCodeResume({
             dispatch,
-            pictureFile,
+            pictureFile: statePictureFile,
             link
          });
       }
    }
 
    const onHandleNewAuthorization = async () => {
-      await dispatch(contactAddNew({ pictureFile, isNewResume, isPage: true }));
+      await dispatch(contactAddNew({ pictureFile: statePictureFile, isNewResume, isPage: true }));
    }
 
    const updateContactServer = async () => {
@@ -211,7 +208,7 @@ const FormContact = ({
          }
 
          refIdTimeout.current = setTimeout(async () => {
-            await dispatch(fetchUpdateContact({ idCv, dataImage: pictureFile }));
+            await dispatch(fetchUpdateContact({ idCv, dataImage: statePictureFile }));
             clearTimeout(refIdTimeout.current);
          }, 1000);
       }
@@ -237,7 +234,7 @@ const FormContact = ({
    }
 
    const cleanAll = async () => {
-      setPictureFile(undefined);
+      setStatePictureFile(null);
 
       if (isNewResume) {
          await dispatch(cleanSliseNew());
@@ -249,10 +246,6 @@ const FormContact = ({
    }
 
    useEffect(() => {
-      if (isNewResume) {
-         sessionStorageRemove('picture');
-      }
-
       if (isNewResume && isAthorized) {
          let { firstName, lastName, email } = objFormSettings;
 

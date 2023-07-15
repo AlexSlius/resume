@@ -1,0 +1,123 @@
+.customers {
+    &__main {
+        margin-top: 80px;
+    }
+
+    .swiper-slide-active {
+        .item-card-custom {
+            border-color: rgba(84, 108, 151, 1);
+        }
+    }
+}
+
+.item-card-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(84, 108, 151, 0.3);
+    padding: 14px 10px;
+    border-radius: 12px;
+    height: 122px;
+    max-height: 122px;
+}
+
+.cusf {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 790px;
+    margin: 64px auto 0 auto;
+
+    &__center {
+        max-width: 404px;
+    }
+}
+
+.cusc {
+    &_m {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        grid-gap: 24px;
+    }
+
+    &__ava {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__des {
+        line-height: 150%;
+        color: var(--grey);
+    }
+
+    &__name {
+        font-weight: 500;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1560px) {
+    .cusf {
+        max-width: 700px;
+    }
+}
+
+@media(max-width: 1200px) {
+    .customers__main {
+        margin-top: 60px;
+    }
+}
+
+@media(max-width: 1023px) {
+    .cusf {
+        max-width: 600px;
+    }
+}
+
+@media(max-width: 767px) {
+    .item-card-custom {
+        max-height: 80px;
+        height: 80px;
+        padding: 14px 10px;
+
+        img {
+            max-width: 90px;
+        }
+    }
+    .cusf {
+        margin-top: 32px;
+        position: relative;
+    }
+    .cusc__des {
+        font-size: 14px;
+    }
+    .cusc__name {
+        font-size: 16px;
+    }
+    .cusf__btn-left,
+    .cusf__btn-right {
+        position: absolute;
+        top: 10px;
+    }
+    .cusf__btn-left {
+        left: 0;
+    }
+
+    .cusf__btn-right {
+        right: 0;
+    }
+
+    .cusf__center {
+        margin: 0 auto;
+    }
+    .customers__main {
+        margin-top: 48px;
+    }
+}

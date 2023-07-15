@@ -8,13 +8,15 @@ import { routersPages } from '../constants/next-routers';
 import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
 import { cleanNewForm } from "../slices/cover/coverDataForm";
 import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "../controllers/users";
-import { contactSetNew } from "../controllers/contacts";
-import { coverSetNew, getCoverLetterById } from "../controllers/cover/personalize";
+import { contactAddNew, contactSetNew } from "../controllers/contacts";
+import { coverAddNew, coverSetNew, getCoverLetterById } from "../controllers/cover/personalize";
 import { localStorageRemove, sessionStorageRemove } from '../helpers/localStorage';
+import { sessionStorageGet } from "../helpers/localStorage";
 import { addItemNotification } from "../slices/notifications";
 import { getCoverDataActive, setUpdateCoverDataActive } from './cover/coverData';
 import { setUpdateResumeActive, getResumeActive } from "./resumeData";
 import { cleanSliseNew } from "../slices/contact";
+
 
 
 export const logout = async (dispatch) => {
@@ -167,8 +169,9 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     return {};
 })
 
-export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async (_, thunkAPI) => {
+export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async ({ pictureFile }, thunkAPI) => {
     const { auth: { authModalObj: { code, email, isClickBtn, linkRedirect, isResume, id_session } } } = thunkAPI.getState();
+
     const response = await api.auth.autorizeAuth({ code, email, id_session });
 
     if (response?.status != "autorized") {
@@ -181,7 +184,9 @@ export const autorizeAuthCode = createAsyncThunk('fetch/autorizeAuthCode', async
             isClickBtn,
             linkRedirect,
             isResume,
-            response
+            response,
+            isNew: true,
+            pictureFile,
         }));
 
         return { id: reseAut?.payload.id, status: true };
@@ -194,7 +199,9 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
     response,
     isClickBtn,
     linkRedirect,
-    isResume
+    isResume,
+    isNew = false,
+    pictureFile
 }, thunkAPI) => {
     const {
         menuAsideResume,
@@ -213,25 +220,54 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
         await thunkAPI.dispatch(getUserDataSettings());
     }
 
+    let ids = response?.id;
+    let linkPos = 0;
+
+    if (isNew) {
+        ids = null;
+
+        if (isResume) {
+            let rese = await thunkAPI.dispatch(contactAddNew({
+                isRedirect: false,
+                isNewResume: true,
+                pictureFile,
+            }));
+
+            ids = rese.payload?.id;
+            linkPos = 1;
+        }
+
+        if (!isResume) {
+            let rese = await thunkAPI.dispatch(coverAddNew({
+                isAddNewAuth: false,
+                isRedirect: false,
+                isClean: false,
+            }));
+
+            ids = rese.payload?.id;
+            linkPos = 1;
+        }
+    }
+
     // resume
-    if (isResume && !!response?.id) {
-        await thunkAPI.dispatch(setUpdateResumeActive({ idCv: response.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
-        await thunkAPI.dispatch(getResumeActive({ idCv: response.id }));
-        thunkAPI.dispatch(cleanSliseNew());
-        Router.push(`/${routersPages['resumeBuilder']}/${response.id}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.list[0].link}`);
+    if (isResume && !!ids) {
+        await thunkAPI.dispatch(setUpdateResumeActive({ idCv: ids, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
+        await thunkAPI.dispatch(getResumeActive({ idCv: ids }));
+        await Router.push(`/${routersPages['resumeBuilder']}/${ids}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.list[linkPos].link}`);
+        await thunkAPI.dispatch(cleanSliseNew());
     }
 
     // cover
-    if (!isResume && !!response?.id) {
-        await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
-        await thunkAPI.dispatch(getCoverLetterById(response.id));
-        await thunkAPI.dispatch(getCoverDataActive({ idCv: response.id }));
-        Router.push(`/${routersPages['coverLetter']}/${response.id}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.coverLetters.list[0].link}`);
+    if (!isResume && !!ids) {
+        await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: ids, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
+        await thunkAPI.dispatch(getCoverLetterById(ids));
+        await thunkAPI.dispatch(getCoverDataActive({ idCv: ids }));
+        await Router.push(`/${routersPages['coverLetter']}/${ids}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.coverLetters.list[linkPos].link}`);
     }
 
-    if (!!isClickBtn && !!response?.id) {
+    if (!!isClickBtn && !!ids) {
         Router.push(`/${routersPages['resumeNow']}`);
     }
 
-    return { id: response?.id };
+    return { id: ids };
 })

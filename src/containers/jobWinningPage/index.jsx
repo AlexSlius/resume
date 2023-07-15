@@ -1,34 +1,28 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
+import Link from "next/link";
 
-import { ButtonIcon } from "../../components/uis/buttonIcon";
 import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 import { ItemCardResum } from "../../components/itemCardResum";
-import { ResumeTabs } from "../../components/resumeTabs";
+import { ModalTemplate } from "../../components/modals/modaltemplate";
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { isLoader } from "../../helpers/loadings"
 
-import iconAddNew from "/public/images/icons/icon-add-new-white.svg?sprite";
-import iconUploadMore from "/public/images/icons/upload-more.svg?sprite";
-
 import { routersPages } from "../../constants/next-routers";
 import { getResumesTemplates } from "../../controllers/resumeData";
 
-
 export const JobWinningPage = () => {
     const [currentPage, setCurrentPage] = useState(2);
+    const [modalTem, setModalTem] = useState({
+        status: false,
+        data: null
+    });
     const dispatch = useDispatch();
     const router = useRouter();
     const category = router.query.category;
-
-    const handleCategory = (nameCategory) => {
-        Router.push({
-            query: { category: nameCategory },
-        });
-    }
 
     const {
         resumeData,
@@ -42,55 +36,76 @@ export const JobWinningPage = () => {
         }
     };
 
+    const handleCloseModalTemplate = () => {
+        setModalTem({
+            status: false,
+            data: null
+        });
+    }
+
+    const handlePreview = (data) => {
+        setModalTem({
+            status: true,
+            data
+        });
+    }
+
     return (
-        <section className="contact-page">
-            <div className="containers text-center">
-                <h1 className="h1">
-                    Job-winning resume template<span className="icon-right-top">s</span>
-                </h1>
-                <p className="bottom-text">
-                    Each resume template is expertly designed and follows the exact “resume rules” hiring
-                    managers look for. Stand out and get hired faster with field-tested resume templates.
-                </p>
+        <>
+            <section className="contact-page">
+                <div className="containers text-center">
+                    <h1 className="h1 h1_p48 fontw-600">Job-winning<br /> resume templates</h1>
+                    <p className="text-t-t">
+                        Each resume template is expertly designed and follows the exact “resume rules” hiring
+                        managers look for. Stand out and get hired faster with field-tested resume templates.
+                    </p>
 
-                <div className="btn-centers-w mt-40">
-                    <ButtonIcon href={routersPages['resumeBuilderNew']} icon={iconAddNew} label="Create my resume" className="btn--blue" />
-                </div>
-
-                <div className="wr-resumes">
-                    <ResumeTabs
-                        category={category}
-                        handleCategory={handleCategory}
-                    />
-                    <div className="items-resumes">
-                        {
-                            isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
-                                <ItemCardResum
-                                    item={item}
-                                    keyRouter="resumeBuilderNew"
-                                    key={index}
-                                    updateActiveResumeNew={(val) => dispatch(updateActiveResumeNew(val))}
-                                />
-                            ))
-                        }
+                    <div className="btn-centers-w btn-centers-w_t">
+                        <Link href={routersPages['resumeBuilderNew']} className="button-p button-type-standart">Create my resume</Link>
                     </div>
-                </div>
-                {
-                    ((resumeData?.list?.count_pages > 1) && (resumeData?.list?.count_pages + 1 > currentPage)) && (
-                        <div className="btn-centers-w mt-40">
-                            <LoadChildrenBtn isLoad={isLoader(resumeData.status)}>
-                                <ButtonIcon
-                                    icon={iconUploadMore}
-                                    label="Upload more"
-                                    className="btn--blue"
-                                    isButton={true}
-                                    onHandle={handleUpload}
-                                />
-                            </LoadChildrenBtn>
+
+                    <div className="wr-select-row">
+                        <div className="seler-r">
+                            <Link href={`/${routersPages['jobWinningResumeTemplates']}`} className="active">Resume</Link>
+                            <Link href={`/${routersPages['pageCoverLeterTemplates']}`}>Cover Letter</Link>
                         </div>
-                    )
-                }
-            </div>
-        </section>
+                    </div>
+
+                    <div className="wr-resumes">
+                        <div className="items-resumes">
+                            {
+                                isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
+                                    <ItemCardResum
+                                        item={item}
+                                        keyRouter="resumeBuilderNew"
+                                        key={index}
+                                        updateActiveResumeNew={(val) => dispatch(updateActiveResumeNew(val))}
+                                        handlePreview={handlePreview}
+                                    />
+                                ))
+                            }
+                        </div>
+                    </div>
+                    {
+                        ((resumeData?.list?.count_pages > 1) && (resumeData?.list?.count_pages + 1 > currentPage)) && (
+                            <div className="btn-centers-w btn-centers-w_t2">
+                                <LoadChildrenBtn isLoad={isLoader(resumeData.status)}>
+                                    <button onClick={handleUpload} className="button-p button-p_light_grey">
+                                        <span>Upload more</span>
+                                    </button>
+                                </LoadChildrenBtn>
+                            </div>
+                        )
+                    }
+                </div>
+            </section>
+            <ModalTemplate
+                visible={modalTem.status}
+                item={modalTem.data}
+                onClose={handleCloseModalTemplate}
+                hrefLink={routersPages['resumeBuilderNew']}
+                handleLink={(val) => dispatch(updateActiveResumeNew(val))}
+            />
+        </>
     )
 }

@@ -1,0 +1,79 @@
+.for-free {
+    &__main {
+        background: url('/../images/page/bg-for-free.png') center/cover no-repeat;
+        border-radius: 24px;
+        padding: 64px;
+        display: flex;
+        justify-content: space-between;
+
+        h2,
+        p {
+            color: #fff !important;
+        }
+
+        p {
+            margin-top: 24px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__left {
+        width: 46%;
+        padding-right: 30px;
+    }
+
+    &__right {
+        width: 54%;
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__wr-btn {
+        margin-top: 24px;
+        display: flex;
+    }
+}
+
+@media (max-width: 1023px) {
+    .for-free {
+        &__main {
+            padding: 64px 32px 32px 32px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .for-free {
+        &__main {
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        &__left {
+            width: 100%;
+            padding-right: 0;
+            align-items: center;
+            text-align: center;
+        }
+
+        &__right {
+            width: 100%;
+            margin-top: 20px;
+
+            div {
+                margin-bottom: -40px;
+                width: calc(100% + 80px);
+                margin-left: -40px;
+                margin-right: -40px;
+            }
+
+            img {
+                width: inherit;
+            }
+        }
+    }
+}

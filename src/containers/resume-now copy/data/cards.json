@@ -1,0 +1,60 @@
+[
+    {
+        "name": "LOW PRICE",
+        "color": "#838799",
+        "price": 399.99,
+        "priceTitle": 399.99,
+        "isOne": true,
+        "day": "Forever",
+        "isСurrency": true,
+        "isAll": true,
+        "trial": true,
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "Cancel any time",
+            "14-day money-back guarantee*"
+        ]
+    },
+    {
+        "name": "Best sale",
+        "color": "#838799",
+        "price": "Free",
+        "isСurrency": false,
+        "isOne": false,
+        "priceTitle": 19.95,
+        "day": "7-Day trial subscription",
+        "isAll": false,
+        "plan": "price_1N83jlEBJR7rLeB2ItJAEx4h",
+        "trial": true,
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "After 7 days, auto-renews to $19.95",
+            "Billed every 4 weeks",
+            "Cancel any time",
+            "14-day money-back guarantee*"
+        ]
+    },
+    {
+        "name": "profit",
+        "color": "#6DC26C",
+        "price": 69.95,
+        "day": "12 months",
+        "isСurrency": true,
+        "isOne": false,
+        "priceTitle": 69.95,
+        "isAll": false,
+        "trial": true,
+        "plan": "price_1N8OgEEBJR7rLeB21Cip5bzC",
+        "list": [
+            "Unlimited PDF Downloads",
+            "Unlimited Resumes",
+            "Unlimited Cover Letters",
+            "Cancel any time",
+            "14-day money-back guarantee*"
+        ]
+    }
+]

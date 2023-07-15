@@ -1,107 +1,41 @@
-import fetch from "isomorphic-unfetch";
+import Stripe from 'stripe'
 
 import config from "../config/config.json";
-import { descriptionLowPrice } from "../constants/stripte";
-
-import Stripe from 'stripe'
+import { routersPages } from '../constants/next-routers';
 
 const stripe = new Stripe(config.STRITE_PRIVATE_KEY)
 
-// get product by id
-export const striteApiGetProductById = async () => {
-    try {
-        let res = await fetch(`${config.STRITE_API_URL}v1/products/${config.STRITE_ID_PRODUCT}`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
-            }
-        })
+export const stripePaymentIntents = async ({
+    items,
+    type,
+    customerId,
+    Router,
+    setStateLoad = () => { },
+}) => {
+    // ${config.DOMAIN} or http://localhost:3000
+    let redirectLink = `${config.DOMAIN}/${routersPages['resumeNow']}`;
 
-        return await res.json();
-    } catch (error) {
-        console.log("Error get products", error);
-    }
-}
+    setStateLoad(true);
 
-// get plans by id product
-export const striteApiGetPlans = async (idProduct) => {
-    try {
-        let res = await fetch(`${config.STRITE_API_URL}v1/plans`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
-            }
-        })
-
-        return await res.json();
-    } catch (error) {
-        console.log("Error get products", error);
-    }
-}
-
-export const striteCreateSubscription = async (data) => {
-    try {
-        const priceId = data.priceId;
-
-        const subscription = await stripe.subscriptions.create({
-            customer: data.stripeUserId,
-            items: [{ price: priceId }],
-            payment_behavior: 'default_incomplete',
-            payment_settings: { save_default_payment_method: 'on_subscription' },
-            expand: ['latest_invoice.payment_intent'],
-        });
-
-        return subscription;
-    } catch (error) {
-        console.log("Error get products", error);
-    }
-}
-
-export const stritePaymentIntents = async (data) => {
-    try {
-        let res = await fetch(`${config.STRITE_API_URL}v1/payment_intents`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": `Bearer ${config.STRITE_PRIVATE_KEY}`
+    const session = await stripe.checkout.sessions.create({
+        line_items: [
+            {
+                // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                price: items,
+                quantity: 1,
             },
-            body: new URLSearchParams({
-                'payment_method': data?.idPm,
-                'amount': data?.amount,
-                'currency': 'usd',
-                'customer': data.stripeUserId,
-                'description': descriptionLowPrice,
-            })
-        })
+        ],
+        customer: customerId,
+        mode: type,
+        success_url: `${redirectLink}?success=true`,
+        cancel_url: `${redirectLink}?canceled=true`,
+    });
 
-        return await res.json();
-    } catch (error) {
-        console.log("Error get products", error);
+    if (session?.url?.length > 0) {
+        Router.push(session.url);
+    }
+
+    if (!(session?.url?.length > 0)) {
+        setStateLoad(false);
     }
 }
-
-
-// export const striteWebHook = async (data) => {
-//     try {
-//         let resumHook = await stripe.webhooks.constructEvent({
-//             payload: 'https://api.resulon.com/stripe/webhook',
-//             header: '',
-//             secret: '',
-
-//         });
-
-//         const subscription = await stripe.subscriptions.create({
-//             customer: data.stripeUserId,
-//             items: [{ price: priceId }],
-//             payment_behavior: 'default_incomplete',
-//             payment_settings: { save_default_payment_method: 'on_subscription' },
-//             expand: ['latest_invoice.payment_intent'],
-//         });
-
-//         return subscription;
-//     } catch (error) {
-//         console.log("Error strite web hook", error);
-//     }
-// }

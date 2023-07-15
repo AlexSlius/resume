@@ -7,16 +7,18 @@ import { ImageSprite } from '../imageSprite';
 // Styles
 import style from './Style.module.scss';
 
-export const AdvantagesItem = ({ image, width, height, title, text }) => {
+export const AdvantagesItem = ({ image, title, text }) => {
 
   return (
     <li className={style.advantagesBlock}>
       <div className={style.imageBlock}>
-        <ImageSprite iconName={image} width={width} height={height} />
+        <img src={image} alt="icon" />
       </div>
 
-      <strong>{title}</strong>
-      <p>{text}</p>
+      <div>
+        <strong>{title}</strong>
+        <p>{text}</p>
+      </div>
     </li>
   );
 }

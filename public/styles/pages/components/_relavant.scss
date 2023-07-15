@@ -1,0 +1,120 @@
+.relevant {
+    &__row {
+        display: flex;
+        align-items: center;
+    }
+
+    &__left {
+        width: 53.4%;
+        max-width: 620px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    &__right {
+        width: 46.6%;
+        padding-left: 70px;
+    }
+
+    &__des {
+        margin-top: 30px;
+        color: var(--grey);
+        margin: 16px 0 0 0;
+    }
+}
+
+.relev-item {
+    border: 2px solid rgba(58, 253, 54, 0.50);
+    border-radius: 43px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    color: var(--grey);
+    padding: 16px 20px 16px 20px;
+
+    span {
+        font-weight: 350;
+        font-family: "GTEestiProDisplay";
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    i {
+        line-height: 0;
+    }
+
+    &.light_green {
+        border-color: rgba(54, 217, 253, 0.50);
+    }
+
+    &.light_yellow {
+        border-color: rgba(253, 245, 54, 0.50);
+        ;
+    }
+
+    &.light_blue {
+        border-color: rgba(54, 121, 253, 0.50);
+    }
+
+    &.light_orange {
+        border-color: rgba(253, 149, 54, 0.50);
+    }
+
+    &.light_purple {
+        border-color: rgba(249, 54, 253, 0.50);
+    }
+
+    &.light_red {
+        border-color: rgba(253, 54, 66, 0.50);
+    }
+
+    &.light_fil {
+        border-color: rgba(54, 62, 253, 0.50);
+    }
+
+    &.light_ored {
+        border-color: rgba(253, 197, 54, 0.50);
+    }
+}
+
+@media(max-width: 1024px) {
+    .relevant__right {
+        padding-left: 30px;
+    }
+}
+
+@media(max-width: 860px) {
+    .relevant__left {
+        gap: 16px;
+    }
+
+    .relev-item {
+        padding: 10px 16px;
+    }
+}
+
+@media(max-width: 767px) {
+    .relevant__row {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .relevant__left,
+    .relevant__right {
+        width: 100%;
+    }
+
+    .relevant__left {
+        margin-top: 32px;
+    }
+
+    .relevant__des {
+        font-size: 14px;
+    }
+}

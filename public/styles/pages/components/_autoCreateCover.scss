@@ -1,0 +1,153 @@
+.autcover {
+    padding-top: 40px;
+
+    &__h {
+        text-align: center;
+        max-width: 570px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &_des {
+        color: var(--grey);
+        margin-bottom: 0;
+    }
+
+    &__wr-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__main {
+        margin: 48px auto 0 auto;
+        max-width: 570px;
+        position: relative;
+        padding-bottom: 80px;
+    }
+}
+
+.autcover-item {
+    position: absolute;
+    z-index: 4;
+    padding: 12px 24px 12px 48px;
+    font-size: 14px;
+    color: #01153A;
+    width: 274px;
+    border-radius: 12px;
+    background: var(--white, #FFF);
+    box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.13);
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 10px;
+        left: 12px;
+        background: url("/../images/icons/arb.svg") center/contain no-repeat;
+    }
+
+    &_one {
+        top: 47%;
+        left: -44%;
+    }
+
+    &_two {
+        top: 28%;
+        right: -57%;
+    }
+
+    &_three {
+        top: 78%;
+        left: -16%;
+    }
+
+    &_four {
+        top: 87%;
+        right: -19%;
+    }
+}
+
+@media(max-width: 1300px) {
+    .autcover {
+        .autcover-item {
+            &_one {
+                left: -24%;
+            }
+
+            &_two {
+                right: -27%;
+            }
+
+            &_three {
+                left: -16%;
+            }
+
+            &_four {
+                right: -19%;
+            }
+        }
+    }
+}
+
+@media(max-width: 992px) {
+    .autcover {
+        .autcover-item {
+            &_one {
+                left: -8%;
+            }
+
+            &_two {
+                right: -7%;
+            }
+
+            &_three {
+                left: -6%;
+            }
+
+            &_four {
+                right: -9%;
+                top: 65%;
+            }
+        }
+    }
+}
+
+@media(max-width: 992px) {
+    .autcover {
+        &__main {
+            margin-top: 32px;
+            padding-bottom: 0;
+        }
+
+        .autcover-item {
+            width: 100%;
+            position: relative;
+            top: auto;
+            left: auto;
+            right: auto;
+
+            &_one {
+               left: 20%;
+               width: 80%;
+               margin-top: -30px;
+            }
+
+            &_two {
+                width: 80%;
+            }
+
+            &_three {
+                width: 80%;
+                left: 15%;
+            }
+
+            &_four {
+                display: none;
+            }
+        }
+    }
+}

@@ -22,7 +22,7 @@ import { routersPages } from "../../constants/next-routers";
 import style from "./AdminPage.module.scss"
 import { updatePreviewsMobTemplateStatus } from "../../slices/theme";
 
-const AdminPage = ({ children, isCover = false }) => {
+const AdminPage = ({ children, isCover = false, statePictureFile = null }) => {
    const [loadCode, setLoadCode] = useState(false);
    const refIdR = useRef("new");
    const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const AdminPage = ({ children, isCover = false }) => {
 
    const handleSend = async () => {
       setLoadCode(true);
-      let res = await dispatch(autorizeAuthCode());
+      let res = await dispatch(autorizeAuthCode({ pictureFile: statePictureFile }));
 
       if (!!res?.payload?.status) {
          handleCleanModalForm();
@@ -106,7 +106,7 @@ const AdminPage = ({ children, isCover = false }) => {
                <SideBar >
                   {
                      !isCover && (
-                        <MenuSideBar />
+                        <MenuSideBar statePictureFile={statePictureFile} />
                      )
                   }
                   {

@@ -1,0 +1,226 @@
+.let-ai {
+    &-t {
+        margin-top: 30px;
+        color: var(--grey, #546C97);
+    }
+
+    &_main {
+        margin-top: 48px;
+    }
+
+    &__block {
+        width: 430px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, #3679FD 0%, #FFF 100%);
+        border-radius: 26px;
+        padding: 34px 30px;
+    }
+}
+
+.aib {
+    position: relative;
+
+    &__he {
+        border-radius: 12px;
+        border: 1px solid #EEF0F2;
+        background: #fff;
+        box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.13);
+        padding: 17px 16px;
+        line-height: 1;
+    }
+
+    &__des {
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        margin-top: 26px;
+
+        &>div {
+            color: #01153A;
+        }
+
+        ul {
+            padding-left: 16px;
+
+            li {
+                margin-top: 10px;
+                list-style-type: disc;
+            }
+        }
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
+        z-index: 4;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+    }
+
+    &__item {
+        position: absolute;
+        z-index: 14;
+        width: 360px;
+        border-radius: 12px;
+        background: var(--style, #FFF);
+        box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.13);
+        padding: 16px 16px 16px 68px;
+        font-size: 14px;
+        font-weight: 400;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            left: 16px;
+            top: 16px;
+            background: url("/../images/icons/ail-item.svg") center/contain no-repeat;
+        }
+
+        &.tone {
+            left: -74%;
+            top: 28%;
+        }
+
+        &.ttwo {
+            right: -65%;
+            top: 44%;
+        }
+
+        &.tthree {
+            left: -43%;
+            top: 83%;
+        }
+
+        &.tfour {
+            right: -37%;
+            top: 76%;
+        }
+    }
+}
+
+.aib-b {
+    position: relative;
+    margin-top: 80px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 1px;
+        opacity: 0.10000000149011612;
+        background: #546C97;
+        width: 100%;
+        max-width: 470px;
+    }
+
+    &__wrl {
+        padding-top: 40px;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+
+        li {
+            position: relative;
+            padding-left: 30px;
+            font-size: 14px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: 0;
+                top: 0;
+                background: url("/../images/icons/start4.svg") center/contain no-repeat;
+            }
+        }
+    }
+
+    &__wr-btn {
+        margin-top: 46px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 1240px) {
+    .aib {
+        &__item {
+            &.tone {
+                left: -50%;
+            }
+
+            &.ttwo {
+                right: -40%;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .aib {
+        &__item {
+            &.tone {
+                left: -20%;
+                top: 36%;
+            }
+
+            &.ttwo {
+                right: -20%;
+                top: 70%;
+            }
+
+            &.tthree,
+            &.tfour {
+                display: none;
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .aib {
+        &__item {
+            width: 100%;
+
+            &.tone {
+                left: 0;
+                top: 82%;
+            }
+
+            &.ttwo {
+                right: 0;
+                top: 109%;
+            }
+        }
+        &-b {
+            margin-top: 140px;
+        }
+    }
+
+    .aib-b__list {
+        gap: 16px;
+    }
+
+    .let-ai-t {
+        margin-top: 16px;
+    }
+
+    .let-ai__block {
+        max-width: 430px;
+        width: 100%;
+    }
+}

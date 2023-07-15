@@ -1,3 +1,8 @@
+a:hover {
+    color: var(--blue);
+    transition: 0.3s;
+}
+
 .r-gap-30 {
     row-gap: 30px;
 }
@@ -1031,11 +1036,19 @@ button {
 }
 
 .Mui-expanded {
+    .title-accord {
+        color: #01153A !important;
+    }
+
     .MuiIconButton-label {
         svg {
-            fill: #3679FD;
+            fill: #01153A;
         }
     }
+}
+
+.MuiAccordionSummary-root {
+    min-height: 86px !important;
 }
 
 .error-text-in {
@@ -1785,13 +1798,41 @@ button {
     margin: 0 !important;
 }
 
-// .body-template-resume {
-//     margin-top: -20px;
-// }
-
 .opacet {
     opacity: 0;
     pointer-events: none;
+}
+
+.bbtn-slid {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid #546C97;
+    transition: 0.4s;
+
+    span {
+        line-height: 0;
+    }
+
+    svg {
+        width: 28px;
+        height: 28px;
+        stroke: #546C97;
+        transition: 0.4s;
+    }
+
+    &:hover {
+        border-color: var(--blue);
+
+        svg {
+            stroke: var(--blue);
+        }
+    }
 }
 
 @media (max-width: 1559px) {
@@ -1809,6 +1850,11 @@ button {
             padding-left: 10px;
             padding-right: 10px;
         }
+    }
+
+    .bbtn-slid {
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -2108,5 +2154,91 @@ button {
                 }
             }
         }
+    }
+}
+
+
+// redesign
+.button-p {
+    padding: 21px 35px;
+    text-align: center;
+    color: var(--white) !important;
+    border-radius: 35px;
+    background: var(--blue);
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    transition: 0.4s;
+
+    &:hover {
+        background: var(--blueB);
+    }
+
+    &:active {
+        background: rgba(68, 125, 235, 1);
+    }
+
+    &.button-p_icon {
+        align-items: center;
+
+        i {
+            line-height: 0;
+            margin-right: 8px;
+        }
+    }
+
+    &.button-p_min-w {
+        min-width: 216px;
+    }
+
+    &.button-p_grey {
+        background: var(--grey);
+
+        &:hover {
+            background: var(--blue);
+        }
+
+        &:active {
+            background: rgba(68, 125, 235, 1);
+        }
+    }
+
+    &.button-p_light_grey {
+        background: rgba(84, 108, 151, 0.10);
+        color: var(--grey) !important;
+
+        &:hover {
+            color: var(--blue) !important;
+        }
+
+        &:active {
+            background: rgba(84, 108, 151, 0.15);
+        }
+    }
+
+    &.button-p_white {
+        background: #fff;
+        color: #01153A !important;
+
+        &:hover {
+            background: #EFEFEF;
+        }
+
+        &:active {
+            background: #FBFBFB;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .bbtn-slid {
+        width: 48px;
+        height: 48px;
+    }
+
+    .MuiAccordionSummary-root {
+        min-height: 64px !important;
     }
 }

@@ -16,12 +16,8 @@ export const TermsOfUse = () => {
             <section className="contact-page page-texts">
                 <div className="containers">
                     <div className="max-830px">
-                        <h1 className="h1 text-center">
-                            TERMS OF US<span className="icon-right-top">E</span>
-                        </h1>
-                        <p className="bottom-text text-center">
-                            Publication date: 24.02.2023
-                        </p>
+                        <h1 className="text-center h1 h1_p48 fontw-600"> Terms of use</h1>
+                        <p className="bottom-text bottom-text_grey text-center">Publication date: 24.02.2023 </p>
 
                         <div className="mt-text-content">
                             <div className="content-text">
@@ -45,7 +41,7 @@ export const TermsOfUse = () => {
 
                                 <ul className="no-style">
                                     <li>
-                                        <h2 className="text-center"><p>DEFINITIONS</p></h2>
+                                        <h2 ><p>DEFINITIONS</p></h2>
                                         <ul>
                                             <li><p><span><b>Client</b> - an individual who receives Services from the Company in order to create a Resume to receive new job offers.</span></p></li>
 
@@ -66,7 +62,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>PROVISION OF SERVICES</p></h2>
+                                        <h2 ><p>PROVISION OF SERVICES</p></h2>
                                         <ul>
                                             <li><p><span>To receive the Services/create a Project, the Client must register on the Site.</span></p></li>
                                             <li><p><span>The Client registers on the Site by filling out the appropriate form on Site, indicating his e-mail address and password.</span></p></li>
@@ -75,7 +71,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>CCOUNT</p></h2>
+                                        <h2 ><p>CCOUNT</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>With the help of the Account, the Client has the right to access the following functions of the Site:</span></p>
@@ -108,7 +104,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>PROVISION OF SERVICES</p></h2>
+                                        <h2 ><p>PROVISION OF SERVICES</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company provides the following types of Services:</span></p>
@@ -157,7 +153,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>REFUNDS</p></h2>
+                                        <h2 ><p>REFUNDS</p></h2>
                                         <ul>
                                             <li><p><span>Payment for the Services is in the form of a subscription, so the purchase of the Services is final and non-refundable.</span></p></li>
                                             <li>
@@ -175,7 +171,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>INTELLECTUAL RIGHTS</p></h2>
+                                        <h2><p>INTELLECTUAL RIGHTS</p></h2>
                                         <ul>
                                             <li><p><span>All exclusive intellectual property rights to the content of the Company and other objects, as well as components and their elements, belong exclusively to Resulon.</span></p></li>
                                             <li><p><span>The Company grants the Client a non-exclusive right to use the Services.</span></p></li>
@@ -185,7 +181,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>RESPONSIBILITY</p></h2>
+                                        <h2 ><p>RESPONSIBILITY</p></h2>
                                         <ul>
                                             <li><p><span>The Client is solely responsible for providing reliable information, Personal data about his personality to create a Resume.</span></p></li>
                                             <li><p><span>The Company is not responsible for the quality and effectiveness of the compiled Resume and the Client's employment in the desired position.</span></p></li>
@@ -354,7 +350,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>GOVERNING LAW AND DISPUTE RESOLUTION</p></h2>
+                                        <h2 ><p>GOVERNING LAW AND DISPUTE RESOLUTION</p></h2>
                                         <ul className="no-mar_b">
                                             <li>
                                                 <p><span>All relationships between the Company and the Client arising in connection with the fulfillment of the terms of these Services, about the use and use of the Services, shall be governed by the laws of the Republic of Poland.</span></p>
@@ -371,7 +367,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>CLIENT CONSENT</p></h2>
+                                        <h2 ><p>CLIENT CONSENT</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>By signing these Terms of Use, the Client agrees to:</span></p>
@@ -391,7 +387,7 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>IMPLEMENTATION OF CHANGES</p></h2>
+                                        <h2 ><p>IMPLEMENTATION OF CHANGES</p></h2>
                                         <ul>
                                             <li>
                                                 <p><span>The Company has the right to make changes to these Terms of Use in the event of a change in the terms of providing Services or a change in the amount of the сommission.</span></p>
@@ -405,19 +401,19 @@ export const TermsOfUse = () => {
                                         </ul>
                                     </li>
                                     <li>
-                                        <h2 className="text-center"><p>COMPANY DETAILS</p></h2>
+                                        <h2 ><p>COMPANY DETAILS</p></h2>
                                         <ul className="no-pad">
                                             <li>
-                                                <p><span><b>Name</b>: Deolon LLC</span></p>
+                                                <span>Name: Deolon LLC</span>
                                             </li>
                                             <li>
-                                                <p><span><b>NIP</b>: 9512476897</span></p>
+                                                <span>NIP: 9512476897</span>
                                             </li>
                                             <li>
-                                                <p><span><b>Address</b>: ALEJA KOMISJI EDUKACJI NARODOWEJ 36 /112B, 02-797, WARSAW</span></p>
+                                                <span>Address: ALEJA KOMISJI EDUKACJI NARODOWEJ 36 /112B, 02-797, WARSAW</span>
                                             </li>
                                             <li>
-                                                <p><span><b>E-mail</b>: <Link href="mailto:contact@resulon.com">contact@resulon.com</Link></span></p>
+                                                <span>E-mail: <Link href="mailto:contact@resulon.com">contact@resulon.com</Link></span>
                                             </li>
                                         </ul>
                                     </li>

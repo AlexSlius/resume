@@ -13,18 +13,18 @@
     },
     {
         "id": 4,
-        "name": "Page Errors"
-    },
-    {
-        "id": 5,
         "name": "Cancel Subscription"
     },
     {
-        "id": 6,
+        "id": 5,
         "name": "Email Subscription"
     },
     {
-        "id": 7,
+        "id": 6,
         "name": "Other Questions"
+    },
+    {
+        "id": 7,
+        "name": "Page Errors"
     }
 ]

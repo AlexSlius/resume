@@ -3,10 +3,10 @@ import ResumeBuilderPage from "../../../src/containers/resume-builder"
 
 import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
-const ResumeContactPage = () => {
+const ResumeContactPage = ({ statePictureFile, setStatePictureFile }) => {
     return (
-        <WrapepeAdminpage>
-            <ResumeBuilderPage />
+        <WrapepeAdminpage statePictureFile={statePictureFile}>
+            <ResumeBuilderPage statePictureFile={statePictureFile} setStatePictureFile={setStatePictureFile} />
         </WrapepeAdminpage>
     )
 }

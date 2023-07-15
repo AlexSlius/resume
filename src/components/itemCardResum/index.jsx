@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { isArray } from "lodash";
+import { useEffect, useState } from "react";
+
+import Icon from "../Icon";
+import iconEye from "/public/images/icons/eye-white.svg?sprite";
 
 import { routersPages } from "../../constants/next-routers";
 
@@ -7,20 +11,40 @@ export const ItemCardResum = ({
     item,
     keyRouter = "resumeBuilderNew",
     updateActiveResumeNew = () => { },
+    handlePreview = () => { },
 }) => {
+    const [activeColor, setActiveColor] = useState();
+
+
+    useEffect(() => {
+        if (item?.colors?.length > 0)
+            setActiveColor(item?.colors[0].class);
+    }, []);
+
     return (
         <div className="item-card-resum">
-            <div className="item-card-resum__head " onClick={() => updateActiveResumeNew({ slug: item.slug, id: item.id })}>
-                <Link href={`/${routersPages[keyRouter]}`}>
-                    <img loading="lazy" src={item.image} />
-                </Link>
+            <div className="item-card-resum__head">
+                <img loading="lazy" src={item.image} />
                 <div className="doc-btn"  >
-                    <Link href={`/${routersPages[keyRouter]}`} className="document__btn btns btn--blue">Use this template</Link>
+                    <div className="item-card-resum__btn-top">
+                        <button
+                            className="button-p button-type-grey button-p_icon button-p_grey"
+                            onClick={() => { handlePreview(item) }}
+                        >
+                            <i>
+                                <Icon svg={iconEye} />
+                            </i>
+                            <span>Preview</span>
+                        </button>
+                    </div>
+                    <Link href={`/${routersPages[keyRouter]}`} onClick={() => updateActiveResumeNew({ slug: item.slug, id: item.id, template_class: activeColor })} className="card-selec-btn-select button-p button-type-standart">
+                        <span>Use this template</span>
+                    </Link>
                 </div>
             </div>
             <div className="item-card-resum__bot">
-                <div className="item-card-resum__tt" onClick={() => updateActiveResumeNew({ slug: item.slug, id: item.id })}>
-                    <Link href={`/${routersPages[keyRouter]}`} className="item-card-resum__titl">{item.name}</Link>
+                <div className="item-card-resum__tt" >
+                    <Link href={`/${routersPages[keyRouter]}`} className="item-card-resum__titl" onClick={() => updateActiveResumeNew({ slug: item.slug, id: item.id, template_class: activeColor })}>{item.name}</Link>
                     {
                         (isArray(item?.types) && item.types.length > 0) && (
                             <div className="item-card-resum__types">
@@ -36,6 +60,22 @@ export const ItemCardResum = ({
                 {
                     !!item?.description && (
                         <p className="item-card-resum__desk">{item?.description}</p>
+                    )
+                }
+                {
+                    isArray(item.colors) && (
+                        <div className="card-color">
+                            {
+                                item.colors.map((itemColor, index) => (
+                                    <div
+                                        className={`card-color__item ${(activeColor == itemColor.class) ? "active" : ""}`}
+                                        key={index}
+                                        style={{ backgroundColor: itemColor.color }}
+                                        onClick={() => setActiveColor(itemColor.class)}
+                                    ></div>
+                                ))
+                            }
+                        </div>
                     )
                 }
             </div>

@@ -3,9 +3,10 @@
 }
 
 .accordeon {
-    background: #F6F8FA !important;
+    background: #fff !important;
     border-radius: 12px !important;
     box-shadow: none !important;
+    border: 1px solid rgba(84, 108, 151, 0.2)!important;
 
     &:bot(:first-child) {
         margin-top: 16px;
@@ -13,19 +14,20 @@
 
     &_title {
         font-weight: 400;
-        font-size: 18px;
-        color: #01153A;
+        font-size: 16px;
+        color: #546C97;
         text-align: left;
     }
 
     &_text {
-        color: #838799;
+        color: #546C97;
         line-height: 1.4;
         text-align: left;
+        font-size: 14px;
 
         p {
             margin-bottom: 0;
-            
+
             &:not(:first-child) {
                 margin-top: 16px;
             }
@@ -33,10 +35,12 @@
     }
 }
 
+
+
 @media(max-width: 576px) {
     .accordeon {
         &_title {
-            font-size: 16px;
+            font-size: 14px;
         }
 
         &_text {

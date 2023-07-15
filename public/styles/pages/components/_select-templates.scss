@@ -1,0 +1,38 @@
+.teml-main {
+    margin-top: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.ss-teml__wr-btn {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 767px) {
+    .ss-teml__wr-btn {
+        margin-top: 32px;
+    }
+
+    .teml-main {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: 0;
+            height: 0;
+        }
+    }
+}

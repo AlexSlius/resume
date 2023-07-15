@@ -13,13 +13,34 @@ import { getScreenResume } from './resumes';
 import { cleanSliseNew } from "../slices/contact";
 import { fetchUserGetAvatar } from './users';
 
-export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pictureFile, isNewResume, isDashboard = false, isRedirect = true, link = undefined, isPage = false }, thunkAPI) => {
-    const { contacts: { contactObj, contactObjNew }, menuAsideResume, resumeData, users: { objFormSettings, avatar } } = thunkAPI.getState();
+export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({
+    pictureFile,
+    isNewResume,
+    isDashboard = false,
+    isRedirect = true,
+    link = undefined,
+    isPage = false,
+    isClean = true
+}, thunkAPI) => {
+    const { contacts:
+        {
+            contactObj,
+            contactObjNew
+        },
+        menuAsideResume,
+        resumeData,
+        users: {
+            objFormSettings,
+            avatar
+        }
+    } = thunkAPI.getState();
+
     const dataAccout = {
-        email: objFormSettings?.email || '',
-        first_name: objFormSettings?.firstName || '',
-        last_name: objFormSettings?.lastName || ''
+        email: objFormSettings?.email || contactObjNew.email,
+        first_name: objFormSettings?.firstName || contactObjNew.firstName,
+        last_name: objFormSettings?.lastName || contactObjNew.lastName
     };
+
     const picture = isPage ? contactObjNew?.picture?.includes('data:image/') ? pictureFile : avatar?.image_name : pictureFile;
     const newObj = newObjContact(isNewResume ? { ...contactObjNew, ...dataAccout } : contactObj, isDashboard ? (avatar?.image_name || null) : picture);
     const response = await api.contact.setAddResume(newObj);
@@ -35,7 +56,9 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({ pi
                 await Router.push(`/${routersPages['resumeBuilder']}/${response.id}${link ? link : menuAsideResume.list[1].link}`);
             }
 
-            thunkAPI.dispatch(cleanSliseNew());
+            if (isClean) {
+                thunkAPI.dispatch(cleanSliseNew());
+            }
         }
     }
 

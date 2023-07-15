@@ -3,7 +3,7 @@ import React from "react";
 import Icon from "../Icon";
 
 import style from "./Style.module.scss";
-import iconX from "/public/images/icons/x-modal.svg?sprite";
+import iconX from "/public/images/icons/x-modal2.svg?sprite";
 
 
 export const ModalWrapper = ({

@@ -16,11 +16,11 @@ export const Footer = () => {
     } = useSelector((state) => state);
 
     return (
-        <footer className="footer-r">
+        <footer className="footer-r mt-130">
             <div className="containers">
                 <div className="footer-r-top">
                     <Link href="/" className="footer-r-logo">
-                        <img loading="lazy" src="/images/page/logo-white.svg" alt="img" />
+                        <img loading="lazy" src="/images/page/logo.svg" alt="logo site" />
                     </Link>
                     <nav className="nav">
                         <ul>
@@ -31,11 +31,9 @@ export const Footer = () => {
                                 <Link href={`/${routersPages['pageCoverLetter']}`}>Cover Letter</Link>
                             </li>
                             <li><Link href={`/${routersPages['contactUs']}`}>Contact Us</Link></li>
-                            {/* <li><Link href="#">Pricing</Link></li> */}
                             <li><Link href={`/${routersPages['faqs']}`}>FAQ</Link></li>
                         </ul>
                     </nav>
-                    {/* <Link href="#" className="lang">English</Link> */}
                     {
                         !isAthorized && (
                             <div className="right-info">

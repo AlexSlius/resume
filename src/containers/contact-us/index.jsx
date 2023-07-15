@@ -110,63 +110,68 @@ export const ContactUsPage = () => {
                 />
             </Head>
             <section className="contact-page">
-                <div className="container text-center">
-                    <h1 className="h1">
-                        Contact U<span className="icon-right-top">s</span>
-                    </h1>
-                    <p className="bottom-text">
-                        Have comments, questions, or feedback to share? Our team would love to hear from you. Submit a message below.
-                    </p>
-                    <form action="page" className="form" onSubmit={handleSubmit}>
-                        <div className="form__top">
-                            {
-                                types.map((item) => (
-                                    <InputCheckboxPageBtn key={item.id} checked={stat == item.id} name="soc" label={item.name} onChange={() => handkeCheck(item.id)} />
-                                ))
-                            }
-                        </div>
-                        <div className="form__wrapper">
-                            <div className="form-input">
-                                <InputEmail
-                                    label="E-mail*"
-                                    value={formState.email}
-                                    onChange={(val) => handleUpdateField('email', val)}
-                                    textError={errorFields.email ? "The mail field is required" : ""}
-                                />
+                <div className="containers text-center">
+                    <div className="cont__row">
+                        <div className="cont__left"></div>
+                        <div className="cont_right">
+                            <h1 className="cont-title">Contact Us</h1>
+                            <p className="bottom-text">
+                                Have comments, questions, or feedback to share? Our team would love to hear from you. Submit a message below.
+                            </p>
+                            <form action="page" className="form" onSubmit={handleSubmit}>
+                                <div className="form__top">
+                                    {
+                                        types.map((item) => (
+                                            <InputCheckboxPageBtn key={item.id} checked={stat == item.id} name="soc" label={item.name} onChange={() => handkeCheck(item.id)} />
+                                        ))
+                                    }
+                                </div>
+                                <div className="form__wrapper">
+                                    <div className="form-input">
+                                        <InputEmail
+                                            label="Email*"
+                                            value={formState.email}
+                                            onChange={(val) => handleUpdateField('email', val)}
+                                            textError={errorFields.email ? "The mail field is required" : ""}
+                                        />
+                                    </div>
+                                    <div className="form-input">
+                                        <Input
+                                            label="Name*"
+                                            value={formState.name}
+                                            valid={formState?.name?.length > 0}
+                                            onChange={(e) => handleUpdateField('name', e.target.value)}
+                                            name="FNAM"
+                                            readOnly={false}
+                                            textError={errorFields.name ? "The main field is required" : ""}
+                                        />
+                                    </div>
+                                    <div className="form-texrarea">
+                                        <Textarea
+                                            value={formState.description}
+                                            onChange={(e) => handleUpdateField("description", e.target.value)}
+                                            name="description"
+                                            placeholder={'Question or remark'}
+                                            textError={errorFields.description && (formState.description?.length == 0 ? "The main field is required" : "")}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="form-btn_n">
+                                    <LoadChildrenBtn isLoad={isLoad}>
+                                        <button className="form-btn  button-type-standart button-p button-p_icon" type="submit">
+                                            <i>
+                                                <img loading="lazy" src="/images/page/send.svg" alt="img" />
+                                            </i>
+                                            <span>Send email</span>
+                                        </button>
+                                    </LoadChildrenBtn>
+                                </div>
+                            </form>
+                            <div className="contact-page__bottom">
+                                Check out the answers to popular questions.
+                                <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
                             </div>
-                            <div className="form-input">
-                                <Input
-                                    label="Name*"
-                                    value={formState.name}
-                                    valid={formState?.name?.length > 0}
-                                    onChange={(e) => handleUpdateField('name', e.target.value)}
-                                    name="FNAM"
-                                    readOnly={false}
-                                    textError={errorFields.name ? "The main field is required" : ""}
-                                />
-                            </div>
-                            <div className="form-texrarea">
-                                <Textarea
-                                    value={formState.description}
-                                    onChange={(e) => handleUpdateField("description", e.target.value)}
-                                    name="description"
-                                    placeholder={'Question or remark'}
-                                    textError={errorFields.description && (formState.description?.length == 0 ? "The main field is required" : "")}
-                                />
-                            </div>
                         </div>
-                        <div className="form-btn-center mt-30">
-                            <LoadChildrenBtn isLoad={isLoad}>
-                                <button className="form-btn btns btn--blue " type="submit">
-                                    <img loading="lazy" src="/images/page/send.svg" alt="img" />
-                                    <span>Send email</span>
-                                </button>
-                            </LoadChildrenBtn>
-                        </div>
-                    </form>
-                    <div className="contact-page__bottom">
-                        Check out the answers to popular questions.
-                        <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
                     </div>
                 </div>
             </section>

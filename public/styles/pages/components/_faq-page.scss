@@ -8,12 +8,15 @@
 }
 
 .form {
-    margin-top: 40px;
     display: flex;
-    margin-bottom: 45px;
 
     .form-input {
         width: 100%;
+        position: relative;
+
+        label {
+            color: #ABB7CD;
+        }
 
         input {
             border: 1px solid #eef0f2;
@@ -21,22 +24,23 @@
             width: 100%;
             height: 100%;
             height: 54px;
-            font-weight: 350;
             font-size: 16px;
             line-height: 19px;
-            color: #1a1c24;
-            padding: 0 17px;
+            color: #ABB7CD;
+            padding: 0 16px 0 16px;
             transition: 0.4s;
+            font-weight: 400;
+            font-family: "NotoSans", sans-serif;
 
-            &::placeholder {
-                color: #838799;
+            &::placeholder{
+                color: #ABB7CD;
             }
 
             &:focus {
                 border-color: #3679fd;
             }
         }
-        
+
         textarea {
             width: 100%;
         }
@@ -51,7 +55,7 @@
 
 .faq-page__bottom {
     margin-top: 45px;
-    font-weight: 350;
+    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     color: #838799;
@@ -62,7 +66,42 @@
     }
 }
 
-.btn--search {}
+.form-fag {
+    max-width: 310px;
+    margin: 32px auto;
+
+    input {
+        color: #838799!important;
+        &::placeholder {
+            color: #838799!important;
+        }
+    }
+    label {
+        color: #838799!important;
+    }
+}
+
+.in-sea {
+    &.form-input {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: url('/../images/icons/search-grey2.svg') center/contain no-repeat;
+            top: 50%;
+            line-height: 0;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        input {
+            padding: 0 17px 0 52px;
+        }
+    }
+}
 
 @media (max-width: 1399px) {
     .faq-page {
@@ -88,6 +127,8 @@
     .faq-page .bottom-text {
         margin-top: 10px;
     }
+
+
 }
 
 @media (max-width: 576px) {
@@ -95,8 +136,10 @@
         padding: 24px 0;
     }
 
-    .form {
+    .form-fag {
         margin: 24px 0;
+        max-width: 100%;
+        width: 100%;
     }
 
     .page-texts {
@@ -108,6 +151,17 @@
     .form .form-btn.btn--search {
         width: auto;
         min-width: auto !important;
+    }
+
+    .faq-page__bottom {
+        font-size: 14px;
+        margin-top: 32px;
+    }
+
+    .faq-page {
+        .h1_p48 {
+            font-size: 24px;
+        }
     }
 }
 

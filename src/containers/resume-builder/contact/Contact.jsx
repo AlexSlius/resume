@@ -2,7 +2,13 @@
 import FormContact from "./FormContact"
 import HeadMainContent from "../../../components/headMainContent/HeadMainContent"
 
-const Contact = ({ idCv, states, dispatch }) => {
+const Contact = ({
+   idCv,
+   states,
+   dispatch,
+   setStatePictureFile,
+   statePictureFile
+}) => {
    return (
       <>
          <HeadMainContent
@@ -12,6 +18,8 @@ const Contact = ({ idCv, states, dispatch }) => {
             dispatch={dispatch}
             storeDate={states}
             idCv={idCv}
+            setStatePictureFile={setStatePictureFile}
+            statePictureFile={statePictureFile}
          />
       </>
    )

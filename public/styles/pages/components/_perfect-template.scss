@@ -1,0 +1,149 @@
+.perfect-t {
+    &_row {
+        display: flex;
+        align-items: center;
+    }
+
+    &__template {
+        width: 40.4%;
+
+        &>div {
+            position: relative;
+
+            img {
+                position: relative;
+                z-index: 5;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: -20px;
+                top: -20px;
+                border-radius: 12px;
+                opacity: 0.05;
+                background: var(--grey, #546C97);
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    &__info {
+        width: 59.6%;
+        padding-left: 110px;
+
+        h2 {
+            max-width: 453px;
+            margin-top: 30px;
+        }
+    }
+
+    &__users {
+        color: var(--blue, #3679FD);
+        font-size: 48px;
+        font-weight: 500;
+        margin-top: 20px;
+    }
+
+    &__wr-btn {
+        margin-top: 26px;
+        display: flex;
+    }
+}
+
+.text-top-t {
+    color: var(--grey, #546C97);
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &.star-icon {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: url("/../images/icons/star-one.svg") center/contain no-repeat;
+            margin-right: 9px;
+        }
+    }
+}
+
+.text-bot-def {
+    color: var(--grey, #546C97);
+    max-width: 440px;
+    margin-top: 26px;
+}
+
+@media(max-width: 1200px) {
+    .text-top-t {
+        font-size: 16px;
+    }
+
+    .perfect-t {
+        &__users {
+            font-size: 40px;
+            margin-top: 14px;
+        }
+
+        &__info {
+            h2 {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .text-bot-def {
+        margin-top: 18px;
+    }
+}
+
+@media(max-width: 768px) {
+    .perfect-t {
+        &_row {
+            flex-direction: column;
+        }
+
+        &__template {
+            width: 100%;
+
+            &>div {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        &__info {
+            width: 100%;
+            padding-left: 0;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            margin-top: 32px;
+            text-align: center;
+
+            h2 {
+                margin-top: 4px;
+            }
+        }
+
+        &__wr-btn {
+            margin-top: 11px;
+        }
+    }
+}
+
+@media(max-width: 570px) {
+    .perfect-t {
+        &__info {
+           h2 {
+            font-size: 20px!important;
+           }
+        }
+    }
+}

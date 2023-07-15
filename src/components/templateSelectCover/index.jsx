@@ -42,6 +42,7 @@ export const TemplatesSelectCover = ({
     reportTemplateRef,
     drawing = false,
     isTemplate = false,
+    handleReload = () => { },
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -67,6 +68,7 @@ export const TemplatesSelectCover = ({
 
         refIdTimeout.current = setTimeout(async () => {
             dispatch(handleUpdateDrawingFalse());
+            handleReload();
             clearTimeout(refIdTimeout.current);
         }, 500);
     }
@@ -332,7 +334,7 @@ export const TemplatesSelectCover = ({
                 )
             }
 
-{
+            {
                 resumeActive == "039-CV" && (
                     <CoverCv039
                         reportTemplateRef={reportTemplateRef}

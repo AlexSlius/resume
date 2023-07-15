@@ -1,129 +1,31 @@
-.faq {
-    .container {
+.sfaq {
+    &__main {
+        max-width: 770px;
+        margin: 64px auto 0 auto;
+    }
+
+    &__wr-btn {
         display: flex;
-        justify-content: space-between;
-        gap: 50px;
-    }
-}
-
-.cover-letter {
-    .faq {
-        .h2 {
-            text-align: center;
-        }
-    }
-}
-
-.faq-flex {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.faq-flex-c {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-
-    @media screen and (max-width: 768px) {
-        gap: 24px;
-    }
-}
-
-.faq__left {
-    display: flex;
-    flex-direction: column;
-}
-
-.faq-bottom-text {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 6px;
-
-    a {
-        color: var(--blue);
-    }
-
-    @media screen and (max-width: 768px) {
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 14px;
-        color: var(--grey-2);
-    }
-}
-
-.bottom-text {
-    margin-top: 40px;
-    font-size: 20px;
-    line-height: 31px;
-    margin-bottom: 40px;
-}
-
-.faq__left--bottom {
-    margin-top: auto;
-    font-weight: 350;
-    font-size: 16px;
-    color: #838799;
-
-    a {
-        display: block;
-        color: rgba(54, 121, 253, 1);
-    }
-}
-
-.faq__right {
-    width: 764px;
-}
-
-@media (max-width: 992px) {
-    .faq-flex {
-        gap: 30px;
+        justify-content: center;
+        margin-top: 48px;
     }
 }
 
 @media (max-width: 767px) {
-    .faq-flex {
-        flex-direction: column;
-    }
+    .sfaq {
+        &__main {
+            margin-top: 32px;
+        }
 
-    .faq {
-        h2 {
-            text-align: center;
+        &__wr-btn {
+            margin-top: 20px;
 
-            br {
-                display: none;
+            a {
+                font-size: 14px;
+                min-width: 144px!important;
+                padding: 15px 28px;
+                border-radius: 35px;
             }
         }
-
-        .bottom-text {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 0;
-        }
-    }
-
-    .faq__left--bottom {
-        text-align: center;
-        padding-bottom: 22px;
-        font-size: 14px;
-    }
-
-    .faq__right {
-        width: 100%;
-    }
-
-    .faq .bottom-text {
-        margin-top: 16px;
-    }
-}
-
-@media (max-width: 360px) {
-    .faq__left--bottom {
-        font-size: 12px;
-    }
-
-    .faq .bottom-text {
-        margin-top: 10px;
     }
 }
