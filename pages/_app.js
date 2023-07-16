@@ -23,7 +23,7 @@ import { routersPages } from "../src/constants/next-routers";
 const MyApp = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   const isPdf = downloadPagePdf(rest);
-  const [statePictureFile, setStatePictureFile] = useState(22222);
+  const [statePictureFile, setStatePictureFile] = useState(null);
   const router = useRouter();
   const isPageShare = router.asPath.includes(routersPages['shareResume']) || router.asPath.includes(routersPages['shareCover']);
 
