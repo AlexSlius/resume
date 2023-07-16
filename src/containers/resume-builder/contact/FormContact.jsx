@@ -34,7 +34,6 @@ import {
 } from "../../../controllers/dependencies"
 
 import { isLoader } from "../../../helpers/loadings"
-import { sessionStorageRemove } from "../../../helpers/localStorage";
 import { getIdOfNameCountrys } from "../../../helpers/countrys";
 import { isObjEmptyForm } from "../../../helpers/changeForm";
 import { focusFiedlInput } from "../../../helpers/fiedlFocus";
@@ -61,7 +60,6 @@ const FormContact = ({
 
    const [visibleAllInputs, setVisibleAllInputs] = useState(false);
    const [idCountry, setIdCountry] = useState(undefined);
-   const [pictureFile, setPictureFile] = useState(undefined);
    const [showModalEmail, setShowModalEmail] = useState(false);
    const [emailForRegister, setEmailForRegister] = useState('');
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`

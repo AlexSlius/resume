@@ -49,7 +49,7 @@ const MenuSideBar = ({ statePictureFile }) => {
             e.preventDefault();
 
             if (isAthorized) {
-                dispatch(contactAddNew({ pictureFile: statePictureFile, isNewResume, link: link }));
+                dispatch(contactAddNew({ pictureFile: statePictureFile, isNewResume, link: link, isPage: true }));
             } else {
                 sendCodeResume({
                     dispatch,
