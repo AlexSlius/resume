@@ -13,6 +13,7 @@ export const stripePaymentIntents = async ({
     setStateLoad = () => { },
 }) => {
     // ${config.DOMAIN} or http://localhost:3000
+    let redirectLinkSuccess = `${config.DOMAIN}/${routersPages['dashboard']}`;
     let redirectLink = `${config.DOMAIN}/${routersPages['resumeNow']}`;
 
     setStateLoad(true);
@@ -27,8 +28,8 @@ export const stripePaymentIntents = async ({
         ],
         customer: customerId,
         mode: type,
-        success_url: `${redirectLink}?success=true`,
-        cancel_url: `${redirectLink}?canceled=true`,
+        success_url: `${redirectLinkSuccess}&success=true&session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${redirectLink}?canceled=true?session_id={CHECKOUT_SESSION_ID}`,
     });
 
     if (session?.url?.length > 0) {

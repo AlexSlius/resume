@@ -9,7 +9,7 @@ export const makeStore = () => configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  evdTools: true,
+  evdTools: false,
 });
 
 export const wrapper = createWrapper(makeStore);

@@ -48,15 +48,6 @@ const ResumeNow = () => {
     }
 
     useEffect(() => {
-        if (router.query?.success == 'true') {
-            updateError({
-                isShow: true,
-                status: 'success',
-                discription: 'Payment success...',
-            })
-            return;
-        }
-
         // if (router.query?.canceled == 'true') {
         //     updateError({
         //         isShow: true,

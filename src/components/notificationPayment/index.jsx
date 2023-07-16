@@ -27,14 +27,18 @@ export const NotificationPayment = ({
                     <div className={`${style.content_description}`}>{discription}</div>
                 </div>
                 <div className={`${style.btns}`}>
-                    <ButtonIcon
-                        label={nameBtn}
-                        className="btn--blue"
-                        icon={(classe.length > 0) ? null : iconR}
-                        isButton={(classe.length > 0) ? true : false}
-                        href="/"
-                        onHandle={onHanleBtn}
-                    />
+                    {
+                        (classe?.length > 0) && (
+                            <ButtonIcon
+                                label={nameBtn}
+                                className="btn--blue"
+                                icon={(classe.length > 0) ? null : iconR}
+                                isButton={(classe.length > 0) ? true : false}
+                                href="/"
+                                onHandle={onHanleBtn}
+                            />
+                        )
+                    }
                 </div>
             </div>
         </div>

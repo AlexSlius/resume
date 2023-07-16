@@ -9,10 +9,12 @@ import { Header } from "../../components/header";
 import { CardNew } from "../../components/cardNew";
 import { ModalDelete } from "../../components/modals/modalDelete";
 import { TitleAndLoad } from "../../components/titleAndLoad";
+import { NotificationPayment } from '../../components/notificationPayment';
+
+
 import { isLoader } from "../../helpers/loadings"
 import { copyToClipboard } from "../../helpers/bufer";
 import { handleChanbdegAutOrPlan } from "../../utils/downShare";
-
 import {
     deleteResume,
     fetchGetResumesList,
@@ -38,12 +40,20 @@ import style from "./Style.module.scss";
 
 import config from "../../config/config.json";
 
+const obj = {
+    isShow: false,
+    status: null,
+    title: "Payment success",
+    discription: "After 5 failed attempts to enter incorrect payment password, access to the payment services, protected by the payment password, will be temporarily blocked."
+};
+
 const Dashboard = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const [loadNewCard, setLoadNewCard] = useState();
     const [loadCards, setLoadDards] = useState(true);
     const [deleteModal, setDeleteModal] = useState({ id: null, isResume: true });
+    const [errorModal, setErrorModal] = useState(obj);
 
     const {
         resumers,
@@ -183,6 +193,24 @@ const Dashboard = () => {
         handleCLoseModalDelete();
     }
 
+    const updateError = (obj) => {
+        setErrorModal(prev => ({
+            ...prev,
+            ...obj,
+        }));
+    }
+
+    useEffect(() => {
+        if (router.query?.success == 'true') {
+            updateError({
+                isShow: true,
+                status: 'success',
+                discription: 'Payment success...',
+            })
+            return;
+        }
+    }, []);
+
     useEffect(() => {
         setLoadDards(true);
 
@@ -216,6 +244,18 @@ const Dashboard = () => {
             }
             <div className={style.wr_pa}>
                 <TitleAndLoad title="Dashboard" isLoad={(isLoader(covers?.status) || isLoader(resumers?.status))} />
+                {
+                    errorModal.isShow && (
+                        <>
+                            <br />
+                            <NotificationPayment
+                                type={errorModal.status}
+                                title={errorModal.title}
+                                discription={errorModal.discription}
+                            />
+                        </>
+                    )
+                }
                 <div className={`${style.wt_tabs}`}>
                     <div className={style.wr_tabs}>
                         <Tabs
