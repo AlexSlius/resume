@@ -42,6 +42,17 @@
       .font-size-3 {
         font-size: 24px;
       }
+      .cv-body {
+        .cv-body-content {
+          .cv-body-area {
+            &.area-3 {
+              .cv-heading {
+                padding-top: 4px;
+              }
+            }
+          }
+        }
+      }
     }
 
     /* Line height scheme */
@@ -265,7 +276,7 @@
                       .photo {
                         width: 90px;
                         height: 90px;
-                        background-size: 90px auto;
+                        background-size: cover;
                         background-position: 50% 50%;
                         overflow: hidden;
                       }
@@ -372,7 +383,12 @@
           }
 
           &.area-3 {
-            padding: 20px 30px;
+            flex: 1;
+            align-items: end;
+            .bottom-block {
+              display: flex;
+              padding: 20px 30px;
+            }
             .cv-heading {
               text-transform: uppercase;
               padding: 1px 4px;

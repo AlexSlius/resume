@@ -149,7 +149,7 @@
             width: 110px;
             height: 110px;
             border-radius: 100%;
-            background-size: 110px auto;
+            background-size: cover;
             background-position: 50% 50%;
             overflow: hidden;
           }
@@ -169,6 +169,8 @@
       .column-right {
         margin-left: 30px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
 
         .information-area-1,
         .information-area-2 {
@@ -252,6 +254,29 @@
 
         .information-area-2 {
           margin-top: 15px;
+        }
+      }
+    }
+
+    &.cv-body-1 {
+      &.page-2,
+      &.page-3,
+      &.page-4 {
+        .information-area-0 {
+          margin: 0;
+        }
+        .information-area-1 {
+          margin-top: 0;
+        }
+        
+        .cv-body-content {
+          .column-left {
+            .block-block {
+              &:first-child {
+                margin-top: 0;
+              }
+            }
+          }
         }
       }
     }
@@ -628,6 +653,9 @@
     .cv-body {
       .cv-body-content {
         .column-right {
+          .information-area-1 {
+            margin-top: 12px;
+          }
           .information-area-1,
           .information-area-2 {
             .block-block {
@@ -651,7 +679,7 @@
     }
 
     .profile-main-block {
-      margin-top: -8px;
+      margin-top: -16px;
     } 
   }
 

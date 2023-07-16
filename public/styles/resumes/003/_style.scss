@@ -250,7 +250,7 @@
         }
 
         &.area-2 {
-          padding: 0 25px;
+          padding: 20px 25px;
           .separator {
             border-left: 1px dotted $main_color_1;
             margin-left: 20px;
@@ -306,7 +306,6 @@
     position: relative;
     .horizontal-wrap {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       margin-bottom: 6px;
     }
@@ -331,14 +330,16 @@
     }
 
     &.horiz-line {
-      &::before {
-        display: block;
-        position: absolute;
-        content: " ";
-        width: 100%;
-        border-top: 1px dotted $main_color_1;
-        top: -10px;
-        left: 0;
+      &:not(:first-of-type) {
+        &::before {
+          display: block;
+          position: absolute;
+          content: " ";
+          width: 100%;
+          border-top: 1px dotted $main_color_1;
+          top: -10px;
+          left: 0;
+        }
       }
     }
   }
@@ -376,7 +377,7 @@
         width: 60px;
         height: 60px;
         border-radius: 100%;
-        background-size: 60px auto;
+        background-size: cover;
         background-position: 50% 50%;
         overflow: hidden;
       }
@@ -451,7 +452,7 @@
     border-bottom-width: 1px;
     display: flex;
     justify-content: space-between;
-    margin: 0 25px 20px;
+    margin: 0 25px;
     padding: 10px 0;
 
     .details-block-item {
