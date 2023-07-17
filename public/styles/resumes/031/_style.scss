@@ -206,7 +206,7 @@
       height: 115px;
       overflow: hidden;
       border-radius: 100%;
-      background-size: 115px auto;
+      background-size: cover;
       background-position: center center;
     }
   }
@@ -389,6 +389,12 @@
     .font-size-4 {
       font-size: 30px;
     }
+
+    .block-block {
+      .left-side {
+        padding-top: 2px;
+      }
+    }
   }
 
   /* Line height scheme */
@@ -433,6 +439,10 @@
 
     .additional-color-1-border {
       border-color: $color_set_1_additional_color_1;
+    }
+
+    .additional-color-1-border.m-border {
+      border-color: $main_color_2;
     }
 
     .additional-color-1-background {
