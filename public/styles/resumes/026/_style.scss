@@ -342,8 +342,8 @@
     .links-info {
       display: flex;
       column-gap: 5px;
-      justify-content: end;
-      align-items: end;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
     a {
       display: block;

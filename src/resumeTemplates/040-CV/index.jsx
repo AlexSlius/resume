@@ -180,7 +180,8 @@ export const ResumeCv040 = ({
   isTemplate = false,
   handleFalseDrafind = () => { },
   stateClasses,
-  reportTemplateRef
+  reportTemplateRef,
+  objActiveBlock
 }) => {
   const {
     contact,

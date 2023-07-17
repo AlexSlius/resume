@@ -8,6 +8,7 @@ import { TemplatesSelectCover } from "../../templateSelectCover";
 import { getResumeActive } from "../../../controllers/resumeData";
 import { getCoverDataActive } from "../../../controllers/cover/coverData";
 import { useScaleResumeMain } from "../../../hooks/custom-hooks";
+import { activeTemplateBlock } from "../../../helpers/activeBlockTemplate";
 
 const ResumeMain = ({
    reportTemplateRef,
@@ -16,7 +17,7 @@ const ResumeMain = ({
    const refDivResumeMain = useRef();
    const dispatch = useDispatch();
    const router = useRouter();
-   const { idCv } = router.query;
+   const { idCv, tab } = router.query;
    const isNewResume = (idCv == "new");
    const [stateFontSize, setStateFontSize] = useState(50);
    const [stateLineSpacing, setStateLIneSpacig] = useState(50);
@@ -44,6 +45,9 @@ const ResumeMain = ({
       coverData,
       theme: {
          currentResolution
+      },
+      menuAsideResume: {
+         list
       }
    } = useSelector((state) => state);
 
@@ -81,6 +85,8 @@ const ResumeMain = ({
       from: coverDataForm.from,
       to: coverDataForm.to,
    };
+
+   let objActiveBlock = activeTemplateBlock(list, tab);
 
    let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: resumeData.drawing, loadContent });
 
@@ -129,6 +135,7 @@ const ResumeMain = ({
                      resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
+                     objActiveBlock={objActiveBlock}
                   />
                </div>
             )

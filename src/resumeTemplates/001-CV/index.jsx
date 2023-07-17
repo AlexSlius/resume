@@ -190,6 +190,7 @@ export const ResumeCv001 = ({
   isDrawing = false,
   isTemplate = false,
   handleFalseDrafind = () => { },
+  objActiveBlock,
 }) => {
   const {
     contact,
@@ -225,7 +226,7 @@ export const ResumeCv001 = ({
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content">
             <div className="cv-body-area area-1 additional-color-3-background font-size-1 main-color-1-text">
-              <div className="top-block columns-wrapper">
+              <div className={`top-block columns-wrapper ${objActiveBlock?.contact ? "active" : ""}`}>
                 <div className="column-left">
                   {
                     isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (

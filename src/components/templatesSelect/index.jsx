@@ -44,6 +44,7 @@ export const TemplatesSelect = ({
     drawing = false,
     isTemplate = false,
     handleReload = () => { },
+    objActiveBlock,
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -87,6 +88,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -101,6 +103,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -115,6 +118,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -129,6 +133,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -143,6 +148,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -157,6 +163,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -171,6 +178,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -185,6 +193,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -199,6 +208,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -213,6 +223,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -227,6 +238,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -241,6 +253,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -255,6 +268,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -269,6 +283,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -283,6 +298,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -297,6 +313,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -311,6 +328,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -325,6 +343,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -339,6 +358,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -353,11 +373,12 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
 
-{
+            {
                 resumeActive == "039-CV" && (
                     <ResumeCv039
                         reportTemplateRef={reportTemplateRef}
@@ -367,6 +388,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -381,6 +403,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }
@@ -395,6 +418,7 @@ export const TemplatesSelect = ({
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
+                        objActiveBlock={objActiveBlock}
                     />
                 )
             }

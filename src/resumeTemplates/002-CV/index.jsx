@@ -231,6 +231,7 @@ export const ResumeCv002 = ({
   isDrawing = false,
   isTemplate = false,
   handleFalseDrafind = () => { },
+  objActiveBlock,
 }) => {
   const {
     contact,

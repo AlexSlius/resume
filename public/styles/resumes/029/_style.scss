@@ -367,9 +367,9 @@
 
   .links-block {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     column-gap: 10px;
-    justify-content: end;
+    justify-content: flex-end;
 
     .links-item {
       display: block;

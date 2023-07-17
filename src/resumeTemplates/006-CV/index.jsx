@@ -197,7 +197,8 @@ export const ResumeCv006 = ({
   isTemplate = false,
   handleFalseDrafind = () => { },
   stateClasses,
-  reportTemplateRef
+  reportTemplateRef,
+  objActiveBlock
 }) => {
   const {
     contact,
@@ -213,7 +214,7 @@ export const ResumeCv006 = ({
     hobbies,
     skills,
     languages,
-    hide_experience_level
+    hide_experience_level,
   } = data;
 
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
