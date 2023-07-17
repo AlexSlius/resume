@@ -38,11 +38,11 @@ const ResumeNow = () => {
     }
 
     const handleSubmit = (dataCard, setStateLoad) => {
-        if (dataCard?.event) {
+        if (dataCard?.dataLayer?.event) {
             dataLayer.push({
-                'event': dataCard.event,
-                'tariff': dataCard.tariff,
-                'tariff_price': dataCard.tariff_price
+                'event': dataCard?.dataLayer?.event,
+                'tariff': dataCard?.dataLayer?.tariff,
+                'tariff_price': dataCard?.dataLayer?.tariff_price
             });
         }
 
