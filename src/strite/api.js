@@ -14,8 +14,8 @@ export const stripePaymentIntents = async ({
     setStateLoad = () => { },
 }) => {
     // ${config.DOMAIN} or http://localhost:3000
-    let redirectLinkSuccess = `http://localhost:3000/${routersPages['dashboard']}`;
-    let redirectLink = `http://localhost:3000/${routersPages['resumeNow']}`;
+    let redirectLinkSuccess = `${config.DOMAIN}/${routersPages['dashboard']}`;
+    let redirectLink = `${config.DOMAIN}/${routersPages['resumeNow']}`;
 
     setStateLoad(true);
 
