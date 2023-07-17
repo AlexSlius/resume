@@ -200,7 +200,7 @@ export const ResumeCv039 = ({
                               </clipPath>
                             </defs>
                           </svg>
-                        <div className="block-item-name">{`${conta?.address}, ${conta?.city}, ${conta?.zipCode}, ${conta?.country}`}</div>
+                        <div className="block-item-name">{`${conta?.address + ', '} ${conta?.city + ', '} ${conta?.zipCode + ', '} ${conta?.country}`}</div>
                           
                         </div>
                         {
@@ -218,7 +218,7 @@ export const ResumeCv039 = ({
                   )
                 }
               </div>
-              <div className="profile-info-block block-block">
+              <div className="profile-info-block block-block additional-color-1-border">
                 <h3 className="block-heading font-size-4 additional-color-1-text">Profile</h3>
                   {
                       career_objective?.[0]?.data && (
@@ -228,7 +228,7 @@ export const ResumeCv039 = ({
               </div>
               {
                 (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
-                  <div className="employment-history-block block-block">
+                  <div className="employment-history-block block-block additional-color-1-border">
                     <h3 className="block-heading font-size-4 additional-color-1-text">Employment History</h3>
                     {
                       employment.map((itemEm, index) => (
@@ -257,7 +257,7 @@ export const ResumeCv039 = ({
               }
               {
                 (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
-                  <div className="education-block block-block">
+                  <div className="education-block block-block additional-color-1-border">
                     <h3 className="block-heading font-size-4 additional-color-1-text">Education</h3>
                     {
                       education.map((itemEd, index) => (
@@ -286,7 +286,7 @@ export const ResumeCv039 = ({
               }
               {
                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
-                  <div className="courses-block block-block">
+                  <div className="courses-block block-block additional-color-1-border">
                     <h3 className="block-heading font-size-4 additional-color-1-text">Courses</h3>
                     {
                       courses.map((itemCo, index) => (
@@ -315,7 +315,7 @@ export const ResumeCv039 = ({
               }
               {
                 (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
-                  <div className="extra-curricular-activities-block block-block">
+                  <div className="extra-curricular-activities-block block-block additional-color-1-border">
                     <h3 className="block-heading font-size-4 additional-color-1-text">Extra-curricular activities</h3>
                     {
                       extra_curricular.map((itemEx, index) => (
@@ -345,7 +345,7 @@ export const ResumeCv039 = ({
               }
               {
               (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
-                  <div className="internships-block block-block">
+                  <div className="internships-block block-block additional-color-1-border">
                     <h3 className="block-heading font-size-4 additional-color-1-text">Internships</h3>
                     {
                       internship.map((itemIn, index) => (

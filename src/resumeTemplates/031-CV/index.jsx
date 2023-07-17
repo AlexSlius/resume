@@ -223,7 +223,7 @@ export const ResumeCv031 = ({
 
   return (
     <div className="sv_031" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-1-background">
           <div className="cv-body-content font-size-1 main-color-3-text additional-color-1-border">
             <div className="column-left">
@@ -302,7 +302,7 @@ export const ResumeCv031 = ({
                     <div className="social">
                       {
                         social_links.map((item, index) => (
-                          <a className="additional-color-1-border additional-color-1-text" key={index}>{item.name.substring(0, 2)}</a>
+                          <a className="additional-color-1-border m-border additional-color-1-text" key={index}>{item.name.substring(0, 2)}</a>
                         ))
                       }
                     </div>

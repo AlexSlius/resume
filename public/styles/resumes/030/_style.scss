@@ -46,9 +46,11 @@ $color_set_7_additional_color_1: #87608D;
 
   .cv-prophecy {
     text-align: center;
+    position: relative;
   }
 
   .cv-name {
+    position: relative;
     text-align: center;
     font-weight: 400;
     margin-bottom: 5px !important;
@@ -434,6 +436,9 @@ $color_set_7_additional_color_1: #87608D;
 
     .additional-color-1-border {
       border-color: $color_set_1_additional_color_1;
+    }
+    .additional-color-1-border.m-border {
+      border-color: $main_color_3;
     }
     .additional-color-1-background {
       background-color: $main_color_3;

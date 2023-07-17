@@ -12,6 +12,7 @@ const drawing = () => {
       $('.cv-body.cv-body-visible').remove();
 
       let main_info_block = $('#cv-body-hidden-container .cv-body-content .main-info-block').clone();
+      let star_icon = $('#cv-body-hidden-container .cv-body-content .star-icon').clone();
       let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();
       let employment_history_block = $('#cv-body-hidden-container .cv-body-content .employment-history-block').clone();
       let education_block = $('#cv-body-hidden-container .cv-body-content .education-block').clone();
@@ -218,6 +219,11 @@ export const ResumeCv032 = ({
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-1-background">
           <div className="cv-body-content font-size-1 main-color-3-text">
+            <div className="star-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90" fill="none">
+                <path d="M45 82.9068C42.1997 62.6061 27.3942 47.8003 7.09325 45C27.3938 42.1996 42.1996 27.3938 45 7.09317C47.8004 27.3938 62.6062 42.1996 82.9068 45C62.6062 47.8004 47.8004 62.6062 45 82.9068Z" fill="#F3EEEA" stroke="#7F6A55" stroke-width="0.960091"/>
+              </svg>
+            </div>
             <div className="column-left">
               <div className="main-info-block block-block">
                 <h1 className="cv-name font-size-6 additional-color-1-text">{!!contact?.[0]?.firstName && (<>{contact?.[0]?.firstName}<br /></>)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}</h1>

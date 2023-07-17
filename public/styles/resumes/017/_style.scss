@@ -379,7 +379,7 @@
     height: 128px;
     width: 454px;
     padding-right: 10px;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     background: url('/../styles/resumes/017/image/photo-bg.svg') no-repeat 100% 0;
   }
@@ -404,7 +404,7 @@
     }
     .details-item {
       display: flex;
-      align-items: start;
+      align-items: flex-start;
       column-gap: 5px;
       svg {
         width: 10px;
@@ -440,7 +440,7 @@
     display: flex;
     column-gap: 10px;
     margin-top: 10px;
-    justify-content: end;
+    justify-content: flex-end;
     
     img {
       width: 14px;
@@ -458,7 +458,7 @@
       display: flex;
       column-gap: 10px;
       justify-content: space-between;
-      align-items: start;
+      align-items: flex-start;
     }
   }
 

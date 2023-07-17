@@ -297,6 +297,7 @@
     &.page-3,
     &.page-4 {
       .cv-body-content {
+        padding-top: 10px;
         .column-right {
           padding-top: 10px;
         }
@@ -379,8 +380,10 @@
     .right-side {
       flex: 1;
       display: flex;
+      flex-wrap: wrap;
       padding-left: 16px;
       column-gap: 20px;
+      row-gap: 5px;
 
       .link-wrapper {
         display: flex;

@@ -122,7 +122,7 @@
       width: 139px;
       height: 139px;
       overflow: hidden;
-      background-size: 139px auto;
+      background-size: cover;
       background-position: center center;
     }
   }
@@ -286,7 +286,6 @@
       row-gap: 4px;
       .languages-item {
         display: flex;
-        column-gap: 8px;
       }
     }
   }
@@ -372,6 +371,10 @@
     .font-size-6 {
       font-size: 38px;
     }
+
+    .languages-name {
+      min-width: 45px;   
+    }
   }
 
   .font-size-scheme-state-medium {
@@ -398,6 +401,10 @@
     .font-size-6 {
       font-size: 40px;
     }
+
+    .languages-name {
+      min-width: 60px;   
+    }
   }
 
   .font-size-scheme-state-big {
@@ -423,6 +430,10 @@
 
     .font-size-6 {
       font-size: 42px;
+    }
+
+    .languages-name {
+      min-width: 70px;   
     }
   }
 
