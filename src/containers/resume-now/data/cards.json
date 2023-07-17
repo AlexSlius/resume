@@ -11,6 +11,11 @@
         "isСurrency": true,
         "isAll": true,
         "trial": true,
+        "dataLayer": {
+            "event": "prepurchase",
+            "tariff": "Unlimited",
+            "tariff_price": "399"
+        },
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -31,6 +36,11 @@
         "plan": "price_1N83jlEBJR7rLeB2ItJAEx4h",
         "type": "subscription",
         "trial": true,
+        "dataLayer": {
+            "event": "prepurchase",
+            "tariff": "Free",
+            "tariff_price": "0"
+        },
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",
@@ -53,6 +63,11 @@
         "trial": true,
         "plan": "price_1N8OgEEBJR7rLeB21Cip5bzC",
         "type": "subscription",
+        "dataLayer": {
+            "event": "prepurchase",
+            "tariff": "Profi",
+            "tariff_price": "69.95"
+        },
         "list": [
             "Unlimited PDF Downloads",
             "Unlimited Resumes",

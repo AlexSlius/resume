@@ -38,7 +38,16 @@ const ResumeNow = () => {
     }
 
     const handleSubmit = (dataCard, setStateLoad) => {
+        if (dataCard?.event) {
+            dataLayer.push({
+                'event': dataCard.event,
+                'tariff': dataCard.tariff,
+                'tariff_price': dataCard.tariff_price
+            });
+        }
+
         stripePaymentIntents({
+            dataCard,
             items: dataCard.plan,
             type: dataCard.type,
             customerId: objForm.stripeUserId,

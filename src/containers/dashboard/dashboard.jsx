@@ -202,6 +202,25 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (router.query?.success == 'true') {
+            if (typeof window != 'undefined') {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'purchase',
+                    ecommerce: {
+                        currency: 'USD',
+                        value: router.query.price,
+                        affiliation: 'My Store',
+                        transaction_id: router.query.session_id,
+                        items: [{
+                            item_name: router.query.tariff,
+                            item_id: router.query.plan,
+                            price: router.query.price,
+                            quantity: '1'
+                        }]
+                    }
+                });
+            }
+
             updateError({
                 isShow: true,
                 status: 'success',

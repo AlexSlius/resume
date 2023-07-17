@@ -6,6 +6,7 @@ import { routersPages } from '../constants/next-routers';
 const stripe = new Stripe(config.STRITE_PRIVATE_KEY)
 
 export const stripePaymentIntents = async ({
+    dataCard,
     items,
     type,
     customerId,
@@ -13,23 +14,22 @@ export const stripePaymentIntents = async ({
     setStateLoad = () => { },
 }) => {
     // ${config.DOMAIN} or http://localhost:3000
-    let redirectLinkSuccess = `${config.DOMAIN}/${routersPages['dashboard']}`;
-    let redirectLink = `${config.DOMAIN}/${routersPages['resumeNow']}`;
+    let redirectLinkSuccess = `http://localhost:3000/${routersPages['dashboard']}`;
+    let redirectLink = `http://localhost:3000/${routersPages['resumeNow']}`;
 
     setStateLoad(true);
 
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
-                // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
                 price: items,
                 quantity: 1,
             },
         ],
         customer: customerId,
         mode: type,
-        success_url: `${redirectLinkSuccess}&success=true&session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${redirectLink}?canceled=true?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${redirectLinkSuccess}&success=true&session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
+        cancel_url: `${redirectLink}?canceled=true?session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
     });
 
     if (session?.url?.length > 0) {
