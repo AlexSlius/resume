@@ -2,11 +2,10 @@ import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const Estimation = ({
-  level = 0,
+  level = 3,
   maketLeng = 8,
   startLeng = 5,
 }) => {
@@ -27,137 +26,107 @@ const Estimation = ({
 
 const drawing = () => {
   if (typeof window != "undefined") {
-    var font_size_class = '';
-    var line_height_class = '';
-    var color_class = '';
     var current_page_number = 1;
 
     function rebuildingPages() {
       $('.cv-body.cv-body-visible').remove();
 
-      var header_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1').clone();
-      var footer_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3').clone();
-      var employment_history_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .employment-history-block').clone();
-      var extra_curricular_activities_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .extra-curricular-activities-block').clone();
-      var internships_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .internships-block').clone();
-      var references_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .references-block').clone();
+      let cvBlocksTop = [
+        'top-block'
+      ];
+      let cvBlocksLeft = [
+        'employment-history-block',
+        'extra-curricular-activities-block',
+        'internships-block',
+        'references-block'
+      ];
+      let cvBlocksRight = [
+        'education-block',
+        'courses-block',
+        'certificates-block',
+        'hobbies-block'
+      ];
+      let cvBlocksBottom = [
+        'bottom-block'
+      ];
 
-      var education_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .education-block').clone();
-      var courses_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .courses-block').clone();
-      var certificates_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .certificates-block').clone();
-      var hobbies_block = $('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .hobbies-block').clone();
+      let cvDataTop = [];
+      let cvDataLeft = [];
+      let cvDataRight = [];
+      let cvDataBottom = [];
 
-      getPageContainer().append(header_block);
-      getPageColumnLeft();
-      getPageColumnRight();
-
-      current_page_number = 1;
-
-      getPageColumnLeft().append(employment_history_block);
-      if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
-        employment_history_block.remove();
-        current_page_number++;
-        getPageColumnLeft().append(employment_history_block);
-      }
-
-      getPageColumnLeft().append(extra_curricular_activities_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        extra_curricular_activities_block.remove();
-        current_page_number++;
-        getPageColumnLeft().append(extra_curricular_activities_block);
-      }
-
-      getPageColumnLeft().append(internships_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        internships_block.remove();
-        current_page_number++;
-        getPageColumnLeft().append(internships_block);
-      }
-
-      getPageColumnLeft().append(references_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        references_block.remove();
-        current_page_number++;
-        getPageColumnLeft().append(references_block);
-      }
+      cvBlocksTop.forEach(function(el){
+        cvDataTop.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1 .' + el).clone());
+      });
+      cvBlocksLeft.forEach(function(el){
+        cvDataLeft.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .' + el).clone());
+      });
+      cvBlocksRight.forEach(function(el){
+        cvDataRight.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .' + el).clone());
+      });
+      cvBlocksBottom.forEach(function(el){
+        cvDataBottom.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3 .' + el).clone());
+      });
 
       current_page_number = 1;
+      cvDataTop.forEach(function(el) {
+        getPageColumnTop().append(el);
+        if(checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnTop().append(el);
+        }
+      });
 
-      getPageColumnRight().append(education_block);
-      if (getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number)) {
-        education_block.remove();
-        current_page_number++;
-        getPageColumnRight().append(education_block);
-      }
+      current_page_number = 1;
+      cvDataLeft.forEach(function(el) {
+        getPageColumnLeft().append(el);
+        if(checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnLeft().append(el);
+        }
+      });
 
-      getPageColumnRight().append(courses_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        courses_block.remove();
-        current_page_number++;
-        getPageColumnRight().append(courses_block);
-      }
+      current_page_number = 1;
+      cvDataRight.forEach(function(el) {
+        getPageColumnRight().append(el);
+        console.log(checkHeight());
+        if(checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnRight().append(el);
+        }
+      });
 
-      getPageColumnRight().append(certificates_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        certificates_block.remove();
-        current_page_number++;
-        getPageColumnRight().append(certificates_block);
-      }
-
-      getPageColumnRight().append(hobbies_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        hobbies_block.remove();
-        current_page_number++;
-        getPageColumnRight().append(hobbies_block);
-      }
-
-      getPageContainer().append(footer_block);
-      if (getPageContainer().height() > getPageContainer().parent().height()) {
-        footer_block.remove();
-        current_page_number++;
-        getPageContainer().append(footer_block);
-      }
+      current_page_number = 1;
+      cvDataBottom.forEach(function(el) {
+        getPageColumnBottom().append(el);
+        if(checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnBottom().append(el);
+        }
+      });
     }
-
-    function getPageArea2() {
-      var area_2 = getPageContainer().find('.cv-body-area.area-2');
-
-      if (area_2.length > 0) {
-        return area_2;
-      } else {
-        area_2 = $('<div class="cv-body-area area-2"></div>');
-        getPageContainer().append(area_2);
-        return $(area_2);
-      }
+    function getPageColumnTop() {
+      return getPageContainer().find('.area-1');
     }
-
     function getPageColumnLeft() {
-      var column_left = getPageArea2().find('.column-left');
-      if (column_left.length > 0) {
-        return column_left;
-      } else {
-        column_left = $('<div class="column-left"></div>');
-        getPageArea2().append(column_left);
-
-        // Insert separator
-        var separator = $('<div class="separator additional-color-3-border"></div>');
-        getPageArea2().append(separator);
-
-        return $(column_left);
-      }
+      return getPageArea2().find('.column-left');
     }
-
     function getPageColumnRight() {
-      var column_right = getPageArea2().find('.column-right');
-      if (column_right.length > 0) {
-        return column_right;
-      } else {
-        column_right = $('<div class="column-right"></div>');
-        getPageArea2().append(column_right);
-        return $(column_right);
-      }
+      return getPageArea2().find('.column-right');
     }
-
+    function getPageColumnBottom() {
+      return getPageContainer().find('.area-3');
+    }
+    function getPageArea2() {
+      return getPageContainer().find('.area-2');
+    }
+    function checkHeight() {
+      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
+    }
     function getPageContainer() {
       var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
       if (page.length > 0) {
@@ -166,16 +135,40 @@ const drawing = () => {
         return createNewPage(current_page_number);
       }
     }
-
-    function createNewPage(page_number) {
-      var page_element = $('<div class="cv-body cv-body-1 cv-body-visible page-' + page_number + ' ' + font_size_class + ' ' + line_height_class + ' ' + color_class + '" data-chapter="cv" data-page="' + page_number + '"></div>');
-      page_element.attr('data-chapter', 'cv');
-      page_element.attr('data-page', page_number);
-      var page_element_container = $('<div class="cv-body-content"></div>');
+    function createNewPage() {
+      var page_element = $('#cv-body-hidden-container').clone();
+      page_element.attr('id', '');
+      page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);
+      page_element.children().remove();
+    
+      var page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
+      page_element_container.children().remove();
       page_element.append(page_element_container);
-      if ($('#cv-chapter-section-cv').find(page_element)) {
+
+      var area_1 = $('#cv-body-hidden-container .cv-body-content .area-1').clone();
+      area_1.children().remove();
+      current_page_number === 1 && page_element_container.append(area_1);
+
+      var area_2 = $('#cv-body-hidden-container .cv-body-content .area-2').clone();
+      area_2.children().remove();
+      page_element_container.append(area_2);
+
+      var area_2_left = $('#cv-body-hidden-container .cv-body-content .area-2 .column-left').clone();
+      area_2_left.children().remove();
+      area_2.append(area_2_left);
+
+      var area_2_right = $('#cv-body-hidden-container .cv-body-content .area-2 .column-right').clone();
+      area_2_right.children().remove();
+      area_2.append(area_2_right);
+    
+      var area_3 = $('#cv-body-hidden-container .cv-body-content .area-3').clone();
+      area_3.children().remove();
+      page_element_container.append(area_3);
+    
+      if($('#cv-chapter-section-cv').find(page_element)) {
         $('#cv-chapter-section-cv').append(page_element);
       }
+    
       return page_element_container;
     }
 
@@ -185,6 +178,7 @@ const drawing = () => {
 
 export const ResumeCv001 = ({
   data,
+  dataNew,
   stateClasses,
   reportTemplateRef,
   isDrawing = false,
@@ -207,7 +201,7 @@ export const ResumeCv001 = ({
     skills,
     languages,
     hide_experience_level
-  } = data;
+  } = dataNew;
 
   useEffect(() => {
     if (isTemplate) {
@@ -224,71 +218,88 @@ export const ResumeCv001 = ({
     <div className="sv_001" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
-          <div className="cv-body-content">
+          <div className="cv-body-content font-size-1 main-color-1-text">
             <div className="cv-body-area area-1 additional-color-3-background font-size-1 main-color-1-text">
               <div className={`top-block columns-wrapper ${objActiveBlock?.contact ? "active" : ""}`}>
                 <div className="column-left">
                   {
-                    isArray(contact) && (contact?.[0]?.firstName || contact?.[0]?.lastName) && (
-                      <h1 className="cv-heading font-size-3">
-                        {`${contact?.[0]?.firstName} ${contact?.[0]?.lastName}`}
-                      </h1>
+                    isArray(contact) && (
+                      <div className="cv-name font-size-3">
+                        <span className={`${!contact[0].firstName ? 'empty-field' : ''}`}>
+                          {`${contact[0].firstName || 'Matthew'} `}
+                        </span>
+                        <span className={`${!contact[0].lastName ? 'empty-field' : ''}`}>
+                          {`${contact[0].lastName || 'Mcconaughey'}`}
+                        </span>
+                      </div>
                     )
                   }
                   <div className="personal-info-block">
                     <div className="profile-info">
                       {
-                        isArray(contact) && contact?.[0]?.picture && (
+                        isArray(contact) && contact[0]?.picture && (
                           <div className="photo-block">
-                            <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
+                            <div className="photo" style={{ backgroundImage: `url(${contact[0].picture})` }}></div>
                           </div>
                         )
                       }
-                      {
-                        career_objective?.[0]?.data && (
-                          <div className="profile">
-                            <h3 className="cv-heading font-size-2">Profile</h3>
-                            <div dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></div>
-                          </div>
-                        )
-                      }
+                      <div className="profile">
+                        <div className="cv-heading font-size-2">Profile</div>
+                        {
+                          career_objective?.[0]?.data && (
+                            <div dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
+                          ) || (
+                            <div className="empty-field">
+                              Innovative Web Designer with over seven years of experience creating powerful designs in the fashion industry. Adept in collaborating with designers and other team professionals to achieve high goals and deadlines. Dedicated to remaining up to date with the latest fashion trends, while offering ideas and visuals to spark new trends. Bringing forth a true love of fashion and design.
+                            </div>
+                          )
+                        } 
+                      </div>
                     </div>
                   </div>
                   {
-                    isArray(contact) && (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth || !!contact?.[0]?.nationality || !!contact?.[0]?.driverLicense) && (
+                    isArray(contact) && (
                       <div className="profile-secondary-info">
-                        {
-                          !!contact?.[0]?.dateOfBirth && (
-                            <div className="profile-secondary-info-item additional-color-1-text">
-                              <span className="name">Birth Date</span>
-                              <span className="value">{moment(contact?.[0].dateOfBirth).format("DD-MM-yy")}</span>
-                            </div>
-                          )
-                        }
-                        {
-                          !!contact?.[0]?.placeOfBirth && (
-                            <div className="profile-secondary-info-item additional-color-1-text">
-                              <span className="name">Place of Birth</span>
-                              <span className="value">{contact?.[0]?.placeOfBirth}</span>
-                            </div>
-                          )
-                        }
-                        {
-                          !!contact?.[0]?.nationality && (
-                            <div className="profile-secondary-info-item additional-color-1-text">
-                              <span className="name">Nationality</span>
-                              <span className="value">{contact?.[0]?.nationality}</span>
-                            </div>
-                          )
-                        }
-                        {
-                          !!contact?.[0]?.driverLicense && (
-                            <div className="profile-secondary-info-item additional-color-1-text">
-                              <span className="name">Driving Licence</span>
-                              <span className="value">{contact?.[0]?.driverLicense}</span>
-                            </div>
-                          )
-                        }
+                        <div className="item-block">
+                          <span className="name">Birth Date</span>
+                          {
+                            contact[0]?.dateOfBirth && (
+                              <span className="value">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                            ) || (
+                              <span className="value empty-field additional-color-1-text">14-08-1991</span>
+                            )
+                          }
+                        </div>
+                        <div className="item-block">
+                          <span className="name">Place of Birth</span>
+                          {
+                            contact[0]?.placeOfBirth && (
+                              <span className="value">{contact[0].placeOfBirth}</span>
+                            ) || (
+                              <span className="value empty-field additional-color-1-text">Berlin</span>
+                            )
+                          }
+                        </div>
+                        <div className="item-block">
+                          <span className="name">Nationality</span>
+                          {
+                            contact[0]?.nationality && (
+                              <span className="value">{contact[0].nationality}</span>
+                            ) || (
+                              <span className="value empty-field additional-color-1-text">German</span>
+                            )
+                          }
+                        </div>
+                        <div className="item-block">
+                          <span className="name">Driving Licence</span>
+                          {
+                            contact[0]?.driverLicense && (
+                              <span className="value">{contact[0].driverLicense}</span>
+                            ) || (
+                              <span className="value empty-field additional-color-1-text">Class 1</span>
+                            )
+                          }
+                        </div>
                       </div>
                     )
                   }
@@ -296,338 +307,336 @@ export const ResumeCv001 = ({
                 <div className="column-right">
                   {
                     isArray(contact) && (
-                      <h3 className="cv-heading font-size-3">{contact?.[0]?.jobTitle}</h3>
+                      <div className={`cv-profession font-size-3 ${!contact[0].jobTitle ? 'empty-field' : ''}`}>
+                        {contact[0].jobTitle || 'Web-designer'}
+                      </div>
                     )
                   }
                   {
-                    isArray(contact) && (!!contact?.[0]?.country || !!contact?.[0]?.city || !!contact?.[0]?.phone || !!contact?.[0]?.address || !!contact?.[0]?.email || (isArray(social_links) && !!social_links.length)) && (
-                      <div className="cv-career-block additional-color-2-border">
-                        <div className="career-details">
-                          <p className="cv-heading font-size-2">Details</p>
-                          <p className="career-address">{!!contact?.[0]?.country ? (<>{`${contact?.[0]?.country} `}<br /></>) : ""}   {!!contact?.[0]?.address ? (<>{`${contact?.[0]?.address}, `}<br /></>) : ""}  {!!contact?.[0]?.city && (`${contact?.[0]?.city}`)} {contact?.[0]?.zipCode}</p>
-                          {!!contact?.[0]?.phone && <p className="career-phone">{contact?.[0]?.phone}</p>}
-                          {!!contact?.[0]?.email && <p className="career-email">{contact?.[0]?.email}</p>}
+                    isArray(contact) && (
+                      <div className="details-block additional-color-2-border">
+                        <div className="details-block-info">
+                          <div className="cv-heading font-size-2">Details</div>
+                          <p className="address">
+                            <span className={`${!contact[0].country ? 'empty-field' : ''}`}>
+                              {`${checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country || 'United States, '}`}
+                            </span>
+                            <span className={`${!contact[0].address ? 'empty-field' : ''}`}>
+                              {`${checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address || '5th Avenue Street, '}`}
+                            </span>
+                            <span className={`${!contact[0].city ? 'empty-field' : ''}`}>
+                              {`${checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city || 'New York City, '}`}
+                            </span>
+                            <span className={`${!contact[0].zipCode ? 'empty-field' : ''}`}>
+                              {`${contact[0].zipCode || '384846'}`}
+                            </span>
+                          </p>
+                          <p className={`phone ${!contact[0].phone ? 'empty-field' : ''}`}>
+                            {contact[0].phone || '736-343-9384'}
+                          </p>
+                          <p className={`email ${!contact[0].phone ? 'empty-field' : ''}`}>
+                            {contact[0].email || 'designer@webservice.com'}
+                          </p>
+                        </div>
+                        <div className="links-block">
+                          <div className="cv-heading font-size-2">Links</div>
+                          {
+                            isArray(social_links) && social_links.length && (
+                              social_links.map((itemSocial, index) => (
+                                <a className="links-item" key={index}>
+                                  {/* <img src={itemSocial.icon} alt={itemSocial.name}/> */}
+                                </a>
+                              ))
+                            ) || (
+                              <>
+                                <a className="links-item empty-field">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M13.6466 1.33335H2.35329C2.22634 1.33158 2.10029 1.35484 1.98233 1.4018C1.86438 1.44876 1.75683 1.51849 1.66582 1.60702C1.57482 1.69555 1.50215 1.80113 1.45195 1.91775C1.40176 2.03437 1.37503 2.15973 1.37329 2.28668V13.7133C1.37503 13.8403 1.40176 13.9657 1.45195 14.0823C1.50215 14.1989 1.57482 14.3045 1.66582 14.393C1.75683 14.4815 1.86438 14.5513 1.98233 14.5982C2.10029 14.6452 2.22634 14.6684 2.35329 14.6667H13.6466C13.7736 14.6684 13.8996 14.6452 14.0176 14.5982C14.1355 14.5513 14.2431 14.4815 14.3341 14.393C14.4251 14.3045 14.4978 14.1989 14.548 14.0823C14.5982 13.9657 14.6249 13.8403 14.6266 13.7133V2.28668C14.6249 2.15973 14.5982 2.03437 14.548 1.91775C14.4978 1.80113 14.4251 1.69555 14.3341 1.60702C14.2431 1.51849 14.1355 1.44876 14.0176 1.4018C13.8996 1.35484 13.7736 1.33158 13.6466 1.33335ZM5.39329 12.4933H3.39329V6.49334H5.39329V12.4933ZM4.39329 5.65334C4.11747 5.65334 3.85294 5.54377 3.6579 5.34874C3.46286 5.1537 3.35329 4.88917 3.35329 4.61334C3.35329 4.33752 3.46286 4.07299 3.6579 3.87795C3.85294 3.68292 4.11747 3.57334 4.39329 3.57334C4.53975 3.55673 4.68808 3.57125 4.82854 3.61593C4.96901 3.66062 5.09845 3.73447 5.2084 3.83265C5.31834 3.93083 5.40631 4.05113 5.46654 4.18567C5.52677 4.3202 5.5579 4.46594 5.5579 4.61334C5.5579 4.76075 5.52677 4.90649 5.46654 5.04102C5.40631 5.17556 5.31834 5.29586 5.2084 5.39404C5.09845 5.49222 4.96901 5.56607 4.82854 5.61076C4.68808 5.65544 4.53975 5.66995 4.39329 5.65334ZM12.6066 12.4933H10.6066V9.27334C10.6066 8.46668 10.32 7.94001 9.59329 7.94001C9.3684 7.94166 9.14942 8.0122 8.96585 8.14213C8.78228 8.27205 8.64295 8.45513 8.56663 8.66668C8.51445 8.82337 8.49185 8.98839 8.49996 9.15334V12.4867H6.49996C6.49996 12.4867 6.49996 7.03334 6.49996 6.48668H8.49996V7.33334C8.68164 7.01808 8.9459 6.75836 9.26425 6.58215C9.58261 6.40593 9.943 6.31991 10.3066 6.33334C11.64 6.33334 12.6066 7.19335 12.6066 9.04001V12.4933Z" fill="#605C64"/>
+                                  </svg>
+                                </a>
+                                <a className="links-item empty-field">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M13.9333 1.33334H2.06659C1.87209 1.33334 1.68557 1.41061 1.54804 1.54813C1.41051 1.68566 1.33325 1.87218 1.33325 2.06668V13.9333C1.33325 14.0296 1.35222 14.125 1.38907 14.214C1.42593 14.3029 1.47994 14.3838 1.54804 14.4519C1.61614 14.52 1.69698 14.574 1.78595 14.6109C1.87492 14.6477 1.97028 14.6667 2.06659 14.6667H8.45325V9.50001H6.71992V7.50001H8.45325V6.00001C8.41735 5.64785 8.45892 5.29209 8.57506 4.9577C8.6912 4.62331 8.8791 4.31837 9.12556 4.06428C9.37203 3.81019 9.6711 3.6131 10.0018 3.48684C10.3325 3.36057 10.6868 3.30818 11.0399 3.33334C11.5588 3.33015 12.0774 3.35686 12.5933 3.41334V5.21334H11.5333C10.6933 5.21334 10.5333 5.61334 10.5333 6.19334V7.48001H12.5333L12.2733 9.48001H10.5333V14.6667H13.9333C14.0296 14.6667 14.1249 14.6477 14.2139 14.6109C14.3029 14.574 14.3837 14.52 14.4518 14.4519C14.5199 14.3838 14.5739 14.3029 14.6108 14.214C14.6476 14.125 14.6666 14.0296 14.6666 13.9333V2.06668C14.6666 1.97037 14.6476 1.87501 14.6108 1.78604C14.5739 1.69707 14.5199 1.61623 14.4518 1.54813C14.3837 1.48004 14.3029 1.42602 14.2139 1.38917C14.1249 1.35231 14.0296 1.33334 13.9333 1.33334Z" fill="#605C64"/>
+                                  </svg>
+                                </a>
+                              </>
+                            )
+                          }
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+            <div className="cv-body-area area-2">
+              <div className="column-left additional-color-1-border">
+                <div className="employment-history-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Employment history</div>
+                  {
+                    employment.map((itemEm, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="date-range additional-color-2-text">
+                          <span className={`${!itemEm.periodFrom?.date ? 'empty-field' : ''}`}>
+                            {itemEm.periodFrom?.date && (checkForSymbol([itemEm.periodTo?.date]) ? moment(itemEm.periodFrom.date).format("MMMM yy") + ' - ' : moment(itemEm.periodFrom.date).format("MMMM yy")) || 'March 2022'}
+                          </span>
+                          <span className={`${!itemEm.periodTo?.date ? 'empty-field' : ''}`}>
+                            {itemEm.periodTo?.date && (moment(itemEm.periodTo.date).format("MMMM yy")) || ' - December 2022'}
+                          </span>
+                        </div>
+                        <div className="cv-subheading">
+                          <span className={`${!itemEm.title ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemEm.company, itemEm.city]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          </span>
+                          <span className={`${!itemEm.company ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemEm.city]) ? itemEm.company + ', ' : itemEm.company || ', Apple INC.'}
+                          </span>
+                          <span className={`${!itemEm.city ? 'empty-field' : ''}`}>
+                            {itemEm.city || ', New York City'}
+                          </span>
                         </div>
                         {
-                          isArray(social_links) && !!social_links.length && (
-                            <div className="career-links">
-                              <h3 className="cv-heading font-size-2">Links</h3>
-                              {
-                                social_links.map((itemSocial, index) => (
-                                  <a className="career-links-link" key={index} >
-                                    <img src={itemSocial.icon} alt={itemSocial.name} />
-                                  </a>
-                                ))
-                              }
+                          itemEm.assignment && (
+                            <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                          ) || (
+                            <div className="empty-field">
+                              <ul>
+                                <li>Helped to achieve a consistent look and visual theme across the website by promoting uniform fonts, formatting, images, and layout.</li>
+                                <li>Followed policies and procedures related to application methods and quality standards at all times.</li>
+                                <li>Managed front-end and back-end development in the company's Portfolio Analyst, Employee Track, and Account Management systems.</li>
+                              </ul>
+                            </div>
+                          )
+                        }
+                        
+                      </div>
+                    ))
+                  }
+                </div>
+                <div className="extra-curricular-activities-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Extra-curricular activities</div>
+                  {
+                    extra_curricular.map((itemEx, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="date-range additional-color-2-text">
+                          <span className={`${!itemEx.dateFrom?.date ? 'empty-field' : ''}`}>
+                            {itemEx.dateFrom?.date && (checkForSymbol([itemEx.dateTo?.date]) ? moment(itemEx.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEx.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                          </span>
+                          <span className={`${!itemEx.dateTo?.date ? 'empty-field' : ''}`}>
+                            {itemEx.dateTo?.date && (moment(itemEx.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                          </span>
+                        </div>
+                        <div className="cv-subheading">
+                          <span className={`${!itemEx.title ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                          </span>
+                          <span className={`${!itemEx.employer ? 'empty-field' : ''}`}>
+                            {itemEx.employer || ', My own company'}
+                          </span>
+                        </div>
+                        {
+                          itemEx.description && (
+                            <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
+                          ) || (
+                            <div className="empty-field">
+                              I was doing research for about five different projects. The goal was to find out the biggest issues with the current concept and solution how to solve them.
                             </div>
                           )
                         }
                       </div>
-                    )
+                    ))
+                  }
+                </div>
+                <div className="internships-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Internships</div>
+                  {
+                    internship.map((itemIn, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="date-range additional-color-2-text">
+                          <span className={`${!itemIn.dateFrom?.date ? 'empty-field' : ''}`}>
+                            {itemIn.dateFrom?.date && (checkForSymbol([itemIn.dateTo?.date]) ? moment(itemIn.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemIn.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                          </span>
+                          <span className={`${!itemIn.dateTo?.date ? 'empty-field' : ''}`}>
+                            {itemIn.dateTo?.date && (moment(itemIn.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                          </span>
+                        </div>
+                        <div className="cv-subheading">
+                          <span className={`${!itemIn.jobTitle ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemIn.employer, itemIn.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          </span>
+                          <span className={`${!itemIn.employer ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                          </span>
+                          <span className={`${!itemIn.city ? 'empty-field' : ''}`}>
+                            {itemIn.city || ', Toronto'}
+                          </span>
+                        </div>
+                        {
+                          itemIn.description && (
+                            <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                          ) || (
+                            <div className="empty-field">
+                              Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
+                              Worked productively with Product Team to understand requirements and business specifications around Portfolio Management, Analytics and Risk.
+                            </div>
+                          )
+                        }
+                      </div>
+                    ))
+                  }
+                </div>
+                <div className="references-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">References</div>
+                  {
+                    reference.map((itemRef, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="cv-subheading">
+                          <span className={`${!itemRef.fullName ? 'empty-field' : ''}`}>
+                            {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          </span>
+                          <span className={`${!itemRef.company ? 'empty-field' : ''}`}>
+                            {itemRef.company || ', Company'}
+                          </span>
+                        </div>
+                        <p className={`${!itemRef.email ? 'empty-field' : ''}`}>
+                          {itemRef.email || 'references@webservice.com'}
+                        </p>
+                        <p className={`${!itemRef.phone ? 'empty-field' : ''}`}>
+                          {itemRef.phone || '736-343-9384'}
+                        </p>
+                      </div>
+                    ))
                   }
                 </div>
               </div>
-            </div>
-
-            <div className="cv-body-area area-2">
-              <div className="column-left">
-                {/* employment */}
-
-                {
-                  (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
-                    <div className="employment-history-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Employment history</h3>
-                      {
-                        employment.map((itemEm, index) => (
-                          <div className="block-info font-size-1 main-color-1-text desrip-content" key={index}>
-                            {(!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range additional-color-2-text">
-                                {!!itemEm?.periodFrom?.date && (checkForSymbol([itemEm?.periodTo?.date]) ? moment(itemEm?.periodFrom?.date).format("MMMM yy") + ' - ' : moment(itemEm?.periodFrom?.date).format("MMMM yy"))}
-                                {!!itemEm?.periodTo?.date && (moment(itemEm?.periodTo?.date).format("MMMM yy"))}
-                              </p>
-                            )}
-                            {(!!itemEm?.title || itemEm?.company || !!itemEm?.city) && (
-                              <h4 className="cv-heading">
-                                {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
-                                {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
-                                {!!itemEm?.city && (itemEm?.city)}
-                              </h4>
-                            )}
-                            <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-                {/* extra_curricular */}
-                {
-                  (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
-                    <div className="extra-curricular-activities-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Extra-curricular activities</h3>
-                      {
-                        extra_curricular.map((itemEx, index) => (
-                          <div className="block-info font-size-1 main-color-1-text" key={index}>
-                            {(!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
-                              <p className="date-range additional-color-2-text">
-                                {!!itemEx?.dateFrom?.date && (checkForSymbol([itemEx?.dateTo?.date]) ? moment(itemEx?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEx?.dateFrom?.date).format("MMMM yy"))}
-                                {!!itemEx?.dateTo?.date && (moment(itemEx?.dateTo?.date).format("MMMM yy"))}
-                              </p>
-                            )}
-
-                            {(!!itemEx?.title || itemEx?.employer) && (
-                              <h4 className="cv-heading">
-                                {!!itemEx?.title && (checkForSymbol([itemEx?.employer])) ? itemEx?.title + ', ' : itemEx?.title}
-                                {!!itemEx?.employer && (itemEx?.employer)}
-                              </h4>
-                            )}
-
-                            <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-                {/* internship */}
-                {
-                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
-                    <div className="internships-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Internships</h3>
-                      {
-                        internship.map((itemIn, index) => (
-                          <div className="block-info font-size-1 main-color-1-text" key={index}>
-                            {(!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
-                              <p className="date-range additional-color-2-text">
-                                {!!itemIn?.dateFrom?.date && (checkForSymbol([itemIn?.dateTo?.date]) ? moment(itemIn?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemIn?.dateFrom?.date).format("MMMM yy"))}
-                                {!!itemIn?.dateTo?.date && (moment(itemIn?.dateTo?.date).format("MMMM yy"))}
-                              </p>
-                            )}
-
-                            {(!!itemIn?.jobTitle || !!itemIn?.employer || !!itemIn?.city) && (
-                              <h4 className="cv-heading">
-                                {!!itemIn?.jobTitle && (checkForSymbol([itemIn?.employer, itemIn?.city])) ? itemIn?.jobTitle + ', ' : itemIn?.jobTitle}
-                                {!!itemIn?.employer && (checkForSymbol([itemIn?.city])) ? itemIn?.employer + ', ' : itemIn?.employer}
-                                {!!itemIn?.city && (itemIn?.city)}
-                              </h4>
-                            )}
-
-                            <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-                {/* references */}
-                {
-                  (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
-                    <div className="references-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">References</h3>
-                      {
-                        reference.map((itemRef, index) => (
-                          <div className="block-info font-size-1 main-color-1-text" key={index}>
-                            {/* <p className="date-range additional-color-2-text">March 2022 - December 2022</p> */}
-                            {
-                              (!!itemRef?.fullName || !!itemRef?.company) && (
-                                <h4 className="cv-heading">
-                                  {!!itemRef?.fullName && (checkForSymbol([itemRef?.company])) ? itemRef?.fullName + ', ' : itemRef?.fullName}
-                                  {!!itemRef?.company && (itemRef?.company)}
-                                </h4>
-                              )
-                            }
-                            {
-                              !!itemRef?.email && (
-                                <p>{itemRef.email}</p>
-                              )
-                            }
-                            {itemRef.phone && (<p>{itemRef.phone}</p>)}
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-              </div>
-              <div className="separator"></div>
               <div className="column-right">
-                {/* education */}
-                {
-                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
-                    <div className="education-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Education</h3>
-                      {
-                        education.map((itemEd, index) => (
-                          <div className="block-info font-size-1 main-color-1-text" key={index}>
-                            {(!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
-                              <p className="date-range additional-color-2-text">
-                                {!!itemEd?.dateFrom?.date && (checkForSymbol([itemEd?.dateTo?.date]) ? moment(itemEd?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemEd?.dateFrom?.date).format("MMMM yy"))}
-                                {!!itemEd?.dateTo?.date && (moment(itemEd?.dateTo?.date).format("MMMM yy"))}
-                              </p>
-                            )}
-                            {
-                              (itemEd?.degree) && (
-                                <p className="degree-block additional-color-2-text">
-                                  {(itemEd?.degree?.length > 0) ? (`${itemEd.degree}, `) : ""}
-                                </p>
-                              )
-                            }
-                            {
-                              itemEd?.study && (
-                                <h4 className="cv-heading">{itemEd.study}</h4>
-                              )
-                            }
-                            {
-                              (itemEd?.facility) && (
-                                <p className="college-block">
-                                  {itemEd?.facility && (`${itemEd.facility}, `)}
-                                </p>
-                              )
-                            }
-                            {
-                              !!itemEd?.description && (
-                                <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
-                              )
-                            }
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-
-                {/* courses */}
-                {
-                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
-                    <div className="courses-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Courses</h3>
-                      {
-                        courses.map((itemCo, index) => (
-                          <div className="block-info font-size-1 main-color-1-text" key={index}>
-                            {(!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range additional-color-2-text">
-                                {!!itemCo?.dateFrom?.date && (checkForSymbol([itemCo?.dateTo?.date]) ? moment(itemCo?.dateFrom?.date).format("MMMM yy") + ' - ' : moment(itemCo?.dateFrom?.date).format("MMMM yy"))}
-                                {!!itemCo?.dateTo?.date && (moment(itemCo?.dateTo?.date).format("MMMM yy"))}
-                              </p>
-                            )}
-                            {
-                              !!itemCo?.title && (
-                                <h4 className="cv-heading">{itemCo.title}</h4>
-                              )
-                            }
-                            {
-                              !!itemCo?.institution && (
-                                <p>{itemCo.institution}</p>
-                              )
-                            }
-                          </div>
-                        ))
-                      }
-                    </div>
-                  )
-                }
-
-                {/* certificates */}
-                {
-                  isArray(certificates) && !!certificates.length && (
-                    <div className="certificates-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Certificates</h3>
-                      <div className="block-info font-size-1 main-color-1-text">
+                <div className="education-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Education</div>
+                  {
+                    education.map((itemEd, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="date-range additional-color-2-text">
+                          <span className={`${!itemEd.dateFrom?.date ? 'empty-field' : ''}`}>
+                            {itemEd.dateFrom?.date && (checkForSymbol([itemEd.dateTo?.date]) ? moment(itemEd.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEd.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                          </span>
+                          <span className={`${!itemEd.dateTo?.date ? 'empty-field' : ''}`}>
+                            {itemEd.dateTo?.date && (moment(itemEd.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                          </span>
+                        </div>
+                        <p className={`cv-degree additional-color-2-text ${!itemEd.degree ? 'empty-field' : ''}`}>
+                          {itemEd.degree ? itemEd.degree : 'Bachelor'}
+                        </p>
+                        <div className={`cv-subheading ${!itemEd.study ? 'empty-field' : ''}`}>
+                          {itemEd.study ? itemEd.study : 'Marketing and Management'}
+                        </div>
+                        <p className={`cv-college ${!itemEd.facility ? 'empty-field' : ''}`}>
+                          {itemEd.facility ? itemEd.facility : 'Harcum College, Portland'}
+                        </p>
                         {
-                          certificates.map((item, index) => (
-                            <h4 key={index} className="cv-heading font-size-1 main-color-1-text">
-                              <span key={index}>
-                                {`${item.name}`}
-                              </span>
-                            </h4>
-                          ))
+                          itemEd.description && (
+                            <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                          ) || (
+                            <div className="empty-field">
+                              I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
+                            </div>
+                          )
                         }
                       </div>
-                    </div>
-                  )
-                }
-
-                {/* hobbies */}
-                {
-                  isArray(hobbies) && !!hobbies.length && (
-                    <div className="hobbies-block block-block">
-                      <h3 className="cv-heading font-size-2 additional-color-1-text">Hobbies</h3>
-                      <div className="block-info font-size-1 main-color-1-text">
-                        <p>
-                          {
-                            hobbies.map((item, index) => (
-                              <span key={index}>
-                                {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
-                              </span>
-                            ))
-                          }
+                    ))
+                  }
+                </div>
+                <div className="courses-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Courses</div>
+                  {
+                    courses.map((itemCo, index) => (
+                      <div className="block-info" key={index}>
+                        <div className="date-range additional-color-2-text">
+                          <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''}`}>
+                            {itemCo.dateFrom?.date && (checkForSymbol([itemCo.dateTo?.date]) ? moment(itemCo.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemCo.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                          </span>
+                          <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''}`}>
+                            {itemCo.dateTo?.date && (moment(itemCo.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                          </span>
+                        </div>
+                        <div className={`cv-subheading ${!itemCo.title ? 'empty-field' : ''}`}>
+                          {itemCo.title ? itemCo.title : 'Super course 1'}
+                        </div>
+                        <p className={`${!itemCo.institution ? 'empty-field' : ''}`}>
+                          {itemCo.institution ? itemCo.institution : 'Benjamin Franklin Sidestep Collage, Portland'}
                         </p>
                       </div>
-                    </div>
-                  )
-                }
-              </div>
-            </div>
-
-            {
-              ((isArray(skills) && !!skills.length) || (isArray(languages) && !!languages.length)) && (
-                <div className="cv-body-area area-3">
-                  <div className="bottom-block additional-color-3-background">
+                    ))
+                  }
+                </div>
+                <div className="certificates-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Certificates</div>
                     {
-                      isArray(skills) && !!skills.length && (
-                        <div className="column-left">
-                          <div className="skills-block skills-block font-size-1 main-color-1-text">
-                            <h3 className="cv-heading main-color-2-text font-size-2 additional-color-1-background">Skills</h3>
-                            <div className="skills-estimation-block">
-                              {
-                                skills.map((item, index) => (
-                                  <div className="skill-item" key={index}>
-                                    <p className="skill-name">{item.name}</p>
-                                    {
-                                      !hide_experience_level && (
-                                        <Estimation level={item.level} />
-                                      )
-                                    }
-                                  </div>
-                                ))
-                              }
-                            </div>
-                          </div>
+                      certificates.map((item, index) => (
+                        <div key={index} className={`cv-subheading ${!item.name ? 'empty-field' : ''}`}>
+                          {item.name ? item.name : 'Certificate name'}
                         </div>
-                      )
+                      ))
                     }
-
+                </div>
+                <div className="hobbies-block block-block">
+                  <div className="cv-heading font-size-2 additional-color-1-text">Hobbies</div>
+                  <div className={`${!hobbies[0].text ? 'empty-field' : ''}`}>
                     {
-                      isArray(languages) && !!languages.length && (
-                        <div className="column-right">
-                          <div className="languages-block">
-                            <h3 className="cv-heading font-size-1 main-color-2-text font-size-2 additional-color-1-background">Language</h3>
-                            <div className="skills-estimation-block">
-                              {
-                                languages.map((item, index) => (
-                                  <div className="skill-item" key={index}>
-                                    <p className="skill-name font-size-1">{item.language}</p>
-                                    <Estimation
-                                      level={item.level}
-                                      startLeng={6}
-                                    />
-                                  </div>
-                                ))
-                              }
-                            </div>
-                          </div>
-                        </div>
-                      )
+                      hobbies.map((item, index) => (
+                        <span key={index}>
+                          {item.text ? item.text + (hobbies.length - 1 != index ? ', ' : '') : 'Squash, Surfing, Swimming, Table tennis, Tennis, Tennis polo, Tether car, Tour skating'}
+                        </span>
+                      ))
                     }
                   </div>
                 </div>
-              )
-            }
+              </div>
+            </div>
+            <div className="cv-body-area area-3">
+              <div className="bottom-block additional-color-3-background">
+                <div className="column-left">
+                  <div className="skills-block">
+                    <div className="cv-heading main-color-2-text font-size-2 additional-color-1-background">Skills</div>
+                    <div className="skills-estimation-block">
+                      {
+                        skills.map((item, index) => (
+                          <div className={`skill-item ${!item.name? 'empty-field' : ''}`} key={index}>
+                            <p className="skill-name">
+                              {item.name ? item.name : 'Skill name'}
+                            </p>
+                            {
+                              !hide_experience_level && (
+                                <Estimation level={item.level} />
+                              )
+                            }
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+                <div className="column-right">
+                  <div className="languages-block">
+                    <div className="cv-heading main-color-2-text font-size-2 additional-color-1-background">Language</div>
+                    <div className="skills-estimation-block">
+                      {
+                        languages.map((item, index) => (
+                          <div className={`skill-item ${!item.language? 'empty-field' : ''}`} key={index}>
+                            <p className="skill-name">
+                              {item.language ? item.language : 'Language'}
+                            </p>
+                            <Estimation
+                              level={item.level}
+                              startLeng={6}
+                            />
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

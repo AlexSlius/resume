@@ -76,6 +76,22 @@ export const TemplatesSelect = ({
         }, 500);
     }
 
+    const dataNew = {
+        contact: data?.contact.length ? data.contact : [{}],
+        social_links: data?.social_links.length ? data.social_links : [{}],
+        employment: data?.employment.length ? data.employment : [{}],
+        extra_curricular: data?.extra_curricular.length ? data.extra_curricular : [{}],
+        internship: data?.internship.length ? data.internship : [{}],
+        reference: data?.reference.length ? data.reference : [{}],
+        education: data?.education.length ? data.education : [{}],
+        career_objective: data?.career_objective.length ? data.career_objective : [{}],
+        courses: data?.courses.length ? data.courses : [{}],
+        certificates: data?.certificates.length ? data.certificates : [{}],
+        hobbies: data?.hobbies.length ? data.hobbies : [{}],
+        skills: data?.skills.length ? data.skills : [{}],
+        languages: data?.languages.length ? data.languages : [{}],
+    };
+
     return (
         <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>
             {
@@ -84,6 +100,7 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
