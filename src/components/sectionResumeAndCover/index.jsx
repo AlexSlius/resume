@@ -3,9 +3,8 @@ export const SectionResumeAndCover = () => {
         <section className="randc mt-180">
             <div className="containers">
                 <div className="randc__h">
-                    <h2 className="randc_h2 h2 font-600">Resume and cover letter
-                        design is similar</h2>
-                    <p className="randc_des">In three simple steps, create the perfect document to impress hiring managers and employers. Minimum time, maximum professional quality.</p>
+                    <h2 className="randc_h2 h2 font-600">Matching designs</h2>
+                    <p className="randc_des">Make your chances even higher with matching resume and cover letter designs.</p>
                 </div>
                 <div className="randc__main">
                     <div className="randc__item ran-item">

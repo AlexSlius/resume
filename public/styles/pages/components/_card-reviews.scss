@@ -43,7 +43,18 @@
     &__star {
         width: 92px;
         height: 16px;
-        background: url("/../images/page/stars.svg")center/contain no-repeat;
+
+        &.four {
+            background: url("/../images/page/stars-four.svg")center/contain no-repeat;
+        }
+        
+        &.five {
+            background: url("/../images/page/stars-five.svg")center/contain no-repeat;
+        }
+
+        &.fout_five {
+            background: url("/../images/page/stars.svg")center/contain no-repeat;
+        }
     }
 
     &__des {

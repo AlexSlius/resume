@@ -1,103 +1,55 @@
 {
     "one": [
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 0,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 1,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 2,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         }
     ],
     
     "two": [
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 0,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 1,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-        },
-        {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 2,
+            "ava": "/images/photo_for_reviews/men/1405413422589588603_3676249959.jpg",
+            "name": "John Smith",
+            "job": "Database Administrator",
+            "des": "Resulon effortlessly guided me to craft an impressive resume. It's the best tool I've discovered so far!",
+            "dataS": "five"
         }
     ]
 }

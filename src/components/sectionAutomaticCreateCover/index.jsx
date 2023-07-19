@@ -7,8 +7,8 @@ export const SectionAutCreateCover = ({
         <section className="mt-180 autcover">
             <div className="containers">
                 <div className="autcover__h">
-                    <h2 className="autcover_h2 h2 font-600">Automatic creation cover letter</h2>
-                    <p className="autcover_des">In three simple steps, create the perfect document to impress hiring managers and employers. Minimum time, maximum professional quality.</p>
+                    <h2 className="autcover_h2 h2 font-600">Finally, it is easy</h2>
+                    <p className="autcover_des">Just a couple of easy spent requiring almost no writing, and you will get a professional cover letter</p>
                     <div className="autcover__wr-btn">
                         <Link href={link} className="button-p button-type-standart">Create Cover Letter</Link>
                     </div>
@@ -17,16 +17,16 @@ export const SectionAutCreateCover = ({
                     <div>
                         <img src="/images/page/cover-automatic.png" alt="cover automatic cover" />
                         <div className="autcover-item autcover-item_one">
-                            <span>We will write the text ourselves</span>
+                            <span>You won’t have to write it, we will do it for you.</span>
                         </div>
                         <div className="autcover-item autcover-item_two">
-                            <span>We will write the text ourselves</span>
+                            <span>Just make simple and easy choices.</span>
                         </div>
                         <div className="autcover-item autcover-item_three">
-                            <span>We will write the text ourselves</span>
+                            <span>Automatically generated, persuasive text.</span>
                         </div>
                         <div className="autcover-item autcover-item_four">
-                            <span>We will write the text ourselves</span>
+                            <span>Written by the best HR professionals.</span>
                         </div>
                     </div>
                 </div>

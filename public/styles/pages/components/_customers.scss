@@ -32,6 +32,10 @@
     &__center {
         max-width: 404px;
     }
+
+    @media(min-width: 1200px) {
+        min-height: 233px;
+    }
 }
 
 .cusc {

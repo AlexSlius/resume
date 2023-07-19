@@ -8,17 +8,16 @@ export const SectionLetAi = ({
         <section className="let-ai mt-180">
             <div className="containers">
                 <div className="let-ai__head">
-                    <h2 className="h2 font-600 max-t-570">Let AI write youre resume</h2>
-                    <p className="let-ai-t max-text-770">Discover the Premium Difference with Our Resume Builder. We invite you to experience the superior quality of our services without registration or payment. Step into the future of resume creation, empowering your career journey with confidence and trust.</p>
+                    <h2 className="h2 font-600 max-t-570">Building is better than writing</h2>
+                    <p className="let-ai-t max-text-770">Don’t spend your time and effort on reminding all essential tasks, how not to miss some relevant skills, or composing a unique summary. With the help of generative AI, our experienced HR professionals created a large database of high-quality content ready to be used by you.</p>
                 </div>
                 <div className="let-ai_main">
                     <div className="let-ai__block aib">
                         <div className="aib__he">UI/UX Designer</div>
                         <div className="aib__des">
-                            <div>Settled any customer disputes in a professional and pleasant manner.</div>
                             <ul>
                                 <li>Settled any customer disputes in a professional and pleasant manner.</li>
-                                <li>Settled any customer disputes in a professional and pleasant manner.</li>
+                                <li>Helped to increase customer return rates by providing excellent customer service at all times.</li>
                             </ul>
                         </div>
 
@@ -41,9 +40,9 @@ export const SectionLetAi = ({
                         <div className="aib-b__wrl">
                             <ul className="aib-b__list">
                                 <li>Powered by GPT-4</li>
-                                <li>Generated in seconds</li>
-                                <li>Produces human-like text</li>
-                                <li>Nobody’s gonna know</li>
+                                <li>REady in seconds</li>
+                                <li>Verified by HR professionals</li>
+                                <li>Unique and relevant</li>
                             </ul>
                         </div>
                         <div className="aib-b__wr-btn">

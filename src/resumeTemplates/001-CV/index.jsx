@@ -185,6 +185,7 @@ const drawing = () => {
 
 export const ResumeCv001 = ({
   data,
+  dataNew,
   stateClasses,
   reportTemplateRef,
   isDrawing = false,
@@ -207,7 +208,7 @@ export const ResumeCv001 = ({
     skills,
     languages,
     hide_experience_level
-  } = data;
+  } = dataNew;
 
   useEffect(() => {
     if (isTemplate) {
