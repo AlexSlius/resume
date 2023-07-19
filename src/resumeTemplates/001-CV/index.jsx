@@ -56,16 +56,16 @@ const drawing = () => {
       let cvDataBottom = [];
 
       cvBlocksTop.forEach(function(el){
-        cvDataTop.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-1 .' + el).clone());
+        cvDataTop.push($('.' + el).clone());
       });
       cvBlocksLeft.forEach(function(el){
-        cvDataLeft.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .' + el).clone());
+        cvDataLeft.push($('.' + el).clone());
       });
       cvBlocksRight.forEach(function(el){
-        cvDataRight.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-2 .' + el).clone());
+        cvDataRight.push($('.' + el).clone());
       });
       cvBlocksBottom.forEach(function(el){
-        cvDataBottom.push($('#cv-body-hidden-container .cv-body-content .cv-body-area.area-3 .' + el).clone());
+        cvDataBottom.push($('.' + el).clone());
       });
 
       current_page_number = 1;
@@ -113,16 +113,13 @@ const drawing = () => {
       return getPageContainer().find('.area-1');
     }
     function getPageColumnLeft() {
-      return getPageArea2().find('.column-left');
+      return getPageContainer().find('.area-2 .column-left');
     }
     function getPageColumnRight() {
-      return getPageArea2().find('.column-right');
+      return getPageContainer().find('.area-2 .column-right');
     }
     function getPageColumnBottom() {
       return getPageContainer().find('.area-3');
-    }
-    function getPageArea2() {
-      return getPageContainer().find('.area-2');
     }
     function checkHeight() {
       return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
