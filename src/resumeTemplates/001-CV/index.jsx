@@ -91,7 +91,6 @@ const drawing = () => {
       current_page_number = 1;
       cvDataRight.forEach(function(el) {
         getPageColumnRight().append(el);
-        console.log(checkHeight());
         if(checkHeight()) {
           el.remove();
           current_page_number++;
@@ -169,7 +168,10 @@ const drawing = () => {
       return page_element_container;
     }
 
-    rebuildingPages();
+    setTimeout(function(){
+      rebuildingPages();
+    }, 100)
+    
   }
 }
 
