@@ -77,8 +77,9 @@ export const TemplatesSelect = ({
     }
 
     const dataNew = {
-        contact: data?.contact.length ? contact : [{}],
+        contact: data?.contact.length ? data.contact : [{}],
         social_links: data?.social_links.length ? data.social_links : [{}],
+        employment: data?.employment.length ? data.employment : [{}],
         extra_curricular: data?.extra_curricular.length ? data.extra_curricular : [{}],
         internship: data?.internship.length ? data.internship : [{}],
         reference: data?.reference.length ? data.reference : [{}],

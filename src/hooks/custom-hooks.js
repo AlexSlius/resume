@@ -94,7 +94,7 @@ export const useScaleResumeMain = ({
   constWidth = 624,
   currentResolution = [],
   drawing,
-  loadContent
+  loadContent,
 }) => {
   const [scaleSize, setScaleSize] = useState(0.915677);
   const [origin, setOrigin] = useState(0);
@@ -112,6 +112,9 @@ export const useScaleResumeMain = ({
           let wHr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetHeight;
           let sc = scaleSize;
 
+          console.log("wid, hed ", wid, hed);
+          console.log("wOr, wHr ", wOr, wHr);
+
           // если будет больше по ширине
           if (wOr > wid) {
             let trW = ((wid * 100) / wOr) / 100;
@@ -120,6 +123,10 @@ export const useScaleResumeMain = ({
 
           // проверяем влазит ли по высоте после уменшения по ширине, если не влезает то уменшаем чтобы влезло по высоте
           let whS = (wHr * sc);
+
+          console.log('sc: ', sc);
+          console.log("whS: ", whS);
+
           if (whS > hed) {
             let minH = whS - hed;
             let vic = sc - ((minH * 100) / hed / 100);
@@ -148,11 +155,12 @@ export const useScaleResumeMain = ({
   }
 
   useEffect(() => {
-    handleResize();
-
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    handleResize();
   }, [currentResolution, drawing, loadContent]);
 
   return { scaleSize, origin, originTop };
