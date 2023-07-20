@@ -76,6 +76,7 @@
 
   .cv-body {
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     background-color: $main_color_2;
   }
