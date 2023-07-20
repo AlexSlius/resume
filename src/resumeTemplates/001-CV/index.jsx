@@ -180,6 +180,7 @@ export const ResumeCv001 = ({
   isTemplate = false,
   handleFalseDrafind = () => { },
   objActiveBlock,
+  beforeСontent,
 }) => {
   const {
     contact,

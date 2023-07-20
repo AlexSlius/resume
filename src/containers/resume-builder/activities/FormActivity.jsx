@@ -75,7 +75,7 @@ const FormActivity = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(activityObj);
-   const isDataPage = (activityObj?.lenght > 1) || isObjDatasKeys(activityObj?.[0] || {}) || isObjDatas(objNew);
+   const isDataPage = (activityObj?.length > 1) || isObjDatasKeys(activityObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -195,6 +195,20 @@ const FormActivity = ({
       return re?.payload?.id;
    }
 
+   const handleDeleteLastEmpty = () => {
+      if (!(activityObj?.length > 0))
+      return;
+
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    useEffect(() => {
       // when entering, create a new form
       if (isArray(activityObj) && (activityObj?.length == 0)) {
@@ -202,6 +216,10 @@ const FormActivity = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'extraCurricular' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
 
    useEffect(() => {
@@ -441,6 +459,7 @@ const FormActivity = ({
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more activity'}
+                  disabled={!(activityObj?.length > 0)}
                />
             </CCol>
             <CCol className="mt-4">

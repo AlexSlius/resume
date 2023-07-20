@@ -121,9 +121,8 @@ export const CoverLatter = () => {
             />
             <SectionGetYou
                 linkBtn={`${routersPages['coverLetterNew']}`}
-                title="Get your 7-day trial"
-                des="Don’t want to commit just yet?
-                Take us for a test drive for 7 days and explore how the resume and cover letter builder work together to create the best application for a job."
+                title="Free trial for everyone"
+                des="Not quite ready to fully commit? Feel free to take advantage of our 7-day trial. During this period, you can explore how our resume and cover letter builder collaborate seamlessly to craft the most optimal job application."
                 textBtn="Create Cover Letter"
                 isMob={isMob}
                 pageCover={true}
@@ -138,8 +137,8 @@ export const CoverLatter = () => {
             />
             <SectionForFree
                 isMob={isMob}
-                title="Get started for free"
-                des="We provide a credit card-free 7-day trial period "
+                title="Start for free"
+                des="Don’t pay to try, just use it for whole 7 days for zero dollars."
                 link={`/${routersPages['coverLetterNew']}`}
                 btnText="Create Cover Letter"
                 pageCover={true}

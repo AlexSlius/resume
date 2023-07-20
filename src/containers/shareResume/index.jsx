@@ -5,7 +5,7 @@ import style from "./style.module.scss";
 
 const ShareResume = ({
     isCover = true,
-    ctx
+    ctx,
 }) => {
     let isPdf = downloadPagePdf(ctx);
 
@@ -13,7 +13,7 @@ const ShareResume = ({
         <div className={isPdf ? style.wr_div : ""}>
             <div className={`page-share ${isPdf ? "pdf" : ""}`}>
                 <div className="page-share__container">
-                    <Templates isCover={isCover} isPageView={true} />
+                    <Templates isCover={isCover} isPageView={true} beforeСontent={false}/>
                 </div>
             </div>
         </div>

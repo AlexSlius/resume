@@ -56,6 +56,7 @@ import iconDotMenuH from "/public/images/icons/dot-menu-h.svg?sprite";
 const Templates = ({
     isCover = false,
     isPageView = false,
+    beforeСontent=true,
 }) => {
     const refIdTimeout = useRef(undefined);
     const refWr = useRef(undefined);
@@ -574,6 +575,7 @@ const Templates = ({
                                             statusResumeActive={dataOther?.statusResumeActive}
                                             drawing={true}
                                             isTemplate={true}
+                                            beforeСontent={beforeСontent}
                                         />
                                     )
                                 }
@@ -592,6 +594,7 @@ const Templates = ({
                                             statusResumeActive={dataOther?.statusResumeActive}
                                             drawing={true}
                                             isTemplate={true}
+                                            beforeСontent={beforeСontent}
                                         />
                                     )
                                 }

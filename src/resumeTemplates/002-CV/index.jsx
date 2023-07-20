@@ -232,6 +232,7 @@ export const ResumeCv002 = ({
   isTemplate = false,
   handleFalseDrafind = () => { },
   objActiveBlock,
+  beforeСontent,
 }) => {
   const {
     contact,

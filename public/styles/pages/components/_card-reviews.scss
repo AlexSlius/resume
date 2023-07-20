@@ -47,13 +47,18 @@
         &.four {
             background: url("/../images/page/stars-four.svg")center/contain no-repeat;
         }
-        
+
         &.five {
             background: url("/../images/page/stars-five.svg")center/contain no-repeat;
         }
 
         &.fout_five {
             background: url("/../images/page/stars.svg")center/contain no-repeat;
+        }
+
+
+        &.four_9 {
+            background: url("/../images/page/stars-fout_9.svg")center/contain no-repeat;
         }
     }
 
@@ -82,16 +87,16 @@
         height: 48px;
         margin-right: 14px;
     }
+
     .revs__main {
         margin-top: 30px;
     }
+
     .card-revie {
         padding: 24px;
     }
+
     .card-revie__name {
         font-size: 16px;
     }
 }
-
-
-

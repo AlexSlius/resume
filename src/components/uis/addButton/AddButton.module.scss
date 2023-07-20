@@ -6,12 +6,19 @@
    font-size: 18px;
    line-height: 21px;
    color: #3679fd;
+
    svg {
       margin-top: -3px;
+
       path {
          fill: #3679fd;
       }
    }
+
+   &:disabled {
+      pointer-events: none;
+   }
+
    @media (any-hover: hover) {
       &:hover {
          text-decoration: underline;
@@ -23,5 +30,5 @@
    .addButton {
       width: 100%;
       justify-content: center;
-   } 
+   }
 }

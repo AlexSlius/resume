@@ -68,7 +68,7 @@ const FormReference = ({
    const refData = useRef(referencesObj);
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
-   const isDataPage = (referencesObj?.lenght > 1) || isObjDatasKeys(referencesObj?.[0] || {}) || isObjDatas(objNew);
+   const isDataPage = (referencesObj?.length > 1) || isObjDatasKeys(referencesObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -168,8 +168,21 @@ const FormReference = ({
       let res = await dispatch(fetchDeleteAll({ idCv }));
 
       if (isDelete(res.payload)) {
-         console.log("2222");
          await handleAddOne();
+      }
+   }
+
+   const handleDeleteLastEmpty = () => {
+      if (!(referencesObj?.length > 0))
+         return;
+
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
       }
    }
 
@@ -180,6 +193,10 @@ const FormReference = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'reference' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
 
    useEffect(() => {
@@ -338,6 +355,7 @@ const FormReference = ({
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more reference'}
+                  disabled={!(referencesObj?.length > 0)}
                />
             </CCol>
             <CCol className="mt-4">

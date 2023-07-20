@@ -85,7 +85,7 @@ const FormInterShip = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(interhipObj);
-   const isDataPage = (interhipObj?.lenght > 1) || isObjDatasKeys(interhipObj?.[0] || {}) || isObjDatas(objNew);
+   const isDataPage = (interhipObj?.length > 1) || isObjDatasKeys(interhipObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -219,6 +219,20 @@ const FormInterShip = ({
       return re?.payload?.id;
    }
 
+   const handleDeleteLastEmpty = () => {
+      if (!(interhipObj?.length > 0))
+         return;
+
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    useEffect(() => {
       // when entering, create a new form
       if (isArray(interhipObj) && (interhipObj?.length == 0)) {
@@ -226,6 +240,10 @@ const FormInterShip = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'internship' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
 
    useEffect(() => {
@@ -473,6 +491,7 @@ const FormInterShip = ({
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more internship'}
+                  disabled={!(interhipObj?.length > 0)}
                />
             </CCol>
             <CCol className="mt-4">

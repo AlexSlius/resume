@@ -112,8 +112,8 @@ export const useScaleResumeMain = ({
           let wHr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetHeight;
           let sc = scaleSize;
 
-          console.log("wid, hed ", wid, hed);
-          console.log("wOr, wHr ", wOr, wHr);
+          // console.log("wid, hed ", wid, hed);
+          // console.log("wOr, wHr ", wOr, wHr);
 
           // если будет больше по ширине
           if (wOr > wid) {
@@ -124,8 +124,8 @@ export const useScaleResumeMain = ({
           // проверяем влазит ли по высоте после уменшения по ширине, если не влезает то уменшаем чтобы влезло по высоте
           let whS = (wHr * sc);
 
-          console.log('sc: ', sc);
-          console.log("whS: ", whS);
+          // console.log('sc: ', sc);
+          // console.log("whS: ", whS);
 
           if (whS > hed) {
             let minH = whS - hed;

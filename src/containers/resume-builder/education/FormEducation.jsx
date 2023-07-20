@@ -17,7 +17,7 @@ import { newPosition, arrPositionUpdateItem } from "../../../helpers/position";
 import { isObjDatas, isObjDatasKeys } from '../../../helpers/datasPage';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 import { isDelete } from '../../../helpers/checkingStatuses';
-import { isAddForm, isFocusForm, lastFormDelete } from '../../../utils/isAddNewFormResume';
+import { isAddForm, isFocusForm, lastFormDelete} from '../../../utils/isAddNewFormResume';
 
 import {
    updateItemFieldEducation,
@@ -76,7 +76,7 @@ const FormEducation = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(educationObj);
-   const isDataPage = (educationObj?.lenght > 1) || isObjDatasKeys(educationObj?.[0] || {}) || isObjDatas(objNew);
+   const isDataPage = (educationObj?.length > 1) || isObjDatasKeys(educationObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -191,6 +191,20 @@ const FormEducation = ({
       dispatch(getUniversity(text));
    }
 
+   const handleDeleteLastEmpty = () => {
+      if (!(educationObj?.length > 0))
+      return;
+
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    useEffect(() => {
       // when entering, create a new form
       if (isArray(educationObj) && (educationObj?.length == 0)) {
@@ -199,6 +213,10 @@ const FormEducation = ({
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'education' }));
       getSearchListDegree();
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
 
    useEffect(() => {
@@ -410,6 +428,7 @@ const FormEducation = ({
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more education'}
+                  disabled={!(educationObj?.length > 0)}
                />
             </CCol>
             <CCol className="mt-4">

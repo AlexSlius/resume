@@ -11,12 +11,14 @@ export const handleChanbdegAutOrPlan = async ({
     isAthorized,
     dispatch,
     Router,
-    query,
     funCalb = () => { },
     link = undefined,
     isClickBtn = false,
     isSubscribe = false,
 }) => {
+    // эта строчка для теста её потом убрать
+    isSubscribe = true;
+
     if (!isCover) {
         // resume
         if (isNewResume) {
