@@ -45,6 +45,7 @@
             li {
                 margin-top: 10px;
                 list-style-type: disc;
+                color: #546C97;
             }
         }
     }
@@ -99,6 +100,15 @@
         &.tfour {
             right: -37%;
             top: 76%;
+        }
+
+        &.ttwo,
+        &.tthree {
+            @media(min-width: 768px) {
+                &::before {
+                    background: url("/../images/icons/ail-item-green.svg") center/contain no-repeat;
+                }
+            }
         }
     }
 }
@@ -206,6 +216,7 @@
                 top: 109%;
             }
         }
+
         &-b {
             margin-top: 140px;
         }

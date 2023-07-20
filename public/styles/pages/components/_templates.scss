@@ -5,7 +5,8 @@
 
 .items-resumes {
     display: grid;
-    grid-gap: 30px;
+    grid-row-gap: 48px;
+    grid-column-gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 30px;
 }
@@ -15,6 +16,7 @@
         position: relative;
         border-radius: 12px;
         overflow: hidden;
+        box-shadow: 0px 20px 30px 0px rgba(54, 121, 253, 0.06);
 
         img {
             width: 100%;
@@ -91,9 +93,10 @@
     border-radius: 6px;
     padding: 6px 8px;
     color: #fff;
-    font-size: 12px;
+    font-size: 11px;
     background: #FFAD61;
     text-transform: uppercase;
+    font-weight: 500;
 
     &.type-docx {
         background: #3679FD;
@@ -271,6 +274,10 @@
     color: var(--grey);
     max-width: 770px;
     margin: 32px auto 0 auto;
+
+    &_18 {
+        font-size: 18px;
+    }
 }
 
 .wr-select-row {
@@ -356,6 +363,8 @@
     .items-resumes {
         grid-template-columns: 1fr;
         gap: 40px;
+        grid-row-gap: 40px;
+        grid-column-gap: 40px;
     }
 
     .item-card-resum__titl {

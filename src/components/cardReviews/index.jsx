@@ -1,8 +1,11 @@
+import Swiper from "swiper";
+
 export const CardReviews = ({
     ava = "",
     name,
     job,
-    des
+    des,
+    dataS
 }) => {
     return (
         <div className="card-revie">
@@ -15,7 +18,7 @@ export const CardReviews = ({
                     </div>
                 </div>
                 <div className="card-revie__right">
-                    <div className="card-revie__star"></div>
+                    <div className={`card-revie__star ${dataS}`}></div>
                 </div>
             </div>
             <div className="card-revie__des">{des}</div>

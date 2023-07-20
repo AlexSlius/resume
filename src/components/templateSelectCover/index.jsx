@@ -43,6 +43,7 @@ export const TemplatesSelectCover = ({
     drawing = false,
     isTemplate = false,
     handleReload = () => { },
+    beforeСontent=true
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);

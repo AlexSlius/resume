@@ -1,18 +1,10 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import Head from 'next/head'
 import { useSelector, useDispatch } from 'react-redux'
 
 
 // Components
-import { MainTitle } from "../../components/mainTitle";
-import { AccordionComponent } from "../../components/accordion";
-import { ImageSprite } from "../../components/imageSprite";
-import { PromoNumbers } from '../../components/promoNumbers';
-
-import { SureItem } from '../../components/sureItem';
 import { SectionPromo } from "../../components/sectionPromo";
-import { UsersCreated } from "../../components/usersCreated";
 import { SectionCustomers } from "../../components/customers";
 import { SectionGetYou } from "../../components/sectionGetYou";
 import { SectionFag } from "../../components/sectionFag";
@@ -21,6 +13,10 @@ import { SectionReviews } from "../../components/sectionReviews";
 import { SectionPrivacyOfYou } from "../../components/sectionPrivacyOfYou";
 import { SectionSelectTemplates } from "../../components/sectionSelectTeplates";
 import { ModalTemplate } from "../../components/modals/modaltemplate";
+import { SectionOfferAdvantage } from "../../components/sectionAdvantage";
+import { SectionResumeAndCover } from "../../components/sectionResumeAndCover";
+import { SectionAutCreateCover } from "../../components/sectionAutomaticCreateCover";
+
 
 // Libraries
 import { updateActiveCoverNew } from "../../slices/cover/coverData";
@@ -31,12 +27,9 @@ import { routersPages } from "../../constants/next-routers";
 // Data
 import promoNumbersData from './data/promo-numbers.json';
 import advantagesData from './data/advantages.json';
-import sureData from './data/sure.json';
 import faqData from './data/faq.json';
 import reviewsObjData from "./data/data-reviews.json";
-import { SectionOfferAdvantage } from "../../components/sectionAdvantage";
-import { SectionResumeAndCover } from "../../components/sectionResumeAndCover";
-import { SectionAutCreateCover } from "../../components/sectionAutomaticCreateCover";
+import dataCostomers from "./data/data-costomers.json";
 
 
 export const CoverLatter = () => {
@@ -118,9 +111,8 @@ export const CoverLatter = () => {
                 handlePreview={handlePreview}
             />
             <SectionPrivacyOfYou
-                title="Privacy of your information"
-                des="Protecting your privacy is our top priority.
-            This Privacy Policy outlines the types of personal information we collect, how we use and protect that information, and your rights and choices regarding your personal data."
+                title="We protect your privacy"
+                des="We employ stringent security measures like encryption and two-factor authentication to protect your data. Compliant with GDPR, our transparent privacy policy clarifies our data handling. We don't sell your personal information or share it. You can manage and delete your data at any time. At Resulon, your trust and privacy are our topmost commitment"
             />
             <SectionReviews
                 title="Reviews"
@@ -129,27 +121,29 @@ export const CoverLatter = () => {
             />
             <SectionGetYou
                 linkBtn={`${routersPages['coverLetterNew']}`}
-                title="Get your 7-day trial"
-                des="Don’t want to commit just yet?
-                Take us for a test drive for 7 days and explore how the resume and cover letter builder work together to create the best application for a job."
+                title="Free trial for everyone"
+                des="Not quite ready to fully commit? Feel free to take advantage of our 7-day trial. During this period, you can explore how our resume and cover letter builder collaborate seamlessly to craft the most optimal job application."
                 textBtn="Create Cover Letter"
                 isMob={isMob}
                 pageCover={true}
             />
-            <SectionCustomers />
+            <SectionCustomers
+                title="Our customers <br/> get hired by top companies"
+                data={dataCostomers}
+            />
             <SectionFag
                 dataArrAccordion={faq}
                 title="Frequently<br/> Asked Questions"
             />
             <SectionForFree
                 isMob={isMob}
-                title="Get started for free"
-                des="We provide a credit card-free 7-day trial period "
+                title="Start for free"
+                des="Don’t pay to try, just use it for whole 7 days for zero dollars."
                 link={`/${routersPages['coverLetterNew']}`}
                 btnText="Create Cover Letter"
                 pageCover={true}
             />
-             <ModalTemplate
+            <ModalTemplate
                 visible={modalTem.status}
                 item={modalTem.data}
                 onClose={handleCloseModalTemplate}

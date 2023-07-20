@@ -176,6 +176,9 @@
 .resume-main_scale {
    pointer-events: none;
    min-width: 624px;
+   @media(min-width: 1024px) {
+      max-height: 842px;
+   }
 
    &>div {
       .cv-body {

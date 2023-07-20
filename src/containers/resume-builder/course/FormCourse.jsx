@@ -66,7 +66,7 @@ const FormCourse = ({
    const [selected, setSelected] = useState(null);
    const [lastFormIsEmpty, setLastFormIsEmpty] = useState(false);
    const refData = useRef(courseObj);
-   const isDataPage = (courseObj?.lenght > 1) || isObjDatasKeys(courseObj?.[0] || {}) || isObjDatas(objNew);
+   const isDataPage = (courseObj?.length > 1) || isObjDatasKeys(courseObj?.[0] || {}) || isObjDatas(objNew);
 
    const onDragEnd = (result) => {
       if (!result.destination) {
@@ -157,6 +157,20 @@ const FormCourse = ({
       }, 500);
    }
 
+   const handleDeleteLastEmpty = () => {
+      if (!(courseObj?.length > 0))
+         return;
+
+      let resObj = lastFormDelete({
+         data: refData.current,
+         dependence: keysFiled,
+      });
+
+      if (resObj?.id) {
+         handleDeleteOne(resObj.id);
+      }
+   }
+
    useEffect(() => {
       // when entering, create a new form
       if (isArray(courseObj) && (courseObj?.length == 0)) {
@@ -164,6 +178,10 @@ const FormCourse = ({
       }
 
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'courses' }));
+
+      return () => {
+         handleDeleteLastEmpty();
+      }
    }, []);
 
    useEffect(() => {
@@ -326,6 +344,7 @@ const FormCourse = ({
                <AddButton
                   onClick={handleAddOne}
                   text={'Add one more course'}
+                  disabled={!(courseObj?.length > 0)}
                />
             </CCol>
             <CCol className="mt-4">

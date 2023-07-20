@@ -95,7 +95,7 @@ export const SectionRelevant = () => {
                     </div>
                     <div className="relevant__right">
                         <h2 className="h2 font-600">Relevant resume categories</h2>
-                        <p className="relevant__des">In three simple steps, create the perfect document to impress hiring managers and employers. Minimum time, maximum professional quality.</p>
+                        <p className="relevant__des">We have made customized categories for every possible need, crafted in a user-friendly way, to ensure an excellent experience.</p>
                     </div>
                 </div>
             </div>

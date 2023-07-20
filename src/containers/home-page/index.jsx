@@ -26,6 +26,7 @@ import { routersPages } from "../../constants/next-routers";
 import promoNumbersData from './data/promo-numbers.json';
 import reviewsObjData from "./data/data-reviews.json";
 import arrAccordion from "./data/data-accordion.json";
+import dataCostomers from "./data/data-costomers.json";
 
 
 export const HomePage = () => {
@@ -128,11 +129,13 @@ export const HomePage = () => {
                 handlePreview={handlePreview}
             />
             <SectionPrivacyOfYou
-                title="Privacy of your information"
-                des="Protecting your privacy is our top priority.
-            This Privacy Policy outlines the types of personal information we collect, how we use and protect that information, and your rights and choices regarding your personal data."
+                title="We protect your privacy"
+                des="We employ stringent security measures like encryption and two-factor authentication to protect your data. Compliant with GDPR, our transparent privacy policy clarifies our data handling. We don't sell your personal information or share it. You can manage and delete your data at any time. At Resulon, your trust and privacy are our topmost commitment"
             />
-            <SectionCustomers />
+            <SectionCustomers
+                title="Our customers <br/> get hired by top companies"
+                data={dataCostomers}
+            />
             <SectionGetYou
                 title="Get your 7-day trial"
                 des="Don’t want to commit just yet?
@@ -148,11 +151,11 @@ export const HomePage = () => {
             <SectionForFree
                 isMob={isMob}
                 title="Get started for free"
-                des="We provide a credit card-free 7-day trial period"
+                des="Let us help you build an excellent resume for any job. Our team of highly experienced HR professionals verified every template to improve your chances, don’t miss them."
                 link={`/${routersPages['resumeBuilderNew']}`}
                 btnText="Create My Resume"
             />
-             <ModalTemplate
+            <ModalTemplate
                 visible={modalTem.status}
                 item={modalTem.data}
                 onClose={handleCloseModalTemplate}

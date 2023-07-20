@@ -6,53 +6,12 @@ import Icon from "../Icon";
 
 import iconArrLb from "/public/images/icons/iconArrLb.svg?sprite";
 import iconArrRb from "/public/images/icons/iconArrRb.svg?sprite";
+ 
 
-const datas = [
-    {
-        id: 0,
-        img: "/images/icons/icon-customers-1.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 1",
-        des: "1 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-    {
-        id: 2,
-        img: "/images/icons/icon-customers-2.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 2",
-        des: "2 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-    {
-        id: 3,
-        img: "/images/icons/icon-customers-3.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 3",
-        des: "3 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-    {
-        id: 4,
-        img: "/images/icons/icon-customers-4.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 4",
-        des: "4 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-    {
-        id: 5,
-        img: "/images/icons/icon-customers-5.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 5",
-        des: "5 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-    {
-        id: 6,
-        img: "/images/icons/icon-customers-6.svg",
-        avatar: "/images/icons/avar-custor.png",
-        name: "Alex 6",
-        des: "6 It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
-    },
-]
-
-export const SectionCustomers = () => {
+export const SectionCustomers = ({
+    data,
+    title,
+}) => {
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
     const refSwip = useRef(null);
@@ -68,7 +27,7 @@ export const SectionCustomers = () => {
     return (
         <section className="customers mt-180">
             <div className="containers">
-                <h2 className="h2 font-600 max-t-570">Our customers<br /> get hired by top companies</h2>
+                <h2 className="h2 font-600 max-t-570" dangerouslySetInnerHTML={{ __html: title }}></h2>
             </div>
             <div className="customers__main">
                 <div className="customers-swiper" ref={refSwip}>
@@ -115,7 +74,7 @@ export const SectionCustomers = () => {
                         }}
                     >
                         {
-                            datas.map((item, index) => (
+                            data.map((item, index) => (
                                 <SwiperSlide key={index}>
                                     <div className="item-card-custom" data-id-active={item.id}>
                                         <img src={item.img} alt="icon customers" />
@@ -135,7 +94,7 @@ export const SectionCustomers = () => {
                     </div>
                     <div className="cusf__center cusc">
                         {
-                            datas.map((item) => (
+                            data.map((item) => (
                                 (stateid == item.id) && (
                                     <div className='cusc_m' key={item.id}>
                                         <div className="cusc__ava" style={{ backgroundImage: `url(${item.avatar})` }}></div>

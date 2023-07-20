@@ -86,11 +86,11 @@ export const ButtonSteps = ({
                 {
                     isFinish ? (
                         <div>
-                            <ComponentHigherLoadBtn isLoad={isLoader(loadBtnNext)}>
+                            <LoadChildrenBtn isLoad={isLoader(loadBtnNext) || (loadBtnNext== true)}>
                                 <CButton type="button" className={`${style.btn} ${style.btn_next}`} onClick={clickFinish}>
                                     <span>Finish</span>
                                 </CButton>
-                            </ComponentHigherLoadBtn>
+                            </LoadChildrenBtn>
                         </div>
                     ) : (
                         isSectionEnd ? (
@@ -136,7 +136,7 @@ export const ButtonSteps = ({
                                 {
                                     !(isAll && isLastStep) ? (
                                         <div>
-                                            <LoadChildrenBtn isLoad={loadNex}>
+                                            <LoadChildrenBtn isLoad={loadNex || (loadBtnNext== true)}>
                                                 <CButton
                                                     type="button"
                                                     className={`${style.btn} ${style.btn_next}`}

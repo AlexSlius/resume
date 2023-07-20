@@ -55,7 +55,7 @@ export const JobWinningPage = () => {
             <section className="contact-page">
                 <div className="containers text-center">
                     <h1 className="h1 h1_p48 fontw-600">Job-winning<br /> resume templates</h1>
-                    <p className="text-t-t">
+                    <p className="text-t-t text-t-t_18">
                         Each resume template is expertly designed and follows the exact “resume rules” hiring
                         managers look for. Stand out and get hired faster with field-tested resume templates.
                     </p>

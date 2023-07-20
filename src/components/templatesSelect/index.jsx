@@ -45,6 +45,7 @@ export const TemplatesSelect = ({
     isTemplate = false,
     handleReload = () => { },
     objActiveBlock,
+    beforeСontent = true,
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -106,6 +107,7 @@ export const TemplatesSelect = ({
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -122,6 +124,7 @@ export const TemplatesSelect = ({
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -132,11 +135,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -147,11 +152,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -162,11 +169,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -177,11 +186,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -192,11 +203,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -207,11 +220,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -222,11 +237,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -237,11 +254,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -252,11 +271,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -267,11 +288,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -282,11 +305,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -297,11 +322,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -312,11 +339,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -327,11 +356,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -342,11 +373,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -357,11 +390,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -372,11 +407,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -387,11 +424,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -402,11 +441,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -417,11 +458,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }
@@ -432,11 +475,13 @@ export const TemplatesSelect = ({
                         reportTemplateRef={reportTemplateRef}
                         stateClasses={stateClasses}
                         data={data}
+                        dataNew={dataNew}
                         idCv={idCv}
                         isDrawing={drawing}
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        beforeСontent={beforeСontent}
                     />
                 )
             }

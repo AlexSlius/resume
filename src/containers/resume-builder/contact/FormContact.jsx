@@ -62,6 +62,7 @@ const FormContact = ({
    const [idCountry, setIdCountry] = useState(undefined);
    const [showModalEmail, setShowModalEmail] = useState(false);
    const [emailForRegister, setEmailForRegister] = useState('');
+   const [loadCreateBtn, setLoadCreateBtn] = useState(false);
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
    const isNewResume = (idCv == "new");
@@ -187,16 +188,21 @@ const FormContact = ({
 
    const formSubmit = async (link = undefined) => {
       if (!isAthorized) {
+         setLoadCreateBtn(true)
+
          sendCodeResume({
             dispatch,
             pictureFile: statePictureFile,
-            link
+            link,
+            allFunCalb: () => setLoadCreateBtn(false)
          });
       }
    }
 
    const onHandleNewAuthorization = async () => {
+      await setLoadCreateBtn(true);
       await dispatch(contactAddNew({ pictureFile: statePictureFile, isNewResume, isPage: true }));
+      await setLoadCreateBtn(false);
    }
 
    const updateContactServer = async () => {
@@ -459,6 +465,7 @@ const FormContact = ({
             </CCol>
             <CCol className={style.buttonWrap}>
                <ButtonSteps
+                  loadBtnNext={loadCreateBtn}
                   onHandleBtnNext={() => formSubmit(menuAsideResume.list[1].link)}
                   onHandleNew={onHandleNewAuthorization}
                   isAthorized={isAthorized}

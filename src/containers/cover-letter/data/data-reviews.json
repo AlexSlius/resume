@@ -1,103 +1,327 @@
 {
     "one": [
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 0,
+            "ava": "/images/photo_for_reviews/men/1817651414312052480_3425711959.jpg",
+            "name": "John Davis",
+            "job": "Software Engineer",
+            "des": "Job hunting is now a breeze, thanks to this amazing tool! High-quality templates are a plus.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 1,
+            "ava": "/images/photo_for_reviews/men/1800948349237278183_2049060480.jpg",
+            "name": "Michael Peterson",
+            "job": "Financial Analyst",
+            "des": "The builder creates persuasive cover letters with ease, boosting my confidence tremendously.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 2,
+            "ava": "/images/photo_for_reviews/men/1801808360761385756_4342088763.jpg",
+            "name": "David Harris",
+            "job": "Graphic Designer",
+            "des": "No more stress about writing. Perfect for those who struggle with words. Absolutely brilliant!",
+            "dataS": "four_9"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 3,
+            "ava": "/images/photo_for_reviews/men/1800921672767751855_4273592170.jpg",
+            "name": "Robert Miller",
+            "job": "Project Manager",
+            "des": "Resulon enabled me to craft professional cover letters in minutes. Quality is unbeatable.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 4,
+            "ava": "/images/photo_for_reviews/men/1796063961364610045_7767027080.jpg",
+            "name": "Samuel Lewis",
+            "job": "Digital Marketer",
+            "des": "With a seamless interface, this platform makes cover letter creation an easy task. Truly impressive!",
+            "dataS": "four_9"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 5,
+            "ava": "/images/photo_for_reviews/men/1789291975482920271_1999582.jpg",
+            "name": "William Thompson",
+            "job": "HR Specialist",
+            "des": "This tool is intuitive, quick, and efficient! A superb solution for creating cover letters.",
+            "dataS": "four_five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 6,
+            "ava": "/images/photo_for_reviews/men/1787911270859836631_4146699205.jpg",
+            "name": "Susan Wilson",
+            "job": "Registered Nurse",
+            "des": "This tool is a lifesaver! Perfect matching designs and extremely easy to use. Love it!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 7,
+            "ava": "/images/photo_for_reviews/women/2011205180424225333_10130814572.jpg",
+            "name": "Jennifer Taylor",
+            "job": "Data Scientist",
+            "des": "Resulon offers high-quality, persuasive text that really makes my cover letters shine. Amazing!",
+            "dataS": "four_9"
+        },
+        {
+            "id": 8,
+            "ava": "/images/photo_for_reviews/women/1683583405264256787_5896438347.jpg",
+            "name": "Patricia Anderson",
+            "job": "Executive Assistant",
+            "des": "Creating cover letters has become a joy, thanks to this platform. Highly recommended!",
+            "dataS": "five"
+        },
+        {
+            "id": 9,
+            "ava": "/images/photo_for_reviews/women/1676490663850771741_6672262194.jpg",
+            "name": "Mary Jones",
+            "job": "Interior Designer",
+            "des": "This builder makes crafting professional cover letters both easy and fun. Can't recommend it enough!",
+            "dataS": "five"
+        },
+        {
+            "id": 10,
+            "ava": "/images/photo_for_reviews/men/1784669258301533165_1363787813.jpg",
+            "name": "Kevin Smith",
+            "job": "IT Consultant",
+            "des": "The platform's templates and design are top-tier. It's like having a personal writing assistant!",
+            "dataS": "five"
+        },
+        {
+            "id": 11,
+            "ava": "/images/photo_for_reviews/men/1774041625824108559_262655057.jpg",
+            "name": "Richard Nelson",
+            "job": "Real Estate Agent",
+            "des": "The quality of cover letters from Resulon is outstanding. Guaranteed to make a strong impression.",
+            "dataS": "five"
+        },
+        {
+            "id": 12,
+            "ava": "/images/photo_for_reviews/men/1769302897373458622_4826313762.jpg",
+            "name": "Jacob Baker",
+            "job": "Web Developer",
+            "des": "Automated process is a revelation. Impressive quality and fantastic ease of use. A great tool!",
+            "dataS": "four_9"
+        },
+        {
+            "id": 13,
+            "ava": "/images/photo_for_reviews/men/1768324750247339590_1509892565.jpg",
+            "name": "Charles Williams",
+            "job": "Operations Manager",
+            "des": "Resulon's user-friendly interface makes creating cover letters a breeze. An absolute must-try!",
+            "dataS": "five"
+        },
+        {
+            "id": 14,
+            "ava": "/images/photo_for_reviews/women/1670658766499767303_1483660329.jpg",
+            "name": "Emily Davis",
+            "job": "Marketing Coordinator",
+            "des": "Thanks to this tool, writing cover letters is no longer a chore. The high-quality text is brilliant.",
+            "dataS": "four_9"
+        },
+        {
+            "id": 15,
+            "ava": "/images/photo_for_reviews/men/1768324750247339590_1509892565.jpg",
+            "name": "Sarah Johnson",
+            "job": "Sales Representative",
+            "des": "Resulon has significantly improved my job application game. Love the professional designs and templates.",
+            "dataS": "five"
+        },
+        {
+            "id": 16,
+            "ava": "/images/photo_for_reviews/women/1668717941041170403_173822067.jpg",
+            "name": "Lisa Robinson",
+            "job": "Event Planner",
+            "des": "Transformed the daunting task of cover letter writing into a delight. Truly a pleasure to use.",
+            "dataS": "four_9"
+        },
+        {
+            "id": 17,
+            "ava": "/images/photo_for_reviews/women/1657469220693564909_173822067.jpg",
+            "name": "Linda Martinez",
+            "job": "UX Designer",
+            "des": "Creating cover letters is a walk in the park with this builder. Fantastic matching designs!",
+            "dataS": "five"
+        },
+        {
+            "id": 18,
+            "ava": "/images/photo_for_reviews/women/1653678537151169006_3881330769.jpg",
+            "name": "Karen Garcia",
+            "job": "Accountant",
+            "des": "The user-friendly interface revolutionized how I approach cover letters. An absolute godsend.",
+            "dataS": "five"
+        },
+        {
+            "id": 19,
+            "ava": "/images/photo_for_reviews/men/1757218467533925683_4026525119.jpg",
+            "name": "Dorothy Thomas",
+            "job": "Copywriter",
+            "des": "A must-have for job seekers. The persuasive text it creates is simply unparalleled.",
+            "dataS": "five"
         }
     ],
     
     "two": [
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 0,
+            "ava": "/images/photo_for_reviews/men/1757218467533925683_4026525119.jpg",
+            "name": "Joseph White",
+            "job": "Network Administrator",
+            "des": "An absolute breakthrough! With this tool, crafting persuasive cover letters is effortless.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 1,
+            "ava": "/images/photo_for_reviews/men/1757218467533925683_4026525119.jpg",
+            "name": "Daniel Rodriguez",
+            "job": "Logistics Coordinator",
+            "des": "This platform provides top-tier templates for swift cover letter creation. A job hunter's dream!",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 2,
+            "ava": "/images/photo_for_reviews/men/1754573557819425599_173822067.jpg",
+            "name": "Thomas Brown",
+            "job": "Product Manager",
+            "des": "Resulon made crafting professional cover letters simple. The quality is unmatched.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 3,
+            "ava": "/images/photo_for_reviews/women/1651682324021497757_173822067.jpg",
+            "name": "James Clark",
+            "job": "Business Analyst",
+            "des": "Ease-of-use and high-quality text, the perfect combo for cover letter creation. Well done!",
+            "dataS": "four_9"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 4,
+            "ava": "/images/photo_for_reviews/men/1754572324331337514_1572381958.jpg",
+            "name": "Matthew Martinez",
+            "job": "SEO Specialist",
+            "des": "Resulon's user-friendly interface and stunning designs make job applications a breeze.",
+            "dataS": "four_9"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 5,
+            "ava": "/images/photo_for_reviews/men/1737231201130075804_4342088763.jpg",
+            "name": "Joshua Hernandez",
+            "job": "Architect",
+            "des": "The top-quality templates and designs provided by this builder are second to none.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 6,
+            "ava": "/images/photo_for_reviews/men/1736350005121528771_5047769.jpg",
+            "name": "Brian Walker",
+            "job": "Electrical Engineer",
+            "des": "Resulon is a godsend! The persuasive text it crafts has noticeably boosted my job applications.",
+            "dataS": "five"
         },
         {
-            "ava": "/images/page/ava-rev-1.png",
-            "name": "Alex",
-            "job": "Designer",
-            "des": "It eliminates the grunt work, transforming the way we prospect. It's a relief to know that we have a reliable, quick source for potential leads."
+            "id": 7,
+            "ava": "/images/photo_for_reviews/men/1735865515556227085_4178518428.jpg",
+            "name": "Brandon Hall",
+            "job": "Physical Therapist",
+            "des": "This tool has revolutionized my job application process. The matching designs are perfect.",
+            "dataS": "five"
+        },
+        {
+            "id": 8,
+            "ava": "/images/photo_for_reviews/men/1735836273085560469_3254286351.jpg",
+            "name": "Justin Jackson",
+            "job": "Content Strategist",
+            "des": "Resulon's high-quality, persuasive text has made my cover letters stand out. Truly remarkable!",
+            "dataS": "four_9"
+        },
+        {
+            "id": 9,
+            "ava": "/images/photo_for_reviews/men/1730555320257558694_4913614437.jpg",
+            "name": "Steven Young",
+            "job": "Civil Engineer",
+            "des": "Creating cover letters is no longer a chore, thanks to this superb platform. Highly recommend.",
+            "dataS": "four_9"
+        },
+        {
+            "id": 10,
+            "ava": "/images/photo_for_reviews/men/1719464418541540739_1930277632.jpg",
+            "name": "Kevin Moore",
+            "job": "Research Scientist",
+            "des": "Resulon's top-tier designs and templates have elevated my job application game. Must-try!",
+            "dataS": "five"
+        },
+        {
+            "id": 11,
+            "ava": "/images/photo_for_reviews/men/1718353819504939769_231184692.jpg",
+            "name": "Jason Taylor",
+            "job": "Procurement Manager",
+            "des": "The quality of cover letters crafted with this tool is simply outstanding. Highly impressed.",
+            "dataS": "five"
+        },
+        {
+            "id": 12,
+            "ava": "/images/photo_for_reviews/men/1718353819504939769_231184692.jpg",
+            "name": "Frank Garcia",
+            "job": "Social Media Manager",
+            "des": "Automated, yet delivers impressively high quality and ease of use. A fantastic tool!",
+            "dataS": "four_9"
+        },
+        {
+            "id": 13,
+            "ava": "/images/photo_for_reviews/men/1711961885707130110_1930277632.jpg",
+            "name": "Scott Adams",
+            "job": "Instructional Designer",
+            "des": "Resulon's user-friendly interface made crafting cover letters a breeze. An absolute must-try.",
+            "dataS": "five"
+        },
+        {
+            "id": 14,
+            "ava": "/images/photo_for_reviews/men/1710089480553569881_5896438347.jpg",
+            "name": "Henry Lewis",
+            "job": "Medical Technologist",
+            "des": "With this tool, writing cover letters became a joy. The high-quality text is exceptional.",
+            "dataS": "four_9"
+        },
+        {
+            "id": 15,
+            "ava": "/images/photo_for_reviews/women/1648963803734779546_173822067.jpg",
+            "name": "Nancy Anderson",
+            "job": "Compliance Officer",
+            "des": "Resulon has made my job application process a whole lot easier. The designs are professional.",
+            "dataS": "five"
+        },
+        {
+            "id": 16,
+            "ava": "/images/photo_for_reviews/women/1630164880081653683_173822067.jpg",
+            "name": "Carol Nelson",
+            "job": "HR Generalist",
+            "des": "Changed my perception of cover letter writing from daunting to delightful. Love it!",
+            "dataS": "five"
+        },
+        {
+            "id": 17,
+            "ava": "/images/photo_for_reviews/men/1698199100121213276_30854434.jpg",
+            "name": "Helen Baker",
+            "job": "Technical Writer",
+            "des": "This platform made cover letter creation effortless. The matching designs are fantastic!",
+            "dataS": "five"
+        },
+        {
+            "id": 18,
+            "ava": "/images/photo_for_reviews/women/1629084865481738412_4913614437.jpg",
+            "name": "Donna Harris",
+            "job": "Quality Assurance Analyst",
+            "des": "The user-friendly interface revolutionized how I approach cover letters. Can't recommend enough.",
+            "dataS": "five"
+        },
+        {
+            "id": 19,
+            "ava": "/images/photo_for_reviews/women/1628656723555703287_4826313762.jpg",
+            "name": "Jessica Wilson",
+            "job": "Public Relations Specialist",
+            "des": "A must-have for job seekers. The persuasive text crafted with Resulon is unrivaled.",
+            "dataS": "five"
         }
     ]
 }

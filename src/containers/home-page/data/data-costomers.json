@@ -1,0 +1,212 @@
+[
+    {
+        "id": 0,
+        "img": "/images/icons/customers/Google.svg",
+        "avatar": "/images/photo_for_reviews/men/2112148775861984219_8008335362.jpg",
+        "name": "John Carter",
+        "des": "Resulon's expertise transformed my resume into a compelling profile that emphasized my skills perfectly. I was soon approached by a leading tech giant, which turned out to be Google. I couldn't be happier!"
+    },
+    {
+        "id": 1,
+        "img": "/images/icons/customers/Microsoft.svg",
+        "avatar": "/images/photo_for_reviews/women/2019865276041836964_1066616049.jpg",
+        "name": "Emily Watson",
+        "des": "The team at Resulon polished my CV, focusing on my technical and project management skills. The result? A successful job placement in a top-tier software company."
+    },
+    {
+        "id": 2,
+        "img": "/images/icons/customers/salesforce.svg",
+        "avatar": "/images/photo_for_reviews/women/2017676856011915234_1542137197.jpg",
+        "name": "Michael Johnson",
+        "des": "Thanks to Resulon, my professional resume got noticed by a company known for its remarkable work culture. It was none other than Salesforce."
+    },
+    {
+        "id": 3,
+        "img": "/images/icons/customers/Facebook.svg",
+        "avatar": "/images/photo_for_reviews/men/2111879827090194083_11828038376.jpg",
+        "name": "Sarah Thompson",
+        "des": "With an appealing CV emphasizing my social media expertise, I was able to get the attention of a prominent social networking company. I'm now part of the Facebook team."
+    },
+    {
+        "id": 4,
+        "img": "/images/icons/customers/Apple.svg",
+        "avatar": "/images/photo_for_reviews/men/2111696402871237528_17532062.jpg",
+        "name": "Matthew Wilson",
+        "des": "I sought help from a professional resume builder, and my software development skills were presented in an appealing way. As a result, a renowned tech company hired me."
+    },
+    {
+        "id": 5,
+        "img": "/images/icons/customers/LinkedIn.svg",
+        "avatar": "/images/photo_for_reviews/women/2017602674041025017_740953172.jpg",
+        "name": "Laura Moore",
+        "des": "My refined resume, showcasing my industry knowledge and leadership, attracted a popular professional networking platform. I'm excited to be a part of their team."
+    },
+    {
+        "id": 6,
+        "img": "/images/icons/customers/Adobe.svg",
+        "avatar": "/images/photo_for_reviews/men/1915600182492133392_8563844424.jpg",
+        "name": "David Harris",
+        "des": "Resulon helped me highlight my creative talent effectively. A global leader in digital media solutions noticed, and now I work with the best creative minds."
+    },
+    {
+        "id": 7,
+        "img": "/images/icons/customers/Netflix.svg",
+        "avatar": "/images/photo_for_reviews/men/1914845672970252603_758775678.jpg",
+        "name": "Mark Davis",
+        "des": "Resulon developed a unique resume showcasing my digital media acumen. It caught the eye of a top streaming service. Excited to be part of this dynamic team!"
+    },
+    {
+        "id": 8,
+        "img": "/images/icons/customers/Boston_Consulting_Group.svg",
+        "avatar": "/images/photo_for_reviews/women/2017578505109613315_386096499.jpg",
+        "name": "Jennifer White",
+        "des": "A resume service amplified my strategic planning and leadership skills. Soon, I found myself in an influential role at a leading consulting firm."
+    },
+    {
+        "id": 9,
+        "img": "/images/icons/customers/Amazon.svg",
+        "avatar": "/images/photo_for_reviews/men/1913645620411017961_3638587312.jpg",
+        "name": "James Taylor",
+        "des": "With a resume highlighting my logistics management experience, I attracted the attention of a major e-commerce company. Now, I oversee a crucial department."
+    },
+    {
+        "id": 10,
+        "img": "/images/icons/customers/Tesla.svg",
+        "avatar": "/images/photo_for_reviews/men/1901196869818483644_8781611470.jpg",
+        "name": "Robert Brown",
+        "des": "Resulon's service presented my engineering skills impressively. A leading electric vehicle company recognized my potential, and I'm now part of their innovative team."
+    },
+    {
+        "id": 11,
+        "img": "/images/icons/customers/Johnson_&_Johnson.svg",
+        "avatar": "/images/photo_for_reviews/women/2015362061945305719_10466463758.jpg",
+        "name": "Elizabeth Garcia",
+        "des": "My revised resume highlighted my pharmaceutical expertise compellingly. This led to a dream job offer from a renowned healthcare company."
+    },
+    {
+        "id": 12,
+        "img": "/images/icons/customers/SpaceX.svg",
+        "avatar": "/images/photo_for_reviews/men/1897670151165513614_3638587312.jpg",
+        "name": "Thomas Miller",
+        "des": "Resulon helped me emphasize my skills in aerospace engineering. I was soon approached by a trailblazing space exploration company. Thrilled to be on their team!"
+    },
+    {
+        "id": 13,
+        "img": "/images/icons/customers/Airbnb.svg",
+        "avatar": "/images/photo_for_reviews/men/1895867301154447474_209469082.jpg",
+        "name": "Megan Lewis",
+        "des": "With my hospitality skills and customer service experience polished on my CV, I caught the attention of a global vacation rental platform. It's an exciting journey ahead!"
+    },
+    {
+        "id": 14,
+        "img": "/images/icons/customers/Goldman_Sachs.svg",
+        "avatar": "/images/photo_for_reviews/men/1884458910314442346_8563844424.jpg",
+        "name": "William Clark",
+        "des": "My skills in financial analysis and investment strategies were highlighted by a proficient resume service. The result? A leading investment bank extended an offer."
+    },
+    {
+        "id": 15,
+        "img": "/images/icons/customers/Patagonia.svg",
+        "avatar": "/images/photo_for_reviews/women/2014877268299681588_371574631.jpg",
+        "name": "Stephanie Rodriguez",
+        "des": "After Resulon revamped my resume, emphasizing my passion for sustainability and retail experience, I got noticed by a socially conscious outdoor apparel company. Love being part of their mission."
+    },
+    {
+        "id": 16,
+        "img": "/images/icons/customers/IBM.svg",
+        "avatar": "/images/photo_for_reviews/men/1882209607923570274_5881001318.jpg",
+        "name": "Daniel Turner",
+        "des": "A professional resume builder helped me underline my IT and consulting skills. This led to a fulfilling role at a multinational IT company."
+    },
+    {
+        "id": 17,
+        "img": "/images/icons/customers/Coca_Cola.svg",
+        "avatar": "/images/photo_for_reviews/men/1880723669657668581_6695651400.jpg",
+        "name": "Hannah Walker",
+        "des": "With Resulon, I could present my marketing experience effectively. A global beverage corporation appreciated my skills, and I now work on their dynamic marketing team."
+    },
+    {
+        "id": 18,
+        "img": "/images/icons/customers/Disney.svg",
+        "avatar": "/images/photo_for_reviews/men/1877897961858533206_173810753.jpg",
+        "name": "Brian Hall",
+        "des": "Resulon helped me craft a captivating resume showcasing my creative production skills. A renowned entertainment company noticed and offered me an exciting role."
+    },
+    {
+        "id": 19,
+        "img": "/images/icons/customers/Pfizer.svg",
+        "avatar": "/images/photo_for_reviews/men/1869043846772832135_6941677888.jpg",
+        "name": "Patricia Allen",
+        "des": "My CV highlighted my biomedical research skills, thanks to a quality resume service. A top biopharmaceutical company extended an offer, and I'm contributing to crucial research projects."
+    },
+    {
+        "id": 20,
+        "img": "/images/icons/customers/Netflix.svg",
+        "avatar": "/images/photo_for_reviews/women/2014744622380561170_1045922954.jpg",
+        "name": "Michael Rodriguez",
+        "des": "Using a professional service, my CV was tuned to highlight my skills in digital media. A leading streaming platform took notice and now I'm part of their team."
+    },
+    {
+        "id": 21,
+        "img": "/images/icons/customers/Siemens.svg",
+        "avatar": "/images/photo_for_reviews/women/2014633220365934119_6033575966.jpg",
+        "name": "Elizabeth Thomas",
+        "des": "My revised resume, with an emphasis on my engineering and project management skills, caught the attention of a global leader in industrial manufacturing."
+    },
+    {
+        "id": 22,
+        "img": "/images/icons/customers/Walmart.svg",
+        "avatar": "/images/photo_for_reviews/men/1869043846772832135_6941677888.jpg",
+        "name": "David Martinez",
+        "des": "Resulon honed my CV, focusing on my expertise in retail and operations management. I'm now contributing to a multinational retail corporation's growth."
+    },
+    {
+        "id": 23,
+        "img": "/images/icons/customers/Nike.svg",
+        "avatar": "/images/photo_for_reviews/women/2013592992339593409_3243295849.jpg",
+        "name": "Jessica Jackson",
+        "des": "With my experience in sports marketing and brand management presented clearly, I got noticed by a global sportswear giant. Thrilled to join their team!"
+    },
+    {
+        "id": 24,
+        "img": "/images/icons/customers/Oracle.svg",
+        "avatar": "/images/photo_for_reviews/men/1866909622510860640_262655057.jpg",
+        "name": "Robert Harris",
+        "des": "A professional resume builder helped highlight my IT skills and experience. Now, I'm employed with a multinational computer technology corporation."
+    },
+    {
+        "id": 25,
+        "img": "/images/icons/customers/Starbucks.svg",
+        "avatar": "/images/photo_for_reviews/women/2013461065228182736_398332534.jpg",
+        "name": "Patricia Anderson",
+        "des": "Resulon turned my resume into a compelling story of my culinary and customer service skills. A famous coffee company noticed and brought me on board."
+    },
+    {
+        "id": 26,
+        "img": "/images/icons/customers/Procter_&_Gamble.svg",
+        "avatar": "/images/photo_for_reviews/men/1866331734545423286_3197757270.jpg",
+        "name": "Brian Wilson",
+        "des": "A professionally crafted resume emphasized my skills in product development and marketing. A top multinational consumer goods company appreciated my credentials."
+    },
+    {
+        "id": 27,
+        "img": "/images/icons/customers/Visa.svg",
+        "avatar": "/images/photo_for_reviews/men/1860488972208490012_262655057.jpg",
+        "name": "Megan Thomas",
+        "des": "Thanks to Resulon, my skills in financial services and technology were put in the limelight. I'm now working for a leading multinational financial corporation."
+    },
+    {
+        "id": 28,
+        "img": "/images/icons/customers/Adobe.svg",
+        "avatar": "/images/photo_for_reviews/men/1859742069233765834_4870374732.jpg",
+        "name": "William Smith",
+        "des": "Resulon's service helped highlight my creative and technical expertise. A leading software company offered me a challenging role."
+    },
+    {
+        "id": 29,
+        "img": "/images/icons/customers/Uber.svg",
+        "avatar": "/images/photo_for_reviews/women/2013272048365620548_10466463758.jpg",
+        "name": "Sarah Davis",
+        "des": "A well-crafted resume showcased my skills in operations and logistics, attracting a prominent ride-hailing company. I'm now part of their dynamic operations team."
+    }
+]
