@@ -54,6 +54,10 @@
     opacity: 0.3;
   }
 
+  .hide {
+    display: none !important;
+  }
+
   // Blocks
   .cv-name {
     text-transform: uppercase;
@@ -176,15 +180,17 @@
         text-transform: none;
         font-weight: 700;
       }
+      .details-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
       .block-item {
         display: flex;
         column-gap: 4px;
-        &:not(:first-of-type) {
-          margin-top: 4px;
-        }
       }
     }
-    .career-links {
+    .links-block {
       display: flex;
       flex-wrap: wrap;
       column-gap: 8px;
@@ -193,15 +199,6 @@
         font-weight: 700;
         text-transform: none;
         flex-basis: 100%;
-      }
-  
-      .career-links-link {
-        text-decoration: none;
-  
-        img {
-          width: 16px;
-          height: 16px;
-        }
       }
     }
   }

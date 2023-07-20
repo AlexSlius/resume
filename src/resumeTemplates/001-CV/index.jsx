@@ -220,7 +220,7 @@ export const ResumeCv001 = ({
                 <div className="column-left">
                   {
                     isArray(contact) && (
-                      <div className="cv-name font-size-3">
+                      <div className={`cv-name font-size-3 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
                           {`${contact[0].firstName || 'Matthew'} `}
                         </span>
@@ -313,7 +313,7 @@ export const ResumeCv001 = ({
                       <div className={`details-block additional-color-2-border ${!social_links.length && !contact[0]?.country && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                         <div className={`details-block-info ${!contact[0]?.country && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                           <div className="cv-heading font-size-2">Details</div>
-                          <p className="address">
+                          <p className={`address ${!contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                             <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0]?.country && !beforeСontent ? 'hide' : ''}`}>
                               {`${checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country || 'United States, '}`}
                             </span>
@@ -568,7 +568,7 @@ export const ResumeCv001 = ({
                   <div className="cv-heading font-size-2 additional-color-1-text">Certificates</div>
                   {
                     certificates.map((item, index) => (
-                      <div key={index} className={`cv-subheading ${!item.name ? 'empty-field' : ''} ${!item.name && !beforeСontent ? 'hide' : ''}`}>
+                      <div key={index} className={`cv-subheading ${!item.name ? 'empty-field' : ''}`}>
                         {item.name ? item.name : 'Certificate name'}
                       </div>
                     ))
@@ -576,7 +576,7 @@ export const ResumeCv001 = ({
                 </div>
                 <div className={`hobbies-block block-block ${!Object.keys(hobbies[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Hobbies</div>
-                  <div className={`${!hobbies[0].text ? 'empty-field' : ''} ${!hobbies[0].text && !beforeСontent ? 'hide' : ''}`}>
+                  <div className={`${!hobbies[0].text ? 'empty-field' : ''}`}>
                     {
                       hobbies.map((item, index) => (
                         <span key={index}>
@@ -596,7 +596,7 @@ export const ResumeCv001 = ({
                     <div className="skills-estimation-block">
                       {
                         skills.map((item, index) => (
-                          <div className={`skill-item ${!item.name ? 'empty-field' : ''} ${!item.name && !beforeСontent ? 'hide' : ''}`} key={index}>
+                          <div className={`skill-item ${!item.name ? 'empty-field' : ''}`} key={index}>
                             <p className="skill-name">
                               {item.name ? item.name : 'Skill name'}
                             </p>
@@ -617,7 +617,7 @@ export const ResumeCv001 = ({
                     <div className="skills-estimation-block">
                       {
                         languages.map((item, index) => (
-                          <div className={`skill-item ${!item.language ? 'empty-field' : ''} ${!item.language && !beforeСontent ? 'hide' : ''}`} key={index}>
+                          <div className={`skill-item ${!item.language ? 'empty-field' : ''}`} key={index}>
                             <p className="skill-name">
                               {item.language ? item.language : 'Language'}
                             </p>

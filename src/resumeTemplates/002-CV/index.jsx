@@ -3,7 +3,6 @@ import { isArray } from "lodash";
 import moment from 'moment';
 import styled from 'styled-components';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const Estimation = ({
@@ -221,12 +220,12 @@ export const ResumeCv002 = ({
 
   return (
     <div className="sv_002" ref={reportTemplateRef}>
-      <WrDiv id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content additional-color-2-border font-size-1 main-color-1-text">
             <div className="cv-body-area area-1">
               <div className="top-block">
-                <div className="personal-info-block">
+                <div className={`personal-info-block ${!contact?.[0]?.picture && !contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                   {
                     contact?.[0]?.picture && (
                       <div className="photo-block">
@@ -235,21 +234,21 @@ export const ResumeCv002 = ({
                     )
                   }
                   <div className="cv-heading-wrap">
-                    <div className="cv-name font-size-4 additional-color-1-text">
-                      <span className={`${!contact[0].firstName ? 'empty-field' : ''}`}>
+                    <div className={`cv-name font-size-4 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
+                      <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
                         {`${contact[0].firstName || 'Matthew'} `}
                       </span>
-                      <span className={`${!contact[0].lastName ? 'empty-field' : ''}`}>
+                      <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                         {`${contact[0].lastName || 'Mcconaughey'}`}
                       </span>
                     </div>
-                    <div className={`cv-profession font-size-2 additional-color-1-text ${!contact[0].jobTitle ? 'empty-field' : ''}`}>
+                    <div className={`cv-profession font-size-2 additional-color-1-text ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                       {contact[0].jobTitle || 'Web-designer'}
                     </div>
                   </div>
                 </div>
-                <div className="profile-secondary-info additional-color-2-border m-default">
-                  <div className="item-block">
+                <div className={`profile-secondary-info additional-color-2-border m-default ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                  <div className={`item-block ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-2-text">Birth Date</span>
                     {
                       contact[0]?.dateOfBirth && (
@@ -259,7 +258,7 @@ export const ResumeCv002 = ({
                       )
                     }
                   </div>
-                  <div className="item-block">
+                  <div className={`item-block ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-2-text">Place of Birth</span>
                     {
                       contact[0]?.placeOfBirth && (
@@ -269,7 +268,7 @@ export const ResumeCv002 = ({
                       )
                     }
                   </div>
-                  <div className="item-block">
+                  <div className={`item-block ${!contact[0]?.nationality && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-2-text">Nationality</span>
                     {
                       contact[0]?.nationality && (
@@ -279,7 +278,7 @@ export const ResumeCv002 = ({
                       )
                     }
                   </div>
-                  <div className="item-block">
+                  <div className={`item-block ${!contact[0]?.driverLicense && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-2-text">Driving Licence</span>
                     {
                       contact[0]?.driverLicense && (
@@ -294,29 +293,29 @@ export const ResumeCv002 = ({
             </div>
             <div className="cv-body-area middle-area area-2">
               <div className="column-left additional-color-2-border">
-                <div className="employment-history-block block-block">
+                <div className={`employment-history-block block-block ${!employment[0].assignment && !employment[0].city && !employment[0].company && !employment[0].title && !employment[0].periodFrom?.date && !employment[0].periodTo?.date && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Employment history
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
                   {
                     employment.map((itemEm, index) => (
                       <div className="block-info" key={index}>
-                        <div className="cv-subheading">
-                          <span className={`${!itemEm.title ? 'empty-field' : ''}`}>
+                        <div className={`cv-subheading ${!itemEm.title && !itemEm.company && itemEm.city && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
                           </span>
-                          <span className={`${!itemEm.company ? 'empty-field' : ''}`}>
+                          <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.company || ', Apple INC.'}
                           </span>
                         </div>
-                        <div className={`${!itemEm.city ? 'empty-field' : ''}`}>
+                        <div className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || 'New York City'}
                         </div>
-                        <div className="date-range additional-color-2-text">
-                          <span className={`${!itemEm.periodFrom?.date ? 'empty-field' : ''}`}>
+                        <div className="date-range additional-color-2-text ${!itemEm.periodTo?.date && !itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}">
+                          <span className={`${!itemEm.periodFrom?.date ? 'empty-field' : ''} ${!itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.periodFrom?.date && (checkForSymbol([itemEm.periodTo?.date]) ? moment(itemEm.periodFrom.date).format("MMMM yy") + ' - ' : moment(itemEm.periodFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
-                          <span className={`${!itemEm.periodTo?.date ? 'empty-field' : ''}`}>
+                          <span className={`${!itemEm.periodTo?.date ? 'empty-field' : ''} ${!itemEm.periodTo?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.periodTo?.date && (moment(itemEm.periodTo.date).format("MMMM yy")) || ' - December 2022'}
                           </span>
                         </div>
@@ -324,7 +323,7 @@ export const ResumeCv002 = ({
                           itemEm.assignment && (
                             <div className="text-block" dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                           ) || (
-                            <div className="text-block empty-field">
+                            <div className={`text-block empty-field ${!itemEm.assignment && !beforeСontent ? 'hide' : ''}`}>
                               <ul>
                                 <li>Helped to achieve a consistent look and visual theme across the website by promoting uniform fonts, formatting, images, and layout.</li>
                                 <li>Followed policies and procedures related to application methods and quality standards at all times.</li>
@@ -337,27 +336,27 @@ export const ResumeCv002 = ({
                     ))
                   }
                 </div>
-                <div className="education-block block-block">
+                <div className={`education-block block-block ${!Object.keys(education[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Education
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
                   {
                     education.map((itemEd, index) => (
                       <div className="block-info" key={index}>
-                        <div className={`cv-subheading ${!itemEd.study ? 'empty-field' : ''}`}>
+                        <div className={`cv-subheading ${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
                           {itemEd.study ? itemEd.study : 'Marketing and Management'}
                         </div>
-                        <div className={`cv-college ${!itemEd.facility ? 'empty-field' : ''}`}>
+                        <div className={`cv-college ${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                           {itemEd.facility ? itemEd.facility : 'Harcum College, Portland'}
                         </div>
-                        <div className={`cv-degree ${!itemEd.degree ? 'empty-field' : ''}`}>
+                        <div className={`cv-degree ${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
                           {itemEd.degree ? itemEd.degree : 'Bachelor'}
                         </div>
-                        <div className="date-range additional-color-2-text">
-                          <span className={`${!itemEd.dateFrom?.date ? 'empty-field' : ''}`}>
+                        <div className={`date-range additional-color-2-text ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemEd.dateFrom?.date ? 'empty-field' : ''} ${!itemEd.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEd.dateFrom?.date && (checkForSymbol([itemEd.dateTo?.date]) ? moment(itemEd.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEd.dateFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
-                          <span className={`${!itemEd.dateTo?.date ? 'empty-field' : ''}`}>
+                          <span className={`${!itemEd.dateTo?.date ? 'empty-field' : ''} ${!itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEd.dateTo?.date && (moment(itemEd.dateTo.date).format("MMMM yy")) || ' - December 2022'}
                           </span>
                         </div>
@@ -365,7 +364,7 @@ export const ResumeCv002 = ({
                           itemEd.description && (
                             <div className="text-block" dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
                           ) || (
-                            <div className="text-block empty-field">
+                            <div className={`text-block empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
                               I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
                             </div>
                           )
@@ -374,24 +373,24 @@ export const ResumeCv002 = ({
                     ))
                   }
                 </div >
-                <div className="courses-block block-block">
+                <div className={`courses-block block-block ${!Object.keys(courses[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Courses
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
                   {
                     courses.map((itemCo, index) => (
                       <div className="block-info" key={index}>
-                        <div className={`cv-subheading ${!itemCo.title ? 'empty-field' : ''}`}>
+                        <div className={`cv-subheading ${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.title ? itemCo.title : 'Super course 1'}
                         </div>
-                        <div className={`${!itemCo.institution ? 'empty-field' : ''}`}>
+                        <div className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.institution ? itemCo.institution : 'Benjamin Franklin Sidestep Collage, Portland'}
                         </div>
-                        <div className="date-range additional-color-2-text">
-                          <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''}`}>
+                        <div className={`date-range additional-color-2-text ${!itemCo.dateFrom?.date && !itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''} ${!itemCo.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemCo.dateFrom?.date && (checkForSymbol([itemCo.dateTo?.date]) ? moment(itemCo.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemCo.dateFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
-                          <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''}`}>
+                          <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''} ${!itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemCo.dateTo?.date && (moment(itemCo.dateTo.date).format("MMMM yy")) || ' - December 2022'}
                           </span>
                         </div>
@@ -399,26 +398,26 @@ export const ResumeCv002 = ({
                     ))
                   }
                 </div>
-                <div className="extra-curricular-activities-block block-block">
+                <div className={`extra-curricular-activities-block block-block ${!Object.keys(extra_curricular[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Extra-curricular activities
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
                   {
                     extra_curricular.map((itemEx, index) => (
                       <div className="block-info" key={index}>
-                        <div className="cv-subheading">
-                          <span className={`${!itemEx.title ? 'empty-field' : ''}`}>
+                        <div className={`cv-subheading ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
                           </span>
-                          <span className={`${!itemEx.employer ? 'empty-field' : ''}`}>
+                          <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                             {itemEx.employer || ', My own company'}
                           </span>
                         </div>
-                        <div className="date-range additional-color-2-text">
-                          <span className={`${!itemEx.dateFrom?.date ? 'empty-field' : ''}`}>
+                        <div className={`date-range additional-color-2-text ${!itemEx.dateFrom?.date && !itemEx.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemEx.dateFrom?.date ? 'empty-field' : ''} ${!itemEx.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEx.dateFrom?.date && (checkForSymbol([itemEx.dateTo?.date]) ? moment(itemEx.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEx.dateFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
-                          <span className={`${!itemEx.dateTo?.date ? 'empty-field' : ''}`}>
+                          <span className={`${!itemEx.dateTo?.date ? 'empty-field' : ''} ${!itemEx.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEx.dateTo?.date && (moment(itemEx.dateTo.date).format("MMMM yy")) || ' - December 2022'}
                           </span>
                         </div>
@@ -426,7 +425,7 @@ export const ResumeCv002 = ({
                           itemEx.description && (
                             <div className="text-block" dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
                           ) || (
-                            <div className="text-block empty-field">
+                            <div className={`text-block empty-field ${!itemEx.description && !beforeСontent ? 'hide' : ''}`}>
                               I was doing research for about five different projects. The goal was to find out the biggest issues with the current concept and solution how to solve them.
                             </div>
                           )
@@ -435,29 +434,29 @@ export const ResumeCv002 = ({
                     ))
                   }
                 </div>
-                <div className="internships-block block-block">
+                <div className={`internships-block block-block ${!Object.keys(internship[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Internships
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
                   {
                     internship.map((itemIn, index) => (
                       <div className="block-info" key={index}>
-                        <div className="cv-subheading">
-                          <span className={`${!itemIn.jobTitle ? 'empty-field' : ''}`}>
+                        <div className={`cv-subheading ${!itemIn.jobTitle && !itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemIn.employer]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
                           </span>
-                          <span className={`${!itemIn.employer ? 'empty-field' : ''}`}>
+                          <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
                             {itemIn.employer || ', Company S.A.'}
                           </span>
                         </div>
-                        <div className={`${!itemIn.city ? 'empty-field' : ''}`}>
+                        <div className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemIn.city || 'Toronto'}
                         </div>
-                        <div className="date-range additional-color-2-text">
-                          <span className={`${!itemIn.dateFrom?.date ? 'empty-field' : ''}`}>
+                        <div className={`date-range additional-color-2-text ${!itemIn.dateFrom?.date && !itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemIn.dateFrom?.date ? 'empty-field' : ''} ${!itemIn.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemIn.dateFrom?.date && (checkForSymbol([itemIn.dateTo?.date]) ? moment(itemIn.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemIn.dateFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
-                          <span className={`${!itemIn.dateTo?.date ? 'empty-field' : ''}`}>
+                          <span className={`${!itemIn.dateTo?.date ? 'empty-field' : ''} ${!itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemIn.dateTo?.date && (moment(itemIn.dateTo.date).format("MMMM yy")) || ' - December 2022'}
                           </span>
                         </div>
@@ -465,7 +464,7 @@ export const ResumeCv002 = ({
                           itemIn.description && (
                             <div className="text-block" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
                           ) || (
-                            <div className="text-block empty-field">
+                            <div className={`text-block empty-field ${!itemIn.description && !beforeСontent ? 'hide' : ''}`}>
                               Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
                               Worked productively with Product Team to understand requirements and business specifications around Portfolio Management, Analytics and Risk.
                             </div>
@@ -477,8 +476,8 @@ export const ResumeCv002 = ({
                 </div>
               </div>
               <div className="column-right">
-                <div className="profile-info-block">
-                  <div className="profile-block block-block">
+                <div className={`profile-info-block block-block ${!career_objective[0].data && !beforeСontent ? 'hide' : ''}`}>
+                  <div className="profile-block">
                     <div className="cv-heading font-size-2 additional-color-1-text">Profile
                       <span className="line-after-block-heading additional-color-1-border"></span>
                     </div>
@@ -493,7 +492,7 @@ export const ResumeCv002 = ({
                     } 
                   </div>
                 </div>
-                <div className="skills-block block-block">
+                <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Skills
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
@@ -514,7 +513,7 @@ export const ResumeCv002 = ({
                     }
                   </div>
                 </div>
-                <div className="languages-block block-block">
+                <div className={`languages-block block-block ${!Object.keys(languages[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Languages
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
@@ -534,7 +533,7 @@ export const ResumeCv002 = ({
                     }
                   </div>
                 </div>
-                <div className="certificates-block block-block">
+                <div className={`certificates-block block-block ${!Object.keys(certificates[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Certificates
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
@@ -548,7 +547,7 @@ export const ResumeCv002 = ({
                     ))
                   }
                 </div>
-                <div className="references-block block-block">
+                <div className={`references-block block-block ${!Object.keys(reference[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">References
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
@@ -556,24 +555,24 @@ export const ResumeCv002 = ({
                     reference.map((itemRef, index) => (
                       <div className="block-info" key={index}>
                         <div className="cv-subheading">
-                          <span className={`${!itemRef.fullName ? 'empty-field' : ''}`}>
+                          <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
                           </span>
-                          <span className={`${!itemRef.company ? 'empty-field' : ''}`}>
+                          <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemRef.company || ', Company'}
                           </span>
                         </div>
-                        <p className={`${!itemRef.email ? 'empty-field' : ''}`}>
+                        <p className={`${!itemRef.email ? 'empty-field' : ''} ${!itemRef.email && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.email || 'references@webservice.com'}
                         </p>
-                        <p className={`${!itemRef.phone ? 'empty-field' : ''}`}>
+                        <p className={`${!itemRef.phone ? 'empty-field' : ''} ${!itemRef.phone && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.phone || '736-343-9384'}
                         </p>
                       </div>
                     ))
                   }
                 </div>
-                <div className="hobbies-block block-block">
+                <div className={`hobbies-block block-block ${!Object.keys(hobbies[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-2 additional-color-1-text">Hobbies
                     <span className="line-after-block-heading additional-color-1-border"></span>
                   </div>
@@ -592,41 +591,43 @@ export const ResumeCv002 = ({
             <div className="cv-body-area area-3">
               <div className="bottom-block additional-color-2-border">
                 <div className="column-left">
-                  <div className="details-block block-block">
+                  <div className={`details-block block-block ${!contact[0]?.country && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                     <div className="cv-heading">Details</div>
-                      <div className="block-item">
+                    <div className="details-info">
+                      <div className={`block-item ${!contact[0]?.phone && !beforeСontent ? 'hide' : ''}`}>
                         <div className="name additional-color-2-text">Phone:</div>
                         <div className={`value ${!contact[0].phone ? 'empty-field' : ''}`}>
                           {contact[0].phone || '736-343-9384'}
                         </div>
                       </div>
-                      <div className="block-item">
+                      <div className={`block-item ${!contact[0]?.email && !beforeСontent ? 'hide' : ''}`}>
                         <div className="name additional-color-2-text">Email:</div>
                         <div className={`value ${!contact[0].email ? 'empty-field' : ''}`}>
                           {contact[0].email || 'designer@webservice.com'}
                         </div>
                       </div>
-                      <div className="block-item">
+                      <div className={`block-item ${!contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                         <div className="name additional-color-2-text">Address:</div>
                         <div className=" value">
-                          <span className={`${!contact[0].country ? 'empty-field' : ''}`}>
+                          <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0]?.country && !beforeСontent ? 'hide' : ''}`}>
                             {`${checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country || 'United States, '}`}
                           </span>
-                          <span className={`${!contact[0].address ? 'empty-field' : ''}`}>
+                          <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0]?.address && !beforeСontent ? 'hide' : ''}`}>
                             {`${checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address || '5th Avenue Street, '}`}
                           </span>
-                          <span className={`${!contact[0].city ? 'empty-field' : ''}`}>
+                          <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0]?.city && !beforeСontent ? 'hide' : ''}`}>
                             {`${checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city || 'New York City, '}`}
                           </span>
-                          <span className={`${!contact[0].zipCode ? 'empty-field' : ''}`}>
+                          <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                             {`${contact[0].zipCode || '384846'}`}
                           </span>
                         </div>
                       </div>
+                    </div>
                   </div>
                 </div>
                 <div className="column-right">
-                  <div className="career-links block-block">
+                  <div className={`links-block block-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
                     <div className="cv-heading">Links</div>
                     {
                       isArray(social_links) && social_links.length && (
@@ -656,7 +657,7 @@ export const ResumeCv002 = ({
             </div>
           </div>
         </div>
-      </WrDiv>
+      </div>
     </div>
   )
 }
