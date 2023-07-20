@@ -36,14 +36,14 @@
   font-weight: 400;
 
   /* Global */
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
   *, *:before, *:after {
       box-sizing: border-box;
       font-family: 'Rubik';
-  }
-
-  * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
   }
 
   a {
@@ -60,11 +60,11 @@
     }
   }
 
-  // Blocks
   .empty-field {
     opacity: 0.3;
   }
 
+  // Blocks
   .cv-name {
     font-weight: 600;
     color: $color_set_0_additional_color_1;
@@ -76,9 +76,6 @@
 
   .cv-body {
     display: flex;
-    flex-direction: column;
-    width: 595px;
-    height: 842px;
     overflow: hidden;
     background-color: $main_color_2;
   }

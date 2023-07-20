@@ -215,7 +215,7 @@ export const ResumeCv001 = ({
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-0`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content font-size-1 main-color-1-text">
             <div className="cv-body-area area-1 additional-color-3-background font-size-1 main-color-1-text">
@@ -263,7 +263,7 @@ export const ResumeCv001 = ({
                           <span className="name">Birth Date</span>
                           {
                             contact[0]?.dateOfBirth && (
-                              <span className="value">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
+                              <span className="value additional-color-1-text">{moment(contact[0].dateOfBirth).format("DD-MM-yy")}</span>
                             ) || (
                               <span className="value empty-field additional-color-1-text">14-08-1991</span>
                             )
@@ -273,7 +273,7 @@ export const ResumeCv001 = ({
                           <span className="name">Place of Birth</span>
                           {
                             contact[0]?.placeOfBirth && (
-                              <span className="value">{contact[0].placeOfBirth}</span>
+                              <span className="value additional-color-1-text">{contact[0].placeOfBirth}</span>
                             ) || (
                               <span className="value empty-field additional-color-1-text">Berlin</span>
                             )
@@ -283,7 +283,7 @@ export const ResumeCv001 = ({
                           <span className="name">Nationality</span>
                           {
                             contact[0]?.nationality && (
-                              <span className="value">{contact[0].nationality}</span>
+                              <span className="value additional-color-1-text">{contact[0].nationality}</span>
                             ) || (
                               <span className="value empty-field additional-color-1-text">German</span>
                             )
@@ -293,7 +293,7 @@ export const ResumeCv001 = ({
                           <span className="name">Driving Licence</span>
                           {
                             contact[0]?.driverLicense && (
-                              <span className="value">{contact[0].driverLicense}</span>
+                              <span className="value additional-color-1-text">{contact[0].driverLicense}</span>
                             ) || (
                               <span className="value empty-field additional-color-1-text">Class 1</span>
                             )
@@ -333,7 +333,7 @@ export const ResumeCv001 = ({
                           <p className={`phone ${!contact[0].phone ? 'empty-field' : ''}`}>
                             {contact[0].phone || '736-343-9384'}
                           </p>
-                          <p className={`email ${!contact[0].phone ? 'empty-field' : ''}`}>
+                          <p className={`email ${!contact[0].email ? 'empty-field' : ''}`}>
                             {contact[0].email || 'designer@webservice.com'}
                           </p>
                         </div>
