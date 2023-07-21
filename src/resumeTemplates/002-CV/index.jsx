@@ -236,10 +236,10 @@ export const ResumeCv002 = ({
                   <div className="cv-heading-wrap">
                     <div className={`cv-name font-size-4 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                       <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].firstName || 'Matthew'} `}
+                        {contact[0].firstName || 'Matthew'}
                       </span>
                       <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].lastName || 'Mcconaughey'}`}
+                        {contact[0].lastName || 'Mcconaughey'}
                       </span>
                     </div>
                     <div className={`cv-profession font-size-2 additional-color-1-text ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>

@@ -1,22 +1,22 @@
 @font-face {
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   src: url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
 }
 
 @font-face {
-  font-family: 'Hind Light', sans-serif;
+  font-family: 'Hind', sans-serif;
   src: url('./fonts/Hind/Hind-Light.ttf');
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Hind Bold', sans-serif;
+  font-family: 'Hind', sans-serif;
   src: url('./fonts/Hind/Hind-Bold.ttf');
   font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Hind Medium', sans-serif;
+  font-family: 'Hind', sans-serif;
   src: url('./fonts/Hind/Hind-Bold.ttf');
   font-weight: 500;
 }
@@ -53,48 +53,56 @@
   $color_set_6_additional_color_2: #cad2ef;
 
 .sv_003 {
-  font-family: Hind;
+  font-weight: 400;
 
+  /* Global */
   * {
-    padding: 0px;
-    margin: 0px;
-    font-family: Hind;
+    padding: 0;
+    margin: 0;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+    font-family: 'Hind', sans-serif;
   }
 
   ul {
+    padding-left: 15px;
     li {
       list-style-type: disc;
     }
   }
 
-  .date-range {
-    font-weight: 300;
-    flex-shrink: 0;
-    color: $main_color_2;
-    margin: 0px 0px 0px;
+  .empty-field {
+    opacity: 0.3;
   }
 
-  .degree-text {
-    font-weight: 600;
-    margin-bottom: 6px;
+  .hide {
+    display: none !important;
   }
 
+  // Blocks
   .cv-name {
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-family: Montserrat;
-
     span {
-      font-family: Montserrat;
+      font-family: 'Montserrat';
+    }
+    .name-line-2 {
+      font-weight: 600;
     }
   }
 
-  .name-line-1 {
-    font-weight: 400;
+  .cv-profession {
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
-  .name-line-2 {
+  .cv-heading {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
     font-weight: 600;
+    margin-bottom: 5px;
   }
 
   .line-after-block-heading {
@@ -105,223 +113,146 @@
     padding-top: 4px;
   }
 
-  .cv-speciality {
-    margin-top: 6px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .skills-estimation-block {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: 8px;
-
-    .skill-item {
-      display: flex;
-      flex-direction: column;
-
-      .skill-name {
-        font-weight: 600;
-      }
-
-      .skill-estimation {
-        display: flex;
-        align-items: center;
-        margin-top: 4px;
-
-        svg {
-          width: 10px;
-          height: 10px;
-        }
-
-
-        .estimation-point {
-          display: block;
-          border-radius: 50%;
-          width: 5px;
-          height: 5px;
-          border-width: 1px;
-          border-style: solid;
-          margin-right: 2px;
-          box-sizing: border-box;
-
-          &.filled {
-            background-color: rgba(214, 208, 208, 1);
-          }
-        }
-      }
-    }
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: 0;
-    max-height: 0;
-    min-height: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    left: -10000px;
-    // display: none;
-  }
-
-  #cv-body-2 {
-    .cv-body-area {
-      &.area-1 {
-        height: 117px;
-        padding: 50px 50px 0px 50px;
-        box-sizing: border-box;
-
-        @media screen and (max-width: 768px) {
-          height: 75px;
-          padding: 25px 25px 0px 25px;
-          box-sizing: border-box;
-        }
-      }
-    }
-  }
-
   .cv-body {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-    // max-width: 595px;
-    min-width: 595px;
-    height: 764px;
-    min-height: 764px;
-    max-height: 764px;
     overflow: hidden;
     background-color: #fff;
-    // margin: 0px 25px 25px;
-    box-sizing: border-box;
+  }
 
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .cv-body-content {
+  .cv-body-area {
+    display: flex;
+    .column-right {
+      width: 120px;
+      margin-left: 20px;
+      flex-shrink: 1;
+    }
+  }
+
+  .area-1 {
+    flex-direction: column;
+    display: flex;
+    .top-block {
+      display: flex;
+      padding: 25px 25px 10px;
+      align-items: center;
+    }
+    .personal-info-block {
+      display: flex;
       flex: 1;
+      column-gap: 14px;
+      .photo-block {
+        width: 60px;
+        height: 60px;
+      }
+      .photo {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-position: 50% 50%;
+        overflow: hidden;
+      }
+      .cv-heading-wrap {
+        display: flex;
+        row-gap: 6px;
+        flex-direction: column;
+      }
+    }
+    .profile-secondary-info {
+      min-width: 120px;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      justify-content: stretch;
-
-      .cv-body-area {
+      row-gap: 6px;
+      justify-content: center;
+      .item-block {
         display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: stretch;
-
-        .column-left {
-          flex: 1;
-
-          ul {
-            padding: 0px 0px 0px 15px;
-
-            li {
-              span {
-                display: block;
-              }
-            }
-          }
+        column-gap: 5px;
+        .name {
+          font-weight: 300;
         }
-
-        .column-right {
-          width: 120px;
-          min-width: 120px;
-          margin-left: 20px;
-        }
-
-        &.area-1 {
-          flex-direction: column;
-          display: flex;
-
-          .columns-wrapper {
-            display: flex;
-            padding: 25px 25px 10px;
-            align-items: center;
-          }
-
-          .profile-info-block {
-            padding: 20px 25px;
-          }
-        }
-
-        &.area-2 {
-          padding: 20px 25px;
-          .separator {
-            border-left: 1px dotted $main_color_1;
-            margin-left: 20px;
-          }
-        }
-
-        &.area-3 {
-          .column-left {
-            flex: 1;
-          }
+        .value {
+          font-weight: 500;
         }
       }
     }
-
-    &.page-1 {
-      .cv-body-area {
-        &.area-2 {
-          flex: 1;
+    .profile-info-block {
+      padding: 20px 25px;
+    }
+    .details-block {
+      border-top-style: dotted;
+      border-bottom-style: dotted;
+      border-top-width: 1px;
+      border-bottom-width: 1px;
+      border-color: $main_color_1;
+      display: flex;
+      column-gap: 10px;
+      justify-content: center;
+      margin: 0 25px;
+      padding: 10px 0;
+      .block-item {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        &.phone-item,
+        &.email-item {
+          flex-shrink: 0;
         }
       }
-    }
-
-    &.cv-body-1.page-2,
-    &.cv-body-1.page-3,
-    &.cv-body-1.page-4 {
-      .cv-body-content {
-        padding-top: 9px;
+      .links-wrapper {
+        display: flex;
+        column-gap: 4px;
+      }
+      svg {
+        width: 16px;
+        height: 16px;
       }
     }
   }
 
-  .cv-body-2 {
-    .cv-body-content {
-      .cv-body-area.area-1 {
-        padding: 50px 50px 40px;
-      }
+  .area-2 {
+    padding: 20px 25px;
+    flex: 1;
+    .column-left {
+      flex: 1;
+      border-right: 1px dotted $main_color_1;
+      padding-right: 20px;
 
-      .cv-body-area.area-2 {
-        padding: 40px 50px;
-
-        .column-right {
-          width: auto;
-          margin-left: 30px;
-        }
+    }
+    .date-range {
+      font-weight: 300;
+      flex-shrink: 0;
+      color: $main_color_2;
+    }
+    .cv-degree {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .references-block {
+      .references-item {
+        margin-top: 4px;
       }
     }
   }
 
-
-  /* Blocks */
-  .block-block,
-  .wrappable-block {
+  .block-block {
     position: relative;
     .horizontal-wrap {
       display: flex;
       justify-content: space-between;
       margin-bottom: 6px;
     }
-
-    .cv-heading {
-      text-transform: uppercase;
-      font-family: Montserrat;
-      font-weight: 600;
-      margin-bottom: 5px !important;
-    }
-
     .block-info {
       .cv-heading {
         text-transform: none;
-        margin-bottom: 0 !important;
-        font-family: Hind;
+        margin-bottom: 0;
+        font-family: 'Hind';
       }
 
       &:not(:first-of-type) {
@@ -344,15 +275,42 @@
     }
   }
 
-  .block-block {
-    &:not(:first-of-type) {
-      margin-top: 20px;
+  .skills-estimation-block {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      .skill-name {
+        font-weight: 600;
+      }
+      .skill-estimation {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        column-gap: 2px;
+        svg {
+          width: 10px;
+          height: 10px;
+        }
+        .estimation-point {
+          display: block;
+          border-radius: 50%;
+          width: 5px;
+          height: 5px;
+          border-width: 1px;
+          border-style: solid;
+          box-sizing: border-box;
+        }
+      }
     }
   }
 
-  .references-block {
-    .references-item {
-      margin-top: 4px;
+  .block-block {
+    &:not(:first-of-type) {
+      margin-top: 20px;
     }
   }
 
@@ -360,114 +318,6 @@
     .block-info {
       .cv-heading {
         font-weight: 400;
-      }
-    }
-  }
-
-  .personal-info-block {
-    display: flex;
-    column-gap: 14px;
-    .photo-block {
-      display: block;
-      width: 60px;
-      height: 60px;
-      border-radius: 100%;
-      overflow: hidden;
-      .photo {
-        width: 60px;
-        height: 60px;
-        border-radius: 100%;
-        background-size: cover;
-        background-position: 50% 50%;
-        overflow: hidden;
-      }
-    }
-
-    .cv-headings-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  .profile-secondary-info {
-    min-width: 120px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
-
-    .profile-item {
-      display: flex;
-      column-gap: 5px;
-      .name {
-        font-weight: 300;
-      }
-      .value {
-        font-weight: 500;
-      }
-    }
-  }
-
-  .cv-destination {
-    border-left: 1px dotted $main_color_1;
-  }
-
-  .cv-destination-block {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-    padding: 0 0 15px 30px;
-    width: 143px;
-    box-sizing: border-box;
-
-    .cv-sender {
-      margin-bottom: 10px;
-    }
-
-    .block-from {
-      margin-top: 25px;
-    }
-  }
-
-  .skills-block {
-    .cv-heading {
-      margin-top: 8px;
-    }
-
-    .skills-estimation-block {
-      .skill-item {
-        .skill-estimation {
-          svg {
-            margin-right: 2px;
-          }
-        }
-      }
-    }
-  }
-
-  .details-block {
-    border-top-style: dotted;
-    border-bottom-style: dotted;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 25px;
-    padding: 10px 0;
-
-    .details-block-item {
-      display: flex;
-      align-items: center;
-      column-gap: 6px;
-
-      svg {
-        width: 16px;
-        height: 16px;
-      }
-
-      .links-wrapper {
-        display: flex;
-        column-gap: 4px;
       }
     }
   }
@@ -514,104 +364,58 @@
     }
   }
 
-  /* Control panel */
-  #control-panel {
-    position: fixed;
-    top: 10px;
-    right: 10px;
+  #cv-body-2 {
+    .cv-body-area {
+      &.area-1 {
+        height: 117px;
+        padding: 50px 50px 0px 50px;
+        box-sizing: border-box;
 
-    .control-panel-item-block {
-      border: 1px solid #ccc;
-      background-color: #fff;
-      border-radius: 5px;
-      padding: 5px 10px;
-
-      &.toggle-photo-block {
-        opacity: 0.25;
-
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-
-          img {
-            display: block;
-            width: 50px;
-            height: 50px;
-          }
-        }
-
-        &.active {
-          opacity: 1;
+        @media screen and (max-width: 768px) {
+          height: 75px;
+          padding: 25px 25px 0px 25px;
+          box-sizing: border-box;
         }
       }
+    }
+  }
 
-      .control-panel-heading {
-        font-size: 11px;
-        margin: 0px 0px 0px 0px;
+  .cv-body-2 {
+    .cv-body-content {
+      .cv-body-area.area-1 {
+        padding: 50px 50px 40px;
       }
 
-      .control-panel-item-input-list {
-        &.radio-input-list {
-          .input-list-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            margin: 3px 0px;
+      .cv-body-area.area-2 {
+        padding: 40px 50px;
 
-            .radio-input {
-              display: block;
-              border-radius: 50%;
-              border: 2px solid #d6d0d0;
-              width: 7px;
-              height: 7px;
-              background-color: transparent;
-              margin-right: 5px;
-              pointer-events: none;
-            }
-
-            .radio-input-label {
-              font-size: 10px;
-              pointer-events: none;
-            }
-
-            &.active {
-              .radio-input {
-                background-color: #d6d0d0;
-              }
-            }
-          }
-
-          &.color-list {
-            .input-list-item {
-              .radio-input-label {
-                flex: 1;
-                height: 15px;
-                border-radius: 3px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-
-                .color-set-color {
-                  display: none;
-                  border-radius: 50%;
-                  width: 15px;
-                  height: 15px;
-                  border: 0.5px solid #d4d4d4;
-
-                  &:nth-child(n + 4) {
-                    display: block;
-                  }
-                }
-              }
-            }
-          }
+        .column-right {
+          width: auto;
+          margin-left: 30px;
         }
       }
+    }
+  }
+
+  .cv-destination {
+    border-left: 1px dotted $main_color_1;
+  }
+
+  .cv-destination-block {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0 0 15px 30px;
+    width: 143px;
+    box-sizing: border-box;
+
+    .cv-sender {
+      margin-bottom: 10px;
+    }
+
+    .block-from {
+      margin-top: 25px;
     }
   }
 
