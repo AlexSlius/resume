@@ -225,7 +225,7 @@ export const ResumeCv003 = ({
 
   return (
     <div className="sv_003" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section has-photo`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body">
           <div className="cv-body-content main-color-1-text font-size-1">
             <div className="cv-body-area area-1">

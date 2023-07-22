@@ -392,18 +392,6 @@
         display: flex;
       }
     }
-
-    &.has-photo {
-      .personal-info-block {
-        &.is-photo {
-          display: flex;
-        }
-
-        &.no-photo {
-          display: none;
-        }
-      }
-    }
   }
 
   /* Font size scheme */
