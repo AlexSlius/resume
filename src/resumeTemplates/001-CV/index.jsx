@@ -178,8 +178,10 @@ const drawing = () => {
         }
       })
     }
-    rebuildingPages();
-    secondaryInfoHelper();
+    setTimeout(() => {
+      rebuildingPages();
+      secondaryInfoHelper();
+    }, 100);
   }
 }
 
