@@ -129,7 +129,6 @@
   .cv-body-area {
     display: flex;
     .column-right {
-      min-width: 120px;
       margin-left: 20px;
       flex-shrink: 1;
     }
@@ -225,6 +224,14 @@
       padding-right: 20px;
       flex-basis: 200%;
 
+    }
+    .column-right {
+      .block-block {
+        min-width: 120px;
+      }
+      &.m-empty {
+        min-width: 120px;
+      }
     }
     .date-range {
       font-weight: 300;
