@@ -241,7 +241,7 @@ export const ResumeCv003 = ({
                   <div className={`cv-heading-wrap ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                     <div className={`cv-name font-size-4 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                       <span className={`name-line-1 ${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                        {contact[0].firstName || 'Matthew'}{` `}
+                        {contact[0].firstName || 'Matthew'}
                       </span><br />
                       <span className={`name-line-2 ${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                         {contact[0].lastName || 'Mcconaughey'}
