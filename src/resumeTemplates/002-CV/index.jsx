@@ -111,6 +111,7 @@ const drawing = () => {
           getPageColumnBottom().append(el);
         }
       });
+      checkEmpty();
     }
     function getPageColumnTop() {
       return getPageContainer().find('.area-1');
@@ -147,7 +148,7 @@ const drawing = () => {
 
       var area_1 = $('#cv-body-hidden-container .cv-body-content .area-1').clone();
       area_1.children().remove();
-      current_page_number === 1 && page_element_container.append(area_1);
+      page_element_container.append(area_1);
 
       var area_2 = $('#cv-body-hidden-container .cv-body-content .area-2').clone();
       area_2.children().remove();
@@ -171,9 +172,27 @@ const drawing = () => {
     
       return page_element_container;
     }
-
+    function checkEmpty() {
+      $('.cv-body-area').each(function(index, el){
+        if($(this).height() === 0) {
+          $(this).remove();
+        }
+      });
+    }
+    function secondaryInfoHelper() {
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(){
+        $('.js-profile-secondary-info').removeClass('m-transfer');
+        if ($(this).height() > 15) {
+          $('.js-profile-secondary-info').addClass('m-transfer');
+          return;
+        } else {
+          $('.js-profile-secondary-info').removeClass('m-transfer');
+        }
+      })
+    }
     setTimeout(function(){
       rebuildingPages();
+      secondaryInfoHelper();
     }, 100)
     
   }
@@ -247,7 +266,7 @@ export const ResumeCv002 = ({
                     </div>
                   </div>
                 </div>
-                <div className={`profile-secondary-info additional-color-2-border m-default ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`profile-secondary-info js-profile-secondary-info additional-color-2-border m-default ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                   <div className={`item-block ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-2-text">Birth Date</span>
                     {
