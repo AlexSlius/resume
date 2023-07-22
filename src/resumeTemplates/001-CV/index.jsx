@@ -167,7 +167,19 @@ const drawing = () => {
 
       return page_element_container;
     }
+    function secondaryInfoHelper() {
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(index, el){
+        $('.js-profile-secondary-info').removeClass('m-transfer');
+        if ($(this).height() > 15) {
+          $('.js-profile-secondary-info').addClass('m-transfer');
+          return;
+        } else {
+          $('.js-profile-secondary-info').removeClass('m-transfer');
+        }
+      })
+    }
     rebuildingPages();
+    secondaryInfoHelper();
   }
 }
 
@@ -255,7 +267,7 @@ export const ResumeCv001 = ({
                   </div>
                   {
                     isArray(contact) && (
-                      <div className="profile-secondary-info">
+                      <div className="profile-secondary-info js-profile-secondary-info">
                         <div className={`item-block ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                           <span className="name">Birth Date</span>
                           {

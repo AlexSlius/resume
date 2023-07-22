@@ -112,6 +112,7 @@
     .column-left {
       display: flex;
       flex-direction: column;
+      flex-basis: 200%;
     }
     .personal-info-block {
       margin-top: 26px;
@@ -145,6 +146,11 @@
       }
       .name {
         font-weight: 300;
+      }
+      &.m-transfer {
+        .item-block {
+          flex-direction: column;
+        }
       }
     }
     .details-block {
