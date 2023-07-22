@@ -107,6 +107,7 @@ const drawing = () => {
           getPageColumnBottom().append(el);
         }
       });
+      checkEmpty();
     }
     function getPageColumnTop() {
       return getPageContainer().find('.area-1');
@@ -143,7 +144,7 @@ const drawing = () => {
 
       var area_1 = $('#cv-body-hidden-container .cv-body-content .area-1').clone();
       area_1.children().remove();
-      current_page_number === 1 && page_element_container.append(area_1);
+      page_element_container.append(area_1);
 
       var area_2 = $('#cv-body-hidden-container .cv-body-content .area-2').clone();
       area_2.children().remove();
@@ -164,11 +165,17 @@ const drawing = () => {
       if ($('#cv-chapter-section-cv').find(page_element)) {
         $('#cv-chapter-section-cv').append(page_element);
       }
-
       return page_element_container;
     }
+    function checkEmpty() {
+      $('.cv-body-area').each(function(index, el){
+        if($(this).height() === 0) {
+          $(this).remove();
+        }
+      });
+    }
     function secondaryInfoHelper() {
-      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(index, el){
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(){
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
           $('.js-profile-secondary-info').addClass('m-transfer');
