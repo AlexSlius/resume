@@ -107,6 +107,7 @@ const drawing = () => {
           getPageColumnBottom().append(el);
         }
       });
+      checkEmpty();
     }
     function getPageColumnTop() {
       return getPageContainer().find('.area-1');
@@ -143,7 +144,7 @@ const drawing = () => {
 
       var area_1 = $('#cv-body-hidden-container .cv-body-content .area-1').clone();
       area_1.children().remove();
-      current_page_number === 1 && page_element_container.append(area_1);
+      page_element_container.append(area_1);
 
       var area_2 = $('#cv-body-hidden-container .cv-body-content .area-2').clone();
       area_2.children().remove();
@@ -164,10 +165,30 @@ const drawing = () => {
       if ($('#cv-chapter-section-cv').find(page_element)) {
         $('#cv-chapter-section-cv').append(page_element);
       }
-
       return page_element_container;
     }
-    rebuildingPages();
+    function checkEmpty() {
+      $('.cv-body-area').each(function(index, el){
+        if($(this).height() === 0) {
+          $(this).remove();
+        }
+      });
+    }
+    function secondaryInfoHelper() {
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(){
+        $('.js-profile-secondary-info').removeClass('m-transfer');
+        if ($(this).height() > 15) {
+          $('.js-profile-secondary-info').addClass('m-transfer');
+          return;
+        } else {
+          $('.js-profile-secondary-info').removeClass('m-transfer');
+        }
+      })
+    }
+    setTimeout(() => {
+      rebuildingPages();
+      secondaryInfoHelper();
+    }, 100);
   }
 }
 
@@ -222,10 +243,10 @@ export const ResumeCv001 = ({
                     isArray(contact) && (
                       <div className={`cv-name font-size-3 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].firstName || 'Matthew'} `}
+                          {contact[0].firstName || 'Matthew'}{` `}
                         </span>
                         <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].lastName || 'Mcconaughey'}`}
+                          {contact[0].lastName || 'Mcconaughey'}
                         </span>
                       </div>
                     )
@@ -255,7 +276,7 @@ export const ResumeCv001 = ({
                   </div>
                   {
                     isArray(contact) && (
-                      <div className="profile-secondary-info">
+                      <div className="profile-secondary-info js-profile-secondary-info">
                         <div className={`item-block ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                           <span className="name">Birth Date</span>
                           {

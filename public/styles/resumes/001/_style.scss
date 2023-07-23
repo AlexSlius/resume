@@ -112,6 +112,7 @@
     .column-left {
       display: flex;
       flex-direction: column;
+      flex-basis: 200%;
     }
     .personal-info-block {
       margin-top: 26px;
@@ -145,6 +146,11 @@
       }
       .name {
         font-weight: 300;
+      }
+      &.m-transfer {
+        .item-block {
+          flex-direction: column;
+        }
       }
     }
     .details-block {
@@ -248,9 +254,6 @@
       flex-direction: column;
       .skill-item {
         width: 50%;
-        box-sizing: border-box;
-        flex-direction: row;
-        column-gap: 5px;
       }
       .skills-estimation-block {
         margin-top: 10px;
@@ -264,8 +267,6 @@
         margin-top: 10px;
         .skill-item {
           width: 100%;
-          flex-direction: row;
-          column-gap: 5px;
         }
         .skill-name {
           width: 60px;
@@ -298,10 +299,9 @@
     width: 100%;
     .skill-item {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
       margin-bottom: 4px;
       align-items: center;
+      column-gap: 5px;
       .skill-name {
         display: inline-block;
         width: 100px;
@@ -309,18 +309,14 @@
       }
       .skill-estimation {
         display: flex;
+        column-gap: 2px;
         .estimation-point {
           display: block;
-          border-radius: 50%;
+          border-radius: 100%;
           width: 5px;
           height: 5px;
-          max-width: 5px;
-          max-height: 5px;
-          min-width: 5px;
-          min-height: 5px;
           border-width: 1px;
           border-style: solid;
-          margin-right: 2px;
           box-sizing: border-box;
         }
       }
