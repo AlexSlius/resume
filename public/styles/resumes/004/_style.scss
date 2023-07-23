@@ -12,6 +12,13 @@
 
 @font-face {
   font-family: 'Hind';
+  src: url('fonts/Hind/Hind-Light.ttf');
+  font-weight: 300;
+}
+
+
+@font-face {
+  font-family: 'Hind';
   src: url('fonts/Hind/Hind-Regular.ttf');
   font-weight: 400;
 }
@@ -33,7 +40,6 @@
   src: url('fonts/Hind/Hind-Bold.ttf');
   font-weight: 700;
 }
-
 
   /* Colors */
   $main_color_1: #030303;
@@ -57,263 +63,292 @@
   $color_set_4_additional_color_2: #af9e00;
 
 .sv_004 {
-  font-family: 'Hind';
+  font-weight: 400;
 
+  /* Global */
   * {
-    padding: 0px;
-    margin: 0px;
-    box-sizing: content-box;
-    font-family: 'Hind';
+    padding: 0;
+    margin: 0;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+    font-family: 'Hind', sans-serif;
   }
 
   ul {
+    padding-left: 15px;
     li {
       list-style-type: disc;
-    }
-  }
 
-  .skill-estimation {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-
-    .estimation-point {
-      width: 5px;
-      height: 5px;
-      display: block;
-      border-radius: 50%;
-      border-width: 1px;
-      border-style: solid;
-      box-sizing: border-box;
-    }
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: 0;
-    max-height: 0;
-    min-height: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    left: -10000px;
-  }
-
-  ul {
-    li {
       &:not(:first-child) {
         margin-top: 4px;
       }
     }
   }
 
+  .empty-field {
+    opacity: 0.3;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  // Blocks
+  .cv-profession {
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .cv-name {
+    font-family: 'Arsenal';
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+
   .cv-body {
     display: flex;
     flex-direction: column;
-    width: 595px;
-    height: 764px;
-    max-height: 764px;
-    min-height: 764px;
     overflow: hidden;
-    background-color: #fff;
-    box-sizing: border-box;
-    // margin: 0px 25px 25px;
+    background-color: $main_color_2;
+  }
 
-    .cv-body-content {
-      flex: 1;
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-columns-wrapper {
+    flex: 1;
+    display: flex;
+  }
+  
+  .area-1 {
+    width: 195px;
+    display: flex;
+    flex-direction: column;
+    .block-block {
+      margin: 30px 36px 0;
+      padding-top: 10px;
+      &:nth-child(2) {
+        margin-top: 45px;
+      }
+    }
+    .photo-block {
+      width: 195px;
+      height: 195px;
+    }
+    .photo {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: 50% 50%;
+      overflow: hidden;
+    }
+    .skills-block {
+      .skills-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      .skill-item {
+        font-weight: 600;
+      }
+    }
+    .languages-block {
+      .language-item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+        &:not(:first-of-type) {
+          margin-top: 10px;
+        }
+      }
+      .language-name {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .area-2 {
+    flex: 1;
+    padding: 0 25px 10px 20px;
+    display: flex;
+    flex-direction: column;
+    .block-block {
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: stretch;
-
-      .main-columns-wrapper {
+      margin-top: 10px;
+      padding-top: 10px;
+      .left-side {
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        row-gap: 6px;
+        padding-right: 10px;
+        &.profile-secondary-info {
+          align-items: flex-start;
+          width: auto;
+          padding-right: 0;
+        }
+      }
+      .right-side {
         flex: 1;
         display: flex;
-        align-items: stretch;
-        justify-content: stretch;
-      }
-    }
-
-    &.cv-body-1 {
-      .cv-body-content {
-        .column-1 {
-          width: 193px;
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          justify-content: stretch;
-          padding-top: 148px;
-
-          &.toggle-photo-state-active {
-            padding-top: 0px;
-          }
-
-          .block-block {
-            margin: 30px 36px 0;
-            padding-top: 10px;
-            &:nth-child(2) {
-              margin-top: 45px;
-            }
-          }
-        }
-
-        .column-2 {
-          flex: 1;
-          padding: 0 25px 10px 20px;
-
-          .block-block {
-            display: flex;
-            align-items: stretch;
-            justify-content: stretch;
-            margin-top: 10px;
-            padding-top: 10px;
-
-            .left-side {
-              width: 120px;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-end;
-              row-gap: 6px;
-              padding-right: 20px;
-            }
-
-            .right-side {
-              flex: 1;
-              display: flex;
-              flex-direction: column;
-              padding-left: 24px;
-            }
-
-            .block-title {
-              align-self: flex-start;
-              margin-bottom: 0 !important;
-            }
-
-            &:nth-child(2) {
-              margin-top: 20px;
-            }
-
-            &.work-experience-block {
-              flex-direction: column;
-          
-              .block-title {
-                margin-bottom: 14px !important;
-              }
-          
-              .work-experience-subblock {
-                display: flex;
-                .left-side {
-                  row-gap: 2px;
-                  position: relative;
-          
-                  p {
-                    text-align: right;
-                  }
-          
-                  .pointer-circle {
-                    position: absolute;
-                    width: 7px;
-                    height: 7px;
-                    border-radius: 50%;
-                    display: block;
-                    right: -4px;
-                    top: 0;
-                  }
-
-                  .title-text {
-                    font-weight: 600;
-                  }
-
-                  .company-text {
-                    font-weight: 600;
-                    color: $main_color_4;
-                  }
-
-                  .date-range {
-                    font-weight: 300;
-                    color: $main_color_4;
-                  }
-                }
-          
-                .right-side {
-                  justify-content: center;
-                  border-left-width: 1px;
-                  border-left-style: solid;
-                }
-
-                &:not(:last-of-type) {
-                  .right-side {
-                    padding-bottom: 20px;
-                  }
-                }
-              }
-            }
-
-            &:first-child {
-              border: none;
-            }
-          }
-        }
-      }
-    }
-
-    &.cv-body-2 {
-      padding: 50px;
-
-      .cv-body-content {
         flex-direction: column;
-
-        .name-block {
-          font-family: 'Arsenal';
-          font-weight: 700;
+        padding-left: 15px;
+        padding-top: 2px;
+      }
+      .cv-heading {
+        font-weight: 600;
+      }
+      .cv-subheading {
+        font-weight: 600;
+        color: $main_color_4;
+      }
+      .date-range {
+        font-weight: 300;
+        color: $main_color_4;
+      }
+      .block-title {
+        align-self: flex-start;
+        margin-bottom: 0;
+      }
+      &.work-experience-block {
+        flex-direction: column;
+        .block-title {
+          margin-bottom: 14px;
         }
-
-        .columns-wrapper {
+        .work-experience-subblock {
           display: flex;
-          flex-direction: row;
-          align-items: stretch;
-          justify-content: stretch;
-          margin-top: 43px;
-
-          .column-1 {
-            flex: 1;
-
-            .letter-block {
-              h3 {
-                margin-bottom: 15px;
-              }
-            }
-          }
-
-          .column-2 {
-            width: 118px;
-            margin-left: 58px;
-
-            .cv-heading {
-              margin-bottom: 10px !important;
-              font-family: 'Arsenal', sans-serif;
-              font-weight: 700;
-            }
-
-            .to-block {
-              margin-bottom: 30px;
-
-              h3 {
-                margin-bottom: 10px;
-              }
-            }
-
-            .from-block {
-              h3 {
-                margin: 30px 0px 10px
-              }
-
+          flex: 1;
+          &:not(:last-of-type) {
+            .right-side {
+              padding-bottom: 20px;
             }
           }
         }
+        .left-side {
+          row-gap: 2px;
+          position: relative;
+          p {
+            text-align: right;
+          }
+          .pointer-circle {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: block;
+            right: -4px;
+            top: 0;
+          }
+          .title-text {
+            font-weight: 600;
+          }
+          .company-text {
+            font-weight: 600;
+            color: $main_color_4;
+          }
+        }
+        .right-side {
+          padding-top: 0;
+          border-left-width: 1px;
+          border-left-style: solid;
+        }
+        &.m-transfer {
+          flex: 1;
+        }
+      }
+      &:nth-child(2) {
+        margin-top: 20px;
+      }
+      &:first-child {
+        border: none;
+      }
+    }
+    .profile-info-block {
+      .cv-name {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .cv-profession {
+        text-align: center;
+      }
+    }
+    .details-block {
+      .details-content-wrapper {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        flex: 1;
+      }
+    }
+    .contacts-information {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      .item-block {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        flex-basis: calc(50% - 3px);
+        svg {
+          width: 15px;
+          height: 15px;
+          flex-shrink: 0;
+        }
+        .social-wrapper {
+          display: flex;
+          column-gap: 4px;
+        }
+      }
+    }
+    .profile-secondary-info {
+      border-right-width: 1px;
+      border-right-style: dotted;
+      flex-shrink: 0;
+      height: 100%;
+      justify-content: center;
+      .items-block {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        row-gap: 5px;
+      }
+      .item-block {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+      }
+      .name {
+        font-weight: 300;
+        flex-shrink: 0;
+      }
+      .value {
+        font-weight: 500;
+        flex-shrink: 0;
+      }
+    }
+    .education-block {
+      .block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+      }
+    }
+    .certificates-block {
+      .certificate-name {
+        font-weight: 600;
+      }
+    }
+    .references-block {
+      p:not(:first-child) {
+        margin-top: 2px;
       }
     }
   }
@@ -322,7 +357,7 @@
     .block-title {
       font-family: 'Arsenal';
       font-weight: 700;
-      margin-bottom: 10px !important;
+      margin-bottom: 10px;
     }
     .block-info {
       &:not(:first-of-type) {
@@ -332,220 +367,92 @@
     border-top: 1px solid $main_color_3;
   }
 
-  .photo-block {
-    display: none;
-    width: 193px;
-    height: 193px;
+  .skill-estimation {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2px;
+    align-items: center;
+    justify-content: flex-start;
 
-
-    .photo {
-      width: 193px;
-      height: 193px;
-      background-size: cover;
-      background-position: 50% 50%;
-      overflow: hidden;
-    }
-
-    &.active {
-      display: flex;
-    }
-  }
-
-  .education-block {
-    .block-info {
-      .facility-text,
-      .degree-text {
-        font-weight: 600;
-      }
-      .study-text {
-        font-weight: 600;
-        color: $main_color_4;
-      }
-      .data-range {
-        font-weight: 300;
-        color: $main_color_4;
-      }
-
-      p:not(:first-child) {
-        margin-top: 2px;
-      }
+    .estimation-point {
+      width: 5px;
+      height: 5px;
+      display: block;
+      border-radius: 100%;
+      border-width: 1px;
+      border-style: solid;
+      box-sizing: border-box;
     }
   }
 
-  .skills-block {
-    .skill-item {
-      font-weight: 600;
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
-    }
-  }
+  &.cv-body-2 {
+    padding: 50px;
 
-  .profile-info-block {
-    .profile-speciality {
-      letter-spacing: 3px;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
-
-    &.no-photo {
-      background-color: #fff;
-      padding: 30px 25px 11px;
-      text-align: center;
-
-      .profile-name {
-        margin-bottom: 24px !important;
-      }
-    }
-  }
-
-  .languages-block {
-    .language-item {
-      display: flex;
+    .cv-body-content {
       flex-direction: column;
 
-      .language-name {
-        margin-bottom: 4px;
-        font-weight: 600;
+      .name-block {
+        font-family: 'Arsenal';
+        font-weight: 700;
       }
 
-      .skill-estimation {
-        .estimation-point {
-          margin-right: 2px;
-        }
-      }
-
-      &:not(:first-of-type) {
-        margin-top: 10px;
-      }
-    }
-  }
-
-  .details-block {
-    padding: 12px 0 0;
-    .details-content-wrapper {
-      display: flex;
-
-      .person-details {
-        border-right-width: 1px;
-        border-right-style: dotted;
-
-        .details-item {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: flex-start;
-
-          &:last-child {
-            margin-bottom: 0px;
-          }
-
-          .details-item-name {
-            width: 60px;
-          }
-
-          .details-item-value {
-            width: 60px;
-          }
-        }
-      }
-
-      .contacts {
+      .columns-wrapper {
         display: flex;
-        flex-wrap: wrap;
-        padding-left: 10px;
-        gap: 6px;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: stretch;
+        margin-top: 43px;
 
-        .contacts-item {
-          display: flex;
-          column-gap: 6px;
-          flex-basis: calc(50% - 3px);
+        .area-1 {
+          flex: 1;
 
-          svg {
-            width: 15px;
-            height: 15px;
-            flex-shrink: 0;
+          .letter-block {
+            h3 {
+              margin-bottom: 15px;
+            }
+          }
+        }
+
+        .area-2 {
+          width: 118px;
+          margin-left: 58px;
+
+          .cv-heading {
+            margin-bottom: 10px !important;
+            font-family: 'Arsenal', sans-serif;
+            font-weight: 700;
           }
 
-          .social-wrapper, p {
-            padding-top: 2px;
+          .to-block {
+            margin-bottom: 30px;
+
+            h3 {
+              margin-bottom: 10px;
+            }
           }
 
-          .social-wrapper {
-            display: flex;
-            column-gap: 4px;
+          .from-block {
+            h3 {
+              margin: 30px 0px 10px
+            }
+
           }
         }
       }
     }
   }
-
-  .certificates-block {
-    .right-side {
-      span {
-        display: block;
-        font-weight: 600;
-
-        &:not(:first-child) {
-          margin-top: 4px;
-        }
-      }
-    }
-  }
-
-  .references-block {
-    .references-block-item {
-      .name-text {
-        font-weight: 600;
-      }
-      p:not(:first-child) {
-        margin-top: 2px;
-      }
-      &:not(:first-child) {
-        margin-top: 10px;
-      }
-    }
-  }
-
-  .profile-info-block {
-    background-color: #fff;
-
-    &.toggle-photo-state-active {
-      margin-left: auto;
-      margin-top: auto;
-      padding-top: 0px;
-    }
-
-    .profile-name {
-      margin-bottom: 23px;
-      text-align: center;
-
-      &.toggle-photo-state-active {
-        text-align: left;
-      }
-    }
-
-    .profile-speciality {
-      text-align: center;
-
-      &.toggle-photo-state-active {
-        text-align: left;
-      }
-    }
-  }
-
-
-  /* Stylization */
+  
+  /* Photo styles */
   #cv-chapter-section-cv {
     .profile-info-block {
       &.no-photo {
         display: block;
 
-        .profile-speciality {
+        .cv-profession {
           text-align: center;
         }
 
-        .profile-name {
+        .cv-name {
           text-align: center;
         }
       }
@@ -555,14 +462,14 @@
       }
     }
 
-    .column-1 {
+    .area-1 {
       .photo-block {
         display: none;
       }
     }
 
     &.has-photo {
-      .column-1 {
+      .area-1 {
         .photo-block {
           display: block;
           margin: 0;
@@ -577,15 +484,9 @@
         }
 
         &.is-photo {
-          padding-top: 30px;
           display: block;
-          margin: 0;
-
-          .profile-name {
-            font-family: 'Arsenal';
-            margin-bottom: 24px !important;
-            font-weight: 700;
-          }
+          margin-top: 30px;
+          padding: 0;
         }
       }
     }
@@ -608,6 +509,14 @@
     .font-size-4 {
       font-size: 30px;
     }
+    
+    .details-block {
+      .profile-secondary-info {
+        .name {
+          width: 55px;
+        }
+      }
+    }
   }
 
   .font-size-scheme-state-medium {
@@ -628,50 +537,15 @@
     }
 
     .details-block {
-      .details-content-wrapper {
-        flex-basis: 100%;
-        .contacts {
-          flex-direction: column;
-          column-gap: 0;
-          flex-wrap: nowrap;
-          flex-basis: calc(50% - 10px);
-          .contacts-item {
-            flex-basis: 100%;
-          }
+      .profile-secondary-info {
+        .name {
+          width: 70px;
         }
       }
-    }
-    .cv-body.cv-body-1 {
-      .cv-body-content {
-        .column-2 {
-          .details-block {
-            .left-side {
-              width: auto;
-              align-items: flex-start;
-              flex-basis: calc(50% - 20px);
-              .details-item-name {
-                min-width: 75px;
-              }
-              .details-item-value {
-                width: auto;
-              }
-            }
-          }
-          .work-experience-block {
-            .work-experience-subblock {
-              .left-side {
-                margin-top: -3px;
-                .pointer-circle {
-                  top: 3px;
-                }
-              }
-              .right-side {
-                .list-wrapper {
-                  margin-top: -2px;
-                }
-              }
-            }
-          }
+      .contacts-information {
+        flex-direction: column;
+        .item-block  {
+          flex-basis: 100%;
         }
       }
     }
@@ -695,50 +569,15 @@
     }
 
     .details-block {
-      .details-content-wrapper {
-        flex-basis: 100%;
-        .contacts {
-          flex-direction: column;
-          column-gap: 0;
-          flex-wrap: nowrap;
-          flex-basis: calc(50% - 10px);
-          .contacts-item {
-            flex-basis: 100%;
-          }
+      .profile-secondary-info {
+        .name {
+          width: 80px;
         }
       }
-    }
-    .cv-body.cv-body-1 {
-      .cv-body-content {
-        .column-2 {
-          .details-block {
-            .left-side {
-              width: auto;
-              align-items: flex-start;
-              flex-basis: calc(50% - 20px);
-              .details-item-name {
-                min-width: 90px;
-              }
-              .details-item-value {
-                width: auto;
-              }
-            }
-          }
-          .work-experience-block {
-            .work-experience-subblock {
-              .left-side {
-                margin-top: -4px;
-                .pointer-circle {
-                  top: 4px;
-                }
-              }
-              .right-side {
-                .list-wrapper {
-                  margin-top: -4px;
-                }
-              }
-            }
-          }
+      .contacts-information {
+        flex-direction: column;
+        .item-block  {
+          flex-basis: 100%;
         }
       }
     }

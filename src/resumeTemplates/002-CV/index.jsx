@@ -319,7 +319,7 @@ export const ResumeCv002 = ({
                   {
                     employment.map((itemEm, index) => (
                       <div className="block-info" key={index}>
-                        <div className={`cv-subheading ${!itemEm.title && !itemEm.company && itemEm.city && !beforeСontent ? 'hide' : ''}`}>
+                        <div className={`cv-subheading ${!itemEm.title && !itemEm.company && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
                           </span>
