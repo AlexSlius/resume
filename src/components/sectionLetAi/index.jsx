@@ -17,7 +17,6 @@ export const SectionLetAi = ({
                         <div className="aib__des">
                             <ul>
                                 <li>Settled any customer disputes in a professional and pleasant manner.</li>
-                                <li>Helped to increase customer return rates by providing excellent customer service at all times.</li>
                             </ul>
                         </div>
 

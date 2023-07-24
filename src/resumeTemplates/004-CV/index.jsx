@@ -181,10 +181,7 @@ const drawing = () => {
       }
 
     }
-    setTimeout(function(){
-      rebuildingPages();
-    }, 100)
-    
+    rebuildingPages();
   }
 }
 
@@ -228,6 +225,14 @@ export const ResumeCv004 = ({
         handleFalseDrafind();
     }
 }, [isDrawing, data, stateClasses]);
+
+useEffect(() => {
+  if (isTemplate) {
+    setTimeout(() => {
+      drawing();
+    }, 100);
+  }
+}, []);
 
   return (
     <div className="sv_004" ref={reportTemplateRef}>

@@ -222,6 +222,14 @@ export const ResumeCv031 = ({
     }
 }, [isDrawing, data, stateClasses]);
 
+useEffect(() => {
+    if (isTemplate) {
+      setTimeout(() => {
+        drawing();
+      }, 100);
+    }
+  }, []);
+
   return (
     <div className="sv_031" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">

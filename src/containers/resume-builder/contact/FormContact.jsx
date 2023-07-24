@@ -42,7 +42,6 @@ import { sendCodeResume } from "../../../utils/sendCode";
 import style from './Contact.module.scss'
 import reactComponent from '/public/images/icons/down.svg?sprite'
 
-
 const FormContact = ({
    dispatch,
    storeDate,

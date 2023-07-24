@@ -10,6 +10,9 @@ const TemplatesPage = () => {
     )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetResumesTemplates: true, isGetResumeDataAll: true });
+export const getServerSideProps = withPublicRoute({
+    isGetResumesTemplates: true,
+    isGetResumeDataAll: true,
+});
 
 export default TemplatesPage;

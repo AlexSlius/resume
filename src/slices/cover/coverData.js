@@ -45,7 +45,6 @@ export const slice = createSlice({
         [HYDRATE]: (state, action) => {
             state.list = { ...state.list, ...action.payload.coverData.list };
             state.data = { ...state.data, ...action.payload.coverData.data };
-            state.resumeActive = { ...state.resumeActive, ...action.payload.coverData.resumeActive };
         },
         // getCoverShareTemplateActive
         [getCoverShareTemplateActive.pending]: (state) => {

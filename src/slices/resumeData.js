@@ -55,7 +55,6 @@ export const slice = createSlice({
         [HYDRATE]: (state, action) => {
             state.list = { ...state.list, ...action.payload.resumeData.list };
             state.data = { ...state.data, ...action.payload.resumeData.data };
-            state.resumeActive = { ...state.resumeActive, ...action.payload.resumeData.resumeActive };
         },
         // get resume active
         [getResumeActive.pending]: (state) => {
@@ -71,7 +70,6 @@ export const slice = createSlice({
         },
         [getResumesTemplates.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            // state.list = action.payload;
             state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
         },
         // get data

@@ -20,7 +20,7 @@ export const SectionReviews = ({
                 <div className="revs__h">
                     <h2 className="h2 font-600 max-t-570">{title}</h2>
                     <div className="ratgs">
-                        <div className="ratgs__n">4,7</div>
+                        <div className="ratgs__n">4,9</div>
                         <div className="ratgs_r">
                             <img src="/images/page/stars.svg" alt="icon stars" />
                             <div>Based on reviews: 3,656</div>

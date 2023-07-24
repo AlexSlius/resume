@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -245,14 +245,22 @@ export const ResumeCv007 = ({
 
   useEffect(() => {
     if (isTemplate) {
-        drawing();
+      drawing();
     }
 
     if (!!isDrawing && !isTemplate) {
-        drawing();
-        handleFalseDrafind();
+      drawing();
+      handleFalseDrafind();
     }
-}, [isDrawing, data, stateClasses]);
+  }, [isDrawing, data, stateClasses]);
+
+  useEffect(() => {
+    if (isTemplate) {
+      setTimeout(() => {
+        drawing();
+      }, 100);
+    }
+  }, []);
 
   return (
     <div className="sv_007" ref={reportTemplateRef}>
@@ -414,7 +422,7 @@ export const ResumeCv007 = ({
               }
 
               {
-               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
+                (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
                   <div className="references-block block-block">
                     <p className="cv-heading font-size-3">References</p>
                     {
@@ -446,7 +454,7 @@ export const ResumeCv007 = ({
               }
 
               {
-                 isArray(hobbies) && !!hobbies.length && (
+                isArray(hobbies) && !!hobbies.length && (
                   <div className="hobbies-block block-block">
                     <p className="cv-heading font-size-3">Hobbies</p>
                     <p>
@@ -479,11 +487,11 @@ export const ResumeCv007 = ({
                     )
                   }
                 </div>
-                </div>
+              </div>
               <div className="information-area-1 additional-color-2-background">
                 <span className="top-line main-color-1-background"></span>
                 {
-                 (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
+                  (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
                     employment.map((itemEm, index) => (
                       <div className={`employment-history-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">
@@ -505,9 +513,9 @@ export const ResumeCv007 = ({
                           }
                           <p className="cv-subheading">
                             <span className="circle-point"></span>
-                              {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
-                              {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
-                              {!!itemEm?.city && (itemEm?.city)}
+                            {!!itemEm?.title && (checkForSymbol([itemEm?.company, itemEm?.city])) ? itemEm?.title + ', ' : itemEm?.title}
+                            {!!itemEm?.company && (checkForSymbol([itemEm?.city])) ? itemEm?.company + ', ' : itemEm?.company}
+                            {!!itemEm?.city && (itemEm?.city)}
                           </p>
                           <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
                         </div>
@@ -594,7 +602,7 @@ export const ResumeCv007 = ({
               </div>
               <div className="information-area-2 additional-color-1-background">
                 {
-                   (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     education.map((itemEd, index) => (
                       <div className={`education-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">
@@ -636,7 +644,7 @@ export const ResumeCv007 = ({
                 }
 
                 {
-                   (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     courses.map((itemCo, index) => (
                       <div className={`courses-block block-block ${(index > 0) ? "block-net" : ""}`} key={index}>
                         <div className="left-side">

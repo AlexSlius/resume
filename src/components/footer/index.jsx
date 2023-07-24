@@ -53,7 +53,7 @@ export const Footer = () => {
                     }
                 </div>
                 <div className="footer-r-bottom">
-                    <p className="footer-r-bottom__copy">Copyright © 2022</p>
+                    <p className="footer-r-bottom__copy">Copyright © 2023</p>
                     <p className="footer-r-bottom__addres">
                         <Link href={`/${routersPages['termsOfUse']}`}>Terms of service</Link> <Link href={`/${routersPages['privacyPolicy']}`}>Privacy Policy</Link>
                     </p>

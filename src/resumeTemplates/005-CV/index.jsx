@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -255,14 +255,22 @@ export const ResumeCv005 = ({
 
   useEffect(() => {
     if (isTemplate) {
-        drawing();
+      drawing();
     }
 
     if (!!isDrawing && !isTemplate) {
-        drawing();
-        handleFalseDrafind();
+      drawing();
+      handleFalseDrafind();
     }
-}, [isDrawing, data, stateClasses]);
+  }, [isDrawing, data, stateClasses]);
+
+  useEffect(() => {
+    if (isTemplate) {
+      setTimeout(() => {
+        drawing();
+      }, 100);
+    }
+  }, []);
 
   return (
     <div className="sv_005" ref={reportTemplateRef}>
@@ -353,7 +361,7 @@ export const ResumeCv005 = ({
                   )
                 }
                 {
-                (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
+                  (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
                     <div className="education-block block-block">
                       <h3 className="heading-type-3 main-color-1-text font-weight-700 font-size-2 line-height-2">Education</h3>
                       <span className="horizontal-line additional-color-1-border"></span>
@@ -422,7 +430,7 @@ export const ResumeCv005 = ({
 
               <div className="column-2">
                 {
-                   (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
+                  (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
                     <div className="courses-block block-block">
                       <h3 className="heading-type-3 main-color-1-text font-weight-700 font-size-2 line-height-2">Courses</h3>
                       <span className="horizontal-line additional-color-1-border"></span>
@@ -497,7 +505,7 @@ export const ResumeCv005 = ({
                   )
                 }
                 {
-                 (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
+                  (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
                     <div className="internships-block block-block">
                       <h3 className="heading-type-3 main-color-1-text font-weight-700 font-size-2 line-height-2">Internships</h3>
                       <span className="horizontal-line additional-color-1-border"></span>

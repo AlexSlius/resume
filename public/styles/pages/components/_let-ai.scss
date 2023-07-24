@@ -102,8 +102,7 @@
             top: 76%;
         }
 
-        &.ttwo,
-        &.tthree {
+        &.ttwo {
             @media(min-width: 768px) {
                 &::before {
                     background: url("/../images/icons/ail-item-green.svg") center/contain no-repeat;

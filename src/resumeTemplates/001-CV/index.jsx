@@ -168,14 +168,14 @@ const drawing = () => {
       return page_element_container;
     }
     function checkEmpty() {
-      $('.cv-body-area').each(function(index, el){
-        if($(this).height() === 0) {
+      $('.cv-body-area').each(function (index, el) {
+        if ($(this).height() === 0) {
           $(this).remove();
         }
       });
     }
     function secondaryInfoHelper() {
-      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(){
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
           $('.js-profile-secondary-info').addClass('m-transfer');
@@ -185,10 +185,8 @@ const drawing = () => {
         }
       })
     }
-    setTimeout(() => {
-      rebuildingPages();
-      secondaryInfoHelper();
-    }, 100);
+    rebuildingPages();
+    secondaryInfoHelper();
   }
 }
 
@@ -230,6 +228,14 @@ export const ResumeCv001 = ({
       handleFalseDrafind();
     }
   }, [isDrawing, data, stateClasses]);
+
+  useEffect(() => {
+    if (isTemplate) {
+      setTimeout(() => {
+        drawing();
+      }, 100);
+    }
+  }, []);
 
   return (
     <div className="sv_001" ref={reportTemplateRef}>

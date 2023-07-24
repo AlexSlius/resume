@@ -87,6 +87,14 @@ export const CoverCv017 = ({
         }
     }, [isDrawing, data, stateClasses]);
 
+    useEffect(() => {
+        if (isTemplate) {
+          setTimeout(() => {
+            drawing();
+          }, 100);
+        }
+      }, []);
+
     return (
         <div className="sv_017 template-wrapper" ref={reportTemplateRef}>
             <div id="cv-chapter-section-resume" className={`${stateClasses} cv-chapter-section color-scheme-state-color-set-1`} data-chapter="resume">

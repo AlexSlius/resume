@@ -79,9 +79,9 @@ const Resume = ({
 
          start();
 
-         setTimeout(() => {
-            start();
-         }, 200);
+         // setTimeout(() => {
+         //    start();
+         // }, 100);
       }
    }, [
       pagePagCurrent,
