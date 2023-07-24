@@ -319,6 +319,10 @@
     margin-top: 20px;
 }
 
+.none_scroll_over {
+    overflow: hidden!important;
+}
+
 @media(max-width: 1199px) {
     .items-resumes {
         grid-template-columns: repeat(2, 1fr);

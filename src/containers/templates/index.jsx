@@ -361,7 +361,7 @@ const Templates = ({
 
                     setTimeout(() => {
                         start();
-                    }, 1000);
+                    }, 100);
                 }
             }
         }
@@ -557,7 +557,7 @@ const Templates = ({
                     }
 
                     {/* hide_scroll */}
-                    <div className="ptr-c scroll-style">
+                    <div className={`ptr-c scroll-style`}>
                         <div className="ptr-c__content">
                             <div className="body-template-resume" style={{ transform: `scale(${useScaleResumePageShare()})` }}>
                                 {
