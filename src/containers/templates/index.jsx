@@ -206,15 +206,15 @@ const Templates = ({
     const handleFont = (e, name) => {
         if (!isCover) {
             if (!isNewResume) {
-                dispatch(updateActiveResume({ [name]: e.target.value.trim() }));
+                dispatch(updateActiveResume({ [name]: e.target.value }));
             } else {
-                dispatch(updateActiveResumeNew({ [name]: e.target.value.trim() }))
+                dispatch(updateActiveResumeNew({ [name]: e.target.value }))
             }
         } else {
             if (!isNewResume) {
-                dispatch(updateActiveCover({ [name]: e.target.value.trim() }));
+                dispatch(updateActiveCover({ [name]: e.target.value }));
             } else {
-                dispatch(updateActiveCoverNew({ [name]: e.target.value.trim() }))
+                dispatch(updateActiveCoverNew({ [name]: e.target.value }))
             }
         }
     }
