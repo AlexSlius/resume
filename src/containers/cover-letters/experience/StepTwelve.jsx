@@ -43,7 +43,7 @@ export const StepTwelve = ({
                                 type="number"
                                 valid={+coverDataObj.workExperience > 0}
                                 value={coverDataObj.workExperience}
-                                onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value })}
+                                onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value.trim() })}
                             />
                         </CCol>
                     </CRow>

@@ -161,11 +161,11 @@ export const getCoverDataShare = createAsyncThunk('resumeData/getCoverDataShare'
 export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmailCover', async (_, thunkAPI) => {
     const { coverDataForm: { emailRegister, coverDataObjNew } } = thunkAPI.getState()
 
-    if ((emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(emailRegister)) {
+    if ((emailRegister?.length > 0) && /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailRegister)) {
         return { status: false, email: emailRegister };
     }
 
-    if ((coverDataObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(coverDataObjNew.email)) {
+    if ((coverDataObjNew.email?.length > 0) && /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(coverDataObjNew.email)) {
         return { status: false, email: coverDataObjNew.email };
     }
 

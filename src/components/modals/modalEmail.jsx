@@ -14,7 +14,7 @@ export const ModalEmail = ({
     data = '',
     setState = () => { },
 }) => {
-    let isError = (data?.length > 0) && !(/\S+@\S+\.\S+/.test(data));
+    let isError = (data?.length > 0) && !(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(data));
 
     return (
         <ModalWrapper

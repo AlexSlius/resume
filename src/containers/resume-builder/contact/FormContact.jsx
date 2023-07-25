@@ -62,6 +62,7 @@ const FormContact = ({
    const [showModalEmail, setShowModalEmail] = useState(false);
    const [emailForRegister, setEmailForRegister] = useState('');
    const [loadCreateBtn, setLoadCreateBtn] = useState(false);
+   const [showErrorImg, setShowErrorImg] = useState(false);
    const classButton = visibleAllInputs ? `${style.show_hidden} ${style.active}` : `${style.show_hidden}`
    const textInButton = visibleAllInputs ? 'Hide additional details' : 'Edit additional details'
    const isNewResume = (idCv == "new");
@@ -113,19 +114,31 @@ const FormContact = ({
 
    const handleFileSelect = async (e) => {
       if (e !== null) {
-         const reader = new FileReader();
+         let typeImg = e.target.files[0].type.includes('image');
 
-         reader.onloadend = async () => {
-            const content = reader.result;
-            await dispatch(updatePictureContact(content));
+         if (typeImg) {
+            setShowErrorImg(false);
+            const reader = new FileReader();
+
+            reader.onloadend = async () => {
+               const content = reader.result;
+               await dispatch(updatePictureContact(content));
+            }
+
+            if (e.target.files[0]) {
+               reader.readAsDataURL(e.target.files[0]);
+               setStatePictureFile(e.target.files[0]);
+
+               if (idCv != "new")
+                  await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
+            }
          }
 
-         if (e.target.files[0]) {
-            reader.readAsDataURL(e.target.files[0]);
-            setStatePictureFile(e.target.files[0]);
+         if (!typeImg) {
+            await dispatch(updatePictureContact(null));
+            await dispatch(fetchUpdateContact({ idCv, dataImage: null }));
 
-            if (idCv != "new")
-               await dispatch(fetchUpdateContact({ idCv, dataImage: e.target.files[0] }));
+            setShowErrorImg(true);
          }
       } else {
          await dispatch(updatePictureContact(null));
@@ -285,7 +298,7 @@ const FormContact = ({
                         label="First Name"
                         value={contObj.firstName}
                         valid={contObj.firstName?.length > 0}
-                        onChange={(e) => handlerSetDateState('firstName', e.target.value)}
+                        onChange={(e) => handlerSetDateState('firstName', e.target.value.trim())}
                         name="FNAM"
                         autoComplete="given-name"
                         readOnly={false}
@@ -297,7 +310,7 @@ const FormContact = ({
                         label="Last Name"
                         value={contObj.lastName}
                         valid={contObj.lastName?.length > 0}
-                        onChange={(e) => handlerSetDateState('lastName', e.target.value)}
+                        onChange={(e) => handlerSetDateState('lastName', e.target.value.trim())}
                         name="FLAST"
                         autoComplete="family-name"
                         readOnly={false}
@@ -305,7 +318,11 @@ const FormContact = ({
                   </div>
                </CCol>
                <CCol xs={6} className={classnames(style.rowWidth, style.imageBlock)}>
-                  <PhotoAdd handleFileSelect={handleFileSelect} value={contObj?.picture} />
+                  <PhotoAdd
+                     handleFileSelect={handleFileSelect}
+                     value={contObj?.picture}
+                     isError={showErrorImg}
+                  />
                </CCol>
             </CRow>
             <CRow className={classnames("mobile-rows g-30 r-gap-30")}>
@@ -394,7 +411,7 @@ const FormContact = ({
                      label="Adress"
                      value={contObj.address}
                      valid={contObj.address?.length > 10}
-                     onChange={(e) => handlerSetDateState('address', e.target.value)}
+                     onChange={(e) => handlerSetDateState('address', e.target.value.trim())}
                   />
                </CCol>
                <CCol xs={6}>
@@ -402,7 +419,7 @@ const FormContact = ({
                      label="Zip Code"
                      value={contObj.zipCode}
                      valid={contObj.zipCode?.length > 0}
-                     onChange={(e) => handlerSetDateState('zipCode', e.target.value)}
+                     onChange={(e) => handlerSetDateState('zipCode', e.target.value.trim())}
                   />
                </CCol>
                <CCol xs={6}>
@@ -442,7 +459,7 @@ const FormContact = ({
                      label="Place of birth"
                      value={contObj.placeOfBirth}
                      valid={contObj.placeOfBirth?.length > 0}
-                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value)}
+                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value.trim())}
                   />
                </CCol>
                <CCol xs={6}>

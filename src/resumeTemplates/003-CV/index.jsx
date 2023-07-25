@@ -55,20 +55,20 @@ const drawing = () => {
       let cvDataLeft = [];
       let cvDataRight = [];
 
-      cvBlocksTop.forEach(function(el){
+      cvBlocksTop.forEach(function (el) {
         cvDataTop.push($('.' + el).clone());
       });
-      cvBlocksLeft.forEach(function(el){
+      cvBlocksLeft.forEach(function (el) {
         cvDataLeft.push($('.' + el).clone());
       });
-      cvBlocksRight.forEach(function(el){
+      cvBlocksRight.forEach(function (el) {
         cvDataRight.push($('.' + el).clone());
       });
 
       current_page_number = 1;
-      cvDataTop.forEach(function(el) {
+      cvDataTop.forEach(function (el) {
         getPageColumnTop().append(el);
-        if(checkHeight()) {
+        if (checkHeight()) {
           el.remove();
           current_page_number++;
           getPageColumnTop().append(el);
@@ -76,9 +76,9 @@ const drawing = () => {
       });
 
       current_page_number = 1;
-      cvDataLeft.forEach(function(el) {
+      cvDataLeft.forEach(function (el) {
         getPageColumnLeft().append(el);
-        if(checkHeight()) {
+        if (checkHeight()) {
           el.remove();
           current_page_number++;
           getPageColumnLeft().append(el);
@@ -86,9 +86,9 @@ const drawing = () => {
       });
 
       current_page_number = 1;
-      cvDataRight.forEach(function(el) {
+      cvDataRight.forEach(function (el) {
         getPageColumnRight().append(el);
-        if(checkHeight()) {
+        if (checkHeight()) {
           el.remove();
           current_page_number++;
           getPageColumnRight().append(el);
@@ -122,7 +122,7 @@ const drawing = () => {
       page_element.attr('id', '');
       page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);
       page_element.children().remove();
-    
+
       var page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
       page_element_container.children().remove();
       page_element.append(page_element_container);
@@ -142,22 +142,22 @@ const drawing = () => {
       var area_2_right = $('#cv-body-hidden-container .cv-body-content .area-2 .column-right').clone();
       area_2_right.children().remove();
       area_2.append(area_2_right);
-    
-      if($('#cv-chapter-section-cv').find(page_element)) {
+
+      if ($('#cv-chapter-section-cv').find(page_element)) {
         $('#cv-chapter-section-cv').append(page_element);
       }
-    
+
       return page_element_container;
     }
     function checkEmpty() {
-      $('.cv-body-area').each(function(index, el){
-        if($(this).height() === 0) {
+      $('.cv-body-area').each(function (index, el) {
+        if ($(this).height() === 0) {
           $(this).remove();
         }
       });
     }
     function columnRightHelper() {
-      $('.cv-body-visible .js-column-right').each(function(){
+      $('.cv-body-visible .js-column-right').each(function () {
         if ($(this).width() === 0) {
           $(this).addClass('m-empty');
         } else {
@@ -166,7 +166,7 @@ const drawing = () => {
       });
     }
     function secondaryInfoHelper() {
-      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function(){
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
           $('.js-profile-secondary-info').addClass('m-transfer');
@@ -176,9 +176,9 @@ const drawing = () => {
         }
       })
     }
-    
+
     rebuildingPages();
-      secondaryInfoHelper();
+    secondaryInfoHelper();
   }
 }
 
@@ -211,23 +211,11 @@ export const ResumeCv003 = ({
   } = dataNew;
 
   useEffect(() => {
-    if (isTemplate) {
-      drawing();
-    }
-
-    if (!!isDrawing && !isTemplate) {
-      drawing();
-      handleFalseDrafind();
-    }
+    if (!!isDrawing ) {
+    drawing();
+    handleFalseDrafind();
+  }
   }, [isDrawing, data, stateClasses]);
-
-  useEffect(() => {
-    if (isTemplate) {
-      setTimeout(() => {
-        drawing();
-      }, 100);
-    }
-  }, []);
 
   return (
     <div className="sv_003" ref={reportTemplateRef}>
@@ -314,7 +302,7 @@ export const ResumeCv003 = ({
                         Innovative Web Designer with over seven years of experience creating powerful designs in the fashion industry. Adept in collaborating with designers and other team professionals to achieve high goals and deadlines. Dedicated to remaining up to date with the latest fashion trends, while offering ideas and visuals to spark new trends. Bringing forth a true love of fashion and design.
                       </div>
                     )
-                  } 
+                  }
                 </div>
               </div>
               <div className={`details-block ${!contact[0]?.country && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
@@ -346,7 +334,7 @@ export const ResumeCv003 = ({
                       {`${checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address || '5th Avenue Street, '}`}
                     </span>
                     <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0]?.city && !beforeСontent ? 'hide' : ''}`}>
-                      {`${checkForSymbol([ contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city || 'New York City, '}`}
+                      {`${checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city || 'New York City, '}`}
                     </span>
                     <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                       {`${contact[0].zipCode || '384846'}`}
@@ -404,7 +392,7 @@ export const ResumeCv003 = ({
                             <span className={`${!itemEm.periodTo?.date ? 'empty-field' : ''} ${!itemEm.periodTo?.date && !beforeСontent ? 'hide' : ''}`}>
                               {itemEm.periodTo?.date && (moment(itemEm.periodTo.date).format("MMMM yy")) || ' - December 2022'}
                             </span>
-                        </div>
+                          </div>
                         </div>
                         {
                           itemEm.assignment && (
@@ -580,7 +568,7 @@ export const ResumeCv003 = ({
                   <div className="skills-estimation-block">
                     {
                       languages.map((item, index) => (
-                        <div className={`skill-item ${!item.language? 'empty-field' : ''}`} key={index}>
+                        <div className={`skill-item ${!item.language ? 'empty-field' : ''}`} key={index}>
                           <div className="skill-name">
                             {item.language ? item.language : 'Language'}
                           </div>
@@ -600,7 +588,7 @@ export const ResumeCv003 = ({
                   <div className="skills-estimation-block">
                     {
                       skills.map((item, index) => (
-                        <div className={`skill-item ${!item.name? 'empty-field' : ''}`} key={index}>
+                        <div className={`skill-item ${!item.name ? 'empty-field' : ''}`} key={index}>
                           <div className="skill-name">
                             {item.name ? item.name : 'Skill name'}
                           </div>

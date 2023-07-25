@@ -369,7 +369,7 @@ const FormInterShip = ({
                                                             <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
-                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
                                                                   hideButton={true}
                                                                   name="description"
                                                                   placeholder={'Description of activity'}
@@ -476,7 +476,7 @@ const FormInterShip = ({
                   <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
                         hideButton={true}
                         name="description"
                         placeholder={'Description of activity'}

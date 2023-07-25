@@ -140,7 +140,7 @@ export const ContactUsPage = () => {
                                             label="Name*"
                                             value={formState.name}
                                             valid={formState?.name?.length > 0}
-                                            onChange={(e) => handleUpdateField('name', e.target.value)}
+                                            onChange={(e) => handleUpdateField('name', e.target.value.trim())}
                                             name="FNAM"
                                             readOnly={false}
                                             textError={errorFields.name ? "The main field is required" : ""}
@@ -149,7 +149,7 @@ export const ContactUsPage = () => {
                                     <div className="form-texrarea">
                                         <Textarea
                                             value={formState.description}
-                                            onChange={(e) => handleUpdateField("description", e.target.value)}
+                                            onChange={(e) => handleUpdateField("description", e.target.value.trim())}
                                             name="description"
                                             placeholder={'Question or remark'}
                                             textError={errorFields.description && (formState.description?.length == 0 ? "The main field is required" : "")}

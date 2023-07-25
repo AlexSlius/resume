@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
-
 import { statusLoaded, statusLoader } from '../constants/statuses';
 
 import {
@@ -44,14 +42,17 @@ export const slice = createSlice({
             let { name, value } = action.payload;
             state.objFormSettings[name] = value;
         },
+        cleanUserAll(state, action) {
+            state.objForm = initialState.objForm;
+            state.objFormSettings = initialState.objFormSettings;
+            state.isSubscribe = initialState.isSubscribe;
+            state.avatar = initialState.avatar;
+            state.status = initialState.status;
+            state.statusAvatar = initialState.statusAvatar;
+            state.statusDelete = initialState.statusDelete;
+        }
     },
     extraReducers: {
-        // [HYDRATE]: (state, action) => {
-        //     return {
-        //         ...state,
-        //         ...action.payload.users,
-        //     }
-        // },
         // get avatar
         [fetchUserGetAvatar.pending]: (state, action) => {
             state.statusAvatar = statusLoader;
@@ -91,6 +92,7 @@ export const slice = createSlice({
 export const {
     updateItemSettingsFiled,
     updateSettingsFrom,
+    cleanUserAll,
 } = slice.actions;
 
 export const { reducer } = slice;

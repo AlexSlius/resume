@@ -44,7 +44,7 @@ export const StepFour = ({
                                             label="Point Average"
                                             value={coverDataObj.pointAverage}
                                             valid={+coverDataObj.pointAverage > 3}
-                                            onChange={(e) => handleUpdateField({ name: "pointAverage", value: e.target.value })}
+                                            onChange={(e) => handleUpdateField({ name: "pointAverage", value: e.target.value.trim() })}
                                         />
                                     </CCol>
                                 </CRow>

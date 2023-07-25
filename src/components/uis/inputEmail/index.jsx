@@ -9,7 +9,7 @@ export const InputEmail = ({
     textError='',
 }) => {
     const onHandleChangle = (e) => {
-        let val = e.target.value;
+        let val = e.target.value.trim();
 
         if (val.search(reg) != -1) {
             onChange(val.replace(reg, ''), e);
@@ -22,11 +22,11 @@ export const InputEmail = ({
     return (
         <Input
             label={label}
-            invalid={(value?.length > 0 && !(/\S+@\S+\.\S+/.test(value)))}
+            invalid={(value?.length > 0 && !(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(value)))}
             name="email"
             value={value}
             readOnly={false}
-            valid={/\S+@\S+\.\S+/.test(value)}
+            valid={/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(value)}
             onChange={onHandleChangle}
             textError={textError}
         />

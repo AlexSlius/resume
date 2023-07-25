@@ -73,7 +73,7 @@ export const LoginPage = () => {
                                             label="Code"
                                             valid={!(password.length < 6)}
                                             value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            onChange={(e) => setPassword(e.target.value.trim())}
                                             textError={(state.text.length > 0) ? state.text : ""}
                                         />
                                     </CCol>

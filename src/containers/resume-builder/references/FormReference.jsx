@@ -248,7 +248,7 @@ const FormReference = ({
                                                                      id={item.id}
                                                                      label="Referent Full name"
                                                                      value={item.fullName}
-                                                                     onChange={(e) => handleSaveSelect({ index, name: "fullName", value: e.target.value })}
+                                                                     onChange={(e) => handleSaveSelect({ index, name: "fullName", value: e.target.value.trim() })}
                                                                      valid={item.fullName?.length > 2}
                                                                   />
                                                                </CCol>
@@ -310,7 +310,7 @@ const FormReference = ({
                      <Input
                         label="Referent Full name"
                         value={objNew.full_name}
-                        onChange={(e) => handleSaveSelectNew({ name: "full_name", value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: "full_name", value: e.target.value.trim() })}
                         valid={objNew.full_name?.length > 2}
                      />
                   </CCol>
@@ -342,7 +342,7 @@ const FormReference = ({
                         value={objNew.phone}
                         isNumber={true}
                         isPhone={true}
-                        onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value.trim() })}
                         valid={objNew.phone?.length > 6}
                      />
                   </CCol>

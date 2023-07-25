@@ -41,7 +41,7 @@ const Input = ({
 
    const handleUpdatePhone = (e) => {
       if (isPhone) {
-         onChange(e.target.value.replace(/[^-+ ()0-9]/, ''));
+         onChange(e.target.value.trim().replace(/[^-+ ()0-9]/, ''));
       }
    }
 

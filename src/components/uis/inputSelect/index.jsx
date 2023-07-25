@@ -88,7 +88,7 @@ export const InputSelect = ({
     });
 
     const handleOnChange = (e) => {
-        let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
+        let out = !!isOutDataObj ? { [keyText]: e.target.value.trim() } : e.target.value.trim();
         handleSaveSelect({ name, value: firstChildUpCase ? theFirstHeaderCharacter(out) : out });
     }
 

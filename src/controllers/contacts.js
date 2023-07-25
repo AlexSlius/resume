@@ -100,29 +100,33 @@ export const getBasicContact = createAsyncThunk('fetch/getBasicContact', async (
 export const fetchUpdateContact = createAsyncThunk('fetch/fetchUpdateContact', async ({ idCv, dataImage }, thunkAPI) => {
     const { contacts: { contactObj } } = thunkAPI.getState();
 
-    const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture, true);
+    if (idCv != 'new') {
+        const newObj = newObjContact(contactObj, !!dataImage ? dataImage : contactObj.picture, true);
 
-    const response = await api.contact.updateContact(idCv, newObj);
+        const response = await api.contact.updateContact(idCv, newObj);
 
-    if (isError(response)) {
-        thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+        if (isError(response)) {
+            thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
+            return response;
+        }
+
+        thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+        thunkAPI.dispatch(fetchUserGetAvatar());
+
         return response;
     }
 
-    thunkAPI.dispatch(handleCVUpdateDrawingTrue());
-    thunkAPI.dispatch(fetchUserGetAvatar());
-
-    return response;
+    return {};
 });
 
 export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmail', async (_, thunkAPI) => {
     const { contacts: { emailRegister, contactObjNew } } = thunkAPI.getState()
 
-    if ((emailRegister?.length > 0) && /\S+@\S+\.\S+/.test(emailRegister)) {
+    if ((emailRegister?.length > 0) && /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(emailRegister)) {
         return { status: false, email: emailRegister };
     }
 
-    if ((contactObjNew.email?.length > 0) && /\S+@\S+\.\S+/.test(contactObjNew.email)) {
+    if ((contactObjNew.email?.length > 0) && /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(contactObjNew.email)) {
         return { status: false, email: contactObjNew.email };
     }
 

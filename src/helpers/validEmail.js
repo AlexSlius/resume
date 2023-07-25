@@ -1,3 +1,3 @@
 export const validEmail = (value) => {
-    return /\S+@\S+\.\S+/.test(value);
+    return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(value);
 }

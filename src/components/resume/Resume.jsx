@@ -78,10 +78,6 @@ const Resume = ({
          }
 
          start();
-
-         // setTimeout(() => {
-         //    start();
-         // }, 100);
       }
    }, [
       pagePagCurrent,

@@ -96,7 +96,7 @@ const Settings = () => {
                                 placeholder="First Name"
                                 value={objFormSettings.firstName}
                                 name="firstName"
-                                onChange={(e) => updateSettingForm({ name: "firstName", value: e.target.value })}
+                                onChange={(e) => updateSettingForm({ name: "firstName", value: e.target.value.trim() })}
                                 valid={objFormSettings?.firstName?.length > 2}
                                 readOnly={false}
                             />
@@ -110,7 +110,7 @@ const Settings = () => {
                                 name="lastName"
                                 value={objFormSettings?.lastName}
                                 valid={objFormSettings?.lastName?.length > 2}
-                                onChange={(e) => updateSettingForm({ name: "lastName", value: e.target.value })}
+                                onChange={(e) => updateSettingForm({ name: "lastName", value: e.target.value.trim() })}
                                 readOnly={false}
                             />
                         </div>

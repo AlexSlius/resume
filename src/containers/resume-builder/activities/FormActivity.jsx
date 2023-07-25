@@ -341,7 +341,7 @@ const FormActivity = ({
                                                          <CCol xs={12}>
                                                             <Textarea
                                                                value={item.description}
-                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
                                                                hideButton={true}
                                                                name="description"
                                                                placeholder={'Description of activity'}
@@ -444,7 +444,7 @@ const FormActivity = ({
                   <CCol xs={12}>
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
                         hideButton={true}
                         name="description"
                         placeholder={'Description of activity'}

@@ -131,25 +131,24 @@ const FormSkill = ({
    }
 
    useEffect(() => {
-      // job title from contact
-      if (!!(contacts.contactObj?.jobTitle?.length > 0)) {
-         dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
-         updateitemFiled({ name: "selectd_work", value: "" });
+      // job title from field job title
+      if (!!(skillsObj?.selectd_work?.length > 0)) {
+         dispatch(getSkillsPositionStartOne({ data: { "query": skillsObj?.selectd_work || '', limit: 15 } }));
       }
 
-      if (!(contacts.contactObj?.jobTitle?.length > 0)) {
-         let jobTitleFormEmployment = jobTitleFromEmployment(employmentObj);
-
-         // job title from employment
-         if (!!(jobTitleFormEmployment?.title?.length > 0)) {
-            dispatch(getSkillsPositionStartOne({ data: { "query": jobTitleFormEmployment.title || '', limit: 15 } }));
+      if (!(skillsObj?.selectd_work?.length > 0)) {
+         // job title from contact
+         if (!!(contacts.contactObj?.jobTitle?.length > 0)) {
+            dispatch(getSkillsPositionStartOne({ data: { "query": contacts.contactObj?.jobTitle || '', limit: 15 } }));
             updateitemFiled({ name: "selectd_work", value: "" });
          }
 
-         if (!(jobTitleFormEmployment?.title?.length > 0)) {
-            // job title from field job title
-            if (!!(skillsObj?.selectd_work?.length > 0)) {
-               dispatch(getSkillsPositionStartOne({ data: { "query": skillsObj?.selectd_work || '', limit: 15 } }));
+         if (!(contacts.contactObj?.jobTitle?.length > 0)) {
+            let jobTitleFormEmployment = jobTitleFromEmployment(employmentObj);
+            // job title from employment
+            if (!!(jobTitleFormEmployment?.title?.length > 0)) {
+               dispatch(getSkillsPositionStartOne({ data: { "query": jobTitleFormEmployment.title || '', limit: 15 } }));
+               updateitemFiled({ name: "selectd_work", value: "" });
             }
          }
       }

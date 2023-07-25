@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import { LoadWr } from "../loadWr";
@@ -91,7 +91,12 @@ export const TemplatesSelect = ({
         hobbies: data?.hobbies.length ? data.hobbies : [{}],
         skills: data?.skills.length ? data.skills : [{}],
         languages: data?.languages.length ? data.languages : [{}],
+        hide_experience_level: data?.hide_experience_level ? data.hide_experience_level : 0
     };
+
+    useEffect(() => {
+        dispatch(handleCVUpdateDrawingTrue());
+    }, [stateClasses, resumeActive]);
 
     return (
         <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>

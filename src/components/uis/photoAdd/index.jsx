@@ -8,13 +8,14 @@ import iconDeleteNoFill from "/public/images/icons/icon_delete_no_fill.svg?sprit
 export const PhotoAdd = ({
     handleFileSelect = () => { },
     value = null,
+    isError=false,
 }) => {
     let textbtn = !!value ? 'Edit Photo' : 'Add Photo'
     let classPicture = !!value ? style.edit_photo : ""
 
     return (
         <div className={`${style.row_img}`}>
-            <div className={`${style.add_photo} ${classPicture}`}>
+            <div className={`${style.add_photo} ${classPicture} ${isError ? style.error_img : ""}`}>
                 {
                     !!value && (
                         <img src={value} className={`${style.add_photo__image}`} />
@@ -24,7 +25,7 @@ export const PhotoAdd = ({
                     onChange={handleFileSelect}
                     hidden
                     type="file"
-                    accept="image/png, image/jpeg"
+                    accept="image/*"
                     id='upload'
                     className={`${style.add_photo__inpu}`}
                 />

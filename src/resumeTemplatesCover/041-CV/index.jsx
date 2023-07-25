@@ -77,23 +77,11 @@ export const CoverCv041 = ({
     } = data;
 
     useEffect(() => {
-        if (isTemplate) {
-            drawing();
-        }
-
-        if (!!isDrawing && !isTemplate) {
+        if (!!isDrawing ) {
             drawing();
             handleFalseDrafind();
-        }
-    }, [isDrawing, data, stateClasses]);
-
-     useEffect(() => {
-        if (isTemplate) {
-          setTimeout(() => {
-            drawing();
-          }, 100);
-        }
-      }, []);
+          }
+      }, [isDrawing, data, stateClasses]);
 
     return (
         <div className="sv_041 template-wrapper" ref={reportTemplateRef}>

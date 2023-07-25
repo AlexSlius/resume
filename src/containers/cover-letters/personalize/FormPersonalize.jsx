@@ -212,7 +212,7 @@ const FormPersonalize = ({
                                     label="First Name"
                                     value={contObj?.firstName}
                                     valid={contObj?.firstName?.length > 0}
-                                    onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value })}
+                                    onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value.trim() })}
                                     readOnly={false}
                                 />
                             </CCol>
@@ -221,7 +221,7 @@ const FormPersonalize = ({
                                     label="Last Name"
                                     value={contObj.lastName}
                                     valid={contObj?.lastName?.length > 0}
-                                    onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value })}
+                                    onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value.trim() })}
                                     readOnly={false}
                                 />
                             </CCol>
@@ -261,7 +261,7 @@ const FormPersonalize = ({
                                     label="Address"
                                     value={contObj.state}
                                     valid={contObj?.state?.length > 3}
-                                    onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
+                                    onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value.trim() })}
                                 />
                             </CCol>
                             <CCol xs={12} md={6}>
@@ -269,7 +269,7 @@ const FormPersonalize = ({
                                     label="Zip Code"
                                     value={contObj.zipCode}
                                     valid={contObj?.zipCode?.length > 2}
-                                    onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
+                                    onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value.trim() })}
                                 />
                             </CCol>
                         </CRow>

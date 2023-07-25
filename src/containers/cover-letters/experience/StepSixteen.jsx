@@ -123,7 +123,7 @@ export const StepSixteen = ({
                             <Input
                                 label="Name of Company Contact"
                                 value={coverDataObj.applyingCompanyContact}
-                                onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value })}
+                                onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value.trim() })}
                                 valid={coverDataObj.applyingCompanyContact?.length > 2}
                             />
                         </CCol>

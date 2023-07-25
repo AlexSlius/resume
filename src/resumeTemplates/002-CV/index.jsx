@@ -224,23 +224,13 @@ export const ResumeCv002 = ({
   } = dataNew;
 
   useEffect(() => {
-    if (isTemplate) {
-      drawing();
-    }
-
-    if (!!isDrawing && !isTemplate) {
-      drawing();
-      handleFalseDrafind();
-    }
+    if (!!isDrawing ) {
+    drawing();
+    handleFalseDrafind();
+  }
   }, [isDrawing, data, stateClasses]);
 
-  useEffect(() => {
-    if (isTemplate) {
-      setTimeout(() => {
-        drawing();
-      }, 100);
-    }
-  }, []);
+  
 
   return (
     <div className="sv_002" ref={reportTemplateRef}>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { isArray } from "lodash";
+import { isArray, isObject } from "lodash";
 import Link from "next/link";
 
 import { ModalWrapper } from "./wrapperModal"
@@ -13,10 +13,23 @@ export const ModalTemplate = ({
     item,
 }) => {
     const [activeColor, setActiveColor] = useState();
+    const [activeimg, setActiveImg] = useState();
+
+    const handleColor = (item) => {
+        setActiveColor(item.class);
+        setActiveImg(item.color_image);
+    }
 
     useEffect(() => {
-        if (item?.colors?.length > 0)
+        if (item?.colors?.length > 0) {
             setActiveColor(item?.colors[0].class);
+            setActiveImg(item?.colors[0].color_image);
+        }
+
+        return () => {
+            setActiveColor(undefined);
+            setActiveImg(undefined);
+        }
     }, [item]);
 
     return (
@@ -28,7 +41,7 @@ export const ModalTemplate = ({
             <div className={`${style.flex_c_center}`}>
                 <div className={`${style.title_teml}`}>San Francisco</div>
                 <div className={style.image_teml}>
-                    <img src={item?.image} alt="temolate image" />
+                    <img src={activeimg ? activeimg : item?.image} alt="temolate image" />
                 </div>
                 <div className={style.bot}>
                     <div className={style.colors}>
@@ -41,7 +54,7 @@ export const ModalTemplate = ({
                                                 className={`card-color__item ${(activeColor == itemColor.class) ? "active" : ""}`}
                                                 key={index}
                                                 style={{ backgroundColor: itemColor.color }}
-                                                onClick={() => setActiveColor(itemColor.class)}
+                                                onClick={() => handleColor(itemColor)}
                                             ></div>
                                         ))
                                     }

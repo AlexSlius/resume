@@ -55,6 +55,10 @@
       position: relative;
       z-index: 20;
    }
+
+   &.error_img {
+      border-color: red;
+   }
 }
 
 

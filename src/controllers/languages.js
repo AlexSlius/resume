@@ -33,7 +33,7 @@ export const fetchUpdateLanguages = createAsyncThunk('languages/fetchUpdateLangu
     return response;
 });
 
-export const fetchDeleteAll = createAsyncThunk('skills/fetchDeleteAll', async ({ idCv }, thunkAPI) => {
+export const fetchDeleteAll = createAsyncThunk('languages/fetchDeleteAllLanguages', async ({ idCv }, thunkAPI) => {
     const response = await api.languages.cleanAll(idCv);
     await thunkAPI.dispatch(fetchGetCvLanguages({ idCv }));
     return response;

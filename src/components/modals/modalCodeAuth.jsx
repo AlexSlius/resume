@@ -33,7 +33,7 @@ export const ModalCodeAuth = ({
                         label="Code"
                         value={data}
                         type="number"
-                        onChange={(e) => setState(e.target.value)}
+                        onChange={(e) => setState(e.target.value.trim())}
                     />
                 </div>
                 <div className={`${style.wr_btn} ${style.wr_btn_100} ${style.wr_btn_mt_16}`}>

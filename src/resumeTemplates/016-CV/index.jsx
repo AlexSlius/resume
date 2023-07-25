@@ -232,23 +232,11 @@ export const ResumeCv016 = ({
   let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 
   useEffect(() => {
-    if (isTemplate) {
-        drawing();
-    }
-
-    if (!!isDrawing && !isTemplate) {
-        drawing();
-        handleFalseDrafind();
-    }
-}, [isDrawing, data, stateClasses]);
-
-useEffect(() => {
-  if (isTemplate) {
-    setTimeout(() => {
-      drawing();
-    }, 100);
+    if (!!isDrawing ) {
+    drawing();
+    handleFalseDrafind();
   }
-}, []);
+  }, [isDrawing, data, stateClasses]);
 
   return (
     <div className="sv_016" ref={reportTemplateRef}>

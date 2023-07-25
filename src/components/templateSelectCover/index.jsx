@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { LoadWr } from "../loadWr";
@@ -43,7 +43,7 @@ export const TemplatesSelectCover = ({
     drawing = false,
     isTemplate = false,
     handleReload = () => { },
-    beforeСontent=true
+    beforeСontent = true
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -73,6 +73,10 @@ export const TemplatesSelectCover = ({
             clearTimeout(refIdTimeout.current);
         }, 500);
     }
+
+    useEffect(() => {
+        dispatch(handleUpdateDrawingTrue());
+    }, [stateClasses, resumeActive]);
 
     return (
         <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>

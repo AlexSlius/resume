@@ -123,8 +123,8 @@ const FormSocials = ({
                         name="link"
                         isDelete={true}
                         onDelete={handleDeleteitem}
-                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
-                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
+                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value.trim(), nameValue: item.name })}
+                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value.trim() })}
                         isValidIn={true}
                         validIn={item.link?.length > 4}
                      />

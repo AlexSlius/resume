@@ -23,7 +23,7 @@ const InputCode = ({
     let refFieldSix = React.useRef(undefined);
 
     const handleChange = (e) => {
-        let value = e.target.value;
+        let value = e.target.value.trim();
         let name = e.target.name;
         let nameNext = e.target.getAttribute('namenext');
 

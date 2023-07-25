@@ -326,7 +326,7 @@ const FormEducation = ({
                                                             <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
-                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
+                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
                                                                   name="description"
                                                                   placeholder={'Description of education'}
                                                                />
@@ -414,7 +414,7 @@ const FormEducation = ({
                   <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
                         name="description"
                         placeholder={'Description of education'}
                      />

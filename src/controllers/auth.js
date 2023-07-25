@@ -3,29 +3,29 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import Router from "next/router";
 
 import api from "../apiSingleton";
-import { cookieDestroy, cookieSet } from '../helpers/nookies';
+import { deleteCookie, cookieSet } from '../helpers/nookies';
 
 import { routersPages } from '../constants/next-routers';
 import { setIsAuth, setLogout, updateFieldsModalAuth } from '../slices/auth';
+import { cleanUserAll } from "../slices/users";
 import { cleanNewForm } from "../slices/cover/coverDataForm";
 import { fetchUserGetAvatar, fetchUserGetProfile, getUserDataSettings } from "../controllers/users";
 import { contactAddNew, contactSetNew } from "../controllers/contacts";
 import { coverAddNew, coverSetNew, getCoverLetterById } from "../controllers/cover/personalize";
 import { localStorageRemove, sessionStorageRemove } from '../helpers/localStorage';
-import { sessionStorageGet } from "../helpers/localStorage";
 import { addItemNotification } from "../slices/notifications";
 import { getCoverDataActive, setUpdateCoverDataActive } from './cover/coverData';
 import { setUpdateResumeActive, getResumeActive } from "./resumeData";
 import { cleanSliseNew } from "../slices/contact";
 
 
-
 export const logout = async (dispatch) => {
-    await cookieDestroy({ key: 'token' });
-    await localStorageRemove('session_id');
-    await sessionStorageRemove("typeResume");
-    await dispatch(setLogout());
-    await Router.push('/');
+    deleteCookie('token');
+    dispatch(cleanUserAll());
+    dispatch(setLogout());
+    localStorageRemove('session_id');
+    sessionStorageRemove("typeResume");
+    Router.push('/');
 }
 
 export const autoRegisterForm = createAsyncThunk('fetch/fetchAutoRegisterForm', async ({ data, setState, setIsPassword }, thunkAPI) => {

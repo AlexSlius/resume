@@ -25,7 +25,7 @@ export const FaqsPage = () => {
     }
 
     const handleChange = (e) => {
-        let value = e.target.value;
+        let value = e.target.value.trim();
         setTextSearch(value);
     }
 

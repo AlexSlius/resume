@@ -60,6 +60,7 @@ const Templates = ({
 }) => {
     const refIdTimeout = useRef(undefined);
     const refWr = useRef(undefined);
+    const refTime = useRef(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(false);
 
@@ -205,15 +206,15 @@ const Templates = ({
     const handleFont = (e, name) => {
         if (!isCover) {
             if (!isNewResume) {
-                dispatch(updateActiveResume({ [name]: e.target.value }));
+                dispatch(updateActiveResume({ [name]: e.target.value.trim() }));
             } else {
-                dispatch(updateActiveResumeNew({ [name]: e.target.value }))
+                dispatch(updateActiveResumeNew({ [name]: e.target.value.trim() }))
             }
         } else {
             if (!isNewResume) {
-                dispatch(updateActiveCover({ [name]: e.target.value }));
+                dispatch(updateActiveCover({ [name]: e.target.value.trim() }));
             } else {
-                dispatch(updateActiveCoverNew({ [name]: e.target.value }))
+                dispatch(updateActiveCoverNew({ [name]: e.target.value.trim() }))
             }
         }
     }
@@ -308,6 +309,8 @@ const Templates = ({
 
     }, [dataOther?.resumeActive]);
 
+    console.log()
+
     useEffect(() => {
         if (!isPageView) {
             async function start() {
@@ -334,14 +337,19 @@ const Templates = ({
             }
             start();
         }
-    }, [fetching, dataOther.data, dataOther.resumeActive]);
+    }, [fetching, dataOther]);
 
     useEffect(() => {
         if (!isPageView) {
             if (typeof window != "undefined") {
                 if (!!reportTemplateRef.current) {
+                    if (refTime.current) {
+                        clearTimeout(refTime.current);
+                    }
+
                     function start() {
                         let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
+                        setPagesPag(!!devPages?.length ? devPages.length : 1);
 
                         if (!!devPages) {
                             devPages.forEach(element => {
@@ -359,41 +367,23 @@ const Templates = ({
 
                     start();
 
-                    setTimeout(() => {
+                    refTime.value = setTimeout(() => {
                         start();
-                    }, 100);
+                        clearTimeout(refTime.current);
+                    }, 200);
+                }
+                else {
+                    setPagesPag(1);
                 }
             }
         }
-    }, [pagePagCurrent, dataOther.data, dataOther.resumeActive]);
+    }, [pagePagCurrent, dataOther]);
 
     useEffect(() => {
         if (!isPageView) {
             setPagePagCurrent(1);
         }
     }, [dataOther.resumeActive]);
-
-    useEffect(() => {
-        if (!isPageView) {
-            if (typeof window != "undefined") {
-                function start() {
-                    if (!!reportTemplateRef.current) {
-                        let devPages = reportTemplateRef.current?.querySelectorAll('.cv-body.cv-body-visible');
-
-                        setPagesPag(!!devPages?.length ? devPages.length : 1);
-                    } else {
-                        setPagesPag(1);
-                    }
-                }
-
-                start();
-
-                setTimeout(() => {
-                    start();
-                }, 1000);
-            }
-        }
-    }, [dataOther?.data, dataOther.resumeActive]);
 
     useEffect(() => {
         if (isNewResume)
@@ -572,7 +562,7 @@ const Templates = ({
                                             data={isNewResume ? dataResumeTemplate : dataOther?.data}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
-                                            drawing={true}
+                                            drawing={dataOther.drawing}
                                             isTemplate={true}
                                             beforeСontent={beforeСontent}
                                         />
@@ -591,7 +581,7 @@ const Templates = ({
                                             data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
-                                            drawing={true}
+                                            drawing={dataOther.drawing}
                                             isTemplate={true}
                                             beforeСontent={beforeСontent}
                                         />
