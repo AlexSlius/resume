@@ -219,10 +219,10 @@ export const ResumeCv001 = ({
   } = dataNew;
 
   useEffect(() => {
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (

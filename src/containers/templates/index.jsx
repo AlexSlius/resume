@@ -23,12 +23,14 @@ import { downloadLetterPdf, getScreenCover } from "../../controllers/cover/cover
 
 import {
     updateActiveResumeNew,
-    updateActiveResume
+    updateActiveResume,
+    handleCVUpdateDrawingTrue
 } from "../../slices/resumeData";
 import {
     updateActiveCoverNew,
     updateActiveCover
 } from "../../slices/cover/coverData";
+import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
 
 import {
     // fetchGetResumeData,
@@ -309,8 +311,6 @@ const Templates = ({
 
     }, [dataOther?.resumeActive]);
 
-    console.log()
-
     useEffect(() => {
         if (!isPageView) {
             async function start() {
@@ -436,6 +436,12 @@ const Templates = ({
                 }
             }
         }
+    }, []);
+
+    useEffect(() => {
+        setPagePagCurrent(1);
+        dispatch(handleCVUpdateDrawingTrue());
+        dispatch(handleUpdateDrawingTrue());
     }, []);
 
     return (
@@ -581,7 +587,7 @@ const Templates = ({
                                             data={isNewResume ? dataCoverLetterTemplateNew : dataCoverLetterTemplate}
                                             resumeActive={isNewResume ? dataOther?.resumeActiveNew?.slug : dataOther?.resumeActive?.template_slug}
                                             statusResumeActive={dataOther?.statusResumeActive}
-                                            drawing={dataOther.drawing}
+                                            drawing={coverDataForm.drawing}
                                             isTemplate={true}
                                             beforeСontent={beforeСontent}
                                         />

@@ -59,6 +59,8 @@ const drawing = () => {
             return page_element_container;
         }
 
+      
+
         rebuildingPages2();
     }
 }
@@ -77,11 +79,11 @@ const CoverCv001 = ({
     } = data;
 
     useEffect(() => {
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
-  }, [isDrawing, data, stateClasses]);
+        if (!!isDrawing) {
+            drawing();
+            handleFalseDrafind();
+        }
+    }, [isDrawing, data, stateClasses]);
 
     return (
         <div className="sv_001 template-wrapper" ref={reportTemplateRef}>

@@ -47,14 +47,16 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
     const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
 
     if (response?.status == "added") {
-        thunkAPI.dispatch(getScreenCover({ id: response.id }));
-
         if (isDashboard) {
+            await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size } }));
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[0].link}`);
+            await thunkAPI.dispatch(getScreenCover({ id: response.id }));
         } else {
             if (isAddNewAuth) {
                 await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
             }
+
+            thunkAPI.dispatch(getScreenCover({ id: response.id }));
 
             if (isRedirect)
                 await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
