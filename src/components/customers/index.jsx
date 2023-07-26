@@ -6,7 +6,7 @@ import Icon from "../Icon";
 
 import iconArrLb from "/public/images/icons/iconArrLb.svg?sprite";
 import iconArrRb from "/public/images/icons/iconArrRb.svg?sprite";
- 
+
 
 export const SectionCustomers = ({
     data,
@@ -18,10 +18,12 @@ export const SectionCustomers = ({
     const [stateid, setStateid] = useState(0);
 
     const handleSlider = (e) => {
-        if (refSwip.current) {
-            let divA = refSwip.current.querySelector('.swiper-slide-active .item-card-custom').getAttribute('data-id-active');
-            setStateid(divA);
-        }
+        setTimeout(() => {
+            if (refSwip.current) {
+                let divA = refSwip.current.querySelector('.swiper-slide-active .item-card-custom').getAttribute('data-id-active');
+                setStateid(divA);
+            }
+        }, 200);
     }
 
     return (

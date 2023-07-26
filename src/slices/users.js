@@ -73,8 +73,18 @@ export const slice = createSlice({
             state.status = statusLoader;
         },
         [fetchUserGetProfile.fulfilled]: (state, action) => {
-            state.objForm = action.payload?.user || initialState.objForm;
-            state.isSubscribe = action.payload?.isSubscribe || initialState.isSubscribe;
+            if (action.payload?.user) {
+                let { trial, payments, subscription } = action.payload?.user
+                state.objForm = action.payload?.user;
+                state.isSubscribe = (trial === true) || (payments === true) || (subscription == true);
+            }
+
+            if (!action.payload?.user) {
+                state.objForm = initialState.objForm;
+                state.isSubscribe = false;
+                state.avatar = null;
+            }
+
             state.status = statusLoaded;
         },
         //get settings

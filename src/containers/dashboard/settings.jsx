@@ -42,6 +42,7 @@ const Settings = () => {
         }
     } = useSelector(state => state);
     const [showModaldelete, setShowModalDelete] = useState(false);
+    const [isLoadDelete, setLoadIsDelete] = useState(false);
 
     const handleDeleteProfile = async () => {
         setShowModalDelete(true);
@@ -52,10 +53,12 @@ const Settings = () => {
     }
 
     const onHanleBtnDelete = async () => {
+        setLoadIsDelete(true);
         let res = await dispatch(fetchUserDeleteProfile());
 
-        if (isDelete(res?.payload))
+        if (isDelete(res?.payload)) {
             await logout(dispatch);
+        }
     }
 
     // const updateSettingField = async ({ name, value }) => {
@@ -94,7 +97,7 @@ const Settings = () => {
                             <Input
                                 label="First Name"
                                 placeholder="First Name"
-                                value={objFormSettings.firstName}
+                                value={objFormSettings?.firstName || ''}
                                 name="firstName"
                                 onChange={(e) => updateSettingForm({ name: "firstName", value: e.target.value.trim() })}
                                 valid={objFormSettings?.firstName?.length > 2}
@@ -212,6 +215,7 @@ const Settings = () => {
                 desc="Are you sure you want to delete this account?"
                 onClose={handleCLoseModalDelete}
                 onHanleBtnDelete={onHanleBtnDelete}
+                isLoadDelete={isLoadDelete}
             />
         </>
     )

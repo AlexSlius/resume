@@ -33,6 +33,10 @@ export const FaqsPage = () => {
         setArrList(searchFag(textSearch, dataListFags));
     }
 
+    const handleClean = () => {
+        setTextSearch('');
+    }
+
     useEffect(() => {
         updateListByText();
     }, [textSearch]);
@@ -63,6 +67,8 @@ export const FaqsPage = () => {
                                     value={textSearch}
                                     onChange={handleChange}
                                     handleKeyUpa={handleKeyUpa}
+                                    handleClean={handleClean}
+                                    isClean={true}
                                 />
                             </div>
                             <div className="faq-page__wrapper">

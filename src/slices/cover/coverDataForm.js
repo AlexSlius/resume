@@ -134,7 +134,7 @@ export const slice = createSlice({
                 state.to = action.payload.coverDataForm.to;
             }
 
-            state.coverDataObj = action.payload.coverDataForm.coverDataObj;
+            state.coverDataObj = { ...state.coverDataObj, ...action.payload.coverDataForm.coverDataObj };
         },
         // getCoverDataShare show
         [getCoverDataShare.pending]: (state) => {

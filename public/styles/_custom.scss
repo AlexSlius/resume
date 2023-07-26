@@ -1835,6 +1835,31 @@ button {
     }
 }
 
+.input_clean_btn {
+    position: relative;
+
+    input {
+        padding-right: 40px!important;
+    }
+
+    button {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        cursor: pointer;
+        line-height: 0;
+
+        svg {
+            width: inherit;
+            height: inherit;
+        }
+    }
+}
+
 @media (max-width: 1559px) {
     .r-gap-30 {
         row-gap: 20px;

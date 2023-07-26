@@ -1,16 +1,20 @@
 import { CCol } from '@coreui/react';
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import ResumeHead from './resumeHead/ResumeHead'
 import ResumeMain from './resumeMain/ResumeMain'
 import ResumeFooter from './resumeFooter/ResumeFooter'
 import { isHelperLoad } from '../../helpers/isHelperAllLoad';
 
+import { handleCVUpdateDrawingTrue } from "../../slices/resumeData";
+import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
+
 const Resume = ({
    isCover = false,
    currentResolution
 }) => {
+   const dispatch = useDispatch();
    const reportTemplateRef = useRef(null);
    const [pagesPag, setPagesPag] = useState(1);
    const [pagePagCurrent, setPagePagCurrent] = useState(0);
@@ -153,6 +157,8 @@ const Resume = ({
 
    useEffect(() => {
       setPagePagCurrent(1);
+      dispatch(handleCVUpdateDrawingTrue());
+      dispatch(handleUpdateDrawingTrue());
    }, []);
 
    return (
