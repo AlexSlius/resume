@@ -36,6 +36,7 @@ const userMenu = () => {
         routersPages['addSection'],
         routersPages['resumeNow'],
         routersPages['templates'],
+        'cover_letters'
     ].find(el => router.asPath.includes(el));
 
     useEffect(() => {

@@ -16,9 +16,6 @@ export const handleChanbdegAutOrPlan = async ({
     isClickBtn = false,
     isSubscribe = false,
 }) => {
-    // эта строчка для теста её потом убрать
-    isSubscribe = true;
-
     if (!isCover) {
         // resume
         if (isNewResume) {

@@ -366,18 +366,13 @@ const Templates = ({
                     }
 
                     start();
-
-                    refTime.value = setTimeout(() => {
-                        start();
-                        clearTimeout(refTime.current);
-                    }, 200);
                 }
                 else {
                     setPagesPag(1);
                 }
             }
         }
-    }, [pagePagCurrent, dataOther]);
+    }, [pagePagCurrent, dataOther, dataOther.drawing, coverDataForm.drawing]);
 
     useEffect(() => {
         if (!isPageView) {

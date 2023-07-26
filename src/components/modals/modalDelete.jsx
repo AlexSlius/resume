@@ -3,6 +3,7 @@ import { CButton } from "@coreui/react"
 import Icon from "../Icon"
 import { ModalWrapper } from "./wrapperModal"
 import { ButtonIcon } from "../uis/buttonIcon";
+import { LoadChildrenBtn } from "../loadChildrenBtn"
 
 import style from "./Style.module.scss";
 import iconIDelete from "/public/images/icons/icon-i-delete.svg?sprite";
@@ -13,7 +14,8 @@ export const ModalDelete = ({
     visible,
     onClose,
     onHanleBtnDelete = () => { },
-    maxWidth = 330
+    maxWidth = 330,
+    isLoadDelete = false
 }) => {
     const handleClose = () => {
         onClose();
@@ -32,12 +34,14 @@ export const ModalDelete = ({
                 <div className={`${style.title}`}>{title}</div>
                 <div className={`${style.desc}`}>{desc}</div>
                 <div className={`${style.wr_btn_two}`}>
-                    <ButtonIcon
-                        label="Delete"
-                        className="btn--blue"
-                        isButton={true}
-                        onHandle={onHanleBtnDelete}
-                    />
+                    <LoadChildrenBtn isLoad={isLoadDelete}>
+                        <ButtonIcon
+                            label="Delete"
+                            className="btn--blue"
+                            isButton={true}
+                            onHandle={onHanleBtnDelete}
+                        />
+                    </LoadChildrenBtn>
                     <CButton
                         className='btn-grend'
                         color="secondary"
