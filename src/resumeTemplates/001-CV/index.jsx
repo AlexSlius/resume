@@ -257,7 +257,7 @@ export const ResumeCv001 = ({
                       <div className={`profile ${!career_objective[0].data && !beforeСontent ? 'hide' : ''}`}>
                         <div className="cv-heading font-size-2">Profile</div>
                         {
-                          career_objective?.[0]?.data && (
+                          career_objective[0]?.data && (
                             <div dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
                           ) || (
                             <div className="empty-field">
