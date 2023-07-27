@@ -306,6 +306,14 @@
     align-items: center;
 }
 
+
+.row_head-pc {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 @media (max-width: 992px) {
     .nav ul {
         grid-gap: 26px;
@@ -520,6 +528,10 @@
 
     .submenu-item>a::after {
         display: none !important;
+    }
+
+    .row_head-pc {
+        display: none;
     }
 }
 

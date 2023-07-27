@@ -30,6 +30,7 @@ export const ContactUsPage = () => {
         name: false,
         description: false,
     });
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const handkeCheck = (check) => {
         setStat(check);
@@ -56,6 +57,10 @@ export const ContactUsPage = () => {
             name: "",
             description: "",
         });
+
+        setTimeout(() => {
+            setIsSuccess(false);
+        }, 3000);
     }
 
     const handleSubmit = async (e) => {
@@ -97,6 +102,7 @@ export const ContactUsPage = () => {
 
         if (res.payload === true) {
             handleClean();
+            setIsSuccess(true);
         }
     }
 
@@ -156,6 +162,13 @@ export const ContactUsPage = () => {
                                         />
                                     </div>
                                 </div>
+                                {
+                                    isSuccess && (
+                                        <div className="form-btn_n">
+                                            <span className="success_text">The form has been sent successfully</span>
+                                        </div>
+                                    )
+                                }
                                 <div className="form-btn_n">
                                     <LoadChildrenBtn isLoad={isLoad}>
                                         <button className="form-btn  button-type-standart button-p button-p_icon" type="submit">

@@ -121,6 +121,8 @@ const Templates = ({
             coverDataForm?.emailRegister?.length > 0 ? coverDataForm.emailRegister : coverDataForm.coverDataObjNew.emain) :
         false;
 
+    const isMode = ['sm', 'xs', 'md', 'lg'].includes(currentResolution);
+
     let dataResumeTemplate = {
         contact: isNewResume ? [contactObjNew] : [contactObj],
         employment: employment.employmentObj,
@@ -450,7 +452,7 @@ const Templates = ({
                                     <ButtonBack text="Back to editor" />
                                 </div>
                                 {
-                                    ['sm', 'xs', 'md'].includes(currentResolution) && (
+                                    isMode && (
                                         <>
                                             <div className="pt_h-logo">
                                                 <img src="/images/page/logo.svg" alt='logo' />
@@ -459,7 +461,7 @@ const Templates = ({
                                                 <button type='button'>
                                                     <Icon svg={iconDotMenuH} />
                                                 </button>
-                                                <MenuButton isMob={true} isAthorized={isAthorized} />
+                                                <MenuButton isMob={true} isAthorized={isAthorized} handleChanbdegAutOrPlan={chanbdegAutOrPlan}/>
                                             </div>
                                         </>
                                     )
@@ -467,7 +469,7 @@ const Templates = ({
                             </div>
                             <div className="pt-ts scroll-style" ref={refWr}>
                                 {
-                                    ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                    isMode ? (
                                         <div className='carousel'>
                                             <span className='carousel-title'>Template</span>
                                             <Carousel
@@ -519,7 +521,7 @@ const Templates = ({
                                 }
                             </div>
                             {
-                                !['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                !isMode ? (
                                     <div className="pt_b-l plr-30">
                                         <div className="pt_b-l_help">
                                             <Buttonhelp isBlack={true} href={`/${routersPages['contactUs']}`} />
@@ -596,7 +598,7 @@ const Templates = ({
                         !isPageView && (
                             <div className={`pt_b-r plr buttons-wrapper${showSettings ? ' show' : ''}`}>
                                 {
-                                    ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                    isMode ? (
                                         <div className="ranges-row">
                                             <div className='item-range'>
                                                 <CustomizedSlider
@@ -638,7 +640,7 @@ const Templates = ({
                                     </div>
                                 </div>
                                 {
-                                    !['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                    !isMode ? (
                                         <div className="ranges-row">
                                             <div className='item-range'>
                                                 <CustomizedSlider
@@ -665,7 +667,7 @@ const Templates = ({
                                 }
                                 <div className="btns-tem">
                                     {
-                                        ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                        isMode ? (
                                             <div className={`font-settings-wrap`}>
                                                 <div className="font-settings" onClick={toggleTextSettings}>
                                                     {
@@ -693,7 +695,7 @@ const Templates = ({
                                     </LoadChildrenBtn>
 
                                     {
-                                        ['sm', 'xs', 'md'].includes(currentResolution) ? (
+                                        isMode ? (
                                             <div className="color-it color-select color-it_select-mob" onClick={() => setShowColorMod(prev => !prev)}>
                                                 <Icon svg={iconPlusColor} />
                                             </div>

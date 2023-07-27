@@ -70,7 +70,7 @@ export const useScaleResumePageShare = (constWidth = 624) => {
   useEffect(() => {
     function handleResize() {
       if ((window.innerWidth + 32) < 630) {
-        let w = (((window.innerWidth - 44) * 100) / constWidth) / 100;
+        let w = (((window.innerWidth - 32) * 100) / constWidth) / 100;
 
         setScaleSize(w);
       } else {
