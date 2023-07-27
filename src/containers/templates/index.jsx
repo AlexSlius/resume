@@ -317,6 +317,7 @@ const Templates = ({
         if (!isPageView) {
             async function start() {
                 const isNextPage = dataOther?.list?.count_pages > currentPage;
+                
                 if (!isCover) {
                     if (fetching && isNextPage) {
                         setFetching(false);
@@ -339,7 +340,7 @@ const Templates = ({
             }
             start();
         }
-    }, [fetching, dataOther]);
+    }, [fetching]);
 
     useEffect(() => {
         if (!isPageView) {
