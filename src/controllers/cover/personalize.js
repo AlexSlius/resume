@@ -16,7 +16,13 @@ import { setUpdateCoverDataActive } from './coverData';
 import { getScreenCover } from './covers';
 
 
-export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDashboard = false, isAddNewAuth = false, isRedirect = true, isClean = true }, thunkAPI) => {
+export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
+    isDashboard = false,
+    isAddNewAuth = false,
+    isRedirect = true,
+    isClean = true,
+    isGetTemplate= true
+}, thunkAPI) => {
     const {
         coverDataForm: { coverDataObjNew },
         menuAsideResume: { coverLetters },
@@ -53,7 +59,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({ isDash
             await thunkAPI.dispatch(getScreenCover({ id: response.id }));
         } else {
             if (isAddNewAuth) {
-                await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
+                await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: isGetTemplate }));
             }
 
             thunkAPI.dispatch(getScreenCover({ id: response.id }));

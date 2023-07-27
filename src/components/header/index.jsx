@@ -92,7 +92,7 @@ export const Header = ({
                             </div>
                         </div>
                     ) : (
-                        <>
+                        <div className="row_head-pc">
                             <Link href="/" className="logo">
                                 <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
                             </Link>
@@ -108,7 +108,7 @@ export const Header = ({
                                     )
                                 }
                             </div>
-                        </>
+                        </div>
                     )
                 }
             </div>

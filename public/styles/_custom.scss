@@ -1839,7 +1839,7 @@ button {
     position: relative;
 
     input {
-        padding-right: 40px!important;
+        padding-right: 40px !important;
     }
 
     button {
@@ -1857,6 +1857,29 @@ button {
             width: inherit;
             height: inherit;
         }
+    }
+}
+
+.success_text {
+    color: green;
+    font-size: 14px;
+}
+
+.btn_share_active {
+    position: relative;
+    pointer-events: none;
+
+    &::before {
+        content: 'Сopied';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        align-items: center;
+        justify-content: baseline;
+        background: rgba(255, 255, 255, 0.95);
     }
 }
 
@@ -1880,6 +1903,19 @@ button {
     .bbtn-slid {
         width: 60px;
         height: 60px;
+    }
+}
+
+@media(max-width: 1023px) {
+    .pt_h-l {
+        height: 50px;
+        padding: 10px 16px;
+
+        .pt_h-btn-back {
+            button {
+                font-size: 0;
+            }
+        }
     }
 }
 
@@ -1947,16 +1983,7 @@ button {
         width: 100%;
     }
 
-    .pt_h-l {
-        height: 50px;
-        padding: 10px 16px;
 
-        .pt_h-btn-back {
-            button {
-                font-size: 0;
-            }
-        }
-    }
 
     .rowse.r-gap-30 {
         gap: 20px;

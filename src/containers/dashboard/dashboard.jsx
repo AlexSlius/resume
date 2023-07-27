@@ -54,6 +54,8 @@ const Dashboard = () => {
     const [loadCards, setLoadDards] = useState(true);
     const [deleteModal, setDeleteModal] = useState({ id: null, isResume: true });
     const [errorModal, setErrorModal] = useState(obj);
+    const [copyShareResume, setCopyShareResume] = useState(false);
+    const [copyShareCover, setCopyShareCover] = useState(false);
 
     const {
         resumers,
@@ -87,13 +89,13 @@ const Dashboard = () => {
     // new add resume
     const hangleAddNewResume = async () => {
         await setLoadNewCard(true);
-        let res = await dispatch(contactAddNew({ isNewResume: true, isDashboard: true }));
+        let res = await dispatch(contactAddNew({ isNewResume: true, isDashboard: true, isGetTemplate: false }));
         await setLoadNewCard(false);
     }
 
     const hangleAddNewCover = async () => {
         await setLoadNewCard(true);
-        let res = await dispatch(coverAddNew({ isDashboard: true }));
+        let res = await dispatch(coverAddNew({ isDashboard: true, isGetTemplate: false }));
         await setLoadNewCard(false);
     }
 
@@ -118,9 +120,15 @@ const Dashboard = () => {
         let res = await dispatch(postShareResume({ id }));
 
         if (res?.payload?.status == 'shared') {
+            setCopyShareResume(true);
+
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareResume']}/${id}?key=${res.payload.key}`, async () => {
-                // 
+                //
             });
+
+            setTimeout(() => {
+                setCopyShareResume(false);
+            }, 1000);
         }
     }
 
@@ -147,9 +155,14 @@ const Dashboard = () => {
         let res = await dispatch(postShareCover({ id }));
 
         if (res?.payload?.status == 'shared') {
+            setCopyShareCover(true);
             copyToClipboard(`${config.DOMAIN}/${routersPages['shareCover']}/${id}?key=${res.payload.key}`, async () => {
                 // 
             });
+
+            setTimeout(() => {
+                setCopyShareCover(false);
+            }, 1000);
         }
     }
 
@@ -307,6 +320,7 @@ const Dashboard = () => {
                                                 image={!!item?.screenUrl ? item?.screenUrl : ""} // /images/other/img_resume.png
                                                 label={item.cvName}
                                                 load={loadCards}
+                                                isCopyShare={copyShareResume}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handleBlur={handleBlur}
@@ -352,6 +366,7 @@ const Dashboard = () => {
                                                 image={!!item?.screenUrl ? item?.screenUrl : ""} // /images/cover/dash-cover.png
                                                 label={item.coverName}
                                                 load={loadCards}
+                                                isCopyShare={copyShareCover}
                                                 dateUpdate={item.updateDatetime}
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handleBlur={handleBlurCover}

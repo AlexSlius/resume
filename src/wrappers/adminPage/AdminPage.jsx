@@ -85,7 +85,7 @@ const AdminPage = ({ children, isCover = false, statePictureFile = null }) => {
    }, []);
 
    useEffect(() => {
-      if (['sm', 'xs'].includes(currentResolution)) {
+      if (['md', 'sm', 'xs', "md"].includes(currentResolution)) {
          dispatch(updatePreviewsMobTemplateStatus(false));
       }
    }, [currentResolution]);
@@ -97,7 +97,7 @@ const AdminPage = ({ children, isCover = false, statePictureFile = null }) => {
    return (
       <>
          {
-            ['sm', 'xs'].includes(currentResolution) && (
+            ['md', 'sm', 'xs', "md"].includes(currentResolution) && (
                <Header />
             )
          }

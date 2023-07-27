@@ -13,6 +13,7 @@ export const CardResume = ({
     id = null,
     image = null,
     load = true,
+    isCopyShare = false,
     dateUpdate,
     handleEdit = () => { },
     handleBlur = () => { },
@@ -71,7 +72,7 @@ export const CardResume = ({
                                             </button>
                                         </li>
                                         <li className="menus-card_li">
-                                            <button className="item-btn-m" onClick={handleShare}>
+                                            <button className={`item-btn-m ${isCopyShare ? "btn_share_active" : ""}`} onClick={handleShare}>
                                                 <Icon svg={iconShare} />
                                                 <span>Share a link</span>
                                             </button>

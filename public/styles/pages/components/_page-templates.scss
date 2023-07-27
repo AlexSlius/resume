@@ -17,7 +17,7 @@
         height: 100vh;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1023px) {
         &__row {
             flex-direction: column;
         }
@@ -54,7 +54,7 @@
     grid-gap: 30px;
     padding: 30px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1023px) {
         display: inline-block;
         text-align: center;
     }
@@ -291,7 +291,7 @@
     }
 }
 
-@media (min-width: 788px) and (max-width: 1500px) {
+@media (min-width: px) and (max-width: 1500px) {
     span.MuiSlider-root {
         width: 113px !important;
         min-width: 113px !important;
@@ -336,16 +336,6 @@
             flex-direction: column;
         }
 
-        // .scroll-style,
-        // .ptr-c__content,
-        // .body-template-resume,
-        // .body-template-resume>div,
-        // .body-template-resume>div>div,
-        // .cv-chapter-section,
-        // .body-template-resume .cv-body {
-        //     height: 100%;
-        // }
-
         .buttons-wrapper {
             .colors-t {
                 margin: 0;
@@ -358,11 +348,6 @@
         }
 
         .body-template-resume>div {
-            margin: 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            overflow: hidden;
-
             .cv-body-area {
                 padding: 25px 25px 10px 25px;
             }
@@ -430,15 +415,81 @@
     box-shadow: 0px 0px 0px 3px rgb(25 118 210 / 16%) !important;
 }
 
-@media (max-width: 767px) {
+.page-view-share {
+    pointer-events: none;
+
     .page-templates__right {
         width: 100%;
+        min-height: 100vh;
+        height: auto;
+        padding: 0 16px 25px 16px;
+
+        .body-template-resume {
+            background: transparent;
+            transform-origin: 0px 0px;
+            min-width: 624px;
+        }
+
+        .ptr-c__content {
+            max-height: inherit;
+        }
+
+        .ptr-c.scroll-style {
+            height: auto;
+            max-height: none;
+            min-height: auto;
+            overflow: hidden;
+
+            .cv-body {
+                margin-top: 25px;
+            }
+        }
+    }
+}
+
+.page-templates {
+    .body-template-resume {
+        transform-origin: 50% 0px;
+        min-width: 618px;
+
+        @media(max-width: 1023px) {
+            transform-origin: 0px 0px;
+        }
+
+        & > div {
+            .cv-body {
+                width: 100% !important;
+                max-width: 624px !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    .ptr-c {
+        @media(max-width: 1024px) {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+
+    #cv-body-hidden-container {
+        margin: 0!important;
+    }
+
+    .cv-body-visible.cv-body-1.page-1 {
+        margin-top: 0!important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .page-templates__right {
         overflow: hidden;
+        width: 100%;
     }
 
     .page-templates__left {
         width: 100%;
-
         .pt-ts {
             grid-gap: 20px;
             padding: 14px 16px 20px 14px;
@@ -482,78 +533,7 @@
     }
 }
 
-
-.page-view-share {
-    pointer-events: none;
-
-    .page-templates__right {
-        width: 100%;
-        min-height: 100vh;
-        height: auto;
-        padding: 0 16px 25px 16px;
-
-        .body-template-resume {
-            background: transparent;
-            transform-origin: 0px 0px;
-            min-width: 595px;
-        }
-
-        .load-ages {
-            min-height: calc(100vh - 50px);
-
-            @media(max-width: 1024px) {
-                margin: 0;
-                border: none;
-                border-radius: 0;
-                overflow: inherit;
-            }
-        }
-
-        .ptr-c__content {
-            max-height: inherit;
-        }
-
-        .ptr-c.scroll-style {
-            height: auto;
-            max-height: none;
-            min-height: auto;
-            overflow: hidden;
-
-            .body-template-resume {
-                min-height: auto;
-            }
-
-            .cv-body {
-                display: flex !important;
-                min-height: 840px !important;
-                max-height: 840px !important;
-                height: 840px !important;
-                margin-top: 25px;
-                // min-width: 595px;\
-                min-width: 100%;
-            }
-        }
-    }
-}
-
-.page-template {
-    .body-template-resume {
-        transform-origin: 50% 0px;
-        min-width: 618px;
-
-        @media(max-width: 1023px) {
-            transform-origin: 0px 0px;
-        }
-    }
-
-    .ptr-c {
-        @media(max-width: 1024px) {
-            overflow: auto;
-        }
-    }
-}
-
-@media(max-width: 767px) {
+@media(max-width: 992px) {
     .page-template {
         .page-templates__right {
             background: transparent;

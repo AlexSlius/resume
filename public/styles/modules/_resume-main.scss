@@ -190,10 +190,6 @@
    }
 
    transform-origin: 0 0;
-
-   // @media (min-width: 1023px) {
-   //    transform-origin: center 0;
-   // }
 }
 
 .resume-footer {
@@ -211,8 +207,7 @@
    }
 }
 
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 1023px) {
    .page-templates__right {
       background-color: var(--white);
    }
@@ -485,5 +480,12 @@
 
    .resume-main_scroll {
       max-height: fit-content;
+   }
+}
+
+
+@media (max-width: 1024px) and (max-height: 460px) {
+   .resume-main {
+       overflow-y: scroll;
    }
 }

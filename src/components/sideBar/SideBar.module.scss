@@ -114,3 +114,9 @@
       white-space: pre-wrap;
    }
 }
+
+@media(max-width: 1023px) {
+   .side {
+      display: none;
+   }
+}
