@@ -317,13 +317,13 @@ const Templates = ({
         if (!isPageView) {
             async function start() {
                 const isNextPage = dataOther?.list?.count_pages > currentPage;
+
                 if (!isCover) {
                     if (fetching && isNextPage) {
                         let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
-
                         if (res?.payload?.items) {
-                            setCurrentPage(prev => prev + 1);
                             setFetching(false);
+                            setCurrentPage((currentPage + 1));
                         }
                     }
                 } else {
@@ -331,15 +331,15 @@ const Templates = ({
                         let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
 
                         if (res?.payload?.items) {
-                            setCurrentPage(prev => prev + 1);
                             setFetching(false);
+                            setCurrentPage((currentPage + 1));
                         }
                     }
                 }
             }
             start();
         }
-    }, [fetching, dataOther]);
+    }, [fetching]);
 
     useEffect(() => {
         if (!isPageView) {
@@ -461,7 +461,7 @@ const Templates = ({
                                                 <button type='button'>
                                                     <Icon svg={iconDotMenuH} />
                                                 </button>
-                                                <MenuButton isMob={true} isAthorized={isAthorized} handleChanbdegAutOrPlan={chanbdegAutOrPlan}/>
+                                                <MenuButton isMob={true} isAthorized={isAthorized} handleChanbdegAutOrPlan={chanbdegAutOrPlan} />
                                             </div>
                                         </>
                                     )
