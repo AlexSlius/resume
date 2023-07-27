@@ -319,20 +319,20 @@ const Templates = ({
                 const isNextPage = dataOther?.list?.count_pages > currentPage;
                 if (!isCover) {
                     if (fetching && isNextPage) {
+                        setFetching(false);
                         let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
 
                         if (res?.payload?.items) {
                             setCurrentPage(prev => prev + 1);
-                            setFetching(false);
                         }
                     }
                 } else {
                     if (fetching && isNextPage) {
+                        setFetching(false);
                         let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
 
                         if (res?.payload?.items) {
                             setCurrentPage(prev => prev + 1);
-                            setFetching(false);
                         }
                     }
                 }
