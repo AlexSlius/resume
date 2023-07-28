@@ -16,7 +16,7 @@ const ActiveLink = ({ router, children, ...props }) => {
     let queryNameQuery = router.query?.[props?.onQuery];
 
     if (queryMenu.includes(queryNameQuery)) {
-      className = `${className} ${props.activeClassName}`.trim();
+      className = `${className} ${props.activeClassName}`;
     }
   }
 
@@ -26,7 +26,7 @@ const ActiveLink = ({ router, children, ...props }) => {
     }
 
     if (linkRout == linkMenu) {
-      className = `${className} ${props.activeClassName}`.trim();
+      className = `${className} ${props.activeClassName}`;
     }
   }
 

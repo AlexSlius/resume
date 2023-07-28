@@ -297,8 +297,8 @@ const FormContact = ({
                         id="textFNAM"
                         label="First Name"
                         value={contObj.firstName}
-                        valid={contObj.firstName?.length > 0}
-                        onChange={(e) => handlerSetDateState('firstName', e.target.value.trim())}
+                        valid={contObj.firstName?.trim()?.length > 0}
+                        onChange={(e) => handlerSetDateState('firstName', e.target.value)}
                         name="FNAM"
                         autoComplete="given-name"
                         readOnly={false}
@@ -309,8 +309,8 @@ const FormContact = ({
                         id="textFNAM"
                         label="Last Name"
                         value={contObj.lastName}
-                        valid={contObj.lastName?.length > 0}
-                        onChange={(e) => handlerSetDateState('lastName', e.target.value.trim())}
+                        valid={contObj.lastName?.trim()?.length > 0}
+                        onChange={(e) => handlerSetDateState('lastName', e.target.value)}
                         name="FLAST"
                         autoComplete="family-name"
                         readOnly={false}
@@ -370,7 +370,7 @@ const FormContact = ({
                      isRequire={true}
                      isCap={true}
                      isValidIn={true}
-                     validIn={contObj.jobTitle?.length > 2}
+                     validIn={contObj.jobTitle?.trim()?.length > 2}
                   />
                </CCol>
                <CCol xs={3} ref={refCountry}>
@@ -386,7 +386,7 @@ const FormContact = ({
                      isValidIn={true}
                      isCap={true}
                      name="CNTY"
-                     validIn={contObj.country?.length > 3}
+                     validIn={contObj.country?.trim()?.length > 3}
                   />
                </CCol>
                <CCol xs={3} ref={refCity}>
@@ -401,7 +401,7 @@ const FormContact = ({
                      isCap={true}
                      isRequire={true}
                      isValidIn={true}
-                     validIn={contObj.city?.length > 3}
+                     validIn={contObj.city?.trim()?.length > 3}
                   />
                </CCol>
             </CRow>
@@ -410,16 +410,16 @@ const FormContact = ({
                   <Input
                      label="Adress"
                      value={contObj.address}
-                     valid={contObj.address?.length > 10}
-                     onChange={(e) => handlerSetDateState('address', e.target.value.trim())}
+                     valid={contObj.address?.trim()?.length > 10}
+                     onChange={(e) => handlerSetDateState('address', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
                   <Input
                      label="Zip Code"
                      value={contObj.zipCode}
-                     valid={contObj.zipCode?.length > 0}
-                     onChange={(e) => handlerSetDateState('zipCode', e.target.value.trim())}
+                     valid={contObj.zipCode?.trim()?.length > 0}
+                     onChange={(e) => handlerSetDateState('zipCode', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>
@@ -434,7 +434,7 @@ const FormContact = ({
                      isStaticData={true}
                      isOutDataObj={false}
                      isValidIn={true}
-                     validIn={contObj.driverLicense?.length > 3}
+                     validIn={contObj.driverLicense?.trim()?.length > 3}
                      isUpperCase={true}
                   />
                </CCol>
@@ -451,15 +451,15 @@ const FormContact = ({
                      isRequire={true}
                      isValidIn={true}
                      isCap={true}
-                     validIn={contObj.nationality?.length > 3}
+                     validIn={contObj.nationality?.trim()?.length > 3}
                   />
                </CCol>
                <CCol xs={6} ref={refPleaceOfBirth}>
                   <Input
                      label="Place of birth"
                      value={contObj.placeOfBirth}
-                     valid={contObj.placeOfBirth?.length > 0}
-                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value.trim())}
+                     valid={contObj.placeOfBirth?.trim()?.length > 0}
+                     onChange={(e) => handlerSetDateState('placeOfBirth', e.target.value)}
                   />
                </CCol>
                <CCol xs={6}>

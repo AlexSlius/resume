@@ -100,7 +100,7 @@ const Settings = () => {
                                 value={objFormSettings?.firstName || ''}
                                 name="firstName"
                                 onChange={(e) => updateSettingForm({ name: "firstName", value: e.target.value.trim() })}
-                                valid={objFormSettings?.firstName?.length > 2}
+                                valid={objFormSettings?.firstName?.trim()?.length > 2}
                                 readOnly={false}
                             />
                         </div>
@@ -112,7 +112,7 @@ const Settings = () => {
                                 placeholder="Last Name"
                                 name="lastName"
                                 value={objFormSettings?.lastName}
-                                valid={objFormSettings?.lastName?.length > 2}
+                                valid={objFormSettings?.lastName?.trim()?.length > 2}
                                 onChange={(e) => updateSettingForm({ name: "lastName", value: e.target.value.trim() })}
                                 readOnly={false}
                             />

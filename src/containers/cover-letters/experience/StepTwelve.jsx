@@ -63,7 +63,7 @@ export const StepTwelve = ({
                                 isKyrentName={true}
                                 isCap={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.workExperienceYears?.length > 4}
+                                validIn={coverDataObj.workExperienceYears?.trim()?.length > 4}
                             />
                         </CCol>
                     </CRow>

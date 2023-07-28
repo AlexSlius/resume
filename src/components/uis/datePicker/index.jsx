@@ -110,8 +110,7 @@ export const DatePicker = ({
                         name={name}
                         label={floatingLabel}
                         value={selected ? moment(new Date(selected)).format(formatInput) : ""}
-                        // obj={{ ref: useRefDataNewIn }}
-                        valid={selected?.length > 0}
+                        valid={selected?.trim()?.length > 0}
                         isClean={true}
                         disabled={true}
                     />

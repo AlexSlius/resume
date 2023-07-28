@@ -6,6 +6,8 @@ import {
     sessionStorageRemove
 } from '../helpers/localStorage';
 
+import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
+
 // all list
 export const getResumesTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async (params) => {
     const response = await api.resumesData.getResumesTemplates(params);
@@ -22,8 +24,9 @@ export const getResumeDataShare = createAsyncThunk('resumeData/getResumeDataShar
     return response;
 });
 
-export const getResumeShareTemplateActive = createAsyncThunk('resumeData/getResumeShareTemplateActive', async ({ idCv }) => {
+export const getResumeShareTemplateActive = createAsyncThunk('resumeData/getResumeShareTemplateActive', async ({ idCv }, thunkAPI) => {
     const response = await api.resumesData.getResumeShareTemplateActive(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
 
@@ -43,7 +46,8 @@ export const setUpdateResumeActive = createAsyncThunk('resumeData/setUpdateResum
     return response;
 });
 
-export const getResumeActive = createAsyncThunk('resumeData/getResumeActive', async ({ idCv }) => {
+export const getResumeActive = createAsyncThunk('resumeData/getResumeActive', async ({ idCv }, thunkAPI) => {
     const response = await api.resumesData.getResumeDataActive(idCv);
+    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });

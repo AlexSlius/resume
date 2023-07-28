@@ -118,7 +118,7 @@ const FormLanguages = ({
                            isRequire={true}
                            isDelete={true}
                            isValidIn={true}
-                           validIn={item.language?.length > 4}
+                           validIn={item.language?.trim()?.length > 4}
                         />
 
                      </CCol>
@@ -149,7 +149,7 @@ const FormLanguages = ({
                      data={language.list || []}
                      isRequire={true}
                      isValidIn={true}
-                     validIn={objNew.language?.length > 4}
+                     validIn={objNew.language?.trim()?.length > 4}
                   />
                </CCol>
                <CCol xs={6}>

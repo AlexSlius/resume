@@ -227,7 +227,7 @@ const TextEditor = ({
                         <div className='modal-text__main' ref={refMod}>
                             <div className='modal-text__head'>
                                 <CFormInput
-                                    onChange={(e) => setTextSearch(e.target.value.trim())}
+                                    onChange={(e) => setTextSearch(e.target.value)}
                                     value={textSearch}
                                     type="text"
                                     placeholder="Filter phrases by keyword"

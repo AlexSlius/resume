@@ -6,6 +6,8 @@ import {
     sessionStorageRemove
 } from '../../helpers/localStorage';
 
+import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
+
 // all list
 export const getCoverTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async (params) => {
     const response = await api.coverData.getCoverTemplates(params);
@@ -28,12 +30,14 @@ export const setUpdateCoverDataActive = createAsyncThunk('resumeData/setUpdateCo
     return response;
 });
 
-export const getCoverDataActive = createAsyncThunk('resumeData/getCoverDataActive', async ({ idCv }) => {
+export const getCoverDataActive = createAsyncThunk('resumeData/getCoverDataActive', async ({ idCv }, thunkAPI) => {
     const response = await api.coverData.getCoverDataActive(idCv);
+    await thunkAPI.dispatch(handleUpdateDrawingTrue());
     return response || null;
 });
 
-export const getCoverShareTemplateActive = createAsyncThunk('resumeData/getCoverShareTemplateActive', async ({ idCv }) => {
+export const getCoverShareTemplateActive = createAsyncThunk('resumeData/getCoverShareTemplateActive', async ({ idCv }, thunkAPI) => {
     const response = await api.coverData.getCoverShareTemplateActive(idCv);
+    await thunkAPI.dispatch(handleUpdateDrawingTrue());
     return response || null;
 });

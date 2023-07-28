@@ -72,7 +72,7 @@ export const StepFourteen = ({
                                             isRequire={true}
                                             isCap={true}
                                             isValidIn={true}
-                                            validIn={coverDataObj.currentRoleCompanyName?.length > 4}
+                                            validIn={coverDataObj.currentRoleCompanyName?.trim()?.length > 4}
                                         />
                                     </CCol>
                                     <CCol xs={12} md={6}>
@@ -89,7 +89,7 @@ export const StepFourteen = ({
                                             isRequire={true}
                                             isCap={true}
                                             isValidIn={true}
-                                            validIn={coverDataObj.currentRoleJobTitle?.length > 4}
+                                            validIn={coverDataObj.currentRoleJobTitle?.trim()?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

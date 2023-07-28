@@ -47,7 +47,7 @@ export const StepFifteen = ({
                                 isOutDataObj={false}
                                 // isIconArrow={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.explainAnyWorkGaps?.length > 4}
+                                validIn={coverDataObj.explainAnyWorkGaps?.trim()?.length > 4}
                             />
                         </CCol>
                     </CRow>

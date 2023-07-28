@@ -220,8 +220,8 @@ export const ResumeCv001 = ({
 
   useEffect(() => {
     if (!!isDrawing) {
-      drawing();
       handleFalseDrafind();
+      drawing();
     }
   }, [isDrawing, data, stateClasses]);
 

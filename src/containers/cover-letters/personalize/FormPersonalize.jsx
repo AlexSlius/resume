@@ -211,7 +211,7 @@ const FormPersonalize = ({
                                 <Input
                                     label="First Name"
                                     value={contObj?.firstName}
-                                    valid={contObj?.firstName?.length > 0}
+                                    valid={contObj?.firstName?.trim()?.length > 0}
                                     onChange={(e) => handleUpdateItemField({ name: "firstName", value: e.target.value.trim() })}
                                     readOnly={false}
                                 />
@@ -220,7 +220,7 @@ const FormPersonalize = ({
                                 <Input
                                     label="Last Name"
                                     value={contObj.lastName}
-                                    valid={contObj?.lastName?.length > 0}
+                                    valid={contObj?.lastName?.trim()?.length > 0}
                                     onChange={(e) => handleUpdateItemField({ name: "lastName", value: e.target.value.trim() })}
                                     readOnly={false}
                                 />
@@ -238,7 +238,7 @@ const FormPersonalize = ({
                                     isFlag={true}
                                     isStaticData={true}
                                     isValidIn={true}
-                                    validIn={contObj.country?.length > 2}
+                                    validIn={contObj.country?.trim()?.length > 2}
                                 />
                             </CCol>
                             <CCol xs={12} md={6} className="city_field">
@@ -251,7 +251,7 @@ const FormPersonalize = ({
                                     isOutDataObj={false}
                                     isRequire={true}
                                     isValidIn={true}
-                                    validIn={contObj.city?.length > 2}
+                                    validIn={contObj.city?.trim()?.length > 2}
                                 />
                             </CCol>
                         </CRow>
@@ -260,16 +260,16 @@ const FormPersonalize = ({
                                 <Input
                                     label="Address"
                                     value={contObj.state}
-                                    valid={contObj?.state?.length > 3}
-                                    onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value.trim() })}
+                                    valid={contObj?.state?.trim()?.length > 3}
+                                    onChange={(e) => handleUpdateItemField({ name: "state", value: e.target.value })}
                                 />
                             </CCol>
                             <CCol xs={12} md={6}>
                                 <Input
                                     label="Zip Code"
                                     value={contObj.zipCode}
-                                    valid={contObj?.zipCode?.length > 2}
-                                    onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value.trim() })}
+                                    valid={contObj?.zipCode?.trim()?.length > 2}
+                                    onChange={(e) => handleUpdateItemField({ name: "zipCode", value: e.target.value })}
                                 />
                             </CCol>
                         </CRow>
@@ -300,7 +300,7 @@ const FormPersonalize = ({
                                     isNumber={true}
                                     isPhone={true}
                                     value={contObj.phone}
-                                    valid={contObj?.phone?.length > 6}
+                                    valid={contObj?.phone?.trim()?.length > 6}
                                     onChange={(value) => handleUpdateItemField({ name: "phone", value })}
                                 />
                             </CCol>

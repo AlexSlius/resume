@@ -274,7 +274,7 @@ const FormActivity = ({
                                                                isOutDataObj={false}
                                                                isModal={false}
                                                                isValidIn={true}
-                                                               validIn={item?.title?.length > 3}
+                                                               validIn={item?.title?.trim()?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={6} className={`emp_n${index}`}>
@@ -288,7 +288,7 @@ const FormActivity = ({
                                                                isOutDataObj={false}
                                                                isAddDiv={true}
                                                                isValidIn={true}
-                                                               validIn={item?.employer?.length > 3}
+                                                               validIn={item?.employer?.trim()?.length > 3}
                                                             />
 
                                                          </CCol>
@@ -322,7 +322,7 @@ const FormActivity = ({
                                                                isFlag={true}
                                                                isStaticData={true}
                                                                isValidIn={true}
-                                                               validIn={item.country?.length > 3}
+                                                               validIn={item.country?.trim()?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={3} className={`city_n${index}`}>
@@ -335,13 +335,13 @@ const FormActivity = ({
                                                                isOutDataObj={false}
                                                                isRequire={true}
                                                                isValidIn={true}
-                                                               validIn={item.city?.length > 3}
+                                                               validIn={item.city?.trim()?.length > 3}
                                                             />
                                                          </CCol>
                                                          <CCol xs={12}>
                                                             <Textarea
                                                                value={item.description}
-                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
+                                                               onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
                                                                hideButton={true}
                                                                name="description"
                                                                placeholder={'Description of activity'}
@@ -377,7 +377,7 @@ const FormActivity = ({
                         isOutDataObj={false}
                         isModal={false}
                         isValidIn={true}
-                        validIn={objNew.title?.length > 3}
+                        validIn={objNew.title?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6} className="emp_new">
@@ -391,7 +391,7 @@ const FormActivity = ({
                         isAddDiv={true}
                         isOutDataObj={false}
                         isValidIn={true}
-                        validIn={objNew.employer?.length > 3}
+                        validIn={objNew.employer?.trim()?.length > 3}
                      />
 
                   </CCol>
@@ -425,7 +425,7 @@ const FormActivity = ({
                         isFlag={true}
                         isStaticData={true}
                         isValidIn={true}
-                        validIn={objNew.country?.length > 3}
+                        validIn={objNew.country?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={3} className="city_new">
@@ -438,13 +438,13 @@ const FormActivity = ({
                         isOutDataObj={false}
                         isRequire={true}
                         isValidIn={true}
-                        validIn={objNew.city?.length > 3}
+                        validIn={objNew.city?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={12}>
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
                         hideButton={true}
                         name="description"
                         placeholder={'Description of activity'}

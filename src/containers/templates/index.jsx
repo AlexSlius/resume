@@ -390,13 +390,13 @@ const Templates = ({
             if (!isCover) {
                 if (isNewResume) {
                     dispatch(updateActiveResumeNew({ colors: templatesItems[0]?.colors || [] }));
-                    if (!templatesItems[0]?.colors?.[0]?.class)
+                    if (!!templatesItems[0]?.colors?.[0]?.class)
                         dispatch(updateActiveResumeNew({ template_class: templatesItems[0]?.colors?.[0]?.class || "" }));
                 }
             } else {
                 if (isNewResume) {
                     dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
-                    if (!templatesItems[0]?.colors?.[0]?.class)
+                    if (!!templatesItems[0]?.colors?.[0]?.class)
                         dispatch(updateActiveCoverNew({ template_class: templatesItems[0]?.colors?.[0]?.class || "" }));
                 }
             }

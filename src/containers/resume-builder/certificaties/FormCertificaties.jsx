@@ -99,7 +99,7 @@ const FormCertificaties = ({
                         onDelete={() => handleDeleteitem(item.id)}
                         isRequire={true}
                         isValidIn={true}
-                        validIn={item.name?.length > 2}
+                        validIn={item.name?.trim()?.length > 2}
                      />
                   </CCol>
                ))

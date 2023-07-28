@@ -46,7 +46,7 @@ export const StepFive = ({
                                 isOutDataObj={false}
                                 isIconArrow={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.fieldOfStudyOrDegree?.length > 3}
+                                validIn={coverDataObj.fieldOfStudyOrDegree?.trim()?.length > 3}
                             />
                         </CCol>
                     </CRow>

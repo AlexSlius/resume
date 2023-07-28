@@ -51,7 +51,7 @@ export const StepEight = ({
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isValidIn={true}
-                                validIn={coverDataObj.wordDescribes?.length > 3}
+                                validIn={coverDataObj.wordDescribes?.trim()?.length > 3}
                             />
                         </CCol>
                     </CRow>

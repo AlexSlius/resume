@@ -304,7 +304,7 @@ const FormInterShip = ({
                                                                   isRequire={true}
                                                                   isCap={true}
                                                                   isValidIn={true}
-                                                                  validIn={item?.jobTitle?.length > 3}
+                                                                  validIn={item?.jobTitle?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6} className={`emp_n${index}`}>
@@ -318,7 +318,7 @@ const FormInterShip = ({
                                                                   isOutDataObj={false}
                                                                   isAddDiv={true}
                                                                   isValidIn={true}
-                                                                  validIn={item?.employer?.length > 3}
+                                                                  validIn={item?.employer?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -351,7 +351,7 @@ const FormInterShip = ({
                                                                   isFlag={true}
                                                                   isStaticData={true}
                                                                   isValidIn={true}
-                                                                  validIn={item.country?.length > 3}
+                                                                  validIn={item.country?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={3} className={`city_n${index}`}>
@@ -363,13 +363,13 @@ const FormInterShip = ({
                                                                   handleServerRequest={(value) => handleServerRequest(value, item.country)}
                                                                   isOutDataObj={false}
                                                                   isValidIn={true}
-                                                                  validIn={item.city?.length > 3}
+                                                                  validIn={item.city?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
-                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
+                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
                                                                   hideButton={true}
                                                                   name="description"
                                                                   placeholder={'Description of activity'}
@@ -410,7 +410,7 @@ const FormInterShip = ({
                         isRequire={true}
                         isCap={true}
                         isValidIn={true}
-                        validIn={objNew.job_title?.length > 3}
+                        validIn={objNew.job_title?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6} className="emp_new">
@@ -424,7 +424,7 @@ const FormInterShip = ({
                         isAddDiv={true}
                         isOutDataObj={false}
                         isValidIn={true}
-                        validIn={objNew.employer?.length > 3}
+                        validIn={objNew.employer?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -457,7 +457,7 @@ const FormInterShip = ({
                         isFlag={true}
                         isStaticData={true}
                         isValidIn={true}
-                        validIn={objNew.country?.length > 3}
+                        validIn={objNew.country?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={3} className="city_new">
@@ -470,13 +470,13 @@ const FormInterShip = ({
                         isOutDataObj={false}
                         isRequire={true}
                         isValidIn={true}
-                        validIn={objNew.city?.length > 3}
+                        validIn={objNew.city?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
                         hideButton={true}
                         name="description"
                         placeholder={'Description of activity'}

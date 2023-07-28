@@ -237,7 +237,7 @@ const FormCourse = ({
                                                                   isOutDataObj={false}
                                                                   isModal={false}
                                                                   isValidIn={true}
-                                                                  validIn={item?.title?.length > 3}
+                                                                  validIn={item?.title?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -248,7 +248,7 @@ const FormCourse = ({
                                                                   isOutDataObj={false}
                                                                   isModal={false}
                                                                   isValidIn={true}
-                                                                  validIn={item?.institution?.length > 3}
+                                                                  validIn={item?.institution?.trim()?.length > 3}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -301,7 +301,7 @@ const FormCourse = ({
                         isOutDataObj={false}
                         isModal={false}
                         isValidIn={true}
-                        validIn={objNew.title?.length > 3}
+                        validIn={objNew.title?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -313,7 +313,7 @@ const FormCourse = ({
                         isOutDataObj={false}
                         isModal={false}
                         isValidIn={true}
-                        validIn={objNew.institution?.length > 3}
+                        validIn={objNew.institution?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6}>

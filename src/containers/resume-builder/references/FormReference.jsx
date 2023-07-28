@@ -248,8 +248,8 @@ const FormReference = ({
                                                                      id={item.id}
                                                                      label="Referent Full name"
                                                                      value={item.fullName}
-                                                                     onChange={(e) => handleSaveSelect({ index, name: "fullName", value: e.target.value.trim() })}
-                                                                     valid={item.fullName?.length > 2}
+                                                                     onChange={(e) => handleSaveSelect({ index, name: "fullName", value: e.target.value })}
+                                                                     valid={item.fullName?.trim()?.length > 2}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6}>
@@ -264,7 +264,7 @@ const FormReference = ({
                                                                      isOutDataObj={false}
                                                                      isCap={true}
                                                                      isValidIn={true}
-                                                                     validIn={item.company?.length > 3}
+                                                                     validIn={item.company?.trim()?.length > 3}
                                                                   />
                                                                </CCol>
                                                                <CCol xs={6} className={`email_n${index}`}>
@@ -281,7 +281,7 @@ const FormReference = ({
                                                                      isNumber={true}
                                                                      isPhone={true}
                                                                      onChange={(value) => handleSaveSelect({ index, name: "phone", value })}
-                                                                     valid={item.phone?.length > 6}
+                                                                     valid={item.phone?.trim()?.length > 6}
                                                                   />
                                                                </CCol>
                                                             </CRow>
@@ -326,7 +326,7 @@ const FormReference = ({
                         isOutDataObj={false}
                         isCap={true}
                         isValidIn={true}
-                        validIn={objNew.company?.length > 3}
+                        validIn={objNew.company?.trim()?.length > 3}
                      />
                   </CCol>
                   <CCol xs={6} className="email_New">
@@ -342,7 +342,7 @@ const FormReference = ({
                         value={objNew.phone}
                         isNumber={true}
                         isPhone={true}
-                        onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value.trim() })}
+                        onChange={(e) => handleSaveSelectNew({ name: "phone", value: e.target.value })}
                         valid={objNew.phone?.length > 6}
                      />
                   </CCol>

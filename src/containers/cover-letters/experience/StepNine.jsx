@@ -51,7 +51,7 @@ export const StepNine = ({
                                 handleServerRequest={handleRequest}
                                 isOutDataObj={false}
                                 isValidIn={true}
-                                validIn={coverDataObj.othersDescribe?.length > 3}
+                                validIn={coverDataObj.othersDescribe?.trim()?.length > 3}
                             />
                         </CCol>
                     </CRow>

@@ -75,21 +75,21 @@ export const ContactUsPage = () => {
             }))
         }
 
-        if (formState.name?.length < 1) {
+        if (formState.name.trim().length < 1) {
             setErrorFields(prev => ({
                 ...prev,
                 name: true
             }))
         }
 
-        if (formState.description?.length < 1) {
+        if (formState.description.trim().length < 1) {
             setErrorFields(prev => ({
                 ...prev,
                 description: true
             }))
         }
 
-        if (!validateEmail(formState.email) || formState.name?.length < 1 || formState.description?.length < 1) {
+        if (!validateEmail(formState.email) || formState.name.trim().length < 1 || formState.description.trim().length < 1) {
             return;
         }
 
@@ -145,8 +145,8 @@ export const ContactUsPage = () => {
                                         <Input
                                             label="Name*"
                                             value={formState.name}
-                                            valid={formState?.name?.length > 0}
-                                            onChange={(e) => handleUpdateField('name', e.target.value.trim())}
+                                            valid={formState?.name?.trim()?.length > 0}
+                                            onChange={(e) => handleUpdateField('name', e.target.value)}
                                             name="FNAM"
                                             readOnly={false}
                                             textError={errorFields.name ? "The main field is required" : ""}
@@ -155,10 +155,10 @@ export const ContactUsPage = () => {
                                     <div className="form-texrarea">
                                         <Textarea
                                             value={formState.description}
-                                            onChange={(e) => handleUpdateField("description", e.target.value.trim())}
+                                            onChange={(e) => handleUpdateField("description", e.target.value)}
                                             name="description"
                                             placeholder={'Question or remark'}
-                                            textError={errorFields.description && (formState.description?.length == 0 ? "The main field is required" : "")}
+                                            textError={errorFields.description && (formState.description.trim().length == 0 ? "The main field is required" : "")}
                                         />
                                     </div>
                                 </div>

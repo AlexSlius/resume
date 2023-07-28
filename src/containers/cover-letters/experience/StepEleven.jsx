@@ -73,7 +73,7 @@ export const StepEleven = ({
                                             isRequire={true}
                                             isCap={true}
                                             isValidIn={true}
-                                            validIn={coverDataObj.industryHoldExperienceJobTitle?.length > 3}
+                                            validIn={coverDataObj.industryHoldExperienceJobTitle?.trim()?.length > 3}
                                         />
                                     </CCol>
                                 </CRow>
@@ -92,7 +92,7 @@ export const StepEleven = ({
                                             isRequire={true}
                                             isCap={true}
                                             isValidIn={true}
-                                            validIn={coverDataObj.industryHoldExperienceCompanyName?.length > 4}
+                                            validIn={coverDataObj.industryHoldExperienceCompanyName?.trim()?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

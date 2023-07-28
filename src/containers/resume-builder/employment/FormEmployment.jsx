@@ -341,7 +341,7 @@ const FormEmployment = ({
                                         isOutDataObj={false}
                                         isRequire={true}
                                         isValidIn={true}
-                                        validIn={item.title?.length > 3}
+                                        validIn={item.title?.trim()?.length > 3}
                                       />
                                     </CCol>
                                     <CCol xs={6} className={`company_n${index}`}>
@@ -356,7 +356,7 @@ const FormEmployment = ({
                                         isOutDataObj={false}
                                         isRequire={true}
                                         isValidIn={true}
-                                        validIn={item.company?.length > 3}
+                                        validIn={item.company?.trim()?.length > 3}
                                       />
                                     </CCol>
                                     <CCol xs={6}>
@@ -389,7 +389,7 @@ const FormEmployment = ({
                                         isFlag={true}
                                         isStaticData={true}
                                         isValidIn={true}
-                                        validIn={item.country?.length > 3}
+                                        validIn={item.country?.trim()?.length > 3}
                                       />
                                     </CCol>
                                     <CCol xs={3} className={`city_n${index}`}>
@@ -402,7 +402,7 @@ const FormEmployment = ({
                                         isOutDataObj={false}
                                         isValidIn={true}
                                         isCap={true}
-                                        validIn={item.city?.length > 3}
+                                        validIn={item.city?.trim()?.length > 3}
                                       />
                                     </CCol>
                                     <CCol xs={12} className={`draf_n${index}`}>
@@ -452,7 +452,7 @@ const FormEmployment = ({
                 isRequire={true}
                 isCap={true}
                 isValidIn={true}
-                validIn={objNew.title?.length > 3}
+                validIn={objNew.title?.trim()?.length > 3}
               />
             </CCol>
             <CCol xs={6} className='company_new'>
@@ -502,7 +502,7 @@ const FormEmployment = ({
                 isStaticData={true}
                 isCap={true}
                 isValidIn={true}
-                validIn={objNew.country?.length > 3}
+                validIn={objNew.country?.trim()?.length > 3}
               />
             </CCol>
             <CCol xs={3} className='city_new'>
@@ -516,7 +516,7 @@ const FormEmployment = ({
                 isOutDataObj={false}
                 isValidIn={true}
                 isCap={true}
-                validIn={objNew.city?.length > 3}
+                validIn={objNew.city?.trim()?.length > 3}
               />
             </CCol>
             <CCol xs={12} className='draf_new'>

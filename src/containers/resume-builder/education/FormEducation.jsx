@@ -274,7 +274,7 @@ const FormEducation = ({
                                                                   isOutDataObj={false}
                                                                   data={university.list}
                                                                   isValidIn={true}
-                                                                  validIn={item.facility?.length > 2}
+                                                                  validIn={item.facility?.trim()?.length > 2}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6} className={`degre_n${index}`}>
@@ -287,7 +287,7 @@ const FormEducation = ({
                                                                   isOutDataObj={false}
                                                                   isValidIn={true}
                                                                   isCap={true}
-                                                                  validIn={item.degree?.length > 2}
+                                                                  validIn={item.degree?.trim()?.length > 2}
                                                                />
                                                             </CCol>
                                                             <CCol xs={6}>
@@ -320,13 +320,13 @@ const FormEducation = ({
                                                                   isRequire={true}
                                                                   isCap={true}
                                                                   isValidIn={true}
-                                                                  validIn={item.study?.length > 2}
+                                                                  validIn={item.study?.trim()?.length > 2}
                                                                />
                                                             </CCol>
                                                             <CCol xs={12} className={`area_n${index}`}>
                                                                <Textarea
                                                                   value={item.description}
-                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value.trim() })}
+                                                                  onChange={(e) => handleSaveSelect({ index, name: e.target.name, value: e.target.value })}
                                                                   name="description"
                                                                   placeholder={'Description of education'}
                                                                />
@@ -362,7 +362,7 @@ const FormEducation = ({
                         handleServerRequest={() => getSearchListUnivercitu(objNew?.facility)}
                         isOutDataObj={false}
                         isValidIn={true}
-                        validIn={objNew?.facility?.length > 2}
+                        validIn={objNew?.facility?.trim()?.length > 2}
                      />
                   </CCol>
                   <CCol xs={6} className="degre_new">
@@ -375,7 +375,7 @@ const FormEducation = ({
                         isOutDataObj={false}
                         isValidIn={true}
                         isCap={true}
-                        validIn={objNew?.degree?.length > 2}
+                        validIn={objNew?.degree?.trim()?.length > 2}
                      />
                   </CCol>
                   <CCol xs={6}>
@@ -408,13 +408,13 @@ const FormEducation = ({
                         isRequire={true}
                         isCap={true}
                         isValidIn={true}
-                        validIn={objNew.study?.length > 2}
+                        validIn={objNew.study?.trim()?.length > 2}
                      />
                   </CCol>
                   <CCol xs={12} className="area_new">
                      <Textarea
                         value={objNew.description}
-                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value.trim() })}
+                        onChange={(e) => handleSaveSelectNew({ name: e.target.name, value: e.target.value })}
                         name="description"
                         placeholder={'Description of education'}
                      />

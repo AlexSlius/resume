@@ -81,7 +81,7 @@ export const StepSixteen = ({
                                 isRequire={true}
                                 isCap={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.applyingCompanyName?.length > 4}
+                                validIn={coverDataObj.applyingCompanyName?.trim()?.length > 4}
                             />
                         </CCol>
                         <CCol xs={12} md={6} className="job_title">
@@ -98,7 +98,7 @@ export const StepSixteen = ({
                                 isRequire={true}
                                 isCap={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.applyingCompanyJobTitle?.length > 4}
+                                validIn={coverDataObj.applyingCompanyJobTitle?.trim()?.length > 4}
                             />
                         </CCol>
                     </CRow>
@@ -113,7 +113,7 @@ export const StepSixteen = ({
                                 isOutDataObj={false}
                                 isIconArrow={true}
                                 isValidIn={true}
-                                validIn={coverDataObj.applyingCompanyTitle?.length > 2}
+                                validIn={coverDataObj.applyingCompanyTitle?.trim()?.length > 2}
                                 isSearch={false}
                                 isStaticData={true}
                                 isKyrentName={true}
@@ -123,8 +123,8 @@ export const StepSixteen = ({
                             <Input
                                 label="Name of Company Contact"
                                 value={coverDataObj.applyingCompanyContact}
-                                onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value.trim() })}
-                                valid={coverDataObj.applyingCompanyContact?.length > 2}
+                                onChange={(e) => handleUpdateField({ name: "applyingCompanyContact", value: e.target.value })}
+                                valid={coverDataObj.applyingCompanyContact?.trim()?.length > 2}
                             />
                         </CCol>
                     </CRow>

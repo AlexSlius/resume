@@ -112,7 +112,7 @@ const FormSocials = ({
                         isIconArrow={true}
                         isRequire={true}
                         isValidIn={true}
-                        validIn={item.name?.length > 2}
+                        validIn={item.name?.trim()?.length > 2}
                      />
                   </CCol>
                   <CCol xs={6} className="mb-4">
@@ -123,10 +123,10 @@ const FormSocials = ({
                         name="link"
                         isDelete={true}
                         onDelete={handleDeleteitem}
-                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value.trim(), nameValue: item.name })}
-                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value.trim() })}
+                        onBlur={(e) => updateitemFiled({ id: item.id, index, isClisk: true, link: e.target.value, nameValue: item.name })}
+                        onChange={(e) => updateitemFiled({ index, name: e.target.name, value: e.target.value })}
                         isValidIn={true}
-                        validIn={item.link?.length > 4}
+                        validIn={item.link?.trim()?.length > 4}
                      />
                   </CCol>
                </CRow>
@@ -146,7 +146,7 @@ const FormSocials = ({
                   isOutDataObj={false}
                   isIconArrow={true}
                   isValidIn={true}
-                  validIn={socialObjNew.name?.length > 4}
+                  validIn={socialObjNew.name?.trim()?.length > 4}
                />
             </CCol>
          </CRow>

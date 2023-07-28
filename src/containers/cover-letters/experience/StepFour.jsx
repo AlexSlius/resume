@@ -74,7 +74,7 @@ export const StepFour = ({
                                             handleServerRequest={handleRequest}
                                             isOutDataObj={false}
                                             isValidIn={true}
-                                            validIn={coverDataObj.nameCollegeOrUniversity?.length > 4}
+                                            validIn={coverDataObj?.nameCollegeOrUniversity?.trim()?.length > 4}
                                         />
                                     </CCol>
                                 </CRow>

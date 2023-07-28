@@ -86,7 +86,7 @@ const PrewrittenTextarea = ({
    }
 
    const handleChange = (e) => {
-      setLocalValue(e.target.value.trim());
+      setLocalValue(e.target.value);
    }
 
 
