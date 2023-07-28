@@ -14,22 +14,29 @@ export const ItemCardResum = ({
     handlePreview = () => { },
 }) => {
     const [activeColor, setActiveColor] = useState();
+    const [activeimg, setActiveImg] = useState();
 
+    const handleColor = (item) => {
+        setActiveColor(item.class);
+        setActiveImg(item.color_image);
+    }
 
     useEffect(() => {
-        if (item?.colors?.length > 0)
+        if (item?.colors?.length > 0) {
             setActiveColor(item?.colors[0].class);
+            setActiveImg(item?.colors[0].color_image);
+        }
     }, []);
 
     return (
         <div className="item-card-resum">
             <div className="item-card-resum__head">
-                <img loading="lazy" src={item.image} />
+                <img loading="lazy" src={activeimg ? activeimg : item?.image} alt="temolate image" />
                 <div className="doc-btn"  >
                     <div className="item-card-resum__btn-top">
                         <button
                             className="button-p button-type-grey button-p_icon button-p_grey"
-                            onClick={() => { handlePreview(item) }}
+                            onClick={() => { handlePreview(item, activeColor) }}
                         >
                             <i>
                                 <Icon svg={iconEye} />
@@ -71,7 +78,7 @@ export const ItemCardResum = ({
                                         className={`card-color__item ${(activeColor == itemColor.class) ? "active" : ""}`}
                                         key={index}
                                         style={{ backgroundColor: itemColor.color }}
-                                        onClick={() => setActiveColor(itemColor.class)}
+                                        onClick={() => handleColor(itemColor)}
                                     ></div>
                                 ))
                             }

@@ -18,7 +18,8 @@ export const JobWinningPage = () => {
     const [currentPage, setCurrentPage] = useState(2);
     const [modalTem, setModalTem] = useState({
         status: false,
-        data: null
+        data: null,
+        activeClassColor: null
     });
     const dispatch = useDispatch();
     const router = useRouter();
@@ -39,14 +40,16 @@ export const JobWinningPage = () => {
     const handleCloseModalTemplate = () => {
         setModalTem({
             status: false,
-            data: null
+            data: null,
+            activeClassColor: null
         });
     }
 
-    const handlePreview = (data) => {
+    const handlePreview = (data, activeClassColor) => {
         setModalTem({
             status: true,
-            data
+            data,
+            activeClassColor
         });
     }
 
@@ -102,6 +105,7 @@ export const JobWinningPage = () => {
             <ModalTemplate
                 visible={modalTem.status}
                 item={modalTem.data}
+                activeClassColor={modalTem.activeClassColor}
                 onClose={handleCloseModalTemplate}
                 hrefLink={routersPages['resumeBuilderNew']}
                 handleLink={(val) => dispatch(updateActiveResumeNew(val))}

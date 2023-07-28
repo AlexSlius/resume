@@ -19,7 +19,8 @@ export const CoverLetterTemplates = () => {
     const [currentPage, setCurrentPage] = useState(2);
     const [modalTem, setModalTem] = useState({
         status: false,
-        data: null
+        data: null,
+        activeClassColor: null
     });
     const dispatch = useDispatch();
     const router = useRouter();
@@ -40,14 +41,16 @@ export const CoverLetterTemplates = () => {
     const handleCloseModalTemplate = () => {
         setModalTem({
             status: false,
-            data: null
+            data: null,
+            activeClassColor: null
         });
     }
 
-    const handlePreview = (data) => {
+    const handlePreview = (data, activeClassColor) => {
         setModalTem({
             status: true,
-            data
+            data,
+            activeClassColor
         });
     }
 
@@ -103,6 +106,7 @@ export const CoverLetterTemplates = () => {
                 visible={modalTem.status}
                 item={modalTem.data}
                 onClose={handleCloseModalTemplate}
+                activeClassColor={modalTem.activeClassColor}
                 hrefLink={routersPages['coverLetterNew']}
                 handleLink={(val) => dispatch(updateActiveCoverNew(val))}
             />

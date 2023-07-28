@@ -11,6 +11,7 @@ export const ModalTemplate = ({
     hrefLink = "",
     handleLink = () => { },
     item,
+    activeClassColor,
 }) => {
     const [activeColor, setActiveColor] = useState();
     const [activeimg, setActiveImg] = useState();
@@ -21,14 +22,14 @@ export const ModalTemplate = ({
     }
 
     useEffect(() => {
-        if (item?.colors?.length > 0) {
+        if (item?.colors?.length > 0 && !activeClassColor) {
             setActiveColor(item?.colors[0].class);
             setActiveImg(item?.colors[0].color_image);
         }
 
-        return () => {
-            setActiveColor(undefined);
-            setActiveImg(undefined);
+        if (activeClassColor) {
+            setActiveColor(activeClassColor);
+            setActiveImg(item.colors.find(el => (el.class == activeClassColor))?.color_image || "")
         }
     }, [item]);
 
