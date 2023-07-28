@@ -192,13 +192,13 @@ export const ResumeCv010 = ({
                 {
                   reference.map((itemRef, index) => (
                     <div className="block-info" key={index}>
-                          <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
-                            <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
-                            </span>
-                            <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
-                              {itemRef.company || ', Company'}
-                            </span>
+                        <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
+                            {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          </span>
+                          <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
+                            {itemRef.company || ', Company'}
+                          </span>
                         </div>
                         <div className={`${!itemRef.email ? 'empty-field' : ''} ${!itemRef.email && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.email || 'references@webservice.com'}
@@ -217,7 +217,7 @@ export const ResumeCv010 = ({
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading font-size-3 ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          {checkForSymbol([itemEm.company, itemEm.city]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
                         </span>
                         <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
                           {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
@@ -301,7 +301,7 @@ export const ResumeCv010 = ({
                           {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
                         </span>
                         <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
+                          {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
                         </span>
                       </div>
                       <div className={`date-range ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !itemEd?.degree && !beforeСontent ? 'hide' : ''}`}>
@@ -375,10 +375,10 @@ export const ResumeCv010 = ({
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading font-size-3 ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Marketing and Management'}
+                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
                         </span>
                         <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.institution ? itemCo.institution : ', Harcum College, PortlandM'}
+                          {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
                         </span>
                       </div>
                       <div className={`date-range ${!itemCo.dateFrom?.date && !itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
@@ -641,10 +641,10 @@ export const ResumeCv010 = ({
                       {`${contact[0].zipCode || '384846'}`}
                     </span>
                   </div>
-                  <div className={`${!contact[0].phone ? 'empty-field' : ''}`}>
+                  <div className={`${!contact[0].phone ? 'empty-field' : ''} ${!contact[0].phone && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].phone || '736-343-9384'}
                   </div>
-                  <div className={`email ${!contact[0].email ? 'empty-field' : ''}`}>
+                  <div className={`email ${!contact[0].email ? 'empty-field' : ''} ${!contact[0].email && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].email || 'designer@webservice.com'}
                   </div>
                   <div className={`item-block ${!contact[0]?.nationality && !beforeСontent ? 'hide' : ''}`}>

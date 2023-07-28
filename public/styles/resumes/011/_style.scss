@@ -47,19 +47,17 @@
   $color_set_6_additional_color_3: #4AA633;
 
 .sv_011 {
-  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 
-  * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+   /* Global */
+   * {
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
   }
 
   ul {
@@ -81,16 +79,25 @@
     }
   }
 
-  .cv-name {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+  .empty-field {
+    opacity: 0.3;
   }
 
-  .cv-prophecy {
+  .hide {
+    display: none !important;
+  }
+
+  // Blocks
+  .cv-name {
+    span {
+      font-family: 'Oswald', sans-serif;
+    }
+  }
+
+  .cv-profession {
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 2px;
-    font-weight: 400;
   }
 
   .date-range {
@@ -107,170 +114,189 @@
     align-items: center;
     justify-content: stretch;
     background: linear-gradient(270deg, #60A9CC 0%, #D13B83 100%);
-
     .item-value {
       width: 50%;
       background-color: transparent;
       position: relative;
       height: 100%;
     }
-
     .item-value-point {
       position: absolute;
       transform: translate(10px, -50%);
       right: 0px;
       top: 50%;
     }
-
     .empty-gap {
       flex: 1;
       height: 100%;
     }
   }
 
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
+  .cv-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
-  .cv-body {
-    min-width: 595px;
-    min-height: 764px;
-    height: 764px;
-    max-height: 764px;
-    background-color: #fff;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    .cv-body-content {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: stretch;
-      position: relative;
-      z-index: 10;
-      .column-right {
-        width: 180px;
-        min-width: 180px;
-        padding-right: 20px;
-        margin-left: 45px;
-        .block-block {
-          .block-heading {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 400;
-            margin-bottom: 5px !important;
-          }
-          .block-info {
-            &:not(:first-of-type) {
-              margin-top: 10px;
-            }
-          }
-          &:not(:first-of-type) {
-            margin-top: 20px;
-          }
-        }
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+    column-gap: 30px;
+  }
+
+  .column-left {
+    flex: 1;
+    .block-block {
+      margin-top: 10px;
+      margin-left: 20px;
+      .block-heading {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 400;
+        margin-bottom: 4px !important;
       }
-      .column-left {
-        flex: 1;
-        .block-block {
+      .block-subheading {
+        margin-bottom: 4px;
+      }
+      .block-info {
+        &:not(:first-of-type) {
           margin-top: 10px;
-          margin-left: 20px;
-          .block-heading {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 400;
-            margin-bottom: 4px !important;
-          }
-          .block-subheading {
-            margin-bottom: 4px;
-          }
-          .block-info {
-            &:not(:first-of-type) {
-              margin-top: 10px;
-            }
-          }
         }
       }
     }
-
-    &.cv-body-1 {
-      .cv-body-content {
-        .column-left {
-          .personal-info-block {
-            display: flex;
-            height: 200px;
-            margin-bottom: 20px;
-            margin-left: 20px;
-            .photo-block {
-              width: 159px;
-              height: 159px;
-              position: relative;
-              .photo {
-                width: 159px;
-                height: 159px;
-                background-size: cover;
-                background-position: 50% 50%;
-                overflow: hidden;
-              }
-            }
-            .personal-info {
-              margin-right: -45px;
-              padding-top: 30px;
-              flex: 1;
-              .personal-additional-info {
-                margin-top: 20px;
-                .info-item {
-                  &:not(:first-child) {
-                    margin-top: 8px;
-                  }
-                }
-                .info-item-name {
-                  text-transform: uppercase;
-                }
-                .info-item-value {
-                  font-family: 'Montserrat', sans-serif;
-                }
-              }
-            }
+    .personal-info-block {
+      display: flex;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      .photo-block {
+        width: 159px;
+        height: 159px;
+        position: relative;
+        .photo {
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: 50% 50%;
+          overflow: hidden;
+        }
+      }
+      .personal-info {
+        padding-top: 30px;
+        flex: 1;
+      }
+      .personal-additional-info {
+        margin-top: 20px;
+        .item-block {
+          &:not(:first-child) {
+            margin-top: 8px;
           }
+        }
+        .name {
+          text-transform: uppercase;
+        }
+        .value {
+          font-family: 'Montserrat', sans-serif;
         }
       }
     }
+  }
 
-    &.cv-body-1 {
-      &.page-2,
-      &.page-3,
-      &.page-4 {
-        .cv-body-content {
-          .column-right {
-            margin-top: 10px;
-          }
+  .column-right {
+    width: 180px;
+    min-width: 180px;
+    padding-right: 20px;
+    .block-block {
+      .block-heading {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 400;
+        margin-bottom: 5px !important;
+      }
+      .block-info {
+        &:not(:first-of-type) {
+          margin-top: 10px;
         }
       }
-    }
-
-    &.cv-body-2 {
-      .cv-body-content {
-        .column-left {
-          padding: 30px 0 30px 50px;
-          .cv-name {
-            text-align: left;
-          }
-          .letter-block {
-            margin-top: 55px;
-          }
-        }
-        .column-right {
-          margin-left: 60px;
-        }
+      &:not(:first-of-type) {
+        margin-top: 20px;
       }
     }
-
+    .contacts-information-block {
+      position: relative;
+      .left-block {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 23px;
+        z-index: -1;
+      }
+      .right-block {
+        padding: 36px 0 75px;
+      }
+      .contacts-block {
+        display: flex;
+        flex-direction: column;
+      }
+      .block-item {
+        display: flex;
+        align-items: center;
+        .left-side {
+          width: 23px;
+          display: flex;
+          flex-shrink: 0;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .right-side {
+          flex: 1;
+          padding-left: 5px;
+        }
+        &:not(:first-of-type) {
+          margin-top: 6px;
+        }
+      }
+      svg {
+        width: 13px;
+        height: 13px;
+      }
+      img {
+        width: 13px;
+        height: 13px;
+      }
+    }
+    .certificates-block {
+      .certificates-block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+      }
+    }
+    .references-block {
+      .block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+      }
+    }
+    .skills-block {
+      .list-item {
+        &:not(:first-of-type) {
+          margin-top: 5px;
+        }
+      }
+      .item-name {
+        margin-bottom: 2px;
+      }
+    }
+    .languages-block {
+      .list-item {
+        &:not(:first-of-type) {
+          margin-top: 5px;
+        }
+      }
+      .item-name {
+        margin-bottom: 2px;
+      }
+    }
   }
 
   .text-block-wrapper {
@@ -316,95 +342,54 @@
     }
   }
 
-  /* Blocks styles */
-  .certificates-block {
-    .certificates-block-info {
-      span {
-        display: block;
-        &:not(:first-of-type) {
-          margin-top: 6px;
-        }
-      }
-    }
-  }
-
-  .references-block {
-    .block-info {
-      p:not(:first-of-type) {
-        margin-top: 3px;
-      }
-    }
-  }
-
-  .skills-block {
-    .skills-list {
-      .list-item {
-        .item-name {
-          margin-bottom: 2px;
-        }
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-
-  .languages-block {
-    .skills-list {
-      .list-item {
-        .item-name {
-          margin-bottom: 2px;
-        }
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-
-  /* --- */
-  .contacts-information-block {
-    position: relative;
-    .left-block {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      bottom: 0px;
-      width: 23px;
-      z-index: -1;
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-block {
+      display: none;
     }
 
-    .right-block {
-      padding: 36px 0 75px;
-      .contacts-block {
+    &.has-photo {
+      .photo-block {
         display: flex;
-        flex-direction: column;
-        .block-item {
-          display: flex;
-          align-items: center;
-          .left-side {
-            width: 23px;
-            display: flex;
-            flex-shrink: 0;
-            align-items: flex-start;
-            justify-content: center;
-          }
-          .right-side {
-            flex: 1;
-            padding-left: 5px;
-          }
-          &:not(:first-of-type) {
-            margin-top: 6px;
+      }
+      .cv-name {
+        text-align: center;
+      }
+      .cv-profession {
+        text-align: center;
+      }
+      .cv-body {
+        &.cv-body-1 {
+          .cv-body-content {
+            .column-left {
+              .personal-info-block {
+                margin-left: 0;
+                .personal-info {
+                  .personal-additional-info {
+                    margin-left: 46px;
+                  }
+                }
+              }
+            }
           }
         }
-        svg {
-          width: 13px;
-          height: 13px;
+      }
+    }
+  }
+
+  .cv-body-2 {
+    .cv-body-content {
+      .column-left {
+        padding: 30px 0 30px 50px;
+        .cv-name {
+          text-align: left;
         }
-        img {
-          width: 13px;
-          height: 13px;
+        .letter-block {
+          margin-top: 55px;
         }
+      }
+      .column-right {
+        margin-left: 60px;
       }
     }
   }
@@ -456,63 +441,23 @@
     }
   }
 
-  /* Stylization */
-  #cv-chapter-section-cv {
-    .photo-block {
-      display: none;
-    }
-
-    &.has-photo {
-      .photo-block {
-        display: flex;
-      }
-      .cv-name {
-        text-align: center;
-      }
-      .cv-prophecy {
-        text-align: center;
-      }
-      .cv-body {
-        &.cv-body-1 {
-          .cv-body-content {
-            .column-left {
-              .personal-info-block {
-                margin-left: 0;
-                .personal-info {
-                  .personal-additional-info {
-                    margin-left: 46px;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   /* Font size scheme */
   .font-size-scheme-state-small {
     .font-size-1 {
       font-size: 6px;
     }
-
     .font-size-2 {
       font-size: 8px;
     }
-
     .font-size-3 {
       font-size: 12px;
     }
-
     .font-size-4 {
       font-size: 14px;
     }
-
     .font-size-5 {
       font-size: 18px;
     }
-
     .font-size-6 {
       font-size: 24px;
     }
@@ -522,23 +467,18 @@
     .font-size-1 {
       font-size: 8px;
     }
-
     .font-size-2 {
       font-size: 10px;
     }
-
     .font-size-3 {
       font-size: 14px;
     }
-
     .font-size-4 {
       font-size: 16px;
     }
-
     .font-size-5 {
       font-size: 20px;
     }
-
     .font-size-6 {
       font-size: 26px;
     }
@@ -548,23 +488,18 @@
     .font-size-1 {
       font-size: 10px;
     }
-
     .font-size-2 {
       font-size: 12px;
     }
-
     .font-size-3 {
       font-size: 16px;
     }
-
     .font-size-4 {
       font-size: 18px;
     }
-
     .font-size-5 {
       font-size: 22px;
     }
-
     .font-size-6 {
       font-size: 28px;
     }
