@@ -182,11 +182,13 @@ const drawing = () => {
 
 export const ResumeCv013 = ({
   data,
+  dataNew,
   isDrawing = false,
   isTemplate = false,
   handleFalseDrafind = () => { },
   stateClasses,
   reportTemplateRef,
+  beforeСontent,
   objActiveBlock
 }) => {
   const {
@@ -204,7 +206,7 @@ export const ResumeCv013 = ({
     skills,
     languages,
     hide_experience_level
-  } = data;
+  } = dataNew;
   let conta = contact?.[0];
   let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 

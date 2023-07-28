@@ -324,7 +324,7 @@ export const ResumeCv002 = ({
                         <div className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || 'New York City'}
                         </div>
-                        <div className="date-range additional-color-2-text ${!itemEm.periodTo?.date && !itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}">
+                        <div className={`date-range additional-color-2-text ${!itemEm.periodTo?.date && !itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEm.periodFrom?.date ? 'empty-field' : ''} ${!itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.periodFrom?.date && (checkForSymbol([itemEm.periodTo?.date]) ? moment(itemEm.periodFrom.date).format("MMMM yy") + ' - ' : moment(itemEm.periodFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>
@@ -495,7 +495,7 @@ export const ResumeCv002 = ({
                       <span className="line-after-block-heading additional-color-1-border"></span>
                     </div>
                     {
-                      career_objective?.[0]?.data && (
+                      career_objective[0].data && (
                         <div dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
                       ) || (
                         <div className="empty-field">

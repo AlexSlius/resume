@@ -8,9 +8,6 @@
   src: url('./fonts/Lato/Lato-Black.ttf');
 }
 
-.sv_013 {
-  font-family: 'Lato', sans-serif;
-
   /* Colors */
   $main_color_1: #323031;
   $main_color_2: #FFFFFF;
@@ -30,44 +27,30 @@
 
   $color_set_6_additional_color_1: #7479EB;
 
+.sv_013 {
+  font-weight: 400;
+
+  /* Global */
   * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
   }
 
   a {
     color: $main_color_1;
   }
 
-  .font-weight-300 {
-    font-weight: 300;
+  .empty-field {
+    opacity: 0.3;
   }
 
-  .font-weight-400 {
-    font-weight: 400;
-  }
-
-  .font-weight-500 {
-    font-weight: 500;
-  }
-
-  .font-weight-600 {
-    font-weight: 600;
-  }
-
-  .font-weight-700 {
-    font-weight: 700;
-  }
-
-  .font-weight-900 {
-    font-weight: 900;
+  .hide {
+    display: none !important;
   }
 
   .cv-name {
@@ -79,6 +62,71 @@
   .cv-prophecy {
     text-align: center;
     margin-top: 1px;
+  }
+  
+  .cv-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: $main_color_2;
+  }
+
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+  }
+
+  .cv-body-1 {
+    .cv-body-content {
+      background: url("/../styles/resumes/013/image/bg.png") no-repeat 0 0;
+
+      .column-left {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 245px;
+        min-width: 245px;
+        padding: 0 37px 0 24px;
+
+        .photo-block {
+          width: 131px;
+          height: 131px;
+          position: relative;
+          border-radius: 100%;
+          overflow: hidden;
+          margin: 0 auto 16px;
+
+          .photo {
+            width: 131px;
+            height: 131px;
+            background-size: cover;
+            background-position: 50% 50%;
+            overflow: hidden;
+          }
+        }
+
+        .personal-info-block {
+          .personal-info {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 10px;
+
+            .info-item {
+              flex-basis: 50%;
+            }
+
+            .info-item-name {
+              font-family: 'Lato Black', sans-serif;
+            }
+          }
+        }
+      }
+
+      .column-right {
+        padding-right: 24px;
+      }
+    }
   }
 
   .item-value-container {
@@ -108,123 +156,6 @@
       flex: 1;
       height: 100%;
     }
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .cv-body {
-    min-width: 595px;
-    min-height: 764px;
-    height: 764px;
-    max-height: 764px;
-    background-color: #fff;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    .cv-body-content {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: stretch;
-      position: relative;
-      z-index: 10;
-    }
-
-    &.cv-body-1 {
-      .cv-body-content {
-        background: url("/../styles/resumes/013/image/bg.png") no-repeat 0 0;
-
-        .column-left {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          justify-content: flex-start;
-          width: 245px;
-          min-width: 245px;
-          padding: 0 37px 0 24px;
-
-          .photo-block {
-            width: 131px;
-            height: 131px;
-            position: relative;
-            border-radius: 100%;
-            overflow: hidden;
-            margin: 0 auto 16px;
-
-            .photo {
-              width: 131px;
-              height: 131px;
-              background-size: cover;
-              background-position: 50% 50%;
-              overflow: hidden;
-            }
-          }
-
-          .personal-info-block {
-            .personal-info {
-              display: flex;
-              flex-wrap: wrap;
-              row-gap: 10px;
-
-              .info-item {
-                flex-basis: 50%;
-              }
-
-              .info-item-name {
-                font-family: 'Lato Black', sans-serif;
-              }
-            }
-          }
-        }
-
-        .column-right {
-          padding-right: 24px;
-        }
-      }
-    }
-
-    &.cv-body-2 {
-      .cv-body-content {
-        background: url("/../styles/resumes/013/image/bg-2.png") no-repeat 0 0;
-
-        .column-left {
-          padding: 165px 50px 0 25px;
-          width: 210px;
-          min-width: 210px;
-        }
-
-        .column-right {
-          padding: 70px 65px 0 0;
-        }
-
-        .cv-name {
-          margin-bottom: 48px;
-        }
-
-        .letter-text {
-          p:not(:first-child) {
-            margin-top: 10px;
-          }
-
-          p:last-child {
-            margin-top: 30px;
-          }
-        }
-      }
-    }
-
   }
 
   .skills-list {
@@ -284,7 +215,6 @@
     }
   }
 
-  /* --- */
   .contacts-information-block {
     position: relative;
 
@@ -305,24 +235,6 @@
           margin-top: 6px;
         }
       }
-    }
-  }
-
-  .destination-block {
-    position: relative;
-
-    .block-item {
-      p:not(:first-child) {
-        margin-top: 2px;
-      }
-    }
-
-    .block-heading:not(:first-child) {
-      margin-top: 20px;
-    }
-
-    &.block-block:first-child {
-      margin: 0;
     }
   }
 
@@ -403,6 +315,54 @@
       .photo-block {
         display: block;
       }
+    }
+  }
+
+  .cv-body-2 {
+    .cv-body-content {
+      background: url("/../styles/resumes/013/image/bg-2.png") no-repeat 0 0;
+
+      .column-left {
+        padding: 165px 50px 0 25px;
+        width: 210px;
+        min-width: 210px;
+      }
+
+      .column-right {
+        padding: 70px 65px 0 0;
+      }
+
+      .cv-name {
+        margin-bottom: 48px;
+      }
+
+      .letter-text {
+        p:not(:first-child) {
+          margin-top: 10px;
+        }
+
+        p:last-child {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+
+  .destination-block {
+    position: relative;
+
+    .block-item {
+      p:not(:first-child) {
+        margin-top: 2px;
+      }
+    }
+
+    .block-heading:not(:first-child) {
+      margin-top: 20px;
+    }
+
+    &.block-block:first-child {
+      margin: 0;
     }
   }
 
