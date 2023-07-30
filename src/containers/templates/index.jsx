@@ -402,13 +402,29 @@ const Templates = ({
             }
 
             if (!isNewResume) {
-                if (!isCover) {
-                    // get resume
-                    dispatch(getResumeActive({ idCv }));
-                } else {
-                    // get cover 
-                    dispatch(getCoverDataActive({ idCv }));
+                async function startA() {
+                    if (!isCover) {
+                        // get resume
+                        let res = await dispatch(getResumeActive({ idCv }));
+
+                        if (res?.payload?.template_id) {
+                            setTimeout(() => {
+                                dispatch(handleCVUpdateDrawingTrue());
+                            }, 1000);
+                        }
+                    } else {
+                        // get cover 
+                        let res = await dispatch(getCoverDataActive({ idCv }));
+
+                        if (res?.payload?.template_id) {
+                            setTimeout(() => {
+                                dispatch(handleCVUpdateDrawingTrue());
+                            }, 1000);
+                        }
+                    }
                 }
+
+                startA();
             }
 
             !!refWr.current && refWr.current.addEventListener('scroll', handleScroll);

@@ -48,6 +48,5 @@ export const setUpdateResumeActive = createAsyncThunk('resumeData/setUpdateResum
 
 export const getResumeActive = createAsyncThunk('resumeData/getResumeActive', async ({ idCv }, thunkAPI) => {
     const response = await api.resumesData.getResumeDataActive(idCv);
-    await thunkAPI.dispatch(handleCVUpdateDrawingTrue());
     return response;
 });
