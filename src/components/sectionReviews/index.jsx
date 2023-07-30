@@ -76,13 +76,16 @@ export const SectionReviews = ({
                                 {
                                     domLoaded && (
                                         <Swiper
+                                            className='rtl'
+                                            dir="rtl"
                                             modules={[Autoplay]}
                                             spaceBetween={30}
                                             slidesPerView={4}
                                             loop={true}
                                             autoplay={{
+                                                delay: 0,
                                                 disableOnInteraction: false,
-                                                reverseDirection: true
+                                                // reverseDirection: true
                                             }}
                                             speed={16000}
                                             allowTouchMove={false}

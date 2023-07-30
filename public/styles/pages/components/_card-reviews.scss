@@ -68,6 +68,23 @@
     }
 }
 
+.rtl {
+    .card-revie__h{
+        flex-direction: row-reverse;
+    }
+
+    .card-revie__left {
+        flex-direction: row-reverse;
+    }
+
+    .card-revie__l-r {
+        text-align: left;
+    }
+    .card-revie__des {
+        text-align: left;
+    }
+}
+
 @media(max-width: 767px) {
     .card-revie__h {
         flex-direction: column;
