@@ -81,11 +81,10 @@ export const SectionReviews = ({
                                             slidesPerView={4}
                                             loop={true}
                                             autoplay={{
-                                                delay: 0,
                                                 disableOnInteraction: false,
                                                 reverseDirection: true
                                             }}
-                                            speed={15000}
+                                            speed={16000}
                                             allowTouchMove={false}
                                             breakpoints={{
                                                 200: {
