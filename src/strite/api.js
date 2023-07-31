@@ -29,7 +29,7 @@ export const stripePaymentIntents = async ({
         customer: customerId,
         mode: type,
         metadata: {
-            type: type,
+            'type': type,
         },
         success_url: `${redirectLinkSuccess}&success=true&session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
         cancel_url: `${redirectLink}?canceled=true?session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
@@ -43,3 +43,4 @@ export const stripePaymentIntents = async ({
         setStateLoad(false);
     }
 }
+
