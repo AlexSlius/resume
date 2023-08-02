@@ -18,7 +18,6 @@ const Home = () => {
 }
 
 export const getServerSideProps = withPublicRoute({
-  isGetResumesTemplates: true,
   isPageHome: true
 });
 
