@@ -21,6 +21,7 @@ import { SectionAutCreateCover } from "../../components/sectionAutomaticCreateCo
 // Libraries
 import { updateActiveCoverNew } from "../../slices/cover/coverData";
 import { getCoverTemplates } from "../../controllers/cover/coverData";
+import { getAllPageCoverLetter } from "../../controllers/pages/pagesCoverLetters";
 
 // Constants
 import { routersPages } from "../../constants/next-routers";
@@ -73,6 +74,7 @@ export const CoverLatter = () => {
     useEffect(() => {
         localStorage.setItem('page', 'cover-letter');
         dispatch(getCoverTemplates({ page: 1, category: "" }));
+        dispatch(getAllPageCoverLetter());
     }, []);
 
     return (

@@ -31,10 +31,8 @@ export const slice = createSlice({
     initialState,
     extraReducers: {
         [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                ...action.payload.pages,
-            }
+            state.home = { ...state.home, ...action.payload.pages.home }
+            state.coverLetter = { ...state.coverLetter, ...action.payload.pages.coverLetter }
         },
         // fetchGetUsersCreatedHome
         [fetchGetUsersCreatedHome.pending]: (state) => {

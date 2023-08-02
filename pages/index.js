@@ -17,8 +17,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublicRoute({
-  isPageHome: true
-});
+export const getServerSideProps = withPublicRoute({});
 
 export default Home;
