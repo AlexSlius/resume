@@ -13,7 +13,6 @@ import { camelToSnake } from '../../helpers/caseConverters';
 import { doNotTransmitEmptyData } from '../../utils/emptyData';
 import { cleanStartPersonFields } from "../../constants/formPerson";
 import { setUpdateCoverDataActive } from './coverData';
-import { getScreenCover } from './covers';
 
 
 export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
@@ -56,13 +55,10 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
         if (isDashboard) {
             await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size } }));
             await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[0].link}`);
-            await thunkAPI.dispatch(getScreenCover({ id: response.id }));
         } else {
             if (isAddNewAuth) {
                 await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: response.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: isGetTemplate }));
             }
-
-            thunkAPI.dispatch(getScreenCover({ id: response.id }));
 
             if (isRedirect)
                 await Router.push(`/${routersPages['coverLetter']}/${response.id}${coverLetters.list[1].link}`);
