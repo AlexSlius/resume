@@ -30,10 +30,6 @@ export const slice = createSlice({
     name: 'pages',
     initialState,
     extraReducers: {
-        [HYDRATE]: (state, action) => {
-            state.home = { ...state.home, ...action.payload.pages.home }
-            state.coverLetter = { ...state.coverLetter, ...action.payload.pages.coverLetter }
-        },
         // fetchGetUsersCreatedHome
         [fetchGetUsersCreatedHome.pending]: (state) => {
             state.status = statusLoader;
