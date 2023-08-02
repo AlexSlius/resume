@@ -372,20 +372,20 @@ export const ResumeCv013 = ({
               <div className={`links-block block-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
                 <div className="block-heading font-size-2 additional-color-1-text">Links</div>
                 <div className="links-block-content">
-                {
-                      isArray(social_links) && social_links.length && (
-                        social_links.map((itemSocial, index) => (
-                          <a className="links-item" key={index}>
-                            {itemSocial.name}
-                          </a>
-                        ))
-                      ) || (
-                        <>
-                          <a className="links-item empty-field">Linkedin</a>
-                          <a className="links-item empty-field">Facebook</a>
-                        </>
-                      )
-                    }
+                  {
+                    isArray(social_links) && social_links.length && (
+                      social_links.map((itemSocial, index) => (
+                        <a className="links-item" key={index}>
+                          {itemSocial.name}
+                        </a>
+                      ))
+                    ) || (
+                      <>
+                        <a className="links-item empty-field">Linkedin</a>
+                        <a className="links-item empty-field">Facebook</a>
+                      </>
+                    )
+                  }
                 </div>
               </div>
             </div>
@@ -480,14 +480,14 @@ export const ResumeCv013 = ({
                         {itemEd.degree ? itemEd.degree : 'Bachelor'}
                       </div>
                       {
-                          itemEd.description && (
-                            <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
-                          ) || (
-                            <div className={`empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
-                              I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
-                            </div>
-                          )
-                        }
+                        itemEd.description && (
+                          <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                        ) || (
+                          <div className={`empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
+                            I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
+                          </div>
+                        )
+                      }
                     </div>
                   ))
                 }
@@ -551,7 +551,7 @@ export const ResumeCv013 = ({
                   ))
                 }
               </div>
-              <div className="internships-block block-block">
+              <div className={`internships-block block-block ${!Object.keys(internship[0]).length && !beforeСontent ? 'hide' : ''}`}>
                 <div className="block-heading font-size-2 additional-color-1-text">Internships</div>
                 {
                   internship.map((itemIn, index) => (
