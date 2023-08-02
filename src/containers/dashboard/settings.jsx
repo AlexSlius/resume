@@ -33,7 +33,7 @@ const Settings = () => {
     const {
         users: {
             statusDelete,
-            objForm,
+            // objForm,
             objFormSettings,
             status,
         },

@@ -19,6 +19,7 @@ import { SectionFag } from "../../components/sectionFag";
 import { SectionForFree } from "../../components/sectionForFree";
 import { ModalTemplate } from "../../components/modals/modaltemplate";
 
+import { getResumesTemplates } from "../../controllers/resumeData";
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { routersPages } from "../../constants/next-routers";
 
@@ -27,6 +28,7 @@ import promoNumbersData from './data/promo-numbers.json';
 import reviewsObjData from "./data/data-reviews.json";
 import arrAccordion from "./data/data-accordion.json";
 import dataCostomers from "./data/data-costomers.json";
+import { getAllPageHome } from "../../controllers/pages/pagesHome";
 
 
 export const HomePage = () => {
@@ -71,6 +73,8 @@ export const HomePage = () => {
 
     useEffect(() => {
         localStorage.setItem('page', 'home-page');
+        dispatch(getResumesTemplates({ page: 1, category: "" }));
+        dispatch(getAllPageHome());
     }, []);
 
     return (

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { WrapperPage } from '../src/wrappers/pages';
-// import { CoverLatter } from '../src/containers/cover-latter'
 import { CoverLatter } from '../src/containers/cover-letter';
 import { withPublicRoute } from "../src/middleware/publicRouter";
 
@@ -18,6 +17,6 @@ const Home = () => {
   )
 }
 
-export const getServerSideProps = withPublicRoute({ isGetCoverTemplates: true, isPageCoverLetter: true });
+export const getServerSideProps = withPublicRoute({});
 
 export default Home;

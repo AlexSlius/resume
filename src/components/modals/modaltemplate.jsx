@@ -38,6 +38,7 @@ export const ModalTemplate = ({
             visible={visible}
             onClose={onClose}
             maxWidth={530}
+            dopClass={style.templa}
         >
             <div className={`${style.flex_c_center}`}>
                 <div className={`${style.title_teml}`}>San Francisco</div>

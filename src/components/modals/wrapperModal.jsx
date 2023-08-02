@@ -11,6 +11,7 @@ export const ModalWrapper = ({
     visible = false,
     onClose = () => { },
     maxWidth = 360,
+    dopClass =''
 }) => {
     const onKeydown = ({ key }) => {
         switch (key) {
@@ -25,11 +26,9 @@ export const ModalWrapper = ({
         return () => document.removeEventListener('keydown', onKeydown)
     })
 
-    // if (!visible) return null;
-
     return (
         <>
-            <div className={`${style.hystmodal} ${visible ? style.open : ""}`}>
+            <div className={`${style.hystmodal} ${visible ? style.open : ""} ${dopClass}`}>
                 <div className={`${style.hystmodal__wrap}`}>
                     <div className={`${style.hystmodal__bg_clos}`} onClick={onClose}></div>
                     <div className={`${style.hystmodal__window}`} style={{ maxWidth: maxWidth }}>
