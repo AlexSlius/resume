@@ -368,6 +368,12 @@ const Templates = ({
                     }
 
                     start();
+
+                    if (isNewResume) {
+                        setTimeout(() => {
+                            start();
+                        }, 500);
+                    }
                 }
                 else {
                     setPagesPag(1);
@@ -390,13 +396,13 @@ const Templates = ({
             if (!isCover) {
                 if (isNewResume) {
                     dispatch(updateActiveResumeNew({ colors: templatesItems[0]?.colors || [] }));
-                    if (!!templatesItems[0]?.colors?.[0]?.class)
+                    if (!!templatesItems[0]?.colors?.[0]?.class && !resumeData.resumeActiveNew?.template_class?.length)
                         dispatch(updateActiveResumeNew({ template_class: templatesItems[0]?.colors?.[0]?.class || "" }));
                 }
             } else {
                 if (isNewResume) {
                     dispatch(updateActiveCoverNew({ colors: templatesItems[0]?.colors || [] }));
-                    if (!!templatesItems[0]?.colors?.[0]?.class)
+                    if (!!templatesItems[0]?.colors?.[0]?.class && !resumeData.resumeActiveNew?.template_class?.length)
                         dispatch(updateActiveCoverNew({ template_class: templatesItems[0]?.colors?.[0]?.class || "" }));
                 }
             }

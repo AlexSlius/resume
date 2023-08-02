@@ -22,7 +22,7 @@ const initialState = {
         slug: "001-CV",
         id: 1,
         colors: [],
-        template_class: "",
+        template_class: "color-scheme-state-color-set-0",
         template_line_spacing: "50",
         template_text_size: "50",
     },

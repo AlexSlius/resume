@@ -129,6 +129,12 @@ const Resume = ({
             }
 
             star();
+
+            if (isNewResume) {
+               setTimeout(() => {
+                  star();
+               }, 500);
+            }
          }
       }
    }, [
