@@ -1,6 +1,7 @@
 import { CCol } from '@coreui/react';
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
+import { useRouter } from 'next/router'
 
 import ResumeHead from './resumeHead/ResumeHead'
 import ResumeMain from './resumeMain/ResumeMain'
@@ -16,6 +17,9 @@ const Resume = ({
 }) => {
    const dispatch = useDispatch();
    const reportTemplateRef = useRef(null);
+   const router = useRouter();
+   const { idCv } = router.query;
+   const isNewResume = (idCv == "new");
    const [pagesPag, setPagesPag] = useState(1);
    const [pagePagCurrent, setPagePagCurrent] = useState(0);
 
