@@ -23,11 +23,13 @@ export const FormSearchContent = ({
     handleServerRequest = () => { },
     handleUpdateText = () => { },
     handleGet = () => { },
+    limit = 100,
+    length = 0
 }) => {
     const refIdTimeout = useRef(null);
     const [textSearch, setTextSearch] = useState('');
     let val = isExternalDate ? externalValue : textSearch;
-
+    let isMaxLimit = length < limit;
 
     const handleOnClickAddTextList = (value) => {
         handleUpdateText(value);
@@ -78,7 +80,11 @@ export const FormSearchContent = ({
                                             let isStatus = (isString(valueText) && (valueText?.includes(item?.[keys]))) || false;
 
                                             return (
-                                                <li key={index} onClick={() => handleOnClickAddTextList(item?.[keys] || "")}>
+                                                <li
+                                                    key={index}
+                                                    onClick={() => isStatus ? "" : handleOnClickAddTextList(item?.[keys] || "")}
+                                                    className={(!isMaxLimit && !isStatus) ? "poiner_none" : ""}
+                                                >
                                                     <span className='text-icon-in'>
                                                         <Icon svg={isStatus ? iconOkText : iconLeftText} />
                                                     </span>

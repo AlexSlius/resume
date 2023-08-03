@@ -114,6 +114,8 @@ export const StepSix = ({
                                         isLoad={isLoader(skills.status)}
                                         handleServerRequest={handleServerRequestSkills}
                                         handleUpdateText={handleAddTextSkill}
+                                        limit={5}
+                                        length={[...coverDataObj.professionalSkills.split(',')]?.length}
                                     />
                                 </div>
                             </div>

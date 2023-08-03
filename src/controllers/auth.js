@@ -86,13 +86,6 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
     allFunCalb = () => { },
 }, thunkAPI) => {
     let resSession = undefined;
-    let {
-        coverData: {
-            resumeActiveNew,
-        },
-        resumeData,
-    } = thunkAPI.getState();
-
     if (isResume) {
         // resume get session_di
         resSession = await thunkAPI.dispatch(contactSetNew({
@@ -123,28 +116,7 @@ export const fetcAutorizeSendCode = createAsyncThunk('fetch/fetcAutorizeSendCode
             response
         }));
 
-        await thunkAPI.dispatch(fetchUserGetAvatar());
-        await thunkAPI.dispatch(fetchUserGetProfile());
-        await thunkAPI.dispatch(getUserDataSettings());
-
         await allFunCalb();
-
-
-        if (isResume) {
-            // resume
-            await thunkAPI.dispatch(setUpdateResumeActive({ idCv: reseAut?.payload.id, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
-            await thunkAPI.dispatch(getResumeActive({ idCv: reseAut?.payload.id }));
-            thunkAPI.dispatch(cleanSliseNew());
-        }
-
-        if (!isResume) {
-            // cover letter
-            // если регистраиция то создаю шаблон 
-            await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: reseAut?.payload.id, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
-            await thunkAPI.dispatch(getCoverLetterById(reseAut?.payload.id));
-            await thunkAPI.dispatch(getCoverDataActive({ idCv: reseAut?.payload.id }));
-            thunkAPI.dispatch(cleanNewForm());
-        }
 
         return { id: reseAut?.payload.id };
     }
@@ -253,16 +225,14 @@ export const responseAuthAutorizate = createAsyncThunk('fetch/responseAuthAutori
     // resume
     if (isResume && !!ids) {
         await thunkAPI.dispatch(setUpdateResumeActive({ idCv: ids, data: { cv_template_id: resumeData.resumeActiveNew.id, template_class: resumeData.resumeActiveNew.template_class, template_line_spacing: resumeData.resumeActiveNew.template_line_spacing, template_text_size: resumeData.resumeActiveNew.template_text_size }, isGet: true }));
-        await thunkAPI.dispatch(getResumeActive({ idCv: ids }));
         await Router.push(`/${routersPages['resumeBuilder']}/${ids}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.list[linkPos].link}`);
-        await thunkAPI.dispatch(cleanSliseNew());
+        thunkAPI.dispatch(cleanSliseNew());
     }
 
     // cover
     if (!isResume && !!ids) {
         await thunkAPI.dispatch(setUpdateCoverDataActive({ idCv: ids, data: { cover_template_id: resumeActiveNew.id, template_class: resumeActiveNew.template_class, template_line_spacing: resumeActiveNew.template_line_spacing, template_text_size: resumeActiveNew.template_text_size }, isGet: true }));
         await thunkAPI.dispatch(getCoverLetterById(ids));
-        await thunkAPI.dispatch(getCoverDataActive({ idCv: ids }));
         await Router.push(`/${routersPages['coverLetter']}/${ids}${(linkRedirect?.length > 0) ? linkRedirect : menuAsideResume.coverLetters.list[linkPos].link}`);
     }
 

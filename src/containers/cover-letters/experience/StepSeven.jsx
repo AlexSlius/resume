@@ -1,6 +1,7 @@
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { Checked } from "../../../components/uis/checked"
+import { isString } from "lodash";
 
 const listCheck = [
     "Analytical",
@@ -28,8 +29,9 @@ export const StepSeven = ({
     handleClicQuery = () => { },
     StepsName,
     coverDataObj,
-    dispatch,
 }) => {
+    const isLimit = isString(coverDataObj?.skillSet) && coverDataObj?.skillSet.split(',')?.length < 5;
+
     const handleClickBtn = async () => {
         await handleClicQuery(StepsName["describes"]);
     }
@@ -63,16 +65,21 @@ export const StepSeven = ({
             <div className="wr-form-cover">
                 <div className="cover-checks">
                     {
-                        listCheck.map((item, index) => (
-                            <Checked
-                                key={index}
-                                id={`check${index}`}
-                                label={item}
-                                isBold={true}
-                                checkbox={coverDataObj?.skillSet?.includes(item) ? true : false}
-                                onChange={() => onHanleUpdate(item)}
-                            />
-                        ))
+                        listCheck.map((item, index) => {
+                            let isActive = coverDataObj?.skillSet?.includes(item) ? true : false;
+
+                            return (
+                                <Checked
+                                    key={index}
+                                    id={`check${index}`}
+                                    label={item}
+                                    isBold={true}
+                                    checkbox={isActive}
+                                    dopClass={(!isLimit && !isActive) ? "poiner_none" : ""}
+                                    onChange={() => (!isLimit && !isActive) ? "" : onHanleUpdate(item)}
+                                />
+                            )
+                        })
                     }
                 </div>
             </div>

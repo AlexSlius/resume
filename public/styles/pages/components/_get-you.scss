@@ -29,8 +29,14 @@
         padding-left: 84px;
 
         div {
-            margin-top: -20px;
-            margin-bottom: -20px;
+            margin-top: -40px;
+            margin-bottom: -40px;
+
+           img {
+            @media (min-width: 1023px) {
+                transform: scale(1.15);
+            }
+           }
         }
     }
 
