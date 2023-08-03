@@ -165,7 +165,7 @@ export const ResumeCv015 = ({
                     </div>
                   )
                 }
-                <div className="name-block">
+                <div className={`name-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                   <div className={`cv-name font-size-4 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                     <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
                       {contact[0].firstName || 'Matthew'}{` `}
@@ -297,7 +297,7 @@ export const ResumeCv015 = ({
               <div className={`certificates-block block-block ${!Object.keys(certificates[0]).length && !beforeСontent ? 'hide' : ''}`}>
                 <div className="block-heading font-size-3 additional-color-1-text">Certificates</div>
                 <div className="block-info font-size-2 additional-color-1-text">
-                  <p className="certificates-list">
+                  <div className="certificates-list">
                     {
                       certificates.map((item, index) => (
                         <span className={`${!item.name ? 'empty-field' : ''}`} key={index}>
@@ -305,7 +305,7 @@ export const ResumeCv015 = ({
                         </span>
                       ))
                     }
-                  </p>
+                  </div>
                 </div>
               </div>
               <div className={`extra-curricular-activities-block block-block ${!Object.keys(extra_curricular[0]).length && !beforeСontent ? 'hide' : ''}`}>
@@ -368,7 +368,7 @@ export const ResumeCv015 = ({
                       </div>
                       {
                         itemIn.description && (
-                          <div className={`additional-color-1-text`} dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                          <div className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
                         ) || (
                           <div className={`empty-field additional-color-1-text ${!itemIn.description && !beforeСontent ? 'hide' : ''}`}>
                             Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
@@ -385,7 +385,7 @@ export const ResumeCv015 = ({
               <div className={`contacts-information-block block-block ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                 <div className="block-heading font-size-3">Details</div>
                 <div className="contacts-block">
-                  <div className="block-item">
+                  <div className={`block-item ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                     <span className={`${!conta.country ? 'empty-field' : ''} ${!conta?.country && !beforeСontent ? 'hide' : ''}`}>
                       {`${checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country || 'United States, '}`}
                     </span>
@@ -400,9 +400,7 @@ export const ResumeCv015 = ({
                     </span>
                   </div>
                   <div className={`block-item ${!conta.email ? 'empty-field' : ''} ${!conta.email && !beforeСontent ? 'hide' : ''}`}>
-                    <a href="#">
-                      {conta.email || 'designer@webservice.com'}
-                    </a>
+                    {conta.email || 'designer@webservice.com'}
                   </div>
                   <div className={`block-item ${!conta.phone ? 'empty-field' : ''} ${!conta.phone && !beforeСontent ? 'hide' : ''}`}>
                     {conta.phone || '736-343-9384'}
@@ -501,7 +499,7 @@ export const ResumeCv015 = ({
                 <div className="skills-list">
                   {
                     languages.map((item, index) => (
-                      <div className={`list-item ${!item.name ? 'empty-field' : ''}`} key={index}>
+                      <div className={`list-item ${!item.language ? 'empty-field' : ''}`} key={index}>
                         <p className="item-name">{item.language ? item.language : 'Language'} - {levelLanguage(item.level ? item.level : 6)}</p>
                       </div>
                     ))
