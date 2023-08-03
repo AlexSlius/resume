@@ -74,9 +74,9 @@ export const slice = createSlice({
         },
         [fetchUserGetProfile.fulfilled]: (state, action) => {
             if (action.payload?.user) {
-                let { trial, payments, subscription } = action.payload?.user
+                let { trial, payment, subscription } = action.payload?.user
                 state.objForm = action.payload?.user;
-                state.isSubscribe = (trial === true) || (payments === true) || (subscription == true);
+                state.isSubscribe = (trial === true) || (payment === true) || (subscription == true);
             }
 
             if (!action.payload?.user) {
