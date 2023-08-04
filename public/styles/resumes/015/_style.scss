@@ -1,30 +1,32 @@
 @font-face {
   font-family: 'Noto Sans';
   src: url('./fonts/Noto_Sans/NotoSans-Regular.ttf');
+  font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Noto Sans Light';
+  font-family: 'Noto Sans';
   src: url('./fonts/Noto_Sans/NotoSans-Light.ttf');
+  font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Noto Sans Medium';
+  font-family: 'Noto Sans';
   src: url('./fonts/Noto_Sans/NotoSans-Medium.ttf');
+  font-weight: 500;
 }
 
 @font-face {
-  font-family: 'Poppins Bold';
+  font-family: 'Poppins';
   src: url('./fonts/Poppins/Poppins-Bold.ttf');
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Poppins ExtraBold';
+  font-family: ''Poppins'';
   src: url('./fonts/Poppins/Poppins-ExtraBold.ttf');
+  font-weight: 800;
 }
-
-.sv_015 {
-  font-family: 'Noto Sans', sans-serif;
 
 /* Colors */
 $main_color_1: #FFFFFF;
@@ -44,16 +46,18 @@ $color_set_5_additional_color_1: #A82614;
 
 $color_set_6_additional_color_1: #0F7355;
 
+.sv_015 {
+  font-weight: 400;
+
+  /* Global */
   * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Noto Sans', sans-serif;
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
   }
 
   a {
@@ -61,208 +65,216 @@ $color_set_6_additional_color_1: #0F7355;
     text-decoration: none;
   }
 
-  .name-block {
-    flex-basis: calc(100% - 80px);
-    .cv-name {
-      font-family: 'Poppins ExtraBold', sans-serif;
-      margin-bottom: 2px !important;
+  ul {
+    padding-left: 15px;
+    li {
+      list-style-type: disc;
     }
   }
-  
-  .degree-block {
-    font-family: 'Poppins Bold', sans-serif;
+
+  .empty-field {
+    opacity: 0.3;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  //Blocks
+  .cv-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
     margin-bottom: 2px;
   }
-  
-  .cv-prophecy {
-    text-align: center;
-    margin-top: 1px;
+
+  .cv-profession {
+    font-weight: 300;
   }
-  
-  #cv-body-hidden-container, #cv-body-2 {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-  }
-  
+
   .cv-body {
-    width: 595px;
-    height: 842px;
-    max-height: 842px;
-    min-height: 842px;
-    background: linear-gradient(175.84deg, #E1F1FF 0.31%, #E9E5F4 32.5%, #FFEDD4 62.87%, #FFE5E8 95.97%);
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin: 20px 0px;
-    .cv-body-content {
-      flex: 1;
+    overflow: hidden;
+    background: linear-gradient(175.84deg, #E1F1FF 0.31%, #E9E5F4 32.5%, #FFEDD4 62.87%, #FFE5E8 95.97%);
+  }
+
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+  }
+
+  .column-left {
+    padding: 0 30px;
+    flex: 1;
+    .profile-block {
       display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: stretch;
-      position: relative;
-      z-index: 10;
-    }
-  
-    &.cv-body-1 {
-      .cv-body-content {
-          .column-right {
-            width: 205px;
-            min-width: 205px;
-            padding: 0 30px;
-            color: $main_color_1;
-            .personal-info-block {
-              .personal-info {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                row-gap: 12px;
-                .info-item-name {
-                  font-family: 'Poppins ExtraBold', sans-serif;
-                  margin-bottom: 4px;
-                }
-                .info-item-value:not(:first-child) {
-                  margin-top: 2px;
-                }
-              }
-            }
-            .references-block {
-              p:not(:first-of-type) {
-                margin-top: 4px;
-              }
-            }
-          }
-          .column-left {
-            padding: 0 30px;
-            .photo-block {
-              width: 67px;
-              height: 67px;
-              position: relative;
-              border-radius: 100%;
-              overflow: hidden;
-              margin-right: 13px;
-              .photo {
-                width: 67px;
-                height: 67px;
-                background-size: cover;
-                background-position: 50% 50%;
-                overflow: hidden;
-              }
-            }
-            .profile-block {
-              display: flex;
-              flex-wrap: wrap;
-              align-items: center;
-  
-              & > .block-heading {
-                flex-basis: 100%;
-                margin-top: 20px;
-              }
-            }
-            .certificates-block {
-              .certificates-list {
-                span {
-                  font-family: "Poppins ExtraBold", sans-serif;
-                  display: block;
-                  &:not(:first-of-type) {
-                    margin-top: 6px;
-                  }
-                }
-              }
-            }
-          }
-      }
-      &.page-1 {
-          .column-right {
-            padding-top: 86px;
-          }
-      }
-    }
-  
-    &.cv-body-2 {
-      .cv-body-content {
-        .column-right {
-          padding: 140px 30px 0 0;
-          width: 202px;
-          min-width: 202px;
-        }
-        .column-left {
-          padding: 45px 40px 0 30px;
-        }
-        .cv-name {
-          font-family: 'Poppins ExtraBold', sans-serif;
-          margin-bottom: 70px !important;
-        }
-        .letter-text {
-          p:not(:first-child) {
-            margin-top: 10px;
-          }
-          p:last-child {
-            margin-top: 30px;
-          }
-        }
-      }
-    }
-  }
-  
-  .skills-list {
-    .list-item {
-      &:not(:first-child) {
-        margin-top: 4px;
-      }
-    }
-  }
-  
-  .text-block-wrapper {
-    ul {
-      li {
+      flex-wrap: wrap;
+      align-items: center;
+      column-gap: 12px;
+      row-gap: 20px;
+      .photo-block {
+        width: 67px;
+        height: 67px;
         position: relative;
-        list-style: none;
-        padding-left: 10px;
-  
-        &:not(:first-child) {
-          margin-top: 5px;
-        }
-  
-        &::before {
-          content: " ";
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background: $main_color_2;
+        .photo {
+          width: 100%;
+          height: 100%;
           border-radius: 100%;
-          left: 0;
-          top: 1px;
+          background-size: cover;
+          background-position: 50% 50%;
+          overflow: hidden;
+        }
+      }
+      .name-block {
+        flex: 1;
+      }
+      .profile-info {
+        flex-basis: 100%;
+      }
+    }
+    .certificates-block {
+      .certificates-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+        span {
+          font-family: "Poppins", sans-serif;
+          font-weight: 800;
         }
       }
     }
   }
-  
-  /* --- */
-  .contacts-information-block {
-    position: relative;
-    .contacts-block {
-      max-width: 180px;
+
+  .column-right {
+    width: 205px;
+    min-width: 205px;
+    padding: 0 30px;
+    color: $main_color_1;
+    .contacts-information-block {
+      .contacts-block {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+      }
+    }
+    .personal-info-block {
+      .personal-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+      }
+      .item-block {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+      .name {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+      }
+    }
+    .links-block {
+      .links-block-content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+    }
+    .skills-list {
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      justify-content: stretch;
-      .block-item {
+      row-gap: 4px;
+    }
+    .references-block {
+      .block-info {
         display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: stretch;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+    }
+  }
+
+  .block-block {
+    .block-heading {
+      margin-bottom: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+    }
+    .block-subheading {
+      margin-bottom: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+    .date-range {
+      font-family: 'Noto Sans', sans-serif;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .degree-block {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .block-info {
+      margin-top: 10px;
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+    }
+    .text-block:not(:last-child) {
+      margin-bottom: 2px;;
+    }
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+    &:first-child {
+      margin-top: 30px;
+    }
+  }
   
-        &:not(:first-child) {
-          margin-top: 2px;
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-block {
+      display: none;
+    }
+    &.has-photo {
+      .photo-block {
+        display: block;
+      }
+    }
+  }
+
+  .cv-body-2 {
+    .cv-body-content {
+      .column-right {
+        padding: 140px 30px 0 0;
+        width: 202px;
+        min-width: 202px;
+      }
+      .column-left {
+        padding: 45px 40px 0 30px;
+      }
+      .cv-name {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        margin-bottom: 70px !important;
+      }
+      .letter-text {
+        p:not(:first-child) {
+          margin-top: 10px;
+        }
+        p:last-child {
+          margin-top: 30px;
         }
       }
+    }
+  }
+
+  .letter-block {
+    .block-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      margin-bottom: 4px !important;
     }
   }
   
@@ -287,77 +299,6 @@ $color_set_6_additional_color_1: #0F7355;
     }
   }
   
-  .block-block {
-    .block-heading {
-      margin-bottom: 4px !important;
-      font-family: 'Poppins ExtraBold', sans-serif;
-    }
-  
-    .name-block {
-      .block-heading {
-        font-family: 'Noto Sans Light', sans-serif;
-        font-weight: 300;
-      }
-    }
-  
-    p:last-child {
-      margin-bottom: 0;
-    }
-  
-    .block-subheading {
-      margin-bottom: 4px;
-      font-family: 'Poppins Bold', sans-serif;
-    }
-    .date-range {
-      font-family: 'Noto Sans Medium', sans-serif;
-      margin-bottom: 4px;
-    }
-  
-    .block-info:not(:first-of-type) {
-      margin-top: 10px;
-    }
-  
-    .text-block:not(:last-child) {
-      margin-bottom: 2px;;
-    }
-  
-    &:not(:first-child) {
-      margin-top: 20px;
-    }
-  
-    &:first-child {
-      margin-top: 30px;
-    }
-  }
-  
-  .links-block {
-    .links-block-content {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      row-gap: 4px;
-    }
-  }
-  
-  .letter-block {
-    .block-heading {
-      font-family: 'Poppins ExtraBold', sans-serif;
-      margin-bottom: 4px !important;
-    }
-  }
-  
-  /* Stylization */
-  #cv-chapter-section-cv {
-    .photo-block {
-      display: none;
-    }
-    &.has-photo {
-      .photo-block {
-        display: block;
-      }
-    }
-  }
-  
   /* Font size scheme */
   .font-size-scheme-state-small {
     .font-size-1 {
@@ -371,16 +312,6 @@ $color_set_6_additional_color_1: #0F7355;
     }
     .font-size-4 {
       font-size: 20px;
-    }
-  
-    .text-block-wrapper {
-      ul {
-        li {
-          &::before {
-            top: 3px;
-          }
-        }
-      }
     }
   }
   
@@ -397,16 +328,6 @@ $color_set_6_additional_color_1: #0F7355;
     .font-size-4 {
       font-size: 22px;
     }
-  
-    .text-block-wrapper {
-      ul {
-        li {
-          &::before {
-            top: 5px;
-          }
-        }
-      }
-    }
   }
   
   .font-size-scheme-state-big {
@@ -421,16 +342,6 @@ $color_set_6_additional_color_1: #0F7355;
     }
     .font-size-4 {
       font-size: 24px;
-    }
-  
-    .text-block-wrapper {
-      ul {
-        li {
-          &::before {
-            top: 6px;
-          }
-        }
-      }
     }
   }
   

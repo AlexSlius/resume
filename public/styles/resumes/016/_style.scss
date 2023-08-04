@@ -21,189 +21,174 @@
   $color_set_5_additional_color_1: #7EE0FF;
 
 .sv_016 {
-  font-family: 'Inter', sans-serif;
   font-weight: 400;
 
+  /* Global */
   * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
   }
 
-  .name-and-prophecy-wrapper {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
+  ul {
+    li {
+      list-style-type: disc;
+      margin-left: 16px;
+      &:not(:first-of-type) {
+        margin-top: 5px;
+      }
+    }
   }
 
-  .cv-prophecy {
+  .empty-field {
+    opacity: 0.3;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  //Blocks
+  .cv-name {
+    font-weight: 400;
+    line-height: 38px;
+    span {
+      font-family: 'Pridi', sans-serif;
+    }
+  }
+
+  .cv-profession {
     font-weight: 300;
     text-transform: lowercase;
   }
 
-  .cv-name {
-    font-family: 'Pridi', sans-serif;
-    font-weight: 400;
-    line-height: 38px;
-  }
-
-
-  .item-value-container {
-    height: 3px;
-    width: 155px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: stretch;
-    background: linear-gradient(270deg, #60A9CC 0%, #D13B83 100%);
-
-    .item-value {
-      width: 50%;
-      background-color: transparent;
-      position: relative;
-      height: 100%;
-    }
-
-    .item-value-point {
-      position: absolute;
-      transform: translate(10px, -50%);
-      right: 0px;
-      top: 50%;
-    }
-
-    .empty-gap {
-      flex: 1;
-      height: 100%;
-    }
-  }
-
-  .text-block-list {
-    ul {
-      li {
-        list-style-type: disc;
-        margin-left: 16px;
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-    }
-
-    .text-block {
-      position: relative;
-      padding-left: 13px;
-
-      .circle-point {
-        position: absolute;
-        display: block;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background-color: #000;
-        top: 3px;
-        left: 4px;
-      }
-    }
-  }
-
-  .photo-wrapper {
-    display: flex;
-    justify-content: center;
-
-    .photo {
-      display: block;
-      border-radius: 100%;
-      width: 139px;
-      height: 139px;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center center;
-    }
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: auto;
-    max-height: none;
+  .circle-shade {
     position: absolute;
+    display: block;
+    width: 578px;
+    height: 681px;
+    top: 111px;
+    left: -373px;
     z-index: -1;
-    opacity: 0;
-    pointer-events: none;
   }
 
   .cv-body {
-    min-width: 595px;
-    min-height: 764px;
-    height: 764px;
-    max-height: 764px;
-    background-color: #fff;
-    box-sizing: border-box;
-    position: relative;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+  }
 
-    .cv-body-content {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: stretch;
-      position: relative;
-      z-index: 10;
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-      .circle-shade {
-        position: absolute;
+  .top-area {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    margin: 55px 30px 40px;
+    .photo-wrapper {
+      margin: 0 auto;
+      width: 140px;
+      height: 140px;
+      .photo {
         display: block;
-        width: 578px;
-        height: 681px;
-        top: 111px;
-        left: -373px;
-        z-index: -1;
-      }
-
-      .top-area {
-        display: flex;
-        column-gap: 40px;
-        margin: 55px 30px 40px;
-        .column-right {
-          display: flex;
-          align-items: center;
-        }
-      }
-
-      .middle-area {
-        display: flex;
-        margin: 4px 30px 0;
-        column-gap: 25px;
-      }
-
-      .column-left {
-        width: 172px;
-        flex-shrink: 0;
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center center;
       }
     }
+    .name-and-prophecy-wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+    }
+  }
 
-    &.cv-body-2 {
-      .cv-body-content {
-        min-height: 100%;
-        .middle-area {
-          margin-top: 30px;
-          column-gap: 50px;
-        }
-
-        .column-left {
-          width: 130px;
-        }
+  .middle-area {
+    display: flex;
+    margin: 4px 30px 0;
+    column-gap: 25px;
+    .details-block {
+      .details-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+    }
+    .additional-details-block {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      .name {
+        font-weight: 300;
+        opacity: 0.5;
+        margin-bottom: 2px;
+      }
+    }
+    .links-block {
+      .links-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+      }
+    }
+    .skills-block {
+      .skills-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+    }
+    .languages-block {
+      .languages-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+      .languages-item {
+        display: flex;
+      }
+    }
+    .references-block {
+      .block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+    }
+    .courses-block {
+      .date-range {
+        margin-bottom: 0;
+      }
+    }
+    .certificates-block {
+      .certificates-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
       }
     }
   }
 
-  /* Block styling */
+  .column-left {
+    width: 172px;
+    flex-shrink: 0;
+  }
+
+  .column-right {
+    flex: 1;
+  }
+
   .block-block {
     .heading-wrapper {
       display: flex;
@@ -213,103 +198,56 @@
       margin-bottom: 5px;
       border-bottom: 1px solid $main_color_3;
     }
-
     .cv-heading {
       font-weight: 300;
     }
-
     .block-subheading {
       margin-bottom: 5px;
     }
-
     .block-info {
       margin-top: 10px;
       &:nth-child(2) {
         margin-top: 0;
       }
     }
-
+    .block-wrapper  {
+      display: flex;
+      justify-content: space-between;
+    }
     .date-range {
       margin-bottom: 5px;
       text-transform: uppercase;
       letter-spacing: 0.4px;
+      font-weight: 300;
     }
-
+    .block-degree {
+      font-weight: 300;
+    }
     &:not(:first-of-type) {
       margin-top: 10px;
     }
   }
 
-  .details-block {
-    p {
-      &:not(:first-of-type) {
-        margin-top: 5px;
+  /* Stylization */
+  #cv-chapter-section-cv {
+    &.has-photo {
+      .top-area {
+        margin: 25px 30px 0;
       }
     }
   }
 
-  .additional-details-block {
-    .block-item {
-      .item-name {
-        font-weight: 300;
-        opacity: 0.5;
-        margin-bottom: 2px;
+  .cv-body-2 {
+    .cv-body-content {
+      min-height: 100%;
+      .middle-area {
+        margin-top: 30px;
+        column-gap: 50px;
       }
-      &:not(:first-of-type) {
-        margin-top: 5px;
+
+      .column-left {
+        width: 130px;
       }
-    }
-  }
-
-  .links-block {
-    a {
-      display: block;
-
-      &:not(:first-child) {
-        margin-top: 3px;
-      }
-    }
-  }
-
-  .skills-block {
-    .skills-list {
-      display: flex;
-      flex-direction: column;
-      row-gap: 4px;
-    }
-  }
-
-  .languages-block {
-    .languages-list {
-      display: flex;
-      flex-direction: column;
-      row-gap: 4px;
-      .languages-item {
-        display: flex;
-      }
-    }
-  }
-
-  .references-block {
-    p {
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .courses-block {
-    .date-range {
-      margin-bottom: 0;
-    }
-
-  }
-
-  .certificates-block {
-    .certificates-info {
-      display: flex;
-      flex-direction: column;
-      row-gap: 8px;
     }
   }
 
@@ -333,15 +271,6 @@
 
       .underheading-line {
         margin-bottom: 5px;
-      }
-    }
-  }
-
-  /* Stylization */
-  #cv-chapter-section-cv {
-    &.has-photo {
-      .top-area {
-        margin: 25px 30px 0;
       }
     }
   }
