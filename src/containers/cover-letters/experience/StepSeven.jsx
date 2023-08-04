@@ -30,7 +30,9 @@ export const StepSeven = ({
     StepsName,
     coverDataObj,
 }) => {
-    const isLimit = isString(coverDataObj?.skillSet) && coverDataObj?.skillSet.split(',')?.length < 5;
+    const isLimit = isString(coverDataObj?.skillSet) ? coverDataObj?.skillSet.split(',')?.length < 5 : true;
+
+    console.log(": ", isLimit);
 
     const handleClickBtn = async () => {
         await handleClicQuery(StepsName["describes"]);
