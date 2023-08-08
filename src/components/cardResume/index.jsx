@@ -74,7 +74,7 @@ export const CardResume = ({
                                         <li className="menus-card_li">
                                             <button className={`item-btn-m ${isCopyShare ? "btn_share_active" : ""}`} onClick={handleShare}>
                                                 <Icon svg={iconShare} />
-                                                <span>Share a link</span>
+                                                <span>Copy URL</span>
                                             </button>
                                         </li>
                                         <li className="menus-card_li">

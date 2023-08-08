@@ -11,6 +11,7 @@ import iconArrRb from "/public/images/icons/iconArrRb.svg?sprite";
 export const SectionCustomers = ({
     data,
     title,
+    mtm = false
 }) => {
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
@@ -27,7 +28,7 @@ export const SectionCustomers = ({
     }
 
     return (
-        <section className="customers mt-180">
+        <section className={`customers mt-180 ${mtm ? "mt-120" : ""}`}>
             <div className="containers">
                 <h2 className="h2 font-600 max-t-570" dangerouslySetInnerHTML={{ __html: title }}></h2>
             </div>

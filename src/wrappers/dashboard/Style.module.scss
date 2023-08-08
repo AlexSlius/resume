@@ -7,6 +7,12 @@
 
 .main_content {
     padding-bottom: 44px;
+
+    &.nopad {
+        .container_main_cons {
+            padding-right: 0!important;
+        }
+    }
 }
 
 .wr_updat_now {
@@ -33,6 +39,17 @@
 
 .container_main_cons {
     padding-right: 20px;
+}
+
+.dash {
+    margin-right: auto;
+}
+
+.logo {
+    width: 110px;
+    display: block;
+    margin-left: -5px;
+    margin-top: 2px;
 }
 
 @media (max-width: 1199px) {

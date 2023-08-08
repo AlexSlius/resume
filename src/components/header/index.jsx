@@ -44,6 +44,9 @@ export const Header = ({
         theme: {
             currentResolution,
             isOpenPreviesMobTemplate
+        },
+        users: {
+            isSubscribe
         }
     } = useSelector((state) => state);
     const toggleMenu = () => {
@@ -53,6 +56,10 @@ export const Header = ({
     const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
     const isResume = (router.asPath.includes(routersPages['resumeBuilder']) || router.asPath.includes(routersPages['resumeBuilderNew']));
     const isCover = (router.asPath.includes(routersPages['coverLetter']) || router.asPath.includes(routersPages['coverLetterNew']));
+
+    const isDas = [
+        routersPages['dashboard'],
+    ].find(el => router.asPath.includes(el));
 
     useEffect(() => {
         dispatch(updateMenuStatus(isMenuShow));
@@ -78,6 +85,13 @@ export const Header = ({
                             <Link href="/" className="logo">
                                 <img loading="lazy" src={isCoverPage ? "/images/page/logo-cover-page.svg" : isHome ? "/images/page/logo-white-header.svg" : "/images/page/logo.svg"} alt="logo" />
                             </Link>
+                            {
+                                (isDas && !isSubscribe) && (
+                                    <Link href={`/${routersPages['resumeNow']}`} className={`mob-bnt-now`}>
+                                        <SvgImage image={'now'} width={'17px'} height={'17px'} color={'#838799'} />
+                                    </Link>
+                                )
+                            }
                             <div className="wr-burger">
                                 {
                                     (isResume || isCover) && (

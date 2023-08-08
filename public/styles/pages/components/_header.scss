@@ -439,7 +439,7 @@
         }
 
         .mobile-logo {
-            height: 14px;
+            height: 19px;
         }
 
         ul {
@@ -453,9 +453,9 @@
 
         li {
             a.nav-link {
-                padding: 19px 26px;
+                padding: 15px 26px;
                 font-weight: 400;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 21px;
                 display: block;
                 color: #838799;
@@ -551,6 +551,11 @@
         min-width: 190px;
         justify-content: center;
     }
+}
+
+.mob-bnt-now {
+    position: absolute;
+    right: 55px;
 }
 
 @media(max-width: 767px) {

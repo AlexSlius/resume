@@ -27,7 +27,7 @@ import { routersPages } from "../../constants/next-routers";
 import promoNumbersData from './data/promo-numbers.json';
 import reviewsObjData from "./data/data-reviews.json";
 import arrAccordion from "./data/data-accordion.json";
-import dataCostomers from "./data/data-costomers.json";
+import dataCostomers from "../../dataPages/data-costomers.json";
 import { getAllPageHome } from "../../controllers/pages/pagesHome";
 
 

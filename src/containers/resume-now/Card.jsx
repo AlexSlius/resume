@@ -13,9 +13,7 @@ export const Card = ({
     return (
         <div className={`${style.card} ${(index == 1) ? style.active : ""}`} key={index}>
             <div>
-                <div className={`${style.card_top}`}>
-                    <div className={style.head} style={{ color: itemCard.color }}>{itemCard.name}</div>
-                </div>
+                <div className={style.head}>{itemCard.name}</div>
                 <div className={style.car_center}>
                     <div className={style.car_price}>
                         {itemCard.isСurrency ? <span>$</span> : ""}{itemCard.price}
@@ -35,7 +33,7 @@ export const Card = ({
             <div className={style.car_bot}>
                 <LoadChildrenBtn isLoad={loadBtn}>
                     <button
-                        className={`bnt-now ${style.bnt_now}`}
+                        className={`button-p ${style.bnt_now}`}
                         type="button"
                         onClick={() => handleSubmit(setLoadBtn)}
                     >

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import Head from 'next/head'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { InputCheckboxPageBtn } from "../../components/uis/input-checkbox-page-btn";
 import { InputEmail } from "../../components/uis/inputEmail";
@@ -18,6 +18,15 @@ import types from "./data/types.json";
 
 export const ContactUsPage = () => {
     const dispatch = useDispatch();
+
+    const {
+        theme: {
+            currentResolution
+        }
+    } = useSelector(state => state);
+
+    const isMob = ['sm', 'xs'].includes(currentResolution);
+
     const [stat, setStat] = useState(0);
     const [isLoad, setIsLoad] = useState(false);
     const [formState, setFormState] = useState({
@@ -57,10 +66,6 @@ export const ContactUsPage = () => {
             name: "",
             description: "",
         });
-
-        setTimeout(() => {
-            setIsSuccess(false);
-        }, 3000);
     }
 
     const handleSubmit = async (e) => {
@@ -118,12 +123,25 @@ export const ContactUsPage = () => {
             <section className="contact-page">
                 <div className="containers text-center">
                     <div className="cont__row">
-                        <div className="cont__left"></div>
+                        <div className="cont__left">
+                            <div className="cont__left_top">
+                                <h1 className="cont-title">Contact Us</h1>
+                                <p className="bottom-text">
+                                    Have comments, questions, or feedback to share? Our team would love to hear from you. Submit a message below.
+                                </p>
+                            </div>
+                            {
+                                !isMob && (
+                                    <div className="cont__left_bot">
+                                        <div className="contact-page__bottom">
+                                            Check out the answers to popular questions.
+                                            <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        </div>
                         <div className="cont_right">
-                            <h1 className="cont-title">Contact Us</h1>
-                            <p className="bottom-text">
-                                Have comments, questions, or feedback to share? Our team would love to hear from you. Submit a message below.
-                            </p>
                             <form action="page" className="form" onSubmit={handleSubmit}>
                                 <div className="form__top">
                                     {
@@ -162,13 +180,6 @@ export const ContactUsPage = () => {
                                         />
                                     </div>
                                 </div>
-                                {
-                                    isSuccess && (
-                                        <div className="form-btn_n">
-                                            <span className="success_text">The form has been sent successfully</span>
-                                        </div>
-                                    )
-                                }
                                 <div className="form-btn_n">
                                     <LoadChildrenBtn isLoad={isLoad}>
                                         <button className="form-btn  button-type-standart button-p button-p_icon" type="submit">
@@ -179,12 +190,33 @@ export const ContactUsPage = () => {
                                         </button>
                                     </LoadChildrenBtn>
                                 </div>
+                                {
+                                    isMob && (
+                                        <div className="cont__left_bot">
+                                            <div className="contact-page__bottom">
+                                                Check out the answers to popular questions.
+                                                <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             </form>
-                            <div className="contact-page__bottom">
-                                Check out the answers to popular questions.
-                                <Link href={`/${routersPages['faqs']}`}>Go to the FAQ page.</Link>
-                            </div>
                         </div>
+
+                        {
+                            isSuccess && (
+                                <div className="contact-success">
+                                    <div className="contact-success__cont">
+                                        <div className="contact-success__icon"></div>
+                                        <div className="contact-success__title">Success</div>
+                                        <div className="contact-success__des">Your message has been sent successfully</div>
+                                        <div className="contact-success__btn">
+                                            <Link href={`/`} className=" button-p button-p_white">Go Home</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </section>

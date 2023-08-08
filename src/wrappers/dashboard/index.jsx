@@ -21,7 +21,8 @@ import iconXNow from "/public/images/icons/x_now.svg?sprite"
 const AdminPage = ({
     children,
     isResume = false,
-    isMaxH
+    isMaxH,
+    isSidebar = true
 }) => {
     const router = useRouter();
     const {
@@ -37,20 +38,27 @@ const AdminPage = ({
         <CContainer fluid className={`${style.container_admin}`}>
             <CRow className="row-main">
                 {
-                    !['md', 'sm', 'xs', 'lg'].includes(currentResolution) && (
+                    isSidebar && !['md', 'sm', 'xs', 'lg'].includes(currentResolution) && (
                         <SideBar isMaxH={isMaxH} />
                     )
                 }
 
-                <CCol className={`${style.main_content} main-content`}>
+                <CCol className={`${style.main_content} main-content ${isSidebar ? "" : style.nopad}`}>
                     {
                         !['md', 'sm', 'xs'].includes(currentResolution) && (
                             <div className={`${style.header}`}>
                                 {
                                     isResume ? (
-                                        <button className="btn-close-black" onClick={() => router.back()}>
-                                            <Icon svg={iconXNow} />
-                                        </button>
+                                        <>
+                                            <div className={style.dash}>
+                                                <Link href="/" className={`${style.logo}`}>
+                                                    <img loading="lazy" src="/images/page/logo.svg" alt="img" />
+                                                </Link>
+                                            </div>
+                                            <button className="btn-close-black" onClick={() => router.back()}>
+                                                <Icon svg={iconXNow} />
+                                            </button>
+                                        </>
                                     ) : (
                                         <>
                                             {
@@ -62,12 +70,16 @@ const AdminPage = ({
                                                     </div>
                                                 )
                                             }
-                                            <div className={style.wr_updat_now}>
-                                                <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
-                                                    <Icon svg={iconUpdateNow} />
-                                                    <span>Upgrade now</span>
-                                                </Link>
-                                            </div>
+                                            {
+                                                !isSubscribe && (
+                                                    <div className={style.wr_updat_now}>
+                                                        <Link href={`/${routersPages['resumeNow']}`} className={style.link_now}>
+                                                            <Icon svg={iconUpdateNow} />
+                                                            <span>Upgrade now</span>
+                                                        </Link>
+                                                    </div>
+                                                )
+                                            }
                                             <HeadUser />
                                         </>
                                     )
@@ -79,8 +91,8 @@ const AdminPage = ({
                         {children}
                     </div>
                 </CCol>
-            </CRow >
-        </CContainer >
+            </CRow>
+        </CContainer>
     )
 }
 export default AdminPage;

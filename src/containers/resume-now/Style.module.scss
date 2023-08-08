@@ -1,6 +1,13 @@
+.page-now *,
+.page-now {
+    font-family: "NotoSans", sans-serif;
+}
+
 .wr {
     margin-top: 40px;
-    max-width: 1320px;
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .title {
@@ -8,16 +15,20 @@
     font-size: 30px;
     color: #01153A;
     text-align: center;
+    font-weight: 600;
     margin: 0 auto;
     max-width: 480px;
+    font-family: "NotoSans", sans-serif;
 }
 
 .sub_title {
     color: #838799;
-    margin: 8px auto 0 auto;
-    max-width: 646px;
+    margin: 24px auto 0 auto;
+    max-width: 660px;
     text-align: center;
     line-height: 1.4;
+    font-family: "NotoSans", sans-serif;
+    font-weight: 400;
 
     a {
         color: #3679FD;
@@ -26,7 +37,7 @@
 
 .items_grid {
     display: grid;
-    grid-gap: 60px;
+    grid-gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 40px;
 }
@@ -35,93 +46,122 @@
     padding-bottom: 20px;
 }
 
+.bnt_now {
+    background: #01153A;
+    color: #fff;
+    font-family: "NotoSans", sans-serif;
+
+    span {
+        font-family: "NotoSans", sans-serif;
+    }
+}
+
 .card {
-    padding: 0 40px 40px;
-    background: #FFFFFF;
-    border: 1px solid #F6F8FA;
-    border-radius: 12px;
+    padding: 32px;
+    background: #F8F8F8;
+    border: 1px solid #F8F8F8;
+    color: #01153A;
+    border-radius: 20px;
     transition: 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: "NotoSans", sans-serif;
 
-    // &:hover {
-    //     border-color: #3679FD;
-    // }
+    &* {
+        font-family: "NotoSans", sans-serif;
+    }
 
     &.active {
-        background: rgba(54, 121, 253, 0.02);
-        border: 3px solid #3679FD;
+        background: #01153A;
+        border-color: #01153A;
+        color: #fff;
 
-        .head {
-            color: #fff !important;
-            background: #3679FD;
+        .head,
+        .car_price,
+        .car_days {
+            color: #fff;
+        }
+
+        .car_days {
+            border-bottom: 1px solid #546C97;
         }
 
         .bnt_now {
-            color: #fff;
-            background: #3679FD;
+            color: #01153A !important;
+            background: #fff;
+
+            &:hover {
+                background: #1f62e5;
+                color: #fff !important;
+            }
         }
     }
 }
 
 .head {
-    background: #F6F8FA;
-    border-radius: 0px 0px 12px 12px;
-    text-align: center;
     text-transform: uppercase;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    color: #838799;
-    padding: 8px 22px;
+    color: #01153A;
+    font-family: "NotoSans", sans-serif;
 
     &_g {
         color: #6DC26C;
     }
 }
 
-.card_top {
-    display: flex;
-    justify-content: center;
-}
-
 .car_center {
-    margin-top: 24px;
+    margin-top: 10px;
 }
 
 .car_price {
     display: flex;
     align-items: center;
     color: #01153A;
-    font-size: 30px;
+    font-size: 36px;
     font-weight: 500;
-    justify-content: center;
+    font-family: "NotoSans", sans-serif;
 
     span {
         font-size: 20px;
         margin-top: -10px;
         padding-right: 4px;
         font-weight: 400;
+        font-family: "NotoSans", sans-serif;
     }
 }
 
 .car_days {
     margin-top: 10px;
-    text-align: center;
-    color: #838799;
-    font-weight: 350;
+    color: #01153A;
+    font-family: "NotoSans", sans-serif;
+    font-weight: 400;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(84, 108, 151, 0.1);
 }
 
 .car_wr_list {
-    margin-top: 22px;
+    margin-top: 24px;
+
+    ul,
+    li {
+        font-family: "NotoSans", sans-serif;
+        font-weight: 400;
+    }
 }
 
 .car_bot {
     margin-top: 20px;
+    display: flex;
+
+    &>div {
+        border-radius: 35px;
+    }
 }
 
 .cont {
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 .items_payment {
@@ -129,6 +169,7 @@
     align-items: center;
     justify-content: center;
     color: #838799;
+    font-family: "NotoSans", sans-serif;
 
     span {
         margin: 0 6px;
@@ -151,7 +192,7 @@
 }
 
 .m_t_f {
-    margin-top: 86px;
+    margin-top: 120px;
 }
 
 .wr_accar {
@@ -179,7 +220,7 @@
 
 @media (max-width: 767px) {
     .card {
-        padding: 0 20px 20px;
+        padding: 22px 20px;
     }
 
     .title {
@@ -188,6 +229,7 @@
 
     .sub_title {
         font-size: 14px;
+        margin-top: 24px;
     }
 
     .head {
@@ -200,10 +242,6 @@
 
     .items_grid {
         margin-top: 20px;
-    }
-
-    .car_days {
-        font-size: 14px;
     }
 
     .car_wr_list {
@@ -224,7 +262,7 @@
     }
 
     .m_t_f {
-        margin-top: 50px;
+        margin-top: 80px;
     }
 
     .wr_accar {
@@ -241,15 +279,11 @@
 
 @media (max-width: 575px) {
     .card {
-        padding: 0 20px 20px;
+        padding: 20px;
     }
 
     .title {
-        font-size: 20px;
-    }
-
-    .sub_title {
-        font-size: 12px;
+        font-size: 24px;
     }
 
     .head {
@@ -261,10 +295,6 @@
     }
 
     .cont {
-        margin-top: 20px;
-    }
-
-    .m_t_f {
-        margin-top: 40px;
+        margin-top: 80px;
     }
 }

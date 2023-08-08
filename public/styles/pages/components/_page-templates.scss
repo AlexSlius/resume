@@ -566,3 +566,15 @@
         }
     }
 }
+
+@media (max-width: 767px) {
+    .ptr-c.scroll-style {
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            width: 0;
+        }
+    }
+}

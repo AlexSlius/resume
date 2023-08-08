@@ -1869,8 +1869,16 @@ button {
     position: relative;
     pointer-events: none;
 
+    &::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: url(/../images/icons/checkcopy.svg) center/contain no-repeat;
+    }
+
     &::before {
-        content: 'Сopied';
+        content: 'Copied';
         position: absolute;
         top: 0;
         left: 0;
@@ -1878,14 +1886,20 @@ button {
         height: 100%;
         display: grid;
         align-items: center;
-        justify-content: baseline;
-        background: rgba(255, 255, 255, 0.95);
+        color: #71BA6E;
+        background: rgba(255, 255, 255, 1);
+        text-align: left;
+        padding-left: 48px;
     }
 }
 
 .poiner_none {
     pointer-events: none;
     opacity: 0.6;
+}
+
+.mt-120 {
+    margin-top: 120px;
 }
 
 @media (max-width: 1559px) {
@@ -1955,6 +1969,10 @@ button {
     .menus-card:hover .menus-card_wr {
         top: auto;
         bottom: 100%;
+    }
+
+    .mt-120 {
+        margin-top: 80px;
     }
 
     .t-wr-btn {
@@ -2297,5 +2315,9 @@ button {
 
     .MuiAccordionSummary-root {
         min-height: 64px !important;
+    }
+
+    .mtm {
+        margin-top: 80px;
     }
 }

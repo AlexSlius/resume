@@ -31,7 +31,7 @@ import promoNumbersData from './data/promo-numbers.json';
 import advantagesData from './data/advantages.json';
 import faqData from './data/faq.json';
 import reviewsObjData from "./data/data-reviews.json";
-import dataCostomers from "./data/data-costomers.json";
+import dataCostomers from "../../dataPages/data-costomers.json";
 
 
 export const CoverLatter = () => {

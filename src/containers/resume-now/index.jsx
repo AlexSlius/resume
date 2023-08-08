@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 
 import { Header } from "../../components/header";
 import { WeAccept } from "./WeAccept";
+import { Acard } from "./Acard";
 import { Card } from './Card';
 
-import style from "./Style.module.scss"
-import arrCard from "./data/cards.json";
 import { NotificationPayment } from '../../components/notificationPayment';
+import { SectionCustomers } from "../../components/customers";
 import { stripePaymentIntents } from '../../strite/api';
+
+import arrCard from "./data/cards.json";
+import dataCostomers from "../../dataPages/data-costomers.json";
+
+import style from "./Style.module.scss"
 
 const obj = {
     isShow: false,
@@ -19,23 +24,16 @@ const obj = {
 };
 
 const ResumeNow = () => {
-    const router = useRouter();
     const {
         theme: {
             currentResolution
         },
         users: {
-            objForm
+            objForm,
+            isSubscribe
         }
     } = useSelector((state) => state);
     const [errorModal, setErrorModal] = useState(obj);
-
-    const updateError = (obj) => {
-        setErrorModal(prev => ({
-            ...prev,
-            ...obj,
-        }));
-    }
 
     const handleSubmit = (dataCard, setStateLoad) => {
         if (dataCard?.dataLayer?.event) {
@@ -56,19 +54,12 @@ const ResumeNow = () => {
         })
     }
 
-    useEffect(() => {
-        // if (router.query?.canceled == 'true') {
-        //     updateError({
-        //         isShow: true,
-        //         status: 'error',
-        //         title: 'Payment error'
-        //     })
-        //     return;
-        // }
-    }, []);
+    if (isSubscribe) {
+        return null;
+    }
 
     return (
-        <>
+        <div className='page-now'>
             {
                 ['md', 'sm', 'xs'].includes(currentResolution) && (
                     <Header />
@@ -104,9 +95,15 @@ const ResumeNow = () => {
                         ))
                     }
                 </div>
-                <WeAccept />
             </div>
-        </>
+            <WeAccept />
+            <SectionCustomers
+                title="Our customers <br/> get hired by top companies"
+                data={dataCostomers}
+                mtm={true}
+            />
+            <Acard />
+        </div>
     )
 }
 

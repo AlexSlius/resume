@@ -24,6 +24,9 @@ const userMenu = () => {
         theme: {
             currentResolution
         },
+        users: {
+            isSubscribe
+        }
     } = useSelector((state) => state);
     const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
     const isDomPuncts = [
@@ -37,6 +40,13 @@ const userMenu = () => {
         routersPages['resumeNow'],
         routersPages['templates'],
         'cover_letters'
+    ].find(el => router.asPath.includes(el));
+
+    const isDasPage = [
+        routersPages['coverLetter'],
+        routersPages['coverLetterNew'],
+        routersPages['resumeBuilder'],
+        routersPages['resumeBuilderNew'],
     ].find(el => router.asPath.includes(el));
 
     useEffect(() => {
@@ -117,29 +127,57 @@ const userMenu = () => {
             {
                 isDomPuncts && (
                     <>
-                        <li>
-                            <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
-                                {
-                                    isMob ?
-                                        (
-                                            <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#838799'} />
-                                        ) :
-                                        (
-                                            <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#3679fd'} />
-                                        )
-                                }
-                                <span>FAQ</span>
-                            </Link>
-                        </li>
+                        {
+                            !isMob && (
+                                <li>
+                                    <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
+                                        {
+                                            isMob ?
+                                                (
+                                                    <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#838799'} />
+                                                ) :
+                                                (
+                                                    <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#3679fd'} />
+                                                )
+                                        }
+                                        <span>FAQ</span>
+                                    </Link>
+                                </li>
+                            )
+                        }
 
                         {
                             isMob && (
-                                <li>
-                                    <Link href={`/${routersPages['contactUs']}`} className={`nav-link ${style.link}`} target='_blank'>
-                                        <SvgImage image={'contacte'} width={'17px'} height={'17px'} color={'#838799'} />
-                                        <span>Need help</span>
-                                    </Link>
-                                </li>
+                                <>
+                                    {
+                                        isDasPage && (
+                                            <>
+                                                <li>
+                                                    <Link href={`/${routersPages['faqs']}`} className={`nav-link ${style.link}`} target='_blank'>
+                                                        <SvgImage image={'faq'} width={'17px'} height={'17px'} color={'#838799'} />
+                                                        <span>FAQ</span>
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href={`/${routersPages['contactUs']}`} className={`nav-link ${style.link}`} target='_blank'>
+                                                        <SvgImage image={'contacte'} width={'17px'} height={'17px'} color={'#838799'} />
+                                                        <span>Need help</span>
+                                                    </Link>
+                                                </li>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                        !isSubscribe && (
+                                            <li>
+                                                <Link href={`/${routersPages['resumeNow']}`} className={`nav-link ${style.link}`}>
+                                                    <SvgImage image={'now'} width={'17px'} height={'17px'} color={'#838799'} />
+                                                    <span>Upgrade now</span>
+                                                </Link>
+                                            </li>
+                                        )
+                                    }
+                                </>
                             )
                         }
                     </>
