@@ -104,7 +104,7 @@
       flex-direction: row;
       height: 128px;
       width: 454px;
-      padding-right: 10px;
+      padding-right: 40px;
       justify-content: flex-end;
       align-items: center;
       background: url('/../styles/resumes/017/image/photo-bg.svg') no-repeat 100% 0;
@@ -448,6 +448,9 @@
 
   #cv-chapter-section-cv {
     &.has-photo {
+      .name-and-photo-block {
+        padding-right: 10px;
+      }
     }
   }
 
