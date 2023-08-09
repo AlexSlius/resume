@@ -24,6 +24,13 @@
 
         padding: 0 16px 6px 16px;
     }
+
+    &__back {
+        button {
+            font-weight: 400;
+            color: #838799;
+        }
+    }
 }
 
 @media (max-width: 767px) {

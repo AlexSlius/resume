@@ -8,10 +8,11 @@ export const WrapperPage = ({ children }) => {
     const router = useRouter();
     const isHome = router.asPath == "/";
     const isCover = router.pathname == `/${routersPages['pageCoverLetter']}`;
+    const isLanding = (router.asPath == "/" || router.asPath.includes(routersPages['pageCoverLetter']));
 
     return (
-        <div className={`page renewal ${isHome ? "home" : ''} ${isCover ? "coverPage" : ''}`}>
-            <Header isHome={isHome} isCoverPage={isCover} isContentpage={true} />
+        <div className={`page renewal ${isHome ? "home" : ''} ${isCover ? "coverPage" : ''} ${isLanding ? "landing" : ""}`}>
+            <Header isHome={isHome} isCoverPage={isCover} isContentpage={true} isLanding={isLanding} />
             <main className="main">
                 {children}
             </main>

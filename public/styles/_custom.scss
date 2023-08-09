@@ -2305,6 +2305,25 @@ button {
             background: #FBFBFB;
         }
     }
+
+    &.button-p_black {
+        background: #01153A;
+        color: #fff !important;
+
+        &:hover {
+            background: #293C60;
+        }
+
+        &:active {
+            background: #2B4F94;
+        }
+    }
+}
+
+.renewal {
+    .form-control {
+        font-weight: 400;
+    }
 }
 
 @media(max-width: 767px) {

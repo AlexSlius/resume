@@ -156,6 +156,11 @@
     &.hide {
         display: none;
     }
+
+    max-height: 367px;
+    img {
+        max-height: inherit;
+    }
 }
 
 @keyframes widthAnim {

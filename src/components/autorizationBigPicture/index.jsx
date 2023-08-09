@@ -5,12 +5,14 @@ import style from "./style.module.scss"
 export const AuthorizationBigPicture = () => {
     return (
         <div className={`${style.wr_img}`}>
-            <Image
-                src="/images/other/img_autorization.svg"
-                alt="full images"
-                width={100}
-                height={100}
-            />
+            <div>
+                <Image
+                    src="/images/other/img_autorization.png"
+                    alt="full images"
+                    width={1024}
+                    height={1024}
+                />
+            </div>
         </div>
     )
 }

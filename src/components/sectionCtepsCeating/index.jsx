@@ -37,7 +37,7 @@ export const SectionCtepsCeating = ({
     }, [stateCurrentTab]);
 
     return (
-        <section className="tabs mt-130">
+        <section className="tabs">
             <div className="containers">
                 <div className="tabs__top">
                     <h2 className="text-center h2 font-600">{title}</h2>

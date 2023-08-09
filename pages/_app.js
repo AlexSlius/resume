@@ -43,7 +43,7 @@ const MyApp = ({ Component, ...rest }) => {
         <link rel="preload" href="/fonts/noto/NotoSans-SemiBold.woff" as="font" type="font/woff" crossOrigin="" />
         <link rel="preload" href="/fonts/noto/notosans-bold.woff" as="font" type="font/woff" crossOrigin="" />
         <link rel="preload" href="/fonts/noto/NotoSans-Thin.woff" as="font" type="font/woff" crossOrigin="" />
-        
+
         {/* GTEestiProDisplay */}
         <link rel="preload" href="/fonts/GTEestiProDisplay-Bold.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/GTEestiProDisplay-Light.woff2" as="font" type="font/woff2" crossOrigin="" />
@@ -159,11 +159,6 @@ const MyApp = ({ Component, ...rest }) => {
         {
           !isPdf && (
             <>
-              {/* {
-          loading && (
-            <PreloaderPage />
-          )
-        } */}
               <Notifications />
               <Cookies />
             </>

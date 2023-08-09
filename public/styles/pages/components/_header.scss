@@ -558,16 +558,40 @@
     right: 55px;
 }
 
-@media(max-width: 767px) {
-    .home {
-        .header-r {
-            background: var(--blue);
+.home {
+    .header-r {
+        background: var(--blue);
+    }
+}
+
+.coverPage {
+    .header-r {
+        background: rgba(1, 21, 58, 1);
+    }
+}
+
+@media(min-width: 992px) {
+
+    .landing .nav ul a,
+    .landing .logins,
+    .landing .get-startend {
+        color: #fff;
+
+        &:hover {
+            color: #D1E0FF;
         }
     }
 
-    .coverPage {
-        .header-r {
-            background: rgba(1, 21, 58, 1);
+    .landing .get-startend {
+        background: rgba(255, 255, 255, 0.2);
+
+        i {
+            background: #fff;
+
+            &::before {
+                content: '';
+                background-image: url(/../images/icons/icon_arrow_get_start_white.svg);
+            }
         }
     }
 }

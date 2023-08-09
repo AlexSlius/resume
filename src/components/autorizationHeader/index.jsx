@@ -15,7 +15,7 @@ export const AuthorizationHeader = ({
                 {
                     !isHidenBtnBack && (
                         <div className={`${style.head__back}`}>
-                            <ButtonBack text={['md', 'sm', 'xs'].includes(currentResolution) ? "" : "Back"} />
+                            <ButtonBack text="Back" />
                         </div>
                     )
                 }

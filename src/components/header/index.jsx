@@ -28,7 +28,8 @@ import iconEye from "/public/images/icons/icon_eye.svg?sprite";
 export const Header = ({
     isHome = false,
     isCoverPage = false,
-    isContentpage = false
+    isContentpage = false,
+    isLanding = false
 }) => {
     const router = useRouter();
     const dispatch = useDispatch();
@@ -108,7 +109,7 @@ export const Header = ({
                     ) : (
                         <div className="row_head-pc">
                             <Link href="/" className="logo">
-                                <img loading="lazy" src="/images/page/logo.svg" alt="logo" />
+                                <img loading="lazy" src={isLanding ? "/images/page/logo-all-white.svg" : "/images/page/logo.svg"} alt="logo" />
                             </Link>
                             <Menu pageName={pageName} />
                             <div className="right-info">

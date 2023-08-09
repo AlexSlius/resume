@@ -10,7 +10,7 @@ export const Buttonhelp = ({ href = "#", isBlack = [false] }) => {
     let classe = isBlack ? style.black : '';
 
     return (
-        <Link href={href} className={`${style.btn_need} ${classe}`} target="_blank">
+        <Link href={href} className={`${style.btn_need} ${classe} `} target="_blank">
             <Icon svg={isBlack ? helpIconBlack : helpIcon} classNames={[style.btn_need_icon]} />
             Need help?
         </Link>

@@ -84,9 +84,10 @@ export const LoginPage = () => {
                             <CCol>
                                 <LoadChildrenBtn isLoad={state.load}>
                                     <CButton
-                                        className={`btn_form`}
+                                        className={`button-p`}
                                         type="submit"
                                         color="blue"
+                                        style={{ width: '100%', maxWidth: '100%' }}
                                         disabled={!validEmail(email)}
                                     ><span>Next</span></CButton>
                                 </LoadChildrenBtn>

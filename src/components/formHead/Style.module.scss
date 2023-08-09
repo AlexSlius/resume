@@ -3,37 +3,13 @@
 
     &__title {
         color: #01153A;
-        font-size: 30px;
-        font-weight: 400;
+        font-size: 32px;
+        font-weight: 500;
 
         &_bub {
             margin-top: 12px;
             color: #838799;
-        }
-    }
-}
-
-@media(max-width: 767px) {
-    .main {
-        &__title {
-            font-size: 24px;
-
-            &_bub {
-                font-size: 14px;
-                margin-top: 8px;
-            }
-        }
-    }
-}
-
-@media(max-width: 560px) {
-    .main {
-        &__title {
-            font-size: 20px;
-
-            &_bub {
-                font-size: 12px;
-            }
+            font-size: 16px;
         }
     }
 }
