@@ -37,39 +37,323 @@
   $color_set_4_additional_color_5: #0EE765;
 
 .sv_026 {
-  font-family: 'Roboto Flex';
   font-weight: 400;
 
+  /* Global */
   * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Roboto Flex'; 
-    font-weight: 400;
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Roboto Flex';
   }
 
-  .name-and-prophecy-wrapper {
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    text-align: center;
+  ul {
+    li {
+      list-style-type: none;
+      padding-left: 2px;
+      &::before {
+        content: " - ";
+      }
+      &:not(:first-of-type) {
+        margin-top: 5px;
+      }
+    }
   }
 
-  .cv-prophecy {
+  .empty-field {
+    opacity: 0.3;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  //Blocks
+  .cv-name {
+    span {
+      font-family: 'Roboto Slab';
+      font-weight: 700;
+    }
+  }
+
+  .cv-profession {
     font-family: 'Roboto Slab';
     text-transform: uppercase;
   }
 
-  .cv-name {
-    font-family: 'Roboto Slab';
-    font-weight: 700;
+  .cv-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
+  .cv-body-content {
+    flex: 1;
+    display: flex;
+  }
+
+  .column-left {
+    width: 266px;
+    flex-shrink: 0;
+    padding: 25px 25px;
+    .block-block {
+      margin-top: 20px;
+      .cv-heading {
+        font-family: 'Roboto Slab';
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 6px;
+      } 
+      .block-info {
+        margin-top: 10px;
+        &:nth-child(2) {
+          margin-top: 0;
+        }
+      }
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+    .photo-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      .photo {
+        display: block;
+        position: relative;
+        border-radius: 100%;
+        width: 156px;
+        height: 156px;
+        overflow: hidden;
+        margin: 0 auto;
+        background-size: cover;
+        background-position: center center;
+      }
+      .circle-shade {
+        position: absolute;
+        display: block;
+        width: 158px;
+        height: 157px;
+        top: -6px;
+        right: 12px;
+        background: url('/../styles/resumes/026/image/photo-ellipse.svg') no-repeat 0 0;
+      }
+    }
+    .name-and-prophecy-wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      text-align: center;
+    }
+    .skills-block {
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 15px;
+        column-gap: 10px;
+      }
+      .estimated-wrapper {
+        flex-basis: calc(50% - 5px);
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: center;
+        &.single {
+          flex-basis: 100%;
+        }
+      }
+      .estimated-item-name {
+        font-family: 'Roboto Slab';
+        text-align: center;
+
+      }
+      .pie {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transform: rotate(-90deg);
+      }
+      .pie .background {
+          fill: none;
+          stroke-width: 15;
+        
+      }
+      .pie .chart{
+          fill: none;
+          stroke-width: 15;
+      }
+    }
+    .languages-block {
+      .languages-list {
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+        row-gap: 5px;
+      }
+      .languages-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .languages-name {
+        font-family: 'Roboto Slab';
+      }
+      .skill-estimation {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+  
+        svg {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+    .certificates-block {
+      .certificates-info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        row-gap: 8px;
+      }
+    }
+    .references-block {
+      text-align: center;
+      .block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+    }
+  }
+
+  .column-right {
+    padding: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .block-block {
+      p {
+        font-weight: 500;
+      }
+      .cv-heading {
+        font-weight: 700;
+        margin-bottom: 5px;
+        font-family: 'Roboto Slab';
+      }
+      .cv-subheading {
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .date-range {
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        letter-spacing: 0.7px;
+      }
+      .cv-degree {
+        margin-bottom: 4px;
+      }
+      &:not(:first-of-type) {
+        margin-top: 10px;
+      }
+      &.profile-block {
+        margin-top: 20px;
+      }
+      .block-info {
+        &:not(:first-of-type) {
+          margin-top: 10px;
+        }
+      }
+    }
+    .details-and-hobbies-block {
+      display: flex;
+      column-gap: 30px;
+    }
+    .details-block {
+      width: 150px;
+      .details-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      .details-item {
+        font-weight: 500;
+      }
+    }
+    .additional-details-block {
+      margin-top: 10px;
+      .item-block {
+        &:not(:first-of-type) {
+          margin-top: 5px;
+        }
+      }
+      .name {
+        font-family: 'Roboto Slab';
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .value {
+        font-weight: 500;
+      }
+    }
+    .hobbies-block {
+      .hobbies-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+        border-left-width: 1px;
+        border-left-style: solid;
+        padding-left: 12px;
+        margin-left: 3px;
+      }
+      .hobbies-item {
+        position: relative;
+        font-weight: 500;
+        span {
+          display: block;
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          background: $main_color_1;
+          text-align: center;
+          font-size: 6px;
+          line-height: 7px;
+          border-style: solid;
+          border-width: 1px;
+          top: 50%;
+          left: -17px;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    .courses-block {
+      .date-range {
+        margin-bottom: 0;
+      }
+    }
+    .links-block {
+      display: flex;
+      align-self: flex-end;
+      flex: 1;
+      .links-info {
+        display: flex;
+        column-gap: 5px;
+        justify-content: flex-end;
+        align-items: flex-end;
+      }
+      .links-item {
+        display: block;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 
   .item-value-container {
     height: 3px;
@@ -100,345 +384,36 @@
     }
   }
 
-  .text-block-list {
-    ul {
-      li {
-        list-style-type: none;
-        padding-left: 2px;
-        &::before {
-          content: " - ";
-        }
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
+  /* Stylization */
+  #cv-chapter-section-cv {
+    .photo-wrapper {
+      display: none;
+    }
+    .name-and-prophecy-wrapper {
+      margin-top: 50px;
     }
 
-    .text-block {
-      position: relative;
-      padding-left: 13px;
-
-      .circle-point {
-        position: absolute;
+    &.has-photo {
+      .photo-wrapper {
         display: block;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background-color: #000;
-        top: 3px;
-        left: 4px;
+      }
+      .name-and-prophecy-wrapper {
+        margin-top: 0;
       }
     }
   }
 
-  .photo-wrapper {
-    position: relative;
-    margin-bottom: 20px;
-    .photo {
-      display: block;
-      position: relative;
-      border-radius: 100%;
-      width: 156px;
-      height: 156px;
-      overflow: hidden;
-      margin: 0 auto;
-      background-size: cover;
-      background-position: center center;
-    }
-    .circle-shade {
-      position: absolute;
-      display: block;
-      width: 158px;
-      height: 157px;
-      top: -6px;
-      right: 12px;
-      background: url('/../styles/resumes/026/image/photo-ellipse.svg') no-repeat 0 0;
-    }
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .cv-body {
-    min-width: 595px;
-    min-height: 764px;
-    height: 764px;
-    max-height: 764px;
-    background-color: #fff;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-
+  .cv-body-2 {
     .cv-body-content {
-      display: flex;
-      flex: 1;
-      position: relative;
-      z-index: 10;
+      min-height: 100%;
+      .middle-area {
+        margin-top: 30px;
+        column-gap: 50px;
+      }
 
       .column-left {
-        width: 266px;
-        flex-shrink: 0;
-        padding: 25px 25px;
-
-        .block-block {
-          margin-top: 20px;
-          .cv-heading {
-            font-family: 'Roboto Slab';
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 6px;
-          }
-      
-          .block-subheading {
-            margin-bottom: 5px;
-          }
-      
-          .block-info {
-            margin-top: 10px;
-            &:nth-child(2) {
-              margin-top: 0;
-            }
-          }
-
-          &:first-child {
-            margin-top: 0;
-          }
-        }
+        width: 130px;
       }
-      .column-right {
-        padding: 25px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        .block-block {
-          p {
-            font-weight: 500;
-          }
-          .cv-heading {
-            font-weight: 700;
-            margin-bottom: 5px;
-            font-family: 'Roboto Slab';
-          }
-          .cv-subheading {
-            text-transform: uppercase;
-            margin-bottom: 4px;
-          }
-          .date-range {
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            letter-spacing: 0.7px;
-          }
-          .cv-degree {
-            margin-bottom: 4px;
-          }
-          &:not(:first-of-type) {
-            margin-top: 10px;
-          }
-          &.profile-block {
-            margin-top: 20px;
-          }
-          .block-info {
-            &:not(:first-of-type) {
-              margin-top: 10px;
-            }
-          }
-        }
-      }
-    }
-
-    &.cv-body-2 {
-      .cv-body-content {
-        min-height: 100%;
-        .middle-area {
-          margin-top: 30px;
-          column-gap: 50px;
-        }
-
-        .column-left {
-          width: 130px;
-        }
-      }
-    }
-  }
-
-  /* Block styling */
-
-  .details-and-hobbies-block {
-    display: flex;
-    column-gap: 30px;
-  }
-
-  .details-block {
-    width: 150px;
-    p {
-      font-weight: 500;
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .additional-details-block {
-    margin-top: 10px;
-    .block-item {
-      .item-name {
-        font-family: 'Roboto Slab';
-        font-weight: 500;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-      }
-      .item-value {
-        font-weight: 500;
-      }
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .hobbies-block {
-    .hobbies-info {
-      display: flex;
-      flex-direction: column;
-      row-gap: 8px;
-      border-left-width: 1px;
-      border-left-style: solid;
-      padding-left: 12px;
-      margin-left: 3px;
-    }
-    .hobbies-item {
-      position: relative;
-      font-weight: 500;
-      span {
-        display: block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        background: $main_color_1;
-        text-align: center;
-        font-size: 6px;
-        line-height: 7px;
-        border-style: solid;
-        border-width: 1px;
-        top: 50%;
-        left: -17px;
-        transform: translateY(-50%);
-      }
-    }
-  }
-
-  .links-block {
-    display: flex;
-    align-self: flex-end;
-    flex: 1;
-    .links-info {
-      display: flex;
-      column-gap: 5px;
-      justify-content: flex-end;
-      align-items: flex-end;
-    }
-    a {
-      display: block;
-    }
-    img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .skills-block {
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      row-gap: 15px;
-      column-gap: 10px;
-    }
-    .estimated-wrapper {
-      flex-basis: calc(50% - 5px);
-      display: flex;
-      flex-direction: column;
-      row-gap: 10px;
-      align-items: center;
-      .estimated-item-name {
-        font-family: 'Roboto Slab';
-        text-align: center;
-
-      }
-      .pie {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        transform: rotate(-90deg);
-      }
-      .pie .background {
-          fill: none;
-          stroke-width: 15;
-        
-      }
-      .pie .chart{
-          fill: none;
-          stroke-width: 15;
-      }
-    }
-  }
-
-  .languages-block {
-    .languages-list {
-      display: flex;
-      flex-direction: column;
-      margin-left: 40px;
-      row-gap: 5px;
-    }
-    .languages-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .languages-name {
-      font-family: 'Roboto Slab';
-    }
-    .skill-estimation {
-      display: flex;
-      align-items: center;
-      margin-right: 20px;
-
-      svg {
-        width: 15px;
-        height: 15px;
-      }
-    }
-  }
-
-  .references-block {
-    text-align: center;
-    p {
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
-    }
-  }
-
-  .courses-block {
-    .date-range {
-      margin-bottom: 0;
-    }
-
-  }
-
-  .certificates-block {
-    .certificates-info {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      row-gap: 8px;
     }
   }
 
@@ -462,25 +437,6 @@
 
       .underheading-line {
         margin-bottom: 5px;
-      }
-    }
-  }
-
-  /* Stylization */
-  #cv-chapter-section-cv {
-    .photo-wrapper {
-      display: none;
-    }
-    .name-and-prophecy-wrapper {
-      margin-top: 50px;
-    }
-
-    &.has-photo {
-      .photo-wrapper {
-        display: block;
-      }
-      .name-and-prophecy-wrapper {
-        margin-top: 0;
       }
     }
   }
