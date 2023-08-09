@@ -231,7 +231,7 @@ export const ResumeCv029 = ({
 
   return (
     <div className="sv_029" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1">
           <div className="cv-body-content font-size-1 main-color-1-text">
             <div className="cv-body-area top-area">
@@ -421,7 +421,7 @@ export const ResumeCv029 = ({
                             </div>
                           )
                         }
-                        <div className={`cv-subheading font-size-2`}>
+                        <div className={`cv-subheading font-size-2 ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
                             {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
                           </span>
@@ -477,7 +477,7 @@ export const ResumeCv029 = ({
                             {itemIn.city || ', Toronto'}
                           </span>
                         </div>
-                        <div className={`date-range additional-color-4-text ${!itemIn.dateFrom?.date && !itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <div className={`date-range ${!itemIn.dateFrom?.date && !itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemIn.dateFrom?.date ? 'empty-field' : ''} ${!itemIn.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
                             {itemIn.dateFrom?.date && (checkForSymbol([itemIn.dateTo?.date]) ? moment(itemIn.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemIn.dateFrom.date).format("MMMM yy")) || 'March 2022'}
                           </span>

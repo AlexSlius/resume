@@ -361,7 +361,7 @@ export const ResumeCv026 = ({
                       <div className="name additional-color-4-text">data/place of birth</div>
                       <div className="value">
                         <span className={`${!conta?.dateOfBirth ? 'empty-field' : ''} ${!conta?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                          {conta.dateOfBirth ? moment(conta.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} /{` `} 
+                          {conta.dateOfBirth ? moment(conta.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
                         </span>
                         <span className={`${!conta?.placeOfBirth ? 'empty-field' : ''} ${!conta?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
                           {conta.placeOfBirth ? conta.placeOfBirth : 'Berlin'}
