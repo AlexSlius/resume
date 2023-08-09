@@ -373,7 +373,7 @@ export const ResumeCv026 = ({
                 <div className={`right-side ${!Object.keys(hobbies[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="hobbies-block">
                     <div className="cv-heading font-size-3 additional-color-4-text">Hobbies</div>    
-                    <div className={`hobbies-info additional-color-4-border ${!Object.keys(hobbies[0]).length ? 'empty-field' : ''}`}>
+                    <div className={`hobbies-info additional-color-4-border ${!hobbies[0].text ? 'empty-field' : ''}`}>
                       {
                         Object.keys(hobbies[0]).length && (
                           hobbies.map((item, index) => (

@@ -355,35 +355,6 @@
     }
   }
 
-  .item-value-container {
-    height: 3px;
-    width: 155px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: stretch;
-    background: linear-gradient(270deg, #60A9CC 0%, #D13B83 100%);
-
-    .item-value {
-      width: 50%;
-      background-color: transparent;
-      position: relative;
-      height: 100%;
-    }
-
-    .item-value-point {
-      position: absolute;
-      transform: translate(10px, -50%);
-      right: 0px;
-      top: 50%;
-    }
-
-    .empty-gap {
-      flex: 1;
-      height: 100%;
-    }
-  }
-
   /* Stylization */
   #cv-chapter-section-cv {
     .photo-wrapper {
