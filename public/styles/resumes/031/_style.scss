@@ -30,155 +30,190 @@
   $color_set_7_additional_color_1: #87608D;
 
 .sv_031 {
+  font-weight: 400;
 
-  font-family: 'Poppins', sans-serif;
-
+  /* Global */
   * {
-    padding: 0px 0px 0px 0px;
-    margin: 0px 0px 0px 0px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+    padding: 0;
+    margin: 0;
   }
 
-  *,
-  *:before,
-  *:after {
+  *, *:before, *:after {
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
   }
 
-  .cv-prophecy {
+  ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+  }
+
+  .empty-field {
+    opacity: 0.3;
+  }
+
+  .hide {
+    display: none !important;
+  }
+
+  //Blocks
+  .cv-name {
+    font-weight: 500;
+    span {
+      font-family: 'Orbitron', sans-serif;
+    }
+  }
+
+  .cv-profession {
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 5px;
   }
 
-  .cv-name {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 500;
-  }
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    height: auto;
-    max-height: none;
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-  }
-
   .cv-body {
-    min-width: 595px;
-    min-height: 764px;
-    max-height: 764px;
-    background-color: #fff;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-
-    .cv-body-content {
-      flex: 1;
-      display: flex;
-      position: relative;
-      border-width: 1px;
-      border-style: solid;
-      padding: 20px;
-      column-gap: 30px;
-
-      .column-left {
-        width: 124px;
-        min-width: 124px;
-      }
-      .column-right {
-        .block-block {
-          margin-left: -22px;
-          display: flex;
-          column-gap: 2px;
-        }
-      }
-    }
-
-    &.cv-body-2 {
-      .cv-body-content {
-        flex-direction: column;
-
-        .top-area {
-          margin: 51px 81px 0px 81px;
-
-          .cv-name {
-            text-align: left;
-          }
-        }
-
-        .middle-area {
-          flex: 1;
-          margin: 88px 65px 0px 65px;
-
-          .letter-block {
-            display: flex;
-            align-items: stretch;
-            justify-content: stretch;
-
-            .left-side {
-              width: 20px;
-              margin-right: 5px;
-            }
-
-            .right-side {
-              flex: 1;
-
-              .letter-heading {
-                margin-bottom: 15px !important;
-              }
-            }
-          }
-        }
-
-        .bottom-area {
-          margin: 20px 88px 44px 88px;
-
-          .addresses-block {
-            display: flex;
-            column-gap: 50px;
-
-            .cv-heading {
-              font-family: 'Orbitron', sans-serif;
-              margin-bottom: 6px !important;
-              font-weight: 400;
-            }
-
-            .to-block {
-              flex-basis: 100px;
-            }
-          }
-        }
-      }
-    }
-
+    overflow: hidden;
+    padding: 20px;
   }
 
-  /* Blocks styling */
+  .cv-body-content {
+    position: relative;
+    flex: 1;
+    display: flex;
+    border-width: 1px;
+    border-style: solid;
+    column-gap: 30px;
+    padding: 20px;
+  }
+
+  .column-left {
+    width: 124px;
+    flex-shrink: 0;
+    .photo-block {
+      width: 115px;
+      height: 115px;
+      .photo {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 100%;
+        background-size: cover;
+        background-position: center center;
+      }
+    }
+    .details-block {
+      .contacts-block {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      .profile-info-list {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        .item-block {
+          display: flex;
+          flex-direction: column;
+          row-gap: 2px;
+        }
+        .name {
+          font-weight: 300;
+          color: $main_color_2;
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+        }
+      }
+    }
+    .links-block {
+      .links-list {
+        display: flex;
+        gap: 5px;
+        .links-item {
+          min-width: 36px;
+          text-align: center;
+          text-decoration: none;
+          padding: 8px 12px;
+          border-radius: 14px;
+          border-style: solid;
+          border-width: 1px;
+        }
+      }
+    }
+    .skills-block {
+      .skills-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      .skills-list-item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+      }
+      .value {
+        height: 2px;
+      }
+    }
+    .languages-block {
+      margin-top: 10px;
+      .languages-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      .languages-item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+      }
+      .value {
+        height: 2px;
+      }
+    }
+    .references-block {
+      .block-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4px;
+      }
+    }
+    .certificates-block {
+      .certificates-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+      }
+    }
+  }
+
+  .column-right {
+    .block-block {
+      margin-left: -22px;
+      display: flex;
+      column-gap: 2px;
+    }
+  }
+
   .block-block {
     .cv-heading {
       font-family: 'Orbitron', sans-serif;
-      margin-bottom: 6px !important;
+      margin-bottom: 6px;
       font-weight: 400;
     }
-
     .cv-subheading {
       margin-bottom: 5px;
     }
-
     .block-info {
-      &:not(:first-of-type) {
-        margin-top: 10px;
+      margin-top: 10px;
+      &:nth-child(2) {
+        margin-top: 0;
       }
     }
-
     .date-range {
       text-transform: uppercase;
       color: $main_color_2;
@@ -186,142 +221,13 @@
       margin-bottom: 5px;
       font-weight: 300;
     }
-
     &:not(:first-of-type) {
       margin-top: 10px;
     }
-
     &.profile-block {
       margin-top: 20px;
     }
   }
-
-  .photo-block {
-    width: 115px;
-    height: 115px;
-    .photo {
-      display: block;
-      border-radius: 100%;
-      width: 115px;
-      height: 115px;
-      overflow: hidden;
-      border-radius: 100%;
-      background-size: cover;
-      background-position: center center;
-    }
-  }
-
-  .details-block {
-    .profile-info-list {
-      margin-top: 12px;
-      .info-list-item {
-        .item-name {
-          font-weight: 300;
-          color: $main_color_2;
-          text-transform: uppercase;
-          letter-spacing: 0.8px;
-        }
-        .item-value {
-          margin-top: 2px;
-        }
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-    }
-  }
-
-  .links-block {
-    .social {
-      display: flex;
-      column-gap: 5px;
-      a {
-        min-width: 36px;
-        text-align: center;
-        text-decoration: none;
-        padding: 8px 12px;
-        border-radius: 14px;
-        border-style: solid;
-        border-width: 1px;
-
-      }
-    }
-  }
-
-  .skills-block {
-    .skills-list {
-      .skills-list-item {
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-      .estimation-wrapper {
-        margin-top: 2px;
-        .estimation-value {
-          height: 2px;
-        }
-      }
-    }
-  }
-
-  .languages-block {
-    margin-top: 10px;
-
-    .languages-list {
-      .languages-item {
-        &:not(:first-of-type) {
-          margin-top: 5px;
-        }
-      }
-      .estimation-wrapper {
-        margin-top: 2px;
-        .estimation-value {
-          height: 2px;
-        }
-      }
-    }
-  }
-
-  .references-block {
-    p {
-      &:not(:first-of-type) {
-        margin-top: 4px;
-      }
-    }
-  }
-
-  .certificates-block {
-    .certificates-info {
-      display: flex;
-      flex-direction: column;
-      row-gap: 6px;
-    }
-  }
-
-  .employment-history-block {
-    ul {
-      li {
-        &:not(:first-of-type) {
-          margin-top: 4px;
-        }
-      }
-    }
-  }
-
-  .letter-block {
-    display: flex;
-    align-items: stretch;
-    justify-content: stretch;
-  }
-
-  .middle-area {
-    .additional-color-1-svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-
 
   /* Stylization */
   #cv-chapter-section-cv {
@@ -334,6 +240,58 @@
         display: flex;
       }
     }
+  }
+
+  .cv-body-2 {
+    .cv-body-content {
+      flex-direction: column;
+      .top-area {
+        margin: 51px 81px 0px 81px;
+        .cv-name {
+          text-align: left;
+        }
+      }
+      .middle-area {
+        flex: 1;
+        margin: 88px 65px 0px 65px;
+        .letter-block {
+          display: flex;
+          align-items: stretch;
+          justify-content: stretch;
+          .left-side {
+            width: 20px;
+            margin-right: 5px;
+          }
+          .right-side {
+            flex: 1;
+            .letter-heading {
+              margin-bottom: 15px !important;
+            }
+          }
+        }
+      }
+      .bottom-area {
+        margin: 20px 88px 44px 88px;
+        .addresses-block {
+          display: flex;
+          column-gap: 50px;
+          .cv-heading {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 6px !important;
+            font-weight: 400;
+          }
+          .to-block {
+            flex-basis: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  .letter-block {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
   }
 
   /* Font size scheme */
