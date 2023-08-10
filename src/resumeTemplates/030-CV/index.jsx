@@ -238,10 +238,10 @@ export const ResumeCv030 = ({
               <div className={`main-info-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                 <div className="ellipse-line"></div>
                 <div className={`cv-name font-size-5 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                  <span className={`text-line-1 ${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
+                  <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].firstName || 'Matthew'}{` `}
                   </span>
-                  <span className={`text-line-2 ${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
+                  <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].lastName || 'Mcconaughey'}
                   </span>
                 </div>
