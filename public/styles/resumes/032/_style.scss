@@ -199,6 +199,13 @@
         row-gap: 3px;
       }
     }
+    .certificates-block {
+      .certificates-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+      }
+    }
   }
 
   .block-block {

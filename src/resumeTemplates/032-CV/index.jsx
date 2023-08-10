@@ -27,6 +27,7 @@ const drawing = () => {
       let languages_block = $('#cv-body-hidden-container .cv-body-content .languages-block').clone();
       let hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
       let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+      let certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
 
       current_page_number = 1;
 
@@ -128,6 +129,13 @@ const drawing = () => {
         references_block.remove();
         current_page_number++;
         getContentContainer2().append(references_block);
+      }
+
+      getContentContainer2().append(certificates_block);
+      if (checkHeight()) {
+        certificates_block.remove();
+        current_page_number++;
+        getContentContainer2().append(certificates_block);
       }
     }
 
@@ -585,6 +593,20 @@ export const ResumeCv032 = ({
                     </div>
                   ))
                 }
+              </div>
+              <div className={`certificates-block block-block ${!Object.keys(certificates[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Certificates</div>
+                <div className="block-info">
+                  <div className="certificates-list">
+                    {
+                      certificates.map((item, index) => (
+                        <span className={`${!item.name ? 'empty-field' : ''}`} key={index}>
+                          {item.name ? item.name : 'Certificate name'}
+                        </span>
+                      ))
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           </div>
