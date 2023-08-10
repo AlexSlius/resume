@@ -274,13 +274,13 @@ export const ResumeCv031 = ({
                   <div className={`item-block ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <div className="name">DATE / PLACE OF BIRTH</div>
                     <div className="value">
-                        <span className={`${!contact[0]?.dateOfBirth ? 'empty-field' : ''} ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                          {contact[0]?.dateOfBirth ? moment(contact[0]?.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
-                        </span>
-                        <span className={`${!contact[0]?.placeOfBirth ? 'empty-field' : ''} ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                          {contact[0]?.placeOfBirth ? contact[0]?.placeOfBirth : 'Berlin'}
-                        </span>
-                      </div>
+                      <span className={`${!contact[0]?.dateOfBirth ? 'empty-field' : ''} ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                        {contact[0]?.dateOfBirth ? moment(contact[0]?.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
+                      </span>
+                      <span className={`${!contact[0]?.placeOfBirth ? 'empty-field' : ''} ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                        {contact[0]?.placeOfBirth ? contact[0]?.placeOfBirth : 'Berlin'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
