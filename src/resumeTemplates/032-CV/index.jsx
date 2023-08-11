@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
+import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const drawing = () => {
   if (typeof window != 'undefined') {
@@ -26,6 +27,7 @@ const drawing = () => {
       let languages_block = $('#cv-body-hidden-container .cv-body-content .languages-block').clone();
       let hobbies_block = $('#cv-body-hidden-container .cv-body-content .hobbies-block').clone();
       let references_block = $('#cv-body-hidden-container .cv-body-content .references-block').clone();
+      let certificates_block = $('#cv-body-hidden-container .cv-body-content .certificates-block').clone();
 
       current_page_number = 1;
 
@@ -128,6 +130,13 @@ const drawing = () => {
         current_page_number++;
         getContentContainer2().append(references_block);
       }
+
+      getContentContainer2().append(certificates_block);
+      if (checkHeight()) {
+        certificates_block.remove();
+        current_page_number++;
+        getContentContainer2().append(certificates_block);
+      }
     }
 
     function checkHeight() {
@@ -177,11 +186,13 @@ const drawing = () => {
 
 export const ResumeCv032 = ({
   data,
+  dataNew,
   isDrawing = false,
   isTemplate = false,
   handleFalseDrafind = () => { },
   stateClasses,
   reportTemplateRef,
+  beforeСontent,
   objActiveBlock
 }) => {
   const {
@@ -199,7 +210,7 @@ export const ResumeCv032 = ({
     skills,
     languages,
     hide_experience_level,
-  } = data;
+  } = dataNew;
   const isContactArray = isArray(contact);
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
 
@@ -213,7 +224,7 @@ export const ResumeCv032 = ({
 
   return (
     <div className="sv_032" ref={reportTemplateRef}>
-      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto} color-scheme-state-color-set-1`} data-chapter="cv">
+      <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-1-background">
           <div className="cv-body-content font-size-1 main-color-3-text">
             <div className="star-icon">
@@ -222,332 +233,381 @@ export const ResumeCv032 = ({
               </svg>
             </div>
             <div className="column-left">
-              <div className="main-info-block block-block">
-                <h1 className="cv-name font-size-6 additional-color-1-text">{!!contact?.[0]?.firstName && (<>{contact?.[0]?.firstName}<br /></>)} {!!contact?.[0]?.lastName && (contact?.[0]?.lastName)}</h1>
+              <div className={`main-info-block block-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`cv-name font-size-6 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
+                  <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
+                    {contact[0].firstName || 'Matthew'}
+                  </span><br/>
+                  <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
+                    {contact[0].lastName || 'Mcconaughey'}
+                  </span>
+                </div>
+                <div className={`cv-profession font-size-4 additional-color-1-text ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                  {contact[0].jobTitle || 'Web-designer'}
+                </div>
+              </div>
+              <div className={`profile-block block-block ${!career_objective[0].data && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Profile</div>
                 {
-                  isContactArray && contact?.[0]?.jobTitle && (
-                    <h3 className="cv-prophecy font-size-4 additional-color-1-text">{contact?.[0]?.jobTitle}</h3>
+                  career_objective[0]?.data && (
+                    <div dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
+                  ) || (
+                    <div className="empty-field">
+                      Innovative Web Designer with over seven years of experience creating powerful designs in the fashion industry. Adept in collaborating with designers and other team professionals to achieve high goals and deadlines. Dedicated to remaining up to date with the latest fashion trends, while offering ideas and visuals to spark new trends. Bringing forth a true love of fashion and design.
+                    </div>
                   )
                 }
               </div>
-              {
-                !!career_objective?.[0]?.data && (
-                  <div className="profile-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Profile</p>
-                    <p  dangerouslySetInnerHTML={{ __html: career_objective?.[0]?.data }}></p>
-                  </div>
-                )
-              }
-              {
-                (isArray(employment) && (employment.length > 1 || isObjDatasKeys(employment?.[0]))) && (
-                  <div className="employment-history-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Employment History</p>
-                    {
-                      employment.map((itemEm, index) => (
-                        <div className="block-info" key={index}>
-                          <p className="cv-subheading font-size-2">
-                            {!!itemEm?.title && (`${itemEm?.title}, `)}
-                            {!!itemEm?.company && (` ${itemEm?.company}, `)}
-                            {!!itemEm?.city && (`${itemEm?.city} `)}</p>
-                          {
-                            (!!itemEm?.periodFrom?.date || !!itemEm?.periodTo?.date) && (
-                              <p className="date-range">
-                                {!!itemEm?.periodFrom?.date && (`${moment(itemEm?.periodFrom?.date).format("MMMM yy")} —`)}
-                                {!!itemEm?.periodTo?.date && (`${moment(itemEm?.periodTo?.date).format("MMMM yy")}`)}
-                              </p>
-                            )
-                          }
-                          <p dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></p>
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
-              {
-                 (isArray(education) && (education.length > 1 || isObjDatasKeys(education?.[0]))) && (
-                  <div className="education-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Education</p>
-                    {
-                      education.map((itemEd, index) => (
-                        <div className="block-info" key={index}>
-                          {
-                            (!!itemEd?.study) && (
-                              <p className="cv-subheading font-size-2">
-                                {itemEd?.facility && (`${itemEd.facility}, `)}
-                                {!!itemEd?.study && (`${itemEd?.study}, `)}
-                                {itemEd?.degree && (`${itemEd?.degree}`)}
-                              </p>
-                            )
-                          }
-                          {
-                            (!!itemEd?.dateFrom?.date || !!itemEd?.dateTo?.date) && (
-                              <p className="date-range">
-                                {!!itemEd?.dateFrom?.date && (`${moment(itemEd?.dateFrom?.date).format("MMMM yy")} -`)}
-                                {!!itemEd?.dateTo?.date && (`${moment(itemEd?.dateTo?.date).format("MMMM yy")}`)}
-                              </p>
-                            )
-                          }
-                          <p dangerouslySetInnerHTML={{ __html: itemEd.description }}></p>
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
-              {
-                (isArray(courses) && (courses.length > 1 || isObjDatasKeys(courses?.[0]))) && (
-                  <div className="courses-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Courses</p>
-                    {
-                      courses.map((itemCo, index) => (
-                        <div className="block-info" key={index}>
-                          {
-                            (!!itemCo?.title || !!itemCo?.institution) && (
-                              <p className="cv-subheading font-size-2">{!!itemCo?.title && (`${itemCo?.title},`)} {!!itemCo?.institution && (itemCo?.institution)}</p>
-                            )
-                          }
-                          {
-                            (!!itemCo?.dateFrom?.date || !!itemCo?.dateTo?.date) && (
-                              <p className="date-range">{!!itemCo?.dateFrom?.date && (`${moment(itemCo?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemCo?.dateTo?.date && (`${moment(itemCo?.dateTo?.date).format("MMMM yy")}`)}</p>
-                            )
-                          }
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
-              {
-                (isArray(extra_curricular) && (extra_curricular.length > 1 || isObjDatasKeys(extra_curricular?.[0]))) && (
-                  <div className="extra-curricular-activities-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Extra-curricular activities</p>
-
-                    {
-                      extra_curricular.map((itemEx, index) => (
-                        <div className="block-info" key={index}>
-                          {
-                            (!!itemEx?.title || itemEx?.employer) && (
-                              <p className="cv-subheading font-size-2">{!!itemEx?.title && (`${itemEx?.title},`)} {!!itemEx?.employer && (`${itemEx?.employer}`)}</p>
-                            )
-                          }
-                          {
-                            (!!itemEx?.dateFrom?.date || !!itemEx?.dateTo?.date) && (
-                              <p className="date-range">{!!itemEx?.dateFrom?.date && (`${moment(itemEx?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemEx?.dateTo?.date && (`${moment(itemEx?.dateTo?.date).format("MMMM yy")}`)}</p>
-                            )
-                          }
-                          <p dangerouslySetInnerHTML={{ __html: itemEx.description }}></p>
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
-              {
-                (isArray(internship) && (internship.length > 1 || isObjDatasKeys(internship?.[0]))) && (
-                  <div className="internships-block block-block">
-                    <p className="cv-heading font-size-5 additional-color-1-text">Internships</p>
-                    {
-                      internship.map((itemIn, index) => (
-                        <div className="block-info" key={index}>
-                          {
-                            (!!itemIn?.jobTitle || itemIn?.employer || !!itemIn?.city) && (
-                              <p className="cv-subheading font-size-2">{!!itemIn.jobTitle && (`${itemIn?.jobTitle},`)} {!!itemIn?.employer && (`${itemIn?.employer},`)} {!!itemIn?.city && (`${itemIn?.city}`)}</p>
-                            )
-                          }
-                          {
-                            (!!itemIn?.dateFrom?.date || !!itemIn?.dateTo?.date) && (
-                              <p className="date-range">{!!itemIn?.dateFrom?.date && (`${moment(itemIn?.dateFrom?.date).format("MMMM yy")} -`)} {!!itemIn?.dateTo?.date && (`${moment(itemIn?.dateTo?.date).format("MMMM yy")}`)}</p>
-                            )
-                          }
-                          <p dangerouslySetInnerHTML={{ __html: itemIn.description }}></p>
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
+              <div className={`employment-history-block block-block ${!employment[0].assignment && !employment[0].city && !employment[0].company && !employment[0].title && !employment[0].periodFrom?.date && !employment[0].periodTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Employment History</div>
+                {
+                  employment.map((itemEm, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`cv-subheading font-size-2 ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                        </span>
+                        <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                        </span>
+                        <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEm.city || ', New York City'}
+                        </span>
+                      </div>
+                      <div className={`date-range ${!itemEm.periodTo?.date && !itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEm.periodFrom?.date ? 'empty-field' : ''} ${!itemEm.periodFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEm.periodFrom?.date && (checkForSymbol([itemEm.periodTo?.date]) ? moment(itemEm.periodFrom.date).format("MMMM yy") + ' - ' : moment(itemEm.periodFrom.date).format("MMMM yy")) || 'March 2022'}
+                        </span>
+                        <span className={`${!itemEm.periodTo?.date ? 'empty-field' : ''} ${!itemEm.periodTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEm.periodTo?.date && (moment(itemEm.periodTo.date).format("MMMM yy")) || ' - December 2022'}
+                        </span>
+                      </div>
+                      {
+                        itemEm.assignment && (
+                          <div dangerouslySetInnerHTML={{ __html: itemEm.assignment }}></div>
+                        ) || (
+                          <div className={`empty-field ${!itemEm.assignment && !beforeСontent ? 'hide' : ''}`}>
+                            <ul>
+                              <li>Helped to achieve a consistent look and visual theme across the website by promoting uniform fonts, formatting, images, and layout.</li>
+                              <li>Followed policies and procedures related to application methods and quality standards at all times.</li>
+                              <li>Managed front-end and back-end development in the company's Portfolio Analyst, Employee Track, and Account Management systems.</li>
+                            </ul>
+                          </div>
+                        )
+                      }
+                    </div>
+                  ))
+                }
+              </div>
+              <div className={`education-block block-block ${!Object.keys(education[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Education</div>
+                {
+                  education.map((itemEd, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`cv-subheading font-size-2 ${!itemEd.degree && !itemEd.study && !itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemEd.facility, itemEd.degree]) ? itemEd.study + ' - ' : itemEd.study || 'Marketing and Management'}
+                        </span>
+                        <span className={`${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemEd?.facility]) ? itemEd?.facility + ', ' : itemEd?.facility || ', Harcum College, Portland'}
+                        </span>
+                        <span className={`${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEd.degree || ' - Bachelor'}
+                        </span>
+                      </div>
+                      <div className={`date-range ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEd.dateFrom?.date ? 'empty-field' : ''} ${!itemEd.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEd.dateFrom?.date && (checkForSymbol([itemEd.dateTo?.date]) ? moment(itemEd.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEd.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                        </span>
+                        <span className={`${!itemEd.dateTo?.date ? 'empty-field' : ''} ${!itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEd.dateTo?.date && (moment(itemEd.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                        </span>
+                      </div>
+                      {
+                        itemEd.description && (
+                          <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                        ) || (
+                          <div className={`empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
+                            I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
+                          </div>
+                        )
+                      }
+                    </div>
+                  ))
+                }
+              </div>
+              <div className={`courses-block block-block ${!Object.keys(courses[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Courses</div>
+                {
+                  courses.map((itemCo, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`cv-subheading font-size-2 ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
+                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
+                        </span>
+                        <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
+                          {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
+                        </span>
+                      </div>
+                      <div className={`date-range ${!itemCo.dateFrom?.date && !itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''} ${!itemCo.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemCo.dateFrom?.date && (checkForSymbol([itemCo.dateTo?.date]) ? moment(itemCo.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemCo.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                        </span>
+                        <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''} ${!itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemCo.dateTo?.date && (moment(itemCo.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <div className={`extra-curricular-activities-block block-block ${!Object.keys(extra_curricular[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Extra-curricular activities</div>
+                {
+                  extra_curricular.map((itemEx, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`cv-subheading font-size-2 ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                        </span>
+                        <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEx.employer || ', My own company'}
+                        </span>
+                      </div>
+                      <div className={`date-range ${!itemEx.dateFrom?.date && !itemEx.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEx.dateFrom?.date ? 'empty-field' : ''} ${!itemEx.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEx.dateFrom?.date && (checkForSymbol([itemEx.dateTo?.date]) ? moment(itemEx.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemEx.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                        </span>
+                        <span className={`${!itemEx.dateTo?.date ? 'empty-field' : ''} ${!itemEx.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEx.dateTo?.date && (moment(itemEx.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                        </span>
+                      </div>
+                      {
+                        itemEx.description && (
+                          <div dangerouslySetInnerHTML={{ __html: itemEx.description }}></div>
+                        ) || (
+                          <div className={`empty-field ${!itemEx.description && !beforeСontent ? 'hide' : ''}`}>
+                            I was doing research for about five different projects. The goal was to find out the biggest issues with the current concept and solution how to solve them.
+                          </div>
+                        )
+                      }
+                    </div>
+                  ))
+                }
+              </div>
+              <div className={`internships-block block-block ${!Object.keys(internship[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-5 additional-color-1-text">Internships</div>
+                {
+                  internship.map((itemIn, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`cv-subheading font-size-2 ${!itemIn.jobTitle && !itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                        </span>
+                        <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                        </span>
+                        <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
+                          {itemIn.city || ', Toronto'}
+                        </span>
+                      </div>
+                      <div className={`date-range ${!itemIn.dateFrom?.date && !itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemIn.dateFrom?.date ? 'empty-field' : ''} ${!itemIn.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemIn.dateFrom?.date && (checkForSymbol([itemIn.dateTo?.date]) ? moment(itemIn.dateFrom.date).format("MMMM yy") + ' - ' : moment(itemIn.dateFrom.date).format("MMMM yy")) || 'March 2022'}
+                        </span>
+                        <span className={`${!itemIn.dateTo?.date ? 'empty-field' : ''} ${!itemIn.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          {itemIn.dateTo?.date && (moment(itemIn.dateTo.date).format("MMMM yy")) || ' - December 2022'}
+                        </span>
+                      </div>
+                      {
+                        itemIn.description && (
+                          <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                        ) || (
+                          <div className={`empty-field ${!itemIn.description && !beforeСontent ? 'hide' : ''}`}>
+                            Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
+                            Worked productively with Product Team to understand requirements and business specifications around Portfolio Management, Analytics and Risk.
+                          </div>
+                        )
+                      }
+                    </div>
+                  ))
+                }
+              </div>
             </div>
             <div className="column-right additional-color-1-border">
               {
-                !!contact?.[0]?.picture && (
+                contact[0]?.picture && (
                   <div className="photo-block block-block">
                     <div className="photo" style={{ backgroundImage: `url(${contact?.[0]?.picture})` }}></div>
                   </div>
                 )
               }
-              <div className="details-block block-block">
-                {
-                  (!!contact?.[0]?.address || !!contact?.[0]?.phone || !!contact?.[0]?.email || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
-                    <>
-                      <p className="cv-heading font-size-3 additional-color-1-text">Details</p>
-                      <div className="contacts-block">
-                        {
-                          (!!contact?.[0]?.address || !!contact?.[0]?.city || contact?.[0]?.city || !!contact?.[0]?.zipCode || !!contact?.[0]?.country) && (
-                            <p>
-                              {!!contact?.[0]?.address && (`${contact?.[0]?.address},`)}
-                              {!!contact?.[0]?.city && (`${contact?.[0]?.city}, ${!!contact?.[0]?.zipCode && contact?.[0]?.zipCode} ${!!contact?.[0]?.country && contact?.[0]?.country}`)}
-                            </p>
-                          )
-                        }
-                        {
-                          !!contact?.[0]?.phone && (
-                            <p >{contact?.[0]?.phone}</p>
-                          )
-                        }
-                        {
-                          !!contact?.[0]?.email && (
-                            <p >{contact?.[0]?.email}</p>
-                          )
-                        }
-                      </div>
-                    </>
-                  )
-                }
-                <div className="personal-info-block">
+              <div className={`details-block block-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Details</div>
+                <div className={`contacts-block ${!contact[0]?.email && !contact[0]?.phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                  <div className={`contact-item ${!contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                    <span className={`${!contact[0]?.country ? 'empty-field' : ''} ${!contact[0]?.country && !beforeСontent ? 'hide' : ''}`}>
+                      {`${checkForSymbol([contact[0]?.address, contact[0]?.city, contact[0]?.zipCode]) ? contact[0]?.country + ', ' : contact[0]?.country || 'United States, '}`}
+                    </span>
+                    <span className={`${!contact[0]?.address ? 'empty-field' : ''} ${!contact[0]?.address && !beforeСontent ? 'hide' : ''}`}>
+                      {`${checkForSymbol([contact[0]?.city, contact[0]?.zipCode]) ? contact[0]?.address + ', ' : contact[0]?.address || '5th Avenue Street, '}`}
+                    </span>
+                    <span className={`${!contact[0]?.city ? 'empty-field' : ''} ${!contact[0]?.city && !beforeСontent ? 'hide' : ''}`}>
+                      {`${checkForSymbol([contact[0]?.zipCode]) ? contact[0]?.city + ', ' : contact[0]?.city || 'New York City, '}`}
+                    </span>
+                    <span className={`${!contact[0]?.zipCode ? 'empty-field' : ''} ${!contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0]?.zipCode || '384846'}`}
+                    </span>
+                  </div>
+                  <div className={`contact-item ${!contact[0].phone ? 'empty-field' : ''} ${!contact[0]?.phone && !beforeСontent ? 'hide' : ''}`}>
+                    {contact[0]?.phone || '736-343-9384'}
+                  </div>
+                  <div className={`contact-item ${!contact[0].email ? 'empty-field' : ''} ${!contact[0]?.email && !beforeСontent ? 'hide' : ''}`}>
+                    {contact[0].email || 'designer@webservice.com'}
+                  </div>
+                </div>
+                <div className={`personal-info-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                   <div className="personal-info-list">
-                    {
-                      !!contact?.[0]?.nationality && (
-                        <div className="info-list-item">
-                          <p className="item-name">NATIONALITY</p>
-                          <p className="item-value">{contact?.[0]?.nationality}</p>
-                        </div>
-                      )
-                    }
-                    {
-                      !!contact?.[0]?.driverLicense && (
-                        <div className="info-list-item">
-                          <p className="item-name">DRIVING LICENSE</p>
-                          <p className="item-value">{contact?.[0]?.driverLicense}</p>
-                        </div>
-                      )
-                    }
-                    {
-                      (!!contact?.[0]?.dateOfBirth || !!contact?.[0]?.placeOfBirth) && (
-                        <div className="info-list-item">
-                          <p className="item-name">DATE / PLACE OF BIRTH</p>
-                          <p className="item-value">{`${moment(contact?.[0].dateOfBirth).format("DD-MM-yy")} ${contact?.[0]?.placeOfBirth || ""}`} </p>
-                        </div>
-                      )
-                    }
+                    <div className={`item-block ${!contact[0]?.nationality && !beforeСontent ? 'hide' : ''}`}>
+                      <div className="name">NATIONALITY</div>
+                      <div className={`value ${!contact[0]?.nationality ? 'empty-field' : ''}`}>
+                        {contact[0]?.nationality ? contact[0]?.nationality : 'German'}
+                      </div>
+                    </div>
+                    <div className={`item-block ${!contact[0]?.driverLicense && !beforeСontent ? 'hide' : ''}`}>
+                      <div className="name">DRIVING LICENSE</div>
+                      <div className={`value ${!contact[0]?.driverLicense ? 'empty-field' : ''}`}>
+                        {contact[0]?.driverLicense ? contact[0]?.driverLicense : 'Class 1'}
+                      </div>
+                    </div>
+                    <div className={`item-block ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                      <div className="name">DATE / PLACE OF BIRTH</div>
+                      <div className="value">
+                        <span className={`${!contact[0]?.dateOfBirth ? 'empty-field' : ''} ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                          {contact[0]?.dateOfBirth ? moment(contact[0]?.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
+                        </span>
+                        <span className={`${!contact[0]?.placeOfBirth ? 'empty-field' : ''} ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                          {contact[0]?.placeOfBirth ? contact[0]?.placeOfBirth : 'Berlin'}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              {
-                isArray(social_links) && !!social_links.length && (
-                  <div className="links-block block-block">
-                    <p className="cv-heading font-size-3 additional-color-1-text">Links</p>
-                    <div className="links-wrapper">
-                      {
-                        social_links.map((item, index) => (
-                          <a key={index}>{item.name}</a>
-                        ))
-                      }
-                    </div>
-                  </div>
-                )
-              }
-              {
-                isArray(skills) && !!skills.length && (
-                  <div className="skills-block block-block">
-                    <p className="cv-heading font-size-3 additional-color-1-text">Skills</p>
-
-                    <div className="skill-items-list estimated-items-list">
-                      {
-                        skills.map((item, index) => (
-                          <div className="skill-list-item estimated-item" key={index}>
-                            <p className="item-name">{item.name}</p>
-                            {
-                              !hide_experience_level && (
-                                <div className="estimation-wrapper">
-                                  {
-                                    [...new Array(5)].map((_, index) => (
-                                      <svg key={index} className={`star additional-color-1-svg ${(index + 1) <= item.level ? "star-filled" : ""}`} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fillRule="evenodd" clipRule="evenodd" d="M5.00224 0.699219C5.00224 3.47843 7.02348 5.49967 9.80269 5.49967C7.02348 5.49967 5.00224 7.52092 5.00224 10.3001C5.00224 7.52092 2.98106 5.49967 0.201782 5.49967C2.98099 5.49967 5.00224 3.47843 5.00224 0.699219Z" fill="#7F6A55" />
-                                      </svg>
-                                    ))
-                                  }
-                                </div>
-                              )
-                            }
-                          </div>
-                        ))
-                      }
-                    </div>
-                  </div>
-                )
-              }
-              {
-                isArray(languages) && !!languages.length && (
-                  <div className="languages-block block-block">
-                    <p className="cv-heading font-size-3 additional-color-1-text">Languages</p>
-                    <div className="language-items-list estimated-items-list">
-                      {
-                        languages.map((item, index) => (
-                          <div className="language-list-item estimated-item" key={index}>
-                            <p className="item-name">{item.language}</p>
+              <div className={`links-block block-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Links</div>
+                <div className="links-list">
+                  {
+                    isArray(social_links) && social_links.length && (
+                      social_links.map((item, index) => (
+                        <a className="links-item" key={index}>
+                          {item.name.substring(0, 2)}
+                        </a>
+                      ))
+                    ) || (
+                      <>
+                        <a className="links-item empty-field">Facebook</a>
+                        <a className="links-item empty-field">LinkedIn</a>
+                      </>
+                    )
+                  }
+                </div>
+              </div>
+              <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Skills</div>
+                <div className="skill-items-list estimated-items-list">
+                  {
+                    skills.map((item, index) => (
+                      <div className={`skills-item estimated-item ${!item.name ? 'empty-field' : ''}`} key={index}>
+                        <div className="item-name">{item.name ? item.name : 'Skill name'}</div>
+                        {
+                          !hide_experience_level && (
                             <div className="estimation-wrapper">
                               {
                                 [...new Array(5)].map((_, index) => (
-                                  <svg key={index} className={`star additional-color-1-svg ${(index + 1) <= item.level ? "star-filled" : ""}`} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <svg key={index} className={`star additional-color-1-svg ${(index + 1) <= (item.level ? item.level : 3) ? "star-filled" : ""}`} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M5.00224 0.699219C5.00224 3.47843 7.02348 5.49967 9.80269 5.49967C7.02348 5.49967 5.00224 7.52092 5.00224 10.3001C5.00224 7.52092 2.98106 5.49967 0.201782 5.49967C2.98099 5.49967 5.00224 3.47843 5.00224 0.699219Z" fill="#7F6A55" />
                                   </svg>
                                 ))
                               }
                             </div>
-                          </div>
-                        ))
-                      }
+                          )
+                        }
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={`languages-block block-block ${!Object.keys(languages[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Languages</div>
+                <div className="language-items-list estimated-items-list">
+                  {
+                    languages.map((item, index) => (
+                      <div className={`language-item estimated-item ${!item.language ? 'empty-field' : ''}`} key={index}>
+                        <div className="item-name">{item.language ? item.language : 'Language'}</div>
+                        <div className="estimation-wrapper">
+                          {
+                            [...new Array(5)].map((_, index) => (
+                              <svg key={index} className={`star additional-color-1-svg ${(index + 1) <= (item.level ? item.level : 5) ? "star-filled" : ""}`} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M5.00224 0.699219C5.00224 3.47843 7.02348 5.49967 9.80269 5.49967C7.02348 5.49967 5.00224 7.52092 5.00224 10.3001C5.00224 7.52092 2.98106 5.49967 0.201782 5.49967C2.98099 5.49967 5.00224 3.47843 5.00224 0.699219Z" fill="#7F6A55" />
+                              </svg>
+                            ))
+                          }
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={`hobbies-block block-block ${!Object.keys(hobbies[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Hobbies</div>
+                <div className={`${!hobbies[0].text ? 'empty-field' : ''}`}> 
+                  {
+                    hobbies.map((item, index) => (
+                      <span key={index}>
+                        {item.text ? item.text + (hobbies.length - 1 != index ? ', ' : '') : 'Squash, Surfing, Swimming, Table tennis, Tennis, Tennis polo, Tether car, Tour skating'}
+                      </span>
+                    ))
+                  }
+                </div>
+              </div>
+              <div className={`references-block block-block ${!Object.keys(reference[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">References</div>
+                {
+                  reference.map((itemRef, index) => (
+                    <div className="block-info" key={index}>
+                      <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
+                          {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                        </span>
+                        <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
+                          {itemRef.company || ', Company'}
+                        </span>
+                      </div>
+                      <div className={`${!itemRef.email ? 'empty-field' : ''} ${!itemRef.email && !beforeСontent ? 'hide' : ''}`}>
+                        {itemRef.email || 'references@webservice.com'}
+                      </div>
+                      <div className={`${!itemRef.phone ? 'empty-field' : ''} ${!itemRef.phone && !beforeСontent ? 'hide' : ''}`}>
+                        {itemRef.phone || '736-343-9384'}
+                      </div>
                     </div>
-                  </div>
-                )
-              }
-              {
-                  isArray(hobbies) && !!hobbies.length && (
-                  <div className="hobbies-block block-block">
-                    <p className="cv-heading font-size-3 additional-color-1-text">Hobbies</p>
-                    <p> {
-                      hobbies.map((item, index) => (
-                        <span key={index}>
-                          {`${item.text}${((hobbies.length - 1) != index) ? (", ") : ""}`}
+                  ))
+                }
+              </div>
+              <div className={`certificates-block block-block ${!Object.keys(certificates[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className="cv-heading font-size-3 additional-color-1-text">Certificates</div>
+                <div className="block-info">
+                  <div className="certificates-list">
+                    {
+                      certificates.map((item, index) => (
+                        <span className={`${!item.name ? 'empty-field' : ''}`} key={index}>
+                          {item.name ? item.name : 'Certificate name'}
                         </span>
                       ))
                     }
-                    </p>
                   </div>
-                )
-              }
-              {
-               (isArray(reference) && (reference.length > 1 || isObjDatasKeys(reference?.[0]))) && (
-                  <div className="references-block block-block">
-                    <p className="cv-heading font-size-3 additional-color-1-text">References</p>
-                    {
-                      reference.map((itemRef, index) => (
-                        <div className="block-info" key={index}>
-                          {
-                            (!!itemRef?.fullName || !!itemRef?.company) && (
-                              <p>
-                                {!!itemRef?.fullName && (`${itemRef.fullName}, `)}
-                                {!!itemRef?.company && (`${itemRef.company}`)}
-                              </p>
-                            )
-                          }
-                          {
-                            !!itemRef?.email && (
-                              <p>{itemRef.email}</p>
-                            )
-                          }
-                          {
-                            !!itemRef.phone && (
-                              <p>{itemRef.phone}</p>
-                            )
-                          }
-                        </div>
-                      ))
-                    }
-                  </div>
-                )
-              }
+                </div>
+              </div>
             </div>
           </div>
         </div>
