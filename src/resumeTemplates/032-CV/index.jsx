@@ -308,7 +308,7 @@ export const ResumeCv032 = ({
                         <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
                           {checkForSymbol([itemEd.facility, itemEd.degree]) ? itemEd.study + ' - ' : itemEd.study || 'Marketing and Management'}
                         </span>
-                        <span className={`${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
+                        <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                           {checkForSymbol([itemEd?.facility]) ? itemEd?.facility + ', ' : itemEd?.facility || ', Harcum College, Portland'}
                         </span>
                         <span className={`${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
