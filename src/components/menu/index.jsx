@@ -15,6 +15,8 @@ import iconModResume from "/public/images/icons/icon_mob_menu-resume.svg?sprite"
 import iconModCover from "/public/images/icons/icon_mob_menu-cover.svg?sprite";
 import iconModContact from "/public/images/icons/icon_mob_menu-contact.svg?sprite";
 import iconModFaq from "/public/images/icons/icon_mob_menu-faq.svg?sprite";
+import iconModResTemp from "/public/images/icons/icon_mob_menu-res_temp.svg?sprite";
+import iconModCoverTemp from "/public/images/icons/icon_mob_menu-cover_temp.svg?sprite";
 
 
 import { updateActiveResumeNew } from "../../slices/resumeData";
@@ -120,6 +122,7 @@ export const Menu = () => {
                                                 )
                                             }
                                         </li>
+                                        {isMob && (<li><Link className="nav-link" href={`${routersPages['jobWinningResumeTemplates']}`}><Icon svg={iconModResTemp} />Resume Templates</Link></li>)}
                                         <li className="submenu-item">
                                             <Link className="nav-link" href={`/${routersPages['pageCoverLetter']}`}>{isMob && <Icon svg={iconModCover} />}Cover Letter</Link>
                                             {
@@ -170,6 +173,7 @@ export const Menu = () => {
                                                 )
                                             }
                                         </li>
+                                        {isMob && (<li><Link className="nav-link" href={`${routersPages['pageCoverLeterTemplates']}`}><Icon svg={iconModCoverTemp} />Cover Letter Templates</Link></li>)}
                                         <li><Link className="nav-link" href={`${routersPages['contactUs']}`}>{isMob && <Icon svg={iconModContact} />}Contact Us</Link></li>
                                         <li><Link className="nav-link" href={`${routersPages['faqs']}`}>{isMob && <Icon svg={iconModFaq} />}FAQ</Link></li>
                                     </ul>

@@ -187,8 +187,10 @@
     >a {
         display: flex;
         align-items: center;
-        gap: 5px;
         font-weight: 400;
+        @media(min-width: 1023px) {
+            gap: 5px;
+        }
 
         &::after {
             content: "";
@@ -620,8 +622,9 @@
     .submenu-item>a::after {
         display: none;
     }
+
     .mobile-menu li a.nav-link {
-        color: #838799!important;
+        color: #838799 !important;
     }
 }
 
