@@ -385,7 +385,7 @@
     }
   }
 
-  &.cv-body-2 {
+  .cv-body-2 {
     padding: 50px;
 
     .cv-body-content {
@@ -403,7 +403,7 @@
         justify-content: stretch;
         margin-top: 43px;
 
-        .area-1 {
+        .column-1 {
           flex: 1;
 
           .letter-block {
@@ -413,7 +413,7 @@
           }
         }
 
-        .area-2 {
+        .column-2 {
           width: 118px;
           margin-left: 58px;
 
