@@ -428,6 +428,9 @@
         }
 
         .ptr-c {
+            min-height: 100vh;
+            max-height: none;
+
             .body-template-resume {
                 transform: scale(1) !important;
             }
