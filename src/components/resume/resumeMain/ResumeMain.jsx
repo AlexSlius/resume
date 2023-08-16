@@ -122,7 +122,7 @@ const ResumeMain = ({
       <div className={`resume-main ${loadContent ? "load" : ""}`} ref={refDivResumeMain}>
          {
             !isCover && (
-               <div className={`resume-main_scale`} style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
+               <div className={`resume-main_scale`} style={{ msZoom: `${scaleSize}`, MozTransform: `scale(${scaleSize})`, zoom: `${scaleSize}`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
                   <TemplatesSelect
                      isNewResume={isNewResume}
                      data={dataResumeTemplate}
@@ -159,7 +159,7 @@ const ResumeMain = ({
                </div>
             )
          }
-      </div>
+      </div >
    )
 }
 

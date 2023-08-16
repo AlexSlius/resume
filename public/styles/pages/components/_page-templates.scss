@@ -125,7 +125,7 @@
 
 .ptr-c {
     max-height: calc(100vh - 170px);
-    max-height: calc(100vh - 170px);
+    min-height: calc(100vh - 170px);
 
     @media(min-width: 992px) {
         overflow: hidden;
@@ -140,6 +140,7 @@
         max-width: 624px;
         width: 100%;
         max-height: inherit;
+        min-height: inherit;
 
         img {
             max-width: 100%;
@@ -282,7 +283,7 @@
 
     .ptr-c {
         max-height: calc(100vh - 225px);
-        max-height: calc(100vh - 225px);
+        min-height: calc(100vh - 225px);
     }
 
     .colors-t {
@@ -433,11 +434,14 @@
 
             .body-template-resume {
                 transform: scale(1) !important;
+                zoom: 1 !important;
+                -ms-zoom: 1!important;
             }
         }
 
         .ptr-c__content {
             max-height: inherit;
+            min-height: inherit;
         }
 
         .ptr-c.scroll-style {
@@ -560,6 +564,7 @@
 
         .ptr-c__content {
             max-height: inherit;
+            min-height: inherit;
         }
 
         .ptr-c.scroll-style {

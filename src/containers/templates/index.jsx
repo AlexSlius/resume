@@ -600,7 +600,7 @@ const Templates = ({
 
                     <div className={`ptr-c hide_scroll`} >
                         <div className="ptr-c__content" ref={refDivResumeMain}>
-                            <div className="body-template-resume" style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }} >
+                            <div className="body-template-resume" style={{ msZoom: `${scaleSize}`, MozTransform: `scale(${scaleSize})`, zoom: `${scaleSize}`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }} >
                                 {
                                     !isCover && (
                                         <TemplatesSelect
