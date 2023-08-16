@@ -30,8 +30,8 @@ import {
     updateActiveCoverNew,
     updateActiveCover
 } from "../../slices/cover/coverData";
-import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
-
+import { handleUpdateDrawingTrue, updateItemField } from "../../slices/cover/coverDataForm";
+import { updateItemFieldContact } from "../../slices/contact";
 import {
     // fetchGetResumeData,
     getResumeActive,
@@ -63,6 +63,7 @@ const Templates = ({
     const refIdTimeout = useRef(undefined);
     const refWr = useRef(undefined);
     const refTime = useRef(null);
+    const refDivResumeMain = useRef();
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(false);
 
@@ -89,7 +90,9 @@ const Templates = ({
             currentResolution
         },
         users: {
-            isSubscribe
+            isSubscribe,
+            objFormSettings,
+            avatar,
         },
         resumeData,
         coverData,
@@ -306,6 +309,18 @@ const Templates = ({
         });
     }
 
+    const handlerSetDateState = async (name, value) => {
+        console.log(name, value);
+
+        if (isCover)
+            dispatch(updateItemField({ name, value }));
+
+        if (!isCover)
+            dispatch(updateItemFieldContact({ name, value }));
+    }
+
+    let { scaleSize, origin, originTop } = useScaleResumePageShare({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing } });
+
     useEffect(() => {
         if (dataOther?.resumeActive?.template_id) {
             handleUpdateServer();
@@ -387,6 +402,18 @@ const Templates = ({
             setPagePagCurrent(1);
         }
     }, [dataOther.resumeActive]);
+
+    useEffect(() => {
+        if (isNewResume && isAthorized) {
+            const contObj = isCover ? (isNewResume ? coverDataForm.coverDataObjNew : coverDataForm.coverDataObj) : (isNewResume ? contactObjNew : contactObj);
+            let { firstName, lastName, email } = objFormSettings;
+
+            !(contObj?.firstName?.length > 0) && handlerSetDateState('firstName', firstName);
+            !(contObj?.lastName?.length > 0) && handlerSetDateState('lastName', lastName);
+            !(contObj?.email?.length > 0) && handlerSetDateState('email', email);
+            !isCover && !(contObj?.picture?.length > 0) && handlerSetDateState('picture', avatar?.image || null);
+        }
+    }, [objFormSettings, isAthorized, avatar]);
 
     useEffect(() => {
         if (isNewResume)
@@ -571,10 +598,9 @@ const Templates = ({
                         )
                     }
 
-                    {/* hide_scroll */}
-                    <div className={`ptr-c scroll-style`}>
-                        <div className="ptr-c__content">
-                            <div className="body-template-resume" style={{ transform: `scale(${useScaleResumePageShare()})` }}>
+                    <div className={`ptr-c`} >
+                        <div className="ptr-c__content" ref={refDivResumeMain}>
+                            <div className="body-template-resume" style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }} >
                                 {
                                     !isCover && (
                                         <TemplatesSelect

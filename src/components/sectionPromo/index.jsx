@@ -15,7 +15,6 @@ export const SectionPromo = ({
     isMob,
     arrImg,
     coverPage = false,
-    handleCreate = () => { }
 }) => {
     return (
         <section className={`promo ${coverPage ? "cover" : ""}`}>
@@ -25,7 +24,7 @@ export const SectionPromo = ({
                         <p className="top-text">{topTitle}</p>
                         <h1 className="h1 promo__title">{mainTitle}</h1>
                         <div className="promo-offer__bottom">
-                            <Link href={linkBtn} className={`promo-offer__btn button-p  ${coverPage ? "" : "button-p_black"}`} onClick={handleCreate}>{textBtn}</Link>
+                            <Link href={linkBtn} className={`promo-offer__btn button-p  ${coverPage ? "" :"button-p_black"}`}>{textBtn}</Link>
                             <div className="promo-offer__desc">
                                 <p className="bottom-text left-arrow">{desc}</p>
                             </div>

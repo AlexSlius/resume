@@ -194,7 +194,7 @@ const FormPersonalize = ({
             !(contObj?.lastName?.length > 0) && handleUpdateItemField({ name: "lastName", value: lastName });
             !(contObj?.email?.length > 0) && handleUpdateItemField({ name: "email", value: email });
         }
-    }, [objFormSettings]);
+    }, [objFormSettings, isAthorized]);
 
     return (
         <>

@@ -21,9 +21,6 @@ import { ModalTemplate } from "../../components/modals/modaltemplate";
 
 import { getResumesTemplates } from "../../controllers/resumeData";
 import { updateActiveResumeNew } from "../../slices/resumeData";
-import { getAllPageHome } from "../../controllers/pages/pagesHome";
-import { contactAddNew } from "../../controllers/contacts";
-
 import { routersPages } from "../../constants/next-routers";
 
 // data page
@@ -31,7 +28,7 @@ import promoNumbersData from './data/promo-numbers.json';
 import reviewsObjData from "./data/data-reviews.json";
 import arrAccordion from "./data/data-accordion.json";
 import dataCostomers from "../../dataPages/data-costomers.json";
-
+import { getAllPageHome } from "../../controllers/pages/pagesHome";
 
 
 export const HomePage = () => {
@@ -49,11 +46,6 @@ export const HomePage = () => {
         },
         theme: {
             currentResolution
-        },
-        auth: {
-            autorizate: {
-                isAthorized
-            }
         },
         resumeData,
     } = useSelector((state) => state);
@@ -77,13 +69,6 @@ export const HomePage = () => {
             status: true,
             data
         });
-    }
-
-    const handleCreateAut = async (e) => {
-        if (isAthorized) {
-            e.preventDefault();
-            let res = await dispatch(contactAddNew({ isNewResume: true, isDashboard: true, isGetTemplate: false }));
-        }
     }
 
     useEffect(() => {
@@ -111,7 +96,6 @@ export const HomePage = () => {
                 imgRight="/images/page/resumes_3x.webp"
                 users={usersCreated}
                 isMob={isMob}
-                handleCreate={handleCreateAut}
                 arrImg={['/images/page/item-resum-1.png', '/images/page/item-resum-2.png', '/images/page/item-resum-3.png', '/images/page/item-resum-4.png', '/images/page/item-resum-5.png', '/images/page/item-resum-6.png']}
             />
             <SectionCtepsCeating

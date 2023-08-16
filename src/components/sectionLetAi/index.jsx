@@ -16,30 +16,28 @@ export const SectionLetAi = ({
                         <div className="aib__he">UI/UX Designer</div>
                         <div className="aib__des">
                             <ul>
-                                <li>Settled any customer disputes in a professional and pleasant manner.</li>
+                                <li>Conducting user research and testing to glean insights and improve user experience</li>
                             </ul>
                         </div>
 
                         <div className="aib__item tone">
-                            <span>Worked to ensure a positive and hassle-free customer experience.</span>
+                            <span>Creating design systems and pattern libraries to promote consistency and scalability</span>
                         </div>
                         <div className="aib__item ttwo">
-                            <span>Settled any customer disputes
-                                in a professional and pleasant manner.</span>
+                            <span>Settled any customer disputes in a professional and pleasant manner.</span>
                         </div>
                         <div className="aib__item tthree">
                             <span>Identified and maximized sales opportunities, and increased customer retention rates.</span>
                         </div>
                         <div className="aib__item tfour">
-                            <span>Settled any customer disputes
-                                in a professional and pleasant manner.</span>
+                            <span>Designing wireframes, prototypes and high-fidelity mockups</span>
                         </div>
                     </div>
                     <div className="aib-b">
                         <div className="aib-b__wrl">
                             <ul className="aib-b__list">
                                 <li>Powered by GPT-4</li>
-                                <li>REady in seconds</li>
+                                <li>Ready in seconds</li>
                                 <li>Verified by HR professionals</li>
                                 <li>Unique and relevant</li>
                             </ul>

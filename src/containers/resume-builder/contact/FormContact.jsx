@@ -50,7 +50,6 @@ const FormContact = ({
    statePictureFile
 }) => {
    const refIdTimeout = useRef(undefined);
-
    const refCountry = useRef(undefined);
    const refCity = useRef(undefined);
    const refAddress = useRef(undefined);
@@ -270,7 +269,7 @@ const FormContact = ({
          !(contObj?.email?.length > 0) && handlerSetDateState('email', email);
          !(contObj?.picture?.length > 0) && handlerSetDateState('picture', avatar?.image || null);
       }
-   }, []);
+   }, [objFormSettings, isAthorized, avatar]);
 
    useEffect(() => {
       if (!!showModalEmail) {

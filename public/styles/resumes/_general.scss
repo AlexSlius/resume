@@ -1,8 +1,5 @@
 .body-template-resume {
   font-family: Rubik;
-  @media(min-width: 992px) {
-    min-height: calc(100vh - 180px);
-  }
   background: #fff;
 
   h1,
@@ -107,5 +104,11 @@
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+}
+
+@media(max-width: 992px) {
+  .cv-body.cv-body-visible.none {
+    display: flex!important;
   }
 }

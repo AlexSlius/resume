@@ -88,7 +88,7 @@ const ResumeMain = ({
 
    let objActiveBlock = activeTemplateBlock(list, tab);
 
-   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: resumeData.drawing, loadContent});
+   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent });
 
    useEffect(() => {
       const activeResume = dataOther?.resumeActive;
