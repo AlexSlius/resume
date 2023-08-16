@@ -135,7 +135,7 @@ export const Menu = () => {
                                                                         <div className="submenu__top">
                                                                             <div className="submenu__title">Popular Resume Templates</div>
                                                                             <div className="submenu__r">
-                                                                                <Link href={routersPages['jobWinningResumeTemplates']} className="link-a">View all</Link>
+                                                                                <Link href={routersPages['pageCoverLeterTemplates']} className="link-a">View all</Link>
                                                                             </div>
                                                                         </div>
                                                                         <div className="submenu__templs">

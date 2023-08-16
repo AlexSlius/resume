@@ -9,7 +9,7 @@ import iconEye from "/public/images/icons/eye.svg?sprite"
 
 export const InputPassword = (props) => {
     let classNames = `${!!props.value?.length > 0 ? "text" : ""}`;
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = React.useState(true);
 
     let classBtnEye = showPassword ? style.open : ''
     let typeField = showPassword ? 'text' : 'password'
@@ -28,9 +28,9 @@ export const InputPassword = (props) => {
                     valid={props.valid || false}
                     onChange={props.onChange}
                 />
-                <button type="button" onClick={() => setShowPassword(prev => !prev)} className={`${style.btn_eye} ${classBtnEye}`}>
+                {/* <button type="button" onClick={() => setShowPassword(prev => !prev)} className={`${style.btn_eye} ${classBtnEye}`}>
                     <Icon svg={iconEye} />
-                </button>
+                </button> */}
             </div>
             {
                 !!props?.textError && (

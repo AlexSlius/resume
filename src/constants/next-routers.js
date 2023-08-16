@@ -70,7 +70,7 @@ export const routersPages = {
     'faqs': 'faqs',
     'contactUs': 'contact-us',
     'jobWinningResumeTemplates': 'job-winning-resume-templates',
-    "pageCoverLeterTemplates": "cover-letter-templates",
+    "pageCoverLeterTemplates": "job-winning-cover-templates",
     'termsOfUse': 'terms-of-use',
     'privacyPolicy': 'privacy-policy',
     'templates': 'templates',

@@ -70,11 +70,11 @@ export const LoginPage = () => {
                                 <CRow className="g-30 r-gap-30">
                                     <CCol>
                                         <InputPassword
-                                            label="Code"
+                                            label="Email code"
                                             valid={!(password.length < 6)}
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value.trim())}
-                                            textError={(state.text.length > 0) ? state.text : ""}
+                                        // textError={(state.text.length > 0) ? state.text : ""}
                                         />
                                     </CCol>
                                 </CRow>
