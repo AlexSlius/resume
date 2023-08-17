@@ -367,11 +367,6 @@
         border-right: 0;
         flex-basis: 200%;
       }
-      .cv-letter-text {
-        & > br:first-child {
-          display: none;
-        }
-      }
       .cv-destination {
         border-left: 1px dotted $main_color_1;
       }

@@ -299,11 +299,6 @@
         width: auto;
         flex-shrink: 1;
       }
-      .cv-letter-text {
-        & > br:first-child {
-          display: none;
-        }
-      }
       .cv-destination {
         border-left-width: 1px;
         border-left-style: solid;
