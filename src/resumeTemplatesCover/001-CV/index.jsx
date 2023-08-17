@@ -110,7 +110,7 @@ const CoverCv001 = ({
                   <div className="cv-destination-block additional-color-3-border">
                     <div className="destination-details">
                       <div className="cv-heading font-size-2 additional-color-1-text">To</div>
-                      <div className="cv-sender font-size-1" dangerouslySetInnerHTML={{ __html: data.to }}></div>
+                      <div className="cv-sender" dangerouslySetInnerHTML={{ __html: data.to }}></div>
                       <div className="cv-heading font-size-2 additional-color-1-text">From</div>
                       <div dangerouslySetInnerHTML={{ __html: data.from }}></div>
                     </div>
