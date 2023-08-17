@@ -154,6 +154,10 @@
     .ptr-c {
         @media(min-width: 992px) {
             overflow: hidden;
+
+            .cv-body-1.cv-body-visible {
+                margin-bottom: 26px;
+            }
         }
     }
 }
