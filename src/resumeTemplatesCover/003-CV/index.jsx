@@ -17,7 +17,7 @@ const drawing = () => {
 
       let text1 = getCvLetterContainer().find('.cv-letter-text');
 
-      if (getPageContainer2().height() > (getPageContainer2().parent().height())) {
+      if (Math.round(getPageContainer2().height()) > Math.round(getPageContainer2().parent().height())) {
         do {
           text1.html(text1.html().substring(0, text1.html().lastIndexOf(" ")));
           text1.html(text1.html().substring(0, text1.html().lastIndexOf("<")));
