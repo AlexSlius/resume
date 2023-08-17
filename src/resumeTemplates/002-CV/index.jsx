@@ -126,7 +126,7 @@ const drawing = () => {
       return getPageContainer().find('.area-3');
     }
     function checkHeight() {
-      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height() - 40;
+      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height() - 38;
     }
     function getPageContainer() {
       var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
