@@ -271,9 +271,9 @@ const Templates = ({
         handleResume(templatesItems[now]);
         if (now == 1 && !isOnegetMobTemplate) {
             if (!isCover) {
-                dispatch(getResumesTemplates({ page: resumeData?.list?.count_pages }));
+                dispatch(getResumesTemplates({ params: { page: resumeData?.list?.count_pages } }));
             } else {
-                dispatch(getCoverTemplates({ page: coverData?.list?.count_pages }));
+                dispatch(getCoverTemplates({ params: { page: coverData?.list?.count_pages } }));
             }
 
             setIsOnegetTemplate(true);
@@ -335,7 +335,7 @@ const Templates = ({
 
                 if (!isCover) {
                     if (fetching && isNextPage) {
-                        let res = await dispatch(getResumesTemplates({ page: currentPage + 1 }));
+                        let res = await dispatch(getResumesTemplates({ params: { page: currentPage + 1 } }));
                         if (res?.payload?.items) {
                             setFetching(false);
                             setCurrentPage((currentPage + 1));
@@ -343,7 +343,7 @@ const Templates = ({
                     }
                 } else {
                     if (fetching && isNextPage) {
-                        let res = await dispatch(getCoverTemplates({ page: currentPage + 1 }));
+                        let res = await dispatch(getCoverTemplates({ params: { page: currentPage + 1 } }));
 
                         if (res?.payload?.items) {
                             setFetching(false);
@@ -600,7 +600,7 @@ const Templates = ({
 
                     <div className={`ptr-c hide_scroll`} >
                         <div className="ptr-c__content" ref={refDivResumeMain}>
-                            <div className="body-template-resume" style={{ msZoom: `${scaleSize}`, MozTransform: `scale(${scaleSize})`, zoom: `${scaleSize}`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }} >
+                            <div className="body-template-resume" style={{ msZoom: `${scaleSize}`, MozTransform: `scale(${scaleSize})`, zoom: `${scaleSize}` }} >
                                 {
                                     !isCover && (
                                         <TemplatesSelect

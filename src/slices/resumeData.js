@@ -71,7 +71,14 @@ export const slice = createSlice({
         },
         [getResumesTemplates.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
+
+            if (action.payload?.isNew) {
+                state.list = { items: action.payload.items, count_pages: action.payload.count_pages };
+            }
+
+            if (!action.payload?.isNew) {
+                state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
+            }
         },
         // get data
         [fetchGetResumeData.pending]: (state) => {

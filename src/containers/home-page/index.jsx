@@ -73,7 +73,7 @@ export const HomePage = () => {
 
     useEffect(() => {
         localStorage.setItem('page', 'home-page');
-        dispatch(getResumesTemplates({ page: 1, category: "" }));
+        dispatch(getResumesTemplates({ params: { page: 1, category: "" } }));
         dispatch(getAllPageHome());
     }, []);
 

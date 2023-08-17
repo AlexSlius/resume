@@ -9,9 +9,9 @@ import {
 import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
 
 // all list
-export const getCoverTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async (params) => {
+export const getCoverTemplates = createAsyncThunk('resumeData/fetchGetCoversTemplates', async ({ params, isNew = false }) => {
     const response = await api.coverData.getCoverTemplates(params);
-    return response;
+    return { isNew, ...response };
 });
 
 export const setUpdateCoverDataActive = createAsyncThunk('resumeData/setUpdateCoverDataActive', async ({ idCv, data, isGet = false, isRemoveSesion = false }, thunkAPI) => {

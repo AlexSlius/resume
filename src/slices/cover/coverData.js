@@ -14,6 +14,7 @@ const initialState = {
         items: [],
         count_pages: 0,
     },
+    data: {},
     resumeActive: null,
     resumeActiveNew: {
         slug: "001-CV",
@@ -69,8 +70,15 @@ export const slice = createSlice({
         },
         [getCoverTemplates.fulfilled]: (state, action) => {
             state.status = statusLoaded;
-            state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
-        },
+
+            if (action.payload?.isNew) {
+                state.list = { items: action.payload.items, count_pages: action.payload.count_pages };
+            }
+
+            if (!action.payload?.isNew) {
+                state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
+            }
+        }
     }
 });
 

@@ -17,7 +17,7 @@
     }
 
     &__ava {
-        width: 64px;
+        min-width: 64px;
         height: 64px;
         border-radius: 50%;
         background-size: cover;
@@ -100,7 +100,7 @@
     }
 
     .card-revie__ava {
-        width: 48px;
+        min-width: 48px;
         height: 48px;
         margin-right: 14px;
     }

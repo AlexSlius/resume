@@ -1,5 +1,6 @@
+import Head from 'next/head'
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from "lodash";
 import Link from "next/link";
@@ -8,14 +9,22 @@ import { LoadChildrenBtn } from "../../components/loadChildrenBtn"
 import { ItemCardResum } from "../../components/itemCardResum";
 import { ModalTemplate } from "../../components/modals/modaltemplate";
 
+import { updateActiveCoverNew } from "../../slices/cover/coverData";
 import { updateActiveResumeNew } from "../../slices/resumeData";
 import { isLoader } from "../../helpers/loadings"
 
 import { routersPages } from "../../constants/next-routers";
 import { getResumesTemplates } from "../../controllers/resumeData";
+import { getCoverTemplates } from "../../controllers/cover/coverData";
 
-export const JobWinningPage = () => {
+import dataPage from "../../dataPages/pageResumeAndCover.json";
+
+export const JobWinningPage = ({
+    startType = "resume"
+}) => {
     const [currentPage, setCurrentPage] = useState(2);
+    const [typePage, setTypePage] = useState(startType);
+    const [objData, setObjData] = useState({});
     const [modalTem, setModalTem] = useState({
         status: false,
         data: null,
@@ -24,16 +33,28 @@ export const JobWinningPage = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const category = router.query.category;
+    const isResume = typePage == "resume";
 
     const {
         resumeData,
+        coverData
     } = useSelector((state) => state);
 
-    const handleUpload = async () => {
-        let res = await dispatch(getResumesTemplates({ page: currentPage, category: (category === "undefined" || category == "all") ? "" : category }));
+    const handleUpload = async (isNew = false) => {
+        if (isResume) {
+            let res = await dispatch(getResumesTemplates({ params: { page: currentPage, category: (category === "undefined" || category == "all") ? "" : category }, isNew }));
 
-        if (res?.payload?.items) {
-            setCurrentPage(prev => prev + 1)
+            if (res?.payload?.items) {
+                setCurrentPage(prev => prev + 1)
+            }
+        }
+
+        if (!isResume) {
+            let res = await dispatch(getCoverTemplates({ params: { page: currentPage, category: (category === "undefined" || category == "all") ? "" : category, isNew }, isNew }));
+
+            if (res?.payload?.items) {
+                setCurrentPage(prev => prev + 1)
+            }
         }
     };
 
@@ -53,36 +74,54 @@ export const JobWinningPage = () => {
         });
     }
 
+    const handleTypePage = (type) => {
+        setCurrentPage(1);
+        setTimeout(() => {
+            setTypePage(type);
+        }, 0);
+    }
+
+    useEffect(() => {
+        if (currentPage == 1) {
+            handleUpload(true);
+        }
+    }, [typePage]);
+
+    useEffect(() => {
+        setObjData((isResume) ? resumeData : coverData);
+    }, [resumeData, coverData, typePage]);
+
+    useEffect(() => {
+        setTypePage(startType);
+    }, [router]);
+
     return (
         <>
             <section className="contact-page">
                 <div className="containers text-center">
-                    <h1 className="h1 h1_p48 fontw-600">Job-winning<br /> resume templates</h1>
-                    <p className="text-t-t text-t-t_18">
-                        Each resume template is expertly designed and follows the exact “resume rules” hiring
-                        managers look for. Stand out and get hired faster with field-tested resume templates.
-                    </p>
+                    <h1 className="h1 h1_p48 fontw-600" dangerouslySetInnerHTML={{ __html: dataPage[typePage].h1 }}></h1>
+                    <p className="text-t-t text-t-t_18">{dataPage[typePage].descPage}</p>
 
                     <div className="btn-centers-w btn-centers-w_t">
-                        <Link href={routersPages['resumeBuilderNew']} className="button-p button-type-standart">Create my resume</Link>
+                        <Link href={isResume ? routersPages['resumeBuilderNew'] : routersPages['coverLetterNew']} className="button-p button-type-standart">{dataPage[typePage].nameTable}</Link>
                     </div>
 
                     <div className="wr-select-row">
                         <div className="seler-r">
-                            <Link href={`/${routersPages['jobWinningResumeTemplates']}`} className="active">Resume</Link>
-                            <Link href={`/${routersPages['pageCoverLeterTemplates']}`}>Cover Letter</Link>
+                            <button onClick={() => handleTypePage("resume")} className={`${isResume ? "active" : ""}`}>Resume</button>
+                            <button onClick={() => handleTypePage("cover")} className={`${!isResume ? "active" : ""}`}>Cover Letter</button>
                         </div>
                     </div>
 
                     <div className="wr-resumes">
                         <div className="items-resumes">
                             {
-                                isArray(resumeData?.list?.items) && resumeData.list.items.map((item, index) => (
+                                isArray(objData?.list?.items) && objData.list.items.map((item, index) => (
                                     <ItemCardResum
                                         item={item}
-                                        keyRouter="resumeBuilderNew"
+                                        keyRouter={isResume ? "resumeBuilderNew" : "coverLetterNew"}
                                         key={index}
-                                        updateActiveResumeNew={(val) => dispatch(updateActiveResumeNew(val))}
+                                        updateActiveResumeNew={(val) => dispatch(isResume ? updateActiveResumeNew(val) : updateActiveCoverNew(val))}
                                         handlePreview={handlePreview}
                                     />
                                 ))
@@ -90,9 +129,9 @@ export const JobWinningPage = () => {
                         </div>
                     </div>
                     {
-                        ((resumeData?.list?.count_pages > 1) && (resumeData?.list?.count_pages + 1 > currentPage)) && (
+                        ((objData?.list?.count_pages > 1) && (objData?.list?.count_pages + 1 > currentPage)) && (
                             <div className="btn-centers-w btn-centers-w_t2">
-                                <LoadChildrenBtn isLoad={isLoader(resumeData.status)}>
+                                <LoadChildrenBtn isLoad={isLoader(objData.status)}>
                                     <button onClick={handleUpload} className="button-p button-p_light_grey">
                                         <span>Upload more</span>
                                     </button>
@@ -107,8 +146,8 @@ export const JobWinningPage = () => {
                 item={modalTem.data}
                 activeClassColor={modalTem.activeClassColor}
                 onClose={handleCloseModalTemplate}
-                hrefLink={routersPages['resumeBuilderNew']}
-                handleLink={(val) => dispatch(updateActiveResumeNew(val))}
+                hrefLink={routersPages[isResume ? 'resumeBuilderNew' : 'coverLetterNew']}
+                handleLink={(val) => dispatch(isResume ? updateActiveResumeNew(val) : updateActiveCoverNew(val))}
             />
         </>
     )

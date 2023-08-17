@@ -81,11 +81,11 @@ export const withPublicRoute = ({
             }
 
             if (!!isGetResumesTemplates) {
-                await store.dispatch(getResumesTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+                await store.dispatch(getResumesTemplates({ params: { page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }, isNew: true }));
             }
 
             if (!!isGetCoverTemplates) {
-                await store.dispatch(getCoverTemplates({ page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }));
+                await store.dispatch(getCoverTemplates({ params: { page: 1, category: (ctx?.query?.category === "undefined" || ctx?.query?.category == "all") ? "" : ctx?.query?.category }, isNew: true }));
             }
 
             if (!!isPageHome) {

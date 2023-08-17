@@ -9,9 +9,10 @@ import {
 import { handleCVUpdateDrawingTrue } from "../slices/resumeData";
 
 // all list
-export const getResumesTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async (params) => {
+export const getResumesTemplates = createAsyncThunk('resumeData/fetchGetResumesTemplates', async ({ params, isNew = false }) => {
     const response = await api.resumesData.getResumesTemplates(params);
-    return response;
+
+    return { isNew, ...response };
 });
 
 export const fetchGetResumeData = createAsyncThunk('resumeData/fetchfetchGetResumeData', async ({ idCv }) => {

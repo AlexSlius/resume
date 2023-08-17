@@ -73,7 +73,7 @@ export const CoverLatter = () => {
 
     useEffect(() => {
         localStorage.setItem('page', 'cover-letter');
-        dispatch(getCoverTemplates({ page: 1, category: "" }));
+        dispatch(getCoverTemplates({ params: { page: 1, category: "" } }));
         dispatch(getAllPageCoverLetter());
     }, []);
 

@@ -26,7 +26,7 @@ export const ItemCardResum = ({
             setActiveColor(item?.colors[0].class);
             setActiveImg(item?.colors[0].color_image);
         }
-    }, []);
+    }, [item]);
 
     return (
         <div className="item-card-resum">

@@ -128,7 +128,7 @@
     min-height: calc(100vh - 170px);
 
     @media(min-width: 992px) {
-        overflow: hidden;
+        overflow: auto;
     }
 
     @media(max-width: 992px) {
@@ -414,13 +414,11 @@
 }
 
 .page-view-share {
-    pointer-events: none;
-
     .page-templates__right {
         width: 100%;
         min-height: 100vh;
         height: auto;
-        padding: 0 16px 25px 16px;
+        padding: 0 16px;
 
         .body-template-resume {
             background: transparent;
@@ -431,12 +429,6 @@
         .ptr-c {
             min-height: 100vh;
             max-height: none;
-
-            .body-template-resume {
-                transform: scale(1) !important;
-                zoom: 1 !important;
-                -ms-zoom: 1!important;
-            }
         }
 
         .ptr-c__content {
@@ -457,11 +449,38 @@
     }
 }
 
+
+
+.pdf {
+    .page-view-share {
+        .page-templates__right {
+            .ptr-c {
+                .body-template-resume {
+                    transform: scale(1) !important;
+                    zoom: 1 !important;
+                    -ms-zoom: 1 !important;
+                }
+            }
+        }
+    }
+}
+
+.page-share {
+    &:not(.pdf) {
+        .page-templates__right {
+            .cv-body.cv-body-visible {
+                margin-bottom: 26px;
+            }
+        }
+    }
+}
+
 .page-templates {
     .body-template-resume {
         transform-origin: 50% 0px;
-        min-width: 624px;
-        max-height: 842px;
+        width: 624px;
+        height: 842px;
+        margin: 0 auto;
 
         @media(max-width: 1023px) {
             transform-origin: 0px 0px;

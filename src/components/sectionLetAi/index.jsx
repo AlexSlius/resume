@@ -24,7 +24,7 @@ export const SectionLetAi = ({
                             <span>Creating design systems and pattern libraries to promote consistency and scalability</span>
                         </div>
                         <div className="aib__item ttwo">
-                            <span>Settled any customer disputes in a professional and pleasant manner.</span>
+                            <span>Conducting user research and testing to glean insights and improve user experience</span>
                         </div>
                         <div className="aib__item tthree">
                             <span>Identified and maximized sales opportunities, and increased customer retention rates.</span>
