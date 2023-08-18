@@ -89,7 +89,7 @@ export const CoverCv004 = ({
             {
               (firstName || lastName) && (
                 <div className="name-block">
-                  <div className="cv-name additional-color-1-text font-size-4">{firstName}{` `} {lastName}</div>
+                  <div className="cv-name additional-color-1-text font-size-4">{firstName && firstName} {` `} {lastName && lastName}</div>
                 </div>
               )
             }
