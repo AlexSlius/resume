@@ -340,11 +340,6 @@
         width: auto;
         flex-shrink: 1;
       }
-      .cv-letter-text {
-        & > br:first-child {
-          display: none;
-        }
-      }
       .cv-destination-block {
         display: flex;
         flex-direction: column;
