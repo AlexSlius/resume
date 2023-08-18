@@ -54,6 +54,7 @@
   // Blocks
   .cv-name {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
   }
 
   .cv-profession {
@@ -391,81 +392,32 @@
   }
 
   .cv-body-2 {
-    .cv-body-content {
-      flex-direction: column;
-
-      .columns-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: stretch;
+    .top-area {
+      padding: 30px 30px 0;
+      .profile-information {
+        padding: 30px 20px 0;
       }
-
-      .cv-body-area {
-        &.top-area {
-          padding: 30px 30px 0;
-        }
-
-        &.top-area {
-          .profile-information {
-            padding-top: 30px;
-          }
-        }
-
-        &.middle-area {
-          padding: 30px 50px;
-
-          .cv-heading {
-            margin-bottom: 15px;
-          }
-        }
-
-        &.bottom-area {
-          display: flex;
-          flex: 1;
-          align-items: flex-end;
-          min-height: 100px;
-
-          .block-block {
-            margin-top: 0px;
-          }
-
-          .cv-destination {
-            padding: 30px 51px;
-            flex-basis: 100%;
-
-            .cv-destination-block {
-              height: 100%;
-
-              .destination-details {
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                justify-content: flex-start;
-
-                .block-block {
-                  .cv-heading {
-                    margin-bottom: 5px;
-                  }
-                }
-
-                .to-block {
-                  width: 118px;
-                  margin-right: 80px;
-                }
-
-                p {
-                  margin-bottom: 2px;
-
-                  &:last-child {
-                    margin-bottom: 0px;
-                  }
-                }
-              }
-            }
-          }
-        }
+    }
+    .middle-area {
+      background: none;
+      padding: 40px 50px 30px;
+    }
+    .bottom-area {
+      display: flex;
+      align-items: flex-end;
+      .cv-destination {
+        padding: 30px 50px;
+        flex-basis: 100%;
+      }
+      .destination-details {
+        display: flex;
+        column-gap: 80px;
+      }
+      .cv-heading {
+        margin-bottom: 5px;
+      }
+      .to-block {
+        flex-basis: 120px;
       }
     }
   }
