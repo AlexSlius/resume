@@ -48,8 +48,10 @@
 
   //Blocks
   .cv-name {
-    font-family: 'Russo One';
     letter-spacing: 0.9px;
+    span {
+      font-family: 'Russo One';
+    }
   }
 
   .cv-profession {
@@ -270,79 +272,36 @@
   }
 
   .cv-body-2 {
-    .cv-body-content {
-      flex-direction: column;
-
-      .columns-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: stretch;
-      }
-
-      .cv-body-area {
-        &.top-area {
-          padding: 30px 30px 0;
-        }
-
-        &.top-area {
-          .profile-block {
-            padding-top: 30px;
-          }
-        }
-
-        &.middle-area {
-          padding: 30px 50px;
-
-          .cv-heading {
-            margin-bottom: 15px;
-          }
-        }
-
-        &.bottom-area {
-          display: flex;
-          flex: 1;
-          align-items: flex-end;
-          min-height: 100px;
-
-          .cv-destination {
-            padding: 30px 51px;
-            flex-basis: 100%;
-
-            .cv-destination-block {
-              height: 100%;
-
-              .destination-details {
-                height: 100%;
-                display: flex;
-                flex-direction: row;
-                align-items: flex-start;
-                justify-content: flex-start;
-
-                .to-block {
-                  width: 118px;
-                  margin-right: 80px;
-                }
-
-                p {
-                  margin-bottom: 2px;
-
-                  &:last-child {
-                    margin-bottom: 0px;
-                  }
-                }
-              }
-            }
-          }
-        }
+    .top-area {
+      .profile-block {
+        padding: 75px 0;
+        justify-content: center;
       }
     }
-  }
-
-  .cv-letter-text {
-    .line_text {
-      &::before {
-        background: $main_color_1;
+    .middle-area {
+      padding: 70px 135px 15px;
+    }
+    .bottom-area {
+      flex: 0;
+      display: flex;
+      align-items: flex-end;
+      .profile-additional-info {
+        justify-content: space-between;
+        flex-basis: 100%;
+      }
+      .column-left {
+        flex-basis: 150px;
+      }
+      .column-right {
+        flex-basis: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 5px;
+        justify-content: space-between;
+        .footer-block {
+          flex-basis: calc(50% - 5px);
+        }
       }
     }
   }
@@ -364,6 +323,12 @@
     .font-size-4 {
       font-size: 22px;
     }
+
+    .cv-body-2 {
+      .font-size-4 {
+        font-size: 26px;
+      }
+    }
   }
 
   .font-size-scheme-state-medium {
@@ -382,6 +347,12 @@
     .font-size-4 {
       font-size: 24px;
     }
+
+    .cv-body-2 {
+      .font-size-4 {
+        font-size: 28px;
+      }
+    }
   }
 
   .font-size-scheme-state-big {
@@ -399,6 +370,12 @@
 
     .font-size-4 {
       font-size: 26px;
+    }
+
+    .cv-body-2 {
+      .font-size-4 {
+        font-size: 30px;
+      }
     }
   }
 
