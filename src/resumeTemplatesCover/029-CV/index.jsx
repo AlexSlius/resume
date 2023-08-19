@@ -4,13 +4,10 @@ const drawing = () => {
   if (typeof window != "undefined") {
     let letter_current_page_number = 1;
 
-    $('.cv-body-visible').remove();
-
     function rebuildingPages2() {
-      let cv_letter_heading = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-heading').clone();
-      let cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text').clone();
+      $('.cv-body-visible').remove();
 
-      getCvLetterContainer().append(cv_letter_heading);
+      let cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text').clone();
 
       let original_cv_letter_text = $('#cv-body-2 .cv-body-area.middle-area .cv-letter-text');
       getCvLetterContainer().append(cv_letter_text);
@@ -28,6 +25,8 @@ const drawing = () => {
         getCvLetterContainer().append(original_cv_letter_text.clone());
         let text2 = getCvLetterContainer().find('.cv-letter-text');
         text2.html(original_cv_letter_text.html().substring(text1.html().length - 4, original_cv_letter_text.html().length));
+        document.querySelectorAll("p")
+          .forEach(el => el.textContent.trim() === "" && el.parentNode.removeChild(el));
       }
     }
 
