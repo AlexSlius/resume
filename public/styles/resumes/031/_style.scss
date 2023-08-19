@@ -244,54 +244,29 @@
 
   .cv-body-2 {
     .cv-body-content {
+      padding: 0;
       flex-direction: column;
-      .top-area {
-        margin: 51px 81px 0px 81px;
-        .cv-name {
-          text-align: left;
-        }
+    }
+    .top-area {
+      padding: 70px 0 0;
+      .cv-name {
+        text-align: center;
       }
-      .middle-area {
-        flex: 1;
-        margin: 88px 65px 0px 65px;
-        .letter-block {
-          display: flex;
-          align-items: stretch;
-          justify-content: stretch;
-          .left-side {
-            width: 20px;
-            margin-right: 5px;
-          }
-          .right-side {
-            flex: 1;
-            .letter-heading {
-              margin-bottom: 15px !important;
-            }
-          }
-        }
-      }
-      .bottom-area {
-        margin: 20px 88px 44px 88px;
-        .addresses-block {
-          display: flex;
-          column-gap: 50px;
-          .cv-heading {
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 6px !important;
-            font-weight: 400;
-          }
-          .to-block {
-            flex-basis: 100px;
-          }
+    }
+    .middle-area {
+      flex: 1;
+      padding: 90px 120px 15px;
+    }
+    .bottom-area {
+      padding: 0 120px 40px;
+      .addresses-block {
+        display: flex;
+        column-gap: 50px;
+        .to-block {
+          flex-basis: 100px;
         }
       }
     }
-  }
-
-  .letter-block {
-    display: flex;
-    align-items: stretch;
-    justify-content: stretch;
   }
 
   /* Font size scheme */
