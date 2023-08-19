@@ -253,43 +253,36 @@
 
   .cv-body-2 {
     .cv-body-content {
-      display: flex;
       flex-direction: column;
-      align-items: stretch;
-      justify-content: stretch;
-      padding: 75px 135px 60px;
-      .top-area {
-        .cv-name {
-          text-align: left;
-        }
+      padding: 0;
+    }
+    .top-area {
+      padding: 75px 130px 0;
+    }
+    .middle-area {
+      flex: 1;
+      padding: 40px 130px;
+    }
+    .bottom-area {
+      margin: 0 130px 60px;
+      display: flex;
+      position: relative;
+      border-top-width: 1px;
+      border-top-style: solid;
+      .star-2 {
+        position: absolute;
+        right: -24px;
+        top: -45px;
+        z-index: 100;
+        width: 90px;
+        height: 90px;
       }
-      .middle-area {
-        flex: 1;
-        margin: 40px 0;
-      }
-      .bottom-area {
+      .addresses-block {
         display: flex;
-        position: relative;
-        border-top-width: 1px;
-        border-top-style: solid;
-
-        .star-2 {
-          position: absolute;
-          right: -24px;
-          top: -45px;
-          z-index: 100;
-          width: 90px;
-          height: 90px;
-        }
-
-        .addresses-block {
-          display: flex;
-          column-gap: 50px;
-          margin-top: 30px;
-
-          .block-to {
-            width: 130px;
-          }
+        column-gap: 50px;
+        margin-top: 30px;
+        .block-to {
+          width: 100px;
         }
       }
     }
