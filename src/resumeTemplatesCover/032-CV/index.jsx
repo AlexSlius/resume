@@ -112,7 +112,6 @@ export const CoverCv032 = ({
                 <div className="block-from">
                   <div className="cv-heading font-size-3 line-height-3 additional-color-1-text">From</div>
                   <div className="font-size-1 line-height-1 main-color-3-text" dangerouslySetInnerHTML={{ __html: data.from }}></div>
-
                 </div>
               </div>
             </div>
