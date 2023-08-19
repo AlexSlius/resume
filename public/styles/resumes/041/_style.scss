@@ -379,8 +379,16 @@
       justify-content: stretch;
       .top-area {
         .main-info-block {
-          margin: 134px auto 54px;
+          position: relative;
           width: 325px;
+          height: 50px;
+          margin: 134px auto 54px;
+          padding: 0px 10px;
+          border-width: 1px;
+          border-style: solid;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
       .middle-area {
