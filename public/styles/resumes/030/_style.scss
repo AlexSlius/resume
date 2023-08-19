@@ -262,36 +262,30 @@ $color_set_7_additional_color_1: #87608D;
   }
 
   .cv-body-2 {
-    .cv-body-content {
-      .top-area {
-        .cv-name {
-          margin-top: 75px;
-          margin-bottom: 56px !important;
-        }
+    .top-area {
+      .cv-name {
+        margin-top: 75px;
+        margin-bottom: 0;
+        text-align: center;
       }
-
-      .middle-area {
-        flex: 1;
-        flex-direction: column;
-        margin: 0 125px;
-        padding: 0;
-
-        .letter-block {
-          margin-top: 15px;
-        }
+    }
+    .middle-area {
+      flex: 1;
+      flex-direction: column;
+      margin: 56px 120px 15px;
+      padding: 0;
+      .letter-block {
+        margin-top: 15px;
       }
-
-      .bottom-area {
-        margin: 10px 0 45px;
-        .addresses-block {
-          display: flex;
-          flex-wrap: wrap;
-          column-gap: 50px;
-          margin: 0px 125px;
-
-          .block-to {
-            width: 100px;
-          }
+    }
+    .bottom-area {
+      margin: 0 120px 45px;
+      .addresses-block {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 50px;
+        .block-to {
+          flex-basis: 100px;
         }
       }
     }
@@ -318,6 +312,12 @@ $color_set_7_additional_color_1: #87608D;
     .font-size-5 {
       font-size: 40px;
     }
+
+    .cv-body-2 {
+      .font-size-5 {
+        font-size: 36px;
+      }
+    }
   }
 
   .font-size-scheme-state-medium {
@@ -340,6 +340,12 @@ $color_set_7_additional_color_1: #87608D;
     .font-size-5 {
       font-size: 42px;
     }
+
+    .cv-body-2 {
+      .font-size-5 {
+        font-size: 38px;
+      }
+    }
   }
 
   .font-size-scheme-state-big {
@@ -361,6 +367,12 @@ $color_set_7_additional_color_1: #87608D;
 
     .font-size-5 {
       font-size: 44px;
+    }
+
+    .cv-body-2 {
+      .font-size-5 {
+        font-size: 40px;
+      }
     }
   }
 
