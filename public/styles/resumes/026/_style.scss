@@ -376,38 +376,34 @@
 
   .cv-body-2 {
     .cv-body-content {
-      min-height: 100%;
-      .middle-area {
-        margin-top: 30px;
+      flex-direction: column;
+    }
+    .top-area {
+      padding: 100px 120px 0;
+    }
+    .middle-area {
+      background: none;
+      padding: 60px 120px 15px;
+      flex: 1;
+    }
+    .bottom-area {
+      display: flex;
+      align-items: flex-end;
+      .cv-destination {
+        padding: 0 120px 60px;
+        flex-basis: 100%;
+      }
+      .destination-details {
+        display: flex;
         column-gap: 50px;
       }
-
-      .column-left {
-        width: 130px;
-      }
-    }
-  }
-
-  .destination-block {
-    .block-to {
-      p {
-        margin-top: 5px;
-      }
-    }
-
-    .block-from {
-      margin-top: 19px;
-
-      p {
-        margin-top: 2px;
-
-        &:first-child {
-          margin-top: 5px;
-        }
-      }
-
-      .underheading-line {
+      .cv-heading {
+        font-family: "Roboto Slab";
+        font-weight: 700;
         margin-bottom: 5px;
+      }
+      .to-block {
+        flex-basis: 120px;
       }
     }
   }
