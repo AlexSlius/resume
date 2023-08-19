@@ -313,50 +313,34 @@ $color_set_6_additional_color_1: #3C6040;
   }
 
   .cv-body-2 {
-    .cv-body-content {
-      .column-right {
-        padding: 140px 30px 0 0;
-        width: 202px;
-        min-width: 202px;
-      }
-      .column-left {
-        padding: 45px 40px 0 30px;
-      }
+    margin: 0;
+    .column-left {
+      padding: 0 30px 0 0;
       .cv-name {
-        margin-bottom: 70px !important;
+        padding: 60px 0 0 50px;
       }
-      .letter-text {
-        p:not(:first-child) {
-          margin-top: 10px;
-        }
-        p:last-child {
-          margin-top: 30px;
-        }
+      .letter-block {
+        padding: 70px 0 15px 50px;
       }
     }
-  }
-
-  .letter-block {
-    .block-heading {
-      margin-bottom: 4px !important;
-    }
-  }
-
-  .destination-block {
-    position: relative;
-    padding: 40px 20px;
-    background: $main_color_2;
-    color: $main_color_1;
-    .block-item {
-      p:not(:first-child) {
-        margin-top: 2px;
+    .column-right {
+      padding: 0;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      .destination-block {
+        display: flex;
+        flex-direction: column;
+        padding: 50px 20px;
+        margin: 0;
+        flex: 1;
       }
-    }
-    .block-heading:not(:first-child) {
-      margin-top: 20px;
-    }
-    &.block-block:first-child {
-      margin: 0;
+      .destination-contacts-block {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+      }
     }
   }
   
