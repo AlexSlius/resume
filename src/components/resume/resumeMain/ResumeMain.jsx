@@ -91,9 +91,8 @@ const ResumeMain = ({
    let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent });
 
    useEffect(() => {
-      const activeResume = dataOther?.resumeActive;
-      setStateLIneSpacig(activeResume?.template_line_spacing ? +activeResume?.template_line_spacing : 50);
-      setStateFontSize(activeResume?.template_text_size ? +activeResume?.template_text_size : 50);
+      setStateLIneSpacig(isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing);
+      setStateFontSize(isNewResume ? dataOther?.resumeActiveNew?.template_text_size : dataOther?.resumeActive?.template_text_size);
    }, [dataOther]);
 
    useEffect(() => {
