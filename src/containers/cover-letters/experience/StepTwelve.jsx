@@ -5,7 +5,7 @@ import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 import Input from "../../../components/uis/input";
 
-const dataSelect = [{ name: "Year(s)" }, { name: "Week(s)" }];
+const dataSelect = [{ name: "Year(s)" }, { name: "Month(s)" }];
 
 export const StepTwelve = ({
     handleUpdateField = () => { },
