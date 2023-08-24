@@ -20,7 +20,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
     isAddNewAuth = false,
     isRedirect = true,
     isClean = true,
-    isGetTemplate= true
+    isGetTemplate = true
 }, thunkAPI) => {
     const {
         coverDataForm: { coverDataObjNew },
@@ -47,6 +47,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
         zipCode: coverDataObjNew.zipCode,
         email: coverDataObjNew.email,
         phone: coverDataObjNew.phone,
+        workExperienceYears: coverDataObjNew.workExperienceYears
     });
 
     const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
