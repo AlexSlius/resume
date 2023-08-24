@@ -88,6 +88,7 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedi
         zipCode: coverDataObjNew.zipCode,
         email: coverDataObjNew.email,
         phone: coverDataObjNew.phone,
+        workExperienceYears: coverDataObjNew.workExperienceYears
     });
 
     const response = await api.personalize.createNewCoverBasic(newObj);
