@@ -1,11 +1,10 @@
 import { CForm, CCol, CRow } from "@coreui/react"
+import { useState } from "react";
 
 import { StepContent } from "../../../components/stepContent";
 import { BtnContinue } from "../component/btnContinue";
 import { InputSelect } from "../../../components/uis/inputSelect";
 import Input from "../../../components/uis/input";
-
-const dataSelect = [{ name: "Year(s)" }, { name: "Month(s)" }];
 
 export const StepTwelve = ({
     handleUpdateField = () => { },
@@ -14,16 +13,44 @@ export const StepTwelve = ({
     coverDataObj,
     dispatch,
 }) => {
+    const [dataSelect, setDataSelect] = useState([{ name: "Year" }, { name: "Month" }]);
+
     const handleClickBtn = async () => {
-        await handleClicQuery(StepsName["graduatedStep"]);
+        handleClicQuery(StepsName["graduatedStep"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {
         handleUpdateField({ name, value });
     }
 
-    const handleRequestInceYears = () => {
+    const handleWorkNumber = (e) => {
+        let value = e.target.value.trim();
 
+        if (+value > 1) {
+            setDataSelect([{ name: "Year(s)" }, { name: "Month(s)" }]);
+
+            if (coverDataObj.workExperienceYears.includes('Year')) {
+                handleUpdateFiled({ name: "workExperienceYears", value: `Year(s)` });
+            }
+
+            if (coverDataObj.workExperienceYears.includes('Mont')) {
+                handleUpdateFiled({ name: "workExperienceYears", value: `Month(s)` });
+            }
+        }
+
+        if (+value <= 1) {
+            setDataSelect([{ name: "Year" }, { name: "Month" }]);
+
+            if (coverDataObj.workExperienceYears.includes('Year')) {
+                handleUpdateFiled({ name: "workExperienceYears", value: `Year` });
+            }
+
+            if (coverDataObj.workExperienceYears.includes('Mont')) {
+                handleUpdateFiled({ name: "workExperienceYears", value: `Month` });
+            }
+        }
+
+        handleUpdateField({ name: "workExperience", value });
     }
 
     return (
@@ -43,7 +70,7 @@ export const StepTwelve = ({
                                 type="number"
                                 valid={+coverDataObj.workExperience > 0}
                                 value={coverDataObj.workExperience}
-                                onChange={(e) => handleUpdateField({ name: "workExperience", value: e.target.value.trim() })}
+                                onChange={handleWorkNumber}
                             />
                         </CCol>
                     </CRow>
@@ -55,7 +82,6 @@ export const StepTwelve = ({
                                 data={dataSelect}
                                 name="workExperienceYears"
                                 handleSaveSelect={handleUpdateFiled}
-                                handleServerRequest={handleRequestInceYears}
                                 isOutDataObj={false}
                                 isIconArrow={true}
                                 isSearch={false}
