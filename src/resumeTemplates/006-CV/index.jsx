@@ -63,16 +63,6 @@ const drawing = () => {
       });
 
       current_page_number = 1;
-      cvDataLeft.forEach(function (el) {
-        getPageColumnLeft().append(el);
-        if (checkHeight()) {
-          el.remove();
-          current_page_number++;
-          getPageColumnLeft().append(el);
-        }
-      });
-
-      current_page_number = 1;
       cvDataRight.forEach(function (el) {
         getPageColumnRight().append(el);
         if (checkHeight()) {
@@ -83,8 +73,18 @@ const drawing = () => {
       });
 
       current_page_number = 1;
+      cvDataLeft.forEach(function (el) {
+        getPageColumnLeft().append(el);
+        if (checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnLeft().append(el);
+        }
+      });
+
       cvDataBottom.forEach(function (el) {
-        getPageColumnBottom().append(el);
+        if (current_page_number === checkCountPages())
+          getPageColumnBottom().append(el);
         if (checkHeight()) {
           el.remove();
           current_page_number++;
@@ -128,7 +128,7 @@ const drawing = () => {
 
       var top_area = $('#cv-body-hidden-container .cv-body-content .top-area').clone();
       top_area.children().remove();
-      page_element_container.append(top_area);
+      current_page_number === 1 && page_element_container.append(top_area);
 
       var middle_area = $('#cv-body-hidden-container .cv-body-content .middle-area').clone();
       middle_area.children().remove();
@@ -158,6 +158,9 @@ const drawing = () => {
           $(this).remove();
         }
       });
+    }
+    function checkCountPages() {
+      return $('.cv-body-visible').length;
     }
     rebuildingPages();
   }

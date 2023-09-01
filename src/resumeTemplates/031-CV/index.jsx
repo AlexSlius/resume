@@ -177,9 +177,18 @@ const drawing = () => {
       return page_element_container;
     }
 
-    $(document).ready(function () {
-      rebuildingPages()
-    });
+    function columnLeftHelper() {
+      $('.cv-body-visible .js-column-left').each(function () {
+        if ($(this).width() === 0) {
+          $(this).addClass('m-empty');
+        } else {
+          $(this).removeClass('m-empty');
+        }
+      });
+    }
+
+    rebuildingPages();
+    columnLeftHelper();
   }
 }
 
@@ -226,7 +235,7 @@ export const ResumeCv031 = ({
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">
         <div id="cv-body-hidden-container" className="cv-body cv-body-1 main-color-1-background">
           <div className="cv-body-content font-size-1 main-color-3-text additional-color-1-border">
-            <div className="column-left">
+            <div className="column-left js-column-left">
               {
                 contact[0]?.picture && (
                   <div className="photo-block block-block">

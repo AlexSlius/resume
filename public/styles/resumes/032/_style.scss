@@ -99,13 +99,14 @@
 
   .column-left {
     flex: 1;
+    flex-basis: 200%;
     .main-info-block {
       margin-top: 20px;
     }
   }
 
   .column-right {
-    width: 200px;
+    flex: 0;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 100px 100px 0px 0px;
@@ -114,8 +115,12 @@
     position: relative;
     z-index: 10;
     .block-block {
+      min-width: 160px;
       &:not(:first-of-type) {
         margin-top: 15px;
+      }
+      &:first-of-type {
+        padding-top: 50px;
       }
     }
     .photo-block {
@@ -247,6 +252,7 @@
     &.has-photo {
       .photo-block {
         display: flex;
+        padding-top: 0 !important;
       }
     }
   }

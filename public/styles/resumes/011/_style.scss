@@ -146,6 +146,7 @@
 
   .column-left {
     flex: 1;
+    flex-basis: 200%;
     .block-block {
       margin-top: 10px;
       margin-left: 20px;
@@ -201,10 +202,10 @@
   }
 
   .column-right {
-    width: 180px;
-    min-width: 180px;
+    flex: 0;
     padding-right: 20px;
     .block-block {
+      min-width: 160px;
       .block-heading {
         font-family: 'Oswald', sans-serif;
         font-weight: 400;
@@ -218,9 +219,13 @@
       &:not(:first-of-type) {
         margin-top: 20px;
       }
+      &:first-of-type {
+        margin-top: 10px;
+      }
     }
     .contacts-information-block {
       position: relative;
+      margin-top: 0 !important;
       .left-block {
         position: absolute;
         top: 0px;
@@ -296,6 +301,9 @@
       .item-name {
         margin-bottom: 2px;
       }
+    }
+    &.m-empty {
+      min-width: 180px;
     }
   }
 

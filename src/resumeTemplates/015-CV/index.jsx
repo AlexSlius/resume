@@ -110,7 +110,18 @@ const drawing = () => {
       return page_element_container;
     }
 
+    function columnRightHelper() {
+      $('.cv-body-visible .js-column-right').each(function () {
+        if ($(this).width() < 70) {
+          $(this).addClass('m-empty');
+        } else {
+          $(this).removeClass('m-empty');
+        }
+      });
+    }
+
     rebuildingPages();
+    columnRightHelper();
   }
 }
 
@@ -381,7 +392,7 @@ export const ResumeCv015 = ({
                 }
               </div>
             </div>
-            <div className="column-right additional-color-1-background">
+            <div className="column-right js-column-right additional-color-1-background">
               <div className={`contacts-information-block block-block ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                 <div className="block-heading font-size-3">Details</div>
                 <div className="contacts-block">

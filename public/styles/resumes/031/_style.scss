@@ -90,11 +90,14 @@
   }
 
   .column-left {
-    width: 124px;
-    flex-shrink: 0;
+    flex: 0;
+    .block-block {
+      min-width: 124px;
+    }
     .photo-block {
       width: 115px;
       height: 115px;
+      min-width: auto !important;
       .photo {
         display: block;
         width: 100%;
@@ -189,9 +192,14 @@
         row-gap: 6px;
       }
     }
+    &.m-empty {
+      min-width: 124px;
+    }
   }
 
   .column-right {
+    flex: 1;
+    flex-basis: 200%;
     .block-block {
       margin-left: -22px;
       display: flex;

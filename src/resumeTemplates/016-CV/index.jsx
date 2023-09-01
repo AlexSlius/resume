@@ -199,7 +199,18 @@ const drawing = () => {
       return page_element_container;
     }
 
+    function columnLeftHelper() {
+      $('.cv-body-visible .js-column-left').each(function () {
+        if ($(this).width() === 0) {
+          $(this).addClass('m-empty');
+        } else {
+          $(this).removeClass('m-empty');
+        }
+      });
+    }
+
     rebuildingPages();
+    columnLeftHelper();
   }
 }
 
@@ -273,7 +284,7 @@ export const ResumeCv016 = ({
               </div>
             </div>
             <div className="middle-area">
-              <div className="column-left">
+              <div className="column-left js-column-left">
                 <div className={`details-block block-block ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                   <div className="heading-wrapper">
                     <div className="cv-heading font-size-4">details</div>

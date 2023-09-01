@@ -82,9 +82,11 @@ $color_set_6_additional_color_1: #0F7355;
 
   //Blocks
   .cv-name {
-    font-family: 'Poppins', sans-serif;
     font-weight: 800;
     margin-bottom: 2px;
+    span {
+      font-family: 'Poppins', sans-serif;
+    }
   }
 
   .cv-profession {
@@ -106,6 +108,7 @@ $color_set_6_additional_color_1: #0F7355;
   .column-left {
     padding: 0 30px;
     flex: 1;
+    flex-basis: 200%;
     .profile-block {
       display: flex;
       flex-wrap: wrap;
@@ -146,10 +149,12 @@ $color_set_6_additional_color_1: #0F7355;
   }
 
   .column-right {
-    width: 205px;
-    min-width: 205px;
     padding: 0 30px;
     color: $main_color_1;
+    flex: 0;
+    .block-block {
+      min-width: 145px;
+    }
     .contacts-information-block {
       .contacts-block {
         display: flex;
@@ -191,6 +196,9 @@ $color_set_6_additional_color_1: #0F7355;
         flex-direction: column;
         row-gap: 4px;
       }
+    }
+    &.m-empty {
+      min-width: 205px;
     }
   }
 

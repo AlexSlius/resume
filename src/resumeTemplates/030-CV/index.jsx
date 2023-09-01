@@ -180,16 +180,18 @@ const drawing = () => {
       return page_element_container;
     }
 
-    function checkPageHeight(page_number) {
-      let page_element = $('.cv-body.cv-body-visible.page-' + page_number);
-      if (page_element.height() < page_element.find('.cv-body-container').height()) {
-        return false;
-      } else {
-        return true;
-      }
+    function columnLeftHelper() {
+      $('.cv-body-visible .js-column-left').each(function () {
+        if ($(this).width() === 0) {
+          $(this).addClass('m-empty');
+        } else {
+          $(this).removeClass('m-empty');
+        }
+      });
     }
 
     rebuildingPages();
+    columnLeftHelper();
   }
 }
 
@@ -254,7 +256,7 @@ export const ResumeCv030 = ({
               </div>
             </div>
             <div className="middle-area">
-              <div className="column-left">
+              <div className="column-left js-column-left">
                 {
                   contact[0]?.picture && (
                     <div className="photo-block block-block">
