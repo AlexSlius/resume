@@ -85,6 +85,7 @@
   .cv-body-content {
     flex: 1;
     display: flex;
+    column-gap: 35px;
   }
 
   .column-left {
@@ -92,9 +93,9 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    width: 245px;
-    min-width: 245px;
-    padding: 0 37px 0 24px;
+    width: 210px;
+    min-width: 210px;
+    padding-left: 24px;
     
     .contacts-information-block {
       position: relative;

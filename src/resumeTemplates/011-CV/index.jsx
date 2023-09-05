@@ -28,6 +28,50 @@ const drawing = () => {
 
       current_page_number = 1;
 
+      getContentContainer2().append(contacts_information_block);
+      if (checkHeight()) {
+        contacts_information_block.remove();
+        current_page_number++;
+        getContentContainer2().append(contacts_information_block);
+      }
+
+      getContentContainer2().append(certificates_block);
+      if (checkHeight()) {
+        certificates_block.remove();
+        current_page_number++;
+        getContentContainer2().append(certificates_block);
+      }
+
+      getContentContainer2().append(references_block);
+      if (checkHeight()) {
+        references_block.remove();
+        current_page_number++;
+        getContentContainer2().append(references_block);
+      }
+
+      getContentContainer2().append(hobbies_block);
+      if (checkHeight()) {
+        hobbies_block.remove();
+        current_page_number++;
+        getContentContainer2().append(hobbies_block);
+      }
+
+      getContentContainer2().append(skills_block);
+      if (checkHeight()) {
+        skills_block.remove();
+        current_page_number++;
+        getContentContainer2().append(skills_block);
+      }
+
+      getContentContainer2().append(languages_block);
+      if (checkHeight()) {
+        languages_block.remove();
+        current_page_number++;
+        getContentContainer2().append(languages_block);
+      }
+
+      current_page_number = 1;
+
       getContentContainer1().append(personal_info_block);
       if (checkHeight()) {
         personal_info_block.remove();
@@ -75,50 +119,6 @@ const drawing = () => {
         internships_block.remove();
         current_page_number++;
         getContentContainer1().append(internships_block);
-      }
-
-      current_page_number = 1;
-
-      getContentContainer2().append(contacts_information_block);
-      if (checkHeight()) {
-        contacts_information_block.remove();
-        current_page_number++;
-        getContentContainer2().append(contacts_information_block);
-      }
-
-      getContentContainer2().append(certificates_block);
-      if (checkHeight()) {
-        certificates_block.remove();
-        current_page_number++;
-        getContentContainer2().append(certificates_block);
-      }
-
-      getContentContainer2().append(references_block);
-      if (checkHeight()) {
-        references_block.remove();
-        current_page_number++;
-        getContentContainer2().append(references_block);
-      }
-
-      getContentContainer2().append(hobbies_block);
-      if (checkHeight()) {
-        hobbies_block.remove();
-        current_page_number++;
-        getContentContainer2().append(hobbies_block);
-      }
-
-      getContentContainer2().append(skills_block);
-      if (checkHeight()) {
-        skills_block.remove();
-        current_page_number++;
-        getContentContainer2().append(skills_block);
-      }
-
-      getContentContainer2().append(languages_block);
-      if (checkHeight()) {
-        languages_block.remove();
-        current_page_number++;
-        getContentContainer2().append(languages_block);
       }
     }
 
@@ -168,7 +168,18 @@ const drawing = () => {
       return page_element_container;
     }
 
+    function columnRightHelper() {
+      $('.cv-body-visible .js-column-right').each(function () {
+        if ($(this).width() < 30) {
+          $(this).addClass('m-empty');
+        } else {
+          $(this).removeClass('m-empty');
+        }
+      });
+    }
+
     rebuildingPages();
+    columnRightHelper();
   }
 }
 
@@ -464,7 +475,7 @@ export const ResumeCv011 = ({
                 }
               </div>
             </div>
-            <div className="column-right">
+            <div className="column-right js-column-right">
               <div className={`contacts-information-block block-block ${!social_links.length && !contact[0].email && !contact[0].phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                 <div className="left-block additional-color-2-background"></div>
                  <div className="right-block">

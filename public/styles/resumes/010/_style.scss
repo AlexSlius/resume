@@ -61,7 +61,10 @@
   // Blocks
   .cv-name {
     text-align: center;
-    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.88px;
+    span {
+      font-family: 'Oswald', sans-serif;
+    }
   }
 
   .cv-profession {
@@ -128,6 +131,9 @@
         &:nth-child(2) {
           margin-top: 0;
         }
+      }
+      &:first-of-type {
+        margin-top: 0;
       }
     }
 

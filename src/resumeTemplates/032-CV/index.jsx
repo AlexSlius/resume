@@ -31,57 +31,6 @@ const drawing = () => {
 
       current_page_number = 1;
 
-      getContentContainer1().append(main_info_block);
-      if (checkHeight()) {
-        main_info_block.remove();
-        current_page_number++;
-        getContentContainer1().append(main_info_block);
-      }
-
-      getContentContainer1().append(profile_block);
-      if (checkHeight()) {
-        profile_block.remove();
-        current_page_number++;
-        getContentContainer1().append(profile_block);
-      }
-
-      getContentContainer1().append(employment_history_block);
-      if (checkHeight()) {
-        employment_history_block.remove();
-        current_page_number++;
-        getContentContainer1().append(employment_history_block);
-      }
-
-      getContentContainer1().append(education_block);
-      if (checkHeight()) {
-        education_block.remove();
-        current_page_number++;
-        getContentContainer1().append(education_block);
-      }
-
-      getContentContainer1().append(courses_block);
-      if (checkHeight()) {
-        courses_block.remove();
-        current_page_number++;
-        getContentContainer1().append(courses_block);
-      }
-
-      getContentContainer1().append(extra_curricular_activities_block);
-      if (checkHeight()) {
-        extra_curricular_activities_block.remove();
-        current_page_number++;
-        getContentContainer1().append(extra_curricular_activities_block);
-      }
-
-      getContentContainer1().append(internships_block);
-      if (checkHeight()) {
-        internships_block.remove();
-        current_page_number++;
-        getContentContainer1().append(internships_block);
-      }
-
-      current_page_number = 1;
-
       getContentContainer2().append(photo_block);
       if (checkHeight()) {
         photo_block.remove();
@@ -136,6 +85,57 @@ const drawing = () => {
         certificates_block.remove();
         current_page_number++;
         getContentContainer2().append(certificates_block);
+      }
+
+      current_page_number = 1;
+
+      getContentContainer1().append(main_info_block);
+      if (checkHeight()) {
+        main_info_block.remove();
+        current_page_number++;
+        getContentContainer1().append(main_info_block);
+      }
+
+      getContentContainer1().append(profile_block);
+      if (checkHeight()) {
+        profile_block.remove();
+        current_page_number++;
+        getContentContainer1().append(profile_block);
+      }
+
+      getContentContainer1().append(employment_history_block);
+      if (checkHeight()) {
+        employment_history_block.remove();
+        current_page_number++;
+        getContentContainer1().append(employment_history_block);
+      }
+
+      getContentContainer1().append(education_block);
+      if (checkHeight()) {
+        education_block.remove();
+        current_page_number++;
+        getContentContainer1().append(education_block);
+      }
+
+      getContentContainer1().append(courses_block);
+      if (checkHeight()) {
+        courses_block.remove();
+        current_page_number++;
+        getContentContainer1().append(courses_block);
+      }
+
+      getContentContainer1().append(extra_curricular_activities_block);
+      if (checkHeight()) {
+        extra_curricular_activities_block.remove();
+        current_page_number++;
+        getContentContainer1().append(extra_curricular_activities_block);
+      }
+
+      getContentContainer1().append(internships_block);
+      if (checkHeight()) {
+        internships_block.remove();
+        current_page_number++;
+        getContentContainer1().append(internships_block);
       }
     }
 

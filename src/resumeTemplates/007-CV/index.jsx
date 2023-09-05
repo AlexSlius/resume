@@ -157,8 +157,21 @@ const drawing = () => {
         }
       });
     }
+    function secondaryInfoHelper() {
+      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
+        console.log('test');
+        $('.js-profile-secondary-info').removeClass('m-transfer');
+        if ($(this).height() > 15) {
+          $('.js-profile-secondary-info').addClass('m-transfer');
+          return;
+        } else {
+          $('.js-profile-secondary-info').removeClass('m-transfer');
+        }
+      })
+    }
 
     rebuildingPages();
+    secondaryInfoHelper();
   }
 }
 
@@ -230,7 +243,7 @@ export const ResumeCv007 = ({
                 </div>
               </div>
               <div className={`profile-additional-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !contact[0]?.country && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !social_links.length && !beforeСontent ? 'hide' : ''}`}>
-                <div className={`info-1 ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`info-1 js-profile-secondary-info ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                   <div className={`item-block ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <span className="name additional-color-3-text">Birth Date</span>
                     {
@@ -407,7 +420,7 @@ export const ResumeCv007 = ({
               </div>
             </div>
             <div className="column-right">
-              <div className="information-area-0 cv-body-area">
+              <div className="information-area information-area-0 cv-body-area">
                 <div className={`main-info-block block-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                   <div className={`cv-profession main-color-2-text font-size-4 ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].jobTitle || 'Web-designer'}
@@ -422,7 +435,7 @@ export const ResumeCv007 = ({
                   </div>
                 </div>
               </div>
-              <div className="information-area-1 additional-color-2-background cv-body-area">
+              <div className="information-area information-area-1 additional-color-2-background cv-body-area">
                 <span className="top-line main-color-1-background"></span>
                 {
                   employment.map((itemEm, index) => (
@@ -563,7 +576,7 @@ export const ResumeCv007 = ({
                   ))
                 }
               </div>
-              <div className="information-area-2 additional-color-1-background cv-body-area">
+              <div className="information-area information-area-2 additional-color-1-background cv-body-area">
                 {
                   education.map((itemEd, index) => (
                     <div className={`education-block block-block ${(index > 0) ? "block-net" : ""} ${!Object.keys(education[0]).length && !beforeСontent ? 'hide' : ''}`} key={index}>

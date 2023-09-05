@@ -72,6 +72,7 @@
 
   // Blocks
   .cv-name {
+    line-height: 1.2;
     .text-line-1 {
       font-weight: 300;
     }
@@ -86,6 +87,7 @@
     align-self: flex-start;
     padding: 3px 5px;
     font-weight: 900;
+    line-height: 1.2;
     letter-spacing: 1.5px;
     background: $main_color_1;
   }
@@ -118,9 +120,8 @@
   }
 
   .column-left {
-    width: 158px;
-    min-width: 158px;
     padding-top: 127px;
+    flex: 0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -158,6 +159,7 @@
     .profile-main-block {
       padding: 30px 15px 15px;
       margin-top: -18px;
+      min-width: 160px;
       .profile-main-text {
         position: relative;
         &::before {
@@ -174,6 +176,7 @@
     }
 
     .profile-additional-block {
+      min-width: 160px;
       box-sizing: border-box;
       width: 100%;
       padding: 15px 10px 0 15px;
@@ -184,11 +187,18 @@
         margin-bottom: 15px;
         .item-block {
           display: flex;
+          flex-wrap: wrap;
           column-gap: 4px;
           align-items: center;
         }
         .name {
           flex-shrink: 0;
+        }
+        &.m-transfer {
+          .item-block {
+            flex-direction: column;
+            align-items: flex-start;
+          }
         }
       }
       .info-2 {
@@ -216,6 +226,7 @@
 
     .skills-languages-block {
       margin-top: 20px;
+      min-width: 160px;
       .skills-list {
         display: flex;
         flex-direction: column;
@@ -239,6 +250,7 @@
 
     .certificates-block {
       margin-top: 10px;
+      min-width: 160px;
       .certificates-info {
         display: flex;
         flex-direction: column;
@@ -248,6 +260,7 @@
 
     .references-block {
       margin-top: 10px;
+      min-width: 160px;
       .block-info {
         display: flex;
         flex-direction: column;
@@ -260,12 +273,14 @@
 
     .hobbies-block {
       margin-top: 10px;
+      min-width: 160px;
     }
   }
 
   .column-right {
-    width: 100%;
+    flex-basis: 200%;
     display: flex;
+    flex: 1;
     flex-direction: column;
 
     .information-area-1,
@@ -341,6 +356,12 @@
 
     .information-area-2 {
       margin-top: 15px;
+    }
+
+    .information-area {
+      &:first-child {
+        margin-top: 0 !important;
+      }
     }
 
     .cv-body-area {
@@ -499,32 +520,28 @@
       font-size: 30px;
     }
 
-    .cv-body {
-      .cv-body-content {
-        .column-right {
-          .information-area-1,
-          .information-area-2 {
-            .block-block {
-              .left-side {
-                padding-top: 44px;
-              }
-              .right-side {
-                .circle-point {
-                  top: 2px;
-                }
-              }
-              &.block-net {
-                .left-side {
-                  padding-top: 10px;
-                }
-              }
+    .column-right {
+      .information-area-1,
+      .information-area-2 {
+        .block-block {
+          .left-side {
+            padding-top: 44px;
+          }
+          .right-side {
+            .circle-point {
+              top: 2px;
+            }
+          }
+          &.block-net {
+            .left-side {
+              padding-top: 10px;
             }
           }
         }
       }
     }
     .profile-main-block {
-      margin-top: -12px;
+      margin-top: -14px;
     }
   }
 
@@ -549,34 +566,29 @@
       font-size: 32px;
     }
 
-    .cv-body {
-      .cv-body-content {
-        .column-right {
-          .information-area-1 {
-            margin-top: 12px;
+    .column-right {
+      .information-area-1 {
+        margin-top: 12px;
+      }
+      .information-area-1,
+      .information-area-2 {
+        .block-block {
+          .left-side {
+            padding-top: 46px;
           }
-          .information-area-1,
-          .information-area-2 {
-            .block-block {
-              .left-side {
-                padding-top: 46px;
-              }
-              .right-side {
-                .circle-point {
-                  top: 3px;
-                }
-              }
-              &.block-net {
-                .left-side {
-                  padding-top: 9px;
-                }
-              }
+          .right-side {
+            .circle-point {
+              top: 3px;
+            }
+          }
+          &.block-net {
+            .left-side {
+              padding-top: 9px;
             }
           }
         }
       }
     }
-
     .profile-main-block {
       margin-top: -16px;
     } 

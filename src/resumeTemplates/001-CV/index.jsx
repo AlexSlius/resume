@@ -3,6 +3,7 @@ import { isArray } from "lodash";
 import moment from 'moment';
 
 import { checkForSymbol } from "../../utils/checkForSymbol";
+import { socialHelper } from "../../utils/socialHelper";
 
 const Estimation = ({
   level = 3,
@@ -144,7 +145,7 @@ const drawing = () => {
 
       var area_1 = $('#cv-body-hidden-container .cv-body-content .area-1').clone();
       area_1.children().remove();
-      page_element_container.append(area_1);
+      current_page_number === 1 && page_element_container.append(area_1);
 
       var area_2 = $('#cv-body-hidden-container .cv-body-content .area-2').clone();
       area_2.children().remove();
@@ -178,6 +179,7 @@ const drawing = () => {
       $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
+          console.log('test');
           $('.js-profile-secondary-info').addClass('m-transfer');
           return;
         } else {
@@ -355,7 +357,7 @@ export const ResumeCv001 = ({
                             isArray(social_links) && social_links.length && (
                               social_links.map((itemSocial, index) => (
                                 <a className="links-item" key={index}>
-                                  {/* <img src={itemSocial.icon} alt={itemSocial.name}/> */}
+                                  {socialHelper(itemSocial.name)}
                                 </a>
                               ))
                             ) || (
