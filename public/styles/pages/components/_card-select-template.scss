@@ -1,6 +1,7 @@
 .card-selec {
     width: calc(25% - 11px);
-    border: 1px dashed rgba(84, 108, 151, 0.3);
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgba(84, 108, 151, 0.3)' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 12px;
     padding: 8px;
     border-radius: 12px;
     transition: 0.4s;
@@ -45,7 +46,7 @@
     }
 
     &:hover {
-        border-color: #3679FD;
+         background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='rgb(54, 121, 253)' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 
         .card-selec__hove {
             opacity: 1;

@@ -137,11 +137,13 @@
         font-size: 16px;
         font-weight: 500;
         transition: 0.4s;
+        opacity: 0.5;
 
         &.active,
         &:hover {
             background: var(--grey);
             color: var(--white);
+            opacity: 1;
         }
     }
 
