@@ -190,7 +190,8 @@
       border-bottom-width: 1px;
       border-color: $main_color_1;
       display: flex;
-      column-gap: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
       justify-content: center;
       margin: 0 25px;
       padding: 10px 0;
@@ -460,17 +461,26 @@
     .cv-body-content {
       line-height: 1.2;
     }
+    .cv-name {
+      line-height: 1;
+    }
   }
 
   .line-height-scheme-state-medium {
     .cv-body-content {
       line-height: 1.4;
     }
+    .cv-name {
+      line-height: 1.1;
+    }
   }
 
   .line-height-scheme-state-big {
     .cv-body-content {
       line-height: 1.6;
+    }
+    .cv-name {
+      line-height: 1.2;
     }
   }
 

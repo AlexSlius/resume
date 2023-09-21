@@ -87,12 +87,15 @@ const drawing = () => {
       current_page_number = 1;
       cvDataRight.forEach(function(el, index) {
         getPageColumnRight().append(el);
+        console.log(el);
         if (cvBlocksRight[index] === 'work-experience-block') {
           el.find('.work-experience-subblock').each(function(){
+            console.log(current_page_number);
             el.append($(this));
             if(checkHeight()) {
               $(this).remove();
               current_page_number++;
+              console.log(current_page_number);
               var area_work = $('#cv-body-hidden-container .cv-body-content .work-experience-block').clone();
               area_work.children().remove();
               getPageColumnRight().append(area_work);

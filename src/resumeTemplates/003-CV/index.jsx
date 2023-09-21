@@ -96,7 +96,6 @@ const drawing = () => {
       });
 
       checkEmpty();
-      columnRightHelper();
     }
     function getPageColumnTop() {
       return getPageContainer().find('.area-1');
@@ -166,20 +165,9 @@ const drawing = () => {
         }
       });
     }
-    function secondaryInfoHelper() {
-      $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
-        $('.js-profile-secondary-info').removeClass('m-transfer');
-        if ($(this).height() > 15) {
-          $('.js-profile-secondary-info').addClass('m-transfer');
-          return;
-        } else {
-          $('.js-profile-secondary-info').removeClass('m-transfer');
-        }
-      })
-    }
 
     rebuildingPages();
-    secondaryInfoHelper();
+    columnRightHelper();
   }
 }
 
