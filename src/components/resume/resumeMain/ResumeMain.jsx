@@ -135,6 +135,7 @@ const ResumeMain = ({
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
+                     // beforeСontent={false}
                   />
                </div>
             )
@@ -154,6 +155,7 @@ const ResumeMain = ({
                      statusResumeActive={dataOther?.statusResumeActive}
                      drawing={coverDataForm.drawing}
                      handleReload={handleReload}
+                      // beforeСontent={false}
                   />
                </div>
             )
