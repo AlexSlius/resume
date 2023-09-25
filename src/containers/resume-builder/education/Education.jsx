@@ -7,6 +7,7 @@ const Education = ({ idCv, states, dispatch }) => {
          <HeadMainContent
             title={'Education'}
             description={"If you've graduated from, or are currently enrolled in a college or university, you should NOT include your high school."}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormEducation

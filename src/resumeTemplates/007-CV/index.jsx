@@ -159,7 +159,6 @@ const drawing = () => {
     }
     function secondaryInfoHelper() {
       $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
-        console.log('test');
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
           $('.js-profile-secondary-info').addClass('m-transfer');

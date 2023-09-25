@@ -153,6 +153,7 @@ const MyApp = ({ Component, ...rest }) => {
       <App store={store}>
         <Component
           setStatePictureFile={setStatePictureFile}
+          store={store}
           statePictureFile={statePictureFile}
           {...props}
         />

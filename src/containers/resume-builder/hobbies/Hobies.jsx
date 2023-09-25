@@ -8,6 +8,7 @@ const Hobies = ({ idCv, states, dispatch }) => {
          <HeadMainContent
             title={'Hobbies'}
             description={'What do you like?'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormHobies

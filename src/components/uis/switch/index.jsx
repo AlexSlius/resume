@@ -3,9 +3,10 @@ export const Switch = ({
     isChecked = false,
     name = "",
     label = undefined,
+    reverse = false
 }) => {
     return (
-        <div className={`wr-check`}>
+        <div className={`wr-check ${reverse ? "reverse" : 0}`}>
             <label className="label-switch">
                 <input type="checkbox" checked={isChecked} onChange={() => handleOnChange(isChecked ? 0 : 1)} hidden name={name} />
                 <span></span>

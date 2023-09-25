@@ -24,6 +24,7 @@ const Skills = ({ idCv, states, dispatch }) => {
             title={'Skills'}
             description={"Try to add 5-10 skills that are most relevant to your desired job."}
             switchOk={"Don't show experience level"}
+            StubTextBtn={true}
          >
             <Switch
                label="Don't show experience level"

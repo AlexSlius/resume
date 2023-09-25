@@ -27,6 +27,7 @@ const initialState = {
         template_text_size: "50",
     },
     drawing: true,
+    stubText: true,
     status: statusLoaded,
     statusResumeActive: statusLoaded,
 };
@@ -49,6 +50,10 @@ export const slice = createSlice({
         },
         updateActiveResume(state, action) {
             state.resumeActive = { ...state.resumeActive, ...action.payload };
+        },
+        updateStudText(state, action) {
+            state.stubText = action.payload;
+            state.drawing = true;
         }
     },
     extraReducers: {
@@ -111,7 +116,8 @@ export const {
     handleCVUpdateDrawingTrue,
     updateActiveResumeNew,
     updateActiveResume,
-    cleanResumeActive
+    cleanResumeActive,
+    updateStudText
 } = slice.actions;
 
 export const { reducer } = slice;

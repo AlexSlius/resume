@@ -6,6 +6,7 @@ const Employment = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'Employment History'}
+            StubTextBtn={true}
          />
          <FormEmployment
             dispatch={dispatch}

@@ -135,7 +135,7 @@ const ResumeMain = ({
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
-                     // beforeСontent={false}
+                     beforeСontent={resumeData.stubText}
                   />
                </div>
             )
