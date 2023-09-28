@@ -466,11 +466,16 @@
 .pdf {
     .page-view-share {
         .page-templates__right {
+            padding: 0;
             .ptr-c {
+                .ptr-c__content {
+                    max-width: 100%;
+                }
                 .body-template-resume {
                     transform: scale(1) !important;
                     zoom: 1 !important;
                     -ms-zoom: 1 !important;
+                    width: 100%;
                 }
             }
         }

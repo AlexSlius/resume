@@ -9,6 +9,8 @@ const ShareResume = ({
 }) => {
     let isPdf = downloadPagePdf(ctx);
 
+    console.log("isPdf: ", isPdf);
+
     return (
         <div className={isPdf ? style.wr_div : ""}>
             <div className={`page-share ${isPdf ? "pdf" : ""}`}>
