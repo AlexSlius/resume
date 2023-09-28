@@ -59,6 +59,7 @@ const Templates = ({
     isCover = false,
     isPageView = false,
     beforeСontent = true,
+    isPdf = false
 }) => {
     const refIdTimeout = useRef(undefined);
     const refWr = useRef(undefined);
@@ -319,7 +320,7 @@ const Templates = ({
             dispatch(updateItemFieldContact({ name, value }));
     }
 
-    let { scaleSize, origin, originTop } = useScaleResumePageShare({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing } });
+    let { scaleSize, origin, originTop } = useScaleResumePageShare({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, isPdf});
 
     useEffect(() => {
         if (dataOther?.resumeActive?.template_id) {
