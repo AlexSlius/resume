@@ -126,6 +126,7 @@ $color_set_7_additional_color_1: #87608D;
     column-gap: 30px;
     .column-left {
       flex: 0;
+      padding-top: 24px;
       .block-block {
         min-width: 124px;
       }
@@ -272,6 +273,11 @@ $color_set_7_additional_color_1: #87608D;
     &.has-photo {
       .photo-block {
         display: flex;
+      }
+      .middle-area {
+        .column-left {
+          padding-top: 0;
+        }
       }
     }
   }

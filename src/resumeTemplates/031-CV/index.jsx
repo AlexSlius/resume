@@ -139,7 +139,7 @@ const drawing = () => {
     }
 
     function checkHeight() {
-      return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
+      return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height() - 38;
     }
 
     function getContentContainer1() {
@@ -176,7 +176,15 @@ const drawing = () => {
 
       return page_element_container;
     }
+    function nameHelper() {
+      let columnLeftWidth = $('.cv-body-visible .js-column-left').width() + 30;
+      let topOffset = $('.column-right .block-block').first().offset().top - 158;
+      if (!$('#cv-chapter-section-cv').hasClass('has-photo')) {
+        $('.cv-body-visible .main-info-block').css('margin-left',"-" + columnLeftWidth + "px");
+        $('.cv-body-visible .column-left').css('padding-top', topOffset + "px");
 
+      }
+    }
     function columnLeftHelper() {
       $('.cv-body-visible .js-column-left').each(function () {
         if ($(this).width() === 0) {
@@ -189,6 +197,7 @@ const drawing = () => {
 
     rebuildingPages();
     columnLeftHelper();
+    nameHelper();
   }
 }
 
@@ -398,7 +407,7 @@ export const ResumeCv031 = ({
               <div className={`main-info-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
                 <div className={`cv-name font-size-4 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                   <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                    {contact[0].firstName || 'Matthew'}
+                    {contact[0].firstName || 'Matthew'}{` `}
                   </span><br/>
                   <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].lastName || 'Mcconaughey'}

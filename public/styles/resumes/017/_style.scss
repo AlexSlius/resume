@@ -188,6 +188,9 @@
         row-gap: 10px;
         min-width: 110px;
       }
+      .right-side {
+        flex-shrink: 0;
+      }
       .details-item {
         display: flex;
         align-items: flex-start;
@@ -327,7 +330,7 @@
     }
     .date-range {
       margin-bottom: 5px;
-      padding: 6px 0 6px 8px;
+      padding: 10px 0 6px 8px;
       background: url('/../styles/resumes/017/image/date-bg.svg') no-repeat 0 50%;
       background-size: 124px auto;
       line-height: 12px;

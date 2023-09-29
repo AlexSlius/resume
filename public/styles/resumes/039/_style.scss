@@ -97,6 +97,7 @@ $color_set_6_additional_color_1: #3C6040;
     background: $main_color_1;
     border-radius: 0 30px 30px 0;
     padding: 0 30px;
+    flex-basis: 200%;
     .block-block {
       padding-left: 10px;
       border-left-width: 2px;
@@ -171,11 +172,10 @@ $color_set_6_additional_color_1: #3C6040;
   }
 
   .column-right {
-    width: 190px;
-    min-width: 190px;
     padding: 0 20px;
     color: $main_color_1;
     .block-block {
+      min-width: 150px;
       &:not(:first-of-type) {
         margin-top: 12px;
         padding-top: 12px;
@@ -404,17 +404,26 @@ $color_set_6_additional_color_1: #3C6040;
     .cv-body {
       line-height: 1.2;
     }
+    .cv-name {
+      line-height: 1;
+    }
   }
   
   .line-height-scheme-state-medium {
     .cv-body {
       line-height: 1.4;
     }
+    .cv-name {
+      line-height: 1.1;
+    }
   }
   
   .line-height-scheme-state-big {
     .cv-body {
       line-height: 1.6;
+    }
+    .cv-name {
+      line-height: 1.2;
     }
   }
   

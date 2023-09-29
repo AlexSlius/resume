@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
+import { socialHelper } from "../../utils/socialHelper";
 
 const drawing = () => {
   if (typeof window != "undefined") {
@@ -315,8 +316,8 @@ export const ResumeCv007 = ({
                   {
                       isArray(social_links) && social_links.length && (
                         social_links.map((itemSocial, index) => (
-                          <a className="links-item" key={index}>
-                            {/* <img src={itemSocial.icon} alt={itemSocial.name}/> */}
+                          <a className="links-item additional-color-1-svg" key={index}>
+                            {socialHelper(itemSocial.name)}
                           </a>
                         ))
                       ) || (

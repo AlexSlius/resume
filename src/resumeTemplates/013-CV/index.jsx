@@ -231,6 +231,14 @@ export const ResumeCv013 = ({
                     </div>
                   )
                 }
+                <div className="cv-name font-size-3 m-without-photo">
+                  <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.firstName || 'Matthew'}
+                  </span><br />
+                  <span className={`${!conta.lastName ? 'empty-field' : ''} ${!conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.lastName || 'Mcconaughey'}
+                  </span>
+                </div>
                 <div className={`contacts-block ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                   <div className="block-heading font-size-2 additional-color-1-text">Details</div>
                   <div className={`block-item ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
@@ -335,7 +343,7 @@ export const ResumeCv013 = ({
                 <div className="skills-list estimated-items-list">
                   {
                     languages.map((item, index) => (
-                      <div className={`list-item ${!item.name ? 'empty-field' : ''}`} key={index}>
+                      <div className={`list-item ${item.name ? 'empty-field' : ''}`} key={index}>
                         <div className="item-name">{item.language ? item.language : 'Language'}</div>
                         <div className="estimation-wrapper">
                           <div className="estimation-background"></div>
@@ -391,7 +399,7 @@ export const ResumeCv013 = ({
             </div>
             <div className="column-right">
               <div className="profile-block block-block">
-                <div className="cv-name font-size-3">
+                <div className="cv-name font-size-3 m-with-photo">
                   <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
                     {conta.firstName || 'Matthew'}
                   </span><br />

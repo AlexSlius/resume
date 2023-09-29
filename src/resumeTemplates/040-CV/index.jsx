@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const drawing = () => {
@@ -577,7 +576,7 @@ export const ResumeCv040 = ({
                       isArray(social_links) && social_links.length && (
                         social_links.map((item, index) => (
                           <a className="links-item" key={index}>
-                            {item.name.substring(0, 2)}
+                            {item.name}
                           </a>
                         ))
                       ) || (

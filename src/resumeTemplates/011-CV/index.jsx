@@ -2,8 +2,8 @@ import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
+import { socialHelper } from "../../utils/socialHelper";
 
 const drawing = () => {
   if (typeof window != 'undefined') {
@@ -284,9 +284,9 @@ export const ResumeCv011 = ({
                 <div className="block-heading font-size-5 additional-color-2-text">Profile</div>
                 {
                   career_objective[0].data && (
-                    <div dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
+                    <div className="additional-color-1-text" dangerouslySetInnerHTML={{ __html: career_objective[0].data }}></div>
                   ) || (
-                    <div className="empty-field">
+                    <div className="empty-field additional-color-1-text">
                       Innovative Web Designer with over seven years of experience creating powerful designs in the fashion industry. Adept in collaborating with designers and other team professionals to achieve high goals and deadlines. Dedicated to remaining up to date with the latest fashion trends, while offering ideas and visuals to spark new trends. Bringing forth a true love of fashion and design.
                     </div>
                   )
@@ -524,7 +524,7 @@ export const ResumeCv011 = ({
                         social_links.map((item, index) => (
                           <div className="block-item" key={index}>
                             <div className="left-side">
-                              <img src={item.icon} />
+                              {socialHelper(item.name)}
                             </div>
                             <div className="right-side additional-color-1-text">{item.name}</div>
                           </div>

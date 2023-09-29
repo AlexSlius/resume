@@ -42,16 +42,6 @@ const drawing = () => {
       });
 
       current_page_number = 1;
-      cvDataLeft.forEach(function (el) {
-        getPageColumnLeft().append(el);
-        if (checkHeight()) {
-          el.remove();
-          current_page_number++;
-          getPageColumnLeft().append(el);
-        }
-      });
-
-      current_page_number = 1;
       cvDataRight.forEach(function (el) {
         getPageColumnRight().append(el);
         if (checkHeight()) {
@@ -59,6 +49,16 @@ const drawing = () => {
           el.remove();
           current_page_number++;
           getPageColumnRight().append(el);
+        }
+      });
+
+      current_page_number = 1;
+      cvDataLeft.forEach(function (el) {
+        getPageColumnLeft().append(el);
+        if (checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnLeft().append(el);
         }
       });
       checkEmpty();
@@ -681,20 +681,22 @@ export const ResumeCv010 = ({
                 </div>
                 <div className={`links-block block-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-3 main-color-4-text">Links</div>
-                  {
-                    isArray(social_links) && social_links.length && (
-                      social_links.map((itemSocial, index) => (
-                        <a className="links-item" key={index}>
-                          {itemSocial.name}
-                        </a>
-                      ))
-                    ) || (
-                      <>
-                        <a className="links-item empty-field">Linkedin</a>
-                        <a className="links-item empty-field">Facebook</a>
-                      </>
-                    )
-                  }
+                  <div className="links-wrap">
+                    {
+                      isArray(social_links) && social_links.length && (
+                        social_links.map((itemSocial, index) => (
+                          <a className="links-item" key={index}>
+                            {itemSocial.name}
+                          </a>
+                        ))
+                      ) || (
+                        <>
+                          <a className="links-item empty-field">Linkedin</a>
+                          <a className="links-item empty-field">Facebook</a>
+                        </>
+                      )
+                    }
+                  </div>
                 </div>
                 <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-3 main-color-4-text">Skills</div>

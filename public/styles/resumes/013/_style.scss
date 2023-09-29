@@ -67,6 +67,9 @@
   .cv-name {
     font-weight: 700;
     margin-bottom: 10px;
+    &.m-with-photo {
+      display: none;
+    }
   }
   
   .cv-body {
@@ -273,6 +276,14 @@
       .photo-block {
         display: block;
       }
+      .cv-name {
+        &.m-without-photo {
+          display: none;
+        }
+        &.m-with-photo {
+          display: block;
+        }
+      }
     }
   }
 
@@ -402,17 +413,26 @@
     .cv-body {
       line-height: 1.2;
     }
+    .cv-name {
+      line-height: 1;
+    }
   }
 
   .line-height-scheme-state-medium {
     .cv-body {
       line-height: 1.4;
     }
+    .cv-name {
+      line-height: 1.1;
+    }
   }
 
   .line-height-scheme-state-big {
     .cv-body {
       line-height: 1.6;
+    }
+    .cv-name {
+      line-height: 1.2;
     }
   }
 
@@ -434,7 +454,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_0_additional_color_1;
     }
   }
@@ -462,7 +482,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_1_additional_color_1;
     }
   }
@@ -484,7 +504,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_2_additional_color_1;
     }
   }
@@ -506,7 +526,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_3_additional_color_1;
     }
   }
@@ -528,7 +548,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_4_additional_color_1;
     }
   }
@@ -550,7 +570,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_5_additional_color_1;
     }
   }
@@ -572,7 +592,7 @@
       background: $main_color_3;
     }
 
-    .estimation-value {
+    .column-left .skills-list .estimation-wrapper .estimation-value {
       background: $color_set_6_additional_color_1;
     }
   }

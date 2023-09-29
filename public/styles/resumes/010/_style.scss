@@ -88,6 +88,13 @@
     flex-direction: column;
     overflow: hidden;
     background-color: $main_color_2;
+    &.page-1 {
+      .column-right {
+        .information-block {
+          margin-top: 85px;
+        }
+      }
+    }
   }
 
   .cv-body-content {
@@ -98,6 +105,7 @@
   }
 
   .column-left {
+    flex-basis: 200%;
     .block-block {
       margin-top: 15px;
       .date-range {
@@ -157,7 +165,6 @@
     display: flex;
     flex-direction: column;
     .information-block {
-      margin-top: 78px;
       padding: 10px;
       min-width: 185px;
       flex: 1;
@@ -217,9 +224,14 @@
     }
     .links-block {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       column-gap: 20px;
+      .links-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 15px;
+        row-gap: 5px;
+      }
       .links-item {
         background: linear-gradient(270deg, #60A9CC 33.33%, #D13B83 77.58%, #60A9CC 100%);
         -webkit-background-clip: text;

@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 import { levelLanguage } from "../../helpers/levelLanguage";
 

@@ -274,7 +274,7 @@ export const ResumeCv016 = ({
                   </div>
                   <div className={`cv-name font-size-6 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                     <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                      {contact[0].firstName || 'Matthew'}
+                      {contact[0].firstName || 'Matthew'}{` `}
                     </span><br/>
                     <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                       {contact[0].lastName || 'Mcconaughey'}

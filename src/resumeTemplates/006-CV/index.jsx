@@ -81,10 +81,9 @@ const drawing = () => {
           getPageColumnLeft().append(el);
         }
       });
-
+      current_page_number = checkCountPages();
       cvDataBottom.forEach(function (el) {
-        if (current_page_number === checkCountPages())
-          getPageColumnBottom().append(el);
+        getPageColumnBottom().append(el);
         if (checkHeight()) {
           el.remove();
           current_page_number++;

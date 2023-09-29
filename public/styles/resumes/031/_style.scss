@@ -63,6 +63,9 @@
     span {
       font-family: 'Orbitron', sans-serif;
     }
+    br {
+      display: none;
+    }
   }
 
   .cv-profession {
@@ -200,6 +203,9 @@
   .column-right {
     flex: 1;
     flex-basis: 200%;
+    .main-info-block  {
+      margin-bottom: 40px;
+    }
     .block-block {
       margin-left: -22px;
       display: flex;
@@ -246,6 +252,16 @@
     &.has-photo {
       .photo-block {
         display: flex;
+      }
+      .column-right {
+        .main-info-block  {
+          margin-bottom: 0;
+        }
+      }
+      .cv-name {
+        br {
+          display: block;
+        }
       }
     }
   }
@@ -343,17 +359,26 @@
     .cv-body-content {
       line-height: 1.2;
     }
+    .cv-name {
+      line-height: 1;
+    }
   }
 
   .line-height-scheme-state-medium {
     .cv-body-content {
       line-height: 1.4;
     }
+    .cv-name {
+      line-height: 1.1;
+    }
   }
 
   .line-height-scheme-state-big {
     .cv-body-content {
       line-height: 1.6;
+    }
+    .cv-name {
+      line-height: 1.2;
     }
   } 
 

@@ -236,6 +236,7 @@
       width: 100%;
       display: flex;
       padding: 20px 30px;
+      column-gap: 26px;
     }
     .cv-heading {
       text-transform: uppercase;
@@ -253,10 +254,11 @@
       align-items: flex-start;
       flex-direction: column;
       .skill-item {
-        width: 50%;
+        width: calc(50% - 15px);
       }
       .skills-estimation-block {
         margin-top: 10px;
+        column-gap: 30px;
       }
     }
     .languages-block {

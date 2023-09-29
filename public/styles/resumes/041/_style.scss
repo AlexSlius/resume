@@ -86,12 +86,18 @@
     text-align: center;
     color: $main_color_3;
     font-weight: 400;
+    white-space: nowrap;
   }
 
   .cv-body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    &.page-1 {
+      .cv-body-content {
+        padding-top: 0;
+      }
+    }
   }
 
   .cv-body-content {
@@ -99,6 +105,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
   }
 
   .middle-area {
@@ -108,7 +115,6 @@
     .column-left {
       display: flex;
       flex-direction: column;
-      width: 221px;
       .block-block {
         margin: 10px 0 0 20px;
         .cv-heading {
@@ -121,6 +127,12 @@
         &:not(:first-of-type) {
           padding-top: 10px;
           border-top: 1px solid $main_color_3;
+        }
+        &:first-of-type {
+          margin-top: 0;
+        }
+        & > div {
+          min-width: 200px;
         }
       }
       .estimated-items-list {
@@ -247,6 +259,7 @@
       display: flex;
       flex-direction: column;
       margin-right: 30px;
+      flex-basis: 300%;
       .block-block {
         .cv-heading {
           font-weight: 700;
@@ -550,6 +563,11 @@
       fill: $color_set_1_additional_color_1;
     }
   }
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_1_additional_color_2;
+    }
+  }
 
   .additional-color-2-background {
     background-color: $color_set_1_additional_color_2;
@@ -603,6 +621,12 @@
   .additional-color-1-svg {
     path {
       fill: $color_set_2_additional_color_1;
+    }
+  }
+
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_2_additional_color_2;
     }
   }
 
@@ -661,6 +685,12 @@
     }
   }
 
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_3_additional_color_2;
+    }
+  }
+
   .additional-color-2-background {
     background-color: $color_set_3_additional_color_2;
   }
@@ -713,6 +743,12 @@
   .additional-color-1-svg {
     path {
       fill: $color_set_4_additional_color_1;
+    }
+  }
+
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_4_additional_color_2;
     }
   }
 
@@ -771,6 +807,12 @@
     }
   }
 
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_5_additional_color_2;
+    }
+  }
+
   .additional-color-2-background {
     background-color: $color_set_5_additional_color_2;
   }
@@ -823,6 +865,12 @@
   .additional-color-1-svg {
     path {
       fill: $color_set_6_additional_color_1;
+    }
+  }
+
+  .additional-color-2-svg {
+    svg {
+      fill: $color_set_6_additional_color_2;
     }
   }
 

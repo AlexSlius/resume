@@ -97,6 +97,11 @@
     flex-direction: column;
     overflow: hidden;
     background-color: $main_color_2;
+    &.page-1 {
+      .column-left {
+        padding-top: 127px;
+      }
+    }
   }
 
   .cv-body-content {
@@ -120,7 +125,6 @@
   }
 
   .column-left {
-    padding-top: 127px;
     flex: 0;
     display: flex;
     align-items: center;
@@ -287,6 +291,7 @@
     .information-area-2 {
       position: relative;
       margin-top: 20px;
+      flex: 1;
       .top-line {
         width: 60px;
         height: 4px;
@@ -651,8 +656,8 @@
     }
 
     .additional-color-1-svg {
-      path {
-        fill: $color_set_1_additional_color_1;
+      svg {
+        fill: $main_color_1;
       }
     }
 
@@ -723,8 +728,8 @@
     }
 
     .additional-color-1-svg {
-      path {
-        fill: $color_set_2_additional_color_1;
+      svg {
+        fill: $main_color_1;
       }
     }
 
@@ -795,8 +800,8 @@
     }
 
     .additional-color-1-svg {
-      path {
-        fill: $color_set_3_additional_color_1;
+      svg {
+        fill: $main_color_1;
       }
     }
 
@@ -867,8 +872,8 @@
     }
 
     .additional-color-1-svg {
-      path {
-        fill: $color_set_4_additional_color_1;
+      svg {
+        fill: $main_color_1;
       }
     }
 

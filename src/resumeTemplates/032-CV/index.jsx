@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
-import { isObjDatasKeys } from "../../helpers/datasPage";
 import { checkForSymbol } from "../../utils/checkForSymbol";
 
 const drawing = () => {
@@ -178,9 +177,17 @@ const drawing = () => {
       return page_element_container;
     }
 
-    $(document).ready(function () {
-      rebuildingPages()
-    });
+    function columnRightHelper() {
+      $('.cv-body-visible .js-column-right').each(function () {
+        if ($(this).width() < 10) {
+          $(this).remove();
+          $('.cv-body-visible .column-left').css('margin-top', 0);
+        }
+      });
+    }
+
+    rebuildingPages();
+    columnRightHelper();
   }
 }
 
@@ -434,7 +441,7 @@ export const ResumeCv032 = ({
                 }
               </div>
             </div>
-            <div className="column-right additional-color-1-border">
+            <div className="column-right js-column-right additional-color-1-border">
               {
                 contact[0]?.picture && (
                   <div className="photo-block block-block">
@@ -501,7 +508,7 @@ export const ResumeCv032 = ({
                     isArray(social_links) && social_links.length && (
                       social_links.map((item, index) => (
                         <a className="links-item" key={index}>
-                          {item.name.substring(0, 2)}
+                          {item.name}
                         </a>
                       ))
                     ) || (
