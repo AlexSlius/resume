@@ -6,6 +6,7 @@ const Languages = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'Languages'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormLanguages

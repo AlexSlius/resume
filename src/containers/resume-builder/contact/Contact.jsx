@@ -13,6 +13,7 @@ const Contact = ({
       <>
          <HeadMainContent
             title={'Contact Section'}
+            StubTextBtn={true}
          />
          <FormContact
             dispatch={dispatch}

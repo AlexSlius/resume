@@ -6,6 +6,7 @@ const Reference = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'References'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormReference

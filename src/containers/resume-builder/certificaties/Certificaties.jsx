@@ -7,6 +7,7 @@ const Certificaties = ({ idCv, states, dispatch }) => {
          <HeadMainContent
             title={'Certificates'}
             description={'Enter your licenses or certifications one at a time.'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormCertificaties

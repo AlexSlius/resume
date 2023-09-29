@@ -6,6 +6,7 @@ const Course = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'Courses'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormCourse

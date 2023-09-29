@@ -1,14 +1,36 @@
-import { ButtonBack } from "../uis/buttonBack"
+import { useSelector, useDispatch } from "react-redux";
 
-import style from "./HeadMainContent.module.scss"
+import { ButtonBack } from "../uis/buttonBack"
+import { Switch } from "../../components/uis/switch";
+
+import { updateStudText } from "../../slices/resumeData";
+
+import style from "./HeadMainContent.module.scss";
 
 const HeadMainContent = (props) => {
-   const { title, description, children, isRows = true, link = '' } = props;
+   const dispatch = useDispatch();
+   const { title, description, children, isRows = true, link = '', StubTextBtn = false } = props;
+
+   const { stubText } = useSelector(state => state.resumeData);
 
    return (
       <div className={style.main_content}>
-         <div className={`${style.main_content__back}`}>
-            <ButtonBack link={link} />
+         <div className={style.main_head}>
+            <div className={`${style.main_content__back}`}>
+               <ButtonBack link={link} />
+            </div>
+            {
+               !!StubTextBtn && (
+                  <div className={style.switch_stub}>
+                     <Switch
+                        label="Stub-text"
+                        reverse={true}
+                        isChecked={stubText}
+                        handleOnChange={(prev) => dispatch(updateStudText(!stubText))}
+                     />
+                  </div>
+               )
+            }
          </div>
          {
             title && (
@@ -32,6 +54,8 @@ const HeadMainContent = (props) => {
                </div>
             )
          }
+
+
       </div>
    )
 }

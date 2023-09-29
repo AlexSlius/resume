@@ -6,6 +6,7 @@ const InterShip = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'Internship'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormInterShip

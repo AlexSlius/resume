@@ -44,6 +44,12 @@
    }
 }
 
+.main_head {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
 .row.row-main {
    flex-wrap: nowrap;
 }
@@ -66,4 +72,10 @@
 .cont_right {
    position: relative;
    padding-top: 8px;
+}
+
+@media(max-width: 991px) {
+   .switch_stub {
+      padding-bottom: 26px;
+   }
 }

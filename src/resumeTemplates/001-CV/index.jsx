@@ -179,7 +179,6 @@ const drawing = () => {
       $('.cv-body-visible .js-profile-secondary-info .item-block').each(function () {
         $('.js-profile-secondary-info').removeClass('m-transfer');
         if ($(this).height() > 15) {
-          console.log('test');
           $('.js-profile-secondary-info').addClass('m-transfer');
           return;
         } else {

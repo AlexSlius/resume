@@ -7,6 +7,7 @@ const Activity = ({ idCv, states, dispatch }) => {
       <>
          <HeadMainContent
             title={'Extra-curricular activities'}
+            StubTextBtn={true}
          >
          </HeadMainContent>
          <FormActivity

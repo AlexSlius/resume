@@ -66,6 +66,7 @@ const AddSection = ({ idCv, states, dispatch }) => {
             <HeadMainContent
                 title={'Add Section'}
                 description={'You can add the required block, or create a custom one.'}
+                StubTextBtn={true}
             >
             </HeadMainContent>
 

@@ -352,11 +352,11 @@ textarea.form-control {
 
 .hide_scroll {
     &::-webkit-scrollbar {
-        width: 0!important;
+        width: 0 !important;
     }
 
     &::-webkit-scrollbar-thumb {
-        width: 0!important;
+        width: 0 !important;
     }
 }
 
@@ -651,6 +651,16 @@ input[type="number"]:focus {
 .wr-check {
     display: flex;
     align-items: center;
+
+    &.reverse {
+        flex-direction: row-reverse;
+
+        .wr-check_label {
+            padding-right: 10px;
+            color: #01153A;
+            padding-left: 0;
+        }
+    }
 }
 
 .label-switch {
