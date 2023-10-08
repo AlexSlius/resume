@@ -15,7 +15,7 @@ export const SectionAutCreateCover = ({
                 </div>
                 <div className="autcover__main">
                     <div>
-                        <img src="/images/page/cover-automatic.png" alt="cover automatic cover" />
+                        <img src="/images/page/cover-automatic.svg" alt="cover automatic cover" />
                         <div className="autcover-item autcover-item_one">
                             <span>You won’t have to write it, we will do it for you.</span>
                         </div>

@@ -62,14 +62,14 @@
 
     &__left {
         background: #FFF;
-        padding: 40px 48px 40px 0;
-        width: 58.8%;
+        padding: 40px 40px 40px 0;
+        width: 58.4%;
     }
 
     &__right {
         background: #EFF4FF;
         padding: 40px 0 40px 40px;
-        width: 41.2%;
+        width: 41.6%;
         position: relative;
 
         &>div {
@@ -137,13 +137,24 @@
             img {
                 margin-left: -40px;
                 margin-top: -20px;
+                height: 128%;
+                max-width: none;
+                margin-top: -30px;
             }
         }
 
-        max-height: 280px;
+        &_resume {
+            img {
+                max-width: none;
+                height: 119%;
+                margin-top: -10px;
+            }
+        }
+
+        max-height: 286px;
 
         @media(min-width: 1200px) {
-            height: 280px;
+            height: 286px;
         }
     }
 
@@ -155,6 +166,10 @@
     overflow: hidden;
     position: relative;
     width: calc(33.33% - 13.33px);
+
+    &.box_card-t {
+        box-shadow: 0px 15px 40px 0px rgba(0, 0, 0, 0.10);
+    }
 
     .sub-card__hove {
 
@@ -189,6 +204,7 @@
         display: flex;
         align-items: center;
         font-weight: 400;
+
         @media(min-width: 1023px) {
             gap: 5px;
         }
@@ -616,6 +632,18 @@
                 background-image: url(/../images/icons/icon_arrow_get_start_white.svg);
             }
         }
+    }
+}
+
+@media(max-width: 1240px) {
+    .submenu__te_ims_resume img {
+        max-width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+
+    .submenu__te_ims_cover img {
+        max-width: 100%;
     }
 }
 

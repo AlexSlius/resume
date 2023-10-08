@@ -93,7 +93,7 @@ export const HomePage = () => {
                 linkBtn={`${routersPages['resumeBuilderNew']}`}
                 desc=" Our professional Resume Builder has helped thousands of job seekers land more interviews and get hired faster."
                 promoNumbers={promoNumbers}
-                imgRight="/images/page/resumes_3x.webp"
+                imgRight="/images/page/resumes.png"
                 users={usersCreated}
                 isMob={isMob}
                 arrImg={['/images/page/item-resum-1.png', '/images/page/item-resum-2.png', '/images/page/item-resum-3.png', '/images/page/item-resum-4.png', '/images/page/item-resum-5.png', '/images/page/item-resum-6.png']}

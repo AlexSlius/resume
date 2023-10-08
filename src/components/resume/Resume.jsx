@@ -97,6 +97,7 @@ const Resume = ({
       resumeData.resumeActive,
       resumeData.resumeActiveNew,
       resumeData.drawing,
+      resumeData.stubText,
       contacts,
       employment,
       educations,
@@ -151,6 +152,7 @@ const Resume = ({
       resumeData.resumeActive,
       resumeData.resumeActiveNew,
       resumeData.drawing,
+      resumeData.stubText,
       employment,
       educations,
       skills,
@@ -164,6 +166,11 @@ const Resume = ({
       certificaties,
       careers
    ]);
+
+   useEffect(() => {
+      if (pagesPag == 1)
+         setPagePagCurrent(1);
+   }, [resumeData.stubText, pagesPag]);
 
    useEffect(() => {
       setPagePagCurrent(1);

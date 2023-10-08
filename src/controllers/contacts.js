@@ -35,10 +35,12 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({
         }
     } = thunkAPI.getState();
 
+    console.log("objFormSettings: ", objFormSettings, isNewResume);
+
     const dataAccout = {
         email: objFormSettings?.email || contactObjNew.email,
-        first_name: objFormSettings?.firstName || contactObjNew.firstName,
-        last_name: objFormSettings?.lastName || contactObjNew.lastName
+        firstName: objFormSettings?.firstName || contactObjNew.firstName,
+        lastName: objFormSettings?.lastName || contactObjNew.lastName
     };
 
     const picture = isPage ? contactObjNew?.picture?.includes('data:image/') ? pictureFile : avatar?.image_name : pictureFile;

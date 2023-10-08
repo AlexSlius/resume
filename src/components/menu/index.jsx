@@ -140,13 +140,14 @@ export const Menu = () => {
                                                                         </div>
                                                                         <div className="submenu__templs">
                                                                             {
-                                                                                menuData.templatesCover.map((itemResume) => (
+                                                                                menuData.templatesCover.map((itemResume, index) => (
                                                                                     <CardTemplateMenu
                                                                                         key={itemResume.id}
                                                                                         scrImg={itemResume.img}
                                                                                         link={`/${routersPages['coverLetterNew']}`}
                                                                                         handlePreview={() => handlePreview(itemResume.data, "cover")}
                                                                                         handleLink={() => dispatch(updateActiveCoverNew({ slug: itemResume.slug, id: itemResume.id, template_class: itemResume.class }))}
+                                                                                        dopClass={(index == 0) ? 'box_card-t' : ''}
                                                                                     />
                                                                                 ))
                                                                             }
@@ -160,7 +161,7 @@ export const Menu = () => {
                                                                     <div className="submenu__top">
                                                                         <div className="submenu__title">Try our best Resume</div>
                                                                     </div>
-                                                                    <div className="submenu__templs submenu__te_ims">
+                                                                    <div className="submenu__templs submenu__te_ims submenu__te_ims_resume">
                                                                         <img src="/images/tem_menu/img_grup_res.png" alt="img cover" />
                                                                     </div>
                                                                     <div className="submenu__bot">

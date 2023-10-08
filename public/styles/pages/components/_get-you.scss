@@ -25,7 +25,7 @@
     }
 
     &__right {
-        width: 58%;
+        width: 56%;
         padding-left: 84px;
 
         div {
@@ -34,7 +34,7 @@
 
            img {
             @media (min-width: 1023px) {
-                transform: scale(1.15);
+                transform: scale(1.25);
             }
            }
         }

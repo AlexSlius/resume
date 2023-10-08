@@ -6,9 +6,11 @@ export const SectionForFree = ({
     des,
     btnText,
     link,
-    pageCover=false
+    pageCover = false
 }) => {
-    let urlImg = pageCover ? isMob ? "/images/page/t-for-free-cover-mob.png" : "/images/page/t-for-cover-free.png" : isMob ? "/images/page/t-for-free-mob.png" : "/images/page/t-for-free.png";
+    let urlImg = pageCover ?
+        ['/images/page/t-for-cover-free-1.png', '/images/page/t-for-cover-free-2.png', '/images/page/t-for-cover-free-3.png'] :
+        ['/images/page/t-for-free-1.png', '/images/page/t-for-free-2.png', '/images/page/t-for-free-3.png']
 
     return (
         <section className="for-free mt-180">
@@ -24,9 +26,13 @@ export const SectionForFree = ({
                         </div>
                     </div>
                     <div className="for-free__right">
-                        <div>
-                            <img src={urlImg} alt="image for free" />
-                        </div>
+                        {
+                            urlImg.map((item, index) => (
+                                <div key={index}>
+                                    <img src={item} alt="image for free" />
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

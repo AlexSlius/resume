@@ -8,9 +8,10 @@ export const CardTemplateMenu = ({
     handleLink = () => { },
     handlePreview = () => { },
     link = "",
+    dopClass = '',
 }) => {
     return (
-        <div className="sub-card" >
+        <div className={`sub-card ${dopClass}`} >
             <img src={scrImg} alt="image template" />
             <div className="card-selec__hove sub-card__hove">
                 <div className="card-selec__btn-top">
