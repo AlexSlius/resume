@@ -35,8 +35,6 @@ export const contactAddNew = createAsyncThunk('fetch/setNewContact', async ({
         }
     } = thunkAPI.getState();
 
-    console.log("objFormSettings: ", objFormSettings, isNewResume);
-
     const dataAccout = {
         email: objFormSettings?.email || contactObjNew.email,
         firstName: objFormSettings?.firstName || contactObjNew.firstName,

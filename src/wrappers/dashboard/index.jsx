@@ -22,7 +22,8 @@ const AdminPage = ({
     children,
     isResume = false,
     isMaxH,
-    isSidebar = true
+    isSidebar = true,
+    isPageNow = false
 }) => {
     const router = useRouter();
     const {
@@ -55,9 +56,21 @@ const AdminPage = ({
                                                     <img loading="lazy" src="/images/page/logo.svg" alt="img" />
                                                 </Link>
                                             </div>
-                                            <button className="btn-close-black" onClick={() => router.back()}>
-                                                <Icon svg={iconXNow} />
-                                            </button>
+                                            {
+                                                isPageNow && (
+                                                    <Link href={routersPages.dashboard} className="btn-close-black">
+                                                        <Icon svg={iconXNow} />
+                                                    </Link>
+                                                )
+                                            }
+
+                                            {
+                                                !isPageNow && (
+                                                    <button className="btn-close-black" onClick={() => router.back()}>
+                                                        <Icon svg={iconXNow} />
+                                                    </button>
+                                                )
+                                            }
                                         </>
                                     ) : (
                                         <>

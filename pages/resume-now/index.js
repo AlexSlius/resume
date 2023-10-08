@@ -21,7 +21,8 @@ const ResumeNowPage = () => {
         <DashboardWrapper
             isResume={true}
             isMaxH={true}
-            isSidebar={false}>
+            isSidebar={false}
+            isPageNow={true}>
             <ContainerPageResumeNow />
         </DashboardWrapper>
     )
