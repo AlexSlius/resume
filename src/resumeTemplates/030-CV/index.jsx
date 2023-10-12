@@ -263,21 +263,21 @@ export const ResumeCv030 = ({
                     </div>
                   )
                 }
-                <div className={`details-block block-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`details-block block-block ${!contact[0].driverLicense && !contact[0].nationality && !contact[0].placeOfBirth && !contact[0].dateOfBirth && !contact[0].email && !contact[0].phone && !contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-3 additional-color-1-text">Details</div>
-                  <div className={`contacts-block ${!contact[0]?.email && !contact[0]?.phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                    <div className={`contact-item ${!contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      <span className={`${!contact[0]?.country ? 'empty-field' : ''} ${!contact[0]?.country && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([contact[0]?.address, contact[0]?.city, contact[0]?.zipCode]) ? contact[0]?.country + ', ' : contact[0]?.country || 'United States, '}`}
+                  <div className={`contacts-block ${!contact[0].email && !contact[0].phone && !contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                    <div className={`contact-item ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                      <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
                       </span>
-                      <span className={`${!contact[0]?.address ? 'empty-field' : ''} ${!contact[0]?.address && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([contact[0]?.city, contact[0]?.zipCode]) ? contact[0]?.address + ', ' : contact[0]?.address || '5th Avenue Street, '}`}
+                      <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
                       </span>
-                      <span className={`${!contact[0]?.city ? 'empty-field' : ''} ${!contact[0]?.city && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([contact[0]?.zipCode]) ? contact[0]?.city + ', ' : contact[0]?.city || 'New York City, '}`}
+                      <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
                       </span>
-                      <span className={`${!contact[0]?.zipCode ? 'empty-field' : ''} ${!contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0]?.zipCode || '384846'}`}
+                      <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
                       </span>
                     </div>
                     <div className={`contact-item ${!contact[0].phone ? 'empty-field' : ''} ${!contact[0]?.phone && !beforeСontent ? 'hide' : ''}`}>

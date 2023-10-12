@@ -241,7 +241,7 @@ export const ResumeCv016 = ({
     languages,
   } = dataNew;
   const isContactArray = isArray(contact);
-  let conta = contact?.[0];
+  let conta = contact[0];
   let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 
   useEffect(() => {
@@ -267,17 +267,17 @@ export const ResumeCv016 = ({
                   </div>
                 )
               }
-              <div className={`column-right ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
+              <div className={`column-right ${!conta.firstName && !conta.lastName && !conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
                 <div className="name-and-prophecy-wrapper">
-                  <div className={`cv-profession font-size-5 ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                    {contact[0].jobTitle || 'Web-designer'}
+                  <div className={`cv-profession font-size-5 ${!conta.jobTitle ? 'empty-field' : ''} ${!conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.jobTitle || 'Web-designer'}
                   </div>
-                  <div className={`cv-name font-size-6 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                    <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                      {contact[0].firstName || 'Matthew'}{` `}
+                  <div className={`cv-name font-size-6 ${!conta.firstName && !conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                    <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
+                      {conta.firstName || 'Matthew'}{` `}
                     </span><br/>
-                    <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                      {contact[0].lastName || 'Mcconaughey'}
+                    <span className={`${!conta.lastName ? 'empty-field' : ''} ${!conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                      {conta.lastName || 'Mcconaughey'}
                     </span>
                   </div>
                 </div>
@@ -285,24 +285,24 @@ export const ResumeCv016 = ({
             </div>
             <div className="middle-area">
               <div className="column-left js-column-left">
-                <div className={`details-block block-block ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`details-block block-block ${!conta.country && !conta.address && !conta.city && !conta.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                   <div className="heading-wrapper">
                     <div className="cv-heading font-size-4">details</div>
                     <div className="cv-heading font-size-3">01</div>
                   </div>
                   <div className="details-info">
                     <div className={`${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      <span className={`${!conta.country ? 'empty-field' : ''} ${!conta?.country && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country || 'United States, '}`}
+                      <span className={`${!conta.country ? 'empty-field' : ''} ${!conta.country && !beforeСontent ? 'hide' : ''}`}>
+                        {`${conta.country ? checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country : 'United States, '}`}
                       </span>
-                      <span className={`${!conta.address ? 'empty-field' : ''} ${!conta?.address && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address || '5th Avenue Street, '}`}
+                      <span className={`${!conta.address ? 'empty-field' : ''} ${!conta.address && !beforeСontent ? 'hide' : ''}`}>
+                        {`${conta.address ? checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address : conta.country && !conta.city && !conta.zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
                       </span>
-                      <span className={`${!conta.city ? 'empty-field' : ''} ${!conta?.city && !beforeСontent ? 'hide' : ''}`}>
-                        {`${checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city || 'New York City, '}`}
+                      <span className={`${!conta.city ? 'empty-field' : ''} ${!conta.city && !beforeСontent ? 'hide' : ''}`}>
+                        {`${conta.city ? checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city : conta.address && !conta.zipCode ? ', New York City, ' : 'New York City, '}`}
                       </span>
-                      <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        {`${conta.zipCode || '384846'}`}
+                      <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                        {`${conta.zipCode ? conta.zipCode : conta.city ? ', 384846' : '384846'}`}
                       </span>
                     </div>
                     <div className={`${!conta.phone ? 'empty-field' : ''} ${!conta.phone && !beforeСontent ? 'hide' : ''}`}>

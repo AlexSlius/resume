@@ -87,7 +87,6 @@ const drawing = () => {
       current_page_number = 1;
       cvDataRight.forEach(function(el, index) {
         getPageColumnRight().append(el);
-        console.log(el);
         if (cvBlocksRight[index] === 'work-experience-block') {
           el.find('.work-experience-subblock').each(function(){
             el.append($(this));
@@ -180,6 +179,11 @@ const drawing = () => {
       });
       if (count > 1) {
         $('.cv-body-1.page-1').find('.work-experience-block').addClass('m-transfer');
+        if ($('.cv-body-1.page-1').find('.work-experience-block .work-experience-subblock').length === 0 && $('.cv-body-1.page-1').find('.work-experience-block .block-title').length > 0) {
+          let blockTitle = $('.cv-body-1.page-1').find('.work-experience-block .block-title').clone();
+          $('.cv-body-1.page-1').find('.work-experience-block').remove();
+          $('.cv-body-1.page-2').find('.work-experience-block').prepend(blockTitle);
+        }
       }
 
     }
@@ -393,26 +397,26 @@ export const ResumeCv004 = ({
                           {contact[0].email || 'designer@webservice.com'}
                         </div>
                       </div>
-                      <div className={`item-block ${!contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                      <div className={`item-block ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
                         <svg className="additional-color-2-svg" width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <g id="Location and Map / location pin">
                             <path id="Vector" d="M8.40911 2.79988C7.50496 1.80532 6.27867 1.24658 5.00002 1.24658C3.72136 1.24658 2.49507 1.80532 1.59092 2.79988C0.686777 3.79444 0.178833 5.14336 0.178833 6.54988C0.178833 7.95641 0.686777 9.30532 1.59092 10.2999L4.58524 13.5999C4.63806 13.6585 4.7009 13.705 4.77014 13.7367C4.83938 13.7684 4.91364 13.7848 4.98865 13.7848C5.06366 13.7848 5.13792 13.7684 5.20716 13.7367C5.2764 13.705 5.33924 13.6585 5.39206 13.5999L8.40911 10.2686C9.30948 9.27821 9.8153 7.93492 9.8153 6.53426C9.8153 5.1336 9.30948 3.79031 8.40911 2.79988ZM7.59661 9.37488L5.00002 12.2436L2.40342 9.37488C1.89044 8.81008 1.5412 8.09066 1.39984 7.30756C1.25849 6.52447 1.33137 5.71285 1.60928 4.97531C1.88719 4.23777 2.35764 3.60741 2.96117 3.16393C3.5647 2.72045 4.27421 2.48375 5.00002 2.48375C5.72582 2.48375 6.43533 2.72045 7.03886 3.16393C7.64239 3.60741 8.11284 4.23777 8.39075 4.97531C8.66866 5.71285 8.74154 6.52447 8.60019 7.30756C8.45884 8.09066 8.10959 8.81008 7.59661 9.37488ZM3.29547 4.63113C2.83679 5.13724 2.57922 5.82274 2.57922 6.53738C2.57922 7.25203 2.83679 7.93753 3.29547 8.44363C3.63624 8.81913 4.07024 9.07556 4.543 9.18076C5.01576 9.28596 5.50624 9.23525 5.9529 9.03498C6.39956 8.83471 6.78251 8.49381 7.0537 8.05504C7.32489 7.61627 7.47225 7.09918 7.47729 6.56863C7.47985 6.21439 7.41781 5.86317 7.29485 5.53575C7.17188 5.20833 6.99048 4.91136 6.76138 4.66238C6.53619 4.40899 6.26767 4.20709 5.97128 4.0683C5.67488 3.9295 5.35646 3.85656 5.03433 3.85365C4.71221 3.85075 4.39274 3.91794 4.09432 4.05138C3.79589 4.18481 3.5244 4.38184 3.29547 4.63113ZM5.96024 7.55613C5.74493 7.7966 5.46036 7.94732 5.1552 7.98254C4.85004 8.01776 4.54323 7.93528 4.28724 7.74921C4.03124 7.56314 3.84195 7.28503 3.75172 6.96243C3.6615 6.63984 3.67595 6.29278 3.79261 5.9806C3.90926 5.66843 4.12087 5.41052 4.39126 5.25097C4.66165 5.09142 4.97402 5.04014 5.27498 5.10589C5.57594 5.17165 5.84678 5.35036 6.04121 5.61146C6.23565 5.87257 6.34159 6.19986 6.34092 6.53738C6.33266 6.92318 6.18552 7.28959 5.93183 7.55613H5.96024Z" fill="#030303"/>
                           </g>
                         </svg>
                         <div>
-                          <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0]?.country && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country || 'United States, '}`}
+                          <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                            {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
                           </span>
-                          <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0]?.address && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address || '5th Avenue Street, '}`}
+                          <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                            {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
                           </span>
-                          <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0]?.city && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city || 'New York City, '}`}
+                          <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                            {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
                           </span>
-                          <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                            {`${contact[0].zipCode || '384846'}`}
+                          <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                            {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
                           </span>
-                        </div>
+                      </div>
                       </div>
                       <div className={`item-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
                         <svg className="additional-color-2-svg" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">

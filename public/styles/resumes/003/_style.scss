@@ -203,6 +203,9 @@
         &.email-item {
           flex-shrink: 0;
         }
+        &.address-item {
+          max-width: 170px;
+        }
       }
       .links-wrapper {
         display: flex;
@@ -211,6 +214,7 @@
       svg {
         width: 16px;
         height: 16px;
+        flex-shrink: 0;
       }
     }
   }
