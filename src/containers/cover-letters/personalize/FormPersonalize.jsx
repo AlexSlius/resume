@@ -187,7 +187,7 @@ const FormPersonalize = ({
             dispatch(getCoverTextNoAuthNew());
         }
 
-        if (isNew && isAthorized) {
+        if (isNew && isAthorized && (objFormSettings !== null)) {
             let { firstName, lastName, email } = objFormSettings;
 
             !(contObj?.firstName?.length > 0) && handleUpdateItemField({ name: "firstName", value: firstName });

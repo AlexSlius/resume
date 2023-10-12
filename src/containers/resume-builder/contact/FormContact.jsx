@@ -261,13 +261,11 @@ const FormContact = ({
    }
 
    useEffect(() => {
-      if (isNewResume && isAthorized) {
-         let { firstName, lastName, email } = objFormSettings;
-
-         !(contObj?.firstName?.length > 0) && handlerSetDateState('firstName', firstName);
-         !(contObj?.lastName?.length > 0) && handlerSetDateState('lastName', lastName);
-         !(contObj?.email?.length > 0) && handlerSetDateState('email', email);
-         !(contObj?.picture?.length > 0) && handlerSetDateState('picture', avatar?.image || null);
+      if (isNewResume && isAthorized && (objFormSettings !== null)) {
+         !(contObj?.firstName?.length > 0) && handlerSetDateState('firstName', objFormSettings.firstName);
+         !(contObj?.lastName?.length > 0) && handlerSetDateState('lastName', objFormSettings.lastName);
+         !(contObj?.email?.length > 0) && handlerSetDateState('email', objFormSettings.email);
+         !(contObj?.picture?.length > 0) && handlerSetDateState('picture', objFormSettings.avatar?.image || null);
       }
    }, [objFormSettings, isAthorized, avatar]);
 

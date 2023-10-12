@@ -320,7 +320,7 @@ const Templates = ({
             dispatch(updateItemFieldContact({ name, value }));
     }
 
-    let { scaleSize, origin, originTop } = useScaleResumePageShare({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, isPdf});
+    let { scaleSize, origin, originTop } = useScaleResumePageShare({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, isPdf });
 
     useEffect(() => {
         if (dataOther?.resumeActive?.template_id) {
@@ -405,7 +405,7 @@ const Templates = ({
     }, [dataOther.resumeActive]);
 
     useEffect(() => {
-        if (isNewResume && isAthorized) {
+        if (isNewResume && isAthorized && (objFormSettings !== null)) {
             const contObj = isCover ? (isNewResume ? coverDataForm.coverDataObjNew : coverDataForm.coverDataObj) : (isNewResume ? contactObjNew : contactObj);
             let { firstName, lastName, email } = objFormSettings;
 
