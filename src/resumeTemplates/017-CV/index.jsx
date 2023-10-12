@@ -192,7 +192,7 @@ export const ResumeCv017 = ({
     languages,
   } = dataNew;
   const isContactArray = isArray(contact);
-  let conta = contact?.[0];
+  let conta = contact[0];
   let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 
   useEffect(() => {
@@ -209,17 +209,17 @@ export const ResumeCv017 = ({
           <div className="cv-body-content font-size-1 main-color-1-text additional-color-1-background">
             <div className="top-area">
               <div className={`name-and-photo-block block-block`}>
-                <div className={`name-and-prophecy-wrapper ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                  <div className={`cv-name font-size-6 ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                    <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
-                      {contact[0].firstName || 'Matthew'}{` `}
+                <div className={`name-and-prophecy-wrapper ${!conta.firstName && !conta.lastName && !conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                  <div className={`cv-name font-size-6 ${!conta.firstName && !conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                    <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
+                      {conta.firstName || 'Matthew'}{` `}
                     </span>
-                    <span className={`${!contact[0].lastName ? 'empty-field' : ''} ${!contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
-                      {contact[0].lastName || 'Mcconaughey'}
+                    <span className={`${!conta.lastName ? 'empty-field' : ''} ${!conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                      {conta.lastName || 'Mcconaughey'}
                     </span>
                   </div>
-                  <div className={`cv-profession font-size-5 ${!contact[0].jobTitle ? 'empty-field' : ''} ${!contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                    {contact[0].jobTitle || 'Web-designer'}
+                  <div className={`cv-profession font-size-5 ${!conta.jobTitle ? 'empty-field' : ''} ${!conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.jobTitle || 'Web-designer'}
                   </div>
                 </div>
                 {
@@ -351,22 +351,22 @@ export const ResumeCv017 = ({
                       <div className="top-bg"></div>
                       <div className="right-bg"></div>
                       <div className="bottom-bg"></div>
-                      <div className={`details-address details-item ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        <svg className={`${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode ? 'empty-field' : ''}`} xmlns="http://www.w3.org/2000/svg" width="10" height="12" viewBox="0 0 10 12" fill="none">
+                      <div className={`details-address details-item ${!conta.country && !conta.address && !conta.city && !conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                        <svg className={`${!conta.country && !conta.address && !conta.city && !conta.zipCode ? 'empty-field' : ''}`} xmlns="http://www.w3.org/2000/svg" width="10" height="12" viewBox="0 0 10 12" fill="none">
                           <path d="M5 0C3.67392 0 2.40215 0.505711 1.46447 1.40588C0.526784 2.30605 0 3.52695 0 4.79998C0 8.03997 4.40625 11.7 4.59375 11.856C4.70696 11.9489 4.85103 12 5 12C5.14897 12 5.29304 11.9489 5.40625 11.856C5.625 11.7 10 8.03997 10 4.79998C10 3.52695 9.47322 2.30605 8.53553 1.40588C7.59785 0.505711 6.32608 0 5 0ZM5 10.59C3.66875 9.38997 1.25 6.80398 1.25 4.79998C1.25 3.84521 1.64509 2.92954 2.34835 2.25441C3.05161 1.57928 4.00544 1.2 5 1.2C5.99456 1.2 6.94839 1.57928 7.65165 2.25441C8.35491 2.92954 8.75 3.84521 8.75 4.79998C8.75 6.80398 6.33125 9.39597 5 10.59ZM5 2.39999C4.50555 2.39999 4.0222 2.54075 3.61107 2.80446C3.19995 3.06818 2.87952 3.44301 2.6903 3.88155C2.50108 4.32009 2.45157 4.80265 2.54804 5.2682C2.6445 5.73375 2.8826 6.16139 3.23223 6.49704C3.58186 6.83268 4.02732 7.06126 4.51227 7.15386C4.99723 7.24647 5.49989 7.19894 5.95671 7.01729C6.41352 6.83564 6.80397 6.52803 7.07867 6.13335C7.35338 5.73867 7.5 5.27466 7.5 4.79998C7.5 4.16347 7.23661 3.55302 6.76777 3.10293C6.29893 2.65285 5.66304 2.39999 5 2.39999ZM5 5.99998C4.75277 5.99998 4.5111 5.9296 4.30554 5.79774C4.09998 5.66589 3.93976 5.47847 3.84515 5.2592C3.75054 5.03993 3.72579 4.79865 3.77402 4.56588C3.82225 4.3331 3.9413 4.11928 4.11612 3.95146C4.29093 3.78364 4.51366 3.66935 4.75614 3.62305C4.99861 3.57674 5.24995 3.60051 5.47835 3.69133C5.70676 3.78216 5.90199 3.93596 6.03934 4.1333C6.17669 4.33064 6.25 4.56265 6.25 4.79998C6.25 5.11824 6.1183 5.42347 5.88388 5.64851C5.64946 5.87355 5.33152 5.99998 5 5.99998Z" fill="#75BE87"/>
                         </svg>
                         <div>
-                          <span className={`${!conta.country ? 'empty-field' : ''} ${!conta?.country && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country || 'United States, '}`}
+                          <span className={`${!conta.country ? 'empty-field' : ''} ${!conta.country && !beforeСontent ? 'hide' : ''}`}>
+                            {`${conta.country ? checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country : 'United States, '}`}
                           </span>
-                          <span className={`${!conta.address ? 'empty-field' : ''} ${!conta?.address && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address || '5th Avenue Street, '}`}
+                          <span className={`${!conta.address ? 'empty-field' : ''} ${!conta.address && !beforeСontent ? 'hide' : ''}`}>
+                            {`${conta.address ? checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address : conta.country && !conta.city && !conta.zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
                           </span>
-                          <span className={`${!conta.city ? 'empty-field' : ''} ${!conta?.city && !beforeСontent ? 'hide' : ''}`}>
-                            {`${checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city || 'New York City, '}`}
+                          <span className={`${!conta.city ? 'empty-field' : ''} ${!conta.city && !beforeСontent ? 'hide' : ''}`}>
+                            {`${conta.city ? checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city : conta.address && !conta.zipCode ? ', New York City, ' : 'New York City, '}`}
                           </span>
-                          <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                            {`${conta.zipCode || '384846'}`}
+                          <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
+                            {`${conta.zipCode ? conta.zipCode : conta.city ? ', 384846' : '384846'}`}
                           </span>
                         </div>
                       </div>
