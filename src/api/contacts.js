@@ -13,4 +13,7 @@ export default class ClientsAPI extends Base {
     updateContact(idCv, data, type = "formData") {
         return this.apiClient.post(`cv/update/${idCv}`, data, type);
     }
+    updateDrawinServer(idCv, data, type = "formData") {
+        return this.apiClient.post(`cv/${idCv}/switch_dummy_text/`, data, type);
+    }
 }

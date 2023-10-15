@@ -24,7 +24,9 @@ import { updateActiveCoverNew } from "../../slices/cover/coverData";
 
 import menuData from "./data/menuData.json";
 
-export const Menu = () => {
+export const Menu = ({
+    closeMobMenu = () => { }
+}) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const path = router.pathname;
@@ -63,11 +65,11 @@ export const Menu = () => {
                 {
                     path.indexOf('resume-builder') !== -1 ?
                         (
-                            <MenuSideBar />
+                            <MenuSideBar closeMobMenu={closeMobMenu}/>
                         ) :
                         path.indexOf('cover-letters') !== -1 ?
                             (
-                                <MenuSidebarCoverLetters />
+                                <MenuSidebarCoverLetters closeMobMenu={closeMobMenu}/>
                             ) :
                             (
                                 <nav className="nav">

@@ -23,7 +23,7 @@ import style from './SideBar.module.scss'
 import { sectionStatusAllButTheCustomSection } from "../../utils/customSection";
 
 
-const MenuSideBar = ({ statePictureFile }) => {
+const MenuSideBar = ({ statePictureFile, closeMobMenu = () => { } }) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const {
@@ -92,7 +92,6 @@ const MenuSideBar = ({ statePictureFile }) => {
         dispatch(addAllSection([...menuAsideResume.listStart, ...newArrAdd]));
     }, [list]);
 
-
     return (
         <>
             <CSidebarNav>
@@ -119,7 +118,7 @@ const MenuSideBar = ({ statePictureFile }) => {
                                     href={`/${routersPages['resumeBuilder']}/${idCv}${obj.link}${dopQuery}`} activeClassName={style.active}
                                     onQuery={"tab"}
                                 >
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${obj.link}${dopQuery}`)}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => { handleClick(e, `${obj.link}${dopQuery}`); closeMobMenu(); }}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>
@@ -136,7 +135,7 @@ const MenuSideBar = ({ statePictureFile }) => {
                                 href={`/${routersPages['resumeBuilder']}/${idCv}?tab=${ROUTES['addSection']}`} activeClassName={style.active}
                                 onQuery={"tab"}
                             >
-                                <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => handleClick(e, `?tab=${ROUTES['addSection']}${dopQuery}`)}>
+                                <a className={`${style.nav_link} nav-link ${!!viewedList?.['customSection']?.status ? style.link_current : ''}`} onClick={(e) => { handleClick(e, `?tab=${ROUTES['addSection']}${dopQuery}`); closeMobMenu(); }}>
                                     <Icon svg={routerLinksAsideMenuIcon[keysIcons["iconAdvanced"]]} classNames={[style.nav_icon, 'nav-icon']} />
                                     Advanced
                                 </a>

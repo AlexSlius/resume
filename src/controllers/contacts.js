@@ -131,3 +131,12 @@ export const updateIsErrorEmail = createAsyncThunk('fetch/updateIsErrorEmail', a
 
     return { status: true }
 });
+
+export const fetchUpdateDrawingeServer = createAsyncThunk('fetch/fetchUpdateDrawingeServer', async ({ id, status }, thunkAPI) => {
+    if (!id) return !!status;
+    const response = await api.contact.updateDrawinServer(id, { is_hidden: status });
+
+    thunkAPI.dispatch(handleCVUpdateDrawingTrue());
+
+    return (response?.status == 'updated') ? status : 0;
+});

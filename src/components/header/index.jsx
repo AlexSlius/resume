@@ -50,9 +50,8 @@ export const Header = ({
             isSubscribe
         }
     } = useSelector((state) => state);
-    const toggleMenu = () => {
-        setIsMenuShow(!isMenuShow);
-    }
+    const toggleMenu = () => { setIsMenuShow(!isMenuShow); }
+    const closeMobMenu = () => setIsMenuShow(false);
     const routerStetBack = backRoter(StepsName, step, idCv);
     const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
     const isResume = (router.asPath.includes(routersPages['resumeBuilder']) || router.asPath.includes(routersPages['resumeBuilderNew']));
@@ -142,7 +141,7 @@ export const Header = ({
                                             <SvgImage image={'close'} width={'11px'} height={'11px'} color={'#F63B3B'} />
                                         </div>
                                     </header>
-                                    <Menu pageName={pageName} />
+                                    <Menu pageName={pageName} closeMobMenu={closeMobMenu} />
                                     {
                                         isAthorized && (
                                             <div className="user-menu">

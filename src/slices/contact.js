@@ -6,7 +6,8 @@ import {
   getBasicContact,
   contactAddNew,
   fetchUpdateContact,
-  updateIsErrorEmail
+  updateIsErrorEmail,
+  fetchUpdateDrawingeServer
 } from "../controllers/contacts";
 
 import { statusLoaded, statusLoader } from '../constants/statuses';
@@ -29,6 +30,7 @@ const initialState = {
     placeOfBirth: "",
     dateOfBirth: null,
     jobTitleId: null,
+    isDummyTextHidden: 1,
   },
   contactObjNew: {
     firstName: "",
@@ -119,6 +121,9 @@ export const slice = createSlice({
     },
     [updateIsErrorEmail.fulfilled]: (state, action) => {
       state.isErrorEmail = action.payload.status;
+    },
+    [fetchUpdateDrawingeServer.fulfilled]: (state, action) => {
+      state.contactObj.isDummyTextHidden = action.payload;
     },
   }
 });

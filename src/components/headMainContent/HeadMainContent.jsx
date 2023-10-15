@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ButtonBack } from "../uis/buttonBack"
 import { Switch } from "../../components/uis/switch";
 
-import { updateStudText } from "../../slices/resumeData";
+import { fetchUpdateDrawingeServer } from "../../controllers/contacts";
 
 import style from "./HeadMainContent.module.scss";
 
@@ -11,7 +11,7 @@ const HeadMainContent = (props) => {
    const dispatch = useDispatch();
    const { title, description, children, isRows = true, link = '', StubTextBtn = false } = props;
 
-   const { stubText } = useSelector(state => state.resumeData);
+   const cont = useSelector(state => state.contacts.contactObj);
 
    return (
       <div className={style.main_content}>
@@ -25,8 +25,8 @@ const HeadMainContent = (props) => {
                      <Switch
                         label="Stub-text"
                         reverse={true}
-                        isChecked={stubText}
-                        handleOnChange={(prev) => dispatch(updateStudText(!stubText))}
+                        isChecked={!!cont?.isDummyTextHidden}
+                        handleOnChange={(prev) => dispatch(fetchUpdateDrawingeServer({ id: cont.id, status: !!cont?.isDummyTextHidden ? 0 : 1 }))}
                      />
                   </div>
                )

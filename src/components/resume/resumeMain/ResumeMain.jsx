@@ -135,7 +135,7 @@ const ResumeMain = ({
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
-                     beforeСontent={resumeData.stubText}
+                     beforeСontent={!!contactObj?.isDummyTextHidden}
                   />
                </div>
             )
@@ -155,7 +155,7 @@ const ResumeMain = ({
                      statusResumeActive={dataOther?.statusResumeActive}
                      drawing={coverDataForm.drawing}
                      handleReload={handleReload}
-                      // beforeСontent={false}
+                  // beforeСontent={false}
                   />
                </div>
             )

@@ -14,7 +14,7 @@ import { routersPages } from "../../constants/next-routers";
 
 import style from './SideBar.module.scss'
 
-const MenuSidebarCoverLetters = () => {
+const MenuSidebarCoverLetters = ({ closeMobMenu = () => { } }) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const {
@@ -93,7 +93,7 @@ const MenuSidebarCoverLetters = () => {
                                     href={`/${routersPages['coverLetter']}/${idCv}${obj.link}${linkQuery}`} activeClassName={style.active}
                                     onQuery={(index < (menuAsideResume.coverLetters.list.length - 1) ? "tab" : "")}
                                 >
-                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => handleClick(e, `${obj.link}${linkQuery}`)}>
+                                    <a className={`${style.nav_link} ${activeClassActives} nav-link`} onClick={(e) => { handleClick(e, `${obj.link}${linkQuery}`); closeMobMenu(); }}>
                                         <Icon svg={routerLinksAsideMenuIcon[obj.keyIcon]} classNames={[style.nav_icon, 'nav-icon']} />
                                         {obj.name || ""}
                                     </a>
