@@ -223,7 +223,8 @@ export const ResumeCv016 = ({
   stateClasses,
   reportTemplateRef,
   beforeСontent,
-  objActiveBlock
+  objActiveBlock,
+  isPdf = false
 }) => {
   const {
     contact,
@@ -245,6 +246,8 @@ export const ResumeCv016 = ({
   let classPhoto = (isArray(contact) && conta?.picture) ? "has-photo" : "";
 
   useEffect(() => {
+    if (isPdf) return;
+    
     if (!!isDrawing ) {
     drawing();
     handleFalseDrafind();

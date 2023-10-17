@@ -63,6 +63,7 @@
 }
 
 
+
 #cv-body-hidden-container,
 #cv-body-2 {
   height: 0 !important;
@@ -75,6 +76,23 @@
   pointer-events: none !important;
   left: 0px !important;
   // display: none;
+}
+
+// для теста
+.page-share.pdf {
+
+  #cv-body-hidden-container,
+  #cv-body-2 {
+    min-width: 100% !important;
+    min-height: 842px !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: inherit !important;
+    position: relative !important;
+    z-index: 1 !important;
+    opacity: 1 !important;
+    left: 0px !important;
+  }
 }
 
 .cv-body {
@@ -109,6 +127,6 @@
 
 @media(max-width: 992px) {
   .cv-body.cv-body-visible.none {
-    display: flex!important;
+    display: flex !important;
   }
 }

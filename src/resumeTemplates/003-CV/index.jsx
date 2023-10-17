@@ -180,7 +180,8 @@ export const ResumeCv003 = ({
   isTemplate = false,
   handleFalseDrafind = () => { },
   objActiveBlock,
-  beforeСontent
+  beforeСontent,
+  isPdf = false
 }) => {
   const {
     contact,
@@ -200,6 +201,8 @@ export const ResumeCv003 = ({
   } = dataNew;
 
   useEffect(() => {
+    if (isPdf) return;
+    
     if (!!isDrawing ) {
     drawing();
     handleFalseDrafind();

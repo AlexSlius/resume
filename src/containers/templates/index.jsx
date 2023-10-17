@@ -617,6 +617,7 @@ const Templates = ({
                                             drawing={dataOther.drawing}
                                             isTemplate={true}
                                             beforeСontent={beforeСontent}
+                                            isPdf={isPdf}
                                         />
                                     )
                                 }
@@ -636,6 +637,7 @@ const Templates = ({
                                             drawing={coverDataForm.drawing}
                                             isTemplate={true}
                                             beforeСontent={beforeСontent}
+                                            isPdf={isPdf}
                                         />
                                     )
                                 }

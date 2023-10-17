@@ -206,6 +206,7 @@ export const ResumeCv002 = ({
   handleFalseDrafind = () => { },
   objActiveBlock,
   beforeСontent,
+  isPdf = false
 }) => {
   const {
     contact,
@@ -225,6 +226,8 @@ export const ResumeCv002 = ({
   } = dataNew;
 
   useEffect(() => {
+    if (isPdf) return;
+    
     if (!!isDrawing ) {
     drawing();
     handleFalseDrafind();
