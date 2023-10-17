@@ -84,7 +84,7 @@ $color_set_7_additional_color_1: #87608D;
     flex-direction: column;
     overflow: hidden;
     padding: 15px;
-    background: url("/../styles/resumes/030/images/resume_bg.jpg") no-repeat 50%;
+    background: url("/../styles/resumes/030/images/resume_bg.jpg") repeat-y 50%;
     &.page-1 {
       .middle-area {
         padding-top: 0;
