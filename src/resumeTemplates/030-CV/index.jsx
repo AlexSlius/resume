@@ -240,7 +240,6 @@ export const ResumeCv030 = ({
           <div className="cv-body-content font-size-1 main-color-4-text">
             <div className="top-area">
               <div className={`main-info-block ${!contact[0].firstName && !contact[0].lastName && !contact[0].jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                <div className="ellipse-line"></div>
                 <div className={`cv-name font-size-5 additional-color-1-text ${!contact[0].firstName && !contact[0].lastName && !beforeСontent ? 'hide' : ''}`}>
                   <span className={`${!contact[0].firstName ? 'empty-field' : ''} ${!contact[0].firstName && !beforeСontent ? 'hide' : ''}`}>
                     {contact[0].firstName || 'Matthew'}{` `}

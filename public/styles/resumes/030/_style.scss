@@ -79,22 +79,12 @@ $color_set_7_additional_color_1: #87608D;
     margin-top: 5px;
   }
 
-  .ellipse-line {
-    position: absolute;
-    width: 558px;
-    height: 128px;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: url("/../styles/resumes/030/images/line.svg") no-repeat 0 0;
-  }
-
   .cv-body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
     padding: 15px;
-    background: $main_color_2;
+    background: url("/../styles/resumes/030/images/resume_bg.jpg") no-repeat 50%;
     &.page-1 {
       .middle-area {
         padding-top: 0;
@@ -107,7 +97,6 @@ $color_set_7_additional_color_1: #87608D;
     flex: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid #fff;
   }
 
   .top-area {
