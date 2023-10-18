@@ -13,7 +13,7 @@ const ShareResume = ({
         <div className={isPdf ? style.wr_div : ""}>
             <div className={`page-share ${isPdf ? "pdf" : ""}`}>
                 <div className="page-share__container">
-                    <Templates isCover={isCover} isPageView={true} beforeСontent={false} isPdf={isPdf}/>
+                    <Templates isCover={isCover} isPageView={true} beforeСontent={false}/>
                 </div>
             </div>
         </div>

@@ -78,23 +78,6 @@
   // display: none;
 }
 
-// для теста
-.page-share.pdf {
-
-  #cv-body-hidden-container,
-  #cv-body-2 {
-    min-width: 100% !important;
-    min-height: 842px !important;
-    max-height: none !important;
-    height: auto !important;
-    overflow: inherit !important;
-    position: relative !important;
-    z-index: 1 !important;
-    opacity: 1 !important;
-    left: 0px !important;
-  }
-}
-
 .cv-body {
   min-width: 100% !important;
   min-height: 842px !important;
