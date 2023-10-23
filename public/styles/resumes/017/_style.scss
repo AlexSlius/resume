@@ -745,4 +745,10 @@
       background: $color_set_6_additional_color_1;
     }
   }
+
+  @media print {
+    .block-block {
+      break-inside: avoid !important;
+    }
+  }
 }
