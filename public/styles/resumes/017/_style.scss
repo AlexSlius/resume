@@ -749,9 +749,9 @@
   @media print {
     .block-block {
       break-inside: avoid !important;
+      &:not(:first-of-type) {
+        margin-top: 5px;
+      }
     }
   }
-}
-.body-template-resume {
-  height: 832px !important;
 }
