@@ -486,7 +486,7 @@
     &:not(.pdf) {
         .page-templates__right {
             .cv-body.cv-body-visible {
-                margin-bottom: 26px;
+                // margin-bottom: 26px;
             }
         }
     }
@@ -496,7 +496,7 @@
     .body-template-resume {
         transform-origin: 50% 0px;
         width: 624px;
-        height: 835px;
+        height: 842px;
         margin: 0 auto;
 
         @media(max-width: 1023px) {
