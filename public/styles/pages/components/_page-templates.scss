@@ -627,3 +627,9 @@
         }
     }
 }
+
+@media print {
+    .page-template .body-template-resume .block-block {
+      page-break-inside: avoid !important;
+    }
+  }
