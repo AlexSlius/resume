@@ -748,10 +748,7 @@
 
   @media print {
     .block-block {
-      break-inside: avoid !important;
-      &:not(:first-of-type) {
-        margin-top: 5px;
-      }
+      page-break-inside: avoid !important;
     }
   }
 }
