@@ -496,7 +496,7 @@
     .body-template-resume {
         transform-origin: 50% 0px;
         width: 624px;
-        height: 842px;
+        height: 839px;
         margin: 0 auto;
 
         @media(max-width: 1023px) {
@@ -627,3 +627,9 @@
         }
     }
 }
+
+@media print {
+    .page-template .body-template-resume .block-block {
+      page-break-inside: avoid !important;
+    }
+  }
