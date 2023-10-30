@@ -105,7 +105,7 @@ export const DatePicker = ({
         <div className={`${style.wt_cal} ${selected ? "selected_data" : ""}`} ref={refSelect}>
             <div className={`${style.wt_cal_in} ${style.btn_clean}`}>
                 <i className={style.wt_cal_in_icon_cal} ref={refBtn}></i>
-                <div ref={useRefDataNewIn} className='wr-input'>
+                <div ref={useRefDataNewIn} className={`wr-input ${style.wt_cal_in_icon_cal_wr}`}>
                     <Input
                         name={name}
                         label={floatingLabel}
