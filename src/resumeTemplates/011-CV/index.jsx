@@ -529,7 +529,7 @@ export const ResumeCv011 = ({
                             <div className="left-side">
                               {socialHelper(item.name)}
                             </div>
-                            <div className="right-side additional-color-1-text">{item.name}</div>
+                            <div className="right-side additional-color-1-text"><a href={item.link}>{item.name}</a></div>
                           </div>
                         ))
                       ) || (

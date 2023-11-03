@@ -253,7 +253,7 @@ export const ResumeCv041 = ({
                       isArray(social_links) && social_links.length && (
                         social_links.map((item, index) => (
                           <div className="link-wrapper additional-color-2-svg" key={index}>
-                            {socialHelper(item.name)} {item.name}
+                            {socialHelper(item.name)} <a href={item.link}>{item.name}</a>
                           </div>
                         ))
                       ) || (

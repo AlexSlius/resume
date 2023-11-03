@@ -311,7 +311,7 @@ export const ResumeCv031 = ({
                   {
                     isArray(social_links) && social_links.length && (
                       social_links.map((item, index) => (
-                        <a className="links-item additional-color-1-border m-border additional-color-1-text" key={index}>
+                        <a href={item.link} className="links-item additional-color-1-border m-border additional-color-1-text" key={index}>
                           {item.name.substring(0, 2)}
                         </a>
                       ))

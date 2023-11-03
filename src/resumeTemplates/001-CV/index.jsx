@@ -354,11 +354,11 @@ export const ResumeCv001 = ({
                           </p>
                         </div>
                         <div className={`links-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
-                          <div className="cv-heading font-size-2">Links</div>
+                          <div className="cv-heading font-size-2">Links </div>
                           {
                             isArray(social_links) && social_links.length && (
                               social_links.map((itemSocial, index) => (
-                                <a className="links-item additional-color-1-svg" key={index}>
+                                <a href={itemSocial.link} className="links-item additional-color-1-svg" key={index}>
                                   {socialHelper(itemSocial.name)}
                                 </a>
                               ))
