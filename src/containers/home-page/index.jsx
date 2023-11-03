@@ -54,7 +54,7 @@ export const HomePage = () => {
     const promoNumbers = promoNumbersData.data;
 
     const handlePerfectTemplate = () => {
-        dispatch(updateActiveResumeNew({ slug: "041-CV", id: 41 }));
+        dispatch(updateActiveResumeNew({ slug: "041-CV", id: 41, template_class: "color-scheme-state-color-set-1" }));
     }
 
     const handleCloseModalTemplate = () => {
