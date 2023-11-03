@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -20,14 +20,14 @@ const drawing = () => {
         'education-block',
         'courses-block',
         'extra-curricular-activities-block',
-        'internships-block'
+        'internships-block',
+        'references-block',
       ];
       let cvBlocksRight = [
         'profile-info-block',
         'skills-block',
         'languages-block',
         'certificates-block',
-        'references-block',
         'hobbies-block'
       ];
       let cvBlocksBottom = [
@@ -195,14 +195,14 @@ export const ResumeCv006 = ({
   } = dataNew;
 
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";
-  
+
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -309,10 +309,10 @@ export const ResumeCv006 = ({
                         }
                         <div className={`cv-subheading ${!itemEm.title && !itemEm.company && itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemEm.company, itemEm.city]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                            {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                           </span>
                           <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemEm.city]) ? itemEm.company + ', ' : itemEm.company || ', Apple INC.'}
+                            {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || ', Apple INC.'}
                           </span>
                           <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.city || ', New York City'}
@@ -356,25 +356,25 @@ export const ResumeCv006 = ({
                           )
                         }
                         <div className="cv-subheading">
-                            <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                              {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
-                            </span>
-                            <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                              {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
-                            </span>
-                          </div>
-                          <div className={`cv-subheading ${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
-                            {itemEd.degree ? itemEd.degree : 'Bachelor'}
-                          </div>
-                          {
-                            itemEd.description && (
-                              <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
-                            ) || (
-                              <div className={`empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
-                                I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
-                              </div>
-                            )
-                          }
+                          <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
+                            {checkForSymbol([itemEd.facility]) ? (itemEd.study || 'Marketing and Management') + ', ' : itemEd.study || 'Marketing and Management'}
+                          </span>
+                          <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
+                            {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
+                          </span>
+                        </div>
+                        <div className={`cv-subheading ${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
+                          {itemEd.degree ? itemEd.degree : 'Bachelor'}
+                        </div>
+                        {
+                          itemEd.description && (
+                            <div dangerouslySetInnerHTML={{ __html: itemEd.description }}></div>
+                          ) || (
+                            <div className={`empty-field ${!itemEd.description && !beforeСontent ? 'hide' : ''}`}>
+                              I have learned to merge marketing and management skills in a very efficient way and produce great results. Even though managing hundreds of people is hard, all skills are learned to do that.
+                            </div>
+                          )
+                        }
                       </div>
                     </div>
                   ))
@@ -383,14 +383,14 @@ export const ResumeCv006 = ({
                   courses.map((itemCo, index) => (
                     <div className={`courses-block block-block ${(index > 0) ? "block-net" : ""} ${!Object.keys(courses[0]).length && !beforeСontent ? 'hide' : ''}`} key={index}>
                       <div className="left-side">
-                      <div className={`date-range ${!itemCo.dateFrom?.date && !itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
-                            <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''} ${!itemCo.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
-                              {itemCo.dateFrom?.date && (checkForSymbol([itemCo.dateTo?.date]) ? moment(itemCo.dateFrom.date).format("MM/yy") + ' - ' : moment(itemCo.dateFrom.date).format("MM/yy")) || '03/2022'}
-                            </span>
-                            <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''} ${!itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
-                              {itemCo.dateTo?.date && (moment(itemCo.dateTo.date).format("MM/yy")) || ' - 12/2022'}
-                            </span>
-                          </div>
+                        <div className={`date-range ${!itemCo.dateFrom?.date && !itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                          <span className={`${!itemCo.dateFrom?.date ? 'empty-field' : ''} ${!itemCo.dateFrom?.date && !beforeСontent ? 'hide' : ''}`}>
+                            {itemCo.dateFrom?.date && (checkForSymbol([itemCo.dateTo?.date]) ? moment(itemCo.dateFrom.date).format("MM/yy") + ' - ' : moment(itemCo.dateFrom.date).format("MM/yy")) || '03/2022'}
+                          </span>
+                          <span className={`${!itemCo.dateTo?.date ? 'empty-field' : ''} ${!itemCo.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
+                            {itemCo.dateTo?.date && (moment(itemCo.dateTo.date).format("MM/yy")) || ' - 12/2022'}
+                          </span>
+                        </div>
                       </div>
                       <div className="right-side additional-color-1-border">
                         <span className="block-circle additional-color-1-background"></span>
@@ -431,7 +431,7 @@ export const ResumeCv006 = ({
                         }
                         <div className="cv-subheading">
                           <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                            {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                           </span>
                           <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                             {itemEx.employer || ', My own company'}
@@ -471,26 +471,26 @@ export const ResumeCv006 = ({
                           )
                         }
                         <div className="cv-subheading">
-                            <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
-                            </span>
-                            <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
-                            </span>
-                            <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
-                              {itemIn.city || ', Toronto'}
-                            </span>
-                          </div>
-                          {
-                            itemIn.description && (
-                              <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
-                            ) || (
-                              <div className={`empty-field ${!itemIn.description && !beforeСontent ? 'hide' : ''}`}>
-                                Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
-                                Worked productively with Product Team to understand requirements and business specifications around Portfolio Management, Analytics and Risk.
-                              </div>
-                            )
-                          }
+                          <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                            {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          </span>
+                          <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
+                            {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
+                          </span>
+                          <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
+                            {itemIn.city || ', Toronto'}
+                          </span>
+                        </div>
+                        {
+                          itemIn.description && (
+                            <div dangerouslySetInnerHTML={{ __html: itemIn.description }}></div>
+                          ) || (
+                            <div className={`empty-field ${!itemIn.description && !beforeСontent ? 'hide' : ''}`}>
+                              Handled each product and package with care and precision. Handled much of the communication between clients and the lead Graphic Designer.
+                              Worked productively with Product Team to understand requirements and business specifications around Portfolio Management, Analytics and Risk.
+                            </div>
+                          )
+                        }
                       </div>
                     </div>
                   ))
@@ -503,7 +503,7 @@ export const ResumeCv006 = ({
                         <div className="block-content-wrapper" key={index}>
                           <div className="references-name">
                             <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                              {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                             </span>
                             <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                               {itemRef.company || ', Company'}
@@ -522,25 +522,6 @@ export const ResumeCv006 = ({
                 }
               </div>
               <div className="column-2">
-                {
-                  <div className={`languages-block block-block ${!Object.keys(languages[0]).length && !beforeСontent ? 'hide' : ''}`}>
-                    <div className="cv-heading font-size-2">Languages</div>
-                    <div className="languages-list">
-                      {
-                        languages.map((item, index) => (
-                          <div className={`language-list-item ${!item.language ? 'empty-field' : ''}`} key={index}>
-                            <div className="language-name">
-                              {item.language ? item.language : 'Language'}
-                            </div>
-                            <div className="language-skill-estimation-wrapper">
-                              <span className="estimation-value additional-color-1-background" style={{ width: `${item.level ? (item.level * 100) / 6 : '33.33'}%` }}></span>
-                            </div>
-                          </div>
-                        ))
-                      }
-                    </div>
-                  </div>
-                }
                 {
                   <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
                     <div className="cv-heading font-size-2">Skills</div>
@@ -564,6 +545,25 @@ export const ResumeCv006 = ({
                                 </div>
                               )
                             }
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                }
+                {
+                  <div className={`languages-block block-block ${!Object.keys(languages[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                    <div className="cv-heading font-size-2">Languages</div>
+                    <div className="languages-list">
+                      {
+                        languages.map((item, index) => (
+                          <div className={`language-list-item ${!item.language ? 'empty-field' : ''}`} key={index}>
+                            <div className="language-name">
+                              {item.language ? item.language : 'Language'}
+                            </div>
+                            <div className="language-skill-estimation-wrapper">
+                              <span className="estimation-value additional-color-1-background" style={{ width: `${item.level ? (item.level * 100) / 6 : '33.33'}%` }}></span>
+                            </div>
                           </div>
                         ))
                       }
@@ -624,17 +624,17 @@ export const ResumeCv006 = ({
                       <path d="M9.24996 2.98644C8.25539 1.92558 6.90648 1.32959 5.49996 1.32959C4.09343 1.32959 2.74452 1.92558 1.74996 2.98644C0.755394 4.04731 0.196655 5.48615 0.196655 6.98644C0.196655 8.48674 0.755394 9.92558 1.74996 10.9864L5.04371 14.5064C5.10181 14.5689 5.17093 14.6185 5.2471 14.6524C5.32326 14.6862 5.40495 14.7036 5.48746 14.7036C5.56996 14.7036 5.65165 14.6862 5.72782 14.6524C5.80398 14.6185 5.8731 14.5689 5.93121 14.5064L9.24996 10.9531C10.2404 9.89666 10.7968 8.46381 10.7968 6.96978C10.7968 5.47574 10.2404 4.0429 9.24996 2.98644ZM8.35621 9.99978L5.49996 13.0598L2.64371 9.99978C2.07942 9.39732 1.69525 8.62994 1.53977 7.79464C1.38428 6.95933 1.46445 6.09361 1.77015 5.3069C2.07584 4.52019 2.59334 3.84781 3.25723 3.37476C3.92111 2.90171 4.70157 2.64923 5.49996 2.64923C6.29834 2.64923 7.0788 2.90171 7.74269 3.37476C8.40657 3.84781 8.92407 4.52019 9.22976 5.3069C9.53546 6.09361 9.61563 6.95933 9.46015 7.79464C9.30466 8.62994 8.92049 9.39732 8.35621 9.99978ZM3.62496 4.93978C3.1204 5.47963 2.83708 6.21082 2.83708 6.97311C2.83708 7.7354 3.1204 8.4666 3.62496 9.00644C3.99981 9.40697 4.4772 9.6805 4.99724 9.79271C5.51728 9.90493 6.0568 9.85083 6.54813 9.63721C7.03945 9.42359 7.46069 9.05996 7.75901 8.59194C8.05732 8.12392 8.21941 7.57236 8.22496 7.00644C8.22777 6.62858 8.15953 6.25395 8.02427 5.9047C7.88901 5.55546 7.68947 5.23868 7.43746 4.97311C7.18975 4.70283 6.89438 4.48747 6.56835 4.33942C6.24231 4.19137 5.89204 4.11356 5.53771 4.11046C5.18337 4.10737 4.83196 4.17904 4.50369 4.32137C4.17542 4.4637 3.87678 4.67386 3.62496 4.93978ZM6.55621 8.05978C6.31936 8.31627 6.00634 8.47705 5.67066 8.51461C5.33498 8.55218 4.9975 8.4642 4.7159 8.26573C4.4343 8.06725 4.22608 7.77061 4.12684 7.4265C4.02759 7.08239 4.04349 6.7122 4.1718 6.37921C4.30012 6.04623 4.53289 5.77112 4.83032 5.60093C5.12775 5.43075 5.47136 5.37605 5.80242 5.44619C6.13347 5.51633 6.4314 5.70695 6.64527 5.98547C6.85915 6.26398 6.97568 6.61309 6.97496 6.97311C6.96586 7.38462 6.80401 7.77546 6.52496 8.05978H6.55621Z" fill="white" />
                     </svg>
                     <div className="main-color-2-text font-size-1">
-                      <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
-                      </span>
                       <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                        {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                       </span>
                       <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
+                        {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                       </span>
                       <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
+                        {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
+                      </span>
+                      <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                       </span>
                     </div>
                   </div>
@@ -644,19 +644,19 @@ export const ResumeCv006 = ({
                     </svg>
                     <div className="social-info">
                       {
-                      isArray(social_links) && social_links.length && (
-                        social_links.map((item, index) => (
-                          <a key={index} className="main-color-2-text font-size-1">
-                            {item.name}
-                          </a>
-                        ))
-                      ) || (
-                        <>
-                          <a className="main-color-2-text font-size-1 empty-field">Linkedin</a>
-                          <a className="main-color-2-text font-size-1 empty-field">Facebook</a>
-                        </>
-                      )
-                    }
+                        isArray(social_links) && social_links.length && (
+                          social_links.map((item, index) => (
+                            <a key={index} className="main-color-2-text font-size-1">
+                              {item.name}
+                            </a>
+                          ))
+                        ) || (
+                          <>
+                            <a className="main-color-2-text font-size-1 empty-field">Linkedin</a>
+                            <a className="main-color-2-text font-size-1 empty-field">Facebook</a>
+                          </>
+                        )
+                      }
                     </div>
                   </div>
                 </div>

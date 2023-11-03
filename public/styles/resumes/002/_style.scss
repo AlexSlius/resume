@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'Museo Sans Cyrl';
-  src: url('./fonts/museosanscyrl/MuseoSansCyrl.otf');
-}
-
   /* Colors */
   $main_color_1: #333333;
   $main_color_2: #FFFFFF ;
@@ -80,7 +75,7 @@
 
   .cv-body-content {
     flex: 1;
-    display: flex;
+    display: none;
     flex-direction: column;
     margin: 20px;
     padding: 0 20px;
@@ -601,5 +596,9 @@
         fill: $color_set_5_additional_color_1;
       }
     }
+  }
+
+  .cv-body-content {
+    display: flex;
   }
 }

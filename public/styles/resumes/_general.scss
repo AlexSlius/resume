@@ -1,3 +1,239 @@
+/* Font faces */
+@font-face {
+  font-family: 'Rubik';
+  src: url('./001/fonts/Rubik/Rubik-VariableFont_wght.ttf');
+}
+@font-face {
+  font-family: 'Museo Sans Cyrl';
+  src: url('./002/fonts/museosanscyrl/MuseoSansCyrl.otf');
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./003/fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('./010/fonts/Oswald/Oswald-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Caveat';
+  src: url('./017/fonts/Caveat/Caveat-VariableFont_wght.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('./026/fonts/Roboto_Flex/RobotoFlex-VariableFont.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url('./026/fonts/Roboto_Slab/RobotoSlab-VariableFont.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Syne';
+  src: url('./029/fonts/Syne/Syne-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('./030/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('./031/fonts/Orbitron/Orbitron-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Hind', sans-serif;
+  src: url('./003/fonts/Hind/Hind-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Hind', sans-serif;
+  src: url('./003/fonts/Hind/Hind-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Hind', sans-serif;
+  src: url('./003/fonts/Hind/Hind-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Hind';
+  src: url('./003/fonts/Hind/Hind-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Hind', sans-serif;
+  src: url('./003/fonts/Hind/Hind-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Arsenal';
+  src: url('./004/fonts/Arsenal/Arsenal-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Arsenal';
+  src: url('./004/fonts/Arsenal/Arsenal-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('./007/fonts/Fira_Sans/FiraSans-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('./007/fonts/Fira_Sans/FiraSans-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('./007/fonts/Fira_Sans/FiraSans-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('./007/fonts/Fira_Sans/FiraSans-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('./007/fonts/Fira_Sans/FiraSans-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./011/fonts/Roboto/Roboto-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./013/fonts/Lato/Lato-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./013/fonts/Lato/Lato-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./013/fonts/Lato/Lato-Black.ttf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('./015/fonts/Noto_Sans/NotoSans-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('./015/fonts/Noto_Sans/NotoSans-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('./015/fonts/Noto_Sans/NotoSans-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./030/fonts/Poppins/Poppins-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./030/fonts/Poppins/Poppins-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./015/fonts/Poppins/Poppins-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./015/fonts/Poppins/Poppins-ExtraBold.ttf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./016/fonts/Inter/Inter-All.ttf');
+}
+
+@font-face {
+  font-family: 'Pridi';
+  src: url('./016/fonts/Pridi/Pridi-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./017/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  src: url('./017/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Russo One';
+  src: url('./029/fonts/Russo_One/RussoOne-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Bentham';
+  src: url('./032/fonts/Bentham/Bentham-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Almarai';
+  src: url('./041/fonts/Almarai/Almarai-Regular.ttf');
+  font-weight: 400;
+}
+
+/* Font faces */
+@font-face {
+  font-family: 'Almarai';
+  src: url('./041/fonts/Almarai/Almarai-Bold.ttf');
+  font-weight: 700;
+}
+
 .body-template-resume {
   font-family: Rubik;
   background: #fff;

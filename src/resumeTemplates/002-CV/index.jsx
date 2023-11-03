@@ -227,13 +227,13 @@ export const ResumeCv002 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
- 
+
 
   return (
     <div className="sv_002" ref={reportTemplateRef}>
@@ -319,7 +319,7 @@ export const ResumeCv002 = ({
                       <div className="block-info" key={index}>
                         <div className={`cv-subheading ${!itemEm.title && !itemEm.company && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                            {checkForSymbol([itemEm.company]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                           </span>
                           <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemEm.company || ', Apple INC.'}
@@ -424,7 +424,7 @@ export const ResumeCv002 = ({
                       <div className="block-info" key={index}>
                         <div className={`cv-subheading ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                            {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                           </span>
                           <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                             {itemEx.employer || ', My own company'}
@@ -460,7 +460,7 @@ export const ResumeCv002 = ({
                       <div className="block-info" key={index}>
                         <div className={`cv-subheading ${!itemIn.jobTitle && !itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemIn.employer]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                            {checkForSymbol([itemIn.employer]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                           </span>
                           <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
                             {itemIn.employer || ', Company S.A.'}
@@ -573,7 +573,7 @@ export const ResumeCv002 = ({
                       <div className="block-info" key={index}>
                         <div className="cv-subheading">
                           <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                            {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                           </span>
                           <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemRef.company || ', Company'}
@@ -626,17 +626,17 @@ export const ResumeCv002 = ({
                       <div className={`block-item ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
                         <div className="name additional-color-2-text">Address:</div>
                         <div className=" value">
-                          <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
-                            {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
-                          </span>
                           <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
-                            {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                            {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                           </span>
                           <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
-                            {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
+                            {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                           </span>
                           <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                            {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
+                            {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
+                          </span>
+                          <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                            {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                           </span>
                         </div>
                       </div>
@@ -659,7 +659,7 @@ export const ResumeCv002 = ({
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><path d="M11.5,0A11.49,11.49,0,0,0,9.88,22.87V15.22H6.64V12H9.88V9.27c0-3.07,1.5-4.42,4-4.42A20.41,20.41,0,0,1,16.36,5V8.09H14.58c-1.08,0-1.46.57-1.46,1.73V12h3.24l-.65,3.24H13.12v7.65A11.49,11.49,0,0,0,11.5,0Z" /><path d="M11.3,23h0Z" /></g></g></svg>
                           </a>
                           <a className="links-item empty-field additional-color-1-svg">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><path d="M11.5,0A11.5,11.5,0,1,0,23,11.5,11.5,11.5,0,0,0,11.5,0ZM7.73,17.87H4.84V9.18H7.73ZM6.29,8A1.45,1.45,0,1,1,7.73,6.57,1.44,1.44,0,0,1,6.29,8Zm11.87,9.85H15.38V13.64c0-1,0-2.3-1.45-2.3s-1.67,1.1-1.67,2.23v4.3H9.47V9.18h2.68v1.18h0A3,3,0,0,1,14.82,9c2.82,0,3.34,1.8,3.34,4.14Z"/></g></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><path d="M11.5,0A11.5,11.5,0,1,0,23,11.5,11.5,11.5,0,0,0,11.5,0ZM7.73,17.87H4.84V9.18H7.73ZM6.29,8A1.45,1.45,0,1,1,7.73,6.57,1.44,1.44,0,0,1,6.29,8Zm11.87,9.85H15.38V13.64c0-1,0-2.3-1.45-2.3s-1.67,1.1-1.67,2.23v4.3H9.47V9.18h2.68v1.18h0A3,3,0,0,1,14.82,9c2.82,0,3.34,1.8,3.34,4.14Z" /></g></g></svg>
                           </a>
                         </>
                       )
@@ -674,19 +674,5 @@ export const ResumeCv002 = ({
     </div>
   )
 }
-
-const WrDiv = styled.div`
-//   .additional-color-1 {
-//     color: red!important;
-//     }
-    
-//     .additional-color-1-background {
-//     background-color: red!important;
-//     }
-    
-//     .additional-color-1-border {
-//     border-color: red!important;
-//     }
-`;
 
 

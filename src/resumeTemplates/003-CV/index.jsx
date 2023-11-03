@@ -202,11 +202,11 @@ export const ResumeCv003 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -319,21 +319,21 @@ export const ResumeCv003 = ({
                     <path d="M9.24996 2.98669C8.25539 1.92582 6.90648 1.32983 5.49996 1.32983C4.09343 1.32983 2.74452 1.92582 1.74996 2.98669C0.755394 4.04755 0.196655 5.4864 0.196655 6.98669C0.196655 8.48698 0.755394 9.92582 1.74996 10.9867L5.04371 14.5067C5.10181 14.5692 5.17093 14.6188 5.2471 14.6526C5.32326 14.6865 5.40495 14.7039 5.48746 14.7039C5.56996 14.7039 5.65165 14.6865 5.72782 14.6526C5.80398 14.6188 5.8731 14.5692 5.93121 14.5067L9.24996 10.9534C10.2404 9.8969 10.7968 8.46406 10.7968 6.97002C10.7968 5.47599 10.2404 4.04314 9.24996 2.98669ZM8.35621 10L5.49996 13.06L2.64371 10C2.07942 9.39757 1.69525 8.63019 1.53977 7.79488C1.38428 6.95958 1.46445 6.09385 1.77015 5.30714C2.07584 4.52043 2.59334 3.84805 3.25723 3.37501C3.92111 2.90196 4.70157 2.64948 5.49996 2.64948C6.29834 2.64948 7.0788 2.90196 7.74269 3.37501C8.40657 3.84805 8.92407 4.52043 9.22976 5.30714C9.53546 6.09385 9.61563 6.95958 9.46015 7.79488C9.30466 8.63019 8.92049 9.39757 8.35621 10ZM3.62496 4.94002C3.1204 5.47987 2.83708 6.21107 2.83708 6.97336C2.83708 7.73564 3.1204 8.46684 3.62496 9.00669C3.99981 9.40721 4.4772 9.68074 4.99724 9.79296C5.51728 9.90517 6.0568 9.85108 6.54813 9.63746C7.03945 9.42384 7.46069 9.06021 7.75901 8.59219C8.05732 8.12417 8.21941 7.5726 8.22496 7.00669C8.22777 6.62882 8.15953 6.25419 8.02427 5.90495C7.88901 5.5557 7.68947 5.23893 7.43746 4.97336C7.18975 4.70307 6.89438 4.48771 6.56835 4.33967C6.24231 4.19162 5.89204 4.11381 5.53771 4.11071C5.18337 4.10761 4.83196 4.17929 4.50369 4.32161C4.17542 4.46394 3.87678 4.67411 3.62496 4.94002ZM6.55621 8.06002C6.31936 8.31652 6.00634 8.47729 5.67066 8.51486C5.33498 8.55242 4.9975 8.46445 4.7159 8.26597C4.4343 8.0675 4.22608 7.77085 4.12684 7.42674C4.02759 7.08264 4.04349 6.71245 4.1718 6.37946C4.30012 6.04647 4.53289 5.77137 4.83032 5.60118C5.12775 5.43099 5.47136 5.37629 5.80242 5.44643C6.13347 5.51657 6.4314 5.70719 6.64527 5.98571C6.85915 6.26422 6.97568 6.61334 6.97496 6.97336C6.96586 7.38487 6.80401 7.77571 6.52496 8.06002H6.55621Z" fill="#A0A0A0" />
                   </svg>
                   <div>
-                    <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
-                      {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
-                    </span>
                     <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
-                      {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                      {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                     </span>
                     <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
-                      {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
+                      {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                     </span>
                     <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
+                      {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
+                    </span>
+                    <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                     </span>
                   </div>
                 </div>
-                <div className={`block-item ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`block-item social-item ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
                   <svg className="additional-color-1-svg" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.56877 9.61881L5.14377 12.0438C4.85017 12.3272 4.45806 12.4855 4.05002 12.4855C3.64198 12.4855 3.24987 12.3272 2.95627 12.0438C2.81227 11.9004 2.69802 11.7299 2.62005 11.5422C2.54209 11.3545 2.50196 11.1533 2.50196 10.9501C2.50196 10.7468 2.54209 10.5456 2.62005 10.3579C2.69802 10.1702 2.81227 9.99974 2.95627 9.85631L5.38127 7.43131C5.49896 7.31362 5.56508 7.154 5.56508 6.98756C5.56508 6.82112 5.49896 6.6615 5.38127 6.54381C5.26358 6.42612 5.10396 6.36 4.93752 6.36C4.77108 6.36 4.61146 6.42612 4.49377 6.54381L2.06877 8.97506C1.58024 9.50681 1.31603 10.2067 1.33132 10.9287C1.3466 11.6506 1.6402 12.3387 2.15079 12.8493C2.66138 13.3599 3.3495 13.6535 4.07142 13.6688C4.79335 13.684 5.49327 13.4198 6.02502 12.9313L8.45627 10.5063C8.57396 10.3886 8.64008 10.229 8.64008 10.0626C8.64008 9.89612 8.57396 9.7365 8.45627 9.61881C8.33858 9.50112 8.17896 9.435 8.01252 9.435C7.84608 9.435 7.68646 9.50112 7.56877 9.61881ZM12.9313 2.06881C12.4055 1.54631 11.6944 1.25305 10.9531 1.25305C10.2119 1.25305 9.50078 1.54631 8.97502 2.06881L6.54377 4.49381C6.4855 4.55208 6.43927 4.62126 6.40773 4.6974C6.37619 4.77354 6.35996 4.85515 6.35996 4.93756C6.35996 5.01997 6.37619 5.10158 6.40773 5.17771C6.43927 5.25385 6.4855 5.32303 6.54377 5.38131C6.60204 5.43958 6.67123 5.48581 6.74736 5.51735C6.8235 5.54888 6.90511 5.56512 6.98752 5.56512C7.06993 5.56512 7.15154 5.54888 7.22768 5.51735C7.30381 5.48581 7.373 5.43958 7.43127 5.38131L9.85627 2.95631C10.1499 2.67295 10.542 2.51459 10.95 2.51459C11.3581 2.51459 11.7502 2.67295 12.0438 2.95631C12.1878 3.09974 12.302 3.27019 12.38 3.45788C12.4579 3.64558 12.4981 3.84682 12.4981 4.05006C12.4981 4.2533 12.4579 4.45454 12.38 4.64224C12.302 4.82993 12.1878 5.00038 12.0438 5.14381L9.61877 7.56881C9.56019 7.62691 9.51369 7.69604 9.48196 7.7722C9.45023 7.84836 9.4339 7.93005 9.4339 8.01256C9.4339 8.09507 9.45023 8.17676 9.48196 8.25292C9.51369 8.32908 9.56019 8.39821 9.61877 8.45631C9.67687 8.51489 9.746 8.56139 9.82216 8.59312C9.89832 8.62485 9.98001 8.64118 10.0625 8.64118C10.145 8.64118 10.2267 8.62485 10.3029 8.59312C10.379 8.56139 10.4482 8.51489 10.5063 8.45631L12.9313 6.02506C13.4538 5.4993 13.747 4.78817 13.747 4.04693C13.747 3.3057 13.4538 2.59457 12.9313 2.06881ZM5.51877 9.48131C5.57717 9.53924 5.64643 9.58506 5.72258 9.61617C5.79873 9.64727 5.88027 9.66303 5.96252 9.66256C6.04477 9.66303 6.12631 9.64727 6.20246 9.61617C6.27861 9.58506 6.34787 9.53924 6.40627 9.48131L9.48127 6.40631C9.59896 6.28862 9.66508 6.129 9.66508 5.96256C9.66508 5.79612 9.59896 5.6365 9.48127 5.51881C9.36358 5.40112 9.20396 5.335 9.03752 5.335C8.87108 5.335 8.71146 5.40112 8.59377 5.51881L5.51877 8.59381C5.46019 8.65191 5.41369 8.72104 5.38196 8.7972C5.35023 8.87336 5.3339 8.95505 5.3339 9.03756C5.3339 9.12007 5.35023 9.20176 5.38196 9.27792C5.41369 9.35408 5.46019 9.42321 5.51877 9.48131Z" fill="#A0A0A0" />
                   </svg>
@@ -368,10 +368,10 @@ export const ResumeCv003 = ({
                         <div className="horizontal-wrap">
                           <div className="cv-heading">
                             <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                              {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                             </span>
                             <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                              {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || ', Apple INC.'}
                             </span>
                             <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                               {itemEm.city || ', New York City'}
@@ -413,10 +413,10 @@ export const ResumeCv003 = ({
                         <div className="horizontal-wrap">
                           <div className="cv-heading">
                             <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                              {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
+                              {checkForSymbol([itemEd.facility]) ? (itemEd.study || 'Marketing and Management') + ', ' : itemEd.study || 'Marketing and Management'}
                             </span>
                             <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                              {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
+                              {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
                             </span>
                           </div>
                           <div className={`date-range ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
@@ -481,7 +481,7 @@ export const ResumeCv003 = ({
                         <div className="horizontal-wrap">
                           <div className="cv-heading block-subheading">
                             <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                              {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                             </span>
                             <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                               {itemEx.employer || ', My own company'}
@@ -519,10 +519,10 @@ export const ResumeCv003 = ({
                         <div className="horizontal-wrap">
                           <div className="cv-heading block-subheading">
                             <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                              {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                             </span>
                             <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                              {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                              {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
                             </span>
                             <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                               {itemIn.city || ', Toronto'}
@@ -629,7 +629,7 @@ export const ResumeCv003 = ({
                       <div className="block-info" key={index}>
                         <div className="cv-heading">
                           <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                            {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                           </span>
                           <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemRef.company || ', Company'}

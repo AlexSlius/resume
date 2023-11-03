@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -11,7 +11,7 @@ const drawing = () => {
 
     function rebuildingPages() {
       $('.cv-body.cv-body-visible').remove();
-    
+
       let cvBlocksLeft = [
         'profile-block',
         'employment-history-block',
@@ -28,34 +28,34 @@ const drawing = () => {
         'skills-block',
         'hobbies-block',
         'languages-block',
-        'references-block' 
+        'references-block'
       ];
       let cvDataLeft = [];
       let cvDataRight = [];
-    
-      cvBlocksLeft.forEach(function(el, ind){
+
+      cvBlocksLeft.forEach(function (el, ind) {
         cvDataLeft.push($('#cv-body-hidden-container .cv-body-content .' + el).clone());
       });
-      cvBlocksRight.forEach(function(el, ind){
+      cvBlocksRight.forEach(function (el, ind) {
         cvDataRight.push($('#cv-body-hidden-container .cv-body-content .' + el).clone());
       });
-    
+
       current_page_number = 1;
-    
-      cvDataRight.forEach(function(el, ind) {
+
+      cvDataRight.forEach(function (el, ind) {
         getContentContainer2().append(el);
-        if(checkHeight()) {
+        if (checkHeight()) {
           el.remove();
           current_page_number++;
           getContentContainer2().append(el);
         }
       });
-    
+
       current_page_number = 1;
-    
-      cvDataLeft.forEach(function(el, ind) {
+
+      cvDataLeft.forEach(function (el, ind) {
         getContentContainer1().append(el);
-        if(checkHeight()) {
+        if (checkHeight()) {
           el.remove();
           current_page_number++;
           getContentContainer1().append(el);
@@ -66,18 +66,18 @@ const drawing = () => {
     function checkHeight() {
       return getPageContainer().height() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
     }
-    
+
     function getContentContainer1() {
       return getPageContainer().find('.column-left');
     }
-    
+
     function getContentContainer2() {
       return getPageContainer().find('.column-right');
     }
-    
+
     function getPageContainer() {
       var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
-      if(page.length > 0) {
+      if (page.length > 0) {
         return page.find('.cv-body-content');
       } else {
         return createNewPage(current_page_number);
@@ -89,23 +89,23 @@ const drawing = () => {
       page_element.attr('id', '');
       page_element.attr('class', 'cv-body cv-body-visible cv-body-1 page-' + current_page_number);
       page_element.children().remove();
-    
+
       var page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
       page_element_container.children().remove();
       page_element.append(page_element_container);
-    
+
       var column_left = $('#cv-body-hidden-container .cv-body-content .column-left').clone();
       column_left.children().remove();
       page_element_container.append(column_left);
-    
+
       var column_right = $('#cv-body-hidden-container .cv-body-content .column-right').clone();
       column_right.children().remove();
       page_element_container.append(column_right);
-    
-      if($('#cv-chapter-section-cv').find(page_element)) {
+
+      if ($('#cv-chapter-section-cv').find(page_element)) {
         $('#cv-chapter-section-cv').append(page_element);
       }
-    
+
       return page_element_container;
     }
 
@@ -157,11 +157,11 @@ export const ResumeCv015 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -211,10 +211,10 @@ export const ResumeCv015 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-2 additional-color-1-text ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                         </span>
                         <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                          {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || ', Apple INC.'}
                         </span>
                         <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || ', New York City'}
@@ -255,10 +255,10 @@ export const ResumeCv015 = ({
                       </div>
                       <div className={`block-subheading font-size-2 additional-color-1-text ${!itemEd.study && !itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
+                          {checkForSymbol([itemEd.facility]) ? (itemEd.study || 'Marketing and Management') + ', ' : itemEd.study || 'Marketing and Management'}
                         </span>
                         <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
+                          {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
                         </span>
                       </div>
                       <div className={`date-range additional-color-1-text ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
@@ -289,7 +289,7 @@ export const ResumeCv015 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-2 additional-color-1-text ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
+                          {checkForSymbol([itemCo.institution]) ? (itemCo.title || 'Super course 1') + ', ' : itemCo.title || 'Super course 1'}
                         </span>
                         <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
@@ -328,7 +328,7 @@ export const ResumeCv015 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-2 additional-color-1-text ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                          {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                         </span>
                         <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           {itemEx.employer || ', My own company'}
@@ -362,10 +362,10 @@ export const ResumeCv015 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-2 additional-color-1-text ${!itemIn.jobTitle && !itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                         </span>
                         <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                          {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
                         </span>
                         <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemIn.city || ', Toronto'}
@@ -399,17 +399,17 @@ export const ResumeCv015 = ({
                 <div className="block-heading font-size-3">Details</div>
                 <div className="contacts-block">
                   <div className={`block-item ${!conta.country && !conta.address && !conta.city && !conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                    <span className={`${!conta.country ? 'empty-field' : ''} ${!conta.country && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.country ? checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country : 'United States, '}`}
+                    <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                     </span>
-                    <span className={`${!conta.address ? 'empty-field' : ''} ${!conta.address && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.address ? checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address : conta.country && !conta.city && !conta.zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                    <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                     </span>
-                    <span className={`${!conta.city ? 'empty-field' : ''} ${!conta.city && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.city ? checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city : conta.address && !conta.zipCode ? ', New York City, ' : 'New York City, '}`}
+                    <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
                     </span>
-                    <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.zipCode ? conta.zipCode : conta.city ? ', 384846' : '384846'}`}
+                    <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                     </span>
                   </div>
                   <div className={`block-item ${!conta.email ? 'empty-field' : ''} ${!conta.email && !beforeСontent ? 'hide' : ''}`}>
@@ -489,7 +489,15 @@ export const ResumeCv015 = ({
                   {
                     skills.map((item, index) => (
                       <div className={`list-item ${!item.name ? 'empty-field' : ''}`} key={index}>
-                        {item.name ? item.name : 'Skill name'}
+                        <div className="item-name">{item.name ? item.name : 'Skill name'}</div>
+                        {
+                          !hide_experience_level && (
+                            <div className="estimation-wrapper">
+                              <div className="estimation-background additional-color-2-background"></div>
+                              <div className="estimation-value additional-color-2-background" style={{ width: `${item.level ? (+item.level * 100) / 5 : '25'}%` }}></div>
+                            </div>
+                          )
+                        }
                       </div>
                     ))
                   }
@@ -513,7 +521,11 @@ export const ResumeCv015 = ({
                   {
                     languages.map((item, index) => (
                       <div className={`list-item ${!item.language ? 'empty-field' : ''}`} key={index}>
-                        <p className="item-name">{item.language ? item.language : 'Language'} - {levelLanguage(item.level ? item.level : 6)}</p>
+                        <div className="item-name">{item.language ? item.language : 'Language'}</div>
+                        <div className="estimation-wrapper">
+                          <div className="estimation-background additional-color-2-background"></div>
+                          <div className="estimation-value additional-color-2-background" style={{ width: `${item.level ? (+item.level * 100) / 6 : '50'}%` }}></div>
+                        </div>
                       </div>
                     ))
                   }
@@ -526,7 +538,7 @@ export const ResumeCv015 = ({
                     <div className="block-info" key={index}>
                       <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                         </span>
                         <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.company || ', Company'}

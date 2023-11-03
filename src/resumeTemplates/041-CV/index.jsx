@@ -222,11 +222,11 @@ export const ResumeCv041 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -258,97 +258,97 @@ export const ResumeCv041 = ({
                         ))
                       ) || (
                         <>
-                        <div className="link-wrapper additional-color-2-svg">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M13.6466 1.33335H2.35329C2.22634 1.33158 2.10029 1.35484 1.98233 1.4018C1.86438 1.44876 1.75683 1.51849 1.66582 1.60702C1.57482 1.69555 1.50215 1.80113 1.45195 1.91775C1.40176 2.03437 1.37503 2.15973 1.37329 2.28668V13.7133C1.37503 13.8403 1.40176 13.9657 1.45195 14.0823C1.50215 14.1989 1.57482 14.3045 1.66582 14.393C1.75683 14.4815 1.86438 14.5513 1.98233 14.5982C2.10029 14.6452 2.22634 14.6684 2.35329 14.6667H13.6466C13.7736 14.6684 13.8996 14.6452 14.0176 14.5982C14.1355 14.5513 14.2431 14.4815 14.3341 14.393C14.4251 14.3045 14.4978 14.1989 14.548 14.0823C14.5982 13.9657 14.6249 13.8403 14.6266 13.7133V2.28668C14.6249 2.15973 14.5982 2.03437 14.548 1.91775C14.4978 1.80113 14.4251 1.69555 14.3341 1.60702C14.2431 1.51849 14.1355 1.44876 14.0176 1.4018C13.8996 1.35484 13.7736 1.33158 13.6466 1.33335ZM5.39329 12.4933H3.39329V6.49334H5.39329V12.4933ZM4.39329 5.65334C4.11747 5.65334 3.85294 5.54377 3.6579 5.34874C3.46286 5.1537 3.35329 4.88917 3.35329 4.61334C3.35329 4.33752 3.46286 4.07299 3.6579 3.87795C3.85294 3.68292 4.11747 3.57334 4.39329 3.57334C4.53975 3.55673 4.68808 3.57125 4.82854 3.61593C4.96901 3.66062 5.09845 3.73447 5.2084 3.83265C5.31834 3.93083 5.40631 4.05113 5.46654 4.18567C5.52677 4.3202 5.5579 4.46594 5.5579 4.61334C5.5579 4.76075 5.52677 4.90649 5.46654 5.04102C5.40631 5.17556 5.31834 5.29586 5.2084 5.39404C5.09845 5.49222 4.96901 5.56607 4.82854 5.61076C4.68808 5.65544 4.53975 5.66995 4.39329 5.65334ZM12.6066 12.4933H10.6066V9.27334C10.6066 8.46668 10.32 7.94001 9.59329 7.94001C9.3684 7.94166 9.14942 8.0122 8.96585 8.14213C8.78228 8.27205 8.64295 8.45513 8.56663 8.66668C8.51445 8.82337 8.49185 8.98839 8.49996 9.15334V12.4867H6.49996C6.49996 12.4867 6.49996 7.03334 6.49996 6.48668H8.49996V7.33334C8.68164 7.01808 8.9459 6.75836 9.26425 6.58215C9.58261 6.40593 9.943 6.31991 10.3066 6.33334C11.64 6.33334 12.6066 7.19335 12.6066 9.04001V12.4933Z" fill="#605C64" />
-                          </svg>
-                          <span>Facebook</span>
-                        </div>
-                        <div className="link-wrapper additional-color-2-svg">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M13.9333 1.33334H2.06659C1.87209 1.33334 1.68557 1.41061 1.54804 1.54813C1.41051 1.68566 1.33325 1.87218 1.33325 2.06668V13.9333C1.33325 14.0296 1.35222 14.125 1.38907 14.214C1.42593 14.3029 1.47994 14.3838 1.54804 14.4519C1.61614 14.52 1.69698 14.574 1.78595 14.6109C1.87492 14.6477 1.97028 14.6667 2.06659 14.6667H8.45325V9.50001H6.71992V7.50001H8.45325V6.00001C8.41735 5.64785 8.45892 5.29209 8.57506 4.9577C8.6912 4.62331 8.8791 4.31837 9.12556 4.06428C9.37203 3.81019 9.6711 3.6131 10.0018 3.48684C10.3325 3.36057 10.6868 3.30818 11.0399 3.33334C11.5588 3.33015 12.0774 3.35686 12.5933 3.41334V5.21334H11.5333C10.6933 5.21334 10.5333 5.61334 10.5333 6.19334V7.48001H12.5333L12.2733 9.48001H10.5333V14.6667H13.9333C14.0296 14.6667 14.1249 14.6477 14.2139 14.6109C14.3029 14.574 14.3837 14.52 14.4518 14.4519C14.5199 14.3838 14.5739 14.3029 14.6108 14.214C14.6476 14.125 14.6666 14.0296 14.6666 13.9333V2.06668C14.6666 1.97037 14.6476 1.87501 14.6108 1.78604C14.5739 1.69707 14.5199 1.61623 14.4518 1.54813C14.3837 1.48004 14.3029 1.42602 14.2139 1.38917C14.1249 1.35231 14.0296 1.33334 13.9333 1.33334Z" fill="#605C64" />
-                          </svg>
-                          <span>LinkedIn</span>
-                        </div>
+                          <div className="link-wrapper additional-color-2-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M13.6466 1.33335H2.35329C2.22634 1.33158 2.10029 1.35484 1.98233 1.4018C1.86438 1.44876 1.75683 1.51849 1.66582 1.60702C1.57482 1.69555 1.50215 1.80113 1.45195 1.91775C1.40176 2.03437 1.37503 2.15973 1.37329 2.28668V13.7133C1.37503 13.8403 1.40176 13.9657 1.45195 14.0823C1.50215 14.1989 1.57482 14.3045 1.66582 14.393C1.75683 14.4815 1.86438 14.5513 1.98233 14.5982C2.10029 14.6452 2.22634 14.6684 2.35329 14.6667H13.6466C13.7736 14.6684 13.8996 14.6452 14.0176 14.5982C14.1355 14.5513 14.2431 14.4815 14.3341 14.393C14.4251 14.3045 14.4978 14.1989 14.548 14.0823C14.5982 13.9657 14.6249 13.8403 14.6266 13.7133V2.28668C14.6249 2.15973 14.5982 2.03437 14.548 1.91775C14.4978 1.80113 14.4251 1.69555 14.3341 1.60702C14.2431 1.51849 14.1355 1.44876 14.0176 1.4018C13.8996 1.35484 13.7736 1.33158 13.6466 1.33335ZM5.39329 12.4933H3.39329V6.49334H5.39329V12.4933ZM4.39329 5.65334C4.11747 5.65334 3.85294 5.54377 3.6579 5.34874C3.46286 5.1537 3.35329 4.88917 3.35329 4.61334C3.35329 4.33752 3.46286 4.07299 3.6579 3.87795C3.85294 3.68292 4.11747 3.57334 4.39329 3.57334C4.53975 3.55673 4.68808 3.57125 4.82854 3.61593C4.96901 3.66062 5.09845 3.73447 5.2084 3.83265C5.31834 3.93083 5.40631 4.05113 5.46654 4.18567C5.52677 4.3202 5.5579 4.46594 5.5579 4.61334C5.5579 4.76075 5.52677 4.90649 5.46654 5.04102C5.40631 5.17556 5.31834 5.29586 5.2084 5.39404C5.09845 5.49222 4.96901 5.56607 4.82854 5.61076C4.68808 5.65544 4.53975 5.66995 4.39329 5.65334ZM12.6066 12.4933H10.6066V9.27334C10.6066 8.46668 10.32 7.94001 9.59329 7.94001C9.3684 7.94166 9.14942 8.0122 8.96585 8.14213C8.78228 8.27205 8.64295 8.45513 8.56663 8.66668C8.51445 8.82337 8.49185 8.98839 8.49996 9.15334V12.4867H6.49996C6.49996 12.4867 6.49996 7.03334 6.49996 6.48668H8.49996V7.33334C8.68164 7.01808 8.9459 6.75836 9.26425 6.58215C9.58261 6.40593 9.943 6.31991 10.3066 6.33334C11.64 6.33334 12.6066 7.19335 12.6066 9.04001V12.4933Z" fill="#605C64" />
+                            </svg>
+                            <span>Facebook</span>
+                          </div>
+                          <div className="link-wrapper additional-color-2-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M13.9333 1.33334H2.06659C1.87209 1.33334 1.68557 1.41061 1.54804 1.54813C1.41051 1.68566 1.33325 1.87218 1.33325 2.06668V13.9333C1.33325 14.0296 1.35222 14.125 1.38907 14.214C1.42593 14.3029 1.47994 14.3838 1.54804 14.4519C1.61614 14.52 1.69698 14.574 1.78595 14.6109C1.87492 14.6477 1.97028 14.6667 2.06659 14.6667H8.45325V9.50001H6.71992V7.50001H8.45325V6.00001C8.41735 5.64785 8.45892 5.29209 8.57506 4.9577C8.6912 4.62331 8.8791 4.31837 9.12556 4.06428C9.37203 3.81019 9.6711 3.6131 10.0018 3.48684C10.3325 3.36057 10.6868 3.30818 11.0399 3.33334C11.5588 3.33015 12.0774 3.35686 12.5933 3.41334V5.21334H11.5333C10.6933 5.21334 10.5333 5.61334 10.5333 6.19334V7.48001H12.5333L12.2733 9.48001H10.5333V14.6667H13.9333C14.0296 14.6667 14.1249 14.6477 14.2139 14.6109C14.3029 14.574 14.3837 14.52 14.4518 14.4519C14.5199 14.3838 14.5739 14.3029 14.6108 14.214C14.6476 14.125 14.6666 14.0296 14.6666 13.9333V2.06668C14.6666 1.97037 14.6476 1.87501 14.6108 1.78604C14.5739 1.69707 14.5199 1.61623 14.4518 1.54813C14.3837 1.48004 14.3029 1.42602 14.2139 1.38917C14.1249 1.35231 14.0296 1.33334 13.9333 1.33334Z" fill="#605C64" />
+                            </svg>
+                            <span>LinkedIn</span>
+                          </div>
                         </>
                       )
                     }
                   </div>
                 </div>
                 <div className={`personal-information-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !contact[0]?.email && !contact[0]?.phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      <div className={`personal-information-item phone-item-block ${!contact[0]?.phone && !beforeСontent ? 'hide' : ''}`}>
-                        <div className="left-side additional-color-2-background">
-                          <svg className={`additional-color-1-svg ${!contact[0].phone ? 'empty-field' : ''}`} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.31315 0.196491C2.84424 -0.181893 2.22732 0.0352567 1.7892 0.432981L1.78292 0.438678C0.614075 1.49973 -0.167698 2.20941 0.0307883 3.74385C0.734152 9.18312 7.737 13.2434 9.49541 13.8347C11.2538 14.4259 12.4569 13.3217 13.3947 12.2575C14.0199 11.548 14.218 10.9568 13.7156 10.4838C13.1295 9.93201 12.0455 8.80096 11.84 8.63188L11.8068 8.60459C10.7695 7.75122 10.0437 7.15416 9.37819 8.98662C9.07756 9.81433 7.73357 9.81433 6.79919 9.2146C6.05105 8.73441 5.33598 8.02355 5.07156 7.68592C4.45464 6.89819 3.54761 5.04455 5.07156 4.45332C6.29073 3.98034 6.06503 2.88509 5.62691 2.44316C5.0017 1.81251 3.78206 0.574875 3.31315 0.196491Z" fill="#1E7BC0" />
-                          </svg>
-                        </div>
-                        <div className={`right-side ${!contact[0].phone ? 'empty-field' : ''}`}>
-                          <div className="subheading font-size-3">Phone</div>
-                          <div className="font-size-2">{contact[0]?.phone || '736-343-9384'}</div>
+                  <div className={`personal-information-item phone-item-block ${!contact[0]?.phone && !beforeСontent ? 'hide' : ''}`}>
+                    <div className="left-side additional-color-2-background">
+                      <svg className={`additional-color-1-svg ${!contact[0].phone ? 'empty-field' : ''}`} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.31315 0.196491C2.84424 -0.181893 2.22732 0.0352567 1.7892 0.432981L1.78292 0.438678C0.614075 1.49973 -0.167698 2.20941 0.0307883 3.74385C0.734152 9.18312 7.737 13.2434 9.49541 13.8347C11.2538 14.4259 12.4569 13.3217 13.3947 12.2575C14.0199 11.548 14.218 10.9568 13.7156 10.4838C13.1295 9.93201 12.0455 8.80096 11.84 8.63188L11.8068 8.60459C10.7695 7.75122 10.0437 7.15416 9.37819 8.98662C9.07756 9.81433 7.73357 9.81433 6.79919 9.2146C6.05105 8.73441 5.33598 8.02355 5.07156 7.68592C4.45464 6.89819 3.54761 5.04455 5.07156 4.45332C6.29073 3.98034 6.06503 2.88509 5.62691 2.44316C5.0017 1.81251 3.78206 0.574875 3.31315 0.196491Z" fill="#1E7BC0" />
+                      </svg>
+                    </div>
+                    <div className={`right-side ${!contact[0].phone ? 'empty-field' : ''}`}>
+                      <div className="subheading font-size-3">Phone</div>
+                      <div className="font-size-2">{contact[0]?.phone || '736-343-9384'}</div>
+                    </div>
+                  </div>
+                  <div className={`personal-information-item email-item-block ${!contact[0]?.email && !beforeСontent ? 'hide' : ''}`}>
+                    <div className="left-side additional-color-2-background">
+                      <svg className={`additional-color-1-svg width="14 ${!contact[0].email ? 'empty-field' : ''}`} height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M0.0338717 0.740978C0.0117786 0.823592 0 0.91042 0 1V9C0 9.08958 0.0117786 9.17641 0.0338716 9.25902L4.29289 5L0.0338717 0.740978ZM5 5.70711L0.740979 9.96613C0.823592 9.98822 0.910421 10 1 10H13C13.0896 10 13.1764 9.98822 13.259 9.96613L9 5.70711L7.35355 7.35355C7.15829 7.54882 6.84171 7.54882 6.64645 7.35355L5 5.70711ZM8.6461 4.6468L7 6.29289L5.35355 4.64645L0.740978 0.0338716C0.823592 0.0117786 0.91042 0 1 0H13C13.0896 0 13.1764 0.0117786 13.259 0.0338716L8.64679 4.6461C8.64668 4.64621 8.64656 4.64633 8.64645 4.64645C8.64633 4.64656 8.64621 4.64668 8.6461 4.6468ZM9.70711 5L13.9661 9.25902C13.9882 9.17641 14 9.08958 14 9V1C14 0.91042 13.9882 0.823592 13.9661 0.740979L9.70711 5Z" fill="#1E7BC0" />
+                      </svg>
+                    </div>
+                    <div className={`right-side ${!contact[0].email ? 'empty-field' : ''}`}>
+                      <div className="subheading font-size-3">Email</div>
+                      <div className="font-size-2">{contact[0].email || 'designer@webservice.com'}</div>
+                    </div>
+                  </div>
+                  <div className={`personal-information-item area-item-block ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                    <div className="left-side additional-color-2-background">
+                      <svg className={`additional-color-1-svg ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode ? 'empty-field' : ''}`} width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M5.5 15C5.5 15 11 10 11 5.5C11 2.46243 8.53757 0 5.5 0C2.46243 0 0 2.46243 0 5.5C0 10 5.5 15 5.5 15ZM5.5 8C6.88071 8 8 6.88071 8 5.5C8 4.11929 6.88071 3 5.5 3C4.11929 3 3 4.11929 3 5.5C3 6.88071 4.11929 8 5.5 8Z" fill="#1E7BC0" />
+                      </svg>
+                    </div>
+                    <div className="right-side">
+                      <div className={`subheading font-size-3 ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode ? 'empty-field' : ''}`}>Area</div>
+                      <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
+                      </span>
+                      <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
+                      </span>
+                      <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
+                      </span>
+                      <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                        {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
+                      </span>
+                    </div>
+                  </div>
+                  <div className={`personal-information-item info-item-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                    <div className="left-side additional-color-2-background">
+                      <svg className={`additional-color-1-svg width="14 ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth ? 'empty-field' : ''}`} height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7ZM8 4C8 4.55228 7.55228 5 7 5C6.44772 5 6 4.55228 6 4C6 3.44772 6.44772 3 7 3C7.55228 3 8 3.44772 8 4ZM7 6C6.44772 6 6 6.44772 6 7V10C6 10.5523 6.44772 11 7 11C7.55228 11 8 10.5523 8 10V7C8 6.44772 7.55228 6 7 6Z" fill="#1E7BC0" />
+                      </svg>
+                    </div>
+                    <div className="right-side">
+                      <div className={`subheading font-size-3 ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth ? 'empty-field' : ''}`}>Info</div>
+                      <div className={`info-list-item ${!contact[0]?.nationality ? 'empty-field' : ''} ${!contact[0]?.nationality && !beforeСontent ? 'hide' : ''}`}>
+                        <div className="font-size-2">Nationality:</div>
+                        <div className="font-size-2">{contact[0]?.nationality ? contact[0]?.nationality : 'German'}</div>
+                      </div>
+                      <div className={`info-list-item ${!contact[0]?.driverLicense ? 'empty-field' : ''} ${!contact[0]?.driverLicense && !beforeСontent ? 'hide' : ''}`}>
+                        <div className="font-size-2">Driving license:</div>
+                        <div className="font-size-2">{contact[0]?.driverLicense ? contact[0]?.driverLicense : 'Class 1'}</div>
+                      </div>
+                      <div className={`info-list-item ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                        <div className={`font-size-2 ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth ? 'empty-field' : ''}`}>Date / Place of birth:</div>
+                        <div className="font-size-2">
+                          <span className={`${!contact[0]?.dateOfBirth ? 'empty-field' : ''} ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                            {contact[0]?.dateOfBirth ? moment(contact[0]?.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `}
+                          </span>
+                          <span className={`${!contact[0]?.placeOfBirth ? 'empty-field' : ''} ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
+                            {contact[0]?.placeOfBirth ? contact[0]?.placeOfBirth : 'Berlin'}
+                          </span>
                         </div>
                       </div>
-                      <div className={`personal-information-item email-item-block ${!contact[0]?.email && !beforeСontent ? 'hide' : ''}`}>
-                        <div className="left-side additional-color-2-background">
-                          <svg className={`additional-color-1-svg width="14 ${!contact[0].email ? 'empty-field' : ''}`} height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M0.0338717 0.740978C0.0117786 0.823592 0 0.91042 0 1V9C0 9.08958 0.0117786 9.17641 0.0338716 9.25902L4.29289 5L0.0338717 0.740978ZM5 5.70711L0.740979 9.96613C0.823592 9.98822 0.910421 10 1 10H13C13.0896 10 13.1764 9.98822 13.259 9.96613L9 5.70711L7.35355 7.35355C7.15829 7.54882 6.84171 7.54882 6.64645 7.35355L5 5.70711ZM8.6461 4.6468L7 6.29289L5.35355 4.64645L0.740978 0.0338716C0.823592 0.0117786 0.91042 0 1 0H13C13.0896 0 13.1764 0.0117786 13.259 0.0338716L8.64679 4.6461C8.64668 4.64621 8.64656 4.64633 8.64645 4.64645C8.64633 4.64656 8.64621 4.64668 8.6461 4.6468ZM9.70711 5L13.9661 9.25902C13.9882 9.17641 14 9.08958 14 9V1C14 0.91042 13.9882 0.823592 13.9661 0.740979L9.70711 5Z" fill="#1E7BC0" />
-                          </svg>
-                        </div>
-                        <div className={`right-side ${!contact[0].email ? 'empty-field' : ''}`}>
-                          <div className="subheading font-size-3">Email</div>
-                          <div className="font-size-2">{contact[0].email || 'designer@webservice.com'}</div>
-                        </div>
-                      </div>
-                      <div className={`personal-information-item area-item-block ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        <div className="left-side additional-color-2-background">
-                          <svg className={`additional-color-1-svg ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode ? 'empty-field' : ''}`} width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M5.5 15C5.5 15 11 10 11 5.5C11 2.46243 8.53757 0 5.5 0C2.46243 0 0 2.46243 0 5.5C0 10 5.5 15 5.5 15ZM5.5 8C6.88071 8 8 6.88071 8 5.5C8 4.11929 6.88071 3 5.5 3C4.11929 3 3 4.11929 3 5.5C3 6.88071 4.11929 8 5.5 8Z" fill="#1E7BC0" />
-                          </svg>
-                        </div>
-                        <div className="right-side">
-                          <div className={`subheading font-size-3 ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode ? 'empty-field' : ''}`}>Area</div>
-                            <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
-                              {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
-                            </span>
-                            <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
-                              {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
-                            </span>
-                            <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
-                              {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
-                            </span>
-                            <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                              {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
-                            </span>
-                        </div>
-                      </div>
-                      <div className={`personal-information-item info-item-block ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                        <div className="left-side additional-color-2-background">
-                          <svg className={`additional-color-1-svg width="14 ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth ? 'empty-field' : ''}`} height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0C10.866 0 14 3.13401 14 7ZM8 4C8 4.55228 7.55228 5 7 5C6.44772 5 6 4.55228 6 4C6 3.44772 6.44772 3 7 3C7.55228 3 8 3.44772 8 4ZM7 6C6.44772 6 6 6.44772 6 7V10C6 10.5523 6.44772 11 7 11C7.55228 11 8 10.5523 8 10V7C8 6.44772 7.55228 6 7 6Z" fill="#1E7BC0" />
-                          </svg>
-                        </div>
-                        <div className="right-side">
-                          <div className={`subheading font-size-3 ${!contact[0]?.driverLicense && !contact[0]?.nationality && !contact[0]?.placeOfBirth && !contact[0]?.dateOfBirth ? 'empty-field' : ''}`}>Info</div>
-                              <div className={`info-list-item ${!contact[0]?.nationality ? 'empty-field' : ''} ${!contact[0]?.nationality && !beforeСontent ? 'hide' : ''}`}>
-                                <div className="font-size-2">Nationality:</div>
-                                <div className="font-size-2">{contact[0]?.nationality ? contact[0]?.nationality : 'German'}</div>
-                              </div>
-                              <div className={`info-list-item ${!contact[0]?.driverLicense ? 'empty-field' : ''} ${!contact[0]?.driverLicense && !beforeСontent ? 'hide' : ''}`}>
-                                <div className="font-size-2">Driving license:</div>
-                                <div className="font-size-2">{contact[0]?.driverLicense ? contact[0]?.driverLicense : 'Class 1'}</div>
-                              </div>
-                              <div className={`info-list-item ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                                <div className={`font-size-2 ${!contact[0]?.dateOfBirth && !contact[0]?.placeOfBirth ? 'empty-field' : ''}`}>Date / Place of birth:</div>
-                                <div className="font-size-2">
-                                  <span className={`${!contact[0]?.dateOfBirth ? 'empty-field' : ''} ${!contact[0]?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                                    {contact[0]?.dateOfBirth ? moment(contact[0]?.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
-                                  </span>
-                                  <span className={`${!contact[0]?.placeOfBirth ? 'empty-field' : ''} ${!contact[0]?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                                    {contact[0]?.placeOfBirth ? contact[0]?.placeOfBirth : 'Berlin'}
-                                  </span>
-                                </div>
-                              </div>
-                        </div>
-                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="cv-heading font-size-4">Skills</div>
@@ -391,7 +391,7 @@ export const ResumeCv041 = ({
                       <div className="block-info" key={index}>
                         <div className={`font-size-2 ${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                           <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                            {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                            {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                           </span>
                           <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                             {itemRef.company || ', Company'}
@@ -478,7 +478,7 @@ export const ResumeCv041 = ({
                             </div>
                             <div className={`font-size-2 ${!itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                               <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                                {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || 'Apple INC.'}
+                                {checkForSymbol([itemEm?.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || 'Apple INC.'}
                               </span>
                               <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                                 {itemEm.city || ', New York City'}
@@ -525,7 +525,7 @@ export const ResumeCv041 = ({
                               {itemEd.study || 'Marketing and Management'}
                             </div>
                             <div className={`font-size-2 ${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                              {itemEd?.facility || 'Harcum College, Portland'}
+                              {itemEd.facility || 'Harcum College, Portland'}
                             </div>
                             <div className={`degree-block font-size-2 ${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
                               {itemEd.degree || 'Bachelor'}
@@ -637,7 +637,7 @@ export const ResumeCv041 = ({
                             </div>
                             <div className={`font-size-2 ${!itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                               <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                                {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || 'Company S.A.'}
+                                {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || 'Company S.A.'}
                               </span>
                               <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                                 {itemIn.city || ', Toronto'}

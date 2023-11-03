@@ -1,21 +1,3 @@
-@font-face {
-  font-family: 'Roboto Condensed';
-  src: url('./fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Roboto Condensed';
-  src: url('./fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Caveat';
-  src: url('./fonts/Caveat/Caveat-VariableFont_wght.ttf');
-  font-weight: 400;
-}
-
   /* Colors */
   $main_color_1: #FFFFFF;
   $main_color_2: #75BE87;
@@ -90,8 +72,8 @@
   }
 
   .cv-body-content {
+    display: none;
     flex: 1;
-    display: flex;
     flex-direction: column;
   }
 
@@ -226,6 +208,7 @@
         img, svg {
           width: 14px;
           height: 14px;
+          fill: $main_color_2;
         }
       }
     }
@@ -746,9 +729,7 @@
     }
   }
 
-  @media print {
-    .block-block {
-      break-inside: avoid !important;
-    }
+  .cv-body-content {
+    display: flex;
   }
 }

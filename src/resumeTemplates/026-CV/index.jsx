@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -158,7 +158,7 @@ const drawing = () => {
       page_element.children().remove();
 
       let page_element_container = $('#cv-body-hidden-container .cv-body-content').clone();
-  
+
       page_element_container.find('.column-left').children().remove();
       page_element_container.find('.column-right').children().remove();
       page_element.append(page_element_container);
@@ -207,11 +207,11 @@ export const ResumeCv026 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -229,17 +229,17 @@ export const ResumeCv026 = ({
                 )
               }
               <div className={`name-and-prophecy-wrapper ${!conta.firstName && !conta.lastName && !conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                    <div className={`cv-name font-size-4 ${!conta.firstName && !conta.lastName && !beforeСontent ? 'hide' : ''}`}>
-                      <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
-                        {conta.firstName || 'Matthew'}
-                      </span><br/>
-                      <span className={`${!conta.lastName ? 'empty-field' : ''} ${!conta.lastName && !beforeСontent ? 'hide' : ''}`}>
-                        {conta.lastName || 'Mcconaughey'}
-                      </span>
-                    </div>
-                    <div className={`cv-profession font-size-3 ${!conta.jobTitle ? 'empty-field' : ''} ${!conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                      {conta.jobTitle || 'Web-designer'}
-                    </div>
+                <div className={`cv-name font-size-4 ${!conta.firstName && !conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                  <span className={`${!conta.firstName ? 'empty-field' : ''} ${!conta.firstName && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.firstName || 'Matthew'}
+                  </span><br />
+                  <span className={`${!conta.lastName ? 'empty-field' : ''} ${!conta.lastName && !beforeСontent ? 'hide' : ''}`}>
+                    {conta.lastName || 'Mcconaughey'}
+                  </span>
+                </div>
+                <div className={`cv-profession font-size-3 ${!conta.jobTitle ? 'empty-field' : ''} ${!conta.jobTitle && !beforeСontent ? 'hide' : ''}`}>
+                  {conta.jobTitle || 'Web-designer'}
+                </div>
               </div>
               <div className={`skills-block block-block ${!Object.keys(skills[0]).length && !beforeСontent ? 'hide' : ''}`}>
                 <div className="cv-heading font-size-3">Skills</div>
@@ -271,7 +271,7 @@ export const ResumeCv026 = ({
                             {
                               [...new Array(5)].map((_, index) => (
                                 <svg className="" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill={(index + 1) <= (item.level ? item.level : 3) ? "currentColor" : "none"}>
-                                  <path d="M6.82092 2.08288L7.91699 5.45623L8.02925 5.80172H8.39252H11.9395L9.06993 7.88657L8.77604 8.1001L8.88829 8.44559L9.98436 11.8189L7.11482 9.7341L6.82092 9.52057L6.52703 9.7341L3.65748 11.8189L4.75355 8.44559L4.86581 8.1001L4.57192 7.88657L1.70237 5.80172H5.24932H5.6126L5.72485 5.45623L6.82092 2.08288Z" stroke="currentColor"/>
+                                  <path d="M6.82092 2.08288L7.91699 5.45623L8.02925 5.80172H8.39252H11.9395L9.06993 7.88657L8.77604 8.1001L8.88829 8.44559L9.98436 11.8189L7.11482 9.7341L6.82092 9.52057L6.52703 9.7341L3.65748 11.8189L4.75355 8.44559L4.86581 8.1001L4.57192 7.88657L1.70237 5.80172H5.24932H5.6126L5.72485 5.45623L6.82092 2.08288Z" stroke="currentColor" />
                                 </svg>
                               ))
                             }
@@ -301,7 +301,7 @@ export const ResumeCv026 = ({
                     <div className="block-info" key={index}>
                       <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                         </span>
                         <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.company || ', Company'}
@@ -325,17 +325,17 @@ export const ResumeCv026 = ({
                     <div className="cv-heading font-size-3 additional-color-4-text">Details</div>
                     <div className="details-info">
                       <div className={`details-item ${!conta.country && !conta.address && !conta.city && !conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                        <span className={`${!conta.country ? 'empty-field' : ''} ${!conta.country && !beforeСontent ? 'hide' : ''}`}>
-                          {`${conta.country ? checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country : 'United States, '}`}
+                        <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                          {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                         </span>
-                        <span className={`${!conta.address ? 'empty-field' : ''} ${!conta.address && !beforeСontent ? 'hide' : ''}`}>
-                          {`${conta.address ? checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address : conta.country && !conta.city && !conta.zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                        <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                          {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                         </span>
-                        <span className={`${!conta.city ? 'empty-field' : ''} ${!conta.city && !beforeСontent ? 'hide' : ''}`}>
-                          {`${conta.city ? checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city : conta.address && !conta.zipCode ? ', New York City, ' : 'New York City, '}`}
+                        <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                          {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
                         </span>
-                        <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                          {`${conta.zipCode ? conta.zipCode : conta.city ? ', 384846' : '384846'}`}
+                        <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                          {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                         </span>
                       </div>
                       <div className={`details-item ${!conta.phone ? 'empty-field' : ''} ${!conta.phone && !beforeСontent ? 'hide' : ''}`}>
@@ -349,9 +349,9 @@ export const ResumeCv026 = ({
                   <div className={`additional-details-block ${!conta?.driverLicense && !conta?.nationality && !conta?.placeOfBirth && !conta?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
                     <div className={`item-block ${!conta?.nationality && !beforeСontent ? 'hide' : ''}`}>
                       <div className="name additional-color-4-text">nationality</div>
-                        <div className={`value ${!conta?.nationality ? 'empty-field' : ''}`}>
-                          {conta.nationality ? conta.nationality : 'German'}
-                        </div>
+                      <div className={`value ${!conta?.nationality ? 'empty-field' : ''}`}>
+                        {conta.nationality ? conta.nationality : 'German'}
+                      </div>
                     </div>
                     <div className={`item-block ${!conta?.driverLicense && !beforeСontent ? 'hide' : ''}`}>
                       <div className="name additional-color-4-text">driving license</div>
@@ -363,7 +363,7 @@ export const ResumeCv026 = ({
                       <div className="name additional-color-4-text">data/place of birth</div>
                       <div className="value">
                         <span className={`${!conta?.dateOfBirth ? 'empty-field' : ''} ${!conta?.dateOfBirth && !beforeСontent ? 'hide' : ''}`}>
-                          {conta.dateOfBirth ? moment(conta.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `} 
+                          {conta.dateOfBirth ? moment(conta.dateOfBirth).format("DD-MM-yy") : '14-08-1991'} {` / `}
                         </span>
                         <span className={`${!conta?.placeOfBirth ? 'empty-field' : ''} ${!conta?.placeOfBirth && !beforeСontent ? 'hide' : ''}`}>
                           {conta.placeOfBirth ? conta.placeOfBirth : 'Berlin'}
@@ -374,7 +374,7 @@ export const ResumeCv026 = ({
                 </div>
                 <div className={`right-side ${!Object.keys(hobbies[0]).length && !beforeСontent ? 'hide' : ''}`}>
                   <div className="hobbies-block">
-                    <div className="cv-heading font-size-3 additional-color-4-text">Hobbies</div>    
+                    <div className="cv-heading font-size-3 additional-color-4-text">Hobbies</div>
                     <div className={`hobbies-info additional-color-4-border ${!hobbies[0].text ? 'empty-field' : ''}`}>
                       {
                         Object.keys(hobbies[0]).length && (
@@ -386,38 +386,38 @@ export const ResumeCv026 = ({
                           ))
                         ) || (
                           <>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">1</span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">1</span>
                               Squash
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">2</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">2</span>
                               Surfing
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">3</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">3</span>
                               Swimming
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">4</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">4</span>
                               Table tennis
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">5</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">5</span>
                               Tennis
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">6</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">6</span>
                               Tennis polo
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">7</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">7</span>
                               Tether car
-                          </span>
-                          <span className="hobbies-item">
-                            <span className="additional-color-4-text additional-color-4-border">8</span>
+                            </span>
+                            <span className="hobbies-item">
+                              <span className="additional-color-4-text additional-color-4-border">8</span>
                               Tour skating
-                          </span>
+                            </span>
                           </>
                         )
                       }
@@ -444,10 +444,10 @@ export const ResumeCv026 = ({
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading additional-color-4-text ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                         </span>
                         <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                          {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm?.company || ', Apple INC.'}
                         </span>
                         <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || ', New York City'}
@@ -485,10 +485,10 @@ export const ResumeCv026 = ({
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading additional-color-4-text ${!itemEd.study && !itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
+                          {checkForSymbol([itemEd.facility]) ? (itemEd.study || 'Marketing and Management') + ', ' : itemEd.study || 'Marketing and Management'}
                         </span>
                         <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
+                          {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
                         </span>
                       </div>
                       <div className={`date-range additional-color-4-text ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
@@ -516,13 +516,13 @@ export const ResumeCv026 = ({
                 }
               </div>
               <div className={`extra-curricular-activities-block block-block ${!Object.keys(extra_curricular[0]).length && !beforeСontent ? 'hide' : ''}`}>
-                <div className="cv-heading font-size-3 additional-color-4-text">Extra-curricular activities</div>      
+                <div className="cv-heading font-size-3 additional-color-4-text">Extra-curricular activities</div>
                 {
                   extra_curricular.map((itemEx, index) => (
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading additional-color-4-text ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                          {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                         </span>
                         <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           {itemEx.employer || ', My own company'}
@@ -556,10 +556,10 @@ export const ResumeCv026 = ({
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading additional-color-4-text ${!itemIn.jobTitle && !itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                         </span>
                         <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                          {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
                         </span>
                         <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemIn.city || ', Toronto'}
@@ -588,13 +588,13 @@ export const ResumeCv026 = ({
                 }
               </div>
               <div className={`courses-block block-block ${!Object.keys(courses[0]).length && !beforeСontent ? 'hide' : ''}`}>
-                <div className="cv-heading font-size-3 additional-color-4-text">Courses</div>       
+                <div className="cv-heading font-size-3 additional-color-4-text">Courses</div>
                 {
                   courses.map((itemCo, index) => (
                     <div className="block-info" key={index}>
                       <div className={`cv-subheading additional-color-4-text ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
+                          {checkForSymbol([itemCo.institution]) ? (itemCo.title || 'Super course 1') + ', ' : itemCo.title || 'Super course 1'}
                         </span>
                         <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
@@ -613,7 +613,7 @@ export const ResumeCv026 = ({
                 }
               </div>
               <div className={`links-block block-block ${!social_links.length && !beforeСontent ? 'hide' : ''}`}>
-                <div className="links-info">              
+                <div className="links-info">
                   {
                     isArray(social_links) && social_links.length && (
                       social_links.map((itemSocial, index) => (

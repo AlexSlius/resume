@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -215,11 +215,11 @@ export const ResumeCv011 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -302,10 +302,10 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-3 additional-color-3-text ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                         </span>
                         <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                          {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || ', Apple INC.'}
                         </span>
                         <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || ', New York City'}
@@ -350,10 +350,10 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-3 additional-color-3-text ${!itemEd.degree && !itemEd.study && !itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEd.degree ? 'empty-field' : ''} ${!itemEd.degree && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEd.facility, itemEd.study]) ? itemEd.degree + ' - ' : itemEd.degree || 'Bachelor'}
+                          {checkForSymbol([itemEd.facility, itemEd.study]) ? (itemEd.degree || 'Bachelor') + ' - ' : itemEd.degree || 'Bachelor'}
                         </span>
                         <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEd?.facility]) ? itemEd?.study + ', ' : itemEd?.study || ' - Marketing and Management'}
+                          {checkForSymbol([itemEd?.facility]) ? (itemEd?.study || 'Marketing and Management') + ', ' : itemEd?.study || ' - Marketing and Management'}
                         </span>
                         <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                           {itemEd.facility || ', Harcum College, Portland'}
@@ -387,7 +387,7 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-3 additional-color-3-text ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
+                          {checkForSymbol([itemCo.institution]) ? (itemCo.title || 'Super course 1') + ', ' : itemCo.title || 'Super course 1'}
                         </span>
                         <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
@@ -412,7 +412,7 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-3 additional-color-3-text ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                          {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                         </span>
                         <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           {itemEx.employer || ', My own company'}
@@ -446,10 +446,10 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading font-size-3 additional-color-3-text ${!itemIn.jobTitle && !itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                         </span>
                         <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                          {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
                         </span>
                         <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemIn.city || ', Toronto'}
@@ -481,26 +481,26 @@ export const ResumeCv011 = ({
             <div className="column-right js-column-right">
               <div className={`contacts-information-block block-block ${!social_links.length && !contact[0].email && !contact[0].phone && !contact[0]?.country && !contact[0]?.address && !contact[0]?.city && !contact[0]?.zipCode && !beforeСontent ? 'hide' : ''}`}>
                 <div className="left-block additional-color-2-background"></div>
-                 <div className="right-block">
+                <div className="right-block">
                   <div className="contacts-block">
                     <div className={`block-item ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
                       <div className={`left-side ${!contact[0].country && !contact[0].address && !contact[0].city && !contact[0].zipCode ? 'empty-field' : ''}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
-                          </svg>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2.87061 5.11842C2.87061 3.11967 4.50102 1.48926 6.49977 1.48926C8.49852 1.48926 10.1289 3.11967 10.1289 5.11842C10.1289 7.59926 6.88435 11.2501 6.74352 11.4018C6.61352 11.548 6.38602 11.548 6.25602 11.4018C6.12061 11.2501 2.87061 7.59926 2.87061 5.11842ZM7.77457 4.91371C7.88603 5.61391 7.40875 6.27189 6.70855 6.38335C6.00835 6.4948 5.35037 6.01752 5.23891 5.31732C5.12746 4.61711 5.60473 3.95914 6.30494 3.84768C7.00514 3.73623 7.66312 4.2135 7.77457 4.91371Z" fill="white" />
+                        </svg>
                       </div>
                       <div className="right-side additional-color-1-text">
-                        <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].country ? checkForSymbol([contact[0].address, contact[0].city, contact[0].zipCode]) ? contact[0].country + ', ' : contact[0].country : 'United States, '}`}
-                        </span>
                         <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode]) ? contact[0].address + ', ' : contact[0].address : contact[0].country && !contact[0].city && !contact[0].zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                          {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                         </span>
                         <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].city ? checkForSymbol([contact[0].zipCode]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode ? ', New York City, ' : 'New York City, '}`}
+                          {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                         </span>
                         <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
-                          {`${contact[0].zipCode ? contact[0].zipCode : contact[0].city ? ', 384846' : '384846'}`}
+                          {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
+                        </span>
+                        <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                          {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                         </span>
                       </div>
                     </div>
@@ -537,19 +537,19 @@ export const ResumeCv011 = ({
                           <div className="block-item empty-field">
                             <div className="left-side">
                               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-                                <path d="M10.4993 10.4998H8.94645V8.06366C8.94645 7.48274 8.93609 6.73492 8.13882 6.73492C7.33002 6.73492 7.20626 7.36783 7.20626 8.02135V10.4996H5.65344V5.48996H7.14415V6.17457H7.16506C7.46858 5.65469 8.03503 5.34303 8.63589 5.36538C10.2098 5.36538 10.5 6.40241 10.5 7.75157L10.4993 10.4998Z" fill="white"/>
-                                <path d="M3.90121 4.80541C3.90112 4.80541 3.90107 4.80541 3.90103 4.80541C3.40667 4.80541 2.99988 4.39795 2.99988 3.90273C2.99988 3.4075 3.40667 3 3.90103 3C4.39533 3 4.80208 3.40741 4.80217 3.90254C4.80217 3.90259 4.80217 3.90263 4.80217 3.90273C4.80217 4.39786 4.39548 4.80536 3.90121 4.80541Z" fill="white"/>
-                                <path d="M4.67775 10.5H3.12329V5.49023H4.67775V10.5Z" fill="white"/>
+                                <path d="M10.4993 10.4998H8.94645V8.06366C8.94645 7.48274 8.93609 6.73492 8.13882 6.73492C7.33002 6.73492 7.20626 7.36783 7.20626 8.02135V10.4996H5.65344V5.48996H7.14415V6.17457H7.16506C7.46858 5.65469 8.03503 5.34303 8.63589 5.36538C10.2098 5.36538 10.5 6.40241 10.5 7.75157L10.4993 10.4998Z" fill="white" />
+                                <path d="M3.90121 4.80541C3.90112 4.80541 3.90107 4.80541 3.90103 4.80541C3.40667 4.80541 2.99988 4.39795 2.99988 3.90273C2.99988 3.4075 3.40667 3 3.90103 3C4.39533 3 4.80208 3.40741 4.80217 3.90254C4.80217 3.90259 4.80217 3.90263 4.80217 3.90273C4.80217 4.39786 4.39548 4.80536 3.90121 4.80541Z" fill="white" />
+                                <path d="M4.67775 10.5H3.12329V5.49023H4.67775V10.5Z" fill="white" />
                               </svg>
                             </div>
                             <div className="right-side additional-color-1-text">Linkedin</div>
                           </div>
                           <div className="block-item empty-field">
                             <div className="left-side">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
-                              <circle cx="6.5" cy="6.5" r="6.5" fill="#605C2C"/>
-                              <path d="M9.02999 8.37913L9.31819 6.50015H7.51535V5.28081C7.51535 4.76676 7.76718 4.26569 8.57469 4.26569H9.39437V2.66602C9.39437 2.66602 8.65047 2.53906 7.93927 2.53906C6.45444 2.53906 5.48398 3.43894 5.48398 5.06807V6.50015H3.8335V8.37913H5.48398V12.9214C5.81493 12.9734 6.15413 13.0004 6.49967 13.0004C6.8452 13.0004 7.1844 12.9734 7.51535 12.9214V8.37913H9.02999Z" fill="white"/>
-                            </svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                                <circle cx="6.5" cy="6.5" r="6.5" fill="#605C2C" />
+                                <path d="M9.02999 8.37913L9.31819 6.50015H7.51535V5.28081C7.51535 4.76676 7.76718 4.26569 8.57469 4.26569H9.39437V2.66602C9.39437 2.66602 8.65047 2.53906 7.93927 2.53906C6.45444 2.53906 5.48398 3.43894 5.48398 5.06807V6.50015H3.8335V8.37913H5.48398V12.9214C5.81493 12.9734 6.15413 13.0004 6.49967 13.0004C6.8452 13.0004 7.1844 12.9734 7.51535 12.9214V8.37913H9.02999Z" fill="white" />
+                              </svg>
                             </div>
                             <div className="right-side additional-color-1-text">Facebook</div>
                           </div>
@@ -565,8 +565,8 @@ export const ResumeCv011 = ({
                   {
                     certificates.map((item, index) => (
                       <span className={`${!item.name ? 'empty-field' : ''}`} key={index}>
-                          {item.name ? item.name : 'Certificate name'}
-                        </span>
+                        {item.name ? item.name : 'Certificate name'}
+                      </span>
                     ))
                   }
                 </div>
@@ -578,7 +578,7 @@ export const ResumeCv011 = ({
                     <div className="block-info" key={index}>
                       <div className={`additional-color-1-text ${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                         </span>
                         <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.company || ', Company'}
@@ -617,7 +617,7 @@ export const ResumeCv011 = ({
                           !hide_experience_level && (
                             <div className="estimation-wrapper">
                               <div className="estimation-background additional-color-2-background"></div>
-                              <div className="estimation-value additional-color-2-background" style={{ width: `${item.level ? (+item.level * 100) / 5: '25'}%` }}></div>
+                              <div className="estimation-value additional-color-2-background" style={{ width: `${item.level ? (+item.level * 100) / 5 : '25'}%` }}></div>
                             </div>
                           )
                         }

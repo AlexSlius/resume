@@ -1,14 +1,3 @@
-@font-face {
-  font-family: 'Inter';
-  src: url('./fonts/Inter/Inter-All.ttf');
-}
-
-@font-face {
-  font-family: 'Pridi';
-  src: url('./fonts/Pridi/Pridi-Regular.ttf');
-  font-weight: 400;
-}
-
   /* Colors */
   $main_color_1: #FFFFFF;
   $main_color_2: #000000;
@@ -87,7 +76,7 @@
 
   .cv-body-content {
     flex: 1;
-    display: flex;
+    display: none;
     flex-direction: column;
   }
 
@@ -498,5 +487,9 @@
     .main-color-3-text {
       color: $main_color_3;
     }
+  }
+
+  .cv-body-content {
+    display: flex;
   }
 }

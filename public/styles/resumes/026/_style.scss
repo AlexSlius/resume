@@ -1,14 +1,3 @@
-@font-face {
-  font-family: 'Roboto Flex';
-  src: url('./fonts/Roboto_Flex/RobotoFlex-VariableFont.ttf');
-}
-
-@font-face {
-  font-family: 'Roboto Slab';
-  src: url('./fonts/Roboto_Slab/RobotoSlab-VariableFont.ttf');
-  font-weight: 400;
-}
-
   /* Colors */
   $main_color_1: #FFFCFC;
 
@@ -92,7 +81,7 @@
 
   .cv-body-content {
     flex: 1;
-    display: flex;
+    display: none;
   }
 
   .column-left {
@@ -631,5 +620,9 @@
     .additional-color-5-text {
       color: $color_set_4_additional_color_5;
     }
+  }
+
+  .cv-body-content {
+    display: flex;
   }
 }

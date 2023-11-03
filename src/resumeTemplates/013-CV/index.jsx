@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 import moment from 'moment';
 
@@ -213,11 +213,11 @@ export const ResumeCv013 = ({
 
   useEffect(() => {
     if (isPdf) return;
-    
-    if (!!isDrawing ) {
-    drawing();
-    handleFalseDrafind();
-  }
+
+    if (!!isDrawing) {
+      drawing();
+      handleFalseDrafind();
+    }
   }, [isDrawing, data, stateClasses]);
 
   return (
@@ -245,17 +245,17 @@ export const ResumeCv013 = ({
                 <div className={`contacts-block ${!conta.country && !conta.address && !conta.city && !conta.zipCode && !conta.email && !conta.phone && !beforeСontent ? 'hide' : ''}`}>
                   <div className="block-heading font-size-2 additional-color-1-text">Details</div>
                   <div className={`block-item ${!conta?.country && !conta?.address && !conta?.city && !conta?.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                    <span className={`${!conta.country ? 'empty-field' : ''} ${!conta.country && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.country ? checkForSymbol([conta.address, conta.city, conta.zipCode]) ? conta.country + ', ' : conta.country : 'United States, '}`}
+                    <span className={`${!contact[0].address ? 'empty-field' : ''} ${!contact[0].address && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].address ? checkForSymbol([contact[0].city, contact[0].zipCode, contact[0].country]) ? contact[0].address + ', ' : contact[0].address : '5th Avenue Street, '}`}
                     </span>
-                    <span className={`${!conta.address ? 'empty-field' : ''} ${!conta.address && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.address ? checkForSymbol([conta.city, conta.zipCode]) ? conta.address + ', ' : conta.address : conta.country && !conta.city && !conta.zipCode ? ', 5th Avenue Street, ' : '5th Avenue Street, '}`}
+                    <span className={`${!contact[0].city ? 'empty-field' : ''} ${!contact[0].city && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].city ? checkForSymbol([contact[0].zipCode, contact[0].country]) ? contact[0].city + ', ' : contact[0].city : contact[0].address && !contact[0].zipCode && !contact[0].country ? ', New York City, ' : 'New York City, '}`}
                     </span>
-                    <span className={`${!conta.city ? 'empty-field' : ''} ${!conta.city && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.city ? checkForSymbol([conta.zipCode]) ? conta.city + ', ' : conta.city : conta.address && !conta.zipCode ? ', New York City, ' : 'New York City, '}`}
+                    <span className={`${!contact[0].zipCode ? 'empty-field' : ''} ${!contact[0].zipCode && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].zipCode ? checkForSymbol([contact[0].country]) ? contact[0].zipCode + ', ' : contact[0].zipCode : contact[0].city && !contact[0].country ? ', 384846, ' : '384846, '}`}
                     </span>
-                    <span className={`${!conta.zipCode ? 'empty-field' : ''} ${!conta.zipCode && !beforeСontent ? 'hide' : ''}`}>
-                      {`${conta.zipCode ? conta.zipCode : conta.city ? ', 384846' : '384846'}`}
+                    <span className={`${!contact[0].country ? 'empty-field' : ''} ${!contact[0].country && !beforeСontent ? 'hide' : ''}`}>
+                      {`${contact[0].country ? contact[0].country : contact[0].zipCode ? ', United States' : 'United States'}`}
                     </span>
                   </div>
                   <div className={`block-item ${!conta.email ? 'empty-field' : ''} ${!conta.email && !beforeСontent ? 'hide' : ''}`}>
@@ -364,7 +364,7 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`${!itemRef.fullName && !itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemRef.fullName ? 'empty-field' : ''} ${!itemRef.fullName && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemRef.company]) ? itemRef.fullName + ', ' : itemRef.fullName || 'Full name'}
+                          {checkForSymbol([itemRef.company]) ? (itemRef.fullName || 'Full name') + ', ' : itemRef.fullName || 'Full name'}
                         </span>
                         <span className={`${!itemRef.company ? 'empty-field' : ''} ${!itemRef.company && !beforeСontent ? 'hide' : ''}`}>
                           {itemRef.company || ', Company'}
@@ -430,10 +430,10 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading ${!itemEm.title && !itemEm.company && !itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEm.title ? 'empty-field' : ''} ${!itemEm.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm.company]) ? itemEm.title + ', ' : itemEm.title || 'Web Designer'}
+                          {checkForSymbol([itemEm.company, itemEm.city]) ? (itemEm.title || 'Web Designer') + ', ' : itemEm.title || 'Web Designer'}
                         </span>
                         <span className={`${!itemEm.company ? 'empty-field' : ''} ${!itemEm.company && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEm?.city]) ? itemEm?.company + ', ' : itemEm?.company || ', Apple INC.'}
+                          {checkForSymbol([itemEm.city]) ? (itemEm.company || 'Apple INC.') + ', ' : itemEm.company || ', Apple INC.'}
                         </span>
                         <span className={`${!itemEm.city ? 'empty-field' : ''} ${!itemEm.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemEm.city || ', New York City'}
@@ -473,10 +473,10 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading ${!itemEd.study && !itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEd.study ? 'empty-field' : ''} ${!itemEd.study && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.study && (checkForSymbol([itemEd.facility])) ? itemEd.study + ', ' : itemEd.study || 'Marketing and Management'}
+                          {itemEd.study && (checkForSymbol([itemEd.facility])) ? (itemEd.study || 'Marketing and Management') + ', ' : itemEd.study || 'Marketing and Management'}
                         </span>
                         <span className={`${!itemEd.facility ? 'empty-field' : ''} ${!itemEd.facility && !beforeСontent ? 'hide' : ''}`}>
-                          {itemEd.facility ? itemEd.facility : ', Harcum College, PortlandM'}
+                          {itemEd.facility ? itemEd.facility : ', Harcum College, Portland'}
                         </span>
                       </div>
                       <div className={`date-range ${!itemEd.dateFrom?.date && !itemEd.dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
@@ -510,7 +510,7 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading ${!itemCo.title && !itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemCo.title ? 'empty-field' : ''} ${!itemCo.title && !beforeСontent ? 'hide' : ''}`}>
-                          {itemCo.title && (checkForSymbol([itemCo.institution])) ? itemCo.title + ', ' : itemCo.title || 'Super course 1'}
+                          {checkForSymbol([itemCo.institution]) ? (itemCo.title || 'Super course 1') + ', ' : itemCo.title || 'Super course 1'}
                         </span>
                         <span className={`${!itemCo.institution ? 'empty-field' : ''} ${!itemCo.institution && !beforeСontent ? 'hide' : ''}`}>
                           {itemCo.institution ? itemCo.institution : ', Benjamin Franklin Sidestep Collage'}
@@ -535,7 +535,7 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading ${!itemEx.title && !itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemEx.title ? 'empty-field' : ''} ${!itemEx.title && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemEx.employer]) ? itemEx.title + ', ' : itemEx.title || 'UX Designer'}
+                          {checkForSymbol([itemEx.employer]) ? (itemEx.title || 'UX Designer') + ', ' : itemEx.title || 'UX Designer'}
                         </span>
                         <span className={`${!itemEx.employer ? 'empty-field' : ''} ${!itemEx.employer && !beforeСontent ? 'hide' : ''}`}>
                           {itemEx.employer || ', My own company'}
@@ -569,10 +569,10 @@ export const ResumeCv013 = ({
                     <div className="block-info" key={index}>
                       <div className={`block-subheading ${!itemIn.jobTitle && !itemIn.employer && !itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                         <span className={`${!itemIn.jobTitle ? 'empty-field' : ''} ${!itemIn.jobTitle && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? itemIn.jobTitle + ', ' : itemIn.jobTitle || 'Product Designer'}
+                          {checkForSymbol([itemIn.employer, itemIn?.city]) ? (itemIn.jobTitle || 'Product Designer') + ', ' : itemIn.jobTitle || 'Product Designer'}
                         </span>
                         <span className={`${!itemIn.employer ? 'empty-field' : ''} ${!itemIn.employer && !beforeСontent ? 'hide' : ''}`}>
-                          {checkForSymbol([itemIn.city]) ? itemIn.employer + ', ' : itemIn.employer || ', Company S.A.'}
+                          {checkForSymbol([itemIn.city]) ? (itemIn.employer || 'Company S.A.') + ', ' : itemIn.employer || ', Company S.A.'}
                         </span>
                         <span className={`${!itemIn.city ? 'empty-field' : ''} ${!itemIn.city && !beforeСontent ? 'hide' : ''}`}>
                           {itemIn.city || ', Toronto'}
