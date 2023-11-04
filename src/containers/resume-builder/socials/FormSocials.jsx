@@ -2,7 +2,7 @@ import {
    CCol,
    CRow,
 } from "@coreui/react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { isArray } from "lodash";
 
 import Input from "../../../components/uis/input"
@@ -113,6 +113,8 @@ const FormSocials = ({
                         isRequire={true}
                         isValidIn={true}
                         validIn={item.name?.trim()?.length > 2}
+                        listAdds={socialObj}
+                        keyItemAdds="name"
                      />
                   </CCol>
                   <CCol xs={6} className="mb-4">
@@ -147,6 +149,8 @@ const FormSocials = ({
                   isIconArrow={true}
                   isValidIn={true}
                   validIn={socialObjNew.name?.trim()?.length > 4}
+                  listAdds={socialObj}
+                  keyItemAdds="name"
                />
             </CCol>
          </CRow>

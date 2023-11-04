@@ -138,6 +138,8 @@ const FormHobies = ({
                               isOutDataObj={false}
                               isRequire={true}
                               isValidIn={true}
+                              listAdds={hobiesObj}
+                              keyItemAdds="text"
                            />
                         </CCol>
                      </CRow>

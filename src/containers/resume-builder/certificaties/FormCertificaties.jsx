@@ -18,7 +18,7 @@ import {
    fetchDeleteAll
 } from "../../../controllers/certificaties";
 import { postUpdateCategoryViewedStatus } from '../../../controllers/addSections';
-import { fetchGetListCertificates } from '../../../controllers/dependencies';
+import { fetchGetListCertificates, addNewSertif } from '../../../controllers/dependencies';
 import { focusFieldInputClassName } from "../../../helpers/fiedlFocus";
 
 const FormCertificaties = ({
@@ -74,6 +74,16 @@ const FormCertificaties = ({
       await dispatch(fetchGetListCertificates(text));
    }
 
+   const handleAddNewSerf = async (text, isNewForm = false) => {
+      let re = await dispatch(addNewSertif(text));
+
+      // if (isNewForm) {
+      //    automateNew();
+      // }
+
+      return re?.payload?.id;
+   }
+
    useEffect(() => {
       dispatch(postUpdateCategoryViewedStatus({ idCv, category: 'certificates' }));
       dispatch(fetchGetListCertificates());
@@ -100,6 +110,10 @@ const FormCertificaties = ({
                         isRequire={true}
                         isValidIn={true}
                         validIn={item.name?.trim()?.length > 2}
+                        listAdds={certificatiesObj}
+                        keyItemAdds="name"
+                        isAddDiv={true}
+                        handleAddNew={handleAddNewSerf}
                      />
                   </CCol>
                ))
@@ -113,6 +127,8 @@ const FormCertificaties = ({
                   handleServerRequest={handleServerRequestCertificatsList}
                   isOutDataObj={false}
                   isRequire={true}
+                  isAddDiv={true}
+                  handleAddNew={handleAddNewSerf}
                />
             </CCol>
          </CRow>

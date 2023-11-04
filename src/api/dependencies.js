@@ -41,6 +41,9 @@ export default class ClientsAPI extends Base {
     addJopsTitle(data, type = "formData") {
         return this.apiClient.post(`cv/job_title/add`, data, type);
     }
+    addNewSertif(data, type = "formData") {
+        return this.apiClient.post(`profile/certificates/add`, data, type);
+    }
     getCompanys(params) {
         return this.apiClient.get(`profile/list/company`, params);
     }

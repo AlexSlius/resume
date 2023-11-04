@@ -115,6 +115,8 @@ const FormLanguages = ({
                            onDelete={() => { handDeleteitem(item.id) }}
                            isOutDataObj={false}
                            data={language.list || []}
+                           listAdds={languageObj}
+                           keyItemAdds="language"
                            isRequire={true}
                            isDelete={true}
                            isValidIn={true}
@@ -147,6 +149,8 @@ const FormLanguages = ({
                      handleServerRequest={handleServerRequestLanguagesList}
                      isOutDataObj={false}
                      data={language.list || []}
+                     listAdds={languageObj}
+                     keyItemAdds="language"
                      isRequire={true}
                      isValidIn={true}
                      validIn={objNew.language?.trim()?.length > 4}

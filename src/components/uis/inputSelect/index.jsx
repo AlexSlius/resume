@@ -54,6 +54,8 @@ export const InputSelect = ({
     isStaticData = false,
     isAcitveCurrent = true,
     isOnlyDown = false,
+    listAdds = [],
+    keyItemAdds = ''
 }) => {
     const refSelect = useRef(undefined);
     const reIn = useRef(undefined)
@@ -89,7 +91,9 @@ export const InputSelect = ({
 
     const handleOnChange = (e) => {
         let out = !!isOutDataObj ? { [keyText]: e.target.value } : e.target.value;
-        handleSaveSelect({ name, value: firstChildUpCase ? theFirstHeaderCharacter(out) : out });
+        let ar = out.split(' ').map(item => item.charAt(0).toUpperCase() + item.slice(1)).join(" ");
+
+        handleSaveSelect({ name, value: firstChildUpCase ? theFirstHeaderCharacter(ar) : ar });
     }
 
     const handledOnBlur = () => {
@@ -322,6 +326,11 @@ export const InputSelect = ({
                                                                 if (item[keyName] == (!!isOutDataObj ? valueState[keyText] : valueState)) {
                                                                     activeClassItem = style.active;
                                                                 }
+                                                        }
+
+                                                        if (listAdds.length > 0) {
+                                                            if (listAdds.find((itemAdds) => (itemAdds[keyItemAdds] == item[keyName])))
+                                                                return <></>;
                                                         }
 
                                                         return (
