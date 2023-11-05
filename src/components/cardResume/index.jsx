@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import Icon from "../Icon";
 
+import { formatDataCardDash } from "../../utils/dateCardDashboard";
+
 import style from "./Style.module.scss";
 import iconDownload from "/public/images/icons/icon_download_file.svg?sprite"
 import iconMoreHorizontal from "/public/images/icons/more_horizontal.svg?sprite"
@@ -102,7 +104,7 @@ export const CardResume = ({
                         />
                     </div>
                 </div>
-                <div className={`${style.card_date}`}>{dateUpdate}</div>
+                <div className={`${style.card_date}`}>{formatDataCardDash(dateUpdate)}</div>
             </div>
         </div>
     )
