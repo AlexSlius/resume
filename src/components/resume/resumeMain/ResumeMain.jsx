@@ -147,7 +147,11 @@ const ResumeMain = ({
          }
          {
             isCover && (
-               <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
+               // <div className="resume-main_scale resume-main_scale_cover" style={{ transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>
+               <div className="resume-main_scale resume-main_scale_cover"
+                  style={{
+                     transform: `scale(${scaleSize})`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0
+                  }}>
                   <TemplatesSelectCover
                      isNewResume={isNewResume}
                      resumeActive={isNewResume ? !!dataOther?.resumeActiveNew.slug ? dataOther?.resumeActiveNew.slug : "001-CV" : dataOther?.resumeActive?.template_slug}
