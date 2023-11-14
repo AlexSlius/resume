@@ -9,12 +9,20 @@ import backIcon from "/public/images/icons/back.svg?sprite"
 export const ButtonBack = ({
     text = "Back",
     link = '',
+    isClick = false,
+    funClick = () => { },
 }) => {
     const router = useRouter();
 
     let classNoText = text.length ? '' : style.no_text;
 
     const handleRouter = () => {
+        if (isClick) {
+            funClick();
+
+            return;
+        }
+        
         if (link.length > 0) {
             Router.push(link);
         } else {

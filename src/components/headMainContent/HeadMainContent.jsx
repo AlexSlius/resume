@@ -12,6 +12,7 @@ const HeadMainContent = (props) => {
    const { title, description, children, isRows = true, link = '', StubTextBtn = false } = props;
 
    const cont = useSelector(state => state.contacts.contactObj);
+   const { currentResolution } = useSelector(state => state.theme);
 
    return (
       <div className={style.main_content}>
@@ -20,7 +21,7 @@ const HeadMainContent = (props) => {
                <ButtonBack link={link} />
             </div>
             {
-               !!StubTextBtn && (
+               !!StubTextBtn && !['sm', 'xs', 'md'].includes(currentResolution) && (
                   <div className={style.switch_stub}>
                      <Switch
                         label="Stub-text"
@@ -54,8 +55,6 @@ const HeadMainContent = (props) => {
                </div>
             )
          }
-
-
       </div>
    )
 }

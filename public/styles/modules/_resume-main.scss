@@ -482,6 +482,12 @@
    .resume-main_scroll {
       max-height: fit-content;
    }
+
+   .head_resume_div__flex {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+   }
 }
 
 

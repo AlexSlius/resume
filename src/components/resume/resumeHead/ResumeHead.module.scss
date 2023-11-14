@@ -210,3 +210,9 @@
       flex: 0 0 auto;
    }
 }
+
+@media(max-width: 992px) {
+   .resume_head__pagination {
+      width: 86px;
+   }
+}

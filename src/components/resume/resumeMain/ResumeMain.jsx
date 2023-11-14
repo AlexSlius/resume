@@ -13,6 +13,7 @@ import { activeTemplateBlock } from "../../../helpers/activeBlockTemplate";
 const ResumeMain = ({
    reportTemplateRef,
    isCover,
+   loadContetnMob = false,
 }) => {
    const refDivResumeMain = useRef();
    const dispatch = useDispatch();
@@ -118,7 +119,7 @@ const ResumeMain = ({
    }
 
    return (
-      <div className={`resume-main ${loadContent ? "load" : ""}`} ref={refDivResumeMain}>
+      <div className={`resume-main ${(loadContent || loadContetnMob) ? "load" : ""}`} ref={refDivResumeMain}>
          {
             !isCover && (
                <div className={`resume-main_scale`} style={{ msZoom: `${scaleSize}`, MozTransform: `scale(${scaleSize})`, zoom: `${scaleSize}`, marginLeft: origin > 0 ? `${origin}px` : 0, marginTop: originTop > 0 ? `${originTop}px` : 0 }}>

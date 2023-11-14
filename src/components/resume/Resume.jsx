@@ -22,6 +22,7 @@ const Resume = ({
    const isNewResume = (idCv == "new");
    const [pagesPag, setPagesPag] = useState(1);
    const [pagePagCurrent, setPagePagCurrent] = useState(0);
+   const [loadContetnMob, setLoadContetnMob] = useState(false);
 
    const {
       coverDataForm,
@@ -41,7 +42,7 @@ const Resume = ({
       certificaties,
       careers,
       theme: {
-         isOpenPreviesMobTemplate
+         isOpenPreviesMobTemplate,
       }
    } = useSelector((state) => state);
 
@@ -110,8 +111,20 @@ const Resume = ({
       languages,
       references,
       certificaties,
-      careers
+      careers,
+      isOpenPreviesMobTemplate,
+      contacts.contactObj.isDummyTextHidden
    ]);
+
+   useEffect(() => {
+      if (['sm', 'xs', 'md'].includes(currentResolution)) {
+         setLoadContetnMob(true);
+
+         setTimeout(() => {
+            setLoadContetnMob(false);
+         }, 500);
+      }
+   }, [contacts.contactObj.isDummyTextHidden]);
 
    useEffect(() => {
       if (typeof window != "undefined") {
@@ -134,6 +147,12 @@ const Resume = ({
             }
 
             star();
+
+            if (['sm', 'xs', 'md'].includes(currentResolution)) {
+               setTimeout(() => {
+                  star();
+               }, 200);
+            }
 
             if (isNewResume) {
                setTimeout(() => {
@@ -164,7 +183,10 @@ const Resume = ({
       languages,
       references,
       certificaties,
-      careers
+      careers,
+      isOpenPreviesMobTemplate,
+      contacts.contactObj.isDummyTextHidden,
+      loadContetnMob
    ]);
 
    useEffect(() => {
@@ -193,6 +215,7 @@ const Resume = ({
                reportTemplateRef={reportTemplateRef}
                isCover={isCover}
                currentResolution={currentResolution}
+               loadContetnMob={loadContetnMob}
             />
             <ResumeFooter
                isCover={isCover}

@@ -77,9 +77,15 @@ export const Header = ({
                         <div className="head-mob">
                             {
                                 !isContentpage && (
-                                    <div className="head-mob__back">
-                                        <ButtonBack text="" link={router.asPath.includes('experience') ? routerStetBack : ""} />
-                                    </div>
+                                    isOpenPreviesMobTemplate ? (
+                                        <div className="head-mob__back">
+                                            <ButtonBack text="" isClick={true} funClick={() => dispatch(updatePreviewsMobTemplateStatus())} />
+                                        </div>
+                                    ) : (
+                                        <div className="head-mob__back">
+                                            <ButtonBack text="" link={router.asPath.includes('experience') ? routerStetBack : ""} />
+                                        </div>
+                                    )
                                 )
                             }
                             <Link href="/" className="logo">
