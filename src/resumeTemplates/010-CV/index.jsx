@@ -116,7 +116,7 @@ const drawing = () => {
       });
     }
 
-    rebuildingPages();
+    // rebuildingPages();
   }
 }
 
