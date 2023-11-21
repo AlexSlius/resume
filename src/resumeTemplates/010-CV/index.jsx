@@ -115,9 +115,8 @@ const drawing = () => {
         }
       });
     }
-    setTimeout(() => {
-      rebuildingPages();
-    }, 900);
+
+    rebuildingPages();
   }
 }
 
