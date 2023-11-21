@@ -231,6 +231,96 @@ export const ResumeCv004 = ({
     }
   }, [isDrawing, data, stateClasses]);
 
+  if (objActiveBlock) {
+    hideEmpty();
+  }
+  function hideEmpty() {
+    employment.forEach(function(el, i){
+      if (i < (employment.length - 1)) {
+        $('.work-experience-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.employment === false && (el.assignment !== "" || el.city !== "" || el.company !== "" || el.country !== "" || el.title !== "" || el.periodFrom !== null || el.periodTo !== null)) {
+        $('.work-experience-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.employment && employment.length === 1) {
+        $('.work-experience-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.employment) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+    education.forEach(function(el, i){
+      if (i < (education.length - 1)) {
+        $('.education-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.education === false && (el.awards !== "" || el.study !== "" || el.facility !== "" || el.description !== "" || el.degree !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.education-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.education && education.length === 1) {
+        $('.education-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.education) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+    courses.forEach(function(el, i) {
+      if (i < (courses.length - 1)) {
+        $('.courses-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.courses === false && (el.title !== "" || el.institution !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.courses-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.courses && courses.length === 1) {
+        $('.courses-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.courses) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+    extra_curricular.forEach(function(el, i){
+      if (i < (extra_curricular.length - 1)) {
+        $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.extra_curricular === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.title !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.extra-curricular-activities-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.extra_curricular && extra_curricular.length === 1) {
+        $('.extra-curricular-activities-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.extra_curricular) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+    internship.forEach(function(el, i){
+      if (i < (internship.length - 1)) {
+        $('.internships-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.internship === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.jobTitle !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.internships-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.internship && internship.length === 1) {
+        $('.internships-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.internship) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+    reference.forEach(function(el, i){
+      if (i < (reference.length - 1)) {
+        $('.references-block').find('.block-info').eq(i).find('.empty-field').hide();
+      }
+      if (objActiveBlock.reference === false && (el.company !== "" || el.email !== "" || el.fullName !== "" || el.phone !== "")) {
+        $('.references-block').find('.empty-field').hide();
+      }
+      if (objActiveBlock.reference && reference.length === 1) {
+        $('.references-block').find('.empty-field').show();
+      }
+      if (objActiveBlock.reference) {
+        $('div, span, p').not('.empty-field').show();
+      }
+    });
+  }
+
   return (
     <div className="sv_004" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section ${classPhoto}`} data-chapter="cv">
