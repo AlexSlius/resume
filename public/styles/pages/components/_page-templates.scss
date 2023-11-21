@@ -495,8 +495,8 @@
 .page-templates {
     .body-template-resume {
         transform-origin: 50% 0px;
-        width: 624px;
-        height: 839px;
+        width: 680px;
+        height: 830px;
         margin: 0 auto;
 
         @media(max-width: 1023px) {
@@ -506,7 +506,7 @@
         &>div {
             .cv-body {
                 width: 100% !important;
-                max-width: 624px !important;
+                max-width: 680px !important;
                 margin-left: auto;
                 margin-right: auto;
             }
