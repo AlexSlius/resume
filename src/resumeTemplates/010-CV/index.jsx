@@ -41,16 +41,16 @@ const drawing = () => {
         cvDataRight.push($('.' + el).clone());
       });
 
-      // current_page_number = 1;
-      // cvDataRight.forEach(function (el) {
-      //   getPageColumnRight().append(el);
-      //   if (checkHeight()) {
-      //     console.log(el);
-      //     el.remove();
-      //     current_page_number++;
-      //     getPageColumnRight().append(el);
-      //   }
-      // });
+      current_page_number = 1;
+      cvDataRight.forEach(function (el) {
+        getPageColumnRight().append(el);
+        if (checkHeight()) {
+          console.log(el);
+          el.remove();
+          current_page_number++;
+          getPageColumnRight().append(el);
+        }
+      });
 
       current_page_number = 1;
       cvDataLeft.forEach(function (el) {
