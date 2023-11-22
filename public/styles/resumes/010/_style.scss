@@ -777,4 +777,10 @@
   .cv-body-content {
     display: flex;
   }
+
+  @media print {
+    .block-block {
+      page-break-inside: avoid !important;
+    }
+  }
 }
