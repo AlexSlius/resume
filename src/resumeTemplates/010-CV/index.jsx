@@ -70,11 +70,7 @@ const drawing = () => {
       return getPageContainer().find('.information-block');
     }
     function checkHeight() {
-      if ($('.cv-body').width() > 624) {
-        return getPageContainer().outerHeight() + 5  > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
-      } else {
-        return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
-      }
+      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
     }
     function getPageContainer() {
       var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
