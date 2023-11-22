@@ -42,16 +42,6 @@ const drawing = () => {
       });
 
       current_page_number = 1;
-      cvDataLeft.forEach(function (el) {
-        getPageColumnLeft().append(el);
-        if (checkHeight()) {
-          el.remove();
-          current_page_number++;
-          getPageColumnLeft().append(el);
-        }
-      });
-
-      current_page_number = 1;
       cvDataRight.forEach(function (el) {
         getPageColumnRight().append(el);
         if (checkHeight()) {
@@ -59,6 +49,16 @@ const drawing = () => {
           el.remove();
           current_page_number++;
           getPageColumnRight().append(el);
+        }
+      });
+
+      current_page_number = 1;
+      cvDataLeft.forEach(function (el) {
+        getPageColumnLeft().append(el);
+        if (checkHeight()) {
+          el.remove();
+          current_page_number++;
+          getPageColumnLeft().append(el);
         }
       });
       checkEmpty();
