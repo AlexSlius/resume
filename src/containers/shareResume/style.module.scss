@@ -1,7 +1,10 @@
 .wr_div {
     @media print {
         @page {
-            size: A4;
+            size: auto;
+            /* auto is the initial value */
+            margin: 0;
+            /* this affects the margin in the printer settings */
         }
     }
 }
