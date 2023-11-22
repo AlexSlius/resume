@@ -70,7 +70,7 @@ const drawing = () => {
       return getPageContainer().find('.information-block');
     }
     function checkHeight() {
-      return getPageContainer().height() + 40 > 830;
+      return getPageContainer().outerHeight() > $('.cv-body.cv-body-visible.page-' + current_page_number).height();
     }
     function getPageContainer() {
       var page = $('#cv-chapter-section-cv').find('.cv-body.page-' + current_page_number);
