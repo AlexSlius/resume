@@ -629,7 +629,7 @@
 }
 
 @media print {
-    .block-block {
+    .page-template .body-template-resume .block-block {
       page-break-inside: avoid !important;
     }
   }
