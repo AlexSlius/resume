@@ -59,7 +59,6 @@ const drawing = () => {
           current_page_number++;
           getPageColumnLeft().append(el);
         }
-        el.prepend(el.height());
       });
       checkEmpty();
     }
