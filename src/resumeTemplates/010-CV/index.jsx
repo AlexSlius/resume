@@ -45,7 +45,6 @@ const drawing = () => {
       cvDataRight.forEach(function (el) {
         getPageColumnRight().append(el);
         if (checkHeight()) {
-          console.log(el);
           el.remove();
           current_page_number++;
           getPageColumnRight().append(el);
@@ -60,6 +59,7 @@ const drawing = () => {
           current_page_number++;
           getPageColumnLeft().append(el);
         }
+        el.prepend(el.height());
       });
       checkEmpty();
     }
