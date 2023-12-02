@@ -34,7 +34,7 @@ export const downloadPdf = createAsyncThunk('resume/getDownloadResume', async ({
             setStatesetStateLoadDown(false);
     }
 
-    return {};
+    return { status: true };
 });
 
 export const deleteResume = createAsyncThunk('resumes/deleteResume', async ({ id }, thunkAPI) => {

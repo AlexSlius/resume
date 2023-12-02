@@ -132,7 +132,7 @@ export const JobWinningPage = ({
                         ((objData?.list?.count_pages > 1) && (objData?.list?.count_pages + 1 > currentPage)) && (
                             <div className="btn-centers-w btn-centers-w_t2">
                                 <LoadChildrenBtn isLoad={isLoader(objData.status)}>
-                                    <button onClick={handleUpload} className="button-p button-p_light_grey">
+                                    <button onClick={() => handleUpload(false)} className="button-p button-p_light_grey">
                                         <span>Upload more</span>
                                     </button>
                                 </LoadChildrenBtn>

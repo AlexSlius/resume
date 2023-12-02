@@ -16,6 +16,7 @@ export const CardResume = ({
     image = null,
     load = true,
     isCopyShare = false,
+    loadDown = false,
     dateUpdate,
     handleEdit = () => { },
     handleBlur = () => { },
@@ -55,7 +56,7 @@ export const CardResume = ({
                 </div>
                 <div className={`${style.card__navigation}`}>
                     <div>
-                        <button className="btn-download" onClick={handleDewnload}>
+                        <button className={`btn-download ${loadDown ? "load" : ""}`} onClick={handleDewnload}>
                             <Icon svg={iconDownload} />
                         </button>
                     </div>

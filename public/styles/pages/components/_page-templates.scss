@@ -446,6 +446,8 @@
         .ptr-c__content {
             max-height: inherit;
             min-height: inherit;
+            display: flex;
+            align-items: center;
         }
 
         .ptr-c.scroll-style {
@@ -459,6 +461,13 @@
             }
         }
     }
+
+    .body-template-resume {
+        transform: scale(1) !important;
+        zoom: 1 !important;
+        -ms-zoom: 1 !important;
+        width: 680.31px;
+    }
 }
 
 
@@ -471,12 +480,6 @@
                 .ptr-c__content {
                     max-width: 100%;
                 }
-                .body-template-resume {
-                    transform: scale(1) !important;
-                    zoom: 1 !important;
-                    -ms-zoom: 1 !important;
-                    width: 680.31px;
-                }
             }
         }
     }
@@ -488,6 +491,15 @@
             .cv-body.cv-body-visible {
                 margin-bottom: 26px;
             }
+        }
+
+        .ptr-c__content {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-templates .body-template-resume {
+            height: 839px;
         }
     }
 }

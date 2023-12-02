@@ -235,6 +235,7 @@ export const ResumeCv002 = ({
   }, [isDrawing, data, stateClasses]);
 
   if (objActiveBlock) {
+    if (typeof window != 'undefined')
     hideEmpty();
   }
   function hideEmpty() {

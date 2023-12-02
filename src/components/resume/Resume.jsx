@@ -210,6 +210,7 @@ const Resume = ({
                onPrev={onPrev}
                isLoad={isLoadAll}
                currentResolution={currentResolution}
+               isNewResume={isNewResume}
             />
             <ResumeMain
                reportTemplateRef={reportTemplateRef}

@@ -10,18 +10,24 @@ import {
 const initialState = {
     list: [],
     status: statusLoaded,
+    idDown: null
 };
 
 export const slice = createSlice({
     name: 'resumers',
     initialState,
+    reducers: {
+        updateIdDownResume(state, action) {
+            state.idDown = action.payload;
+        },
+    },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
-              ...state,
-              ...action.payload.resumers,
+                ...state,
+                ...action.payload.resumers,
             }
-          },
+        },
         [fetchGetResumesList.pending]: (state) => {
             state.status = statusLoader;
         },
@@ -31,5 +37,7 @@ export const slice = createSlice({
         },
     }
 });
+
+export const { updateIdDownResume } = slice.actions;
 
 export const { reducer } = slice;

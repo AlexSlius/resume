@@ -31,6 +31,8 @@ import {
 } from "../../controllers/cover/covers";
 import { contactAddNew } from "../../controllers/contacts";
 import { coverAddNew } from "../../controllers/cover/personalize";
+import { updateIdDownResume } from "../../slices/resumes";
+import { updateIdDownLetter } from "../../slices/cover/covers";
 
 import { tabsDashboardPage } from "../../constants/dashboardsTabs";
 import { routersPages } from "../../constants/next-routers";
@@ -133,8 +135,13 @@ const Dashboard = () => {
     }
 
     // download handle
-    const handleDownloadResume = (id, shareKey) => {
-        dispatch(downloadPdf({ id, shareKey }));
+    const handleDownloadResume = async (id, shareKey) => {
+        dispatch(updateIdDownResume(id));
+        await dispatch(downloadPdf({ id, shareKey })).then((res) => {
+            setTimeout(() => {
+                dispatch(updateIdDownResume(null));
+            }, 2500)
+        });
     }
 
     const chanbdegAutOrPlanResume = (id, isDown = false, shareKey) => {
@@ -149,6 +156,21 @@ const Dashboard = () => {
             isSubscribe
         });
     }
+
+
+    const chanbdegAutOrPlanCover = (id, isDown = false, shareKey) => {
+        handleChanbdegAutOrPlan({
+            funCalb: () => { isDown ? handleDownloadCover(id, shareKey) : handleShareCover(id) },
+            isCover: true,
+            isNewResume: false,
+            isAthorized: true,
+            dispatch,
+            Router,
+            query: router.query,
+            isSubscribe
+        });
+    }
+
 
     // handleShare cover
     const handleShareCover = async (id) => {
@@ -168,19 +190,11 @@ const Dashboard = () => {
 
     // download handle
     const handleDownloadCover = (id, shareKey) => {
-        dispatch(downloadLetterPdf({ id, shareKey }));
-    }
-
-    const chanbdegAutOrPlanCover = (id, isDown = false, shareKey) => {
-        handleChanbdegAutOrPlan({
-            funCalb: () => { isDown ? handleDownloadCover(id, shareKey) : handleShareCover(id) },
-            isCover: true,
-            isNewResume: false,
-            isAthorized: true,
-            dispatch,
-            Router,
-            query: router.query,
-            isSubscribe
+        dispatch(updateIdDownLetter(id));
+        dispatch(downloadLetterPdf({ id, shareKey })).then(res => {
+            setTimeout(() => {
+                dispatch(updateIdDownLetter(null));
+            }, 2500);
         });
     }
 
@@ -317,11 +331,12 @@ const Dashboard = () => {
                                             <CardResume
                                                 key={item.id}
                                                 id={item.id}
-                                                image={!!item?.screenUrl ? item?.screenUrl : ""} // /images/other/img_resume.png
+                                                image={!!item?.screenUrl ? item?.screenUrl : ""}
                                                 label={item.cvName}
                                                 load={loadCards}
                                                 isCopyShare={copyShareResume}
                                                 dateUpdate={item.updateDatetime}
+                                                loadDown={item.id == resumers.idDown}
                                                 handleEdit={() => handleOnUpdateResume(item)}
                                                 handleBlur={handleBlur}
                                                 handleDelete={() => handleDeleteResume(item.id)}
@@ -368,6 +383,7 @@ const Dashboard = () => {
                                                 load={loadCards}
                                                 isCopyShare={copyShareCover}
                                                 dateUpdate={item.updateDatetime}
+                                                loadDown={item.id == covers.idDown}
                                                 handleEdit={() => handleOnUpdateCover(item)}
                                                 handleBlur={handleBlurCover}
                                                 handleDelete={() => handleDeleteCover(item.id)}

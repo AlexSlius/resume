@@ -3,11 +3,11 @@ import TemplatesWrapper from "../../../src/wrappers/templates"
 import { withPublicRoute } from "../../../src/middleware/publicRouter"
 
 const TemplatesPage = ({ store }) => {
-    const { resumeData } = store.getState();
+    const { resumeData, contacts } = store.getState();
 
     return (
         <TemplatesWrapper>
-            <ContainerPageTemplates beforeСontent={resumeData.stubText} />
+            <ContainerPageTemplates beforeСontent={resumeData.resumeData?.contact ? resumeData.resumeData.data.contact?.[0].isDummyTextHidden : contacts.contactObjNew?.isDummyTextHidden} />
         </TemplatesWrapper>
     )
 }

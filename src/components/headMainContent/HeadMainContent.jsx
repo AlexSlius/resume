@@ -12,6 +12,7 @@ const HeadMainContent = (props) => {
    const { title, description, children, isRows = true, link = '', StubTextBtn = false } = props;
 
    const cont = useSelector(state => state.contacts.contactObj);
+   const contNew = useSelector(state => state.contacts.contactObjNew);
    const { currentResolution } = useSelector(state => state.theme);
 
    return (
@@ -24,10 +25,10 @@ const HeadMainContent = (props) => {
                !!StubTextBtn && !['sm', 'xs', 'md'].includes(currentResolution) && (
                   <div className={style.switch_stub}>
                      <Switch
-                        label="Stub-text"
+                        label="Example text"
                         reverse={true}
-                        isChecked={!!cont?.isDummyTextHidden}
-                        handleOnChange={(prev) => dispatch(fetchUpdateDrawingeServer({ id: cont.id, status: !!cont?.isDummyTextHidden ? 0 : 1 }))}
+                        isChecked={!!cont.id ? !!cont?.isDummyTextHidden : !!contNew?.isDummyTextHidden}
+                        handleOnChange={(prev) => dispatch(fetchUpdateDrawingeServer({ id: cont.id, status: !!cont.id ? !!cont?.isDummyTextHidden ? 0 : 1 : !!contNew?.isDummyTextHidden ? 0 : 1 }))}
                      />
                   </div>
                )

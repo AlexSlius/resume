@@ -108,7 +108,7 @@ const ResumeMain = ({
       if (isNewResume) {
          setTimeout(() => {
             handleReload();
-         }, 300);
+         }, 900);
       }
    }, []);
 
@@ -140,7 +140,7 @@ const ResumeMain = ({
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
-                     beforeСontent={!!contactObj?.isDummyTextHidden}
+                     beforeСontent={isNewResume ? !!contactObjNew?.isDummyTextHidden : !!contactObj?.isDummyTextHidden}
                   />
                </div>
             )

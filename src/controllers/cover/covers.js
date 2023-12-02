@@ -34,7 +34,7 @@ export const downloadLetterPdf = createAsyncThunk('resume/getDownloadLetter', as
             setStatesetStateLoadDown(false);
     }
 
-    return {};
+    return {status: true};
 });
 
 export const deleteCover = createAsyncThunk('resumes/deleteCover', async ({ id }, thunkAPI) => {

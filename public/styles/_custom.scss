@@ -770,14 +770,34 @@ input[type="number"]:focus {
     border-radius: 8px;
     transition: 0.3s;
     cursor: pointer;
+    position: relative;
 
     svg {
         width: 20px;
         height: 20px;
     }
-
     &:hover {
         background: #3f7ffd;
+    }
+
+    &.load {
+        overflow: hidden;
+
+        svg {
+            animation: downAnim 1.2s infinite;
+        }
+    }
+}
+
+@keyframes downAnim {
+    0% {
+        transform: scale(1);
+    }
+    0% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 

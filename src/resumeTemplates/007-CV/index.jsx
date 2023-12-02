@@ -224,10 +224,11 @@ export const ResumeCv007 = ({
   }, [isDrawing, data, stateClasses]);
 
   if (objActiveBlock) {
-    hideEmpty();
+    if (typeof window != 'undefined')
+      hideEmpty();
   }
   function hideEmpty() {
-    employment.forEach(function(el, i){
+    employment.forEach(function (el, i) {
       if (i < (employment.length - 1)) {
         $('.employment-history-block').find('.block-info').eq(i).find('.empty-field').hide();
       }
@@ -241,7 +242,7 @@ export const ResumeCv007 = ({
         $('div, span, p').not('.empty-field').show();
       }
     });
-    education.forEach(function(el, i){
+    education.forEach(function (el, i) {
       if (i < (education.length - 1)) {
         $('.education-block').find('.block-info').eq(i).find('.empty-field').hide();
       }
@@ -255,7 +256,7 @@ export const ResumeCv007 = ({
         $('div, span, p').not('.empty-field').show();
       }
     });
-    courses.forEach(function(el, i){
+    courses.forEach(function (el, i) {
       if (i < (courses.length - 1)) {
         $('.courses-block').find('.block-info').eq(i).find('.empty-field').hide();
       }
@@ -269,7 +270,7 @@ export const ResumeCv007 = ({
         $('div, span, p').not('.empty-field').show();
       }
     });
-    extra_curricular.forEach(function(el, i){
+    extra_curricular.forEach(function (el, i) {
       if (i < (extra_curricular.length - 1)) {
         $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').hide();
       }
@@ -283,7 +284,7 @@ export const ResumeCv007 = ({
         $('div, span, p').not('.empty-field').show();
       }
     });
-    internship.forEach(function(el, i){
+    internship.forEach(function (el, i) {
       if (i < (internship.length - 1)) {
         $('.internships-block').find('.block-info').eq(i).find('.empty-field').hide();
       }
@@ -297,7 +298,7 @@ export const ResumeCv007 = ({
         $('div, span, p').not('.empty-field').show();
       }
     });
-    reference.forEach(function(el, i){
+    reference.forEach(function (el, i) {
       if (i < (reference.length - 1)) {
         $('.references-block').find('.block-info').eq(i).find('.empty-field').hide();
       }

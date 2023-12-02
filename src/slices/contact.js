@@ -48,6 +48,7 @@ const initialState = {
     placeOfBirth: "",
     dateOfBirth: null,
     jobTitleId: null,
+    isDummyTextHidden: 1,
   },
   emailRegister: '',
   isErrorEmail: false,
@@ -124,6 +125,7 @@ export const slice = createSlice({
     },
     [fetchUpdateDrawingeServer.fulfilled]: (state, action) => {
       state.contactObj.isDummyTextHidden = action.payload;
+      state.contactObjNew.isDummyTextHidden = action.payload;
     },
   }
 });

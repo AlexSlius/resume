@@ -19,11 +19,13 @@ const ResumeHead = ({
    onPrev = () => { },
    isLoad = false,
    currentResolution,
+   isNewResume = true,
 }) => {
    const dispatch = useDispatch();
    let isNext = lengthPages == 1 ? false : currentPage == lengthPages ? false : true;
    let isPrev = lengthPages == 1 ? false : currentPage == 1 ? false : true;
    const cont = useSelector(state => state.contacts.contactObj);
+   const contNew = useSelector(state => state.contacts.contactObjNew);
 
    return (
       <div className={`${style.resume_head} head_resume_div`}>
@@ -45,10 +47,10 @@ const ResumeHead = ({
                ['sm', 'xs', 'md'].includes(currentResolution) && (
                   <div className={style.switch_stub}>
                      <Switch
-                        label="Stub-text"
+                        label="Example text"
                         reverse={true}
-                        isChecked={!!cont?.isDummyTextHidden}
-                        handleOnChange={(prev) => dispatch(fetchUpdateDrawingeServer({ id: cont.id, status: !!cont?.isDummyTextHidden ? 0 : 1 }))}
+                        isChecked={isNewResume ? !!contNew?.isDummyTextHidden : !!cont?.isDummyTextHidden}
+                        handleOnChange={(prev) => dispatch(fetchUpdateDrawingeServer({ id: cont.id, status: isNewResume ? !!contNew?.isDummyTextHidden ? 0 : 1 : !!cont?.isDummyTextHidden ? 0 : 1 }))}
                      />
                   </div>
                )

@@ -12,11 +12,17 @@ import {
 const initialState = {
     list: [],
     status: statusLoaded,
+    idDown: null
 };
 
 export const slice = createSlice({
     name: 'covers',
     initialState,
+    reducers: {
+        updateIdDownLetter(state, action) {
+            state.idDown = action.payload;
+        },
+    },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
@@ -33,5 +39,7 @@ export const slice = createSlice({
         },
     }
 });
+
+export const { updateIdDownLetter } = slice.actions;
 
 export const { reducer } = slice;
