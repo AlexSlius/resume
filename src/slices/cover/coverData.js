@@ -76,7 +76,7 @@ export const slice = createSlice({
             }
 
             if (!action.payload?.isNew) {
-                state.list = { items: [...state.list.items, ...action.payload.items], count_pages: action.payload.count_pages };
+                state.list = { items: [...state.list.items, ...action?.payload?.items || []], count_pages: action.payload.count_pages };
             }
         }
     }

@@ -5,6 +5,7 @@ import moment from 'moment';
 import api from "../../apiSingleton";
 import { isSuccessNewContact, isError } from '../../helpers/checkingStatuses';
 import { localStorageSet, sessionStorageSet } from "../../helpers/localStorage"
+import { returnIsDataField } from "../../helpers/returnFiedlIsDara";
 import { routersPages } from '../../constants/next-routers';
 import { addItemNotification } from "../../slices/notifications";
 import { cleanNewForm } from "../../slices/cover/coverDataForm";
@@ -50,7 +51,7 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
         workExperienceYears: coverDataObjNew.workExperienceYears
     });
 
-    const response = await api.personalize.addCover({ ...newObj, ...(isDashboard ? dataAccout : {}) });
+    const response = await api.personalize.addCover(returnIsDataField({ ...newObj, ...(isDashboard ? dataAccout : {}) }));
 
     if (response?.status == "added") {
         if (isDashboard) {
@@ -91,7 +92,7 @@ export const coverSetNew = createAsyncThunk('fetch/coverSetNew', async ({ isRedi
         workExperienceYears: coverDataObjNew.workExperienceYears
     });
 
-    const response = await api.personalize.createNewCoverBasic(newObj);
+    const response = await api.personalize.createNewCoverBasic(returnIsDataField(newObj));
 
     if (isRedirect) {
         if (isSuccessNewContact(response)) {
@@ -132,7 +133,7 @@ export const updateCoverLetterById = createAsyncThunk('fetch/updateCoverLetterBy
     newObj.graduate_date = newObj?.graduate_date ? moment(new Date(newObj.graduate_date)) : "";
     newObj.expected_year_of_graduation = newObj?.expected_year_of_graduation ? moment(new Date(newObj.expected_year_of_graduation)) : "";
 
-    const response = await api.personalize.updateCoverLetterById(idCv, newObj);
+    const response = await api.personalize.updateCoverLetterById(idCv, returnIsDataField(newObj));
 
     if (isError(response)) {
         await thunkAPI.dispatch(addItemNotification({ text: response.message, type: 'err' }));
