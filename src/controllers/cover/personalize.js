@@ -34,8 +34,8 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
 
     const dataAccout = {
         email: objFormSettings?.email,
-        firstName: objFormSettings?.firstName,
-        lastName: objFormSettings?.lastName,
+        firstName: objFormSettings?.firstName || '',
+        lastName: objFormSettings?.lastName || '',
     };
 
     // getCoverDataActive
@@ -48,10 +48,11 @@ export const coverAddNew = createAsyncThunk('fetch/coverAddNew', async ({
         zipCode: coverDataObjNew.zipCode,
         email: coverDataObjNew.email,
         phone: coverDataObjNew.phone,
-        workExperienceYears: coverDataObjNew.workExperienceYears
+        workExperienceYears: coverDataObjNew.workExperienceYears,
+        ...(isDashboard ? dataAccout : {})
     });
 
-    const response = await api.personalize.addCover(returnIsDataField({ ...newObj, ...(isDashboard ? dataAccout : {}) }));
+    const response = await api.personalize.addCover(returnIsDataField(newObj));
 
     if (response?.status == "added") {
         if (isDashboard) {
