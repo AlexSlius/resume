@@ -351,6 +351,14 @@
     color: var(--white);
 }
 
+
+@media (max-width: 1580px) {
+    .promo-img {
+        margin-right: -50px;
+        width: 528px;
+    }
+}
+
 @media (max-width: 1480px) {
     .promo-img {
         margin-right: -50px;
