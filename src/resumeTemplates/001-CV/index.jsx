@@ -227,7 +227,7 @@ export const ResumeCv001 = ({
       handleFalseDrafind();
       drawing();
     }
-  }, [isDrawing, data, stateClasses]);
+  }, [isDrawing, data, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')
@@ -319,7 +319,7 @@ export const ResumeCv001 = ({
       }
     });
   }
-
+  
   return (
     <div className="sv_001" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section`} data-chapter="cv">

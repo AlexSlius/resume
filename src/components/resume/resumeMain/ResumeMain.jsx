@@ -118,6 +118,8 @@ const ResumeMain = ({
       }
    }
 
+   const befContent = isNewResume ? !!contactObjNew?.isDummyTextHidden : !!contactObj?.isDummyTextHidden;
+
    return (
       <div className={`resume-main ${(loadContent || loadContetnMob) ? "load" : ""}`} ref={refDivResumeMain}>
          {
@@ -140,7 +142,7 @@ const ResumeMain = ({
                      drawing={resumeData.drawing}
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
-                     beforeСontent={isNewResume ? !!contactObjNew?.isDummyTextHidden : !!contactObj?.isDummyTextHidden}
+                     beforeСontent={befContent}
                   />
                </div>
             )

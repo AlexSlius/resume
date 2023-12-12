@@ -113,7 +113,8 @@ const Resume = ({
       certificaties,
       careers,
       isOpenPreviesMobTemplate,
-      contacts.contactObj.isDummyTextHidden
+      contacts.contactObj.isDummyTextHidden,
+      contacts.contactObjNew.isDummyTextHidden,
    ]);
 
    useEffect(() => {
@@ -124,7 +125,7 @@ const Resume = ({
             setLoadContetnMob(false);
          }, 500);
       }
-   }, [contacts.contactObj.isDummyTextHidden]);
+   }, [contacts.contactObj.isDummyTextHidden, contacts.contactObjNew.isDummyTextHidden]);
 
    useEffect(() => {
       if (typeof window != "undefined") {
@@ -186,6 +187,7 @@ const Resume = ({
       careers,
       isOpenPreviesMobTemplate,
       contacts.contactObj.isDummyTextHidden,
+      contacts.contactObjNew.isDummyTextHidden,
       loadContetnMob
    ]);
 

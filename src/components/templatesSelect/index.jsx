@@ -97,7 +97,7 @@ export const TemplatesSelect = ({
 
     useEffect(() => {
         dispatch(handleCVUpdateDrawingTrue());
-    }, [stateClasses, resumeActive]);
+    }, [stateClasses, resumeActive, beforeСontent]);
 
     return (
         <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>

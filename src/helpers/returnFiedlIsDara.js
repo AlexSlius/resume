@@ -7,10 +7,10 @@ let field = [
     'city',
     'zip_code',
     'state',
-    'applying_company_name',
-    'applying_company_job_title',
-    'applying_company_title',
-    'applying_company_contact'
+    // 'applying_company_name',
+    // 'applying_company_job_title',
+    // 'applying_company_title',
+    // 'applying_company_contact'
 ];
 
 export const returnIsDataField = (obj) => {
