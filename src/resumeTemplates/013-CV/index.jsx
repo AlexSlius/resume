@@ -437,7 +437,7 @@ export const ResumeCv013 = ({
                 <div className="skills-list estimated-items-list">
                   {
                     languages.map((item, index) => (
-                      <div className={`list-item ${item.name ? 'empty-field' : ''}`} key={index}>
+                      <div className={`list-item ${!item.language ? 'empty-field' : ''}`} key={index}>
                         <div className="item-name">{item.language ? item.language : 'Language'}</div>
                         <div className="estimation-wrapper">
                           <div className="estimation-background"></div>

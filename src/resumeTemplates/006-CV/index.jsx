@@ -154,7 +154,9 @@ const drawing = () => {
     function checkEmpty() {
       $('.cv-body-area').each(function (index, el) {
         if ($(this).height() === 0) {
-          $(this).remove();
+          $(this).hide();
+        } else {
+          $(this).show();
         }
       });
     }
