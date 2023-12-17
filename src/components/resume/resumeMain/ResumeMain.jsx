@@ -14,6 +14,8 @@ const ResumeMain = ({
    reportTemplateRef,
    isCover,
    loadContetnMob = false,
+   setLoadContent,
+   loadContent
 }) => {
    const refDivResumeMain = useRef();
    const dispatch = useDispatch();
@@ -22,7 +24,6 @@ const ResumeMain = ({
    const isNewResume = (idCv == "new");
    const [stateFontSize, setStateFontSize] = useState(50);
    const [stateLineSpacing, setStateLIneSpacig] = useState(50);
-   const [loadContent, setLoadContent] = useState(true);
 
    const {
       contacts: {

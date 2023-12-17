@@ -23,6 +23,7 @@ const Resume = ({
    const [pagesPag, setPagesPag] = useState(1);
    const [pagePagCurrent, setPagePagCurrent] = useState(0);
    const [loadContetnMob, setLoadContetnMob] = useState(false);
+   const [loadContent, setLoadContent] = useState(true);
 
    const {
       coverDataForm,
@@ -219,6 +220,8 @@ const Resume = ({
                isCover={isCover}
                currentResolution={currentResolution}
                loadContetnMob={loadContetnMob}
+               setLoadContent={setLoadContent}
+               loadContent={(isCover ? false : resumeData.drawing) || loadContent}
             />
             <ResumeFooter
                isCover={isCover}
