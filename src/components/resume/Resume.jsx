@@ -203,6 +203,14 @@ const Resume = ({
       dispatch(handleUpdateDrawingTrue());
    }, []);
 
+   useEffect(() => {
+      if (!!resumeData.drawing)
+         setLoadContent(true)
+
+      if (!resumeData.drawing)
+         setLoadContent(false)
+   }, [resumeData.drawing])
+
    return (
       <>
          <CCol className={`resume mob_resume ${isOpenPreviesMobTemplate ? "open" : ""}`}>
@@ -221,7 +229,7 @@ const Resume = ({
                currentResolution={currentResolution}
                loadContetnMob={loadContetnMob}
                setLoadContent={setLoadContent}
-               loadContent={(isCover ? false : resumeData.drawing) || loadContent}
+               loadContent={loadContent}
             />
             <ResumeFooter
                isCover={isCover}
