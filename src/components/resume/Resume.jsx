@@ -203,13 +203,13 @@ const Resume = ({
       dispatch(handleUpdateDrawingTrue());
    }, []);
 
-   useEffect(() => {
-      if (!!resumeData.drawing)
-         setLoadContent(true)
+   // useEffect(() => {
+   //    if (!!resumeData.drawing)
+   //       setLoadContent(true)
 
-      if (!resumeData.drawing)
-         setLoadContent(false)
-   }, [resumeData.drawing])
+   //    if (!resumeData.drawing)
+   //       setLoadContent(false)
+   // }, [resumeData.drawing])
 
    return (
       <>
