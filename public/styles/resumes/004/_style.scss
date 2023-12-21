@@ -82,6 +82,10 @@
     flex: 1;
     display: flex;
   }
+
+  .area-top {
+    padding: 20px;
+  }
   
   .area-1 {
     width: 195px;
@@ -369,6 +373,9 @@
     }
 
     &.has-photo {
+      .area-top {
+        padding: 0;
+      }
       .area-1 {
         .photo-block {
           display: block;
