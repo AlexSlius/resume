@@ -1,6 +1,5 @@
 export const socialHelper = (social) => {
   let socialSvg;
-  console.log(social);
   switch (social) {
     case 'Facebook':
       socialSvg = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><g id="Слой_2" data-name="Слой 2"><g id="Слой_1-2" data-name="Слой 1"><path d="M11.5,0A11.49,11.49,0,0,0,9.88,22.87V15.22H6.64V12H9.88V9.27c0-3.07,1.5-4.42,4-4.42A20.41,20.41,0,0,1,16.36,5V8.09H14.58c-1.08,0-1.46.57-1.46,1.73V12h3.24l-.65,3.24H13.12v7.65A11.49,11.49,0,0,0,11.5,0Z" /><path d="M11.3,23h0Z" /></g></g></svg>;

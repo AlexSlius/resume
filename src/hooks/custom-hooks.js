@@ -180,9 +180,9 @@ export const useScaleResumeMain = ({
             sc = vic;
           }
 
-          setScaleSize(sc);
-          setOrigin((wid - (wOr * sc)) / 2);
-          setOriginTop((hed - (wHr * sc)) / 2);
+          setScaleSize(sc.toFixed(1));
+          setOrigin(Math.round(((wid - (wOr * sc)) / 2) / 10) * 10);
+          setOriginTop(Math.round(((hed - (wHr * sc)) / 2) / 10) * 10);
         }
 
         if (isMob) {
