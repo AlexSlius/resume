@@ -15,7 +15,8 @@ const ResumeMain = ({
    isCover,
    loadContetnMob = false,
    setLoadContent,
-   loadContent
+   loadContent,
+   setPagePagCurrent = () => { }
 }) => {
    const refDivResumeMain = useRef();
    const dispatch = useDispatch();
@@ -144,6 +145,8 @@ const ResumeMain = ({
                      handleReload={handleReload}
                      objActiveBlock={objActiveBlock}
                      beforeСontent={befContent}
+                     setPagePagCurrent={setPagePagCurrent}
+                     setPages={true}
                   />
                </div>
             )
@@ -167,6 +170,8 @@ const ResumeMain = ({
                      statusResumeActive={dataOther?.statusResumeActive}
                      drawing={coverDataForm.drawing}
                      handleReload={handleReload}
+                     setPagePagCurrent={setPagePagCurrent}
+                     setPages={true}
                   // beforeСontent={false}
                   />
                </div>

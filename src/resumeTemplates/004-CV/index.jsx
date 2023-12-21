@@ -219,7 +219,9 @@ export const ResumeCv004 = ({
     hobbies,
     skills,
     languages,
-    hide_experience_level
+    hide_experience_level,
+    setPagePagCurrent = () => { },
+  setPages = false
   } = dataNew;
 
   let classPhoto = (isArray(contact) && contact?.[0]?.picture) ? "has-photo" : "";

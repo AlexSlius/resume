@@ -230,6 +230,7 @@ const Resume = ({
                loadContetnMob={loadContetnMob}
                setLoadContent={setLoadContent}
                loadContent={loadContent}
+               setPagePagCurrent={setPagePagCurrent}
             />
             <ResumeFooter
                isCover={isCover}

@@ -46,7 +46,9 @@ export const TemplatesSelect = ({
     handleReload = () => { },
     objActiveBlock,
     beforeСontent = true,
-    isPdf = false
+    isPdf = false,
+    setPagePagCurrent = () => { },
+    setPages = false
 }) => {
     const dispatch = useDispatch();
     const refIdTimeout = useRef(undefined);
@@ -114,6 +116,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -132,6 +136,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -150,6 +156,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -168,6 +176,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -186,6 +196,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -204,6 +216,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -222,6 +236,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -240,6 +256,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -258,6 +276,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -276,6 +296,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -293,6 +315,8 @@ export const TemplatesSelect = ({
                         isTemplate={isTemplate}
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         beforeСontent={beforeСontent}
                         isPdf={isPdf}
                     />
@@ -312,6 +336,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -330,6 +356,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -348,6 +376,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -366,6 +396,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -384,6 +416,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -402,6 +436,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -420,6 +456,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -438,6 +476,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -456,6 +496,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -474,6 +516,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -492,6 +536,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )
@@ -510,6 +556,8 @@ export const TemplatesSelect = ({
                         handleFalseDrafind={handleFalseDrafind}
                         objActiveBlock={objActiveBlock}
                         beforeСontent={beforeСontent}
+                        setPagePagCurrent={setPagePagCurrent}
+                        setPages={setPages}
                         isPdf={isPdf}
                     />
                 )

@@ -199,7 +199,9 @@ export const ResumeCv003 = ({
     hobbies,
     skills,
     languages,
-    hide_experience_level
+    hide_experience_level,
+    setPagePagCurrent = () => { },
+  setPages = false
   } = dataNew;
 
   useEffect(() => {

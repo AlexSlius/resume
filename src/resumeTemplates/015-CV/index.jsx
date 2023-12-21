@@ -134,7 +134,9 @@ export const ResumeCv015 = ({
   reportTemplateRef,
   beforeСontent,
   objActiveBlock,
-  isPdf = false
+  isPdf = false,
+  setPagePagCurrent = () => { },
+  setPages = false
 }) => {
   const {
     contact,

@@ -203,7 +203,9 @@ export const ResumeCv001 = ({
   handleFalseDrafind = () => { },
   objActiveBlock,
   beforeСontent,
-  isPdf = false
+  isPdf = false,
+  setPagePagCurrent = () => { },
+  setPages = false
 }) => {
   const {
     contact,
@@ -235,6 +237,7 @@ export const ResumeCv001 = ({
     if (typeof window != 'undefined')
       hideEmpty();
   }
+
   function hideEmpty() {
     employment.forEach(function (el, i) {
       if (i < (employment.length - 1)) {
@@ -321,7 +324,11 @@ export const ResumeCv001 = ({
       }
     });
   }
-  
+
+  // if( !!setPages) {
+  //   setPagePagCurrent(1,2,3....)
+  // }
+
   return (
     <div className="sv_001" ref={reportTemplateRef}>
       <div id="cv-chapter-section-cv" className={`${stateClasses} cv-chapter-section`} data-chapter="cv">
