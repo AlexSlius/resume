@@ -43,6 +43,10 @@ export const slice = createSlice({
             state.drawing = false;
         },
         handleCVUpdateDrawingTrue(state, action) {
+            if(!!state.drawing) {
+                state.drawing = false;
+            }
+            
             state.drawing = true;
         },
         updateActiveResumeNew(state, action) {

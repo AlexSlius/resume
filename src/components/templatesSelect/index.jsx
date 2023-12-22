@@ -64,11 +64,6 @@ export const TemplatesSelect = ({
     let statusLoad = statusResumeActive || status;
 
     const handleFalseDrafind = () => {
-        if (isNewResume) {
-            dispatch(handleCVUpdateDrawingTrue());
-            return;
-        }
-
         if (refIdTimeout.current) {
             clearTimeout(refIdTimeout.current);
         }
@@ -99,7 +94,13 @@ export const TemplatesSelect = ({
 
     useEffect(() => {
         dispatch(handleCVUpdateDrawingTrue());
-    }, [stateClasses, resumeActive, beforeСontent]);
+    }, [beforeСontent]);
+
+    useEffect(() => {
+        if (!setPages) {
+            dispatch(handleCVUpdateDrawingTrue());
+        }
+    }, [stateClasses, resumeActive]);
 
     return (
         <LoadWr isLoad={isLoader(statusLoad)} classes='resume_transform'>

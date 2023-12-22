@@ -91,7 +91,8 @@ const ResumeMain = ({
 
    let objActiveBlock = activeTemplateBlock(list, tab);
 
-   let { scaleSize, origin, originTop } = useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent });
+   let { scaleSize, origin, originTop } =
+      useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent });
 
    useEffect(() => {
       setStateLIneSpacig(isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing);

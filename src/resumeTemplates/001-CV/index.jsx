@@ -194,7 +194,6 @@ const drawing = () => {
 }
 
 export const ResumeCv001 = ({
-  data,
   dataNew,
   stateClasses,
   reportTemplateRef,
@@ -231,7 +230,9 @@ export const ResumeCv001 = ({
       handleFalseDrafind();
       drawing();
     }
-  }, [isDrawing, data, stateClasses, beforeСontent]);
+
+    console.log("isDrawing: ", isDrawing);
+  }, [isDrawing, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')

@@ -40,9 +40,8 @@ const ResumeBuildter = ({ statePictureFile, setStatePictureFile }) => {
     useEffect(() => {
         dispatch(fetchGetCountrys());
 
-        return () => {
+        if (idCv == "new")
             dispatch(handleCVUpdateDrawingTrue());
-        }
     }, []);
 
     return (

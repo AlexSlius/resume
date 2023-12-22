@@ -214,7 +214,7 @@ export const ResumeCv040 = ({
       drawing();
       handleFalseDrafind();
     }
-  }, [isDrawing, data, stateClasses]);
+  }, [isDrawing, stateClasses]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')

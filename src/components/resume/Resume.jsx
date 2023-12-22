@@ -8,7 +8,7 @@ import ResumeMain from './resumeMain/ResumeMain'
 import ResumeFooter from './resumeFooter/ResumeFooter'
 import { isHelperLoad } from '../../helpers/isHelperAllLoad';
 
-import { handleCVUpdateDrawingTrue } from "../../slices/resumeData";
+import { handleCVUpdateDrawingTrue, handleCVUpdateDrawingFalse } from "../../slices/resumeData";
 import { handleUpdateDrawingTrue } from "../../slices/cover/coverDataForm";
 
 const Resume = ({
@@ -199,17 +199,10 @@ const Resume = ({
 
    useEffect(() => {
       setPagePagCurrent(1);
+      dispatch(handleCVUpdateDrawingFalse())
       dispatch(handleCVUpdateDrawingTrue());
       dispatch(handleUpdateDrawingTrue());
    }, []);
-
-   // useEffect(() => {
-   //    if (!!resumeData.drawing)
-   //       setLoadContent(true)
-
-   //    if (!resumeData.drawing)
-   //       setLoadContent(false)
-   // }, [resumeData.drawing])
 
    return (
       <>

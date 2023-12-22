@@ -26,6 +26,10 @@ import {
    cleanSlise
 } from "../../../slices/contact"
 import {
+   handleCVUpdateDrawingTrue,
+   handleCVUpdateDrawingFalse
+} from "../../../slices/resumeData";
+import {
    fetchGetCities,
    fetchGetDrivers,
    fetchGetNationality,
@@ -122,6 +126,10 @@ const FormContact = ({
             reader.onloadend = async () => {
                const content = reader.result;
                await dispatch(updatePictureContact(content));
+
+               if (isNewResume) {
+                  dispatch(handleCVUpdateDrawingTrue());
+               }
             }
 
             if (e.target.files[0]) {
@@ -142,6 +150,9 @@ const FormContact = ({
       } else {
          await dispatch(updatePictureContact(null));
          await dispatch(fetchUpdateContact({ idCv, dataImage: null }));
+         if (isNewResume) {
+            dispatch(handleCVUpdateDrawingTrue());
+         }
       }
    }
 
@@ -217,16 +228,21 @@ const FormContact = ({
    }
 
    const updateContactServer = async () => {
-      if (!isNewResume) {
-         if (refIdTimeout.current) {
-            clearTimeout(refIdTimeout.current);
+      if (refIdTimeout.current) {
+         clearTimeout(refIdTimeout.current);
+      }
+
+      refIdTimeout.current = setTimeout(async () => {
+         if (isNewResume) {
+            dispatch(handleCVUpdateDrawingTrue());
          }
 
-         refIdTimeout.current = setTimeout(async () => {
-            await dispatch(fetchUpdateContact({ idCv, dataImage: statePictureFile }));
-            clearTimeout(refIdTimeout.current);
-         }, 1000);
-      }
+         if (!isNewResume) {
+            dispatch(fetchUpdateContact({ idCv, dataImage: statePictureFile }));
+         }
+
+         clearTimeout(refIdTimeout.current);
+      }, 1000);
    }
 
    const handleServerRequestGetJopsTitle = async (text) => {
