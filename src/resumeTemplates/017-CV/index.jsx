@@ -11,7 +11,9 @@ const drawing = () => {
     let current_page_number = 1;
 
     function rebuildingPages() {
-      $('.cv-body.cv-body-visible').remove();
+      $(`.cv-body.cv-body-visible`).each(function(){
+        $(this).remove();
+      });
 
       let name_and_photo_block = $('#cv-body-hidden-container .cv-body-content .name-and-photo-block').clone();
       let profile_icon = $('#cv-body-hidden-container .cv-body-content .profile-icon').clone();

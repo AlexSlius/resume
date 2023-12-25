@@ -9,8 +9,9 @@ const drawing = () => {
     var current_page_number = 1;
 
     function rebuildingPages() {
-      $('.cv-body.cv-body-visible').remove();
-
+      $(`.cv-body.cv-body-visible`).each(function(){
+        $(this).remove();
+      });
       let cvBlocksLeft = [
         'top-block',
         'profile-block',
