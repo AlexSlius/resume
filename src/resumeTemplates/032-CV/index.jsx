@@ -232,7 +232,7 @@ export const ResumeCv032 = ({
       drawing();
       handleFalseDrafind();
     }
-  }, [isDrawing, stateClasses]);
+  }, [isDrawing, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')

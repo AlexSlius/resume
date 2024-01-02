@@ -148,6 +148,7 @@ export const useScaleResumeMain = ({
   currentResolution = [],
   drawing,
   loadContent,
+  befContent,
 }) => {
   const [scaleSize, setScaleSize] = useState(0.915677);
   const [origin, setOrigin] = useState(0);
@@ -182,7 +183,7 @@ export const useScaleResumeMain = ({
 
           setScaleSize(sc.toFixed(1));
           setOrigin(Math.round(((wid - (wOr * sc)) / 2) / 10) * 10);
-          setOriginTop(Math.round(((hed - (wHr * sc)) / 2) / 10) * 10);
+          // setOriginTop(Math.round(((hed - (wHr * sc)) / 2) / 10) * 10);
         }
 
         if (isMob) {
@@ -208,7 +209,7 @@ export const useScaleResumeMain = ({
 
   useEffect(() => {
     handleResize();
-  }, [currentResolution, drawing, loadContent]);
+  }, [currentResolution, drawing, loadContent, befContent]);
 
   return { scaleSize, origin, originTop };
 }

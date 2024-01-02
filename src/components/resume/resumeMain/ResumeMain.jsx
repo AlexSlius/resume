@@ -91,8 +91,10 @@ const ResumeMain = ({
 
    let objActiveBlock = activeTemplateBlock(list, tab);
 
+   const befContent = isNewResume ? !!contactObjNew?.isDummyTextHidden : !!contactObj?.isDummyTextHidden;
+
    let { scaleSize, origin, originTop } =
-      useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent });
+      useScaleResumeMain({ refDivResumeMain, currentResolution, drawing: { res: resumeData.drawing, cover: coverDataForm.drawing }, loadContent, befContent });
 
    useEffect(() => {
       setStateLIneSpacig(isNewResume ? dataOther?.resumeActiveNew?.template_line_spacing : dataOther?.resumeActive?.template_line_spacing);
@@ -120,8 +122,6 @@ const ResumeMain = ({
          setLoadContent(false);
       }
    }
-
-   const befContent = isNewResume ? !!contactObjNew?.isDummyTextHidden : !!contactObj?.isDummyTextHidden;
 
    return (
       <div className={`resume-main ${(loadContent || loadContetnMob) ? "load" : ""}`} ref={refDivResumeMain}>

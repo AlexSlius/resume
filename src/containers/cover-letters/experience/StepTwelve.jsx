@@ -16,7 +16,8 @@ export const StepTwelve = ({
     const [dataSelect, setDataSelect] = useState([{ name: "Year" }, { name: "Month" }]);
 
     const handleClickBtn = async () => {
-        handleClicQuery(StepsName["graduatedStep"]);
+        // graduatedStep
+        handleClicQuery(StepsName["professionalSkills"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {

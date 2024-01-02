@@ -237,8 +237,7 @@ export const ResumeCv002 = ({
       handleFalseDrafind();
     }
 
-    console.log("isDrawing2: ", isDrawing);
-  }, [isDrawing, stateClasses]);
+  }, [isDrawing, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')

@@ -16,7 +16,8 @@ export const StepNine = ({
     describes,
 }) => {
     const handleClickBtn = async () => {
-        await handleClicQuery(StepsName["workExperinence"]);
+        // workExperinence
+        await handleClicQuery(StepsName["graduatedStep"]);
     }
 
     const handleUpdateFiled = ({ name, value }) => {

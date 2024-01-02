@@ -155,7 +155,7 @@ export const ResumeCv039 = ({
       drawing();
       handleFalseDrafind();
     }
-  }, [isDrawing, stateClasses]);
+  }, [isDrawing, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
     if (typeof window != 'undefined')

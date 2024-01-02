@@ -15,7 +15,8 @@ export const StepFive = ({
     fieldOfStudy,
 }) => {
     const handleClickBtn = async () => {
-        await handleClicQuery(StepsName["professionalSkills"]);
+        // professionalSkills
+        await handleClicQuery(StepsName["workExperinence"]);
     }
 
     const handleUpdateFiled = async ({ name, value }) => {

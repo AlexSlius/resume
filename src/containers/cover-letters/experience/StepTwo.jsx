@@ -12,7 +12,7 @@ export const StepTwo = ({
     coverDataObj,
 }) => {
     const handleClickBtn = async (value) => {
-        await handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value, step: value == "Y" ? "nameCollege" : "professionalSkills" });
+        await handleUpdateField({ name: "questionCurrentlyInCollegeUniversity", value, step: value == "Y" ? "nameCollege" : "workExperinence" });
     }
 
     return (

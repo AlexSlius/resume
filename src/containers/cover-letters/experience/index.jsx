@@ -34,31 +34,31 @@ const arrStep = {
         id: 4,
         value: 5,
     },
-    [StepsName["professionalSkills"]]: {
+    [StepsName["workExperinence"]]: {
         id: 5,
         value: 6,
     },
-    [StepsName["skillSet"]]: {
+    [StepsName["previousJob"]]: {
         id: 6,
         value: 7,
     },
-    [StepsName["describes"]]: {
+    [StepsName["howMachWork"]]: {
         id: 7,
         value: 8,
     },
-    [StepsName["othersDescribe"]]: {
+    [StepsName["professionalSkills"]]: {
         id: 8,
         value: 9,
     },
-    [StepsName["workExperinence"]]: {
+    [StepsName["skillSet"]]: {
         id: 9,
         value: 10,
     },
-    [StepsName["previousJob"]]: {
+    [StepsName["describes"]]: {
         id: 10,
         value: 11,
     },
-    [StepsName["howMachWork"]]: {
+    [StepsName["othersDescribe"]]: {
         id: 11,
         value: 12,
     },

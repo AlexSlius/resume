@@ -231,7 +231,6 @@ export const ResumeCv001 = ({
       drawing();
     }
 
-    console.log("isDrawing: ", isDrawing);
   }, [isDrawing, stateClasses, beforeСontent]);
 
   if (objActiveBlock) {
