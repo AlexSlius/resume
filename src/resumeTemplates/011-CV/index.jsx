@@ -10,7 +10,9 @@ const drawing = () => {
     let current_page_number = 1;
 
     function rebuildingPages() {
-      $('.cv-body.cv-body-visible').remove();
+      $(`.cv-body.cv-body-visible`).each(function(){
+        $(this).remove();
+      });
 
       let personal_info_block = $('#cv-body-hidden-container .cv-body-content .personal-info-block').clone();
       let profile_block = $('#cv-body-hidden-container .cv-body-content .profile-block').clone();

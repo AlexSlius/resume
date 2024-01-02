@@ -14,7 +14,9 @@ const drawing = () => {
       current_page_number = 1;
       max_page_number = 1;
 
-      $('.cv-body.cv-body-visible').remove();
+      $(`.cv-body.cv-body-visible`).each(function(){
+        $(this).remove();
+      });
 
       var profile_block = $('#cv-body-hidden-container .profile-block').clone();
       var employment_history_block = $('#cv-body-hidden-container .employment-history-block').clone();
