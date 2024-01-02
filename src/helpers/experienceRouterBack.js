@@ -19,7 +19,8 @@ export const backRoter = (arrObj, step, idCv, dataForm) => {
 
     if ((step == arrObj['professionalSkills']) && dataForm?.questionCurrentlyInCollegeUniversity == "N") {
         // transfer to the second step
-        nameStapUrl = arrObj["graduated"];
+        // graduated
+        nameStapUrl = arrObj["howMachWork"];
     }
 
     if ((step == arrObj['graduatedFinish']) && dataForm?.questionHaveWorkExperience == "N") {
