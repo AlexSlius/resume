@@ -17,8 +17,8 @@ const initialState = {
     data: {},
     resumeActive: null,
     resumeActiveNew: {
-        slug: "001-CV",
-        id: 1,
+        slug: "041-CV",
+        id: 41,
         template_class: "",
         colors: [],
         template_line_spacing: "50",

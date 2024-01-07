@@ -1,7 +1,7 @@
 {
     "DOMAIN": "https://resulon.com",
     "STRITE_API_URL": "https://api.stripe.com/",
-    "STRITE_PUBLICK_KEY": "pk_test_51MyvEUEBJR7rLeB2X2JOP0Xwa1zVFBzMSGxQEfWPGQzNrsDAKqvHpsCmG74pXLmdPwWfJ5HGDuMV1Ce88BCS5dDd00CYS3Bhbm",
-    "STRITE_PRIVATE_KEY": "sk_test_51MyvEUEBJR7rLeB2ZmuGNbMwtbBRH43RuE2YIoSkvoGN494JFNtPeBl6n1AibQGEtrnA6Bg2xWOLOaBZzmqDizGD00uBqI72WB",
+    "STRITE_PUBLICK_KEY": "pk_live_51MyvEUEBJR7rLeB2mrmTySgAbMcbxbf3LEWORmRinxdOeixbtU0FBY86rqnBsLn3cHWl0YC5FYCx1VWusBx4QOkE00xMLBTXC6",
+    "STRITE_PRIVATE_KEY": "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",
     "API_URL": "https://api.resulon.com"
 }
