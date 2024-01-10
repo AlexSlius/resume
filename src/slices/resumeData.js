@@ -96,6 +96,10 @@ export const slice = createSlice({
         [fetchGetResumeData.fulfilled]: (state, action) => {
             state.status = statusLoaded;
             state.data = action.payload;
+
+            if(action.payload?.contact?.[0]?.isDummyTextHidden === null) {
+                state.data.contact[0].isDummyTextHidden = 1;
+            }
         },
         [getResumeDataShare.pending]: (state) => {
             state.status = statusLoader;

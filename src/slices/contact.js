@@ -99,6 +99,10 @@ export const slice = createSlice({
     [getBasicContact.fulfilled]: (state, action) => {
       state.status = statusLoaded;
       state.contactObj = action.payload;
+
+      console.log("action.payload?.isDummyTextHidden: ", action.payload?.isDummyTextHidden);
+      if (action.payload?.isDummyTextHidden === null)
+        state.contactObj.isDummyTextHidden = 1;
     },
     // new
     [contactSetNew.pending]: (state) => {
