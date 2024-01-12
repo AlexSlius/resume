@@ -240,86 +240,98 @@ export const ResumeCv041 = ({
   function hideEmpty() {
     employment.forEach(function (el, i) {
       if (i < (employment.length - 1)) {
-        $('.employment-history-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.employment-history-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.employment === false && (el.assignment !== "" || el.city !== "" || el.company !== "" || el.country !== "" || el.title !== "" || el.periodFrom !== null || el.periodTo !== null)) {
-        $('.employment-history-block').find('.empty-field').hide();
+      if (objActiveBlock.employment === false && 
+        (el.assignment || el.city || el.company || el.country || el.title || el.periodFrom || el.periodTo) &&
+        (el.assignment !== "" || el.city !== "" || el.company !== "" || el.country !== "" || el.title !== "" || el.periodFrom !== null || el.periodTo !== null)) {
+        $('.employment-history-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.employment && employment.length === 1) {
-        $('.employment-history-block').find('.empty-field').show();
+        $('.employment-history-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.employment) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     education.forEach(function (el, i) {
       if (i < (education.length - 1)) {
-        $('.education-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.education-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.education === false && (el.awards !== "" || el.study !== "" || el.facility !== "" || el.description !== "" || el.degree !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.education-block').find('.empty-field').hide();
+      if (objActiveBlock.education === false && 
+        (el.awards || el.study || el.facility || el.description || el.degree || el.dateFrom || el.dateTo) &&
+        (el.awards !== "" || el.study !== "" || el.facility !== "" || el.description !== "" || el.degree !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.education-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.education && education.length === 1) {
-        $('.education-block').find('.empty-field').show();
+        $('.education-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.education) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     courses.forEach(function (el, i) {
       if (i < (courses.length - 1)) {
-        $('.courses-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.courses-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.courses === false && (el.title !== "" || el.institution !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.courses-block').find('.empty-field').hide();
+      if (objActiveBlock.courses === false && 
+        (el.title || el.institution || el.dateFrom || el.dateTo) &&
+        (el.title !== "" || el.institution !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.courses-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.courses && courses.length === 1) {
-        $('.courses-block').find('.empty-field').show();
+        $('.courses-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.courses) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     extra_curricular.forEach(function (el, i) {
       if (i < (extra_curricular.length - 1)) {
-        $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.extra_curricular === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.title !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.extra-curricular-activities-block').find('.empty-field').hide();
+      if (objActiveBlock.extra_curricular === false && 
+        (el.city || el.country || el.description || el.employer || el.title || el.dateFrom || el.dateTo) &&
+        (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.title !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.extra-curricular-activities-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.extra_curricular && extra_curricular.length === 1) {
-        $('.extra-curricular-activities-block').find('.empty-field').show();
+        $('.extra-curricular-activities-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.extra_curricular) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     internship.forEach(function (el, i) {
       if (i < (internship.length - 1)) {
-        $('.internships-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.internships-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.internship === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.jobTitle !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.internships-block').find('.empty-field').hide();
+      if (objActiveBlock.internship === false && 
+        (el.city || el.country || el.description || el.employer || el.jobTitle || el.dateFrom || el.dateTo) &&
+        (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.jobTitle !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.internships-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.internship && internship.length === 1) {
-        $('.internships-block').find('.empty-field').show();
+        $('.internships-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.internship) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     reference.forEach(function (el, i) {
       if (i < (reference.length - 1)) {
-        $('.references-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.references-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.reference === false && (el.company !== "" || el.email !== "" || el.fullName !== "" || el.phone !== "")) {
-        $('.references-block').find('.empty-field').hide();
+      if (objActiveBlock.reference === false && 
+        (el.company || el.email || el.fullName || el.phone) &&
+        (el.company !== "" || el.email !== "" || el.fullName !== "" || el.phone !== "")) {
+        $('.references-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.reference && reference.length === 1) {
-        $('.references-block').find('.empty-field').show();
+        $('.references-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.reference) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
   }
@@ -353,13 +365,13 @@ export const ResumeCv041 = ({
                         ))
                       ) || (
                         <>
-                          <div className="link-wrapper additional-color-2-svg">
+                          <div className="link-wrapper additional-color-2-svg empty-field">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M13.6466 1.33335H2.35329C2.22634 1.33158 2.10029 1.35484 1.98233 1.4018C1.86438 1.44876 1.75683 1.51849 1.66582 1.60702C1.57482 1.69555 1.50215 1.80113 1.45195 1.91775C1.40176 2.03437 1.37503 2.15973 1.37329 2.28668V13.7133C1.37503 13.8403 1.40176 13.9657 1.45195 14.0823C1.50215 14.1989 1.57482 14.3045 1.66582 14.393C1.75683 14.4815 1.86438 14.5513 1.98233 14.5982C2.10029 14.6452 2.22634 14.6684 2.35329 14.6667H13.6466C13.7736 14.6684 13.8996 14.6452 14.0176 14.5982C14.1355 14.5513 14.2431 14.4815 14.3341 14.393C14.4251 14.3045 14.4978 14.1989 14.548 14.0823C14.5982 13.9657 14.6249 13.8403 14.6266 13.7133V2.28668C14.6249 2.15973 14.5982 2.03437 14.548 1.91775C14.4978 1.80113 14.4251 1.69555 14.3341 1.60702C14.2431 1.51849 14.1355 1.44876 14.0176 1.4018C13.8996 1.35484 13.7736 1.33158 13.6466 1.33335ZM5.39329 12.4933H3.39329V6.49334H5.39329V12.4933ZM4.39329 5.65334C4.11747 5.65334 3.85294 5.54377 3.6579 5.34874C3.46286 5.1537 3.35329 4.88917 3.35329 4.61334C3.35329 4.33752 3.46286 4.07299 3.6579 3.87795C3.85294 3.68292 4.11747 3.57334 4.39329 3.57334C4.53975 3.55673 4.68808 3.57125 4.82854 3.61593C4.96901 3.66062 5.09845 3.73447 5.2084 3.83265C5.31834 3.93083 5.40631 4.05113 5.46654 4.18567C5.52677 4.3202 5.5579 4.46594 5.5579 4.61334C5.5579 4.76075 5.52677 4.90649 5.46654 5.04102C5.40631 5.17556 5.31834 5.29586 5.2084 5.39404C5.09845 5.49222 4.96901 5.56607 4.82854 5.61076C4.68808 5.65544 4.53975 5.66995 4.39329 5.65334ZM12.6066 12.4933H10.6066V9.27334C10.6066 8.46668 10.32 7.94001 9.59329 7.94001C9.3684 7.94166 9.14942 8.0122 8.96585 8.14213C8.78228 8.27205 8.64295 8.45513 8.56663 8.66668C8.51445 8.82337 8.49185 8.98839 8.49996 9.15334V12.4867H6.49996C6.49996 12.4867 6.49996 7.03334 6.49996 6.48668H8.49996V7.33334C8.68164 7.01808 8.9459 6.75836 9.26425 6.58215C9.58261 6.40593 9.943 6.31991 10.3066 6.33334C11.64 6.33334 12.6066 7.19335 12.6066 9.04001V12.4933Z" fill="#605C64" />
                             </svg>
                             <span>Facebook</span>
                           </div>
-                          <div className="link-wrapper additional-color-2-svg">
+                          <div className="link-wrapper additional-color-2-svg empty-field">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                               <path d="M13.9333 1.33334H2.06659C1.87209 1.33334 1.68557 1.41061 1.54804 1.54813C1.41051 1.68566 1.33325 1.87218 1.33325 2.06668V13.9333C1.33325 14.0296 1.35222 14.125 1.38907 14.214C1.42593 14.3029 1.47994 14.3838 1.54804 14.4519C1.61614 14.52 1.69698 14.574 1.78595 14.6109C1.87492 14.6477 1.97028 14.6667 2.06659 14.6667H8.45325V9.50001H6.71992V7.50001H8.45325V6.00001C8.41735 5.64785 8.45892 5.29209 8.57506 4.9577C8.6912 4.62331 8.8791 4.31837 9.12556 4.06428C9.37203 3.81019 9.6711 3.6131 10.0018 3.48684C10.3325 3.36057 10.6868 3.30818 11.0399 3.33334C11.5588 3.33015 12.0774 3.35686 12.5933 3.41334V5.21334H11.5333C10.6933 5.21334 10.5333 5.61334 10.5333 6.19334V7.48001H12.5333L12.2733 9.48001H10.5333V14.6667H13.9333C14.0296 14.6667 14.1249 14.6477 14.2139 14.6109C14.3029 14.574 14.3837 14.52 14.4518 14.4519C14.5199 14.3838 14.5739 14.3029 14.6108 14.214C14.6476 14.125 14.6666 14.0296 14.6666 13.9333V2.06668C14.6666 1.97037 14.6476 1.87501 14.6108 1.78604C14.5739 1.69707 14.5199 1.61623 14.4518 1.54813C14.3837 1.48004 14.3029 1.42602 14.2139 1.38917C14.1249 1.35231 14.0296 1.33334 13.9333 1.33334Z" fill="#605C64" />
                             </svg>
@@ -606,7 +618,7 @@ export const ResumeCv041 = ({
                     ))
                   }
                 </div>
-                <div className={`education-block block-block ${!Object.keys(education[0]).length && !beforeСontent ? 'hide' : ''}`}>
+                <div className={`education-block block-block ${!education[0].study && !education[0].facility && !education[0].degree && !education[0].description && !education[0].dateFrom?.date && !education[0].dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                   <div className="heading-line">
                     <div className="cv-heading font-size-4">Education</div>
                     <div className="heading-border-line"></div>

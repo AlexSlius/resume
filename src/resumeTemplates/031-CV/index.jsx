@@ -253,86 +253,98 @@ export const ResumeCv031 = ({
   function hideEmpty() {
     employment.forEach(function (el, i) {
       if (i < (employment.length - 1)) {
-        $('.employment-history-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.employment-history-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.employment === false && (el.assignment !== "" || el.city !== "" || el.company !== "" || el.country !== "" || el.title !== "" || el.periodFrom !== null || el.periodTo !== null)) {
-        $('.employment-history-block').find('.empty-field').hide();
+      if (objActiveBlock.employment === false && 
+        (el.assignment || el.city || el.company || el.country || el.title || el.periodFrom || el.periodTo) &&
+        (el.assignment !== "" || el.city !== "" || el.company !== "" || el.country !== "" || el.title !== "" || el.periodFrom !== null || el.periodTo !== null)) {
+        $('.employment-history-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.employment && employment.length === 1) {
-        $('.employment-history-block').find('.empty-field').show();
+        $('.employment-history-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.employment) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     education.forEach(function (el, i) {
       if (i < (education.length - 1)) {
-        $('.education-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.education-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.education === false && (el.awards !== "" || el.study !== "" || el.facility !== "" || el.description !== "" || el.degree !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.education-block').find('.empty-field').hide();
+      if (objActiveBlock.education === false && 
+        (el.awards || el.study || el.facility || el.description || el.degree || el.dateFrom || el.dateTo) &&
+        (el.awards !== "" || el.study !== "" || el.facility !== "" || el.description !== "" || el.degree !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.education-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.education && education.length === 1) {
-        $('.education-block').find('.empty-field').show();
+        $('.education-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.education) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     courses.forEach(function (el, i) {
       if (i < (courses.length - 1)) {
-        $('.courses-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.courses-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.courses === false && (el.title !== "" || el.institution !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.courses-block').find('.empty-field').hide();
+      if (objActiveBlock.courses === false && 
+        (el.title || el.institution || el.dateFrom || el.dateTo) &&
+        (el.title !== "" || el.institution !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.courses-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.courses && courses.length === 1) {
-        $('.courses-block').find('.empty-field').show();
+        $('.courses-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.courses) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     extra_curricular.forEach(function (el, i) {
       if (i < (extra_curricular.length - 1)) {
-        $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.extra-curricular-activities-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.extra_curricular === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.title !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.extra-curricular-activities-block').find('.empty-field').hide();
+      if (objActiveBlock.extra_curricular === false && 
+        (el.city || el.country || el.description || el.employer || el.title || el.dateFrom || el.dateTo) &&
+        (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.title !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.extra-curricular-activities-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.extra_curricular && extra_curricular.length === 1) {
-        $('.extra-curricular-activities-block').find('.empty-field').show();
+        $('.extra-curricular-activities-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.extra_curricular) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     internship.forEach(function (el, i) {
       if (i < (internship.length - 1)) {
-        $('.internships-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.internships-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.internship === false && (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.jobTitle !== "" || el.dateFrom !== null || el.dateTo !== null)) {
-        $('.internships-block').find('.empty-field').hide();
+      if (objActiveBlock.internship === false && 
+        (el.city || el.country || el.description || el.employer || el.jobTitle || el.dateFrom || el.dateTo) &&
+        (el.city !== "" || el.country !== "" || el.description !== "" || el.employer !== "" || el.jobTitle !== "" || el.dateFrom !== null || el.dateTo !== null)) {
+        $('.internships-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.internship && internship.length === 1) {
-        $('.internships-block').find('.empty-field').show();
+        $('.internships-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.internship) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
     reference.forEach(function (el, i) {
       if (i < (reference.length - 1)) {
-        $('.references-block').find('.block-info').eq(i).find('.empty-field').hide();
+        $('.references-block').find('.block-info').eq(i).find('.empty-field').addClass('help-hide');
       }
-      if (objActiveBlock.reference === false && (el.company !== "" || el.email !== "" || el.fullName !== "" || el.phone !== "")) {
-        $('.references-block').find('.empty-field').hide();
+      if (objActiveBlock.reference === false && 
+        (el.company || el.email || el.fullName || el.phone) &&
+        (el.company !== "" || el.email !== "" || el.fullName !== "" || el.phone !== "")) {
+        $('.references-block').find('.empty-field').addClass('help-hide');
       }
       if (objActiveBlock.reference && reference.length === 1) {
-        $('.references-block').find('.empty-field').show();
+        $('.references-block').find('.empty-field').removeClass('help-hide');
       }
       if (objActiveBlock.reference) {
-        $('div, span, p').not('.empty-field').show();
+        $('div, span, p').not('.empty-field').removeClass('help-hide');
       }
     });
   }
@@ -582,7 +594,7 @@ export const ResumeCv031 = ({
                   }
                 </div>
               </div>
-              <div className={`education-block block-block ${!Object.keys(education[0]).length && !beforeСontent ? 'hide' : ''}`}>
+              <div className={`education-block block-block ${!education[0].study && !education[0].facility && !education[0].degree && !education[0].description && !education[0].dateFrom?.date && !education[0].dateTo?.date && !beforeСontent ? 'hide' : ''}`}>
                 <div className="left-side">
                   <svg className="additional-color-1-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 15.5713C9.61378 14.0899 8.97989 12.8874 8.04627 11.9538C7.11263 11.0201 5.91015 10.3862 4.42872 9.99999C5.91011 9.61376 7.11257 8.97985 8.04621 8.04621C8.97985 7.11257 9.61376 5.91009 10 4.42869C10.3862 5.91009 11.0201 7.11257 11.9538 8.04621C12.8874 8.97985 14.0899 9.61377 15.5713 10C14.0899 10.3862 12.8874 11.0201 11.9538 11.9538C11.0202 12.8874 10.3862 14.0899 10 15.5713Z" stroke="black" strokeWidth="0.960091" />
