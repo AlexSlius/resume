@@ -133,7 +133,7 @@
 
     &__content {
         margin: 0 auto;
-        max-width: 624px;
+        max-width: 794px;
         width: 100%;
         max-height: inherit;
         min-height: inherit;
@@ -435,7 +435,7 @@
         .body-template-resume {
             background: transparent;
             transform-origin: 0px 0px;
-            min-width: 624px;
+            min-width: 794px;
         }
 
         .ptr-c {
@@ -487,7 +487,7 @@
             transform: scale(1) !important;
             zoom: 1 !important;
             -ms-zoom: 1 !important;
-            width: 814px;
+            width: 794px;
         }
 
         .cv-body {
@@ -497,6 +497,15 @@
         }
     }
 }
+
+/* хром, сафари */
+body::-webkit-scrollbar { width: 0; }
+
+/* ie 10+ */
+body { -ms-overflow-style: none; }
+
+/* фф (свойство больше не работает, других способов тоже нет)*/
+body { overflow: -moz-scrollbars-none; }
 
 .page-share {
     &:not(.pdf) {
@@ -512,7 +521,7 @@
         }
 
         .page-templates .body-template-resume {
-            height: 839px;
+            height: 1122px;
         }
     }
 }
@@ -520,8 +529,8 @@
 .page-templates {
     .body-template-resume {
         transform-origin: 50% 0px;
-        width: 624px;
-        height: 839px;
+        width: 794px;
+        height: 1122px;
         margin: 0 auto;
 
         @media(max-width: 1023px) {
@@ -531,7 +540,7 @@
         &>div {
             .cv-body {
                 width: 100% !important;
-                max-width: 624px !important;
+                max-width: 794px !important;
                 margin-left: auto;
                 margin-right: auto;
             }

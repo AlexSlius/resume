@@ -65,7 +65,7 @@ export const usePosition = () => {
 
 export const useScaleResumePageShare = ({
   refDivResumeMain,
-  constWidth = 624,
+  constWidth = 570,
   currentResolution = [],
   drawing,
   loadContent,
@@ -115,16 +115,43 @@ export const useScaleResumePageShare = ({
           }
 
           if (isMob) {
-            if ((window.innerWidth + 32) < 630) {
-              let w = (((window.innerWidth - 32) * 100) / constWidth) / 100;
+          //   if ((window.innerWidth + 32) < 630) {
+          //     let w = (((window.innerWidth - 32) * 100) / constWidth) / 100;
 
-              setScaleSize(w);
-            } else {
-              setScaleSize(1);
+          //     setScaleSize(w);
+          //   } else {
+          //     setScaleSize(1);
+          //   }
+
+          //   setOrigin(0);
+          //   setOriginTop(0);
+
+          //   let w = (((wid * 100) / constWidth) / 100);
+          // isMob && (w -= 0.002);
+         
+            let wOr = refDivResumeMain.current.querySelector(".body-template-resume").offsetWidth;
+            let wHr = refDivResumeMain.current.querySelector(".body-template-resume").offsetHeight;
+            let sc = scaleSize;
+
+            // если будет больше по ширине
+            if (wOr > wid) {
+              let trW = ((wid * 100) / wOr) / 100;
+              sc = trW;
             }
 
-            setOrigin(0);
-            setOriginTop(0);
+            // проверяем влазит ли по высоте после уменшения по ширине, если не влезает то уменшаем чтобы влезло по высоте
+            let whS = (wHr * sc);
+
+            if (whS > hed) {
+              let minH = whS - hed;
+              let vic = sc - ((minH * 100) / hed / 100);
+              sc = vic;
+            }
+
+            setScaleSize(sc);
+
+            setOrigin(Math.round(((wid - (wOr * sc)) / 2) / 10) * 10);
+          setOriginTop(0);
           }
         }
   }
@@ -144,13 +171,13 @@ export const useScaleResumePageShare = ({
 // resume main
 export const useScaleResumeMain = ({
   refDivResumeMain,
-  constWidth = 624,
+  constWidth = 570,
   currentResolution = [],
   drawing,
   loadContent,
   befContent,
 }) => {
-  const [scaleSize, setScaleSize] = useState(0.915677);
+  const [scaleSize, setScaleSize] = useState(0.66);
   const [origin, setOrigin] = useState(0);
   const [originTop, setOriginTop] = useState(0);
   const isMob = ['md', 'sm', 'xs'].includes(currentResolution);
@@ -181,7 +208,7 @@ export const useScaleResumeMain = ({
             sc = vic;
           }
 
-          setScaleSize(sc.toFixed(1));
+          setScaleSize(sc);
           setOrigin(Math.round(((wid - (wOr * sc)) / 2) / 10) * 10);
           // setOriginTop(Math.round(((hed - (wHr * sc)) / 2) / 10) * 10);
         }
@@ -189,14 +216,29 @@ export const useScaleResumeMain = ({
         if (isMob) {
           let w = (((wid * 100) / constWidth) / 100);
           isMob && (w -= 0.002);
+         
+            let wOr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetWidth;
+            let wHr = refDivResumeMain.current.querySelector(".resume-main_scale").offsetHeight;
+            let sc = scaleSize;
 
-          if (wid >= 640) {
-            setScaleSize(1);
-          } else {
-            setScaleSize(w);
-          }
+            // если будет больше по ширине
+            if (wOr > wid) {
+              let trW = ((wid * 100) / wOr) / 100;
+              sc = trW;
+            }
 
-          setOrigin(0);
+            // проверяем влазит ли по высоте после уменшения по ширине, если не влезает то уменшаем чтобы влезло по высоте
+            let whS = (wHr * sc);
+
+            if (whS > hed) {
+              let minH = whS - hed;
+              let vic = sc - ((minH * 100) / hed / 100);
+              sc = vic;
+            }
+
+            setScaleSize(sc);
+
+            setOrigin(Math.round(((wid - (wOr * sc)) / 2) / 10) * 10);
           setOriginTop(0);
         }
       }

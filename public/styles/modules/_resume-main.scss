@@ -4,8 +4,8 @@
 }
 
 .col.resume {
-   flex: 0 0 614px;
-   max-width: 614px;
+   flex: 0 0 570px;
+   max-width: 570px;
    padding: 0px 14px 0px 30px;
    display: flex;
    flex-direction: column;
@@ -174,17 +174,17 @@
 }
 
 .resume-main_scale {
-   min-width: 624px;
+   min-width:  794px;
    
    @media(min-width: 1024px) {
-      max-height: 842px;
+      max-height: 1122px;
       overflow: hidden;
    }
 
    &>div {
       .cv-body {
          width: 100% !important;
-         max-width: 624px !important;
+         max-width: 794px !important;
          margin-left: auto;
          margin-right: auto;
       }
