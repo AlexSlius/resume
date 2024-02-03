@@ -19,7 +19,7 @@ export const stripePaymentIntents = async ({
 
     setStateLoad(true);
 
-    const session = await stripe.checkout.sessions.create({
+    let dataBody = {
         line_items: [
             {
                 price: items,
@@ -33,7 +33,24 @@ export const stripePaymentIntents = async ({
         },
         success_url: `${redirectLinkSuccess}&success=true&session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
         cancel_url: `${redirectLink}?canceled=true?session_id={CHECKOUT_SESSION_ID}&price=${dataCard.price}&tariff=${dataCard.dataLayer.tariff}&plan=${dataCard.plan}`,
-    });
+    }
+
+    if (dataCard.trial)
+        dataBody = {
+            ...dataBody,
+            subscription_data: {
+                trial_settings: {
+                    end_behavior: {
+                        missing_payment_method: 'cancel',
+                    },
+                },
+                trial_period_days: 7,
+            },
+        }
+
+        console.log('dataBody: ', dataBody);
+
+    const session = await stripe.checkout.sessions.create(dataBody);
 
     if (session?.url?.length > 0) {
         Router.push(session.url);
